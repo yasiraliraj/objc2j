@@ -1,5 +1,7 @@
 package ru.andremoniy.objctojavacnv.antlr.output;
 
+import org.antlr.runtime.DFA;
+
 /**
  * Created with IntelliJ IDEA.
  * Date: 18.09.12
@@ -157,6 +159,241 @@ public class ObjcmParserExtensions {
             "",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+    };
+    static final String DFA168_acceptS =
+        "\1\uffff\1\1\6\uffff\1\2\121\uffff\1\1\1\uffff\1\1\2\uffff\1\1\1"+
+        "\uffff\1\1\25\uffff\2\1\4\uffff\1\1\3\uffff\1\1\1\uffff\1\1\2\uffff"+
+        "\1\1\3\uffff\1\1\15\uffff\1\1\2\uffff\1\1\11\uffff\1\1\1\uffff\1"+
+        "\1\1\uffff\1\1\2\uffff\1\1\16\uffff\1\1\2\uffff\1\1\3\uffff\1\1"+
+        "\3\uffff\1\1\2\uffff\1\1\6\uffff\1\1\2\uffff\1\1\4\uffff";
+    static final short[] DFA168_accept = DFA.unpackEncodedString(DFA168_acceptS);
+    static final String DFA168_minS =
+        "\1\4\1\uffff\2\4\2\uffff\2\4\2\uffff\1\4\4\uffff\1\4\3\uffff\1\4"+
+        "\1\uffff\1\4\1\uffff\1\37\2\uffff\1\4\1\uffff\1\4\2\uffff\1\4\23"+
+        "\uffff\1\4\3\uffff\1\4\1\uffff\1\4\1\uffff\1\4\1\uffff\1\37\3\uffff"+
+        "\1\4\15\uffff\1\4\2\uffff\1\4\u0085\uffff";
+    static final char[] DFA168_min = DFA.unpackEncodedStringToUnsignedChars(DFA168_minS);
+    static final String DFA168_maxS =
+        "\1\u00a0\1\uffff\1\145\1\u00a3\2\uffff\1\145\1\u0098\2\uffff\1\u00a5"+
+        "\4\uffff\1\u00a3\3\uffff\1\u0098\1\uffff\1\u00a5\1\uffff\1\u0098"+
+        "\2\uffff\1\145\1\uffff\1\u0098\2\uffff\1\u00a5\23\uffff\1\u00a3"+
+        "\3\uffff\1\u0098\1\uffff\1\u00a5\1\uffff\1\u00a3\1\uffff\1\u0098"+
+        "\3\uffff\1\u00a5\15\uffff\1\u00a4\2\uffff\1\u0098\u0085\uffff";
+    static final char[] DFA168_max = DFA.unpackEncodedStringToUnsignedChars(DFA168_maxS);
+    static final String DFA168_specialS =
+        "\u00d8\uffff}>";
+    static final short[] DFA168_special = DFA.unpackEncodedString(DFA168_specialS);
+    static final String DFA168_eotS =
+        "\u00d8\uffff";
+    static final short[] DFA168_eot = DFA.unpackEncodedString(DFA168_eotS);
+    static final String DFA168_eofS =
+        "\u00d8\uffff";
+    static final short[] DFA168_eof = DFA.unpackEncodedString(DFA168_eofS);
+
+    static final short[][] DFA168_transition;
+
+    static {
+        int numStates = ObjcmParserExtensions.DFA168_transitionS.length;
+        DFA168_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA168_transition[i] = DFA.unpackEncodedString(ObjcmParserExtensions.DFA168_transitionS[i]);
+        }
+    }
+
+    static final String[] DFA181_transitionS = {
+            "\1\2\17\uffff\1\2\12\uffff\1\2\6\uffff\2\2\2\uffff\2\2\1\1\30"+
+            "\uffff\1\2\2\uffff\1\2\34\uffff\1\2\4\uffff\1\2\2\uffff\2\2"+
+            "\1\uffff\1\2\1\uffff\2\2\2\uffff\1\2\1\uffff\4\2\1\uffff\1\2"+
+            "\17\uffff\1\2\12\uffff\1\2\12\uffff\1\2",
+            "\1\2\32\uffff\1\15\6\uffff\1\2\2\uffff\3\2\15\uffff\1\2\26"+
+            "\uffff\3\2\22\uffff\1\14\1\2\5\uffff\1\2\2\uffff\1\2\1\uffff"+
+            "\1\2\16\uffff\1\2\6\uffff\1\2\3\uffff\1\2\3\uffff\1\2\10\uffff"+
+            "\1\2\1\uffff\1\2\1\uffff\1\2\10\uffff\1\2",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\2\32\uffff\1\41\6\uffff\1\2\2\uffff\3\2\15\uffff\1\2\26"+
+            "\uffff\3\2\22\uffff\1\42\1\2\5\uffff\1\2\2\uffff\1\2\1\uffff"+
+            "\1\2\16\uffff\1\2\6\uffff\1\2\3\uffff\1\2\3\uffff\1\2\10\uffff"+
+            "\1\2\1\uffff\1\2\1\uffff\1\2\10\uffff\1\2",
+            "\1\67\12\uffff\1\70\4\uffff\1\2\12\uffff\1\2\6\uffff\2\2\1"+
+            "\uffff\4\2\30\uffff\1\71\2\uffff\1\2\34\uffff\1\66\1\uffff\1"+
+            "\2\1\uffff\1\2\1\uffff\11\2\1\uffff\3\2\1\uffff\4\2\1\uffff"+
+            "\1\2\15\uffff\1\2\13\uffff\1\2\11\uffff\1\2\1\uffff\1\2",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\104\12\uffff\1\105\4\uffff\1\2\12\uffff\1\2\6\uffff\2\2"+
+            "\1\uffff\4\2\30\uffff\1\106\2\uffff\1\2\34\uffff\1\103\1\uffff"+
+            "\1\2\1\uffff\1\2\1\uffff\11\2\1\uffff\3\2\1\uffff\4\2\1\uffff"+
+            "\1\2\15\uffff\1\2\13\uffff\1\2\11\uffff\1\2\1\uffff\1\2",
+            "\1\2\32\uffff\1\120\6\uffff\1\2\2\uffff\3\2\15\uffff\1\2\26"+
+            "\uffff\3\2\22\uffff\1\121\1\2\5\uffff\1\2\2\uffff\1\2\1\uffff"+
+            "\1\2\16\uffff\1\2\6\uffff\1\2\3\uffff\1\2\3\uffff\1\2\10\uffff"+
+            "\1\2\1\uffff\1\2\1\uffff\1\2\10\uffff\1\2",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\145\12\uffff\1\146\17\uffff\1\2\6\uffff\2\2\2\uffff\3\2"+
+            "\30\uffff\1\147\2\uffff\1\2\34\uffff\1\150\1\uffff\1\2\1\uffff"+
+            "\1\2\1\uffff\10\2\2\uffff\3\2\1\uffff\4\2\1\uffff\1\2\15\uffff"+
+            "\1\2\13\uffff\1\2\11\uffff\1\2\1\uffff\1\2",
+            "\1\162\12\uffff\1\160\17\uffff\1\2\6\uffff\1\2\2\uffff\3\2"+
+            "\15\uffff\1\2\13\uffff\1\160\12\uffff\3\2\22\uffff\1\157\1\2"+
+            "\5\uffff\1\2\2\uffff\1\2\1\uffff\1\2\16\uffff\1\2\6\uffff\1"+
+            "\2\3\uffff\1\2\3\uffff\1\2\10\uffff\1\2\1\uffff\1\2\1\uffff"+
+            "\1\2\10\uffff\1\2",
+            "\1\u0087\105\uffff\1\u0086\62\uffff\1\2",
+            "\1\u008f\17\uffff\1\160\12\uffff\1\u0090\6\uffff\1\u0091\1"+
+            "\160\1\uffff\1\2\1\u008e\1\u008d\1\160\14\uffff\1\2\13\uffff"+
+            "\1\160\2\uffff\1\160\7\uffff\3\2\22\uffff\1\u008b\1\2\3\uffff"+
+            "\1\160\1\uffff\1\2\2\160\1\2\1\160\1\2\2\160\2\uffff\1\160\1"+
+            "\uffff\4\160\1\uffff\1\160\2\uffff\1\2\6\uffff\1\2\3\uffff\1"+
+            "\2\1\uffff\1\160\1\uffff\1\2\10\uffff\1\u0090\1\uffff\1\2\1"+
+            "\uffff\1\2\6\uffff\1\160\1\uffff\1\2",
             "",
             "",
             "",

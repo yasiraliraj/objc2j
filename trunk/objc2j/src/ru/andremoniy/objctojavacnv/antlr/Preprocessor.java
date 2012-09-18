@@ -420,7 +420,9 @@ public class Preprocessor {
                                     Matcher paramMatcher = paramPattern.matcher(replacement);
                                     while (paramMatcher.find()) {
                                         int paramIndex = replacement.indexOf(param, paramMatcher.start());
-                                        replacement = replacement.substring(0, paramIndex) + paramString.toString().trim() + replacement.substring(paramIndex + param.length());
+                                        if (paramIndex >= 0) {
+                                            replacement = replacement.substring(0, paramIndex) + paramString.toString().trim() + replacement.substring(paramIndex + param.length());
+                                        }
                                     }
                                 }
                                 newInput.append(replacement);

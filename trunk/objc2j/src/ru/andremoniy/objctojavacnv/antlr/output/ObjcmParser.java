@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Objcm.g 2012-09-18 21:52:02
+// $ANTLR 3.4 Objcm.g 2012-09-19 00:38:00
 
 package ru.andremoniy.objctojavacnv.antlr.output;
 
@@ -18393,7 +18393,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "msg_expr"
-    // Objcm.g:605:1: msg_expr : ( L_BR ( WS )* ( ID | const_expr ) R_BR ( WS )* | classical_expr_wrp );
+    // Objcm.g:605:1: msg_expr : ( L_BR ( WS )* ( ID | const_expr ) R_BR ( classical_expr_wrp )? ( WS )* | classical_expr_wrp );
     public final ObjcmParser.msg_expr_return msg_expr() throws RecognitionException {
         ObjcmParser.msg_expr_return retval = new ObjcmParser.msg_expr_return();
         retval.start = input.LT(1);
@@ -18405,25 +18405,27 @@ public TreeAdaptor getTreeAdaptor() {
         Token WS499=null;
         Token ID500=null;
         Token R_BR502=null;
-        Token WS503=null;
+        Token WS504=null;
         ObjcmParser.const_expr_return const_expr501 =null;
 
-        ObjcmParser.classical_expr_wrp_return classical_expr_wrp504 =null;
+        ObjcmParser.classical_expr_wrp_return classical_expr_wrp503 =null;
+
+        ObjcmParser.classical_expr_wrp_return classical_expr_wrp505 =null;
 
 
         Object L_BR498_tree=null;
         Object WS499_tree=null;
         Object ID500_tree=null;
         Object R_BR502_tree=null;
-        Object WS503_tree=null;
+        Object WS504_tree=null;
 
         try {
-            // Objcm.g:605:9: ( L_BR ( WS )* ( ID | const_expr ) R_BR ( WS )* | classical_expr_wrp )
-            int alt240=2;
-            alt240 = dfa240.predict(input);
-            switch (alt240) {
+            // Objcm.g:605:9: ( L_BR ( WS )* ( ID | const_expr ) R_BR ( classical_expr_wrp )? ( WS )* | classical_expr_wrp )
+            int alt241=2;
+            alt241 = dfa241.predict(input);
+            switch (alt241) {
                 case 1 :
-                    // Objcm.g:605:11: L_BR ( WS )* ( ID | const_expr ) R_BR ( WS )*
+                    // Objcm.g:605:11: L_BR ( WS )* ( ID | const_expr ) R_BR ( classical_expr_wrp )? ( WS )*
                     {
                     root_0 = (Object)adaptor.nil();
 
@@ -18519,33 +18521,81 @@ public TreeAdaptor getTreeAdaptor() {
                     adaptor.addChild(root_0, R_BR502_tree);
 
 
-                    // Objcm.g:605:43: ( WS )*
-                    loop239:
-                    do {
-                        int alt239=2;
-                        int LA239_0 = input.LA(1);
+                    // Objcm.g:605:43: ( classical_expr_wrp )?
+                    int alt239=2;
+                    int LA239_0 = input.LA(1);
 
-                        if ( (LA239_0==WS) ) {
+                    if ( (LA239_0==ASTERISK||LA239_0==L_BR||(LA239_0 >= L_KBR && LA239_0 <= L_PLUS_PLUS)||LA239_0==NUMBER||(LA239_0 >= STRING_LITERAL && LA239_0 <= STRING_LITERAL3)||LA239_0==102||LA239_0==108||LA239_0==111||LA239_0==113||LA239_0==128||LA239_0==135||LA239_0==139||LA239_0==143||LA239_0==152||LA239_0==154||LA239_0==156||LA239_0==165) ) {
+                        alt239=1;
+                    }
+                    else if ( (LA239_0==ID) ) {
+                        int LA239_14 = input.LA(2);
+
+                        if ( (LA239_14==ASTERISK||LA239_14==COMMA||LA239_14==DOT||LA239_14==ID||(LA239_14 >= L_BR && LA239_14 <= L_EQ)||(LA239_14 >= L_KBR && LA239_14 <= L_UBR)||(LA239_14 >= R_KBR && LA239_14 <= R_UBR)||LA239_14==103||LA239_14==105||(LA239_14 >= 107 && LA239_14 <= 115)||(LA239_14 >= 117 && LA239_14 <= 119)||(LA239_14 >= 121 && LA239_14 <= 124)||LA239_14==126||LA239_14==140||LA239_14==162||LA239_14==164) ) {
                             alt239=1;
+                        }
+                        else if ( (LA239_14==WS) ) {
+                            int LA239_27 = input.LA(3);
+
+                            if ( (LA239_27==ASTERISK||LA239_27==COMMA||LA239_27==ID||(LA239_27 >= L_BR && LA239_27 <= L_EQ)||(LA239_27 >= L_MINUS_MINUS && LA239_27 <= L_UBR)||(LA239_27 >= R_KBR && LA239_27 <= R_UBR)||LA239_27==103||LA239_27==105||(LA239_27 >= 107 && LA239_27 <= 114)||(LA239_27 >= 117 && LA239_27 <= 119)||(LA239_27 >= 121 && LA239_27 <= 124)||LA239_27==126||LA239_27==140||LA239_27==162||LA239_27==164) ) {
+                                alt239=1;
+                            }
+                            else if ( (LA239_27==WS) ) {
+                                int LA239_39 = input.LA(4);
+
+                                if ( (LA239_39==ASTERISK||LA239_39==COMMA||LA239_39==ID||(LA239_39 >= L_BR && LA239_39 <= L_EQ)||(LA239_39 >= L_MINUS_MINUS && LA239_39 <= L_UBR)||(LA239_39 >= R_KBR && LA239_39 <= R_UBR)||LA239_39==103||LA239_39==105||(LA239_39 >= 107 && LA239_39 <= 114)||(LA239_39 >= 117 && LA239_39 <= 119)||(LA239_39 >= 121 && LA239_39 <= 124)||LA239_39==126||LA239_39==140||LA239_39==162||LA239_39==164) ) {
+                                    alt239=1;
+                                }
+                                else if ( (LA239_39==WS) ) {
+                                    alt239=1;
+                                }
+                            }
+                        }
+                    }
+                    switch (alt239) {
+                        case 1 :
+                            // Objcm.g:605:43: classical_expr_wrp
+                            {
+                            pushFollow(FOLLOW_classical_expr_wrp_in_msg_expr3536);
+                            classical_expr_wrp503=classical_expr_wrp();
+
+                            state._fsp--;
+
+                            adaptor.addChild(root_0, classical_expr_wrp503.getTree());
+
+                            }
+                            break;
+
+                    }
+
+
+                    // Objcm.g:605:63: ( WS )*
+                    loop240:
+                    do {
+                        int alt240=2;
+                        int LA240_0 = input.LA(1);
+
+                        if ( (LA240_0==WS) ) {
+                            alt240=1;
                         }
 
 
-                        switch (alt239) {
+                        switch (alt240) {
                     	case 1 :
-                    	    // Objcm.g:605:43: WS
+                    	    // Objcm.g:605:63: WS
                     	    {
-                    	    WS503=(Token)match(input,WS,FOLLOW_WS_in_msg_expr3536); 
-                    	    WS503_tree = 
-                    	    (Object)adaptor.create(WS503)
+                    	    WS504=(Token)match(input,WS,FOLLOW_WS_in_msg_expr3539); 
+                    	    WS504_tree = 
+                    	    (Object)adaptor.create(WS504)
                     	    ;
-                    	    adaptor.addChild(root_0, WS503_tree);
+                    	    adaptor.addChild(root_0, WS504_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop239;
+                    	    break loop240;
                         }
                     } while (true);
 
@@ -18558,12 +18608,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_classical_expr_wrp_in_msg_expr3542);
-                    classical_expr_wrp504=classical_expr_wrp();
+                    pushFollow(FOLLOW_classical_expr_wrp_in_msg_expr3545);
+                    classical_expr_wrp505=classical_expr_wrp();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, classical_expr_wrp504.getTree());
+                    adaptor.addChild(root_0, classical_expr_wrp505.getTree());
 
                     }
                     break;
@@ -18606,29 +18656,29 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.classical_expr_wrp_return classical_expr_wrp505 =null;
+        ObjcmParser.classical_expr_wrp_return classical_expr_wrp506 =null;
 
-        ObjcmParser.struct_init_return struct_init506 =null;
+        ObjcmParser.struct_init_return struct_init507 =null;
 
 
 
         try {
             // Objcm.g:614:2: ( classical_expr_wrp | struct_init )
-            int alt241=2;
-            alt241 = dfa241.predict(input);
-            switch (alt241) {
+            int alt242=2;
+            alt242 = dfa242.predict(input);
+            switch (alt242) {
                 case 1 :
                     // Objcm.g:614:4: classical_expr_wrp
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_classical_expr_wrp_in_expression3558);
-                    classical_expr_wrp505=classical_expr_wrp();
+                    pushFollow(FOLLOW_classical_expr_wrp_in_expression3561);
+                    classical_expr_wrp506=classical_expr_wrp();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, classical_expr_wrp505.getTree());
+                    adaptor.addChild(root_0, classical_expr_wrp506.getTree());
 
                     }
                     break;
@@ -18638,12 +18688,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_struct_init_in_expression3563);
-                    struct_init506=struct_init();
+                    pushFollow(FOLLOW_struct_init_in_expression3566);
+                    struct_init507=struct_init();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, struct_init506.getTree());
+                    adaptor.addChild(root_0, struct_init507.getTree());
 
                     }
                     break;
@@ -18686,7 +18736,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.classical_expr_return classical_expr507 =null;
+        ObjcmParser.classical_expr_return classical_expr508 =null;
 
 
         RewriteRuleSubtreeStream stream_classical_expr=new RewriteRuleSubtreeStream(adaptor,"rule classical_expr");
@@ -18694,12 +18744,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:619:2: ( classical_expr -> ^( CLASSICAL_EXPR classical_expr ) )
             // Objcm.g:619:4: classical_expr
             {
-            pushFollow(FOLLOW_classical_expr_in_classical_expr_wrp3575);
-            classical_expr507=classical_expr();
+            pushFollow(FOLLOW_classical_expr_in_classical_expr_wrp3578);
+            classical_expr508=classical_expr();
 
             state._fsp--;
 
-            stream_classical_expr.add(classical_expr507.getTree());
+            stream_classical_expr.add(classical_expr508.getTree());
 
             // AST REWRITE
             // elements: classical_expr
@@ -18770,13 +18820,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS509=null;
-        ObjcmParser.expr_wrp_return expr_wrp508 =null;
+        Token WS510=null;
+        ObjcmParser.expr_wrp_return expr_wrp509 =null;
 
-        ObjcmParser.oper_wrp_return oper_wrp510 =null;
+        ObjcmParser.oper_wrp_return oper_wrp511 =null;
 
 
-        Object WS509_tree=null;
+        Object WS510_tree=null;
 
         try {
             // Objcm.g:622:2: ( expr_wrp ( WS )* ( oper_wrp )* )
@@ -18785,52 +18835,52 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expr_wrp_in_classical_expr3594);
-            expr_wrp508=expr_wrp();
+            pushFollow(FOLLOW_expr_wrp_in_classical_expr3597);
+            expr_wrp509=expr_wrp();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, expr_wrp508.getTree());
+            adaptor.addChild(root_0, expr_wrp509.getTree());
 
             // Objcm.g:622:13: ( WS )*
-            loop242:
+            loop243:
             do {
-                int alt242=2;
-                int LA242_0 = input.LA(1);
+                int alt243=2;
+                int LA243_0 = input.LA(1);
 
-                if ( (LA242_0==WS) ) {
-                    alt242=1;
+                if ( (LA243_0==WS) ) {
+                    alt243=1;
                 }
 
 
-                switch (alt242) {
+                switch (alt243) {
             	case 1 :
             	    // Objcm.g:622:13: WS
             	    {
-            	    WS509=(Token)match(input,WS,FOLLOW_WS_in_classical_expr3596); 
-            	    WS509_tree = 
-            	    (Object)adaptor.create(WS509)
+            	    WS510=(Token)match(input,WS,FOLLOW_WS_in_classical_expr3599); 
+            	    WS510_tree = 
+            	    (Object)adaptor.create(WS510)
             	    ;
-            	    adaptor.addChild(root_0, WS509_tree);
+            	    adaptor.addChild(root_0, WS510_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop242;
+            	    break loop243;
                 }
             } while (true);
 
 
             // Objcm.g:622:17: ( oper_wrp )*
-            loop243:
+            loop244:
             do {
-                int alt243=2;
+                int alt244=2;
                 switch ( input.LA(1) ) {
                 case ASTERISK:
                     {
-                    alt243=1;
+                    alt244=1;
                     }
                     break;
                 case L_EQ:
@@ -18857,33 +18907,33 @@ public TreeAdaptor getTreeAdaptor() {
                 case 162:
                 case 164:
                     {
-                    alt243=1;
+                    alt244=1;
                     }
                     break;
                 case 126:
                     {
-                    alt243=1;
+                    alt244=1;
                     }
                     break;
 
                 }
 
-                switch (alt243) {
+                switch (alt244) {
             	case 1 :
             	    // Objcm.g:622:17: oper_wrp
             	    {
-            	    pushFollow(FOLLOW_oper_wrp_in_classical_expr3599);
-            	    oper_wrp510=oper_wrp();
+            	    pushFollow(FOLLOW_oper_wrp_in_classical_expr3602);
+            	    oper_wrp511=oper_wrp();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, oper_wrp510.getTree());
+            	    adaptor.addChild(root_0, oper_wrp511.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop243;
+            	    break loop244;
                 }
             } while (true);
 
@@ -18927,19 +18977,19 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal511=null;
-        Token WS512=null;
-        Token COLON514=null;
-        Token WS515=null;
-        ObjcmParser.classical_expr_wrp_return classical_expr_wrp513 =null;
+        Token char_literal512=null;
+        Token WS513=null;
+        Token COLON515=null;
+        Token WS516=null;
+        ObjcmParser.classical_expr_wrp_return classical_expr_wrp514 =null;
 
-        ObjcmParser.classical_expr_wrp_return classical_expr_wrp516 =null;
+        ObjcmParser.classical_expr_wrp_return classical_expr_wrp517 =null;
 
 
-        Object char_literal511_tree=null;
-        Object WS512_tree=null;
-        Object COLON514_tree=null;
-        Object WS515_tree=null;
+        Object char_literal512_tree=null;
+        Object WS513_tree=null;
+        Object COLON515_tree=null;
+        Object WS516_tree=null;
 
         try {
             // Objcm.g:625:5: ( '?' ( WS )* classical_expr_wrp COLON ( WS )* classical_expr_wrp )
@@ -18948,59 +18998,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            char_literal511=(Token)match(input,126,FOLLOW_126_in_if33611); 
-            char_literal511_tree = 
-            (Object)adaptor.create(char_literal511)
+            char_literal512=(Token)match(input,126,FOLLOW_126_in_if33614); 
+            char_literal512_tree = 
+            (Object)adaptor.create(char_literal512)
             ;
-            adaptor.addChild(root_0, char_literal511_tree);
+            adaptor.addChild(root_0, char_literal512_tree);
 
 
             // Objcm.g:625:11: ( WS )*
-            loop244:
-            do {
-                int alt244=2;
-                int LA244_0 = input.LA(1);
-
-                if ( (LA244_0==WS) ) {
-                    alt244=1;
-                }
-
-
-                switch (alt244) {
-            	case 1 :
-            	    // Objcm.g:625:11: WS
-            	    {
-            	    WS512=(Token)match(input,WS,FOLLOW_WS_in_if33613); 
-            	    WS512_tree = 
-            	    (Object)adaptor.create(WS512)
-            	    ;
-            	    adaptor.addChild(root_0, WS512_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop244;
-                }
-            } while (true);
-
-
-            pushFollow(FOLLOW_classical_expr_wrp_in_if33616);
-            classical_expr_wrp513=classical_expr_wrp();
-
-            state._fsp--;
-
-            adaptor.addChild(root_0, classical_expr_wrp513.getTree());
-
-            COLON514=(Token)match(input,COLON,FOLLOW_COLON_in_if33618); 
-            COLON514_tree = 
-            (Object)adaptor.create(COLON514)
-            ;
-            adaptor.addChild(root_0, COLON514_tree);
-
-
-            // Objcm.g:625:40: ( WS )*
             loop245:
             do {
                 int alt245=2;
@@ -19013,13 +19018,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt245) {
             	case 1 :
-            	    // Objcm.g:625:40: WS
+            	    // Objcm.g:625:11: WS
             	    {
-            	    WS515=(Token)match(input,WS,FOLLOW_WS_in_if33620); 
-            	    WS515_tree = 
-            	    (Object)adaptor.create(WS515)
+            	    WS513=(Token)match(input,WS,FOLLOW_WS_in_if33616); 
+            	    WS513_tree = 
+            	    (Object)adaptor.create(WS513)
             	    ;
-            	    adaptor.addChild(root_0, WS515_tree);
+            	    adaptor.addChild(root_0, WS513_tree);
 
 
             	    }
@@ -19031,12 +19036,57 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            pushFollow(FOLLOW_classical_expr_wrp_in_if33623);
-            classical_expr_wrp516=classical_expr_wrp();
+            pushFollow(FOLLOW_classical_expr_wrp_in_if33619);
+            classical_expr_wrp514=classical_expr_wrp();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, classical_expr_wrp516.getTree());
+            adaptor.addChild(root_0, classical_expr_wrp514.getTree());
+
+            COLON515=(Token)match(input,COLON,FOLLOW_COLON_in_if33621); 
+            COLON515_tree = 
+            (Object)adaptor.create(COLON515)
+            ;
+            adaptor.addChild(root_0, COLON515_tree);
+
+
+            // Objcm.g:625:40: ( WS )*
+            loop246:
+            do {
+                int alt246=2;
+                int LA246_0 = input.LA(1);
+
+                if ( (LA246_0==WS) ) {
+                    alt246=1;
+                }
+
+
+                switch (alt246) {
+            	case 1 :
+            	    // Objcm.g:625:40: WS
+            	    {
+            	    WS516=(Token)match(input,WS,FOLLOW_WS_in_if33623); 
+            	    WS516_tree = 
+            	    (Object)adaptor.create(WS516)
+            	    ;
+            	    adaptor.addChild(root_0, WS516_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop246;
+                }
+            } while (true);
+
+
+            pushFollow(FOLLOW_classical_expr_wrp_in_if33626);
+            classical_expr_wrp517=classical_expr_wrp();
+
+            state._fsp--;
+
+            adaptor.addChild(root_0, classical_expr_wrp517.getTree());
 
             }
 
@@ -19077,7 +19127,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.oper_return oper517 =null;
+        ObjcmParser.oper_return oper518 =null;
 
 
         RewriteRuleSubtreeStream stream_oper=new RewriteRuleSubtreeStream(adaptor,"rule oper");
@@ -19085,12 +19135,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:628:9: ( oper -> ^( OPER oper ) )
             // Objcm.g:628:11: oper
             {
-            pushFollow(FOLLOW_oper_in_oper_wrp3634);
-            oper517=oper();
+            pushFollow(FOLLOW_oper_in_oper_wrp3637);
+            oper518=oper();
 
             state._fsp--;
 
-            stream_oper.add(oper517.getTree());
+            stream_oper.add(oper518.getTree());
 
             // AST REWRITE
             // elements: oper
@@ -19161,89 +19211,51 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS519=null;
-        Token WS521=null;
-        ObjcmParser.op_wrp_return op_wrp518 =null;
+        Token WS520=null;
+        Token WS522=null;
+        ObjcmParser.op_wrp_return op_wrp519 =null;
 
-        ObjcmParser.expr_wrp_return expr_wrp520 =null;
+        ObjcmParser.expr_wrp_return expr_wrp521 =null;
 
-        ObjcmParser.if3_return if3522 =null;
+        ObjcmParser.if3_return if3523 =null;
 
 
-        Object WS519_tree=null;
-        Object WS521_tree=null;
+        Object WS520_tree=null;
+        Object WS522_tree=null;
 
         try {
             // Objcm.g:630:6: ( op_wrp ( WS )* expr_wrp ( WS )* | if3 )
-            int alt248=2;
-            int LA248_0 = input.LA(1);
+            int alt249=2;
+            int LA249_0 = input.LA(1);
 
-            if ( (LA248_0==ASTERISK||LA248_0==L_EQ||LA248_0==L_UBR||LA248_0==R_UBR||LA248_0==103||LA248_0==105||(LA248_0 >= 107 && LA248_0 <= 114)||(LA248_0 >= 117 && LA248_0 <= 119)||(LA248_0 >= 121 && LA248_0 <= 124)||LA248_0==140||LA248_0==162||LA248_0==164) ) {
-                alt248=1;
+            if ( (LA249_0==ASTERISK||LA249_0==L_EQ||LA249_0==L_UBR||LA249_0==R_UBR||LA249_0==103||LA249_0==105||(LA249_0 >= 107 && LA249_0 <= 114)||(LA249_0 >= 117 && LA249_0 <= 119)||(LA249_0 >= 121 && LA249_0 <= 124)||LA249_0==140||LA249_0==162||LA249_0==164) ) {
+                alt249=1;
             }
-            else if ( (LA248_0==126) ) {
-                alt248=2;
+            else if ( (LA249_0==126) ) {
+                alt249=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 248, 0, input);
+                    new NoViableAltException("", 249, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt248) {
+            switch (alt249) {
                 case 1 :
                     // Objcm.g:630:8: op_wrp ( WS )* expr_wrp ( WS )*
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_op_wrp_in_oper3652);
-                    op_wrp518=op_wrp();
+                    pushFollow(FOLLOW_op_wrp_in_oper3655);
+                    op_wrp519=op_wrp();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, op_wrp518.getTree());
+                    adaptor.addChild(root_0, op_wrp519.getTree());
 
                     // Objcm.g:630:15: ( WS )*
-                    loop246:
-                    do {
-                        int alt246=2;
-                        int LA246_0 = input.LA(1);
-
-                        if ( (LA246_0==WS) ) {
-                            alt246=1;
-                        }
-
-
-                        switch (alt246) {
-                    	case 1 :
-                    	    // Objcm.g:630:15: WS
-                    	    {
-                    	    WS519=(Token)match(input,WS,FOLLOW_WS_in_oper3654); 
-                    	    WS519_tree = 
-                    	    (Object)adaptor.create(WS519)
-                    	    ;
-                    	    adaptor.addChild(root_0, WS519_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop246;
-                        }
-                    } while (true);
-
-
-                    pushFollow(FOLLOW_expr_wrp_in_oper3657);
-                    expr_wrp520=expr_wrp();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, expr_wrp520.getTree());
-
-                    // Objcm.g:630:28: ( WS )*
                     loop247:
                     do {
                         int alt247=2;
@@ -19256,13 +19268,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                         switch (alt247) {
                     	case 1 :
-                    	    // Objcm.g:630:28: WS
+                    	    // Objcm.g:630:15: WS
                     	    {
-                    	    WS521=(Token)match(input,WS,FOLLOW_WS_in_oper3659); 
-                    	    WS521_tree = 
-                    	    (Object)adaptor.create(WS521)
+                    	    WS520=(Token)match(input,WS,FOLLOW_WS_in_oper3657); 
+                    	    WS520_tree = 
+                    	    (Object)adaptor.create(WS520)
                     	    ;
-                    	    adaptor.addChild(root_0, WS521_tree);
+                    	    adaptor.addChild(root_0, WS520_tree);
 
 
                     	    }
@@ -19270,6 +19282,44 @@ public TreeAdaptor getTreeAdaptor() {
 
                     	default :
                     	    break loop247;
+                        }
+                    } while (true);
+
+
+                    pushFollow(FOLLOW_expr_wrp_in_oper3660);
+                    expr_wrp521=expr_wrp();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, expr_wrp521.getTree());
+
+                    // Objcm.g:630:28: ( WS )*
+                    loop248:
+                    do {
+                        int alt248=2;
+                        int LA248_0 = input.LA(1);
+
+                        if ( (LA248_0==WS) ) {
+                            alt248=1;
+                        }
+
+
+                        switch (alt248) {
+                    	case 1 :
+                    	    // Objcm.g:630:28: WS
+                    	    {
+                    	    WS522=(Token)match(input,WS,FOLLOW_WS_in_oper3662); 
+                    	    WS522_tree = 
+                    	    (Object)adaptor.create(WS522)
+                    	    ;
+                    	    adaptor.addChild(root_0, WS522_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop248;
                         }
                     } while (true);
 
@@ -19282,12 +19332,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_if3_in_oper3665);
-                    if3522=if3();
+                    pushFollow(FOLLOW_if3_in_oper3668);
+                    if3523=if3();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, if3522.getTree());
+                    adaptor.addChild(root_0, if3523.getTree());
 
                     }
                     break;
@@ -19330,7 +19380,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.expr_return expr523 =null;
+        ObjcmParser.expr_return expr524 =null;
 
 
         RewriteRuleSubtreeStream stream_expr=new RewriteRuleSubtreeStream(adaptor,"rule expr");
@@ -19338,12 +19388,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:634:9: ( expr -> ^( EXPR expr ) )
             // Objcm.g:634:11: expr
             {
-            pushFollow(FOLLOW_expr_in_expr_wrp3674);
-            expr523=expr();
+            pushFollow(FOLLOW_expr_in_expr_wrp3677);
+            expr524=expr();
 
             state._fsp--;
 
-            stream_expr.add(expr523.getTree());
+            stream_expr.add(expr524.getTree());
 
             // AST REWRITE
             // elements: expr
@@ -19414,7 +19464,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.op_return op524 =null;
+        ObjcmParser.op_return op525 =null;
 
 
         RewriteRuleSubtreeStream stream_op=new RewriteRuleSubtreeStream(adaptor,"rule op");
@@ -19422,12 +19472,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:639:8: ( op -> ^( OP op ) )
             // Objcm.g:639:10: op
             {
-            pushFollow(FOLLOW_op_in_op_wrp3693);
-            op524=op();
+            pushFollow(FOLLOW_op_in_op_wrp3696);
+            op525=op();
 
             state._fsp--;
 
-            stream_op.add(op524.getTree());
+            stream_op.add(op525.getTree());
 
             // AST REWRITE
             // elements: op
@@ -19498,37 +19548,37 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_BR525=null;
-        Token WS526=null;
-        Token STRUCT_PREFIX527=null;
-        Token ID528=null;
-        Token WS529=null;
-        Token R_BR530=null;
-        Token WS531=null;
-        Token L_FBR532=null;
-        Token WS533=null;
-        Token COMMA535=null;
-        Token WS536=null;
-        Token R_FBR538=null;
-        Token WS539=null;
-        ObjcmParser.struct_init_line_return struct_init_line534 =null;
+        Token L_BR526=null;
+        Token WS527=null;
+        Token STRUCT_PREFIX528=null;
+        Token ID529=null;
+        Token WS530=null;
+        Token R_BR531=null;
+        Token WS532=null;
+        Token L_FBR533=null;
+        Token WS534=null;
+        Token COMMA536=null;
+        Token WS537=null;
+        Token R_FBR539=null;
+        Token WS540=null;
+        ObjcmParser.struct_init_line_return struct_init_line535 =null;
 
-        ObjcmParser.struct_init_line_return struct_init_line537 =null;
+        ObjcmParser.struct_init_line_return struct_init_line538 =null;
 
 
-        Object L_BR525_tree=null;
-        Object WS526_tree=null;
-        Object STRUCT_PREFIX527_tree=null;
-        Object ID528_tree=null;
-        Object WS529_tree=null;
-        Object R_BR530_tree=null;
-        Object WS531_tree=null;
-        Object L_FBR532_tree=null;
-        Object WS533_tree=null;
-        Object COMMA535_tree=null;
-        Object WS536_tree=null;
-        Object R_FBR538_tree=null;
-        Object WS539_tree=null;
+        Object L_BR526_tree=null;
+        Object WS527_tree=null;
+        Object STRUCT_PREFIX528_tree=null;
+        Object ID529_tree=null;
+        Object WS530_tree=null;
+        Object R_BR531_tree=null;
+        Object WS532_tree=null;
+        Object L_FBR533_tree=null;
+        Object WS534_tree=null;
+        Object COMMA536_tree=null;
+        Object WS537_tree=null;
+        Object R_FBR539_tree=null;
+        Object WS540_tree=null;
 
         try {
             // Objcm.g:644:2: ( L_BR ( WS )* ( STRUCT_PREFIX )? ID ( WS )* R_BR ( WS )* L_FBR ( WS )* struct_init_line ( COMMA ( WS )* struct_init_line )* R_FBR ( WS )* )
@@ -19537,60 +19587,60 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_BR525=(Token)match(input,L_BR,FOLLOW_L_BR_in_struct_init3715); 
-            L_BR525_tree = 
-            (Object)adaptor.create(L_BR525)
+            L_BR526=(Token)match(input,L_BR,FOLLOW_L_BR_in_struct_init3718); 
+            L_BR526_tree = 
+            (Object)adaptor.create(L_BR526)
             ;
-            adaptor.addChild(root_0, L_BR525_tree);
+            adaptor.addChild(root_0, L_BR526_tree);
 
 
             // Objcm.g:644:9: ( WS )*
-            loop249:
+            loop250:
             do {
-                int alt249=2;
-                int LA249_0 = input.LA(1);
+                int alt250=2;
+                int LA250_0 = input.LA(1);
 
-                if ( (LA249_0==WS) ) {
-                    alt249=1;
+                if ( (LA250_0==WS) ) {
+                    alt250=1;
                 }
 
 
-                switch (alt249) {
+                switch (alt250) {
             	case 1 :
             	    // Objcm.g:644:9: WS
             	    {
-            	    WS526=(Token)match(input,WS,FOLLOW_WS_in_struct_init3717); 
-            	    WS526_tree = 
-            	    (Object)adaptor.create(WS526)
+            	    WS527=(Token)match(input,WS,FOLLOW_WS_in_struct_init3720); 
+            	    WS527_tree = 
+            	    (Object)adaptor.create(WS527)
             	    ;
-            	    adaptor.addChild(root_0, WS526_tree);
+            	    adaptor.addChild(root_0, WS527_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop249;
+            	    break loop250;
                 }
             } while (true);
 
 
             // Objcm.g:644:13: ( STRUCT_PREFIX )?
-            int alt250=2;
-            int LA250_0 = input.LA(1);
+            int alt251=2;
+            int LA251_0 = input.LA(1);
 
-            if ( (LA250_0==STRUCT_PREFIX) ) {
-                alt250=1;
+            if ( (LA251_0==STRUCT_PREFIX) ) {
+                alt251=1;
             }
-            switch (alt250) {
+            switch (alt251) {
                 case 1 :
                     // Objcm.g:644:13: STRUCT_PREFIX
                     {
-                    STRUCT_PREFIX527=(Token)match(input,STRUCT_PREFIX,FOLLOW_STRUCT_PREFIX_in_struct_init3720); 
-                    STRUCT_PREFIX527_tree = 
-                    (Object)adaptor.create(STRUCT_PREFIX527)
+                    STRUCT_PREFIX528=(Token)match(input,STRUCT_PREFIX,FOLLOW_STRUCT_PREFIX_in_struct_init3723); 
+                    STRUCT_PREFIX528_tree = 
+                    (Object)adaptor.create(STRUCT_PREFIX528)
                     ;
-                    adaptor.addChild(root_0, STRUCT_PREFIX527_tree);
+                    adaptor.addChild(root_0, STRUCT_PREFIX528_tree);
 
 
                     }
@@ -19599,52 +19649,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            ID528=(Token)match(input,ID,FOLLOW_ID_in_struct_init3723); 
-            ID528_tree = 
-            (Object)adaptor.create(ID528)
+            ID529=(Token)match(input,ID,FOLLOW_ID_in_struct_init3726); 
+            ID529_tree = 
+            (Object)adaptor.create(ID529)
             ;
-            adaptor.addChild(root_0, ID528_tree);
+            adaptor.addChild(root_0, ID529_tree);
 
 
             // Objcm.g:644:31: ( WS )*
-            loop251:
-            do {
-                int alt251=2;
-                int LA251_0 = input.LA(1);
-
-                if ( (LA251_0==WS) ) {
-                    alt251=1;
-                }
-
-
-                switch (alt251) {
-            	case 1 :
-            	    // Objcm.g:644:31: WS
-            	    {
-            	    WS529=(Token)match(input,WS,FOLLOW_WS_in_struct_init3725); 
-            	    WS529_tree = 
-            	    (Object)adaptor.create(WS529)
-            	    ;
-            	    adaptor.addChild(root_0, WS529_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop251;
-                }
-            } while (true);
-
-
-            R_BR530=(Token)match(input,R_BR,FOLLOW_R_BR_in_struct_init3728); 
-            R_BR530_tree = 
-            (Object)adaptor.create(R_BR530)
-            ;
-            adaptor.addChild(root_0, R_BR530_tree);
-
-
-            // Objcm.g:644:40: ( WS )*
             loop252:
             do {
                 int alt252=2;
@@ -19657,13 +19669,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt252) {
             	case 1 :
-            	    // Objcm.g:644:40: WS
+            	    // Objcm.g:644:31: WS
             	    {
-            	    WS531=(Token)match(input,WS,FOLLOW_WS_in_struct_init3730); 
-            	    WS531_tree = 
-            	    (Object)adaptor.create(WS531)
+            	    WS530=(Token)match(input,WS,FOLLOW_WS_in_struct_init3728); 
+            	    WS530_tree = 
+            	    (Object)adaptor.create(WS530)
             	    ;
-            	    adaptor.addChild(root_0, WS531_tree);
+            	    adaptor.addChild(root_0, WS530_tree);
 
 
             	    }
@@ -19675,39 +19687,33 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            L_FBR532=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_struct_init3733); 
-            L_FBR532_tree = 
-            (Object)adaptor.create(L_FBR532)
+            R_BR531=(Token)match(input,R_BR,FOLLOW_R_BR_in_struct_init3731); 
+            R_BR531_tree = 
+            (Object)adaptor.create(R_BR531)
             ;
-            adaptor.addChild(root_0, L_FBR532_tree);
+            adaptor.addChild(root_0, R_BR531_tree);
 
 
-            // Objcm.g:644:50: ( WS )*
+            // Objcm.g:644:40: ( WS )*
             loop253:
             do {
                 int alt253=2;
                 int LA253_0 = input.LA(1);
 
                 if ( (LA253_0==WS) ) {
-                    int LA253_21 = input.LA(2);
-
-                    if ( (LA253_21==ASTERISK||LA253_21==DOT||LA253_21==ID||LA253_21==L_BR||(LA253_21 >= L_KBR && LA253_21 <= L_PLUS_PLUS)||LA253_21==NUMBER||(LA253_21 >= STRING_LITERAL && LA253_21 <= STRING_LITERAL3)||(LA253_21 >= WS && LA253_21 <= 102)||LA253_21==108||LA253_21==111||LA253_21==113||LA253_21==128||LA253_21==135||LA253_21==139||LA253_21==143||LA253_21==152||LA253_21==154||LA253_21==156||LA253_21==165) ) {
-                        alt253=1;
-                    }
-
-
+                    alt253=1;
                 }
 
 
                 switch (alt253) {
             	case 1 :
-            	    // Objcm.g:644:50: WS
+            	    // Objcm.g:644:40: WS
             	    {
-            	    WS533=(Token)match(input,WS,FOLLOW_WS_in_struct_init3735); 
-            	    WS533_tree = 
-            	    (Object)adaptor.create(WS533)
+            	    WS532=(Token)match(input,WS,FOLLOW_WS_in_struct_init3733); 
+            	    WS532_tree = 
+            	    (Object)adaptor.create(WS532)
             	    ;
-            	    adaptor.addChild(root_0, WS533_tree);
+            	    adaptor.addChild(root_0, WS532_tree);
 
 
             	    }
@@ -19719,122 +19725,166 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            pushFollow(FOLLOW_struct_init_line_in_struct_init3741);
-            struct_init_line534=struct_init_line();
+            L_FBR533=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_struct_init3736); 
+            L_FBR533_tree = 
+            (Object)adaptor.create(L_FBR533)
+            ;
+            adaptor.addChild(root_0, L_FBR533_tree);
 
-            state._fsp--;
 
-            adaptor.addChild(root_0, struct_init_line534.getTree());
-
-            // Objcm.g:645:21: ( COMMA ( WS )* struct_init_line )*
-            loop255:
+            // Objcm.g:644:50: ( WS )*
+            loop254:
             do {
-                int alt255=2;
-                int LA255_0 = input.LA(1);
+                int alt254=2;
+                int LA254_0 = input.LA(1);
 
-                if ( (LA255_0==COMMA) ) {
-                    alt255=1;
+                if ( (LA254_0==WS) ) {
+                    int LA254_21 = input.LA(2);
+
+                    if ( (LA254_21==ASTERISK||LA254_21==DOT||LA254_21==ID||LA254_21==L_BR||(LA254_21 >= L_KBR && LA254_21 <= L_PLUS_PLUS)||LA254_21==NUMBER||(LA254_21 >= STRING_LITERAL && LA254_21 <= STRING_LITERAL3)||(LA254_21 >= WS && LA254_21 <= 102)||LA254_21==108||LA254_21==111||LA254_21==113||LA254_21==128||LA254_21==135||LA254_21==139||LA254_21==143||LA254_21==152||LA254_21==154||LA254_21==156||LA254_21==165) ) {
+                        alt254=1;
+                    }
+
+
                 }
 
 
-                switch (alt255) {
+                switch (alt254) {
             	case 1 :
-            	    // Objcm.g:645:22: COMMA ( WS )* struct_init_line
+            	    // Objcm.g:644:50: WS
             	    {
-            	    COMMA535=(Token)match(input,COMMA,FOLLOW_COMMA_in_struct_init3744); 
-            	    COMMA535_tree = 
-            	    (Object)adaptor.create(COMMA535)
+            	    WS534=(Token)match(input,WS,FOLLOW_WS_in_struct_init3738); 
+            	    WS534_tree = 
+            	    (Object)adaptor.create(WS534)
             	    ;
-            	    adaptor.addChild(root_0, COMMA535_tree);
+            	    adaptor.addChild(root_0, WS534_tree);
 
-
-            	    // Objcm.g:645:28: ( WS )*
-            	    loop254:
-            	    do {
-            	        int alt254=2;
-            	        int LA254_0 = input.LA(1);
-
-            	        if ( (LA254_0==WS) ) {
-            	            int LA254_21 = input.LA(2);
-
-            	            if ( (LA254_21==ASTERISK||LA254_21==DOT||LA254_21==ID||LA254_21==L_BR||(LA254_21 >= L_KBR && LA254_21 <= L_PLUS_PLUS)||LA254_21==NUMBER||(LA254_21 >= STRING_LITERAL && LA254_21 <= STRING_LITERAL3)||(LA254_21 >= WS && LA254_21 <= 102)||LA254_21==108||LA254_21==111||LA254_21==113||LA254_21==128||LA254_21==135||LA254_21==139||LA254_21==143||LA254_21==152||LA254_21==154||LA254_21==156||LA254_21==165) ) {
-            	                alt254=1;
-            	            }
-
-
-            	        }
-
-
-            	        switch (alt254) {
-            	    	case 1 :
-            	    	    // Objcm.g:645:28: WS
-            	    	    {
-            	    	    WS536=(Token)match(input,WS,FOLLOW_WS_in_struct_init3746); 
-            	    	    WS536_tree = 
-            	    	    (Object)adaptor.create(WS536)
-            	    	    ;
-            	    	    adaptor.addChild(root_0, WS536_tree);
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop254;
-            	        }
-            	    } while (true);
-
-
-            	    pushFollow(FOLLOW_struct_init_line_in_struct_init3749);
-            	    struct_init_line537=struct_init_line();
-
-            	    state._fsp--;
-
-            	    adaptor.addChild(root_0, struct_init_line537.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop255;
+            	    break loop254;
                 }
             } while (true);
 
 
-            R_FBR538=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_struct_init3755); 
-            R_FBR538_tree = 
-            (Object)adaptor.create(R_FBR538)
-            ;
-            adaptor.addChild(root_0, R_FBR538_tree);
+            pushFollow(FOLLOW_struct_init_line_in_struct_init3744);
+            struct_init_line535=struct_init_line();
 
+            state._fsp--;
 
-            // Objcm.g:646:9: ( WS )*
+            adaptor.addChild(root_0, struct_init_line535.getTree());
+
+            // Objcm.g:645:21: ( COMMA ( WS )* struct_init_line )*
             loop256:
             do {
                 int alt256=2;
                 int LA256_0 = input.LA(1);
 
-                if ( (LA256_0==WS) ) {
+                if ( (LA256_0==COMMA) ) {
                     alt256=1;
                 }
 
 
                 switch (alt256) {
             	case 1 :
-            	    // Objcm.g:646:9: WS
+            	    // Objcm.g:645:22: COMMA ( WS )* struct_init_line
             	    {
-            	    WS539=(Token)match(input,WS,FOLLOW_WS_in_struct_init3757); 
-            	    WS539_tree = 
-            	    (Object)adaptor.create(WS539)
+            	    COMMA536=(Token)match(input,COMMA,FOLLOW_COMMA_in_struct_init3747); 
+            	    COMMA536_tree = 
+            	    (Object)adaptor.create(COMMA536)
             	    ;
-            	    adaptor.addChild(root_0, WS539_tree);
+            	    adaptor.addChild(root_0, COMMA536_tree);
 
+
+            	    // Objcm.g:645:28: ( WS )*
+            	    loop255:
+            	    do {
+            	        int alt255=2;
+            	        int LA255_0 = input.LA(1);
+
+            	        if ( (LA255_0==WS) ) {
+            	            int LA255_21 = input.LA(2);
+
+            	            if ( (LA255_21==ASTERISK||LA255_21==DOT||LA255_21==ID||LA255_21==L_BR||(LA255_21 >= L_KBR && LA255_21 <= L_PLUS_PLUS)||LA255_21==NUMBER||(LA255_21 >= STRING_LITERAL && LA255_21 <= STRING_LITERAL3)||(LA255_21 >= WS && LA255_21 <= 102)||LA255_21==108||LA255_21==111||LA255_21==113||LA255_21==128||LA255_21==135||LA255_21==139||LA255_21==143||LA255_21==152||LA255_21==154||LA255_21==156||LA255_21==165) ) {
+            	                alt255=1;
+            	            }
+
+
+            	        }
+
+
+            	        switch (alt255) {
+            	    	case 1 :
+            	    	    // Objcm.g:645:28: WS
+            	    	    {
+            	    	    WS537=(Token)match(input,WS,FOLLOW_WS_in_struct_init3749); 
+            	    	    WS537_tree = 
+            	    	    (Object)adaptor.create(WS537)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS537_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop255;
+            	        }
+            	    } while (true);
+
+
+            	    pushFollow(FOLLOW_struct_init_line_in_struct_init3752);
+            	    struct_init_line538=struct_init_line();
+
+            	    state._fsp--;
+
+            	    adaptor.addChild(root_0, struct_init_line538.getTree());
 
             	    }
             	    break;
 
             	default :
             	    break loop256;
+                }
+            } while (true);
+
+
+            R_FBR539=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_struct_init3758); 
+            R_FBR539_tree = 
+            (Object)adaptor.create(R_FBR539)
+            ;
+            adaptor.addChild(root_0, R_FBR539_tree);
+
+
+            // Objcm.g:646:9: ( WS )*
+            loop257:
+            do {
+                int alt257=2;
+                int LA257_0 = input.LA(1);
+
+                if ( (LA257_0==WS) ) {
+                    alt257=1;
+                }
+
+
+                switch (alt257) {
+            	case 1 :
+            	    // Objcm.g:646:9: WS
+            	    {
+            	    WS540=(Token)match(input,WS,FOLLOW_WS_in_struct_init3760); 
+            	    WS540_tree = 
+            	    (Object)adaptor.create(WS540)
+            	    ;
+            	    adaptor.addChild(root_0, WS540_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop257;
                 }
             } while (true);
 
@@ -19878,23 +19928,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_FBR540=null;
-        Token WS541=null;
-        Token COMMA543=null;
-        Token WS544=null;
-        Token R_FBR546=null;
-        Token WS547=null;
-        ObjcmParser.struct_init_line_return struct_init_line542 =null;
+        Token L_FBR541=null;
+        Token WS542=null;
+        Token COMMA544=null;
+        Token WS545=null;
+        Token R_FBR547=null;
+        Token WS548=null;
+        ObjcmParser.struct_init_line_return struct_init_line543 =null;
 
-        ObjcmParser.struct_init_line_return struct_init_line545 =null;
+        ObjcmParser.struct_init_line_return struct_init_line546 =null;
 
 
-        Object L_FBR540_tree=null;
-        Object WS541_tree=null;
-        Object COMMA543_tree=null;
-        Object WS544_tree=null;
-        Object R_FBR546_tree=null;
-        Object WS547_tree=null;
+        Object L_FBR541_tree=null;
+        Object WS542_tree=null;
+        Object COMMA544_tree=null;
+        Object WS545_tree=null;
+        Object R_FBR547_tree=null;
+        Object WS548_tree=null;
 
         try {
             // Objcm.g:650:2: ( L_FBR ( WS )* struct_init_line ( COMMA ( WS )* struct_init_line )* R_FBR ( WS )* )
@@ -19903,166 +19953,166 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_FBR540=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_struct_init23771); 
-            L_FBR540_tree = 
-            (Object)adaptor.create(L_FBR540)
+            L_FBR541=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_struct_init23774); 
+            L_FBR541_tree = 
+            (Object)adaptor.create(L_FBR541)
             ;
-            adaptor.addChild(root_0, L_FBR540_tree);
+            adaptor.addChild(root_0, L_FBR541_tree);
 
 
             // Objcm.g:650:10: ( WS )*
-            loop257:
+            loop258:
             do {
-                int alt257=2;
-                int LA257_0 = input.LA(1);
+                int alt258=2;
+                int LA258_0 = input.LA(1);
 
-                if ( (LA257_0==WS) ) {
-                    int LA257_21 = input.LA(2);
+                if ( (LA258_0==WS) ) {
+                    int LA258_21 = input.LA(2);
 
-                    if ( (LA257_21==ASTERISK||LA257_21==DOT||LA257_21==ID||LA257_21==L_BR||(LA257_21 >= L_KBR && LA257_21 <= L_PLUS_PLUS)||LA257_21==NUMBER||(LA257_21 >= STRING_LITERAL && LA257_21 <= STRING_LITERAL3)||(LA257_21 >= WS && LA257_21 <= 102)||LA257_21==108||LA257_21==111||LA257_21==113||LA257_21==128||LA257_21==135||LA257_21==139||LA257_21==143||LA257_21==152||LA257_21==154||LA257_21==156||LA257_21==165) ) {
-                        alt257=1;
+                    if ( (LA258_21==ASTERISK||LA258_21==DOT||LA258_21==ID||LA258_21==L_BR||(LA258_21 >= L_KBR && LA258_21 <= L_PLUS_PLUS)||LA258_21==NUMBER||(LA258_21 >= STRING_LITERAL && LA258_21 <= STRING_LITERAL3)||(LA258_21 >= WS && LA258_21 <= 102)||LA258_21==108||LA258_21==111||LA258_21==113||LA258_21==128||LA258_21==135||LA258_21==139||LA258_21==143||LA258_21==152||LA258_21==154||LA258_21==156||LA258_21==165) ) {
+                        alt258=1;
                     }
 
 
                 }
 
 
-                switch (alt257) {
+                switch (alt258) {
             	case 1 :
             	    // Objcm.g:650:10: WS
             	    {
-            	    WS541=(Token)match(input,WS,FOLLOW_WS_in_struct_init23773); 
-            	    WS541_tree = 
-            	    (Object)adaptor.create(WS541)
+            	    WS542=(Token)match(input,WS,FOLLOW_WS_in_struct_init23776); 
+            	    WS542_tree = 
+            	    (Object)adaptor.create(WS542)
             	    ;
-            	    adaptor.addChild(root_0, WS541_tree);
+            	    adaptor.addChild(root_0, WS542_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop257;
+            	    break loop258;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_struct_init_line_in_struct_init23779);
-            struct_init_line542=struct_init_line();
+            pushFollow(FOLLOW_struct_init_line_in_struct_init23782);
+            struct_init_line543=struct_init_line();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, struct_init_line542.getTree());
+            adaptor.addChild(root_0, struct_init_line543.getTree());
 
             // Objcm.g:651:21: ( COMMA ( WS )* struct_init_line )*
-            loop259:
-            do {
-                int alt259=2;
-                int LA259_0 = input.LA(1);
-
-                if ( (LA259_0==COMMA) ) {
-                    alt259=1;
-                }
-
-
-                switch (alt259) {
-            	case 1 :
-            	    // Objcm.g:651:22: COMMA ( WS )* struct_init_line
-            	    {
-            	    COMMA543=(Token)match(input,COMMA,FOLLOW_COMMA_in_struct_init23782); 
-            	    COMMA543_tree = 
-            	    (Object)adaptor.create(COMMA543)
-            	    ;
-            	    adaptor.addChild(root_0, COMMA543_tree);
-
-
-            	    // Objcm.g:651:28: ( WS )*
-            	    loop258:
-            	    do {
-            	        int alt258=2;
-            	        int LA258_0 = input.LA(1);
-
-            	        if ( (LA258_0==WS) ) {
-            	            int LA258_21 = input.LA(2);
-
-            	            if ( (LA258_21==ASTERISK||LA258_21==DOT||LA258_21==ID||LA258_21==L_BR||(LA258_21 >= L_KBR && LA258_21 <= L_PLUS_PLUS)||LA258_21==NUMBER||(LA258_21 >= STRING_LITERAL && LA258_21 <= STRING_LITERAL3)||(LA258_21 >= WS && LA258_21 <= 102)||LA258_21==108||LA258_21==111||LA258_21==113||LA258_21==128||LA258_21==135||LA258_21==139||LA258_21==143||LA258_21==152||LA258_21==154||LA258_21==156||LA258_21==165) ) {
-            	                alt258=1;
-            	            }
-
-
-            	        }
-
-
-            	        switch (alt258) {
-            	    	case 1 :
-            	    	    // Objcm.g:651:28: WS
-            	    	    {
-            	    	    WS544=(Token)match(input,WS,FOLLOW_WS_in_struct_init23784); 
-            	    	    WS544_tree = 
-            	    	    (Object)adaptor.create(WS544)
-            	    	    ;
-            	    	    adaptor.addChild(root_0, WS544_tree);
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop258;
-            	        }
-            	    } while (true);
-
-
-            	    pushFollow(FOLLOW_struct_init_line_in_struct_init23787);
-            	    struct_init_line545=struct_init_line();
-
-            	    state._fsp--;
-
-            	    adaptor.addChild(root_0, struct_init_line545.getTree());
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop259;
-                }
-            } while (true);
-
-
-            R_FBR546=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_struct_init23793); 
-            R_FBR546_tree = 
-            (Object)adaptor.create(R_FBR546)
-            ;
-            adaptor.addChild(root_0, R_FBR546_tree);
-
-
-            // Objcm.g:652:9: ( WS )*
             loop260:
             do {
                 int alt260=2;
                 int LA260_0 = input.LA(1);
 
-                if ( (LA260_0==WS) ) {
+                if ( (LA260_0==COMMA) ) {
                     alt260=1;
                 }
 
 
                 switch (alt260) {
             	case 1 :
-            	    // Objcm.g:652:9: WS
+            	    // Objcm.g:651:22: COMMA ( WS )* struct_init_line
             	    {
-            	    WS547=(Token)match(input,WS,FOLLOW_WS_in_struct_init23795); 
-            	    WS547_tree = 
-            	    (Object)adaptor.create(WS547)
+            	    COMMA544=(Token)match(input,COMMA,FOLLOW_COMMA_in_struct_init23785); 
+            	    COMMA544_tree = 
+            	    (Object)adaptor.create(COMMA544)
             	    ;
-            	    adaptor.addChild(root_0, WS547_tree);
+            	    adaptor.addChild(root_0, COMMA544_tree);
 
+
+            	    // Objcm.g:651:28: ( WS )*
+            	    loop259:
+            	    do {
+            	        int alt259=2;
+            	        int LA259_0 = input.LA(1);
+
+            	        if ( (LA259_0==WS) ) {
+            	            int LA259_21 = input.LA(2);
+
+            	            if ( (LA259_21==ASTERISK||LA259_21==DOT||LA259_21==ID||LA259_21==L_BR||(LA259_21 >= L_KBR && LA259_21 <= L_PLUS_PLUS)||LA259_21==NUMBER||(LA259_21 >= STRING_LITERAL && LA259_21 <= STRING_LITERAL3)||(LA259_21 >= WS && LA259_21 <= 102)||LA259_21==108||LA259_21==111||LA259_21==113||LA259_21==128||LA259_21==135||LA259_21==139||LA259_21==143||LA259_21==152||LA259_21==154||LA259_21==156||LA259_21==165) ) {
+            	                alt259=1;
+            	            }
+
+
+            	        }
+
+
+            	        switch (alt259) {
+            	    	case 1 :
+            	    	    // Objcm.g:651:28: WS
+            	    	    {
+            	    	    WS545=(Token)match(input,WS,FOLLOW_WS_in_struct_init23787); 
+            	    	    WS545_tree = 
+            	    	    (Object)adaptor.create(WS545)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS545_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop259;
+            	        }
+            	    } while (true);
+
+
+            	    pushFollow(FOLLOW_struct_init_line_in_struct_init23790);
+            	    struct_init_line546=struct_init_line();
+
+            	    state._fsp--;
+
+            	    adaptor.addChild(root_0, struct_init_line546.getTree());
 
             	    }
             	    break;
 
             	default :
             	    break loop260;
+                }
+            } while (true);
+
+
+            R_FBR547=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_struct_init23796); 
+            R_FBR547_tree = 
+            (Object)adaptor.create(R_FBR547)
+            ;
+            adaptor.addChild(root_0, R_FBR547_tree);
+
+
+            // Objcm.g:652:9: ( WS )*
+            loop261:
+            do {
+                int alt261=2;
+                int LA261_0 = input.LA(1);
+
+                if ( (LA261_0==WS) ) {
+                    alt261=1;
+                }
+
+
+                switch (alt261) {
+            	case 1 :
+            	    // Objcm.g:652:9: WS
+            	    {
+            	    WS548=(Token)match(input,WS,FOLLOW_WS_in_struct_init23798); 
+            	    WS548_tree = 
+            	    (Object)adaptor.create(WS548)
+            	    ;
+            	    adaptor.addChild(root_0, WS548_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop261;
                 }
             } while (true);
 
@@ -20106,21 +20156,21 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS550=null;
-        ObjcmParser.struct_init_var_return struct_init_var548 =null;
+        Token WS551=null;
+        ObjcmParser.struct_init_var_return struct_init_var549 =null;
 
-        ObjcmParser.struct_init_expression_return struct_init_expression549 =null;
+        ObjcmParser.struct_init_expression_return struct_init_expression550 =null;
 
 
-        Object WS550_tree=null;
+        Object WS551_tree=null;
 
         try {
             // Objcm.g:656:2: ( struct_init_var | struct_init_expression | WS )
-            int alt261=3;
+            int alt262=3;
             switch ( input.LA(1) ) {
             case DOT:
                 {
-                alt261=1;
+                alt262=1;
                 }
                 break;
             case ASTERISK:
@@ -20146,35 +20196,35 @@ public TreeAdaptor getTreeAdaptor() {
             case 156:
             case 165:
                 {
-                alt261=2;
+                alt262=2;
                 }
                 break;
             case WS:
                 {
-                alt261=3;
+                alt262=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 261, 0, input);
+                    new NoViableAltException("", 262, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt261) {
+            switch (alt262) {
                 case 1 :
                     // Objcm.g:656:4: struct_init_var
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_struct_init_var_in_struct_init_line3808);
-                    struct_init_var548=struct_init_var();
+                    pushFollow(FOLLOW_struct_init_var_in_struct_init_line3811);
+                    struct_init_var549=struct_init_var();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, struct_init_var548.getTree());
+                    adaptor.addChild(root_0, struct_init_var549.getTree());
 
                     }
                     break;
@@ -20184,12 +20234,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_struct_init_expression_in_struct_init_line3814);
-                    struct_init_expression549=struct_init_expression();
+                    pushFollow(FOLLOW_struct_init_expression_in_struct_init_line3817);
+                    struct_init_expression550=struct_init_expression();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, struct_init_expression549.getTree());
+                    adaptor.addChild(root_0, struct_init_expression550.getTree());
 
                     }
                     break;
@@ -20199,11 +20249,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    WS550=(Token)match(input,WS,FOLLOW_WS_in_struct_init_line3819); 
-                    WS550_tree = 
-                    (Object)adaptor.create(WS550)
+                    WS551=(Token)match(input,WS,FOLLOW_WS_in_struct_init_line3822); 
+                    WS551_tree = 
+                    (Object)adaptor.create(WS551)
                     ;
-                    adaptor.addChild(root_0, WS550_tree);
+                    adaptor.addChild(root_0, WS551_tree);
 
 
                     }
@@ -20247,7 +20297,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.classical_expr_return classical_expr551 =null;
+        ObjcmParser.classical_expr_return classical_expr552 =null;
 
 
 
@@ -20258,12 +20308,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_classical_expr_in_struct_init_expression3832);
-            classical_expr551=classical_expr();
+            pushFollow(FOLLOW_classical_expr_in_struct_init_expression3835);
+            classical_expr552=classical_expr();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, classical_expr551.getTree());
+            adaptor.addChild(root_0, classical_expr552.getTree());
 
             }
 
@@ -20304,11 +20354,11 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS553=null;
-        ObjcmParser.expr_return expr552 =null;
+        Token WS554=null;
+        ObjcmParser.expr_return expr553 =null;
 
 
-        Object WS553_tree=null;
+        Object WS554_tree=null;
 
         try {
             // Objcm.g:666:2: ( expr ( WS )* )
@@ -20317,40 +20367,40 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_expr_in_struct_init_method3843);
-            expr552=expr();
+            pushFollow(FOLLOW_expr_in_struct_init_method3846);
+            expr553=expr();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, expr552.getTree());
+            adaptor.addChild(root_0, expr553.getTree());
 
             // Objcm.g:666:9: ( WS )*
-            loop262:
+            loop263:
             do {
-                int alt262=2;
-                int LA262_0 = input.LA(1);
+                int alt263=2;
+                int LA263_0 = input.LA(1);
 
-                if ( (LA262_0==WS) ) {
-                    alt262=1;
+                if ( (LA263_0==WS) ) {
+                    alt263=1;
                 }
 
 
-                switch (alt262) {
+                switch (alt263) {
             	case 1 :
             	    // Objcm.g:666:9: WS
             	    {
-            	    WS553=(Token)match(input,WS,FOLLOW_WS_in_struct_init_method3845); 
-            	    WS553_tree = 
-            	    (Object)adaptor.create(WS553)
+            	    WS554=(Token)match(input,WS,FOLLOW_WS_in_struct_init_method3848); 
+            	    WS554_tree = 
+            	    (Object)adaptor.create(WS554)
             	    ;
-            	    adaptor.addChild(root_0, WS553_tree);
+            	    adaptor.addChild(root_0, WS554_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop262;
+            	    break loop263;
                 }
             } while (true);
 
@@ -20394,23 +20444,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token DOT554=null;
-        Token WS556=null;
-        Token L_EQ557=null;
-        Token WS558=null;
-        Token WS561=null;
-        ObjcmParser.id_part_return id_part555 =null;
+        Token DOT555=null;
+        Token WS557=null;
+        Token L_EQ558=null;
+        Token WS559=null;
+        Token WS562=null;
+        ObjcmParser.id_part_return id_part556 =null;
 
-        ObjcmParser.in_q_brackets_return in_q_brackets559 =null;
+        ObjcmParser.in_q_brackets_return in_q_brackets560 =null;
 
-        ObjcmParser.expression_return expression560 =null;
+        ObjcmParser.expression_return expression561 =null;
 
 
-        Object DOT554_tree=null;
-        Object WS556_tree=null;
-        Object L_EQ557_tree=null;
-        Object WS558_tree=null;
-        Object WS561_tree=null;
+        Object DOT555_tree=null;
+        Object WS557_tree=null;
+        Object L_EQ558_tree=null;
+        Object WS559_tree=null;
+        Object WS562_tree=null;
 
         try {
             // Objcm.g:669:2: ( ( DOT id_part )+ ( WS )* L_EQ ( WS )* ( in_q_brackets | expression ) ( WS )* )
@@ -20420,87 +20470,49 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:669:4: ( DOT id_part )+
-            int cnt263=0;
-            loop263:
-            do {
-                int alt263=2;
-                int LA263_0 = input.LA(1);
-
-                if ( (LA263_0==DOT) ) {
-                    alt263=1;
-                }
-
-
-                switch (alt263) {
-            	case 1 :
-            	    // Objcm.g:669:5: DOT id_part
-            	    {
-            	    DOT554=(Token)match(input,DOT,FOLLOW_DOT_in_struct_init_var3858); 
-            	    DOT554_tree = 
-            	    (Object)adaptor.create(DOT554)
-            	    ;
-            	    adaptor.addChild(root_0, DOT554_tree);
-
-
-            	    pushFollow(FOLLOW_id_part_in_struct_init_var3860);
-            	    id_part555=id_part();
-
-            	    state._fsp--;
-
-            	    adaptor.addChild(root_0, id_part555.getTree());
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt263 >= 1 ) break loop263;
-                        EarlyExitException eee =
-                            new EarlyExitException(263, input);
-                        throw eee;
-                }
-                cnt263++;
-            } while (true);
-
-
-            // Objcm.g:669:19: ( WS )*
+            int cnt264=0;
             loop264:
             do {
                 int alt264=2;
                 int LA264_0 = input.LA(1);
 
-                if ( (LA264_0==WS) ) {
+                if ( (LA264_0==DOT) ) {
                     alt264=1;
                 }
 
 
                 switch (alt264) {
             	case 1 :
-            	    // Objcm.g:669:19: WS
+            	    // Objcm.g:669:5: DOT id_part
             	    {
-            	    WS556=(Token)match(input,WS,FOLLOW_WS_in_struct_init_var3864); 
-            	    WS556_tree = 
-            	    (Object)adaptor.create(WS556)
+            	    DOT555=(Token)match(input,DOT,FOLLOW_DOT_in_struct_init_var3861); 
+            	    DOT555_tree = 
+            	    (Object)adaptor.create(DOT555)
             	    ;
-            	    adaptor.addChild(root_0, WS556_tree);
+            	    adaptor.addChild(root_0, DOT555_tree);
 
+
+            	    pushFollow(FOLLOW_id_part_in_struct_init_var3863);
+            	    id_part556=id_part();
+
+            	    state._fsp--;
+
+            	    adaptor.addChild(root_0, id_part556.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop264;
+            	    if ( cnt264 >= 1 ) break loop264;
+                        EarlyExitException eee =
+                            new EarlyExitException(264, input);
+                        throw eee;
                 }
+                cnt264++;
             } while (true);
 
 
-            L_EQ557=(Token)match(input,L_EQ,FOLLOW_L_EQ_in_struct_init_var3867); 
-            L_EQ557_tree = 
-            (Object)adaptor.create(L_EQ557)
-            ;
-            adaptor.addChild(root_0, L_EQ557_tree);
-
-
-            // Objcm.g:669:28: ( WS )*
+            // Objcm.g:669:19: ( WS )*
             loop265:
             do {
                 int alt265=2;
@@ -20513,13 +20525,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt265) {
             	case 1 :
-            	    // Objcm.g:669:28: WS
+            	    // Objcm.g:669:19: WS
             	    {
-            	    WS558=(Token)match(input,WS,FOLLOW_WS_in_struct_init_var3869); 
-            	    WS558_tree = 
-            	    (Object)adaptor.create(WS558)
+            	    WS557=(Token)match(input,WS,FOLLOW_WS_in_struct_init_var3867); 
+            	    WS557_tree = 
+            	    (Object)adaptor.create(WS557)
             	    ;
-            	    adaptor.addChild(root_0, WS558_tree);
+            	    adaptor.addChild(root_0, WS557_tree);
 
 
             	    }
@@ -20531,45 +20543,83 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            // Objcm.g:669:32: ( in_q_brackets | expression )
-            int alt266=2;
-            int LA266_0 = input.LA(1);
+            L_EQ558=(Token)match(input,L_EQ,FOLLOW_L_EQ_in_struct_init_var3870); 
+            L_EQ558_tree = 
+            (Object)adaptor.create(L_EQ558)
+            ;
+            adaptor.addChild(root_0, L_EQ558_tree);
 
-            if ( (LA266_0==L_FBR) ) {
-                alt266=1;
+
+            // Objcm.g:669:28: ( WS )*
+            loop266:
+            do {
+                int alt266=2;
+                int LA266_0 = input.LA(1);
+
+                if ( (LA266_0==WS) ) {
+                    alt266=1;
+                }
+
+
+                switch (alt266) {
+            	case 1 :
+            	    // Objcm.g:669:28: WS
+            	    {
+            	    WS559=(Token)match(input,WS,FOLLOW_WS_in_struct_init_var3872); 
+            	    WS559_tree = 
+            	    (Object)adaptor.create(WS559)
+            	    ;
+            	    adaptor.addChild(root_0, WS559_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop266;
+                }
+            } while (true);
+
+
+            // Objcm.g:669:32: ( in_q_brackets | expression )
+            int alt267=2;
+            int LA267_0 = input.LA(1);
+
+            if ( (LA267_0==L_FBR) ) {
+                alt267=1;
             }
-            else if ( (LA266_0==ASTERISK||LA266_0==ID||LA266_0==L_BR||(LA266_0 >= L_KBR && LA266_0 <= L_PLUS_PLUS)||LA266_0==NUMBER||(LA266_0 >= STRING_LITERAL && LA266_0 <= STRING_LITERAL3)||LA266_0==102||LA266_0==108||LA266_0==111||LA266_0==113||LA266_0==128||LA266_0==135||LA266_0==139||LA266_0==143||LA266_0==152||LA266_0==154||LA266_0==156||LA266_0==165) ) {
-                alt266=2;
+            else if ( (LA267_0==ASTERISK||LA267_0==ID||LA267_0==L_BR||(LA267_0 >= L_KBR && LA267_0 <= L_PLUS_PLUS)||LA267_0==NUMBER||(LA267_0 >= STRING_LITERAL && LA267_0 <= STRING_LITERAL3)||LA267_0==102||LA267_0==108||LA267_0==111||LA267_0==113||LA267_0==128||LA267_0==135||LA267_0==139||LA267_0==143||LA267_0==152||LA267_0==154||LA267_0==156||LA267_0==165) ) {
+                alt267=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 266, 0, input);
+                    new NoViableAltException("", 267, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt266) {
+            switch (alt267) {
                 case 1 :
                     // Objcm.g:669:33: in_q_brackets
                     {
-                    pushFollow(FOLLOW_in_q_brackets_in_struct_init_var3873);
-                    in_q_brackets559=in_q_brackets();
+                    pushFollow(FOLLOW_in_q_brackets_in_struct_init_var3876);
+                    in_q_brackets560=in_q_brackets();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, in_q_brackets559.getTree());
+                    adaptor.addChild(root_0, in_q_brackets560.getTree());
 
                     }
                     break;
                 case 2 :
                     // Objcm.g:669:49: expression
                     {
-                    pushFollow(FOLLOW_expression_in_struct_init_var3877);
-                    expression560=expression();
+                    pushFollow(FOLLOW_expression_in_struct_init_var3880);
+                    expression561=expression();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression560.getTree());
+                    adaptor.addChild(root_0, expression561.getTree());
 
                     }
                     break;
@@ -20578,32 +20628,32 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:669:61: ( WS )*
-            loop267:
+            loop268:
             do {
-                int alt267=2;
-                int LA267_0 = input.LA(1);
+                int alt268=2;
+                int LA268_0 = input.LA(1);
 
-                if ( (LA267_0==WS) ) {
-                    alt267=1;
+                if ( (LA268_0==WS) ) {
+                    alt268=1;
                 }
 
 
-                switch (alt267) {
+                switch (alt268) {
             	case 1 :
             	    // Objcm.g:669:61: WS
             	    {
-            	    WS561=(Token)match(input,WS,FOLLOW_WS_in_struct_init_var3880); 
-            	    WS561_tree = 
-            	    (Object)adaptor.create(WS561)
+            	    WS562=(Token)match(input,WS,FOLLOW_WS_in_struct_init_var3883); 
+            	    WS562_tree = 
+            	    (Object)adaptor.create(WS562)
             	    ;
-            	    adaptor.addChild(root_0, WS561_tree);
+            	    adaptor.addChild(root_0, WS562_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop267;
+            	    break loop268;
                 }
             } while (true);
 
@@ -20647,23 +20697,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token R_BR564=null;
-        Token WS565=null;
-        ObjcmParser.expression_asterix_return expression_asterix562 =null;
+        Token R_BR565=null;
+        Token WS566=null;
+        ObjcmParser.expression_asterix_return expression_asterix563 =null;
 
-        ObjcmParser.expression_other_return expression_other563 =null;
+        ObjcmParser.expression_other_return expression_other564 =null;
 
 
-        Object R_BR564_tree=null;
-        Object WS565_tree=null;
+        Object R_BR565_tree=null;
+        Object WS566_tree=null;
 
         try {
             // Objcm.g:672:2: ( expression_asterix | expression_other | R_BR ( WS )* )
-            int alt269=3;
+            int alt270=3;
             switch ( input.LA(1) ) {
             case ASTERISK:
                 {
-                alt269=1;
+                alt270=1;
                 }
                 break;
             case L_EQ:
@@ -20691,35 +20741,35 @@ public TreeAdaptor getTreeAdaptor() {
             case 162:
             case 164:
                 {
-                alt269=2;
+                alt270=2;
                 }
                 break;
             case R_BR:
                 {
-                alt269=3;
+                alt270=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 269, 0, input);
+                    new NoViableAltException("", 270, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt269) {
+            switch (alt270) {
                 case 1 :
                     // Objcm.g:672:4: expression_asterix
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_expression_asterix_in_expression_end3891);
-                    expression_asterix562=expression_asterix();
+                    pushFollow(FOLLOW_expression_asterix_in_expression_end3894);
+                    expression_asterix563=expression_asterix();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression_asterix562.getTree());
+                    adaptor.addChild(root_0, expression_asterix563.getTree());
 
                     }
                     break;
@@ -20729,12 +20779,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_expression_other_in_expression_end3898);
-                    expression_other563=expression_other();
+                    pushFollow(FOLLOW_expression_other_in_expression_end3901);
+                    expression_other564=expression_other();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression_other563.getTree());
+                    adaptor.addChild(root_0, expression_other564.getTree());
 
                     }
                     break;
@@ -20744,40 +20794,40 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    R_BR564=(Token)match(input,R_BR,FOLLOW_R_BR_in_expression_end3903); 
-                    R_BR564_tree = 
-                    (Object)adaptor.create(R_BR564)
+                    R_BR565=(Token)match(input,R_BR,FOLLOW_R_BR_in_expression_end3906); 
+                    R_BR565_tree = 
+                    (Object)adaptor.create(R_BR565)
                     ;
-                    adaptor.addChild(root_0, R_BR564_tree);
+                    adaptor.addChild(root_0, R_BR565_tree);
 
 
                     // Objcm.g:674:9: ( WS )*
-                    loop268:
+                    loop269:
                     do {
-                        int alt268=2;
-                        int LA268_0 = input.LA(1);
+                        int alt269=2;
+                        int LA269_0 = input.LA(1);
 
-                        if ( (LA268_0==WS) ) {
-                            alt268=1;
+                        if ( (LA269_0==WS) ) {
+                            alt269=1;
                         }
 
 
-                        switch (alt268) {
+                        switch (alt269) {
                     	case 1 :
                     	    // Objcm.g:674:9: WS
                     	    {
-                    	    WS565=(Token)match(input,WS,FOLLOW_WS_in_expression_end3905); 
-                    	    WS565_tree = 
-                    	    (Object)adaptor.create(WS565)
+                    	    WS566=(Token)match(input,WS,FOLLOW_WS_in_expression_end3908); 
+                    	    WS566_tree = 
+                    	    (Object)adaptor.create(WS566)
                     	    ;
-                    	    adaptor.addChild(root_0, WS565_tree);
+                    	    adaptor.addChild(root_0, WS566_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop268;
+                    	    break loop269;
                         }
                     } while (true);
 
@@ -20823,13 +20873,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ASTERISK566=null;
-        Token WS567=null;
-        ObjcmParser.expression_end2_return expression_end2568 =null;
+        Token ASTERISK567=null;
+        Token WS568=null;
+        ObjcmParser.expression_end2_return expression_end2569 =null;
 
 
-        Object ASTERISK566_tree=null;
-        Object WS567_tree=null;
+        Object ASTERISK567_tree=null;
+        Object WS568_tree=null;
 
         try {
             // Objcm.g:678:2: ( ( ASTERISK )+ ( WS )* expression_end2 )
@@ -20839,78 +20889,78 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:678:4: ( ASTERISK )+
-            int cnt270=0;
-            loop270:
-            do {
-                int alt270=2;
-                int LA270_0 = input.LA(1);
-
-                if ( (LA270_0==ASTERISK) ) {
-                    alt270=1;
-                }
-
-
-                switch (alt270) {
-            	case 1 :
-            	    // Objcm.g:678:4: ASTERISK
-            	    {
-            	    ASTERISK566=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_expression_asterix3918); 
-            	    ASTERISK566_tree = 
-            	    (Object)adaptor.create(ASTERISK566)
-            	    ;
-            	    adaptor.addChild(root_0, ASTERISK566_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt270 >= 1 ) break loop270;
-                        EarlyExitException eee =
-                            new EarlyExitException(270, input);
-                        throw eee;
-                }
-                cnt270++;
-            } while (true);
-
-
-            // Objcm.g:678:14: ( WS )*
+            int cnt271=0;
             loop271:
             do {
                 int alt271=2;
                 int LA271_0 = input.LA(1);
 
-                if ( (LA271_0==WS) ) {
+                if ( (LA271_0==ASTERISK) ) {
                     alt271=1;
                 }
 
 
                 switch (alt271) {
             	case 1 :
-            	    // Objcm.g:678:14: WS
+            	    // Objcm.g:678:4: ASTERISK
             	    {
-            	    WS567=(Token)match(input,WS,FOLLOW_WS_in_expression_asterix3921); 
-            	    WS567_tree = 
-            	    (Object)adaptor.create(WS567)
+            	    ASTERISK567=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_expression_asterix3921); 
+            	    ASTERISK567_tree = 
+            	    (Object)adaptor.create(ASTERISK567)
             	    ;
-            	    adaptor.addChild(root_0, WS567_tree);
+            	    adaptor.addChild(root_0, ASTERISK567_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop271;
+            	    if ( cnt271 >= 1 ) break loop271;
+                        EarlyExitException eee =
+                            new EarlyExitException(271, input);
+                        throw eee;
+                }
+                cnt271++;
+            } while (true);
+
+
+            // Objcm.g:678:14: ( WS )*
+            loop272:
+            do {
+                int alt272=2;
+                int LA272_0 = input.LA(1);
+
+                if ( (LA272_0==WS) ) {
+                    alt272=1;
+                }
+
+
+                switch (alt272) {
+            	case 1 :
+            	    // Objcm.g:678:14: WS
+            	    {
+            	    WS568=(Token)match(input,WS,FOLLOW_WS_in_expression_asterix3924); 
+            	    WS568_tree = 
+            	    (Object)adaptor.create(WS568)
+            	    ;
+            	    adaptor.addChild(root_0, WS568_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop272;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_expression_end2_in_expression_asterix3924);
-            expression_end2568=expression_end2();
+            pushFollow(FOLLOW_expression_end2_in_expression_asterix3927);
+            expression_end2569=expression_end2();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, expression_end2568.getTree());
+            adaptor.addChild(root_0, expression_end2569.getTree());
 
             }
 
@@ -20951,102 +21001,57 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS570=null;
-        Token R_BR572=null;
-        Token WS573=null;
-        Token R_BR575=null;
-        Token WS576=null;
-        ObjcmParser.op3_return op3569 =null;
+        Token WS571=null;
+        Token R_BR573=null;
+        Token WS574=null;
+        Token R_BR576=null;
+        Token WS577=null;
+        ObjcmParser.op3_return op3570 =null;
 
-        ObjcmParser.classical_expr_wrp_return classical_expr_wrp571 =null;
+        ObjcmParser.classical_expr_wrp_return classical_expr_wrp572 =null;
 
-        ObjcmParser.if3_return if3574 =null;
+        ObjcmParser.if3_return if3575 =null;
 
 
-        Object WS570_tree=null;
-        Object R_BR572_tree=null;
-        Object WS573_tree=null;
-        Object R_BR575_tree=null;
-        Object WS576_tree=null;
+        Object WS571_tree=null;
+        Object R_BR573_tree=null;
+        Object WS574_tree=null;
+        Object R_BR576_tree=null;
+        Object WS577_tree=null;
 
         try {
             // Objcm.g:682:2: ( op3 ( WS )* classical_expr_wrp R_BR ( WS )* | if3 R_BR ( WS )* )
-            int alt275=2;
-            int LA275_0 = input.LA(1);
+            int alt276=2;
+            int LA276_0 = input.LA(1);
 
-            if ( (LA275_0==L_EQ||LA275_0==L_UBR||LA275_0==R_UBR||LA275_0==103||LA275_0==105||(LA275_0 >= 107 && LA275_0 <= 114)||(LA275_0 >= 117 && LA275_0 <= 119)||(LA275_0 >= 121 && LA275_0 <= 124)||LA275_0==140||LA275_0==162||LA275_0==164) ) {
-                alt275=1;
+            if ( (LA276_0==L_EQ||LA276_0==L_UBR||LA276_0==R_UBR||LA276_0==103||LA276_0==105||(LA276_0 >= 107 && LA276_0 <= 114)||(LA276_0 >= 117 && LA276_0 <= 119)||(LA276_0 >= 121 && LA276_0 <= 124)||LA276_0==140||LA276_0==162||LA276_0==164) ) {
+                alt276=1;
             }
-            else if ( (LA275_0==126) ) {
-                alt275=2;
+            else if ( (LA276_0==126) ) {
+                alt276=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 275, 0, input);
+                    new NoViableAltException("", 276, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt275) {
+            switch (alt276) {
                 case 1 :
                     // Objcm.g:682:4: op3 ( WS )* classical_expr_wrp R_BR ( WS )*
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_op3_in_expression_other3935);
-                    op3569=op3();
+                    pushFollow(FOLLOW_op3_in_expression_other3938);
+                    op3570=op3();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, op3569.getTree());
+                    adaptor.addChild(root_0, op3570.getTree());
 
                     // Objcm.g:682:8: ( WS )*
-                    loop272:
-                    do {
-                        int alt272=2;
-                        int LA272_0 = input.LA(1);
-
-                        if ( (LA272_0==WS) ) {
-                            alt272=1;
-                        }
-
-
-                        switch (alt272) {
-                    	case 1 :
-                    	    // Objcm.g:682:8: WS
-                    	    {
-                    	    WS570=(Token)match(input,WS,FOLLOW_WS_in_expression_other3937); 
-                    	    WS570_tree = 
-                    	    (Object)adaptor.create(WS570)
-                    	    ;
-                    	    adaptor.addChild(root_0, WS570_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop272;
-                        }
-                    } while (true);
-
-
-                    pushFollow(FOLLOW_classical_expr_wrp_in_expression_other3940);
-                    classical_expr_wrp571=classical_expr_wrp();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, classical_expr_wrp571.getTree());
-
-                    R_BR572=(Token)match(input,R_BR,FOLLOW_R_BR_in_expression_other3942); 
-                    R_BR572_tree = 
-                    (Object)adaptor.create(R_BR572)
-                    ;
-                    adaptor.addChild(root_0, R_BR572_tree);
-
-
-                    // Objcm.g:682:36: ( WS )*
                     loop273:
                     do {
                         int alt273=2;
@@ -21059,13 +21064,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                         switch (alt273) {
                     	case 1 :
-                    	    // Objcm.g:682:36: WS
+                    	    // Objcm.g:682:8: WS
                     	    {
-                    	    WS573=(Token)match(input,WS,FOLLOW_WS_in_expression_other3944); 
-                    	    WS573_tree = 
-                    	    (Object)adaptor.create(WS573)
+                    	    WS571=(Token)match(input,WS,FOLLOW_WS_in_expression_other3940); 
+                    	    WS571_tree = 
+                    	    (Object)adaptor.create(WS571)
                     	    ;
-                    	    adaptor.addChild(root_0, WS573_tree);
+                    	    adaptor.addChild(root_0, WS571_tree);
 
 
                     	    }
@@ -21077,29 +21082,21 @@ public TreeAdaptor getTreeAdaptor() {
                     } while (true);
 
 
-                    }
-                    break;
-                case 2 :
-                    // Objcm.g:683:4: if3 R_BR ( WS )*
-                    {
-                    root_0 = (Object)adaptor.nil();
-
-
-                    pushFollow(FOLLOW_if3_in_expression_other3950);
-                    if3574=if3();
+                    pushFollow(FOLLOW_classical_expr_wrp_in_expression_other3943);
+                    classical_expr_wrp572=classical_expr_wrp();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, if3574.getTree());
+                    adaptor.addChild(root_0, classical_expr_wrp572.getTree());
 
-                    R_BR575=(Token)match(input,R_BR,FOLLOW_R_BR_in_expression_other3952); 
-                    R_BR575_tree = 
-                    (Object)adaptor.create(R_BR575)
+                    R_BR573=(Token)match(input,R_BR,FOLLOW_R_BR_in_expression_other3945); 
+                    R_BR573_tree = 
+                    (Object)adaptor.create(R_BR573)
                     ;
-                    adaptor.addChild(root_0, R_BR575_tree);
+                    adaptor.addChild(root_0, R_BR573_tree);
 
 
-                    // Objcm.g:683:13: ( WS )*
+                    // Objcm.g:682:36: ( WS )*
                     loop274:
                     do {
                         int alt274=2;
@@ -21112,13 +21109,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                         switch (alt274) {
                     	case 1 :
-                    	    // Objcm.g:683:13: WS
+                    	    // Objcm.g:682:36: WS
                     	    {
-                    	    WS576=(Token)match(input,WS,FOLLOW_WS_in_expression_other3954); 
-                    	    WS576_tree = 
-                    	    (Object)adaptor.create(WS576)
+                    	    WS574=(Token)match(input,WS,FOLLOW_WS_in_expression_other3947); 
+                    	    WS574_tree = 
+                    	    (Object)adaptor.create(WS574)
                     	    ;
-                    	    adaptor.addChild(root_0, WS576_tree);
+                    	    adaptor.addChild(root_0, WS574_tree);
 
 
                     	    }
@@ -21126,6 +21123,59 @@ public TreeAdaptor getTreeAdaptor() {
 
                     	default :
                     	    break loop274;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
+                case 2 :
+                    // Objcm.g:683:4: if3 R_BR ( WS )*
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+
+                    pushFollow(FOLLOW_if3_in_expression_other3953);
+                    if3575=if3();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, if3575.getTree());
+
+                    R_BR576=(Token)match(input,R_BR,FOLLOW_R_BR_in_expression_other3955); 
+                    R_BR576_tree = 
+                    (Object)adaptor.create(R_BR576)
+                    ;
+                    adaptor.addChild(root_0, R_BR576_tree);
+
+
+                    // Objcm.g:683:13: ( WS )*
+                    loop275:
+                    do {
+                        int alt275=2;
+                        int LA275_0 = input.LA(1);
+
+                        if ( (LA275_0==WS) ) {
+                            alt275=1;
+                        }
+
+
+                        switch (alt275) {
+                    	case 1 :
+                    	    // Objcm.g:683:13: WS
+                    	    {
+                    	    WS577=(Token)match(input,WS,FOLLOW_WS_in_expression_other3957); 
+                    	    WS577_tree = 
+                    	    (Object)adaptor.create(WS577)
+                    	    ;
+                    	    adaptor.addChild(root_0, WS577_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop275;
                         }
                     } while (true);
 
@@ -21171,92 +21221,92 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token R_BR577=null;
-        Token WS578=null;
-        Token WS581=null;
-        Token WS583=null;
-        Token WS585=null;
-        Token R_BR586=null;
-        Token WS587=null;
-        ObjcmParser.expression_return expression579 =null;
+        Token R_BR578=null;
+        Token WS579=null;
+        Token WS582=null;
+        Token WS584=null;
+        Token WS586=null;
+        Token R_BR587=null;
+        Token WS588=null;
+        ObjcmParser.expression_return expression580 =null;
 
-        ObjcmParser.expr_return expr580 =null;
+        ObjcmParser.expr_return expr581 =null;
 
-        ObjcmParser.op_return op582 =null;
+        ObjcmParser.op_return op583 =null;
 
-        ObjcmParser.expr_return expr584 =null;
+        ObjcmParser.expr_return expr585 =null;
 
 
-        Object R_BR577_tree=null;
-        Object WS578_tree=null;
-        Object WS581_tree=null;
-        Object WS583_tree=null;
-        Object WS585_tree=null;
-        Object R_BR586_tree=null;
-        Object WS587_tree=null;
+        Object R_BR578_tree=null;
+        Object WS579_tree=null;
+        Object WS582_tree=null;
+        Object WS584_tree=null;
+        Object WS586_tree=null;
+        Object R_BR587_tree=null;
+        Object WS588_tree=null;
         RewriteRuleTokenStream stream_WS=new RewriteRuleTokenStream(adaptor,"token WS");
         RewriteRuleTokenStream stream_R_BR=new RewriteRuleTokenStream(adaptor,"token R_BR");
         RewriteRuleSubtreeStream stream_expression=new RewriteRuleSubtreeStream(adaptor,"rule expression");
         try {
             // Objcm.g:687:2: ( R_BR ( WS )* expression -> ^( TYPE_CONVERTION expression ) | expr ( WS )* ( op ( WS )* expr ( WS )* )* R_BR ( WS )* )
-            int alt282=2;
-            int LA282_0 = input.LA(1);
+            int alt283=2;
+            int LA283_0 = input.LA(1);
 
-            if ( (LA282_0==R_BR) ) {
-                alt282=1;
+            if ( (LA283_0==R_BR) ) {
+                alt283=1;
             }
-            else if ( (LA282_0==ASTERISK||LA282_0==ID||LA282_0==L_BR||(LA282_0 >= L_KBR && LA282_0 <= L_PLUS_PLUS)||LA282_0==NUMBER||(LA282_0 >= STRING_LITERAL && LA282_0 <= STRING_LITERAL3)||LA282_0==102||LA282_0==108||LA282_0==111||LA282_0==113||LA282_0==128||LA282_0==135||LA282_0==139||LA282_0==143||LA282_0==152||LA282_0==154||LA282_0==156||LA282_0==165) ) {
-                alt282=2;
+            else if ( (LA283_0==ASTERISK||LA283_0==ID||LA283_0==L_BR||(LA283_0 >= L_KBR && LA283_0 <= L_PLUS_PLUS)||LA283_0==NUMBER||(LA283_0 >= STRING_LITERAL && LA283_0 <= STRING_LITERAL3)||LA283_0==102||LA283_0==108||LA283_0==111||LA283_0==113||LA283_0==128||LA283_0==135||LA283_0==139||LA283_0==143||LA283_0==152||LA283_0==154||LA283_0==156||LA283_0==165) ) {
+                alt283=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 282, 0, input);
+                    new NoViableAltException("", 283, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt282) {
+            switch (alt283) {
                 case 1 :
                     // Objcm.g:687:4: R_BR ( WS )* expression
                     {
-                    R_BR577=(Token)match(input,R_BR,FOLLOW_R_BR_in_expression_end23967);  
-                    stream_R_BR.add(R_BR577);
+                    R_BR578=(Token)match(input,R_BR,FOLLOW_R_BR_in_expression_end23970);  
+                    stream_R_BR.add(R_BR578);
 
 
                     // Objcm.g:687:9: ( WS )*
-                    loop276:
+                    loop277:
                     do {
-                        int alt276=2;
-                        int LA276_0 = input.LA(1);
+                        int alt277=2;
+                        int LA277_0 = input.LA(1);
 
-                        if ( (LA276_0==WS) ) {
-                            alt276=1;
+                        if ( (LA277_0==WS) ) {
+                            alt277=1;
                         }
 
 
-                        switch (alt276) {
+                        switch (alt277) {
                     	case 1 :
                     	    // Objcm.g:687:9: WS
                     	    {
-                    	    WS578=(Token)match(input,WS,FOLLOW_WS_in_expression_end23969);  
-                    	    stream_WS.add(WS578);
+                    	    WS579=(Token)match(input,WS,FOLLOW_WS_in_expression_end23972);  
+                    	    stream_WS.add(WS579);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop276;
+                    	    break loop277;
                         }
                     } while (true);
 
 
-                    pushFollow(FOLLOW_expression_in_expression_end23972);
-                    expression579=expression();
+                    pushFollow(FOLLOW_expression_in_expression_end23975);
+                    expression580=expression();
 
                     state._fsp--;
 
-                    stream_expression.add(expression579.getTree());
+                    stream_expression.add(expression580.getTree());
 
                     // AST REWRITE
                     // elements: expression
@@ -21296,105 +21346,67 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_expr_in_expression_end23985);
-                    expr580=expr();
+                    pushFollow(FOLLOW_expr_in_expression_end23988);
+                    expr581=expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expr580.getTree());
+                    adaptor.addChild(root_0, expr581.getTree());
 
                     // Objcm.g:688:9: ( WS )*
-                    loop277:
+                    loop278:
                     do {
-                        int alt277=2;
-                        int LA277_0 = input.LA(1);
+                        int alt278=2;
+                        int LA278_0 = input.LA(1);
 
-                        if ( (LA277_0==WS) ) {
-                            alt277=1;
+                        if ( (LA278_0==WS) ) {
+                            alt278=1;
                         }
 
 
-                        switch (alt277) {
+                        switch (alt278) {
                     	case 1 :
                     	    // Objcm.g:688:9: WS
                     	    {
-                    	    WS581=(Token)match(input,WS,FOLLOW_WS_in_expression_end23987); 
-                    	    WS581_tree = 
-                    	    (Object)adaptor.create(WS581)
+                    	    WS582=(Token)match(input,WS,FOLLOW_WS_in_expression_end23990); 
+                    	    WS582_tree = 
+                    	    (Object)adaptor.create(WS582)
                     	    ;
-                    	    adaptor.addChild(root_0, WS581_tree);
+                    	    adaptor.addChild(root_0, WS582_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop277;
+                    	    break loop278;
                         }
                     } while (true);
 
 
                     // Objcm.g:688:13: ( op ( WS )* expr ( WS )* )*
-                    loop280:
+                    loop281:
                     do {
-                        int alt280=2;
-                        int LA280_0 = input.LA(1);
+                        int alt281=2;
+                        int LA281_0 = input.LA(1);
 
-                        if ( (LA280_0==ASTERISK||LA280_0==L_EQ||LA280_0==L_UBR||LA280_0==R_UBR||LA280_0==103||LA280_0==105||(LA280_0 >= 107 && LA280_0 <= 114)||(LA280_0 >= 117 && LA280_0 <= 119)||(LA280_0 >= 121 && LA280_0 <= 124)||LA280_0==140||LA280_0==162||LA280_0==164) ) {
-                            alt280=1;
+                        if ( (LA281_0==ASTERISK||LA281_0==L_EQ||LA281_0==L_UBR||LA281_0==R_UBR||LA281_0==103||LA281_0==105||(LA281_0 >= 107 && LA281_0 <= 114)||(LA281_0 >= 117 && LA281_0 <= 119)||(LA281_0 >= 121 && LA281_0 <= 124)||LA281_0==140||LA281_0==162||LA281_0==164) ) {
+                            alt281=1;
                         }
 
 
-                        switch (alt280) {
+                        switch (alt281) {
                     	case 1 :
                     	    // Objcm.g:688:14: op ( WS )* expr ( WS )*
                     	    {
-                    	    pushFollow(FOLLOW_op_in_expression_end23991);
-                    	    op582=op();
+                    	    pushFollow(FOLLOW_op_in_expression_end23994);
+                    	    op583=op();
 
                     	    state._fsp--;
 
-                    	    adaptor.addChild(root_0, op582.getTree());
+                    	    adaptor.addChild(root_0, op583.getTree());
 
                     	    // Objcm.g:688:17: ( WS )*
-                    	    loop278:
-                    	    do {
-                    	        int alt278=2;
-                    	        int LA278_0 = input.LA(1);
-
-                    	        if ( (LA278_0==WS) ) {
-                    	            alt278=1;
-                    	        }
-
-
-                    	        switch (alt278) {
-                    	    	case 1 :
-                    	    	    // Objcm.g:688:17: WS
-                    	    	    {
-                    	    	    WS583=(Token)match(input,WS,FOLLOW_WS_in_expression_end23993); 
-                    	    	    WS583_tree = 
-                    	    	    (Object)adaptor.create(WS583)
-                    	    	    ;
-                    	    	    adaptor.addChild(root_0, WS583_tree);
-
-
-                    	    	    }
-                    	    	    break;
-
-                    	    	default :
-                    	    	    break loop278;
-                    	        }
-                    	    } while (true);
-
-
-                    	    pushFollow(FOLLOW_expr_in_expression_end23996);
-                    	    expr584=expr();
-
-                    	    state._fsp--;
-
-                    	    adaptor.addChild(root_0, expr584.getTree());
-
-                    	    // Objcm.g:688:26: ( WS )*
                     	    loop279:
                     	    do {
                     	        int alt279=2;
@@ -21407,13 +21419,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                     	        switch (alt279) {
                     	    	case 1 :
-                    	    	    // Objcm.g:688:26: WS
+                    	    	    // Objcm.g:688:17: WS
                     	    	    {
-                    	    	    WS585=(Token)match(input,WS,FOLLOW_WS_in_expression_end23998); 
-                    	    	    WS585_tree = 
-                    	    	    (Object)adaptor.create(WS585)
+                    	    	    WS584=(Token)match(input,WS,FOLLOW_WS_in_expression_end23996); 
+                    	    	    WS584_tree = 
+                    	    	    (Object)adaptor.create(WS584)
                     	    	    ;
-                    	    	    adaptor.addChild(root_0, WS585_tree);
+                    	    	    adaptor.addChild(root_0, WS584_tree);
 
 
                     	    	    }
@@ -21425,42 +21437,42 @@ public TreeAdaptor getTreeAdaptor() {
                     	    } while (true);
 
 
-                    	    }
-                    	    break;
+                    	    pushFollow(FOLLOW_expr_in_expression_end23999);
+                    	    expr585=expr();
 
-                    	default :
-                    	    break loop280;
-                        }
-                    } while (true);
+                    	    state._fsp--;
 
+                    	    adaptor.addChild(root_0, expr585.getTree());
 
-                    R_BR586=(Token)match(input,R_BR,FOLLOW_R_BR_in_expression_end24003); 
-                    R_BR586_tree = 
-                    (Object)adaptor.create(R_BR586)
-                    ;
-                    adaptor.addChild(root_0, R_BR586_tree);
+                    	    // Objcm.g:688:26: ( WS )*
+                    	    loop280:
+                    	    do {
+                    	        int alt280=2;
+                    	        int LA280_0 = input.LA(1);
 
-
-                    // Objcm.g:688:37: ( WS )*
-                    loop281:
-                    do {
-                        int alt281=2;
-                        int LA281_0 = input.LA(1);
-
-                        if ( (LA281_0==WS) ) {
-                            alt281=1;
-                        }
+                    	        if ( (LA280_0==WS) ) {
+                    	            alt280=1;
+                    	        }
 
 
-                        switch (alt281) {
-                    	case 1 :
-                    	    // Objcm.g:688:37: WS
-                    	    {
-                    	    WS587=(Token)match(input,WS,FOLLOW_WS_in_expression_end24005); 
-                    	    WS587_tree = 
-                    	    (Object)adaptor.create(WS587)
-                    	    ;
-                    	    adaptor.addChild(root_0, WS587_tree);
+                    	        switch (alt280) {
+                    	    	case 1 :
+                    	    	    // Objcm.g:688:26: WS
+                    	    	    {
+                    	    	    WS586=(Token)match(input,WS,FOLLOW_WS_in_expression_end24001); 
+                    	    	    WS586_tree = 
+                    	    	    (Object)adaptor.create(WS586)
+                    	    	    ;
+                    	    	    adaptor.addChild(root_0, WS586_tree);
+
+
+                    	    	    }
+                    	    	    break;
+
+                    	    	default :
+                    	    	    break loop280;
+                    	        }
+                    	    } while (true);
 
 
                     	    }
@@ -21468,6 +21480,44 @@ public TreeAdaptor getTreeAdaptor() {
 
                     	default :
                     	    break loop281;
+                        }
+                    } while (true);
+
+
+                    R_BR587=(Token)match(input,R_BR,FOLLOW_R_BR_in_expression_end24006); 
+                    R_BR587_tree = 
+                    (Object)adaptor.create(R_BR587)
+                    ;
+                    adaptor.addChild(root_0, R_BR587_tree);
+
+
+                    // Objcm.g:688:37: ( WS )*
+                    loop282:
+                    do {
+                        int alt282=2;
+                        int LA282_0 = input.LA(1);
+
+                        if ( (LA282_0==WS) ) {
+                            alt282=1;
+                        }
+
+
+                        switch (alt282) {
+                    	case 1 :
+                    	    // Objcm.g:688:37: WS
+                    	    {
+                    	    WS588=(Token)match(input,WS,FOLLOW_WS_in_expression_end24008); 
+                    	    WS588_tree = 
+                    	    (Object)adaptor.create(WS588)
+                    	    ;
+                    	    adaptor.addChild(root_0, WS588_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop282;
                         }
                     } while (true);
 
@@ -21513,42 +21563,42 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ASTERISK588=null;
-        ObjcmParser.op3_return op3589 =null;
+        Token ASTERISK589=null;
+        ObjcmParser.op3_return op3590 =null;
 
 
-        Object ASTERISK588_tree=null;
+        Object ASTERISK589_tree=null;
 
         try {
             // Objcm.g:691:4: ( ASTERISK | op3 )
-            int alt283=2;
-            int LA283_0 = input.LA(1);
+            int alt284=2;
+            int LA284_0 = input.LA(1);
 
-            if ( (LA283_0==ASTERISK) ) {
-                alt283=1;
+            if ( (LA284_0==ASTERISK) ) {
+                alt284=1;
             }
-            else if ( (LA283_0==L_EQ||LA283_0==L_UBR||LA283_0==R_UBR||LA283_0==103||LA283_0==105||(LA283_0 >= 107 && LA283_0 <= 114)||(LA283_0 >= 117 && LA283_0 <= 119)||(LA283_0 >= 121 && LA283_0 <= 124)||LA283_0==140||LA283_0==162||LA283_0==164) ) {
-                alt283=2;
+            else if ( (LA284_0==L_EQ||LA284_0==L_UBR||LA284_0==R_UBR||LA284_0==103||LA284_0==105||(LA284_0 >= 107 && LA284_0 <= 114)||(LA284_0 >= 117 && LA284_0 <= 119)||(LA284_0 >= 121 && LA284_0 <= 124)||LA284_0==140||LA284_0==162||LA284_0==164) ) {
+                alt284=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 283, 0, input);
+                    new NoViableAltException("", 284, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt283) {
+            switch (alt284) {
                 case 1 :
                     // Objcm.g:691:6: ASTERISK
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    ASTERISK588=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_op4016); 
-                    ASTERISK588_tree = 
-                    (Object)adaptor.create(ASTERISK588)
+                    ASTERISK589=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_op4019); 
+                    ASTERISK589_tree = 
+                    (Object)adaptor.create(ASTERISK589)
                     ;
-                    adaptor.addChild(root_0, ASTERISK588_tree);
+                    adaptor.addChild(root_0, ASTERISK589_tree);
 
 
                     }
@@ -21559,12 +21609,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_op3_in_op4020);
-                    op3589=op3();
+                    pushFollow(FOLLOW_op3_in_op4023);
+                    op3590=op3();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, op3589.getTree());
+                    adaptor.addChild(root_0, op3590.getTree());
 
                     }
                     break;
@@ -21607,9 +21657,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set590=null;
+        Token set591=null;
 
-        Object set590_tree=null;
+        Object set591_tree=null;
 
         try {
             // Objcm.g:693:5: ( '-' | '/' | '+' | '%' | '&' | '&&' | '|' | '||' | R_UBR | '>=' | L_UBR | '<=' | '==' | '!=' | L_EQ | '+=' | '-=' | '/=' | '*=' | '&=' | '^' | '>>' | '<<' )
@@ -21618,12 +21668,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set590=(Token)input.LT(1);
+            set591=(Token)input.LT(1);
 
             if ( input.LA(1)==L_EQ||input.LA(1)==L_UBR||input.LA(1)==R_UBR||input.LA(1)==103||input.LA(1)==105||(input.LA(1) >= 107 && input.LA(1) <= 114)||(input.LA(1) >= 117 && input.LA(1) <= 119)||(input.LA(1) >= 121 && input.LA(1) <= 124)||input.LA(1)==140||input.LA(1)==162||input.LA(1)==164 ) {
                 input.consume();
                 adaptor.addChild(root_0, 
-                (Object)adaptor.create(set590)
+                (Object)adaptor.create(set591)
                 );
                 state.errorRecovery=false;
             }
@@ -21672,19 +21722,19 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS592=null;
-        ObjcmParser.op2_return op2591 =null;
+        Token WS593=null;
+        ObjcmParser.op2_return op2592 =null;
 
-        ObjcmParser.const_expr_return const_expr593 =null;
+        ObjcmParser.const_expr_return const_expr594 =null;
 
-        ObjcmParser.a_started_return a_started594 =null;
+        ObjcmParser.a_started_return a_started595 =null;
 
-        ObjcmParser.id_started_return id_started595 =null;
+        ObjcmParser.id_started_return id_started596 =null;
 
-        ObjcmParser.square_brackets_return square_brackets596 =null;
+        ObjcmParser.square_brackets_return square_brackets597 =null;
 
 
-        Object WS592_tree=null;
+        Object WS593_tree=null;
 
         try {
             // Objcm.g:701:7: ( ( op2 ( WS )* )? ( const_expr | a_started | id_started | square_brackets ) )
@@ -21694,50 +21744,50 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:701:9: ( op2 ( WS )* )?
-            int alt285=2;
-            int LA285_0 = input.LA(1);
+            int alt286=2;
+            int LA286_0 = input.LA(1);
 
-            if ( ((LA285_0 >= L_MINUS_MINUS && LA285_0 <= L_PLUS_PLUS)||LA285_0==102||LA285_0==111||LA285_0==113||LA285_0==165) ) {
-                alt285=1;
+            if ( ((LA286_0 >= L_MINUS_MINUS && LA286_0 <= L_PLUS_PLUS)||LA286_0==102||LA286_0==111||LA286_0==113||LA286_0==165) ) {
+                alt286=1;
             }
-            switch (alt285) {
+            switch (alt286) {
                 case 1 :
                     // Objcm.g:701:10: op2 ( WS )*
                     {
-                    pushFollow(FOLLOW_op2_in_expr24135);
-                    op2591=op2();
+                    pushFollow(FOLLOW_op2_in_expr24138);
+                    op2592=op2();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, op2591.getTree());
+                    adaptor.addChild(root_0, op2592.getTree());
 
                     // Objcm.g:701:14: ( WS )*
-                    loop284:
+                    loop285:
                     do {
-                        int alt284=2;
-                        int LA284_0 = input.LA(1);
+                        int alt285=2;
+                        int LA285_0 = input.LA(1);
 
-                        if ( (LA284_0==WS) ) {
-                            alt284=1;
+                        if ( (LA285_0==WS) ) {
+                            alt285=1;
                         }
 
 
-                        switch (alt284) {
+                        switch (alt285) {
                     	case 1 :
                     	    // Objcm.g:701:14: WS
                     	    {
-                    	    WS592=(Token)match(input,WS,FOLLOW_WS_in_expr24137); 
-                    	    WS592_tree = 
-                    	    (Object)adaptor.create(WS592)
+                    	    WS593=(Token)match(input,WS,FOLLOW_WS_in_expr24140); 
+                    	    WS593_tree = 
+                    	    (Object)adaptor.create(WS593)
                     	    ;
-                    	    adaptor.addChild(root_0, WS592_tree);
+                    	    adaptor.addChild(root_0, WS593_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop284;
+                    	    break loop285;
                         }
                     } while (true);
 
@@ -21749,7 +21799,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:701:20: ( const_expr | a_started | id_started | square_brackets )
-            int alt286=4;
+            int alt287=4;
             switch ( input.LA(1) ) {
             case NUMBER:
             case STRING_LITERAL:
@@ -21758,80 +21808,80 @@ public TreeAdaptor getTreeAdaptor() {
             case 139:
             case 154:
                 {
-                alt286=1;
+                alt287=1;
                 }
                 break;
             case 128:
             case 135:
                 {
-                alt286=2;
+                alt287=2;
                 }
                 break;
             case ID:
             case 152:
                 {
-                alt286=3;
+                alt287=3;
                 }
                 break;
             case L_KBR:
                 {
-                alt286=4;
+                alt287=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 286, 0, input);
+                    new NoViableAltException("", 287, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt286) {
+            switch (alt287) {
                 case 1 :
                     // Objcm.g:701:21: const_expr
                     {
-                    pushFollow(FOLLOW_const_expr_in_expr24143);
-                    const_expr593=const_expr();
+                    pushFollow(FOLLOW_const_expr_in_expr24146);
+                    const_expr594=const_expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, const_expr593.getTree());
+                    adaptor.addChild(root_0, const_expr594.getTree());
 
                     }
                     break;
                 case 2 :
                     // Objcm.g:701:34: a_started
                     {
-                    pushFollow(FOLLOW_a_started_in_expr24147);
-                    a_started594=a_started();
+                    pushFollow(FOLLOW_a_started_in_expr24150);
+                    a_started595=a_started();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, a_started594.getTree());
+                    adaptor.addChild(root_0, a_started595.getTree());
 
                     }
                     break;
                 case 3 :
                     // Objcm.g:701:46: id_started
                     {
-                    pushFollow(FOLLOW_id_started_in_expr24151);
-                    id_started595=id_started();
+                    pushFollow(FOLLOW_id_started_in_expr24154);
+                    id_started596=id_started();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, id_started595.getTree());
+                    adaptor.addChild(root_0, id_started596.getTree());
 
                     }
                     break;
                 case 4 :
                     // Objcm.g:701:59: square_brackets
                     {
-                    pushFollow(FOLLOW_square_brackets_in_expr24155);
-                    square_brackets596=square_brackets();
+                    pushFollow(FOLLOW_square_brackets_in_expr24158);
+                    square_brackets597=square_brackets();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, square_brackets596.getTree());
+                    adaptor.addChild(root_0, square_brackets597.getTree());
 
                     }
                     break;
@@ -21878,27 +21928,27 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS598=null;
-        ObjcmParser.op2_return op2597 =null;
+        Token WS599=null;
+        ObjcmParser.op2_return op2598 =null;
 
-        ObjcmParser.const_expr_return const_expr599 =null;
+        ObjcmParser.const_expr_return const_expr600 =null;
 
-        ObjcmParser.a_started_return a_started600 =null;
+        ObjcmParser.a_started_return a_started601 =null;
 
-        ObjcmParser.id_started_return id_started601 =null;
+        ObjcmParser.id_started_return id_started602 =null;
 
-        ObjcmParser.special_op_return special_op602 =null;
+        ObjcmParser.special_op_return special_op603 =null;
 
-        ObjcmParser.special_started_return special_started603 =null;
+        ObjcmParser.special_started_return special_started604 =null;
 
-        ObjcmParser.in_brackets_return in_brackets604 =null;
+        ObjcmParser.in_brackets_return in_brackets605 =null;
 
-        ObjcmParser.square_brackets_return square_brackets605 =null;
+        ObjcmParser.square_brackets_return square_brackets606 =null;
 
-        ObjcmParser.id_part_end_return id_part_end606 =null;
+        ObjcmParser.id_part_end_return id_part_end607 =null;
 
 
-        Object WS598_tree=null;
+        Object WS599_tree=null;
 
         try {
             // Objcm.g:702:6: ( ( op2 ( WS )* )? ( const_expr | a_started | id_started | special_op | special_started | ( in_brackets ( square_brackets )? ( id_part_end )? ) ) )
@@ -21908,50 +21958,50 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:702:8: ( op2 ( WS )* )?
-            int alt288=2;
-            int LA288_0 = input.LA(1);
+            int alt289=2;
+            int LA289_0 = input.LA(1);
 
-            if ( ((LA288_0 >= L_MINUS_MINUS && LA288_0 <= L_PLUS_PLUS)||LA288_0==102||LA288_0==111||LA288_0==113||LA288_0==165) ) {
-                alt288=1;
+            if ( ((LA289_0 >= L_MINUS_MINUS && LA289_0 <= L_PLUS_PLUS)||LA289_0==102||LA289_0==111||LA289_0==113||LA289_0==165) ) {
+                alt289=1;
             }
-            switch (alt288) {
+            switch (alt289) {
                 case 1 :
                     // Objcm.g:702:9: op2 ( WS )*
                     {
-                    pushFollow(FOLLOW_op2_in_expr4164);
-                    op2597=op2();
+                    pushFollow(FOLLOW_op2_in_expr4167);
+                    op2598=op2();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, op2597.getTree());
+                    adaptor.addChild(root_0, op2598.getTree());
 
                     // Objcm.g:702:13: ( WS )*
-                    loop287:
+                    loop288:
                     do {
-                        int alt287=2;
-                        int LA287_0 = input.LA(1);
+                        int alt288=2;
+                        int LA288_0 = input.LA(1);
 
-                        if ( (LA287_0==WS) ) {
-                            alt287=1;
+                        if ( (LA288_0==WS) ) {
+                            alt288=1;
                         }
 
 
-                        switch (alt287) {
+                        switch (alt288) {
                     	case 1 :
                     	    // Objcm.g:702:13: WS
                     	    {
-                    	    WS598=(Token)match(input,WS,FOLLOW_WS_in_expr4166); 
-                    	    WS598_tree = 
-                    	    (Object)adaptor.create(WS598)
+                    	    WS599=(Token)match(input,WS,FOLLOW_WS_in_expr4169); 
+                    	    WS599_tree = 
+                    	    (Object)adaptor.create(WS599)
                     	    ;
-                    	    adaptor.addChild(root_0, WS598_tree);
+                    	    adaptor.addChild(root_0, WS599_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop287;
+                    	    break loop288;
                         }
                     } while (true);
 
@@ -21963,7 +22013,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:702:19: ( const_expr | a_started | id_started | special_op | special_started | ( in_brackets ( square_brackets )? ( id_part_end )? ) )
-            int alt291=6;
+            int alt292=6;
             switch ( input.LA(1) ) {
             case NUMBER:
             case STRING_LITERAL:
@@ -21972,105 +22022,105 @@ public TreeAdaptor getTreeAdaptor() {
             case 139:
             case 154:
                 {
-                alt291=1;
+                alt292=1;
                 }
                 break;
             case 128:
             case 135:
                 {
-                alt291=2;
+                alt292=2;
                 }
                 break;
             case ID:
             case 152:
                 {
-                alt291=3;
+                alt292=3;
                 }
                 break;
             case 143:
             case 156:
                 {
-                alt291=4;
+                alt292=4;
                 }
                 break;
             case ASTERISK:
             case 108:
                 {
-                alt291=5;
+                alt292=5;
                 }
                 break;
             case L_BR:
             case L_KBR:
                 {
-                alt291=6;
+                alt292=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 291, 0, input);
+                    new NoViableAltException("", 292, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt291) {
+            switch (alt292) {
                 case 1 :
                     // Objcm.g:702:20: const_expr
                     {
-                    pushFollow(FOLLOW_const_expr_in_expr4172);
-                    const_expr599=const_expr();
+                    pushFollow(FOLLOW_const_expr_in_expr4175);
+                    const_expr600=const_expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, const_expr599.getTree());
+                    adaptor.addChild(root_0, const_expr600.getTree());
 
                     }
                     break;
                 case 2 :
                     // Objcm.g:702:33: a_started
                     {
-                    pushFollow(FOLLOW_a_started_in_expr4176);
-                    a_started600=a_started();
+                    pushFollow(FOLLOW_a_started_in_expr4179);
+                    a_started601=a_started();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, a_started600.getTree());
+                    adaptor.addChild(root_0, a_started601.getTree());
 
                     }
                     break;
                 case 3 :
                     // Objcm.g:702:45: id_started
                     {
-                    pushFollow(FOLLOW_id_started_in_expr4180);
-                    id_started601=id_started();
+                    pushFollow(FOLLOW_id_started_in_expr4183);
+                    id_started602=id_started();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, id_started601.getTree());
+                    adaptor.addChild(root_0, id_started602.getTree());
 
                     }
                     break;
                 case 4 :
                     // Objcm.g:702:58: special_op
                     {
-                    pushFollow(FOLLOW_special_op_in_expr4184);
-                    special_op602=special_op();
+                    pushFollow(FOLLOW_special_op_in_expr4187);
+                    special_op603=special_op();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, special_op602.getTree());
+                    adaptor.addChild(root_0, special_op603.getTree());
 
                     }
                     break;
                 case 5 :
                     // Objcm.g:702:71: special_started
                     {
-                    pushFollow(FOLLOW_special_started_in_expr4188);
-                    special_started603=special_started();
+                    pushFollow(FOLLOW_special_started_in_expr4191);
+                    special_started604=special_started();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, special_started603.getTree());
+                    adaptor.addChild(root_0, special_started604.getTree());
 
                     }
                     break;
@@ -22080,30 +22130,30 @@ public TreeAdaptor getTreeAdaptor() {
                     // Objcm.g:702:89: ( in_brackets ( square_brackets )? ( id_part_end )? )
                     // Objcm.g:702:90: in_brackets ( square_brackets )? ( id_part_end )?
                     {
-                    pushFollow(FOLLOW_in_brackets_in_expr4193);
-                    in_brackets604=in_brackets();
+                    pushFollow(FOLLOW_in_brackets_in_expr4196);
+                    in_brackets605=in_brackets();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, in_brackets604.getTree());
+                    adaptor.addChild(root_0, in_brackets605.getTree());
 
                     // Objcm.g:702:102: ( square_brackets )?
-                    int alt289=2;
-                    int LA289_0 = input.LA(1);
+                    int alt290=2;
+                    int LA290_0 = input.LA(1);
 
-                    if ( (LA289_0==L_KBR) ) {
-                        alt289=1;
+                    if ( (LA290_0==L_KBR) ) {
+                        alt290=1;
                     }
-                    switch (alt289) {
+                    switch (alt290) {
                         case 1 :
                             // Objcm.g:702:102: square_brackets
                             {
-                            pushFollow(FOLLOW_square_brackets_in_expr4195);
-                            square_brackets605=square_brackets();
+                            pushFollow(FOLLOW_square_brackets_in_expr4198);
+                            square_brackets606=square_brackets();
 
                             state._fsp--;
 
-                            adaptor.addChild(root_0, square_brackets605.getTree());
+                            adaptor.addChild(root_0, square_brackets606.getTree());
 
                             }
                             break;
@@ -22112,25 +22162,25 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // Objcm.g:702:119: ( id_part_end )?
-                    int alt290=2;
-                    int LA290_0 = input.LA(1);
+                    int alt291=2;
+                    int LA291_0 = input.LA(1);
 
-                    if ( (LA290_0==DOT) ) {
-                        alt290=1;
+                    if ( (LA291_0==DOT) ) {
+                        alt291=1;
                     }
-                    else if ( (LA290_0==115) ) {
-                        alt290=1;
+                    else if ( (LA291_0==115) ) {
+                        alt291=1;
                     }
-                    switch (alt290) {
+                    switch (alt291) {
                         case 1 :
                             // Objcm.g:702:119: id_part_end
                             {
-                            pushFollow(FOLLOW_id_part_end_in_expr4198);
-                            id_part_end606=id_part_end();
+                            pushFollow(FOLLOW_id_part_end_in_expr4201);
+                            id_part_end607=id_part_end();
 
                             state._fsp--;
 
-                            adaptor.addChild(root_0, id_part_end606.getTree());
+                            adaptor.addChild(root_0, id_part_end607.getTree());
 
                             }
                             break;
@@ -22186,43 +22236,43 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.a_selector_wrapper_return a_selector_wrapper607 =null;
+        ObjcmParser.a_selector_wrapper_return a_selector_wrapper608 =null;
 
-        ObjcmParser.a_encode_return a_encode608 =null;
+        ObjcmParser.a_encode_return a_encode609 =null;
 
 
 
         try {
             // Objcm.g:705:2: ( a_selector_wrapper | a_encode )
-            int alt292=2;
-            int LA292_0 = input.LA(1);
+            int alt293=2;
+            int LA293_0 = input.LA(1);
 
-            if ( (LA292_0==135) ) {
-                alt292=1;
+            if ( (LA293_0==135) ) {
+                alt293=1;
             }
-            else if ( (LA292_0==128) ) {
-                alt292=2;
+            else if ( (LA293_0==128) ) {
+                alt293=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 292, 0, input);
+                    new NoViableAltException("", 293, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt292) {
+            switch (alt293) {
                 case 1 :
                     // Objcm.g:705:4: a_selector_wrapper
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_a_selector_wrapper_in_a_started4210);
-                    a_selector_wrapper607=a_selector_wrapper();
+                    pushFollow(FOLLOW_a_selector_wrapper_in_a_started4213);
+                    a_selector_wrapper608=a_selector_wrapper();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, a_selector_wrapper607.getTree());
+                    adaptor.addChild(root_0, a_selector_wrapper608.getTree());
 
                     }
                     break;
@@ -22232,12 +22282,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_a_encode_in_a_started4215);
-                    a_encode608=a_encode();
+                    pushFollow(FOLLOW_a_encode_in_a_started4218);
+                    a_encode609=a_encode();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, a_encode608.getTree());
+                    adaptor.addChild(root_0, a_encode609.getTree());
 
                     }
                     break;
@@ -22280,61 +22330,61 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.sizeof1_return sizeof1609 =null;
+        ObjcmParser.sizeof1_return sizeof1610 =null;
 
-        ObjcmParser.sizeof2_return sizeof2610 =null;
+        ObjcmParser.sizeof2_return sizeof2611 =null;
 
-        ObjcmParser.typeof_return typeof611 =null;
+        ObjcmParser.typeof_return typeof612 =null;
 
-        ObjcmParser.id_started_return id_started612 =null;
+        ObjcmParser.id_started_return id_started613 =null;
 
 
 
         try {
             // Objcm.g:710:2: ( sizeof1 | sizeof2 | typeof id_started )
-            int alt293=3;
-            int LA293_0 = input.LA(1);
+            int alt294=3;
+            int LA294_0 = input.LA(1);
 
-            if ( (LA293_0==156) ) {
-                int LA293_1 = input.LA(2);
+            if ( (LA294_0==156) ) {
+                int LA294_1 = input.LA(2);
 
-                if ( (LA293_1==L_BR) ) {
-                    alt293=1;
+                if ( (LA294_1==L_BR) ) {
+                    alt294=1;
                 }
-                else if ( (LA293_1==ASTERISK||LA293_1==ID||LA293_1==WS) ) {
-                    alt293=2;
+                else if ( (LA294_1==ASTERISK||LA294_1==ID||LA294_1==WS) ) {
+                    alt294=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 293, 1, input);
+                        new NoViableAltException("", 294, 1, input);
 
                     throw nvae;
 
                 }
             }
-            else if ( (LA293_0==143) ) {
-                alt293=3;
+            else if ( (LA294_0==143) ) {
+                alt294=3;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 293, 0, input);
+                    new NoViableAltException("", 294, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt293) {
+            switch (alt294) {
                 case 1 :
                     // Objcm.g:710:4: sizeof1
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_sizeof1_in_special_op4227);
-                    sizeof1609=sizeof1();
+                    pushFollow(FOLLOW_sizeof1_in_special_op4230);
+                    sizeof1610=sizeof1();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, sizeof1609.getTree());
+                    adaptor.addChild(root_0, sizeof1610.getTree());
 
                     }
                     break;
@@ -22344,12 +22394,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_sizeof2_in_special_op4232);
-                    sizeof2610=sizeof2();
+                    pushFollow(FOLLOW_sizeof2_in_special_op4235);
+                    sizeof2611=sizeof2();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, sizeof2610.getTree());
+                    adaptor.addChild(root_0, sizeof2611.getTree());
 
                     }
                     break;
@@ -22359,19 +22409,19 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_typeof_in_special_op4237);
-                    typeof611=typeof();
+                    pushFollow(FOLLOW_typeof_in_special_op4240);
+                    typeof612=typeof();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, typeof611.getTree());
+                    adaptor.addChild(root_0, typeof612.getTree());
 
-                    pushFollow(FOLLOW_id_started_in_special_op4239);
-                    id_started612=id_started();
+                    pushFollow(FOLLOW_id_started_in_special_op4242);
+                    id_started613=id_started();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, id_started612.getTree());
+                    adaptor.addChild(root_0, id_started613.getTree());
 
                     }
                     break;
@@ -22414,23 +22464,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal613=null;
-        Token L_BR614=null;
-        Token WS615=null;
-        Token ASTERISK616=null;
-        Token WS617=null;
-        Token ID618=null;
-        Token WS619=null;
-        Token R_BR620=null;
+        Token string_literal614=null;
+        Token L_BR615=null;
+        Token WS616=null;
+        Token ASTERISK617=null;
+        Token WS618=null;
+        Token ID619=null;
+        Token WS620=null;
+        Token R_BR621=null;
 
-        Object string_literal613_tree=null;
-        Object L_BR614_tree=null;
-        Object WS615_tree=null;
-        Object ASTERISK616_tree=null;
-        Object WS617_tree=null;
-        Object ID618_tree=null;
-        Object WS619_tree=null;
-        Object R_BR620_tree=null;
+        Object string_literal614_tree=null;
+        Object L_BR615_tree=null;
+        Object WS616_tree=null;
+        Object ASTERISK617_tree=null;
+        Object WS618_tree=null;
+        Object ID619_tree=null;
+        Object WS620_tree=null;
+        Object R_BR621_tree=null;
 
         try {
             // Objcm.g:715:9: ( 'sizeof' L_BR ( WS )* ( ( ASTERISK )+ ( WS )* )? ID ( WS )* R_BR )
@@ -22439,125 +22489,125 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal613=(Token)match(input,156,FOLLOW_156_in_sizeof14250); 
-            string_literal613_tree = 
-            (Object)adaptor.create(string_literal613)
+            string_literal614=(Token)match(input,156,FOLLOW_156_in_sizeof14253); 
+            string_literal614_tree = 
+            (Object)adaptor.create(string_literal614)
             ;
-            adaptor.addChild(root_0, string_literal613_tree);
+            adaptor.addChild(root_0, string_literal614_tree);
 
 
-            L_BR614=(Token)match(input,L_BR,FOLLOW_L_BR_in_sizeof14252); 
-            L_BR614_tree = 
-            (Object)adaptor.create(L_BR614)
+            L_BR615=(Token)match(input,L_BR,FOLLOW_L_BR_in_sizeof14255); 
+            L_BR615_tree = 
+            (Object)adaptor.create(L_BR615)
             ;
-            adaptor.addChild(root_0, L_BR614_tree);
+            adaptor.addChild(root_0, L_BR615_tree);
 
 
             // Objcm.g:715:25: ( WS )*
-            loop294:
+            loop295:
             do {
-                int alt294=2;
-                int LA294_0 = input.LA(1);
+                int alt295=2;
+                int LA295_0 = input.LA(1);
 
-                if ( (LA294_0==WS) ) {
-                    alt294=1;
+                if ( (LA295_0==WS) ) {
+                    alt295=1;
                 }
 
 
-                switch (alt294) {
+                switch (alt295) {
             	case 1 :
             	    // Objcm.g:715:25: WS
             	    {
-            	    WS615=(Token)match(input,WS,FOLLOW_WS_in_sizeof14254); 
-            	    WS615_tree = 
-            	    (Object)adaptor.create(WS615)
+            	    WS616=(Token)match(input,WS,FOLLOW_WS_in_sizeof14257); 
+            	    WS616_tree = 
+            	    (Object)adaptor.create(WS616)
             	    ;
-            	    adaptor.addChild(root_0, WS615_tree);
+            	    adaptor.addChild(root_0, WS616_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop294;
+            	    break loop295;
                 }
             } while (true);
 
 
             // Objcm.g:715:29: ( ( ASTERISK )+ ( WS )* )?
-            int alt297=2;
-            int LA297_0 = input.LA(1);
+            int alt298=2;
+            int LA298_0 = input.LA(1);
 
-            if ( (LA297_0==ASTERISK) ) {
-                alt297=1;
+            if ( (LA298_0==ASTERISK) ) {
+                alt298=1;
             }
-            switch (alt297) {
+            switch (alt298) {
                 case 1 :
                     // Objcm.g:715:30: ( ASTERISK )+ ( WS )*
                     {
                     // Objcm.g:715:30: ( ASTERISK )+
-                    int cnt295=0;
-                    loop295:
-                    do {
-                        int alt295=2;
-                        int LA295_0 = input.LA(1);
-
-                        if ( (LA295_0==ASTERISK) ) {
-                            alt295=1;
-                        }
-
-
-                        switch (alt295) {
-                    	case 1 :
-                    	    // Objcm.g:715:30: ASTERISK
-                    	    {
-                    	    ASTERISK616=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_sizeof14258); 
-                    	    ASTERISK616_tree = 
-                    	    (Object)adaptor.create(ASTERISK616)
-                    	    ;
-                    	    adaptor.addChild(root_0, ASTERISK616_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    if ( cnt295 >= 1 ) break loop295;
-                                EarlyExitException eee =
-                                    new EarlyExitException(295, input);
-                                throw eee;
-                        }
-                        cnt295++;
-                    } while (true);
-
-
-                    // Objcm.g:715:40: ( WS )*
+                    int cnt296=0;
                     loop296:
                     do {
                         int alt296=2;
                         int LA296_0 = input.LA(1);
 
-                        if ( (LA296_0==WS) ) {
+                        if ( (LA296_0==ASTERISK) ) {
                             alt296=1;
                         }
 
 
                         switch (alt296) {
                     	case 1 :
-                    	    // Objcm.g:715:40: WS
+                    	    // Objcm.g:715:30: ASTERISK
                     	    {
-                    	    WS617=(Token)match(input,WS,FOLLOW_WS_in_sizeof14261); 
-                    	    WS617_tree = 
-                    	    (Object)adaptor.create(WS617)
+                    	    ASTERISK617=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_sizeof14261); 
+                    	    ASTERISK617_tree = 
+                    	    (Object)adaptor.create(ASTERISK617)
                     	    ;
-                    	    adaptor.addChild(root_0, WS617_tree);
+                    	    adaptor.addChild(root_0, ASTERISK617_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop296;
+                    	    if ( cnt296 >= 1 ) break loop296;
+                                EarlyExitException eee =
+                                    new EarlyExitException(296, input);
+                                throw eee;
+                        }
+                        cnt296++;
+                    } while (true);
+
+
+                    // Objcm.g:715:40: ( WS )*
+                    loop297:
+                    do {
+                        int alt297=2;
+                        int LA297_0 = input.LA(1);
+
+                        if ( (LA297_0==WS) ) {
+                            alt297=1;
+                        }
+
+
+                        switch (alt297) {
+                    	case 1 :
+                    	    // Objcm.g:715:40: WS
+                    	    {
+                    	    WS618=(Token)match(input,WS,FOLLOW_WS_in_sizeof14264); 
+                    	    WS618_tree = 
+                    	    (Object)adaptor.create(WS618)
+                    	    ;
+                    	    adaptor.addChild(root_0, WS618_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop297;
                         }
                     } while (true);
 
@@ -22568,49 +22618,49 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            ID618=(Token)match(input,ID,FOLLOW_ID_in_sizeof14266); 
-            ID618_tree = 
-            (Object)adaptor.create(ID618)
+            ID619=(Token)match(input,ID,FOLLOW_ID_in_sizeof14269); 
+            ID619_tree = 
+            (Object)adaptor.create(ID619)
             ;
-            adaptor.addChild(root_0, ID618_tree);
+            adaptor.addChild(root_0, ID619_tree);
 
 
             // Objcm.g:715:49: ( WS )*
-            loop298:
+            loop299:
             do {
-                int alt298=2;
-                int LA298_0 = input.LA(1);
+                int alt299=2;
+                int LA299_0 = input.LA(1);
 
-                if ( (LA298_0==WS) ) {
-                    alt298=1;
+                if ( (LA299_0==WS) ) {
+                    alt299=1;
                 }
 
 
-                switch (alt298) {
+                switch (alt299) {
             	case 1 :
             	    // Objcm.g:715:49: WS
             	    {
-            	    WS619=(Token)match(input,WS,FOLLOW_WS_in_sizeof14268); 
-            	    WS619_tree = 
-            	    (Object)adaptor.create(WS619)
+            	    WS620=(Token)match(input,WS,FOLLOW_WS_in_sizeof14271); 
+            	    WS620_tree = 
+            	    (Object)adaptor.create(WS620)
             	    ;
-            	    adaptor.addChild(root_0, WS619_tree);
+            	    adaptor.addChild(root_0, WS620_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop298;
+            	    break loop299;
                 }
             } while (true);
 
 
-            R_BR620=(Token)match(input,R_BR,FOLLOW_R_BR_in_sizeof14271); 
-            R_BR620_tree = 
-            (Object)adaptor.create(R_BR620)
+            R_BR621=(Token)match(input,R_BR,FOLLOW_R_BR_in_sizeof14274); 
+            R_BR621_tree = 
+            (Object)adaptor.create(R_BR621)
             ;
-            adaptor.addChild(root_0, R_BR620_tree);
+            adaptor.addChild(root_0, R_BR621_tree);
 
 
             }
@@ -22652,19 +22702,19 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal621=null;
-        Token WS622=null;
-        Token ASTERISK623=null;
-        Token WS624=null;
-        Token ID625=null;
-        Token WS626=null;
+        Token string_literal622=null;
+        Token WS623=null;
+        Token ASTERISK624=null;
+        Token WS625=null;
+        Token ID626=null;
+        Token WS627=null;
 
-        Object string_literal621_tree=null;
-        Object WS622_tree=null;
-        Object ASTERISK623_tree=null;
-        Object WS624_tree=null;
-        Object ID625_tree=null;
-        Object WS626_tree=null;
+        Object string_literal622_tree=null;
+        Object WS623_tree=null;
+        Object ASTERISK624_tree=null;
+        Object WS625_tree=null;
+        Object ID626_tree=null;
+        Object WS627_tree=null;
 
         try {
             // Objcm.g:717:9: ( 'sizeof' ( WS )* ( ( ASTERISK )+ ( WS )* )? ID ( WS )* )
@@ -22673,118 +22723,118 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal621=(Token)match(input,156,FOLLOW_156_in_sizeof24279); 
-            string_literal621_tree = 
-            (Object)adaptor.create(string_literal621)
+            string_literal622=(Token)match(input,156,FOLLOW_156_in_sizeof24282); 
+            string_literal622_tree = 
+            (Object)adaptor.create(string_literal622)
             ;
-            adaptor.addChild(root_0, string_literal621_tree);
+            adaptor.addChild(root_0, string_literal622_tree);
 
 
             // Objcm.g:717:20: ( WS )*
-            loop299:
+            loop300:
             do {
-                int alt299=2;
-                int LA299_0 = input.LA(1);
+                int alt300=2;
+                int LA300_0 = input.LA(1);
 
-                if ( (LA299_0==WS) ) {
-                    alt299=1;
+                if ( (LA300_0==WS) ) {
+                    alt300=1;
                 }
 
 
-                switch (alt299) {
+                switch (alt300) {
             	case 1 :
             	    // Objcm.g:717:20: WS
             	    {
-            	    WS622=(Token)match(input,WS,FOLLOW_WS_in_sizeof24281); 
-            	    WS622_tree = 
-            	    (Object)adaptor.create(WS622)
+            	    WS623=(Token)match(input,WS,FOLLOW_WS_in_sizeof24284); 
+            	    WS623_tree = 
+            	    (Object)adaptor.create(WS623)
             	    ;
-            	    adaptor.addChild(root_0, WS622_tree);
+            	    adaptor.addChild(root_0, WS623_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop299;
+            	    break loop300;
                 }
             } while (true);
 
 
             // Objcm.g:717:24: ( ( ASTERISK )+ ( WS )* )?
-            int alt302=2;
-            int LA302_0 = input.LA(1);
+            int alt303=2;
+            int LA303_0 = input.LA(1);
 
-            if ( (LA302_0==ASTERISK) ) {
-                alt302=1;
+            if ( (LA303_0==ASTERISK) ) {
+                alt303=1;
             }
-            switch (alt302) {
+            switch (alt303) {
                 case 1 :
                     // Objcm.g:717:25: ( ASTERISK )+ ( WS )*
                     {
                     // Objcm.g:717:25: ( ASTERISK )+
-                    int cnt300=0;
-                    loop300:
-                    do {
-                        int alt300=2;
-                        int LA300_0 = input.LA(1);
-
-                        if ( (LA300_0==ASTERISK) ) {
-                            alt300=1;
-                        }
-
-
-                        switch (alt300) {
-                    	case 1 :
-                    	    // Objcm.g:717:25: ASTERISK
-                    	    {
-                    	    ASTERISK623=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_sizeof24285); 
-                    	    ASTERISK623_tree = 
-                    	    (Object)adaptor.create(ASTERISK623)
-                    	    ;
-                    	    adaptor.addChild(root_0, ASTERISK623_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    if ( cnt300 >= 1 ) break loop300;
-                                EarlyExitException eee =
-                                    new EarlyExitException(300, input);
-                                throw eee;
-                        }
-                        cnt300++;
-                    } while (true);
-
-
-                    // Objcm.g:717:35: ( WS )*
+                    int cnt301=0;
                     loop301:
                     do {
                         int alt301=2;
                         int LA301_0 = input.LA(1);
 
-                        if ( (LA301_0==WS) ) {
+                        if ( (LA301_0==ASTERISK) ) {
                             alt301=1;
                         }
 
 
                         switch (alt301) {
                     	case 1 :
-                    	    // Objcm.g:717:35: WS
+                    	    // Objcm.g:717:25: ASTERISK
                     	    {
-                    	    WS624=(Token)match(input,WS,FOLLOW_WS_in_sizeof24288); 
-                    	    WS624_tree = 
-                    	    (Object)adaptor.create(WS624)
+                    	    ASTERISK624=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_sizeof24288); 
+                    	    ASTERISK624_tree = 
+                    	    (Object)adaptor.create(ASTERISK624)
                     	    ;
-                    	    adaptor.addChild(root_0, WS624_tree);
+                    	    adaptor.addChild(root_0, ASTERISK624_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop301;
+                    	    if ( cnt301 >= 1 ) break loop301;
+                                EarlyExitException eee =
+                                    new EarlyExitException(301, input);
+                                throw eee;
+                        }
+                        cnt301++;
+                    } while (true);
+
+
+                    // Objcm.g:717:35: ( WS )*
+                    loop302:
+                    do {
+                        int alt302=2;
+                        int LA302_0 = input.LA(1);
+
+                        if ( (LA302_0==WS) ) {
+                            alt302=1;
+                        }
+
+
+                        switch (alt302) {
+                    	case 1 :
+                    	    // Objcm.g:717:35: WS
+                    	    {
+                    	    WS625=(Token)match(input,WS,FOLLOW_WS_in_sizeof24291); 
+                    	    WS625_tree = 
+                    	    (Object)adaptor.create(WS625)
+                    	    ;
+                    	    adaptor.addChild(root_0, WS625_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop302;
                         }
                     } while (true);
 
@@ -22795,40 +22845,40 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            ID625=(Token)match(input,ID,FOLLOW_ID_in_sizeof24293); 
-            ID625_tree = 
-            (Object)adaptor.create(ID625)
+            ID626=(Token)match(input,ID,FOLLOW_ID_in_sizeof24296); 
+            ID626_tree = 
+            (Object)adaptor.create(ID626)
             ;
-            adaptor.addChild(root_0, ID625_tree);
+            adaptor.addChild(root_0, ID626_tree);
 
 
             // Objcm.g:717:44: ( WS )*
-            loop303:
+            loop304:
             do {
-                int alt303=2;
-                int LA303_0 = input.LA(1);
+                int alt304=2;
+                int LA304_0 = input.LA(1);
 
-                if ( (LA303_0==WS) ) {
-                    alt303=1;
+                if ( (LA304_0==WS) ) {
+                    alt304=1;
                 }
 
 
-                switch (alt303) {
+                switch (alt304) {
             	case 1 :
             	    // Objcm.g:717:44: WS
             	    {
-            	    WS626=(Token)match(input,WS,FOLLOW_WS_in_sizeof24295); 
-            	    WS626_tree = 
-            	    (Object)adaptor.create(WS626)
+            	    WS627=(Token)match(input,WS,FOLLOW_WS_in_sizeof24298); 
+            	    WS627_tree = 
+            	    (Object)adaptor.create(WS627)
             	    ;
-            	    adaptor.addChild(root_0, WS626_tree);
+            	    adaptor.addChild(root_0, WS627_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop303;
+            	    break loop304;
                 }
             } while (true);
 
@@ -22872,23 +22922,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal627=null;
-        Token WS628=null;
-        Token L_BR629=null;
-        Token WS630=null;
-        Token ID631=null;
-        Token WS632=null;
-        Token R_BR633=null;
-        Token WS634=null;
+        Token string_literal628=null;
+        Token WS629=null;
+        Token L_BR630=null;
+        Token WS631=null;
+        Token ID632=null;
+        Token WS633=null;
+        Token R_BR634=null;
+        Token WS635=null;
 
-        Object string_literal627_tree=null;
-        Object WS628_tree=null;
-        Object L_BR629_tree=null;
-        Object WS630_tree=null;
-        Object ID631_tree=null;
-        Object WS632_tree=null;
-        Object R_BR633_tree=null;
-        Object WS634_tree=null;
+        Object string_literal628_tree=null;
+        Object WS629_tree=null;
+        Object L_BR630_tree=null;
+        Object WS631_tree=null;
+        Object ID632_tree=null;
+        Object WS633_tree=null;
+        Object R_BR634_tree=null;
+        Object WS635_tree=null;
 
         try {
             // Objcm.g:719:8: ( '__typeof__' ( WS )* L_BR ( WS )* ID ( WS )* R_BR ( WS )* )
@@ -22897,52 +22947,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal627=(Token)match(input,143,FOLLOW_143_in_typeof4304); 
-            string_literal627_tree = 
-            (Object)adaptor.create(string_literal627)
+            string_literal628=(Token)match(input,143,FOLLOW_143_in_typeof4307); 
+            string_literal628_tree = 
+            (Object)adaptor.create(string_literal628)
             ;
-            adaptor.addChild(root_0, string_literal627_tree);
+            adaptor.addChild(root_0, string_literal628_tree);
 
 
             // Objcm.g:719:23: ( WS )*
-            loop304:
-            do {
-                int alt304=2;
-                int LA304_0 = input.LA(1);
-
-                if ( (LA304_0==WS) ) {
-                    alt304=1;
-                }
-
-
-                switch (alt304) {
-            	case 1 :
-            	    // Objcm.g:719:23: WS
-            	    {
-            	    WS628=(Token)match(input,WS,FOLLOW_WS_in_typeof4306); 
-            	    WS628_tree = 
-            	    (Object)adaptor.create(WS628)
-            	    ;
-            	    adaptor.addChild(root_0, WS628_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop304;
-                }
-            } while (true);
-
-
-            L_BR629=(Token)match(input,L_BR,FOLLOW_L_BR_in_typeof4309); 
-            L_BR629_tree = 
-            (Object)adaptor.create(L_BR629)
-            ;
-            adaptor.addChild(root_0, L_BR629_tree);
-
-
-            // Objcm.g:719:32: ( WS )*
             loop305:
             do {
                 int alt305=2;
@@ -22955,13 +22967,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt305) {
             	case 1 :
-            	    // Objcm.g:719:32: WS
+            	    // Objcm.g:719:23: WS
             	    {
-            	    WS630=(Token)match(input,WS,FOLLOW_WS_in_typeof4311); 
-            	    WS630_tree = 
-            	    (Object)adaptor.create(WS630)
+            	    WS629=(Token)match(input,WS,FOLLOW_WS_in_typeof4309); 
+            	    WS629_tree = 
+            	    (Object)adaptor.create(WS629)
             	    ;
-            	    adaptor.addChild(root_0, WS630_tree);
+            	    adaptor.addChild(root_0, WS629_tree);
 
 
             	    }
@@ -22973,14 +22985,14 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            ID631=(Token)match(input,ID,FOLLOW_ID_in_typeof4314); 
-            ID631_tree = 
-            (Object)adaptor.create(ID631)
+            L_BR630=(Token)match(input,L_BR,FOLLOW_L_BR_in_typeof4312); 
+            L_BR630_tree = 
+            (Object)adaptor.create(L_BR630)
             ;
-            adaptor.addChild(root_0, ID631_tree);
+            adaptor.addChild(root_0, L_BR630_tree);
 
 
-            // Objcm.g:719:39: ( WS )*
+            // Objcm.g:719:32: ( WS )*
             loop306:
             do {
                 int alt306=2;
@@ -22993,13 +23005,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt306) {
             	case 1 :
-            	    // Objcm.g:719:39: WS
+            	    // Objcm.g:719:32: WS
             	    {
-            	    WS632=(Token)match(input,WS,FOLLOW_WS_in_typeof4316); 
-            	    WS632_tree = 
-            	    (Object)adaptor.create(WS632)
+            	    WS631=(Token)match(input,WS,FOLLOW_WS_in_typeof4314); 
+            	    WS631_tree = 
+            	    (Object)adaptor.create(WS631)
             	    ;
-            	    adaptor.addChild(root_0, WS632_tree);
+            	    adaptor.addChild(root_0, WS631_tree);
 
 
             	    }
@@ -23011,14 +23023,14 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            R_BR633=(Token)match(input,R_BR,FOLLOW_R_BR_in_typeof4319); 
-            R_BR633_tree = 
-            (Object)adaptor.create(R_BR633)
+            ID632=(Token)match(input,ID,FOLLOW_ID_in_typeof4317); 
+            ID632_tree = 
+            (Object)adaptor.create(ID632)
             ;
-            adaptor.addChild(root_0, R_BR633_tree);
+            adaptor.addChild(root_0, ID632_tree);
 
 
-            // Objcm.g:719:48: ( WS )*
+            // Objcm.g:719:39: ( WS )*
             loop307:
             do {
                 int alt307=2;
@@ -23031,13 +23043,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt307) {
             	case 1 :
-            	    // Objcm.g:719:48: WS
+            	    // Objcm.g:719:39: WS
             	    {
-            	    WS634=(Token)match(input,WS,FOLLOW_WS_in_typeof4321); 
-            	    WS634_tree = 
-            	    (Object)adaptor.create(WS634)
+            	    WS633=(Token)match(input,WS,FOLLOW_WS_in_typeof4319); 
+            	    WS633_tree = 
+            	    (Object)adaptor.create(WS633)
             	    ;
-            	    adaptor.addChild(root_0, WS634_tree);
+            	    adaptor.addChild(root_0, WS633_tree);
 
 
             	    }
@@ -23045,6 +23057,44 @@ public TreeAdaptor getTreeAdaptor() {
 
             	default :
             	    break loop307;
+                }
+            } while (true);
+
+
+            R_BR634=(Token)match(input,R_BR,FOLLOW_R_BR_in_typeof4322); 
+            R_BR634_tree = 
+            (Object)adaptor.create(R_BR634)
+            ;
+            adaptor.addChild(root_0, R_BR634_tree);
+
+
+            // Objcm.g:719:48: ( WS )*
+            loop308:
+            do {
+                int alt308=2;
+                int LA308_0 = input.LA(1);
+
+                if ( (LA308_0==WS) ) {
+                    alt308=1;
+                }
+
+
+                switch (alt308) {
+            	case 1 :
+            	    // Objcm.g:719:48: WS
+            	    {
+            	    WS635=(Token)match(input,WS,FOLLOW_WS_in_typeof4324); 
+            	    WS635_tree = 
+            	    (Object)adaptor.create(WS635)
+            	    ;
+            	    adaptor.addChild(root_0, WS635_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop308;
                 }
             } while (true);
 
@@ -23088,7 +23138,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.a_selector_return a_selector635 =null;
+        ObjcmParser.a_selector_return a_selector636 =null;
 
 
         RewriteRuleSubtreeStream stream_a_selector=new RewriteRuleSubtreeStream(adaptor,"rule a_selector");
@@ -23096,12 +23146,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:722:2: ( a_selector -> ^( SELECTOR a_selector ) )
             // Objcm.g:722:4: a_selector
             {
-            pushFollow(FOLLOW_a_selector_in_a_selector_wrapper4332);
-            a_selector635=a_selector();
+            pushFollow(FOLLOW_a_selector_in_a_selector_wrapper4335);
+            a_selector636=a_selector();
 
             state._fsp--;
 
-            stream_a_selector.add(a_selector635.getTree());
+            stream_a_selector.add(a_selector636.getTree());
 
             // AST REWRITE
             // elements: a_selector
@@ -23172,15 +23222,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal636=null;
-        Token L_BR637=null;
-        Token R_BR639=null;
-        ObjcmParser.a_selector_value_wrapper_return a_selector_value_wrapper638 =null;
+        Token string_literal637=null;
+        Token L_BR638=null;
+        Token R_BR640=null;
+        ObjcmParser.a_selector_value_wrapper_return a_selector_value_wrapper639 =null;
 
 
-        Object string_literal636_tree=null;
-        Object L_BR637_tree=null;
-        Object R_BR639_tree=null;
+        Object string_literal637_tree=null;
+        Object L_BR638_tree=null;
+        Object R_BR640_tree=null;
 
         try {
             // Objcm.g:724:11: ( '@selector' L_BR a_selector_value_wrapper R_BR )
@@ -23189,32 +23239,32 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal636=(Token)match(input,135,FOLLOW_135_in_a_selector4349); 
-            string_literal636_tree = 
-            (Object)adaptor.create(string_literal636)
+            string_literal637=(Token)match(input,135,FOLLOW_135_in_a_selector4352); 
+            string_literal637_tree = 
+            (Object)adaptor.create(string_literal637)
             ;
-            adaptor.addChild(root_0, string_literal636_tree);
+            adaptor.addChild(root_0, string_literal637_tree);
 
 
-            L_BR637=(Token)match(input,L_BR,FOLLOW_L_BR_in_a_selector4351); 
-            L_BR637_tree = 
-            (Object)adaptor.create(L_BR637)
+            L_BR638=(Token)match(input,L_BR,FOLLOW_L_BR_in_a_selector4354); 
+            L_BR638_tree = 
+            (Object)adaptor.create(L_BR638)
             ;
-            adaptor.addChild(root_0, L_BR637_tree);
+            adaptor.addChild(root_0, L_BR638_tree);
 
 
-            pushFollow(FOLLOW_a_selector_value_wrapper_in_a_selector4353);
-            a_selector_value_wrapper638=a_selector_value_wrapper();
+            pushFollow(FOLLOW_a_selector_value_wrapper_in_a_selector4356);
+            a_selector_value_wrapper639=a_selector_value_wrapper();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, a_selector_value_wrapper638.getTree());
+            adaptor.addChild(root_0, a_selector_value_wrapper639.getTree());
 
-            R_BR639=(Token)match(input,R_BR,FOLLOW_R_BR_in_a_selector4355); 
-            R_BR639_tree = 
-            (Object)adaptor.create(R_BR639)
+            R_BR640=(Token)match(input,R_BR,FOLLOW_R_BR_in_a_selector4358); 
+            R_BR640_tree = 
+            (Object)adaptor.create(R_BR640)
             ;
-            adaptor.addChild(root_0, R_BR639_tree);
+            adaptor.addChild(root_0, R_BR640_tree);
 
 
             }
@@ -23256,7 +23306,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.a_selector_value_return a_selector_value640 =null;
+        ObjcmParser.a_selector_value_return a_selector_value641 =null;
 
 
         RewriteRuleSubtreeStream stream_a_selector_value=new RewriteRuleSubtreeStream(adaptor,"rule a_selector_value");
@@ -23264,12 +23314,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:727:2: ( a_selector_value -> ^( SELECTOR_VALUE a_selector_value ) )
             // Objcm.g:727:4: a_selector_value
             {
-            pushFollow(FOLLOW_a_selector_value_in_a_selector_value_wrapper4365);
-            a_selector_value640=a_selector_value();
+            pushFollow(FOLLOW_a_selector_value_in_a_selector_value_wrapper4368);
+            a_selector_value641=a_selector_value();
 
             state._fsp--;
 
-            stream_a_selector_value.add(a_selector_value640.getTree());
+            stream_a_selector_value.add(a_selector_value641.getTree());
 
             // AST REWRITE
             // elements: a_selector_value
@@ -23340,25 +23390,25 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS641=null;
-        Token ID642=null;
-        Token WS643=null;
-        Token COLON644=null;
-        Token WS645=null;
-        Token ID646=null;
-        Token WS647=null;
-        Token COLON648=null;
-        Token WS649=null;
+        Token WS642=null;
+        Token ID643=null;
+        Token WS644=null;
+        Token COLON645=null;
+        Token WS646=null;
+        Token ID647=null;
+        Token WS648=null;
+        Token COLON649=null;
+        Token WS650=null;
 
-        Object WS641_tree=null;
-        Object ID642_tree=null;
-        Object WS643_tree=null;
-        Object COLON644_tree=null;
-        Object WS645_tree=null;
-        Object ID646_tree=null;
-        Object WS647_tree=null;
-        Object COLON648_tree=null;
-        Object WS649_tree=null;
+        Object WS642_tree=null;
+        Object ID643_tree=null;
+        Object WS644_tree=null;
+        Object COLON645_tree=null;
+        Object WS646_tree=null;
+        Object ID647_tree=null;
+        Object WS648_tree=null;
+        Object COLON649_tree=null;
+        Object WS650_tree=null;
 
         try {
             // Objcm.g:730:2: ( ( WS )* ID ( WS )* ( COLON ( WS )* ( ID ( WS )* COLON ( WS )* )* )? )
@@ -23368,44 +23418,6 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:730:4: ( WS )*
-            loop308:
-            do {
-                int alt308=2;
-                int LA308_0 = input.LA(1);
-
-                if ( (LA308_0==WS) ) {
-                    alt308=1;
-                }
-
-
-                switch (alt308) {
-            	case 1 :
-            	    // Objcm.g:730:4: WS
-            	    {
-            	    WS641=(Token)match(input,WS,FOLLOW_WS_in_a_selector_value4383); 
-            	    WS641_tree = 
-            	    (Object)adaptor.create(WS641)
-            	    ;
-            	    adaptor.addChild(root_0, WS641_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop308;
-                }
-            } while (true);
-
-
-            ID642=(Token)match(input,ID,FOLLOW_ID_in_a_selector_value4386); 
-            ID642_tree = 
-            (Object)adaptor.create(ID642)
-            ;
-            adaptor.addChild(root_0, ID642_tree);
-
-
-            // Objcm.g:730:11: ( WS )*
             loop309:
             do {
                 int alt309=2;
@@ -23418,13 +23430,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt309) {
             	case 1 :
-            	    // Objcm.g:730:11: WS
+            	    // Objcm.g:730:4: WS
             	    {
-            	    WS643=(Token)match(input,WS,FOLLOW_WS_in_a_selector_value4388); 
-            	    WS643_tree = 
-            	    (Object)adaptor.create(WS643)
+            	    WS642=(Token)match(input,WS,FOLLOW_WS_in_a_selector_value4386); 
+            	    WS642_tree = 
+            	    (Object)adaptor.create(WS642)
             	    ;
-            	    adaptor.addChild(root_0, WS643_tree);
+            	    adaptor.addChild(root_0, WS642_tree);
 
 
             	    }
@@ -23436,116 +23448,116 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            // Objcm.g:730:15: ( COLON ( WS )* ( ID ( WS )* COLON ( WS )* )* )?
-            int alt314=2;
-            int LA314_0 = input.LA(1);
+            ID643=(Token)match(input,ID,FOLLOW_ID_in_a_selector_value4389); 
+            ID643_tree = 
+            (Object)adaptor.create(ID643)
+            ;
+            adaptor.addChild(root_0, ID643_tree);
 
-            if ( (LA314_0==COLON) ) {
-                alt314=1;
+
+            // Objcm.g:730:11: ( WS )*
+            loop310:
+            do {
+                int alt310=2;
+                int LA310_0 = input.LA(1);
+
+                if ( (LA310_0==WS) ) {
+                    alt310=1;
+                }
+
+
+                switch (alt310) {
+            	case 1 :
+            	    // Objcm.g:730:11: WS
+            	    {
+            	    WS644=(Token)match(input,WS,FOLLOW_WS_in_a_selector_value4391); 
+            	    WS644_tree = 
+            	    (Object)adaptor.create(WS644)
+            	    ;
+            	    adaptor.addChild(root_0, WS644_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop310;
+                }
+            } while (true);
+
+
+            // Objcm.g:730:15: ( COLON ( WS )* ( ID ( WS )* COLON ( WS )* )* )?
+            int alt315=2;
+            int LA315_0 = input.LA(1);
+
+            if ( (LA315_0==COLON) ) {
+                alt315=1;
             }
-            switch (alt314) {
+            switch (alt315) {
                 case 1 :
                     // Objcm.g:730:16: COLON ( WS )* ( ID ( WS )* COLON ( WS )* )*
                     {
-                    COLON644=(Token)match(input,COLON,FOLLOW_COLON_in_a_selector_value4392); 
-                    COLON644_tree = 
-                    (Object)adaptor.create(COLON644)
+                    COLON645=(Token)match(input,COLON,FOLLOW_COLON_in_a_selector_value4395); 
+                    COLON645_tree = 
+                    (Object)adaptor.create(COLON645)
                     ;
-                    adaptor.addChild(root_0, COLON644_tree);
+                    adaptor.addChild(root_0, COLON645_tree);
 
 
                     // Objcm.g:730:22: ( WS )*
-                    loop310:
+                    loop311:
                     do {
-                        int alt310=2;
-                        int LA310_0 = input.LA(1);
+                        int alt311=2;
+                        int LA311_0 = input.LA(1);
 
-                        if ( (LA310_0==WS) ) {
-                            alt310=1;
+                        if ( (LA311_0==WS) ) {
+                            alt311=1;
                         }
 
 
-                        switch (alt310) {
+                        switch (alt311) {
                     	case 1 :
                     	    // Objcm.g:730:22: WS
                     	    {
-                    	    WS645=(Token)match(input,WS,FOLLOW_WS_in_a_selector_value4394); 
-                    	    WS645_tree = 
-                    	    (Object)adaptor.create(WS645)
+                    	    WS646=(Token)match(input,WS,FOLLOW_WS_in_a_selector_value4397); 
+                    	    WS646_tree = 
+                    	    (Object)adaptor.create(WS646)
                     	    ;
-                    	    adaptor.addChild(root_0, WS645_tree);
+                    	    adaptor.addChild(root_0, WS646_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop310;
+                    	    break loop311;
                         }
                     } while (true);
 
 
                     // Objcm.g:730:26: ( ID ( WS )* COLON ( WS )* )*
-                    loop313:
+                    loop314:
                     do {
-                        int alt313=2;
-                        int LA313_0 = input.LA(1);
+                        int alt314=2;
+                        int LA314_0 = input.LA(1);
 
-                        if ( (LA313_0==ID) ) {
-                            alt313=1;
+                        if ( (LA314_0==ID) ) {
+                            alt314=1;
                         }
 
 
-                        switch (alt313) {
+                        switch (alt314) {
                     	case 1 :
                     	    // Objcm.g:730:27: ID ( WS )* COLON ( WS )*
                     	    {
-                    	    ID646=(Token)match(input,ID,FOLLOW_ID_in_a_selector_value4398); 
-                    	    ID646_tree = 
-                    	    (Object)adaptor.create(ID646)
+                    	    ID647=(Token)match(input,ID,FOLLOW_ID_in_a_selector_value4401); 
+                    	    ID647_tree = 
+                    	    (Object)adaptor.create(ID647)
                     	    ;
-                    	    adaptor.addChild(root_0, ID646_tree);
+                    	    adaptor.addChild(root_0, ID647_tree);
 
 
                     	    // Objcm.g:730:30: ( WS )*
-                    	    loop311:
-                    	    do {
-                    	        int alt311=2;
-                    	        int LA311_0 = input.LA(1);
-
-                    	        if ( (LA311_0==WS) ) {
-                    	            alt311=1;
-                    	        }
-
-
-                    	        switch (alt311) {
-                    	    	case 1 :
-                    	    	    // Objcm.g:730:30: WS
-                    	    	    {
-                    	    	    WS647=(Token)match(input,WS,FOLLOW_WS_in_a_selector_value4400); 
-                    	    	    WS647_tree = 
-                    	    	    (Object)adaptor.create(WS647)
-                    	    	    ;
-                    	    	    adaptor.addChild(root_0, WS647_tree);
-
-
-                    	    	    }
-                    	    	    break;
-
-                    	    	default :
-                    	    	    break loop311;
-                    	        }
-                    	    } while (true);
-
-
-                    	    COLON648=(Token)match(input,COLON,FOLLOW_COLON_in_a_selector_value4403); 
-                    	    COLON648_tree = 
-                    	    (Object)adaptor.create(COLON648)
-                    	    ;
-                    	    adaptor.addChild(root_0, COLON648_tree);
-
-
-                    	    // Objcm.g:730:40: ( WS )*
                     	    loop312:
                     	    do {
                     	        int alt312=2;
@@ -23558,13 +23570,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                     	        switch (alt312) {
                     	    	case 1 :
-                    	    	    // Objcm.g:730:40: WS
+                    	    	    // Objcm.g:730:30: WS
                     	    	    {
-                    	    	    WS649=(Token)match(input,WS,FOLLOW_WS_in_a_selector_value4405); 
-                    	    	    WS649_tree = 
-                    	    	    (Object)adaptor.create(WS649)
+                    	    	    WS648=(Token)match(input,WS,FOLLOW_WS_in_a_selector_value4403); 
+                    	    	    WS648_tree = 
+                    	    	    (Object)adaptor.create(WS648)
                     	    	    ;
-                    	    	    adaptor.addChild(root_0, WS649_tree);
+                    	    	    adaptor.addChild(root_0, WS648_tree);
 
 
                     	    	    }
@@ -23576,11 +23588,49 @@ public TreeAdaptor getTreeAdaptor() {
                     	    } while (true);
 
 
+                    	    COLON649=(Token)match(input,COLON,FOLLOW_COLON_in_a_selector_value4406); 
+                    	    COLON649_tree = 
+                    	    (Object)adaptor.create(COLON649)
+                    	    ;
+                    	    adaptor.addChild(root_0, COLON649_tree);
+
+
+                    	    // Objcm.g:730:40: ( WS )*
+                    	    loop313:
+                    	    do {
+                    	        int alt313=2;
+                    	        int LA313_0 = input.LA(1);
+
+                    	        if ( (LA313_0==WS) ) {
+                    	            alt313=1;
+                    	        }
+
+
+                    	        switch (alt313) {
+                    	    	case 1 :
+                    	    	    // Objcm.g:730:40: WS
+                    	    	    {
+                    	    	    WS650=(Token)match(input,WS,FOLLOW_WS_in_a_selector_value4408); 
+                    	    	    WS650_tree = 
+                    	    	    (Object)adaptor.create(WS650)
+                    	    	    ;
+                    	    	    adaptor.addChild(root_0, WS650_tree);
+
+
+                    	    	    }
+                    	    	    break;
+
+                    	    	default :
+                    	    	    break loop313;
+                    	        }
+                    	    } while (true);
+
+
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop313;
+                    	    break loop314;
                         }
                     } while (true);
 
@@ -23630,15 +23680,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal650=null;
-        Token L_BR651=null;
-        Token set652=null;
-        Token R_BR653=null;
+        Token string_literal651=null;
+        Token L_BR652=null;
+        Token set653=null;
+        Token R_BR654=null;
 
-        Object string_literal650_tree=null;
-        Object L_BR651_tree=null;
-        Object set652_tree=null;
-        Object R_BR653_tree=null;
+        Object string_literal651_tree=null;
+        Object L_BR652_tree=null;
+        Object set653_tree=null;
+        Object R_BR654_tree=null;
 
         try {
             // Objcm.g:733:9: ( '@encode' L_BR (~ ( R_BR ) )+ R_BR )
@@ -23647,42 +23697,42 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal650=(Token)match(input,128,FOLLOW_128_in_a_encode4419); 
-            string_literal650_tree = 
-            (Object)adaptor.create(string_literal650)
+            string_literal651=(Token)match(input,128,FOLLOW_128_in_a_encode4422); 
+            string_literal651_tree = 
+            (Object)adaptor.create(string_literal651)
             ;
-            adaptor.addChild(root_0, string_literal650_tree);
+            adaptor.addChild(root_0, string_literal651_tree);
 
 
-            L_BR651=(Token)match(input,L_BR,FOLLOW_L_BR_in_a_encode4421); 
-            L_BR651_tree = 
-            (Object)adaptor.create(L_BR651)
+            L_BR652=(Token)match(input,L_BR,FOLLOW_L_BR_in_a_encode4424); 
+            L_BR652_tree = 
+            (Object)adaptor.create(L_BR652)
             ;
-            adaptor.addChild(root_0, L_BR651_tree);
+            adaptor.addChild(root_0, L_BR652_tree);
 
 
             // Objcm.g:733:26: (~ ( R_BR ) )+
-            int cnt315=0;
-            loop315:
+            int cnt316=0;
+            loop316:
             do {
-                int alt315=2;
-                int LA315_0 = input.LA(1);
+                int alt316=2;
+                int LA316_0 = input.LA(1);
 
-                if ( ((LA315_0 >= ASTERISK && LA315_0 <= RETURN_STMT)||(LA315_0 >= R_FBR && LA315_0 <= 165)) ) {
-                    alt315=1;
+                if ( ((LA316_0 >= ASTERISK && LA316_0 <= RETURN_STMT)||(LA316_0 >= R_FBR && LA316_0 <= 165)) ) {
+                    alt316=1;
                 }
 
 
-                switch (alt315) {
+                switch (alt316) {
             	case 1 :
             	    // Objcm.g:
             	    {
-            	    set652=(Token)input.LT(1);
+            	    set653=(Token)input.LT(1);
 
             	    if ( (input.LA(1) >= ASTERISK && input.LA(1) <= RETURN_STMT)||(input.LA(1) >= R_FBR && input.LA(1) <= 165) ) {
             	        input.consume();
             	        adaptor.addChild(root_0, 
-            	        (Object)adaptor.create(set652)
+            	        (Object)adaptor.create(set653)
             	        );
             	        state.errorRecovery=false;
             	    }
@@ -23696,20 +23746,20 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    if ( cnt315 >= 1 ) break loop315;
+            	    if ( cnt316 >= 1 ) break loop316;
                         EarlyExitException eee =
-                            new EarlyExitException(315, input);
+                            new EarlyExitException(316, input);
                         throw eee;
                 }
-                cnt315++;
+                cnt316++;
             } while (true);
 
 
-            R_BR653=(Token)match(input,R_BR,FOLLOW_R_BR_in_a_encode4429); 
-            R_BR653_tree = 
-            (Object)adaptor.create(R_BR653)
+            R_BR654=(Token)match(input,R_BR,FOLLOW_R_BR_in_a_encode4432); 
+            R_BR654_tree = 
+            (Object)adaptor.create(R_BR654)
             ;
-            adaptor.addChild(root_0, R_BR653_tree);
+            adaptor.addChild(root_0, R_BR654_tree);
 
 
             }
@@ -23751,68 +23801,68 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token NUMBER654=null;
-        Token STRING_LITERAL655=null;
-        Token STRING_LITERAL2656=null;
-        Token STRING_LITERAL3657=null;
-        ObjcmParser.null_stmt_return null_stmt658 =null;
+        Token NUMBER655=null;
+        Token STRING_LITERAL656=null;
+        Token STRING_LITERAL2657=null;
+        Token STRING_LITERAL3658=null;
+        ObjcmParser.null_stmt_return null_stmt659 =null;
 
 
-        Object NUMBER654_tree=null;
-        Object STRING_LITERAL655_tree=null;
-        Object STRING_LITERAL2656_tree=null;
-        Object STRING_LITERAL3657_tree=null;
+        Object NUMBER655_tree=null;
+        Object STRING_LITERAL656_tree=null;
+        Object STRING_LITERAL2657_tree=null;
+        Object STRING_LITERAL3658_tree=null;
 
         try {
             // Objcm.g:736:2: ( NUMBER | STRING_LITERAL | STRING_LITERAL2 | STRING_LITERAL3 | null_stmt )
-            int alt316=5;
+            int alt317=5;
             switch ( input.LA(1) ) {
             case NUMBER:
                 {
-                alt316=1;
+                alt317=1;
                 }
                 break;
             case STRING_LITERAL:
                 {
-                alt316=2;
+                alt317=2;
                 }
                 break;
             case STRING_LITERAL2:
                 {
-                alt316=3;
+                alt317=3;
                 }
                 break;
             case STRING_LITERAL3:
                 {
-                alt316=4;
+                alt317=4;
                 }
                 break;
             case 139:
             case 154:
                 {
-                alt316=5;
+                alt317=5;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 316, 0, input);
+                    new NoViableAltException("", 317, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt316) {
+            switch (alt317) {
                 case 1 :
                     // Objcm.g:736:5: NUMBER
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    NUMBER654=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_const_expr4440); 
-                    NUMBER654_tree = 
-                    (Object)adaptor.create(NUMBER654)
+                    NUMBER655=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_const_expr4443); 
+                    NUMBER655_tree = 
+                    (Object)adaptor.create(NUMBER655)
                     ;
-                    adaptor.addChild(root_0, NUMBER654_tree);
+                    adaptor.addChild(root_0, NUMBER655_tree);
 
 
                     }
@@ -23823,11 +23873,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    STRING_LITERAL655=(Token)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_const_expr4444); 
-                    STRING_LITERAL655_tree = 
-                    (Object)adaptor.create(STRING_LITERAL655)
+                    STRING_LITERAL656=(Token)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_const_expr4447); 
+                    STRING_LITERAL656_tree = 
+                    (Object)adaptor.create(STRING_LITERAL656)
                     ;
-                    adaptor.addChild(root_0, STRING_LITERAL655_tree);
+                    adaptor.addChild(root_0, STRING_LITERAL656_tree);
 
 
                     }
@@ -23838,11 +23888,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    STRING_LITERAL2656=(Token)match(input,STRING_LITERAL2,FOLLOW_STRING_LITERAL2_in_const_expr4448); 
-                    STRING_LITERAL2656_tree = 
-                    (Object)adaptor.create(STRING_LITERAL2656)
+                    STRING_LITERAL2657=(Token)match(input,STRING_LITERAL2,FOLLOW_STRING_LITERAL2_in_const_expr4451); 
+                    STRING_LITERAL2657_tree = 
+                    (Object)adaptor.create(STRING_LITERAL2657)
                     ;
-                    adaptor.addChild(root_0, STRING_LITERAL2656_tree);
+                    adaptor.addChild(root_0, STRING_LITERAL2657_tree);
 
 
                     }
@@ -23853,11 +23903,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    STRING_LITERAL3657=(Token)match(input,STRING_LITERAL3,FOLLOW_STRING_LITERAL3_in_const_expr4452); 
-                    STRING_LITERAL3657_tree = 
-                    (Object)adaptor.create(STRING_LITERAL3657)
+                    STRING_LITERAL3658=(Token)match(input,STRING_LITERAL3,FOLLOW_STRING_LITERAL3_in_const_expr4455); 
+                    STRING_LITERAL3658_tree = 
+                    (Object)adaptor.create(STRING_LITERAL3658)
                     ;
-                    adaptor.addChild(root_0, STRING_LITERAL3657_tree);
+                    adaptor.addChild(root_0, STRING_LITERAL3658_tree);
 
 
                     }
@@ -23868,12 +23918,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_null_stmt_in_const_expr4456);
-                    null_stmt658=null_stmt();
+                    pushFollow(FOLLOW_null_stmt_in_const_expr4459);
+                    null_stmt659=null_stmt();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, null_stmt658.getTree());
+                    adaptor.addChild(root_0, null_stmt659.getTree());
 
                     }
                     break;
@@ -23916,9 +23966,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token STRING_LITERAL3659=null;
+        Token STRING_LITERAL3660=null;
 
-        Object STRING_LITERAL3659_tree=null;
+        Object STRING_LITERAL3660_tree=null;
 
         try {
             // Objcm.g:739:2: ( STRING_LITERAL3 )
@@ -23927,11 +23977,11 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            STRING_LITERAL3659=(Token)match(input,STRING_LITERAL3,FOLLOW_STRING_LITERAL3_in_string_literal34466); 
-            STRING_LITERAL3659_tree = 
-            (Object)adaptor.create(STRING_LITERAL3659)
+            STRING_LITERAL3660=(Token)match(input,STRING_LITERAL3,FOLLOW_STRING_LITERAL3_in_string_literal34469); 
+            STRING_LITERAL3660_tree = 
+            (Object)adaptor.create(STRING_LITERAL3660)
             ;
-            adaptor.addChild(root_0, STRING_LITERAL3659_tree);
+            adaptor.addChild(root_0, STRING_LITERAL3660_tree);
 
 
             }
@@ -23973,74 +24023,74 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal660=null;
         Token char_literal661=null;
-        Token L_MINUS_MINUS662=null;
-        Token L_PLUS_PLUS663=null;
-        Token char_literal665=null;
-        ObjcmParser.not_return not664 =null;
+        Token char_literal662=null;
+        Token L_MINUS_MINUS663=null;
+        Token L_PLUS_PLUS664=null;
+        Token char_literal666=null;
+        ObjcmParser.not_return not665 =null;
 
 
-        Object char_literal660_tree=null;
         Object char_literal661_tree=null;
-        Object L_MINUS_MINUS662_tree=null;
-        Object L_PLUS_PLUS663_tree=null;
-        Object char_literal665_tree=null;
+        Object char_literal662_tree=null;
+        Object L_MINUS_MINUS663_tree=null;
+        Object L_PLUS_PLUS664_tree=null;
+        Object char_literal666_tree=null;
 
         try {
             // Objcm.g:741:5: ( '+' | '-' | L_MINUS_MINUS | L_PLUS_PLUS | not | '~' )
-            int alt317=6;
+            int alt318=6;
             switch ( input.LA(1) ) {
             case 111:
                 {
-                alt317=1;
+                alt318=1;
                 }
                 break;
             case 113:
                 {
-                alt317=2;
+                alt318=2;
                 }
                 break;
             case L_MINUS_MINUS:
                 {
-                alt317=3;
+                alt318=3;
                 }
                 break;
             case L_PLUS_PLUS:
                 {
-                alt317=4;
+                alt318=4;
                 }
                 break;
             case 102:
                 {
-                alt317=5;
+                alt318=5;
                 }
                 break;
             case 165:
                 {
-                alt317=6;
+                alt318=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 317, 0, input);
+                    new NoViableAltException("", 318, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt317) {
+            switch (alt318) {
                 case 1 :
                     // Objcm.g:741:7: '+'
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    char_literal660=(Token)match(input,111,FOLLOW_111_in_op24475); 
-                    char_literal660_tree = 
-                    (Object)adaptor.create(char_literal660)
+                    char_literal661=(Token)match(input,111,FOLLOW_111_in_op24478); 
+                    char_literal661_tree = 
+                    (Object)adaptor.create(char_literal661)
                     ;
-                    adaptor.addChild(root_0, char_literal660_tree);
+                    adaptor.addChild(root_0, char_literal661_tree);
 
 
                     }
@@ -24051,11 +24101,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    char_literal661=(Token)match(input,113,FOLLOW_113_in_op24479); 
-                    char_literal661_tree = 
-                    (Object)adaptor.create(char_literal661)
+                    char_literal662=(Token)match(input,113,FOLLOW_113_in_op24482); 
+                    char_literal662_tree = 
+                    (Object)adaptor.create(char_literal662)
                     ;
-                    adaptor.addChild(root_0, char_literal661_tree);
+                    adaptor.addChild(root_0, char_literal662_tree);
 
 
                     }
@@ -24066,11 +24116,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    L_MINUS_MINUS662=(Token)match(input,L_MINUS_MINUS,FOLLOW_L_MINUS_MINUS_in_op24483); 
-                    L_MINUS_MINUS662_tree = 
-                    (Object)adaptor.create(L_MINUS_MINUS662)
+                    L_MINUS_MINUS663=(Token)match(input,L_MINUS_MINUS,FOLLOW_L_MINUS_MINUS_in_op24486); 
+                    L_MINUS_MINUS663_tree = 
+                    (Object)adaptor.create(L_MINUS_MINUS663)
                     ;
-                    adaptor.addChild(root_0, L_MINUS_MINUS662_tree);
+                    adaptor.addChild(root_0, L_MINUS_MINUS663_tree);
 
 
                     }
@@ -24081,11 +24131,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    L_PLUS_PLUS663=(Token)match(input,L_PLUS_PLUS,FOLLOW_L_PLUS_PLUS_in_op24487); 
-                    L_PLUS_PLUS663_tree = 
-                    (Object)adaptor.create(L_PLUS_PLUS663)
+                    L_PLUS_PLUS664=(Token)match(input,L_PLUS_PLUS,FOLLOW_L_PLUS_PLUS_in_op24490); 
+                    L_PLUS_PLUS664_tree = 
+                    (Object)adaptor.create(L_PLUS_PLUS664)
                     ;
-                    adaptor.addChild(root_0, L_PLUS_PLUS663_tree);
+                    adaptor.addChild(root_0, L_PLUS_PLUS664_tree);
 
 
                     }
@@ -24096,12 +24146,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_not_in_op24491);
-                    not664=not();
+                    pushFollow(FOLLOW_not_in_op24494);
+                    not665=not();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, not664.getTree());
+                    adaptor.addChild(root_0, not665.getTree());
 
                     }
                     break;
@@ -24111,11 +24161,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    char_literal665=(Token)match(input,165,FOLLOW_165_in_op24495); 
-                    char_literal665_tree = 
-                    (Object)adaptor.create(char_literal665)
+                    char_literal666=(Token)match(input,165,FOLLOW_165_in_op24498); 
+                    char_literal666_tree = 
+                    (Object)adaptor.create(char_literal666)
                     ;
-                    adaptor.addChild(root_0, char_literal665_tree);
+                    adaptor.addChild(root_0, char_literal666_tree);
 
 
                     }
@@ -24159,17 +24209,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal666=null;
+        Token char_literal667=null;
 
-        Object char_literal666_tree=null;
+        Object char_literal667_tree=null;
         RewriteRuleTokenStream stream_102=new RewriteRuleTokenStream(adaptor,"token 102");
 
         try {
             // Objcm.g:743:5: ( '!' -> ^( NOT '!' ) )
             // Objcm.g:743:7: '!'
             {
-            char_literal666=(Token)match(input,102,FOLLOW_102_in_not4503);  
-            stream_102.add(char_literal666);
+            char_literal667=(Token)match(input,102,FOLLOW_102_in_not4506);  
+            stream_102.add(char_literal667);
 
 
             // AST REWRITE
@@ -24243,9 +24293,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set667=null;
+        Token set668=null;
 
-        Object set667_tree=null;
+        Object set668_tree=null;
 
         try {
             // Objcm.g:745:5: ( L_MINUS_MINUS | L_PLUS_PLUS )
@@ -24254,12 +24304,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set667=(Token)input.LT(1);
+            set668=(Token)input.LT(1);
 
             if ( (input.LA(1) >= L_MINUS_MINUS && input.LA(1) <= L_PLUS_PLUS) ) {
                 input.consume();
                 adaptor.addChild(root_0, 
-                (Object)adaptor.create(set667)
+                (Object)adaptor.create(set668)
                 );
                 state.errorRecovery=false;
             }
@@ -24308,13 +24358,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set668=null;
-        ObjcmParser.type_convertion_return type_convertion669 =null;
+        Token set669=null;
+        ObjcmParser.type_convertion_return type_convertion670 =null;
 
-        ObjcmParser.special_started_end_return special_started_end670 =null;
+        ObjcmParser.special_started_end_return special_started_end671 =null;
 
 
-        Object set668_tree=null;
+        Object set669_tree=null;
 
         try {
             // Objcm.g:748:2: ( ( '&' | ASTERISK )+ ( type_convertion )? special_started_end )
@@ -24324,27 +24374,27 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:748:4: ( '&' | ASTERISK )+
-            int cnt318=0;
-            loop318:
+            int cnt319=0;
+            loop319:
             do {
-                int alt318=2;
-                int LA318_0 = input.LA(1);
+                int alt319=2;
+                int LA319_0 = input.LA(1);
 
-                if ( (LA318_0==ASTERISK||LA318_0==108) ) {
-                    alt318=1;
+                if ( (LA319_0==ASTERISK||LA319_0==108) ) {
+                    alt319=1;
                 }
 
 
-                switch (alt318) {
+                switch (alt319) {
             	case 1 :
             	    // Objcm.g:
             	    {
-            	    set668=(Token)input.LT(1);
+            	    set669=(Token)input.LT(1);
 
             	    if ( input.LA(1)==ASTERISK||input.LA(1)==108 ) {
             	        input.consume();
             	        adaptor.addChild(root_0, 
-            	        (Object)adaptor.create(set668)
+            	        (Object)adaptor.create(set669)
             	        );
             	        state.errorRecovery=false;
             	    }
@@ -24358,28 +24408,28 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    if ( cnt318 >= 1 ) break loop318;
+            	    if ( cnt319 >= 1 ) break loop319;
                         EarlyExitException eee =
-                            new EarlyExitException(318, input);
+                            new EarlyExitException(319, input);
                         throw eee;
                 }
-                cnt318++;
+                cnt319++;
             } while (true);
 
 
             // Objcm.g:748:20: ( type_convertion )?
-            int alt319=2;
-            alt319 = dfa319.predict(input);
-            switch (alt319) {
+            int alt320=2;
+            alt320 = dfa320.predict(input);
+            switch (alt320) {
                 case 1 :
                     // Objcm.g:748:20: type_convertion
                     {
-                    pushFollow(FOLLOW_type_convertion_in_special_started4539);
-                    type_convertion669=type_convertion();
+                    pushFollow(FOLLOW_type_convertion_in_special_started4542);
+                    type_convertion670=type_convertion();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, type_convertion669.getTree());
+                    adaptor.addChild(root_0, type_convertion670.getTree());
 
                     }
                     break;
@@ -24387,12 +24437,12 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_special_started_end_in_special_started4542);
-            special_started_end670=special_started_end();
+            pushFollow(FOLLOW_special_started_end_in_special_started4545);
+            special_started_end671=special_started_end();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, special_started_end670.getTree());
+            adaptor.addChild(root_0, special_started_end671.getTree());
 
             }
 
@@ -24433,45 +24483,45 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal672=null;
-        ObjcmParser.round_brackets_return round_brackets671 =null;
+        Token char_literal673=null;
+        ObjcmParser.round_brackets_return round_brackets672 =null;
 
-        ObjcmParser.id_started_return id_started673 =null;
+        ObjcmParser.id_started_return id_started674 =null;
 
 
-        Object char_literal672_tree=null;
+        Object char_literal673_tree=null;
 
         try {
             // Objcm.g:751:2: ( round_brackets | ( '&' )? id_started )
-            int alt321=2;
-            int LA321_0 = input.LA(1);
+            int alt322=2;
+            int LA322_0 = input.LA(1);
 
-            if ( (LA321_0==L_BR) ) {
-                alt321=1;
+            if ( (LA322_0==L_BR) ) {
+                alt322=1;
             }
-            else if ( (LA321_0==ID||LA321_0==108||LA321_0==152) ) {
-                alt321=2;
+            else if ( (LA322_0==ID||LA322_0==108||LA322_0==152) ) {
+                alt322=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 321, 0, input);
+                    new NoViableAltException("", 322, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt321) {
+            switch (alt322) {
                 case 1 :
                     // Objcm.g:751:4: round_brackets
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_round_brackets_in_special_started_end4552);
-                    round_brackets671=round_brackets();
+                    pushFollow(FOLLOW_round_brackets_in_special_started_end4555);
+                    round_brackets672=round_brackets();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, round_brackets671.getTree());
+                    adaptor.addChild(root_0, round_brackets672.getTree());
 
                     }
                     break;
@@ -24482,21 +24532,21 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // Objcm.g:752:5: ( '&' )?
-                    int alt320=2;
-                    int LA320_0 = input.LA(1);
+                    int alt321=2;
+                    int LA321_0 = input.LA(1);
 
-                    if ( (LA320_0==108) ) {
-                        alt320=1;
+                    if ( (LA321_0==108) ) {
+                        alt321=1;
                     }
-                    switch (alt320) {
+                    switch (alt321) {
                         case 1 :
                             // Objcm.g:752:5: '&'
                             {
-                            char_literal672=(Token)match(input,108,FOLLOW_108_in_special_started_end4559); 
-                            char_literal672_tree = 
-                            (Object)adaptor.create(char_literal672)
+                            char_literal673=(Token)match(input,108,FOLLOW_108_in_special_started_end4562); 
+                            char_literal673_tree = 
+                            (Object)adaptor.create(char_literal673)
                             ;
-                            adaptor.addChild(root_0, char_literal672_tree);
+                            adaptor.addChild(root_0, char_literal673_tree);
 
 
                             }
@@ -24505,12 +24555,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_id_started_in_special_started_end4562);
-                    id_started673=id_started();
+                    pushFollow(FOLLOW_id_started_in_special_started_end4565);
+                    id_started674=id_started();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, id_started673.getTree());
+                    adaptor.addChild(root_0, id_started674.getTree());
 
                     }
                     break;
@@ -24553,17 +24603,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS675=null;
-        Token set676=null;
-        ObjcmParser.object_name_return object_name674 =null;
+        Token WS676=null;
+        Token set677=null;
+        ObjcmParser.object_name_return object_name675 =null;
 
-        ObjcmParser.method_brackets_return method_brackets677 =null;
+        ObjcmParser.method_brackets_return method_brackets678 =null;
 
-        ObjcmParser.index_brackets_return index_brackets678 =null;
+        ObjcmParser.index_brackets_return index_brackets679 =null;
 
 
-        Object WS675_tree=null;
-        Object set676_tree=null;
+        Object WS676_tree=null;
+        Object set677_tree=null;
 
         try {
             // Objcm.g:755:2: ( object_name ( WS )* ( ( L_PLUS_PLUS | L_MINUS_MINUS ) | method_brackets ( index_brackets )* )? )
@@ -24572,57 +24622,57 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_object_name_in_id_started4571);
-            object_name674=object_name();
+            pushFollow(FOLLOW_object_name_in_id_started4574);
+            object_name675=object_name();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, object_name674.getTree());
+            adaptor.addChild(root_0, object_name675.getTree());
 
             // Objcm.g:755:16: ( WS )*
-            loop322:
+            loop323:
             do {
-                int alt322=2;
-                int LA322_0 = input.LA(1);
+                int alt323=2;
+                int LA323_0 = input.LA(1);
 
-                if ( (LA322_0==WS) ) {
-                    alt322=1;
+                if ( (LA323_0==WS) ) {
+                    alt323=1;
                 }
 
 
-                switch (alt322) {
+                switch (alt323) {
             	case 1 :
             	    // Objcm.g:755:16: WS
             	    {
-            	    WS675=(Token)match(input,WS,FOLLOW_WS_in_id_started4573); 
-            	    WS675_tree = 
-            	    (Object)adaptor.create(WS675)
+            	    WS676=(Token)match(input,WS,FOLLOW_WS_in_id_started4576); 
+            	    WS676_tree = 
+            	    (Object)adaptor.create(WS676)
             	    ;
-            	    adaptor.addChild(root_0, WS675_tree);
+            	    adaptor.addChild(root_0, WS676_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop322;
+            	    break loop323;
                 }
             } while (true);
 
 
             // Objcm.g:755:20: ( ( L_PLUS_PLUS | L_MINUS_MINUS ) | method_brackets ( index_brackets )* )?
-            int alt324=3;
-            alt324 = dfa324.predict(input);
-            switch (alt324) {
+            int alt325=3;
+            alt325 = dfa325.predict(input);
+            switch (alt325) {
                 case 1 :
                     // Objcm.g:755:21: ( L_PLUS_PLUS | L_MINUS_MINUS )
                     {
-                    set676=(Token)input.LT(1);
+                    set677=(Token)input.LT(1);
 
                     if ( (input.LA(1) >= L_MINUS_MINUS && input.LA(1) <= L_PLUS_PLUS) ) {
                         input.consume();
                         adaptor.addChild(root_0, 
-                        (Object)adaptor.create(set676)
+                        (Object)adaptor.create(set677)
                         );
                         state.errorRecovery=false;
                     }
@@ -24637,34 +24687,34 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // Objcm.g:755:51: method_brackets ( index_brackets )*
                     {
-                    pushFollow(FOLLOW_method_brackets_in_id_started4585);
-                    method_brackets677=method_brackets();
+                    pushFollow(FOLLOW_method_brackets_in_id_started4588);
+                    method_brackets678=method_brackets();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, method_brackets677.getTree());
+                    adaptor.addChild(root_0, method_brackets678.getTree());
 
                     // Objcm.g:755:67: ( index_brackets )*
-                    loop323:
+                    loop324:
                     do {
-                        int alt323=2;
-                        alt323 = dfa323.predict(input);
-                        switch (alt323) {
+                        int alt324=2;
+                        alt324 = dfa324.predict(input);
+                        switch (alt324) {
                     	case 1 :
                     	    // Objcm.g:755:67: index_brackets
                     	    {
-                    	    pushFollow(FOLLOW_index_brackets_in_id_started4587);
-                    	    index_brackets678=index_brackets();
+                    	    pushFollow(FOLLOW_index_brackets_in_id_started4590);
+                    	    index_brackets679=index_brackets();
 
                     	    state._fsp--;
 
-                    	    adaptor.addChild(root_0, index_brackets678.getTree());
+                    	    adaptor.addChild(root_0, index_brackets679.getTree());
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop323;
+                    	    break loop324;
                         }
                     } while (true);
 
@@ -24714,23 +24764,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_BR679=null;
-        Token WS680=null;
-        Token WS682=null;
-        Token COMMA683=null;
-        Token WS684=null;
-        Token R_BR686=null;
-        ObjcmParser.expression_return expression681 =null;
+        Token L_BR680=null;
+        Token WS681=null;
+        Token WS683=null;
+        Token COMMA684=null;
+        Token WS685=null;
+        Token R_BR687=null;
+        ObjcmParser.expression_return expression682 =null;
 
-        ObjcmParser.classical_expr_wrp_return classical_expr_wrp685 =null;
+        ObjcmParser.classical_expr_wrp_return classical_expr_wrp686 =null;
 
 
-        Object L_BR679_tree=null;
-        Object WS680_tree=null;
-        Object WS682_tree=null;
-        Object COMMA683_tree=null;
-        Object WS684_tree=null;
-        Object R_BR686_tree=null;
+        Object L_BR680_tree=null;
+        Object WS681_tree=null;
+        Object WS683_tree=null;
+        Object COMMA684_tree=null;
+        Object WS685_tree=null;
+        Object R_BR687_tree=null;
 
         try {
             // Objcm.g:758:2: ( L_BR ( WS )* ( expression ( WS )* ( COMMA ( WS )* classical_expr_wrp )* )? R_BR )
@@ -24739,158 +24789,158 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_BR679=(Token)match(input,L_BR,FOLLOW_L_BR_in_method_brackets4599); 
-            L_BR679_tree = 
-            (Object)adaptor.create(L_BR679)
+            L_BR680=(Token)match(input,L_BR,FOLLOW_L_BR_in_method_brackets4602); 
+            L_BR680_tree = 
+            (Object)adaptor.create(L_BR680)
             ;
-            adaptor.addChild(root_0, L_BR679_tree);
+            adaptor.addChild(root_0, L_BR680_tree);
 
 
             // Objcm.g:758:9: ( WS )*
-            loop325:
+            loop326:
             do {
-                int alt325=2;
-                int LA325_0 = input.LA(1);
+                int alt326=2;
+                int LA326_0 = input.LA(1);
 
-                if ( (LA325_0==WS) ) {
-                    alt325=1;
+                if ( (LA326_0==WS) ) {
+                    alt326=1;
                 }
 
 
-                switch (alt325) {
+                switch (alt326) {
             	case 1 :
             	    // Objcm.g:758:9: WS
             	    {
-            	    WS680=(Token)match(input,WS,FOLLOW_WS_in_method_brackets4601); 
-            	    WS680_tree = 
-            	    (Object)adaptor.create(WS680)
+            	    WS681=(Token)match(input,WS,FOLLOW_WS_in_method_brackets4604); 
+            	    WS681_tree = 
+            	    (Object)adaptor.create(WS681)
             	    ;
-            	    adaptor.addChild(root_0, WS680_tree);
+            	    adaptor.addChild(root_0, WS681_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop325;
+            	    break loop326;
                 }
             } while (true);
 
 
             // Objcm.g:758:13: ( expression ( WS )* ( COMMA ( WS )* classical_expr_wrp )* )?
-            int alt329=2;
-            int LA329_0 = input.LA(1);
+            int alt330=2;
+            int LA330_0 = input.LA(1);
 
-            if ( (LA329_0==ASTERISK||LA329_0==ID||LA329_0==L_BR||(LA329_0 >= L_KBR && LA329_0 <= L_PLUS_PLUS)||LA329_0==NUMBER||(LA329_0 >= STRING_LITERAL && LA329_0 <= STRING_LITERAL3)||LA329_0==102||LA329_0==108||LA329_0==111||LA329_0==113||LA329_0==128||LA329_0==135||LA329_0==139||LA329_0==143||LA329_0==152||LA329_0==154||LA329_0==156||LA329_0==165) ) {
-                alt329=1;
+            if ( (LA330_0==ASTERISK||LA330_0==ID||LA330_0==L_BR||(LA330_0 >= L_KBR && LA330_0 <= L_PLUS_PLUS)||LA330_0==NUMBER||(LA330_0 >= STRING_LITERAL && LA330_0 <= STRING_LITERAL3)||LA330_0==102||LA330_0==108||LA330_0==111||LA330_0==113||LA330_0==128||LA330_0==135||LA330_0==139||LA330_0==143||LA330_0==152||LA330_0==154||LA330_0==156||LA330_0==165) ) {
+                alt330=1;
             }
-            switch (alt329) {
+            switch (alt330) {
                 case 1 :
                     // Objcm.g:758:14: expression ( WS )* ( COMMA ( WS )* classical_expr_wrp )*
                     {
-                    pushFollow(FOLLOW_expression_in_method_brackets4605);
-                    expression681=expression();
+                    pushFollow(FOLLOW_expression_in_method_brackets4608);
+                    expression682=expression();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression681.getTree());
+                    adaptor.addChild(root_0, expression682.getTree());
 
                     // Objcm.g:758:25: ( WS )*
-                    loop326:
+                    loop327:
                     do {
-                        int alt326=2;
-                        int LA326_0 = input.LA(1);
+                        int alt327=2;
+                        int LA327_0 = input.LA(1);
 
-                        if ( (LA326_0==WS) ) {
-                            alt326=1;
+                        if ( (LA327_0==WS) ) {
+                            alt327=1;
                         }
 
 
-                        switch (alt326) {
+                        switch (alt327) {
                     	case 1 :
                     	    // Objcm.g:758:25: WS
                     	    {
-                    	    WS682=(Token)match(input,WS,FOLLOW_WS_in_method_brackets4607); 
-                    	    WS682_tree = 
-                    	    (Object)adaptor.create(WS682)
+                    	    WS683=(Token)match(input,WS,FOLLOW_WS_in_method_brackets4610); 
+                    	    WS683_tree = 
+                    	    (Object)adaptor.create(WS683)
                     	    ;
-                    	    adaptor.addChild(root_0, WS682_tree);
+                    	    adaptor.addChild(root_0, WS683_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop326;
+                    	    break loop327;
                         }
                     } while (true);
 
 
                     // Objcm.g:758:29: ( COMMA ( WS )* classical_expr_wrp )*
-                    loop328:
+                    loop329:
                     do {
-                        int alt328=2;
-                        int LA328_0 = input.LA(1);
+                        int alt329=2;
+                        int LA329_0 = input.LA(1);
 
-                        if ( (LA328_0==COMMA) ) {
-                            alt328=1;
+                        if ( (LA329_0==COMMA) ) {
+                            alt329=1;
                         }
 
 
-                        switch (alt328) {
+                        switch (alt329) {
                     	case 1 :
                     	    // Objcm.g:758:30: COMMA ( WS )* classical_expr_wrp
                     	    {
-                    	    COMMA683=(Token)match(input,COMMA,FOLLOW_COMMA_in_method_brackets4611); 
-                    	    COMMA683_tree = 
-                    	    (Object)adaptor.create(COMMA683)
+                    	    COMMA684=(Token)match(input,COMMA,FOLLOW_COMMA_in_method_brackets4614); 
+                    	    COMMA684_tree = 
+                    	    (Object)adaptor.create(COMMA684)
                     	    ;
-                    	    adaptor.addChild(root_0, COMMA683_tree);
+                    	    adaptor.addChild(root_0, COMMA684_tree);
 
 
                     	    // Objcm.g:758:36: ( WS )*
-                    	    loop327:
+                    	    loop328:
                     	    do {
-                    	        int alt327=2;
-                    	        int LA327_0 = input.LA(1);
+                    	        int alt328=2;
+                    	        int LA328_0 = input.LA(1);
 
-                    	        if ( (LA327_0==WS) ) {
-                    	            alt327=1;
+                    	        if ( (LA328_0==WS) ) {
+                    	            alt328=1;
                     	        }
 
 
-                    	        switch (alt327) {
+                    	        switch (alt328) {
                     	    	case 1 :
                     	    	    // Objcm.g:758:36: WS
                     	    	    {
-                    	    	    WS684=(Token)match(input,WS,FOLLOW_WS_in_method_brackets4613); 
-                    	    	    WS684_tree = 
-                    	    	    (Object)adaptor.create(WS684)
+                    	    	    WS685=(Token)match(input,WS,FOLLOW_WS_in_method_brackets4616); 
+                    	    	    WS685_tree = 
+                    	    	    (Object)adaptor.create(WS685)
                     	    	    ;
-                    	    	    adaptor.addChild(root_0, WS684_tree);
+                    	    	    adaptor.addChild(root_0, WS685_tree);
 
 
                     	    	    }
                     	    	    break;
 
                     	    	default :
-                    	    	    break loop327;
+                    	    	    break loop328;
                     	        }
                     	    } while (true);
 
 
-                    	    pushFollow(FOLLOW_classical_expr_wrp_in_method_brackets4616);
-                    	    classical_expr_wrp685=classical_expr_wrp();
+                    	    pushFollow(FOLLOW_classical_expr_wrp_in_method_brackets4619);
+                    	    classical_expr_wrp686=classical_expr_wrp();
 
                     	    state._fsp--;
 
-                    	    adaptor.addChild(root_0, classical_expr_wrp685.getTree());
+                    	    adaptor.addChild(root_0, classical_expr_wrp686.getTree());
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop328;
+                    	    break loop329;
                         }
                     } while (true);
 
@@ -24901,11 +24951,11 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            R_BR686=(Token)match(input,R_BR,FOLLOW_R_BR_in_method_brackets4622); 
-            R_BR686_tree = 
-            (Object)adaptor.create(R_BR686)
+            R_BR687=(Token)match(input,R_BR,FOLLOW_R_BR_in_method_brackets4625); 
+            R_BR687_tree = 
+            (Object)adaptor.create(R_BR687)
             ;
-            adaptor.addChild(root_0, R_BR686_tree);
+            adaptor.addChild(root_0, R_BR687_tree);
 
 
             }
@@ -24947,35 +24997,35 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.round_brackets_return round_brackets687 =null;
+        ObjcmParser.round_brackets_return round_brackets688 =null;
 
-        ObjcmParser.square_brackets_return square_brackets688 =null;
+        ObjcmParser.square_brackets_return square_brackets689 =null;
 
-        ObjcmParser.type_convertion_return type_convertion689 =null;
+        ObjcmParser.type_convertion_return type_convertion690 =null;
 
-        ObjcmParser.expression_return expression690 =null;
+        ObjcmParser.expression_return expression691 =null;
 
-        ObjcmParser.func_pointer2_return func_pointer2691 =null;
+        ObjcmParser.func_pointer2_return func_pointer2692 =null;
 
 
 
         try {
             // Objcm.g:761:2: ( round_brackets | square_brackets | type_convertion expression | func_pointer2 )
-            int alt330=4;
-            alt330 = dfa330.predict(input);
-            switch (alt330) {
+            int alt331=4;
+            alt331 = dfa331.predict(input);
+            switch (alt331) {
                 case 1 :
                     // Objcm.g:761:4: round_brackets
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_round_brackets_in_in_brackets4631);
-                    round_brackets687=round_brackets();
+                    pushFollow(FOLLOW_round_brackets_in_in_brackets4634);
+                    round_brackets688=round_brackets();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, round_brackets687.getTree());
+                    adaptor.addChild(root_0, round_brackets688.getTree());
 
                     }
                     break;
@@ -24985,12 +25035,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_square_brackets_in_in_brackets4637);
-                    square_brackets688=square_brackets();
+                    pushFollow(FOLLOW_square_brackets_in_in_brackets4640);
+                    square_brackets689=square_brackets();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, square_brackets688.getTree());
+                    adaptor.addChild(root_0, square_brackets689.getTree());
 
                     }
                     break;
@@ -25000,19 +25050,19 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_type_convertion_in_in_brackets4642);
-                    type_convertion689=type_convertion();
+                    pushFollow(FOLLOW_type_convertion_in_in_brackets4645);
+                    type_convertion690=type_convertion();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, type_convertion689.getTree());
+                    adaptor.addChild(root_0, type_convertion690.getTree());
 
-                    pushFollow(FOLLOW_expression_in_in_brackets4644);
-                    expression690=expression();
+                    pushFollow(FOLLOW_expression_in_in_brackets4647);
+                    expression691=expression();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression690.getTree());
+                    adaptor.addChild(root_0, expression691.getTree());
 
                     }
                     break;
@@ -25022,12 +25072,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_func_pointer2_in_in_brackets4649);
-                    func_pointer2691=func_pointer2();
+                    pushFollow(FOLLOW_func_pointer2_in_in_brackets4652);
+                    func_pointer2692=func_pointer2();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, func_pointer2691.getTree());
+                    adaptor.addChild(root_0, func_pointer2692.getTree());
 
                     }
                     break;
@@ -25070,39 +25120,39 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS693=null;
-        Token ASTERISK694=null;
-        Token WS695=null;
-        Token L_BR696=null;
-        Token WS697=null;
-        Token ASTERISK698=null;
-        Token WS699=null;
-        Token WS701=null;
-        Token R_BR702=null;
-        Token WS703=null;
-        Token WS705=null;
-        Token SEMICOLON707=null;
-        ObjcmParser.type_internal_return type_internal692 =null;
+        Token WS694=null;
+        Token ASTERISK695=null;
+        Token WS696=null;
+        Token L_BR697=null;
+        Token WS698=null;
+        Token ASTERISK699=null;
+        Token WS700=null;
+        Token WS702=null;
+        Token R_BR703=null;
+        Token WS704=null;
+        Token WS706=null;
+        Token SEMICOLON708=null;
+        ObjcmParser.type_internal_return type_internal693 =null;
 
-        ObjcmParser.type_internal_return type_internal700 =null;
+        ObjcmParser.type_internal_return type_internal701 =null;
 
-        ObjcmParser.func_pointer_params_return func_pointer_params704 =null;
+        ObjcmParser.func_pointer_params_return func_pointer_params705 =null;
 
-        ObjcmParser.variable_set_end_return variable_set_end706 =null;
+        ObjcmParser.variable_set_end_return variable_set_end707 =null;
 
 
-        Object WS693_tree=null;
-        Object ASTERISK694_tree=null;
-        Object WS695_tree=null;
-        Object L_BR696_tree=null;
-        Object WS697_tree=null;
-        Object ASTERISK698_tree=null;
-        Object WS699_tree=null;
-        Object WS701_tree=null;
-        Object R_BR702_tree=null;
-        Object WS703_tree=null;
-        Object WS705_tree=null;
-        Object SEMICOLON707_tree=null;
+        Object WS694_tree=null;
+        Object ASTERISK695_tree=null;
+        Object WS696_tree=null;
+        Object L_BR697_tree=null;
+        Object WS698_tree=null;
+        Object ASTERISK699_tree=null;
+        Object WS700_tree=null;
+        Object WS702_tree=null;
+        Object R_BR703_tree=null;
+        Object WS704_tree=null;
+        Object WS706_tree=null;
+        Object SEMICOLON708_tree=null;
 
         try {
             // Objcm.g:768:2: ( type_internal ( WS )* ( ASTERISK ( WS )* )? L_BR ( WS )* ( ASTERISK ( WS )* )? type_internal ( WS )* R_BR ( WS )* func_pointer_params ( WS )* ( variable_set_end )? SEMICOLON )
@@ -25111,89 +25161,89 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_type_internal_in_func_pointer14661);
-            type_internal692=type_internal();
+            pushFollow(FOLLOW_type_internal_in_func_pointer14664);
+            type_internal693=type_internal();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, type_internal692.getTree());
+            adaptor.addChild(root_0, type_internal693.getTree());
 
             // Objcm.g:768:18: ( WS )*
-            loop331:
+            loop332:
             do {
-                int alt331=2;
-                int LA331_0 = input.LA(1);
+                int alt332=2;
+                int LA332_0 = input.LA(1);
 
-                if ( (LA331_0==WS) ) {
-                    alt331=1;
+                if ( (LA332_0==WS) ) {
+                    alt332=1;
                 }
 
 
-                switch (alt331) {
+                switch (alt332) {
             	case 1 :
             	    // Objcm.g:768:18: WS
             	    {
-            	    WS693=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14663); 
-            	    WS693_tree = 
-            	    (Object)adaptor.create(WS693)
+            	    WS694=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14666); 
+            	    WS694_tree = 
+            	    (Object)adaptor.create(WS694)
             	    ;
-            	    adaptor.addChild(root_0, WS693_tree);
+            	    adaptor.addChild(root_0, WS694_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop331;
+            	    break loop332;
                 }
             } while (true);
 
 
             // Objcm.g:768:22: ( ASTERISK ( WS )* )?
-            int alt333=2;
-            int LA333_0 = input.LA(1);
+            int alt334=2;
+            int LA334_0 = input.LA(1);
 
-            if ( (LA333_0==ASTERISK) ) {
-                alt333=1;
+            if ( (LA334_0==ASTERISK) ) {
+                alt334=1;
             }
-            switch (alt333) {
+            switch (alt334) {
                 case 1 :
                     // Objcm.g:768:23: ASTERISK ( WS )*
                     {
-                    ASTERISK694=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_func_pointer14667); 
-                    ASTERISK694_tree = 
-                    (Object)adaptor.create(ASTERISK694)
+                    ASTERISK695=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_func_pointer14670); 
+                    ASTERISK695_tree = 
+                    (Object)adaptor.create(ASTERISK695)
                     ;
-                    adaptor.addChild(root_0, ASTERISK694_tree);
+                    adaptor.addChild(root_0, ASTERISK695_tree);
 
 
                     // Objcm.g:768:32: ( WS )*
-                    loop332:
+                    loop333:
                     do {
-                        int alt332=2;
-                        int LA332_0 = input.LA(1);
+                        int alt333=2;
+                        int LA333_0 = input.LA(1);
 
-                        if ( (LA332_0==WS) ) {
-                            alt332=1;
+                        if ( (LA333_0==WS) ) {
+                            alt333=1;
                         }
 
 
-                        switch (alt332) {
+                        switch (alt333) {
                     	case 1 :
                     	    // Objcm.g:768:32: WS
                     	    {
-                    	    WS695=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14669); 
-                    	    WS695_tree = 
-                    	    (Object)adaptor.create(WS695)
+                    	    WS696=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14672); 
+                    	    WS696_tree = 
+                    	    (Object)adaptor.create(WS696)
                     	    ;
-                    	    adaptor.addChild(root_0, WS695_tree);
+                    	    adaptor.addChild(root_0, WS696_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop332;
+                    	    break loop333;
                         }
                     } while (true);
 
@@ -25204,89 +25254,89 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            L_BR696=(Token)match(input,L_BR,FOLLOW_L_BR_in_func_pointer14674); 
-            L_BR696_tree = 
-            (Object)adaptor.create(L_BR696)
+            L_BR697=(Token)match(input,L_BR,FOLLOW_L_BR_in_func_pointer14677); 
+            L_BR697_tree = 
+            (Object)adaptor.create(L_BR697)
             ;
-            adaptor.addChild(root_0, L_BR696_tree);
+            adaptor.addChild(root_0, L_BR697_tree);
 
 
             // Objcm.g:768:43: ( WS )*
-            loop334:
+            loop335:
             do {
-                int alt334=2;
-                int LA334_0 = input.LA(1);
+                int alt335=2;
+                int LA335_0 = input.LA(1);
 
-                if ( (LA334_0==WS) ) {
-                    alt334=1;
+                if ( (LA335_0==WS) ) {
+                    alt335=1;
                 }
 
 
-                switch (alt334) {
+                switch (alt335) {
             	case 1 :
             	    // Objcm.g:768:43: WS
             	    {
-            	    WS697=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14676); 
-            	    WS697_tree = 
-            	    (Object)adaptor.create(WS697)
+            	    WS698=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14679); 
+            	    WS698_tree = 
+            	    (Object)adaptor.create(WS698)
             	    ;
-            	    adaptor.addChild(root_0, WS697_tree);
+            	    adaptor.addChild(root_0, WS698_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop334;
+            	    break loop335;
                 }
             } while (true);
 
 
             // Objcm.g:768:47: ( ASTERISK ( WS )* )?
-            int alt336=2;
-            int LA336_0 = input.LA(1);
+            int alt337=2;
+            int LA337_0 = input.LA(1);
 
-            if ( (LA336_0==ASTERISK) ) {
-                alt336=1;
+            if ( (LA337_0==ASTERISK) ) {
+                alt337=1;
             }
-            switch (alt336) {
+            switch (alt337) {
                 case 1 :
                     // Objcm.g:768:48: ASTERISK ( WS )*
                     {
-                    ASTERISK698=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_func_pointer14680); 
-                    ASTERISK698_tree = 
-                    (Object)adaptor.create(ASTERISK698)
+                    ASTERISK699=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_func_pointer14683); 
+                    ASTERISK699_tree = 
+                    (Object)adaptor.create(ASTERISK699)
                     ;
-                    adaptor.addChild(root_0, ASTERISK698_tree);
+                    adaptor.addChild(root_0, ASTERISK699_tree);
 
 
                     // Objcm.g:768:57: ( WS )*
-                    loop335:
+                    loop336:
                     do {
-                        int alt335=2;
-                        int LA335_0 = input.LA(1);
+                        int alt336=2;
+                        int LA336_0 = input.LA(1);
 
-                        if ( (LA335_0==WS) ) {
-                            alt335=1;
+                        if ( (LA336_0==WS) ) {
+                            alt336=1;
                         }
 
 
-                        switch (alt335) {
+                        switch (alt336) {
                     	case 1 :
                     	    // Objcm.g:768:57: WS
                     	    {
-                    	    WS699=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14682); 
-                    	    WS699_tree = 
-                    	    (Object)adaptor.create(WS699)
+                    	    WS700=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14685); 
+                    	    WS700_tree = 
+                    	    (Object)adaptor.create(WS700)
                     	    ;
-                    	    adaptor.addChild(root_0, WS699_tree);
+                    	    adaptor.addChild(root_0, WS700_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop335;
+                    	    break loop336;
                         }
                     } while (true);
 
@@ -25297,52 +25347,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_type_internal_in_func_pointer14687);
-            type_internal700=type_internal();
+            pushFollow(FOLLOW_type_internal_in_func_pointer14690);
+            type_internal701=type_internal();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, type_internal700.getTree());
+            adaptor.addChild(root_0, type_internal701.getTree());
 
             // Objcm.g:768:77: ( WS )*
-            loop337:
-            do {
-                int alt337=2;
-                int LA337_0 = input.LA(1);
-
-                if ( (LA337_0==WS) ) {
-                    alt337=1;
-                }
-
-
-                switch (alt337) {
-            	case 1 :
-            	    // Objcm.g:768:77: WS
-            	    {
-            	    WS701=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14689); 
-            	    WS701_tree = 
-            	    (Object)adaptor.create(WS701)
-            	    ;
-            	    adaptor.addChild(root_0, WS701_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop337;
-                }
-            } while (true);
-
-
-            R_BR702=(Token)match(input,R_BR,FOLLOW_R_BR_in_func_pointer14692); 
-            R_BR702_tree = 
-            (Object)adaptor.create(R_BR702)
-            ;
-            adaptor.addChild(root_0, R_BR702_tree);
-
-
-            // Objcm.g:768:86: ( WS )*
             loop338:
             do {
                 int alt338=2;
@@ -25355,13 +25367,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt338) {
             	case 1 :
-            	    // Objcm.g:768:86: WS
+            	    // Objcm.g:768:77: WS
             	    {
-            	    WS703=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14694); 
-            	    WS703_tree = 
-            	    (Object)adaptor.create(WS703)
+            	    WS702=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14692); 
+            	    WS702_tree = 
+            	    (Object)adaptor.create(WS702)
             	    ;
-            	    adaptor.addChild(root_0, WS703_tree);
+            	    adaptor.addChild(root_0, WS702_tree);
 
 
             	    }
@@ -25373,14 +25385,14 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            pushFollow(FOLLOW_func_pointer_params_in_func_pointer14697);
-            func_pointer_params704=func_pointer_params();
+            R_BR703=(Token)match(input,R_BR,FOLLOW_R_BR_in_func_pointer14695); 
+            R_BR703_tree = 
+            (Object)adaptor.create(R_BR703)
+            ;
+            adaptor.addChild(root_0, R_BR703_tree);
 
-            state._fsp--;
 
-            adaptor.addChild(root_0, func_pointer_params704.getTree());
-
-            // Objcm.g:768:110: ( WS )*
+            // Objcm.g:768:86: ( WS )*
             loop339:
             do {
                 int alt339=2;
@@ -25393,13 +25405,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt339) {
             	case 1 :
-            	    // Objcm.g:768:110: WS
+            	    // Objcm.g:768:86: WS
             	    {
-            	    WS705=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14699); 
-            	    WS705_tree = 
-            	    (Object)adaptor.create(WS705)
+            	    WS704=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14697); 
+            	    WS704_tree = 
+            	    (Object)adaptor.create(WS704)
             	    ;
-            	    adaptor.addChild(root_0, WS705_tree);
+            	    adaptor.addChild(root_0, WS704_tree);
 
 
             	    }
@@ -25411,23 +25423,61 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            // Objcm.g:768:114: ( variable_set_end )?
-            int alt340=2;
-            int LA340_0 = input.LA(1);
+            pushFollow(FOLLOW_func_pointer_params_in_func_pointer14700);
+            func_pointer_params705=func_pointer_params();
 
-            if ( (LA340_0==L_EQ||(LA340_0 >= L_MINUS_MINUS && LA340_0 <= L_UBR)||LA340_0==R_UBR||LA340_0==106||(LA340_0 >= 109 && LA340_0 <= 110)||LA340_0==112||LA340_0==114||LA340_0==118||(LA340_0 >= 120 && LA340_0 <= 123)||LA340_0==125||LA340_0==141||LA340_0==163) ) {
-                alt340=1;
+            state._fsp--;
+
+            adaptor.addChild(root_0, func_pointer_params705.getTree());
+
+            // Objcm.g:768:110: ( WS )*
+            loop340:
+            do {
+                int alt340=2;
+                int LA340_0 = input.LA(1);
+
+                if ( (LA340_0==WS) ) {
+                    alt340=1;
+                }
+
+
+                switch (alt340) {
+            	case 1 :
+            	    // Objcm.g:768:110: WS
+            	    {
+            	    WS706=(Token)match(input,WS,FOLLOW_WS_in_func_pointer14702); 
+            	    WS706_tree = 
+            	    (Object)adaptor.create(WS706)
+            	    ;
+            	    adaptor.addChild(root_0, WS706_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop340;
+                }
+            } while (true);
+
+
+            // Objcm.g:768:114: ( variable_set_end )?
+            int alt341=2;
+            int LA341_0 = input.LA(1);
+
+            if ( (LA341_0==L_EQ||(LA341_0 >= L_MINUS_MINUS && LA341_0 <= L_UBR)||LA341_0==R_UBR||LA341_0==106||(LA341_0 >= 109 && LA341_0 <= 110)||LA341_0==112||LA341_0==114||LA341_0==118||(LA341_0 >= 120 && LA341_0 <= 123)||LA341_0==125||LA341_0==141||LA341_0==163) ) {
+                alt341=1;
             }
-            switch (alt340) {
+            switch (alt341) {
                 case 1 :
                     // Objcm.g:768:114: variable_set_end
                     {
-                    pushFollow(FOLLOW_variable_set_end_in_func_pointer14702);
-                    variable_set_end706=variable_set_end();
+                    pushFollow(FOLLOW_variable_set_end_in_func_pointer14705);
+                    variable_set_end707=variable_set_end();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, variable_set_end706.getTree());
+                    adaptor.addChild(root_0, variable_set_end707.getTree());
 
                     }
                     break;
@@ -25435,11 +25485,11 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            SEMICOLON707=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_func_pointer14705); 
-            SEMICOLON707_tree = 
-            (Object)adaptor.create(SEMICOLON707)
+            SEMICOLON708=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_func_pointer14708); 
+            SEMICOLON708_tree = 
+            (Object)adaptor.create(SEMICOLON708)
             ;
-            adaptor.addChild(root_0, SEMICOLON707_tree);
+            adaptor.addChild(root_0, SEMICOLON708_tree);
 
 
             }
@@ -25481,31 +25531,31 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_BR708=null;
-        Token WS709=null;
-        Token L_BR711=null;
-        Token WS712=null;
-        Token ASTERISK713=null;
-        Token WS714=null;
-        Token R_BR715=null;
-        Token WS716=null;
-        Token WS718=null;
-        Token R_BR719=null;
-        ObjcmParser.type_internal_return type_internal710 =null;
+        Token L_BR709=null;
+        Token WS710=null;
+        Token L_BR712=null;
+        Token WS713=null;
+        Token ASTERISK714=null;
+        Token WS715=null;
+        Token R_BR716=null;
+        Token WS717=null;
+        Token WS719=null;
+        Token R_BR720=null;
+        ObjcmParser.type_internal_return type_internal711 =null;
 
-        ObjcmParser.func_pointer_params_return func_pointer_params717 =null;
+        ObjcmParser.func_pointer_params_return func_pointer_params718 =null;
 
 
-        Object L_BR708_tree=null;
-        Object WS709_tree=null;
-        Object L_BR711_tree=null;
-        Object WS712_tree=null;
-        Object ASTERISK713_tree=null;
-        Object WS714_tree=null;
-        Object R_BR715_tree=null;
-        Object WS716_tree=null;
-        Object WS718_tree=null;
-        Object R_BR719_tree=null;
+        Object L_BR709_tree=null;
+        Object WS710_tree=null;
+        Object L_BR712_tree=null;
+        Object WS713_tree=null;
+        Object ASTERISK714_tree=null;
+        Object WS715_tree=null;
+        Object R_BR716_tree=null;
+        Object WS717_tree=null;
+        Object WS719_tree=null;
+        Object R_BR720_tree=null;
 
         try {
             // Objcm.g:772:2: ( L_BR ( WS )* type_internal L_BR ( WS )* ASTERISK ( WS )* R_BR ( WS )* func_pointer_params ( WS )* R_BR )
@@ -25514,59 +25564,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_BR708=(Token)match(input,L_BR,FOLLOW_L_BR_in_func_pointer24717); 
-            L_BR708_tree = 
-            (Object)adaptor.create(L_BR708)
+            L_BR709=(Token)match(input,L_BR,FOLLOW_L_BR_in_func_pointer24720); 
+            L_BR709_tree = 
+            (Object)adaptor.create(L_BR709)
             ;
-            adaptor.addChild(root_0, L_BR708_tree);
+            adaptor.addChild(root_0, L_BR709_tree);
 
 
             // Objcm.g:772:9: ( WS )*
-            loop341:
-            do {
-                int alt341=2;
-                int LA341_0 = input.LA(1);
-
-                if ( (LA341_0==WS) ) {
-                    alt341=1;
-                }
-
-
-                switch (alt341) {
-            	case 1 :
-            	    // Objcm.g:772:9: WS
-            	    {
-            	    WS709=(Token)match(input,WS,FOLLOW_WS_in_func_pointer24719); 
-            	    WS709_tree = 
-            	    (Object)adaptor.create(WS709)
-            	    ;
-            	    adaptor.addChild(root_0, WS709_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop341;
-                }
-            } while (true);
-
-
-            pushFollow(FOLLOW_type_internal_in_func_pointer24722);
-            type_internal710=type_internal();
-
-            state._fsp--;
-
-            adaptor.addChild(root_0, type_internal710.getTree());
-
-            L_BR711=(Token)match(input,L_BR,FOLLOW_L_BR_in_func_pointer24724); 
-            L_BR711_tree = 
-            (Object)adaptor.create(L_BR711)
-            ;
-            adaptor.addChild(root_0, L_BR711_tree);
-
-
-            // Objcm.g:772:32: ( WS )*
             loop342:
             do {
                 int alt342=2;
@@ -25579,13 +25584,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt342) {
             	case 1 :
-            	    // Objcm.g:772:32: WS
+            	    // Objcm.g:772:9: WS
             	    {
-            	    WS712=(Token)match(input,WS,FOLLOW_WS_in_func_pointer24726); 
-            	    WS712_tree = 
-            	    (Object)adaptor.create(WS712)
+            	    WS710=(Token)match(input,WS,FOLLOW_WS_in_func_pointer24722); 
+            	    WS710_tree = 
+            	    (Object)adaptor.create(WS710)
             	    ;
-            	    adaptor.addChild(root_0, WS712_tree);
+            	    adaptor.addChild(root_0, WS710_tree);
 
 
             	    }
@@ -25597,14 +25602,21 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            ASTERISK713=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_func_pointer24729); 
-            ASTERISK713_tree = 
-            (Object)adaptor.create(ASTERISK713)
+            pushFollow(FOLLOW_type_internal_in_func_pointer24725);
+            type_internal711=type_internal();
+
+            state._fsp--;
+
+            adaptor.addChild(root_0, type_internal711.getTree());
+
+            L_BR712=(Token)match(input,L_BR,FOLLOW_L_BR_in_func_pointer24727); 
+            L_BR712_tree = 
+            (Object)adaptor.create(L_BR712)
             ;
-            adaptor.addChild(root_0, ASTERISK713_tree);
+            adaptor.addChild(root_0, L_BR712_tree);
 
 
-            // Objcm.g:772:45: ( WS )*
+            // Objcm.g:772:32: ( WS )*
             loop343:
             do {
                 int alt343=2;
@@ -25617,13 +25629,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt343) {
             	case 1 :
-            	    // Objcm.g:772:45: WS
+            	    // Objcm.g:772:32: WS
             	    {
-            	    WS714=(Token)match(input,WS,FOLLOW_WS_in_func_pointer24731); 
-            	    WS714_tree = 
-            	    (Object)adaptor.create(WS714)
+            	    WS713=(Token)match(input,WS,FOLLOW_WS_in_func_pointer24729); 
+            	    WS713_tree = 
+            	    (Object)adaptor.create(WS713)
             	    ;
-            	    adaptor.addChild(root_0, WS714_tree);
+            	    adaptor.addChild(root_0, WS713_tree);
 
 
             	    }
@@ -25635,14 +25647,14 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            R_BR715=(Token)match(input,R_BR,FOLLOW_R_BR_in_func_pointer24734); 
-            R_BR715_tree = 
-            (Object)adaptor.create(R_BR715)
+            ASTERISK714=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_func_pointer24732); 
+            ASTERISK714_tree = 
+            (Object)adaptor.create(ASTERISK714)
             ;
-            adaptor.addChild(root_0, R_BR715_tree);
+            adaptor.addChild(root_0, ASTERISK714_tree);
 
 
-            // Objcm.g:772:54: ( WS )*
+            // Objcm.g:772:45: ( WS )*
             loop344:
             do {
                 int alt344=2;
@@ -25655,13 +25667,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt344) {
             	case 1 :
-            	    // Objcm.g:772:54: WS
+            	    // Objcm.g:772:45: WS
             	    {
-            	    WS716=(Token)match(input,WS,FOLLOW_WS_in_func_pointer24736); 
-            	    WS716_tree = 
-            	    (Object)adaptor.create(WS716)
+            	    WS715=(Token)match(input,WS,FOLLOW_WS_in_func_pointer24734); 
+            	    WS715_tree = 
+            	    (Object)adaptor.create(WS715)
             	    ;
-            	    adaptor.addChild(root_0, WS716_tree);
+            	    adaptor.addChild(root_0, WS715_tree);
 
 
             	    }
@@ -25673,14 +25685,14 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            pushFollow(FOLLOW_func_pointer_params_in_func_pointer24739);
-            func_pointer_params717=func_pointer_params();
+            R_BR716=(Token)match(input,R_BR,FOLLOW_R_BR_in_func_pointer24737); 
+            R_BR716_tree = 
+            (Object)adaptor.create(R_BR716)
+            ;
+            adaptor.addChild(root_0, R_BR716_tree);
 
-            state._fsp--;
 
-            adaptor.addChild(root_0, func_pointer_params717.getTree());
-
-            // Objcm.g:772:78: ( WS )*
+            // Objcm.g:772:54: ( WS )*
             loop345:
             do {
                 int alt345=2;
@@ -25693,13 +25705,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt345) {
             	case 1 :
-            	    // Objcm.g:772:78: WS
+            	    // Objcm.g:772:54: WS
             	    {
-            	    WS718=(Token)match(input,WS,FOLLOW_WS_in_func_pointer24741); 
-            	    WS718_tree = 
-            	    (Object)adaptor.create(WS718)
+            	    WS717=(Token)match(input,WS,FOLLOW_WS_in_func_pointer24739); 
+            	    WS717_tree = 
+            	    (Object)adaptor.create(WS717)
             	    ;
-            	    adaptor.addChild(root_0, WS718_tree);
+            	    adaptor.addChild(root_0, WS717_tree);
 
 
             	    }
@@ -25711,11 +25723,49 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            R_BR719=(Token)match(input,R_BR,FOLLOW_R_BR_in_func_pointer24744); 
-            R_BR719_tree = 
-            (Object)adaptor.create(R_BR719)
+            pushFollow(FOLLOW_func_pointer_params_in_func_pointer24742);
+            func_pointer_params718=func_pointer_params();
+
+            state._fsp--;
+
+            adaptor.addChild(root_0, func_pointer_params718.getTree());
+
+            // Objcm.g:772:78: ( WS )*
+            loop346:
+            do {
+                int alt346=2;
+                int LA346_0 = input.LA(1);
+
+                if ( (LA346_0==WS) ) {
+                    alt346=1;
+                }
+
+
+                switch (alt346) {
+            	case 1 :
+            	    // Objcm.g:772:78: WS
+            	    {
+            	    WS719=(Token)match(input,WS,FOLLOW_WS_in_func_pointer24744); 
+            	    WS719_tree = 
+            	    (Object)adaptor.create(WS719)
+            	    ;
+            	    adaptor.addChild(root_0, WS719_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop346;
+                }
+            } while (true);
+
+
+            R_BR720=(Token)match(input,R_BR,FOLLOW_R_BR_in_func_pointer24747); 
+            R_BR720_tree = 
+            (Object)adaptor.create(R_BR720)
             ;
-            adaptor.addChild(root_0, R_BR719_tree);
+            adaptor.addChild(root_0, R_BR720_tree);
 
 
             }
@@ -25757,33 +25807,33 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_BR720=null;
-        Token WS721=null;
-        Token ID722=null;
-        Token WS723=null;
-        Token ASTERISK724=null;
-        Token WS725=null;
-        Token COMMA726=null;
-        Token WS727=null;
-        Token ID728=null;
-        Token WS729=null;
-        Token ASTERISK730=null;
-        Token WS731=null;
-        Token R_BR732=null;
+        Token L_BR721=null;
+        Token WS722=null;
+        Token ID723=null;
+        Token WS724=null;
+        Token ASTERISK725=null;
+        Token WS726=null;
+        Token COMMA727=null;
+        Token WS728=null;
+        Token ID729=null;
+        Token WS730=null;
+        Token ASTERISK731=null;
+        Token WS732=null;
+        Token R_BR733=null;
 
-        Object L_BR720_tree=null;
-        Object WS721_tree=null;
-        Object ID722_tree=null;
-        Object WS723_tree=null;
-        Object ASTERISK724_tree=null;
-        Object WS725_tree=null;
-        Object COMMA726_tree=null;
-        Object WS727_tree=null;
-        Object ID728_tree=null;
-        Object WS729_tree=null;
-        Object ASTERISK730_tree=null;
-        Object WS731_tree=null;
-        Object R_BR732_tree=null;
+        Object L_BR721_tree=null;
+        Object WS722_tree=null;
+        Object ID723_tree=null;
+        Object WS724_tree=null;
+        Object ASTERISK725_tree=null;
+        Object WS726_tree=null;
+        Object COMMA727_tree=null;
+        Object WS728_tree=null;
+        Object ID729_tree=null;
+        Object WS730_tree=null;
+        Object ASTERISK731_tree=null;
+        Object WS732_tree=null;
+        Object R_BR733_tree=null;
 
         try {
             // Objcm.g:776:2: ( L_BR ( WS )* ID ( WS )* ( ASTERISK ( WS )* )* ( COMMA ( WS )* ID ( WS )* ( ASTERISK ( WS )* )* )* R_BR )
@@ -25792,52 +25842,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_BR720=(Token)match(input,L_BR,FOLLOW_L_BR_in_func_pointer_params4757); 
-            L_BR720_tree = 
-            (Object)adaptor.create(L_BR720)
+            L_BR721=(Token)match(input,L_BR,FOLLOW_L_BR_in_func_pointer_params4760); 
+            L_BR721_tree = 
+            (Object)adaptor.create(L_BR721)
             ;
-            adaptor.addChild(root_0, L_BR720_tree);
+            adaptor.addChild(root_0, L_BR721_tree);
 
 
             // Objcm.g:776:9: ( WS )*
-            loop346:
-            do {
-                int alt346=2;
-                int LA346_0 = input.LA(1);
-
-                if ( (LA346_0==WS) ) {
-                    alt346=1;
-                }
-
-
-                switch (alt346) {
-            	case 1 :
-            	    // Objcm.g:776:9: WS
-            	    {
-            	    WS721=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4759); 
-            	    WS721_tree = 
-            	    (Object)adaptor.create(WS721)
-            	    ;
-            	    adaptor.addChild(root_0, WS721_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop346;
-                }
-            } while (true);
-
-
-            ID722=(Token)match(input,ID,FOLLOW_ID_in_func_pointer_params4762); 
-            ID722_tree = 
-            (Object)adaptor.create(ID722)
-            ;
-            adaptor.addChild(root_0, ID722_tree);
-
-
-            // Objcm.g:776:16: ( WS )*
             loop347:
             do {
                 int alt347=2;
@@ -25850,13 +25862,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt347) {
             	case 1 :
-            	    // Objcm.g:776:16: WS
+            	    // Objcm.g:776:9: WS
             	    {
-            	    WS723=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4764); 
-            	    WS723_tree = 
-            	    (Object)adaptor.create(WS723)
+            	    WS722=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4762); 
+            	    WS722_tree = 
+            	    (Object)adaptor.create(WS722)
             	    ;
-            	    adaptor.addChild(root_0, WS723_tree);
+            	    adaptor.addChild(root_0, WS722_tree);
 
 
             	    }
@@ -25868,55 +25880,93 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            // Objcm.g:776:20: ( ASTERISK ( WS )* )*
-            loop349:
-            do {
-                int alt349=2;
-                int LA349_0 = input.LA(1);
+            ID723=(Token)match(input,ID,FOLLOW_ID_in_func_pointer_params4765); 
+            ID723_tree = 
+            (Object)adaptor.create(ID723)
+            ;
+            adaptor.addChild(root_0, ID723_tree);
 
-                if ( (LA349_0==ASTERISK) ) {
-                    alt349=1;
+
+            // Objcm.g:776:16: ( WS )*
+            loop348:
+            do {
+                int alt348=2;
+                int LA348_0 = input.LA(1);
+
+                if ( (LA348_0==WS) ) {
+                    alt348=1;
                 }
 
 
-                switch (alt349) {
+                switch (alt348) {
+            	case 1 :
+            	    // Objcm.g:776:16: WS
+            	    {
+            	    WS724=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4767); 
+            	    WS724_tree = 
+            	    (Object)adaptor.create(WS724)
+            	    ;
+            	    adaptor.addChild(root_0, WS724_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop348;
+                }
+            } while (true);
+
+
+            // Objcm.g:776:20: ( ASTERISK ( WS )* )*
+            loop350:
+            do {
+                int alt350=2;
+                int LA350_0 = input.LA(1);
+
+                if ( (LA350_0==ASTERISK) ) {
+                    alt350=1;
+                }
+
+
+                switch (alt350) {
             	case 1 :
             	    // Objcm.g:776:21: ASTERISK ( WS )*
             	    {
-            	    ASTERISK724=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_func_pointer_params4768); 
-            	    ASTERISK724_tree = 
-            	    (Object)adaptor.create(ASTERISK724)
+            	    ASTERISK725=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_func_pointer_params4771); 
+            	    ASTERISK725_tree = 
+            	    (Object)adaptor.create(ASTERISK725)
             	    ;
-            	    adaptor.addChild(root_0, ASTERISK724_tree);
+            	    adaptor.addChild(root_0, ASTERISK725_tree);
 
 
             	    // Objcm.g:776:30: ( WS )*
-            	    loop348:
+            	    loop349:
             	    do {
-            	        int alt348=2;
-            	        int LA348_0 = input.LA(1);
+            	        int alt349=2;
+            	        int LA349_0 = input.LA(1);
 
-            	        if ( (LA348_0==WS) ) {
-            	            alt348=1;
+            	        if ( (LA349_0==WS) ) {
+            	            alt349=1;
             	        }
 
 
-            	        switch (alt348) {
+            	        switch (alt349) {
             	    	case 1 :
             	    	    // Objcm.g:776:30: WS
             	    	    {
-            	    	    WS725=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4770); 
-            	    	    WS725_tree = 
-            	    	    (Object)adaptor.create(WS725)
+            	    	    WS726=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4773); 
+            	    	    WS726_tree = 
+            	    	    (Object)adaptor.create(WS726)
             	    	    ;
-            	    	    adaptor.addChild(root_0, WS725_tree);
+            	    	    adaptor.addChild(root_0, WS726_tree);
 
 
             	    	    }
             	    	    break;
 
             	    	default :
-            	    	    break loop348;
+            	    	    break loop349;
             	        }
             	    } while (true);
 
@@ -25925,72 +25975,34 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop349;
+            	    break loop350;
                 }
             } while (true);
 
 
             // Objcm.g:776:36: ( COMMA ( WS )* ID ( WS )* ( ASTERISK ( WS )* )* )*
-            loop354:
+            loop355:
             do {
-                int alt354=2;
-                int LA354_0 = input.LA(1);
+                int alt355=2;
+                int LA355_0 = input.LA(1);
 
-                if ( (LA354_0==COMMA) ) {
-                    alt354=1;
+                if ( (LA355_0==COMMA) ) {
+                    alt355=1;
                 }
 
 
-                switch (alt354) {
+                switch (alt355) {
             	case 1 :
             	    // Objcm.g:776:37: COMMA ( WS )* ID ( WS )* ( ASTERISK ( WS )* )*
             	    {
-            	    COMMA726=(Token)match(input,COMMA,FOLLOW_COMMA_in_func_pointer_params4776); 
-            	    COMMA726_tree = 
-            	    (Object)adaptor.create(COMMA726)
+            	    COMMA727=(Token)match(input,COMMA,FOLLOW_COMMA_in_func_pointer_params4779); 
+            	    COMMA727_tree = 
+            	    (Object)adaptor.create(COMMA727)
             	    ;
-            	    adaptor.addChild(root_0, COMMA726_tree);
+            	    adaptor.addChild(root_0, COMMA727_tree);
 
 
             	    // Objcm.g:776:43: ( WS )*
-            	    loop350:
-            	    do {
-            	        int alt350=2;
-            	        int LA350_0 = input.LA(1);
-
-            	        if ( (LA350_0==WS) ) {
-            	            alt350=1;
-            	        }
-
-
-            	        switch (alt350) {
-            	    	case 1 :
-            	    	    // Objcm.g:776:43: WS
-            	    	    {
-            	    	    WS727=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4778); 
-            	    	    WS727_tree = 
-            	    	    (Object)adaptor.create(WS727)
-            	    	    ;
-            	    	    adaptor.addChild(root_0, WS727_tree);
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop350;
-            	        }
-            	    } while (true);
-
-
-            	    ID728=(Token)match(input,ID,FOLLOW_ID_in_func_pointer_params4781); 
-            	    ID728_tree = 
-            	    (Object)adaptor.create(ID728)
-            	    ;
-            	    adaptor.addChild(root_0, ID728_tree);
-
-
-            	    // Objcm.g:776:50: ( WS )*
             	    loop351:
             	    do {
             	        int alt351=2;
@@ -26003,13 +26015,13 @@ public TreeAdaptor getTreeAdaptor() {
 
             	        switch (alt351) {
             	    	case 1 :
-            	    	    // Objcm.g:776:50: WS
+            	    	    // Objcm.g:776:43: WS
             	    	    {
-            	    	    WS729=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4783); 
-            	    	    WS729_tree = 
-            	    	    (Object)adaptor.create(WS729)
+            	    	    WS728=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4781); 
+            	    	    WS728_tree = 
+            	    	    (Object)adaptor.create(WS728)
             	    	    ;
-            	    	    adaptor.addChild(root_0, WS729_tree);
+            	    	    adaptor.addChild(root_0, WS728_tree);
 
 
             	    	    }
@@ -26021,55 +26033,93 @@ public TreeAdaptor getTreeAdaptor() {
             	    } while (true);
 
 
-            	    // Objcm.g:776:54: ( ASTERISK ( WS )* )*
-            	    loop353:
-            	    do {
-            	        int alt353=2;
-            	        int LA353_0 = input.LA(1);
+            	    ID729=(Token)match(input,ID,FOLLOW_ID_in_func_pointer_params4784); 
+            	    ID729_tree = 
+            	    (Object)adaptor.create(ID729)
+            	    ;
+            	    adaptor.addChild(root_0, ID729_tree);
 
-            	        if ( (LA353_0==ASTERISK) ) {
-            	            alt353=1;
+
+            	    // Objcm.g:776:50: ( WS )*
+            	    loop352:
+            	    do {
+            	        int alt352=2;
+            	        int LA352_0 = input.LA(1);
+
+            	        if ( (LA352_0==WS) ) {
+            	            alt352=1;
             	        }
 
 
-            	        switch (alt353) {
+            	        switch (alt352) {
+            	    	case 1 :
+            	    	    // Objcm.g:776:50: WS
+            	    	    {
+            	    	    WS730=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4786); 
+            	    	    WS730_tree = 
+            	    	    (Object)adaptor.create(WS730)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS730_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop352;
+            	        }
+            	    } while (true);
+
+
+            	    // Objcm.g:776:54: ( ASTERISK ( WS )* )*
+            	    loop354:
+            	    do {
+            	        int alt354=2;
+            	        int LA354_0 = input.LA(1);
+
+            	        if ( (LA354_0==ASTERISK) ) {
+            	            alt354=1;
+            	        }
+
+
+            	        switch (alt354) {
             	    	case 1 :
             	    	    // Objcm.g:776:55: ASTERISK ( WS )*
             	    	    {
-            	    	    ASTERISK730=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_func_pointer_params4787); 
-            	    	    ASTERISK730_tree = 
-            	    	    (Object)adaptor.create(ASTERISK730)
+            	    	    ASTERISK731=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_func_pointer_params4790); 
+            	    	    ASTERISK731_tree = 
+            	    	    (Object)adaptor.create(ASTERISK731)
             	    	    ;
-            	    	    adaptor.addChild(root_0, ASTERISK730_tree);
+            	    	    adaptor.addChild(root_0, ASTERISK731_tree);
 
 
             	    	    // Objcm.g:776:64: ( WS )*
-            	    	    loop352:
+            	    	    loop353:
             	    	    do {
-            	    	        int alt352=2;
-            	    	        int LA352_0 = input.LA(1);
+            	    	        int alt353=2;
+            	    	        int LA353_0 = input.LA(1);
 
-            	    	        if ( (LA352_0==WS) ) {
-            	    	            alt352=1;
+            	    	        if ( (LA353_0==WS) ) {
+            	    	            alt353=1;
             	    	        }
 
 
-            	    	        switch (alt352) {
+            	    	        switch (alt353) {
             	    	    	case 1 :
             	    	    	    // Objcm.g:776:64: WS
             	    	    	    {
-            	    	    	    WS731=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4789); 
-            	    	    	    WS731_tree = 
-            	    	    	    (Object)adaptor.create(WS731)
+            	    	    	    WS732=(Token)match(input,WS,FOLLOW_WS_in_func_pointer_params4792); 
+            	    	    	    WS732_tree = 
+            	    	    	    (Object)adaptor.create(WS732)
             	    	    	    ;
-            	    	    	    adaptor.addChild(root_0, WS731_tree);
+            	    	    	    adaptor.addChild(root_0, WS732_tree);
 
 
             	    	    	    }
             	    	    	    break;
 
             	    	    	default :
-            	    	    	    break loop352;
+            	    	    	    break loop353;
             	    	        }
             	    	    } while (true);
 
@@ -26078,7 +26128,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    	    break;
 
             	    	default :
-            	    	    break loop353;
+            	    	    break loop354;
             	        }
             	    } while (true);
 
@@ -26087,16 +26137,16 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop354;
+            	    break loop355;
                 }
             } while (true);
 
 
-            R_BR732=(Token)match(input,R_BR,FOLLOW_R_BR_in_func_pointer_params4796); 
-            R_BR732_tree = 
-            (Object)adaptor.create(R_BR732)
+            R_BR733=(Token)match(input,R_BR,FOLLOW_R_BR_in_func_pointer_params4799); 
+            R_BR733_tree = 
+            (Object)adaptor.create(R_BR733)
             ;
-            adaptor.addChild(root_0, R_BR732_tree);
+            adaptor.addChild(root_0, R_BR733_tree);
 
 
             }
@@ -26138,46 +26188,46 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_BR733=null;
-        Token WS734=null;
-        Token WS736=null;
-        Token R_BR737=null;
-        Token set740=null;
-        ObjcmParser.expression_return expression735 =null;
+        Token L_BR734=null;
+        Token WS735=null;
+        Token WS737=null;
+        Token R_BR738=null;
+        Token set741=null;
+        ObjcmParser.expression_return expression736 =null;
 
-        ObjcmParser.method_start_return method_start738 =null;
+        ObjcmParser.method_start_return method_start739 =null;
 
-        ObjcmParser.index_brackets_return index_brackets739 =null;
+        ObjcmParser.index_brackets_return index_brackets740 =null;
 
-        ObjcmParser.method_start_return method_start741 =null;
+        ObjcmParser.method_start_return method_start742 =null;
 
-        ObjcmParser.const_expr_return const_expr742 =null;
+        ObjcmParser.const_expr_return const_expr743 =null;
 
 
-        Object L_BR733_tree=null;
-        Object WS734_tree=null;
-        Object WS736_tree=null;
-        Object R_BR737_tree=null;
-        Object set740_tree=null;
+        Object L_BR734_tree=null;
+        Object WS735_tree=null;
+        Object WS737_tree=null;
+        Object R_BR738_tree=null;
+        Object set741_tree=null;
 
         try {
             // Objcm.g:779:2: ( L_BR ( WS )* expression ( WS )* R_BR | method_start ( index_brackets )? | ( L_PLUS_PLUS | L_MINUS_MINUS ) method_start | const_expr )
-            int alt358=4;
+            int alt359=4;
             switch ( input.LA(1) ) {
             case L_BR:
                 {
-                alt358=1;
+                alt359=1;
                 }
                 break;
             case ID:
                 {
-                alt358=2;
+                alt359=2;
                 }
                 break;
             case L_MINUS_MINUS:
             case L_PLUS_PLUS:
                 {
-                alt358=3;
+                alt359=3;
                 }
                 break;
             case NUMBER:
@@ -26187,70 +26237,32 @@ public TreeAdaptor getTreeAdaptor() {
             case 139:
             case 154:
                 {
-                alt358=4;
+                alt359=4;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 358, 0, input);
+                    new NoViableAltException("", 359, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt358) {
+            switch (alt359) {
                 case 1 :
                     // Objcm.g:779:4: L_BR ( WS )* expression ( WS )* R_BR
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    L_BR733=(Token)match(input,L_BR,FOLLOW_L_BR_in_in_brackets_end14807); 
-                    L_BR733_tree = 
-                    (Object)adaptor.create(L_BR733)
+                    L_BR734=(Token)match(input,L_BR,FOLLOW_L_BR_in_in_brackets_end14810); 
+                    L_BR734_tree = 
+                    (Object)adaptor.create(L_BR734)
                     ;
-                    adaptor.addChild(root_0, L_BR733_tree);
+                    adaptor.addChild(root_0, L_BR734_tree);
 
 
                     // Objcm.g:779:9: ( WS )*
-                    loop355:
-                    do {
-                        int alt355=2;
-                        int LA355_0 = input.LA(1);
-
-                        if ( (LA355_0==WS) ) {
-                            alt355=1;
-                        }
-
-
-                        switch (alt355) {
-                    	case 1 :
-                    	    // Objcm.g:779:9: WS
-                    	    {
-                    	    WS734=(Token)match(input,WS,FOLLOW_WS_in_in_brackets_end14809); 
-                    	    WS734_tree = 
-                    	    (Object)adaptor.create(WS734)
-                    	    ;
-                    	    adaptor.addChild(root_0, WS734_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop355;
-                        }
-                    } while (true);
-
-
-                    pushFollow(FOLLOW_expression_in_in_brackets_end14812);
-                    expression735=expression();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, expression735.getTree());
-
-                    // Objcm.g:779:24: ( WS )*
                     loop356:
                     do {
                         int alt356=2;
@@ -26263,13 +26275,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                         switch (alt356) {
                     	case 1 :
-                    	    // Objcm.g:779:24: WS
+                    	    // Objcm.g:779:9: WS
                     	    {
-                    	    WS736=(Token)match(input,WS,FOLLOW_WS_in_in_brackets_end14814); 
-                    	    WS736_tree = 
-                    	    (Object)adaptor.create(WS736)
+                    	    WS735=(Token)match(input,WS,FOLLOW_WS_in_in_brackets_end14812); 
+                    	    WS735_tree = 
+                    	    (Object)adaptor.create(WS735)
                     	    ;
-                    	    adaptor.addChild(root_0, WS736_tree);
+                    	    adaptor.addChild(root_0, WS735_tree);
 
 
                     	    }
@@ -26281,11 +26293,49 @@ public TreeAdaptor getTreeAdaptor() {
                     } while (true);
 
 
-                    R_BR737=(Token)match(input,R_BR,FOLLOW_R_BR_in_in_brackets_end14817); 
-                    R_BR737_tree = 
-                    (Object)adaptor.create(R_BR737)
+                    pushFollow(FOLLOW_expression_in_in_brackets_end14815);
+                    expression736=expression();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, expression736.getTree());
+
+                    // Objcm.g:779:24: ( WS )*
+                    loop357:
+                    do {
+                        int alt357=2;
+                        int LA357_0 = input.LA(1);
+
+                        if ( (LA357_0==WS) ) {
+                            alt357=1;
+                        }
+
+
+                        switch (alt357) {
+                    	case 1 :
+                    	    // Objcm.g:779:24: WS
+                    	    {
+                    	    WS737=(Token)match(input,WS,FOLLOW_WS_in_in_brackets_end14817); 
+                    	    WS737_tree = 
+                    	    (Object)adaptor.create(WS737)
+                    	    ;
+                    	    adaptor.addChild(root_0, WS737_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop357;
+                        }
+                    } while (true);
+
+
+                    R_BR738=(Token)match(input,R_BR,FOLLOW_R_BR_in_in_brackets_end14820); 
+                    R_BR738_tree = 
+                    (Object)adaptor.create(R_BR738)
                     ;
-                    adaptor.addChild(root_0, R_BR737_tree);
+                    adaptor.addChild(root_0, R_BR738_tree);
 
 
                     }
@@ -26296,26 +26346,26 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_method_start_in_in_brackets_end14822);
-                    method_start738=method_start();
+                    pushFollow(FOLLOW_method_start_in_in_brackets_end14825);
+                    method_start739=method_start();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, method_start738.getTree());
+                    adaptor.addChild(root_0, method_start739.getTree());
 
                     // Objcm.g:780:17: ( index_brackets )?
-                    int alt357=2;
-                    alt357 = dfa357.predict(input);
-                    switch (alt357) {
+                    int alt358=2;
+                    alt358 = dfa358.predict(input);
+                    switch (alt358) {
                         case 1 :
                             // Objcm.g:780:17: index_brackets
                             {
-                            pushFollow(FOLLOW_index_brackets_in_in_brackets_end14824);
-                            index_brackets739=index_brackets();
+                            pushFollow(FOLLOW_index_brackets_in_in_brackets_end14827);
+                            index_brackets740=index_brackets();
 
                             state._fsp--;
 
-                            adaptor.addChild(root_0, index_brackets739.getTree());
+                            adaptor.addChild(root_0, index_brackets740.getTree());
 
                             }
                             break;
@@ -26331,12 +26381,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    set740=(Token)input.LT(1);
+                    set741=(Token)input.LT(1);
 
                     if ( (input.LA(1) >= L_MINUS_MINUS && input.LA(1) <= L_PLUS_PLUS) ) {
                         input.consume();
                         adaptor.addChild(root_0, 
-                        (Object)adaptor.create(set740)
+                        (Object)adaptor.create(set741)
                         );
                         state.errorRecovery=false;
                     }
@@ -26346,12 +26396,12 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_method_start_in_in_brackets_end14838);
-                    method_start741=method_start();
+                    pushFollow(FOLLOW_method_start_in_in_brackets_end14841);
+                    method_start742=method_start();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, method_start741.getTree());
+                    adaptor.addChild(root_0, method_start742.getTree());
 
                     }
                     break;
@@ -26361,12 +26411,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_const_expr_in_in_brackets_end14843);
-                    const_expr742=const_expr();
+                    pushFollow(FOLLOW_const_expr_in_in_brackets_end14846);
+                    const_expr743=const_expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, const_expr742.getTree());
+                    adaptor.addChild(root_0, const_expr743.getTree());
 
                     }
                     break;
@@ -26409,91 +26459,53 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_BR743=null;
-        Token WS744=null;
-        Token WS746=null;
-        Token R_BR747=null;
-        ObjcmParser.expression_return expression745 =null;
+        Token L_BR744=null;
+        Token WS745=null;
+        Token WS747=null;
+        Token R_BR748=null;
+        ObjcmParser.expression_return expression746 =null;
 
-        ObjcmParser.const_expr_return const_expr748 =null;
+        ObjcmParser.const_expr_return const_expr749 =null;
 
 
-        Object L_BR743_tree=null;
-        Object WS744_tree=null;
-        Object WS746_tree=null;
-        Object R_BR747_tree=null;
+        Object L_BR744_tree=null;
+        Object WS745_tree=null;
+        Object WS747_tree=null;
+        Object R_BR748_tree=null;
 
         try {
             // Objcm.g:787:2: ( L_BR ( WS )* expression ( WS )* R_BR | const_expr )
-            int alt361=2;
-            int LA361_0 = input.LA(1);
+            int alt362=2;
+            int LA362_0 = input.LA(1);
 
-            if ( (LA361_0==L_BR) ) {
-                alt361=1;
+            if ( (LA362_0==L_BR) ) {
+                alt362=1;
             }
-            else if ( (LA361_0==NUMBER||(LA361_0 >= STRING_LITERAL && LA361_0 <= STRING_LITERAL3)||LA361_0==139||LA361_0==154) ) {
-                alt361=2;
+            else if ( (LA362_0==NUMBER||(LA362_0 >= STRING_LITERAL && LA362_0 <= STRING_LITERAL3)||LA362_0==139||LA362_0==154) ) {
+                alt362=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 361, 0, input);
+                    new NoViableAltException("", 362, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt361) {
+            switch (alt362) {
                 case 1 :
                     // Objcm.g:787:4: L_BR ( WS )* expression ( WS )* R_BR
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    L_BR743=(Token)match(input,L_BR,FOLLOW_L_BR_in_in_brackets_end24857); 
-                    L_BR743_tree = 
-                    (Object)adaptor.create(L_BR743)
+                    L_BR744=(Token)match(input,L_BR,FOLLOW_L_BR_in_in_brackets_end24860); 
+                    L_BR744_tree = 
+                    (Object)adaptor.create(L_BR744)
                     ;
-                    adaptor.addChild(root_0, L_BR743_tree);
+                    adaptor.addChild(root_0, L_BR744_tree);
 
 
                     // Objcm.g:787:9: ( WS )*
-                    loop359:
-                    do {
-                        int alt359=2;
-                        int LA359_0 = input.LA(1);
-
-                        if ( (LA359_0==WS) ) {
-                            alt359=1;
-                        }
-
-
-                        switch (alt359) {
-                    	case 1 :
-                    	    // Objcm.g:787:9: WS
-                    	    {
-                    	    WS744=(Token)match(input,WS,FOLLOW_WS_in_in_brackets_end24859); 
-                    	    WS744_tree = 
-                    	    (Object)adaptor.create(WS744)
-                    	    ;
-                    	    adaptor.addChild(root_0, WS744_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop359;
-                        }
-                    } while (true);
-
-
-                    pushFollow(FOLLOW_expression_in_in_brackets_end24862);
-                    expression745=expression();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, expression745.getTree());
-
-                    // Objcm.g:787:24: ( WS )*
                     loop360:
                     do {
                         int alt360=2;
@@ -26506,13 +26518,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                         switch (alt360) {
                     	case 1 :
-                    	    // Objcm.g:787:24: WS
+                    	    // Objcm.g:787:9: WS
                     	    {
-                    	    WS746=(Token)match(input,WS,FOLLOW_WS_in_in_brackets_end24864); 
-                    	    WS746_tree = 
-                    	    (Object)adaptor.create(WS746)
+                    	    WS745=(Token)match(input,WS,FOLLOW_WS_in_in_brackets_end24862); 
+                    	    WS745_tree = 
+                    	    (Object)adaptor.create(WS745)
                     	    ;
-                    	    adaptor.addChild(root_0, WS746_tree);
+                    	    adaptor.addChild(root_0, WS745_tree);
 
 
                     	    }
@@ -26524,11 +26536,49 @@ public TreeAdaptor getTreeAdaptor() {
                     } while (true);
 
 
-                    R_BR747=(Token)match(input,R_BR,FOLLOW_R_BR_in_in_brackets_end24867); 
-                    R_BR747_tree = 
-                    (Object)adaptor.create(R_BR747)
+                    pushFollow(FOLLOW_expression_in_in_brackets_end24865);
+                    expression746=expression();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, expression746.getTree());
+
+                    // Objcm.g:787:24: ( WS )*
+                    loop361:
+                    do {
+                        int alt361=2;
+                        int LA361_0 = input.LA(1);
+
+                        if ( (LA361_0==WS) ) {
+                            alt361=1;
+                        }
+
+
+                        switch (alt361) {
+                    	case 1 :
+                    	    // Objcm.g:787:24: WS
+                    	    {
+                    	    WS747=(Token)match(input,WS,FOLLOW_WS_in_in_brackets_end24867); 
+                    	    WS747_tree = 
+                    	    (Object)adaptor.create(WS747)
+                    	    ;
+                    	    adaptor.addChild(root_0, WS747_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop361;
+                        }
+                    } while (true);
+
+
+                    R_BR748=(Token)match(input,R_BR,FOLLOW_R_BR_in_in_brackets_end24870); 
+                    R_BR748_tree = 
+                    (Object)adaptor.create(R_BR748)
                     ;
-                    adaptor.addChild(root_0, R_BR747_tree);
+                    adaptor.addChild(root_0, R_BR748_tree);
 
 
                     }
@@ -26539,12 +26589,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_const_expr_in_in_brackets_end24872);
-                    const_expr748=const_expr();
+                    pushFollow(FOLLOW_const_expr_in_in_brackets_end24875);
+                    const_expr749=const_expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, const_expr748.getTree());
+                    adaptor.addChild(root_0, const_expr749.getTree());
 
                     }
                     break;
@@ -26587,11 +26637,11 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ID749=null;
-        ObjcmParser.method_brackets_return method_brackets750 =null;
+        Token ID750=null;
+        ObjcmParser.method_brackets_return method_brackets751 =null;
 
 
-        Object ID749_tree=null;
+        Object ID750_tree=null;
 
         try {
             // Objcm.g:793:2: ( ID ( method_brackets )? )
@@ -26600,26 +26650,26 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            ID749=(Token)match(input,ID,FOLLOW_ID_in_method_start4887); 
-            ID749_tree = 
-            (Object)adaptor.create(ID749)
+            ID750=(Token)match(input,ID,FOLLOW_ID_in_method_start4890); 
+            ID750_tree = 
+            (Object)adaptor.create(ID750)
             ;
-            adaptor.addChild(root_0, ID749_tree);
+            adaptor.addChild(root_0, ID750_tree);
 
 
             // Objcm.g:793:7: ( method_brackets )?
-            int alt362=2;
-            alt362 = dfa362.predict(input);
-            switch (alt362) {
+            int alt363=2;
+            alt363 = dfa363.predict(input);
+            switch (alt363) {
                 case 1 :
                     // Objcm.g:793:7: method_brackets
                     {
-                    pushFollow(FOLLOW_method_brackets_in_method_start4889);
-                    method_brackets750=method_brackets();
+                    pushFollow(FOLLOW_method_brackets_in_method_start4892);
+                    method_brackets751=method_brackets();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, method_brackets750.getTree());
+                    adaptor.addChild(root_0, method_brackets751.getTree());
 
                     }
                     break;
@@ -26666,15 +26716,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_FBR751=null;
-        Token WS752=null;
-        Token R_FBR754=null;
-        ObjcmParser.q_brackets_source_return q_brackets_source753 =null;
+        Token L_FBR752=null;
+        Token WS753=null;
+        Token R_FBR755=null;
+        ObjcmParser.q_brackets_source_return q_brackets_source754 =null;
 
 
-        Object L_FBR751_tree=null;
-        Object WS752_tree=null;
-        Object R_FBR754_tree=null;
+        Object L_FBR752_tree=null;
+        Object WS753_tree=null;
+        Object R_FBR755_tree=null;
 
         try {
             // Objcm.g:796:2: ( L_FBR ( WS )* q_brackets_source R_FBR )
@@ -26683,56 +26733,56 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_FBR751=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_in_q_brackets4900); 
-            L_FBR751_tree = 
-            (Object)adaptor.create(L_FBR751)
+            L_FBR752=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_in_q_brackets4903); 
+            L_FBR752_tree = 
+            (Object)adaptor.create(L_FBR752)
             ;
-            adaptor.addChild(root_0, L_FBR751_tree);
+            adaptor.addChild(root_0, L_FBR752_tree);
 
 
             // Objcm.g:796:10: ( WS )*
-            loop363:
+            loop364:
             do {
-                int alt363=2;
-                int LA363_0 = input.LA(1);
+                int alt364=2;
+                int LA364_0 = input.LA(1);
 
-                if ( (LA363_0==WS) ) {
-                    alt363=1;
+                if ( (LA364_0==WS) ) {
+                    alt364=1;
                 }
 
 
-                switch (alt363) {
+                switch (alt364) {
             	case 1 :
             	    // Objcm.g:796:10: WS
             	    {
-            	    WS752=(Token)match(input,WS,FOLLOW_WS_in_in_q_brackets4902); 
-            	    WS752_tree = 
-            	    (Object)adaptor.create(WS752)
+            	    WS753=(Token)match(input,WS,FOLLOW_WS_in_in_q_brackets4905); 
+            	    WS753_tree = 
+            	    (Object)adaptor.create(WS753)
             	    ;
-            	    adaptor.addChild(root_0, WS752_tree);
+            	    adaptor.addChild(root_0, WS753_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop363;
+            	    break loop364;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_q_brackets_source_in_in_q_brackets4905);
-            q_brackets_source753=q_brackets_source();
+            pushFollow(FOLLOW_q_brackets_source_in_in_q_brackets4908);
+            q_brackets_source754=q_brackets_source();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, q_brackets_source753.getTree());
+            adaptor.addChild(root_0, q_brackets_source754.getTree());
 
-            R_FBR754=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_in_q_brackets4907); 
-            R_FBR754_tree = 
-            (Object)adaptor.create(R_FBR754)
+            R_FBR755=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_in_q_brackets4910); 
+            R_FBR755_tree = 
+            (Object)adaptor.create(R_FBR755)
             ;
-            adaptor.addChild(root_0, R_FBR754_tree);
+            adaptor.addChild(root_0, R_FBR755_tree);
 
 
             }
@@ -26774,43 +26824,43 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.q_source_return q_source755 =null;
+        ObjcmParser.q_source_return q_source756 =null;
 
-        ObjcmParser.q_br_source_return q_br_source756 =null;
+        ObjcmParser.q_br_source_return q_br_source757 =null;
 
 
 
         try {
             // Objcm.g:800:2: ( q_source | q_br_source )
-            int alt364=2;
-            int LA364_0 = input.LA(1);
+            int alt365=2;
+            int LA365_0 = input.LA(1);
 
-            if ( (LA364_0==ASTERISK||LA364_0==ID||LA364_0==L_BR||(LA364_0 >= L_KBR && LA364_0 <= L_PLUS_PLUS)||LA364_0==NUMBER||LA364_0==R_FBR||(LA364_0 >= STRING_LITERAL && LA364_0 <= STRING_LITERAL3)||LA364_0==102||LA364_0==108||LA364_0==111||LA364_0==113||LA364_0==128||LA364_0==135||LA364_0==139||LA364_0==143||LA364_0==152||LA364_0==154||LA364_0==156||LA364_0==165) ) {
-                alt364=1;
+            if ( (LA365_0==ASTERISK||LA365_0==ID||LA365_0==L_BR||(LA365_0 >= L_KBR && LA365_0 <= L_PLUS_PLUS)||LA365_0==NUMBER||LA365_0==R_FBR||(LA365_0 >= STRING_LITERAL && LA365_0 <= STRING_LITERAL3)||LA365_0==102||LA365_0==108||LA365_0==111||LA365_0==113||LA365_0==128||LA365_0==135||LA365_0==139||LA365_0==143||LA365_0==152||LA365_0==154||LA365_0==156||LA365_0==165) ) {
+                alt365=1;
             }
-            else if ( (LA364_0==L_FBR) ) {
-                alt364=2;
+            else if ( (LA365_0==L_FBR) ) {
+                alt365=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 364, 0, input);
+                    new NoViableAltException("", 365, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt364) {
+            switch (alt365) {
                 case 1 :
                     // Objcm.g:800:4: q_source
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_q_source_in_q_brackets_source4919);
-                    q_source755=q_source();
+                    pushFollow(FOLLOW_q_source_in_q_brackets_source4922);
+                    q_source756=q_source();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, q_source755.getTree());
+                    adaptor.addChild(root_0, q_source756.getTree());
 
                     }
                     break;
@@ -26820,12 +26870,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_q_br_source_in_q_brackets_source4924);
-                    q_br_source756=q_br_source();
+                    pushFollow(FOLLOW_q_br_source_in_q_brackets_source4927);
+                    q_br_source757=q_br_source();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, q_br_source756.getTree());
+                    adaptor.addChild(root_0, q_br_source757.getTree());
 
                     }
                     break;
@@ -26868,23 +26918,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS758=null;
-        Token COMMA759=null;
-        Token WS760=null;
-        Token WS762=null;
-        Token COMMA763=null;
-        Token WS764=null;
-        ObjcmParser.in_q_brackets_return in_q_brackets757 =null;
+        Token WS759=null;
+        Token COMMA760=null;
+        Token WS761=null;
+        Token WS763=null;
+        Token COMMA764=null;
+        Token WS765=null;
+        ObjcmParser.in_q_brackets_return in_q_brackets758 =null;
 
-        ObjcmParser.in_q_brackets_return in_q_brackets761 =null;
+        ObjcmParser.in_q_brackets_return in_q_brackets762 =null;
 
 
-        Object WS758_tree=null;
-        Object COMMA759_tree=null;
-        Object WS760_tree=null;
-        Object WS762_tree=null;
-        Object COMMA763_tree=null;
-        Object WS764_tree=null;
+        Object WS759_tree=null;
+        Object COMMA760_tree=null;
+        Object WS761_tree=null;
+        Object WS763_tree=null;
+        Object COMMA764_tree=null;
+        Object WS765_tree=null;
 
         try {
             // Objcm.g:805:2: ( in_q_brackets ( WS )* ( COMMA ( WS )* in_q_brackets ( WS )* )* ( COMMA ( WS )* )? )
@@ -26893,132 +26943,94 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_in_q_brackets_in_q_br_source4937);
-            in_q_brackets757=in_q_brackets();
+            pushFollow(FOLLOW_in_q_brackets_in_q_br_source4940);
+            in_q_brackets758=in_q_brackets();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, in_q_brackets757.getTree());
+            adaptor.addChild(root_0, in_q_brackets758.getTree());
 
             // Objcm.g:805:18: ( WS )*
-            loop365:
+            loop366:
             do {
-                int alt365=2;
-                int LA365_0 = input.LA(1);
+                int alt366=2;
+                int LA366_0 = input.LA(1);
 
-                if ( (LA365_0==WS) ) {
-                    alt365=1;
+                if ( (LA366_0==WS) ) {
+                    alt366=1;
                 }
 
 
-                switch (alt365) {
+                switch (alt366) {
             	case 1 :
             	    // Objcm.g:805:18: WS
             	    {
-            	    WS758=(Token)match(input,WS,FOLLOW_WS_in_q_br_source4939); 
-            	    WS758_tree = 
-            	    (Object)adaptor.create(WS758)
+            	    WS759=(Token)match(input,WS,FOLLOW_WS_in_q_br_source4942); 
+            	    WS759_tree = 
+            	    (Object)adaptor.create(WS759)
             	    ;
-            	    adaptor.addChild(root_0, WS758_tree);
+            	    adaptor.addChild(root_0, WS759_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop365;
+            	    break loop366;
                 }
             } while (true);
 
 
             // Objcm.g:805:22: ( COMMA ( WS )* in_q_brackets ( WS )* )*
-            loop368:
+            loop369:
             do {
-                int alt368=2;
-                int LA368_0 = input.LA(1);
+                int alt369=2;
+                int LA369_0 = input.LA(1);
 
-                if ( (LA368_0==COMMA) ) {
-                    int LA368_1 = input.LA(2);
+                if ( (LA369_0==COMMA) ) {
+                    int LA369_1 = input.LA(2);
 
-                    if ( (LA368_1==WS) ) {
-                        int LA368_3 = input.LA(3);
+                    if ( (LA369_1==WS) ) {
+                        int LA369_3 = input.LA(3);
 
-                        if ( (LA368_3==WS) ) {
-                            int LA368_7 = input.LA(4);
+                        if ( (LA369_3==WS) ) {
+                            int LA369_7 = input.LA(4);
 
-                            if ( (LA368_7==WS) ) {
-                                alt368=1;
+                            if ( (LA369_7==WS) ) {
+                                alt369=1;
                             }
-                            else if ( (LA368_7==L_FBR) ) {
-                                alt368=1;
+                            else if ( (LA369_7==L_FBR) ) {
+                                alt369=1;
                             }
 
 
                         }
-                        else if ( (LA368_3==L_FBR) ) {
-                            alt368=1;
+                        else if ( (LA369_3==L_FBR) ) {
+                            alt369=1;
                         }
 
 
                     }
-                    else if ( (LA368_1==L_FBR) ) {
-                        alt368=1;
+                    else if ( (LA369_1==L_FBR) ) {
+                        alt369=1;
                     }
 
 
                 }
 
 
-                switch (alt368) {
+                switch (alt369) {
             	case 1 :
             	    // Objcm.g:805:23: COMMA ( WS )* in_q_brackets ( WS )*
             	    {
-            	    COMMA759=(Token)match(input,COMMA,FOLLOW_COMMA_in_q_br_source4943); 
-            	    COMMA759_tree = 
-            	    (Object)adaptor.create(COMMA759)
+            	    COMMA760=(Token)match(input,COMMA,FOLLOW_COMMA_in_q_br_source4946); 
+            	    COMMA760_tree = 
+            	    (Object)adaptor.create(COMMA760)
             	    ;
-            	    adaptor.addChild(root_0, COMMA759_tree);
+            	    adaptor.addChild(root_0, COMMA760_tree);
 
 
             	    // Objcm.g:805:29: ( WS )*
-            	    loop366:
-            	    do {
-            	        int alt366=2;
-            	        int LA366_0 = input.LA(1);
-
-            	        if ( (LA366_0==WS) ) {
-            	            alt366=1;
-            	        }
-
-
-            	        switch (alt366) {
-            	    	case 1 :
-            	    	    // Objcm.g:805:29: WS
-            	    	    {
-            	    	    WS760=(Token)match(input,WS,FOLLOW_WS_in_q_br_source4945); 
-            	    	    WS760_tree = 
-            	    	    (Object)adaptor.create(WS760)
-            	    	    ;
-            	    	    adaptor.addChild(root_0, WS760_tree);
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop366;
-            	        }
-            	    } while (true);
-
-
-            	    pushFollow(FOLLOW_in_q_brackets_in_q_br_source4948);
-            	    in_q_brackets761=in_q_brackets();
-
-            	    state._fsp--;
-
-            	    adaptor.addChild(root_0, in_q_brackets761.getTree());
-
-            	    // Objcm.g:805:47: ( WS )*
             	    loop367:
             	    do {
             	        int alt367=2;
@@ -27031,13 +27043,13 @@ public TreeAdaptor getTreeAdaptor() {
 
             	        switch (alt367) {
             	    	case 1 :
-            	    	    // Objcm.g:805:47: WS
+            	    	    // Objcm.g:805:29: WS
             	    	    {
-            	    	    WS762=(Token)match(input,WS,FOLLOW_WS_in_q_br_source4950); 
-            	    	    WS762_tree = 
-            	    	    (Object)adaptor.create(WS762)
+            	    	    WS761=(Token)match(input,WS,FOLLOW_WS_in_q_br_source4948); 
+            	    	    WS761_tree = 
+            	    	    (Object)adaptor.create(WS761)
             	    	    ;
-            	    	    adaptor.addChild(root_0, WS762_tree);
+            	    	    adaptor.addChild(root_0, WS761_tree);
 
 
             	    	    }
@@ -27049,60 +27061,98 @@ public TreeAdaptor getTreeAdaptor() {
             	    } while (true);
 
 
+            	    pushFollow(FOLLOW_in_q_brackets_in_q_br_source4951);
+            	    in_q_brackets762=in_q_brackets();
+
+            	    state._fsp--;
+
+            	    adaptor.addChild(root_0, in_q_brackets762.getTree());
+
+            	    // Objcm.g:805:47: ( WS )*
+            	    loop368:
+            	    do {
+            	        int alt368=2;
+            	        int LA368_0 = input.LA(1);
+
+            	        if ( (LA368_0==WS) ) {
+            	            alt368=1;
+            	        }
+
+
+            	        switch (alt368) {
+            	    	case 1 :
+            	    	    // Objcm.g:805:47: WS
+            	    	    {
+            	    	    WS763=(Token)match(input,WS,FOLLOW_WS_in_q_br_source4953); 
+            	    	    WS763_tree = 
+            	    	    (Object)adaptor.create(WS763)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS763_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop368;
+            	        }
+            	    } while (true);
+
+
             	    }
             	    break;
 
             	default :
-            	    break loop368;
+            	    break loop369;
                 }
             } while (true);
 
 
             // Objcm.g:805:53: ( COMMA ( WS )* )?
-            int alt370=2;
-            int LA370_0 = input.LA(1);
+            int alt371=2;
+            int LA371_0 = input.LA(1);
 
-            if ( (LA370_0==COMMA) ) {
-                alt370=1;
+            if ( (LA371_0==COMMA) ) {
+                alt371=1;
             }
-            switch (alt370) {
+            switch (alt371) {
                 case 1 :
                     // Objcm.g:805:54: COMMA ( WS )*
                     {
-                    COMMA763=(Token)match(input,COMMA,FOLLOW_COMMA_in_q_br_source4956); 
-                    COMMA763_tree = 
-                    (Object)adaptor.create(COMMA763)
+                    COMMA764=(Token)match(input,COMMA,FOLLOW_COMMA_in_q_br_source4959); 
+                    COMMA764_tree = 
+                    (Object)adaptor.create(COMMA764)
                     ;
-                    adaptor.addChild(root_0, COMMA763_tree);
+                    adaptor.addChild(root_0, COMMA764_tree);
 
 
                     // Objcm.g:805:60: ( WS )*
-                    loop369:
+                    loop370:
                     do {
-                        int alt369=2;
-                        int LA369_0 = input.LA(1);
+                        int alt370=2;
+                        int LA370_0 = input.LA(1);
 
-                        if ( (LA369_0==WS) ) {
-                            alt369=1;
+                        if ( (LA370_0==WS) ) {
+                            alt370=1;
                         }
 
 
-                        switch (alt369) {
+                        switch (alt370) {
                     	case 1 :
                     	    // Objcm.g:805:60: WS
                     	    {
-                    	    WS764=(Token)match(input,WS,FOLLOW_WS_in_q_br_source4958); 
-                    	    WS764_tree = 
-                    	    (Object)adaptor.create(WS764)
+                    	    WS765=(Token)match(input,WS,FOLLOW_WS_in_q_br_source4961); 
+                    	    WS765_tree = 
+                    	    (Object)adaptor.create(WS765)
                     	    ;
-                    	    adaptor.addChild(root_0, WS764_tree);
+                    	    adaptor.addChild(root_0, WS765_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop369;
+                    	    break loop370;
                         }
                     } while (true);
 
@@ -27152,19 +27202,19 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS766=null;
-        Token COMMA767=null;
-        Token WS768=null;
-        Token WS770=null;
-        ObjcmParser.expression_return expression765 =null;
+        Token WS767=null;
+        Token COMMA768=null;
+        Token WS769=null;
+        Token WS771=null;
+        ObjcmParser.expression_return expression766 =null;
 
-        ObjcmParser.expression_return expression769 =null;
+        ObjcmParser.expression_return expression770 =null;
 
 
-        Object WS766_tree=null;
-        Object COMMA767_tree=null;
-        Object WS768_tree=null;
-        Object WS770_tree=null;
+        Object WS767_tree=null;
+        Object COMMA768_tree=null;
+        Object WS769_tree=null;
+        Object WS771_tree=null;
 
         try {
             // Objcm.g:808:9: ( ( expression ( WS )* ( COMMA ( WS )* expression ( WS )* )* )? )
@@ -27174,115 +27224,77 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:808:11: ( expression ( WS )* ( COMMA ( WS )* expression ( WS )* )* )?
-            int alt375=2;
-            int LA375_0 = input.LA(1);
+            int alt376=2;
+            int LA376_0 = input.LA(1);
 
-            if ( (LA375_0==ASTERISK||LA375_0==ID||LA375_0==L_BR||(LA375_0 >= L_KBR && LA375_0 <= L_PLUS_PLUS)||LA375_0==NUMBER||(LA375_0 >= STRING_LITERAL && LA375_0 <= STRING_LITERAL3)||LA375_0==102||LA375_0==108||LA375_0==111||LA375_0==113||LA375_0==128||LA375_0==135||LA375_0==139||LA375_0==143||LA375_0==152||LA375_0==154||LA375_0==156||LA375_0==165) ) {
-                alt375=1;
+            if ( (LA376_0==ASTERISK||LA376_0==ID||LA376_0==L_BR||(LA376_0 >= L_KBR && LA376_0 <= L_PLUS_PLUS)||LA376_0==NUMBER||(LA376_0 >= STRING_LITERAL && LA376_0 <= STRING_LITERAL3)||LA376_0==102||LA376_0==108||LA376_0==111||LA376_0==113||LA376_0==128||LA376_0==135||LA376_0==139||LA376_0==143||LA376_0==152||LA376_0==154||LA376_0==156||LA376_0==165) ) {
+                alt376=1;
             }
-            switch (alt375) {
+            switch (alt376) {
                 case 1 :
                     // Objcm.g:808:12: expression ( WS )* ( COMMA ( WS )* expression ( WS )* )*
                     {
-                    pushFollow(FOLLOW_expression_in_q_source4972);
-                    expression765=expression();
+                    pushFollow(FOLLOW_expression_in_q_source4975);
+                    expression766=expression();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression765.getTree());
+                    adaptor.addChild(root_0, expression766.getTree());
 
                     // Objcm.g:808:23: ( WS )*
-                    loop371:
+                    loop372:
                     do {
-                        int alt371=2;
-                        int LA371_0 = input.LA(1);
+                        int alt372=2;
+                        int LA372_0 = input.LA(1);
 
-                        if ( (LA371_0==WS) ) {
-                            alt371=1;
+                        if ( (LA372_0==WS) ) {
+                            alt372=1;
                         }
 
 
-                        switch (alt371) {
+                        switch (alt372) {
                     	case 1 :
                     	    // Objcm.g:808:23: WS
                     	    {
-                    	    WS766=(Token)match(input,WS,FOLLOW_WS_in_q_source4974); 
-                    	    WS766_tree = 
-                    	    (Object)adaptor.create(WS766)
+                    	    WS767=(Token)match(input,WS,FOLLOW_WS_in_q_source4977); 
+                    	    WS767_tree = 
+                    	    (Object)adaptor.create(WS767)
                     	    ;
-                    	    adaptor.addChild(root_0, WS766_tree);
+                    	    adaptor.addChild(root_0, WS767_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop371;
+                    	    break loop372;
                         }
                     } while (true);
 
 
                     // Objcm.g:808:27: ( COMMA ( WS )* expression ( WS )* )*
-                    loop374:
+                    loop375:
                     do {
-                        int alt374=2;
-                        int LA374_0 = input.LA(1);
+                        int alt375=2;
+                        int LA375_0 = input.LA(1);
 
-                        if ( (LA374_0==COMMA) ) {
-                            alt374=1;
+                        if ( (LA375_0==COMMA) ) {
+                            alt375=1;
                         }
 
 
-                        switch (alt374) {
+                        switch (alt375) {
                     	case 1 :
                     	    // Objcm.g:808:28: COMMA ( WS )* expression ( WS )*
                     	    {
-                    	    COMMA767=(Token)match(input,COMMA,FOLLOW_COMMA_in_q_source4978); 
-                    	    COMMA767_tree = 
-                    	    (Object)adaptor.create(COMMA767)
+                    	    COMMA768=(Token)match(input,COMMA,FOLLOW_COMMA_in_q_source4981); 
+                    	    COMMA768_tree = 
+                    	    (Object)adaptor.create(COMMA768)
                     	    ;
-                    	    adaptor.addChild(root_0, COMMA767_tree);
+                    	    adaptor.addChild(root_0, COMMA768_tree);
 
 
                     	    // Objcm.g:808:34: ( WS )*
-                    	    loop372:
-                    	    do {
-                    	        int alt372=2;
-                    	        int LA372_0 = input.LA(1);
-
-                    	        if ( (LA372_0==WS) ) {
-                    	            alt372=1;
-                    	        }
-
-
-                    	        switch (alt372) {
-                    	    	case 1 :
-                    	    	    // Objcm.g:808:34: WS
-                    	    	    {
-                    	    	    WS768=(Token)match(input,WS,FOLLOW_WS_in_q_source4980); 
-                    	    	    WS768_tree = 
-                    	    	    (Object)adaptor.create(WS768)
-                    	    	    ;
-                    	    	    adaptor.addChild(root_0, WS768_tree);
-
-
-                    	    	    }
-                    	    	    break;
-
-                    	    	default :
-                    	    	    break loop372;
-                    	        }
-                    	    } while (true);
-
-
-                    	    pushFollow(FOLLOW_expression_in_q_source4983);
-                    	    expression769=expression();
-
-                    	    state._fsp--;
-
-                    	    adaptor.addChild(root_0, expression769.getTree());
-
-                    	    // Objcm.g:808:49: ( WS )*
                     	    loop373:
                     	    do {
                     	        int alt373=2;
@@ -27295,13 +27307,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                     	        switch (alt373) {
                     	    	case 1 :
-                    	    	    // Objcm.g:808:49: WS
+                    	    	    // Objcm.g:808:34: WS
                     	    	    {
-                    	    	    WS770=(Token)match(input,WS,FOLLOW_WS_in_q_source4985); 
-                    	    	    WS770_tree = 
-                    	    	    (Object)adaptor.create(WS770)
+                    	    	    WS769=(Token)match(input,WS,FOLLOW_WS_in_q_source4983); 
+                    	    	    WS769_tree = 
+                    	    	    (Object)adaptor.create(WS769)
                     	    	    ;
-                    	    	    adaptor.addChild(root_0, WS770_tree);
+                    	    	    adaptor.addChild(root_0, WS769_tree);
 
 
                     	    	    }
@@ -27313,11 +27325,49 @@ public TreeAdaptor getTreeAdaptor() {
                     	    } while (true);
 
 
+                    	    pushFollow(FOLLOW_expression_in_q_source4986);
+                    	    expression770=expression();
+
+                    	    state._fsp--;
+
+                    	    adaptor.addChild(root_0, expression770.getTree());
+
+                    	    // Objcm.g:808:49: ( WS )*
+                    	    loop374:
+                    	    do {
+                    	        int alt374=2;
+                    	        int LA374_0 = input.LA(1);
+
+                    	        if ( (LA374_0==WS) ) {
+                    	            alt374=1;
+                    	        }
+
+
+                    	        switch (alt374) {
+                    	    	case 1 :
+                    	    	    // Objcm.g:808:49: WS
+                    	    	    {
+                    	    	    WS771=(Token)match(input,WS,FOLLOW_WS_in_q_source4988); 
+                    	    	    WS771_tree = 
+                    	    	    (Object)adaptor.create(WS771)
+                    	    	    ;
+                    	    	    adaptor.addChild(root_0, WS771_tree);
+
+
+                    	    	    }
+                    	    	    break;
+
+                    	    	default :
+                    	    	    break loop374;
+                    	        }
+                    	    } while (true);
+
+
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop374;
+                    	    break loop375;
                         }
                     } while (true);
 
@@ -27367,11 +27417,11 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ID771=null;
-        ObjcmParser.method_brackets_return method_brackets772 =null;
+        Token ID772=null;
+        ObjcmParser.method_brackets_return method_brackets773 =null;
 
 
-        Object ID771_tree=null;
+        Object ID772_tree=null;
 
         try {
             // Objcm.g:812:2: ( ID ( method_brackets )? )
@@ -27380,30 +27430,30 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            ID771=(Token)match(input,ID,FOLLOW_ID_in_simple_method_call5003); 
-            ID771_tree = 
-            (Object)adaptor.create(ID771)
+            ID772=(Token)match(input,ID,FOLLOW_ID_in_simple_method_call5006); 
+            ID772_tree = 
+            (Object)adaptor.create(ID772)
             ;
-            adaptor.addChild(root_0, ID771_tree);
+            adaptor.addChild(root_0, ID772_tree);
 
 
             // Objcm.g:812:7: ( method_brackets )?
-            int alt376=2;
-            int LA376_0 = input.LA(1);
+            int alt377=2;
+            int LA377_0 = input.LA(1);
 
-            if ( (LA376_0==L_BR) ) {
-                alt376=1;
+            if ( (LA377_0==L_BR) ) {
+                alt377=1;
             }
-            switch (alt376) {
+            switch (alt377) {
                 case 1 :
                     // Objcm.g:812:7: method_brackets
                     {
-                    pushFollow(FOLLOW_method_brackets_in_simple_method_call5005);
-                    method_brackets772=method_brackets();
+                    pushFollow(FOLLOW_method_brackets_in_simple_method_call5008);
+                    method_brackets773=method_brackets();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, method_brackets772.getTree());
+                    adaptor.addChild(root_0, method_brackets773.getTree());
 
                     }
                     break;
@@ -27450,13 +27500,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_BR773=null;
-        Token WS774=null;
-        ObjcmParser.round_brackets_end_return round_brackets_end775 =null;
+        Token L_BR774=null;
+        Token WS775=null;
+        ObjcmParser.round_brackets_end_return round_brackets_end776 =null;
 
 
-        Object L_BR773_tree=null;
-        Object WS774_tree=null;
+        Object L_BR774_tree=null;
+        Object WS775_tree=null;
 
         try {
             // Objcm.g:815:2: ( L_BR ( WS )* round_brackets_end )
@@ -27465,50 +27515,50 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_BR773=(Token)match(input,L_BR,FOLLOW_L_BR_in_round_brackets5017); 
-            L_BR773_tree = 
-            (Object)adaptor.create(L_BR773)
+            L_BR774=(Token)match(input,L_BR,FOLLOW_L_BR_in_round_brackets5020); 
+            L_BR774_tree = 
+            (Object)adaptor.create(L_BR774)
             ;
-            adaptor.addChild(root_0, L_BR773_tree);
+            adaptor.addChild(root_0, L_BR774_tree);
 
 
             // Objcm.g:815:9: ( WS )*
-            loop377:
+            loop378:
             do {
-                int alt377=2;
-                int LA377_0 = input.LA(1);
+                int alt378=2;
+                int LA378_0 = input.LA(1);
 
-                if ( (LA377_0==WS) ) {
-                    alt377=1;
+                if ( (LA378_0==WS) ) {
+                    alt378=1;
                 }
 
 
-                switch (alt377) {
+                switch (alt378) {
             	case 1 :
             	    // Objcm.g:815:9: WS
             	    {
-            	    WS774=(Token)match(input,WS,FOLLOW_WS_in_round_brackets5019); 
-            	    WS774_tree = 
-            	    (Object)adaptor.create(WS774)
+            	    WS775=(Token)match(input,WS,FOLLOW_WS_in_round_brackets5022); 
+            	    WS775_tree = 
+            	    (Object)adaptor.create(WS775)
             	    ;
-            	    adaptor.addChild(root_0, WS774_tree);
+            	    adaptor.addChild(root_0, WS775_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop377;
+            	    break loop378;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_round_brackets_end_in_round_brackets5022);
-            round_brackets_end775=round_brackets_end();
+            pushFollow(FOLLOW_round_brackets_end_in_round_brackets5025);
+            round_brackets_end776=round_brackets_end();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, round_brackets_end775.getTree());
+            adaptor.addChild(root_0, round_brackets_end776.getTree());
 
             }
 
@@ -27549,41 +27599,41 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token R_BR778=null;
-        Token WS779=null;
-        Token WS781=null;
-        ObjcmParser.type_in_brackets_return type_in_brackets776 =null;
+        Token R_BR779=null;
+        Token WS780=null;
+        Token WS782=null;
+        ObjcmParser.type_in_brackets_return type_in_brackets777 =null;
 
-        ObjcmParser.const_expr_return const_expr777 =null;
+        ObjcmParser.const_expr_return const_expr778 =null;
 
-        ObjcmParser.expr_return expr780 =null;
+        ObjcmParser.expr_return expr781 =null;
 
-        ObjcmParser.expression_end_return expression_end782 =null;
+        ObjcmParser.expression_end_return expression_end783 =null;
 
-        ObjcmParser.in_brackets_end2_return in_brackets_end2783 =null;
+        ObjcmParser.in_brackets_end2_return in_brackets_end2784 =null;
 
 
-        Object R_BR778_tree=null;
-        Object WS779_tree=null;
-        Object WS781_tree=null;
+        Object R_BR779_tree=null;
+        Object WS780_tree=null;
+        Object WS782_tree=null;
 
         try {
             // Objcm.g:819:2: ( type_in_brackets | const_expr R_BR ( WS )* | expr ( WS )* expression_end ( in_brackets_end2 )? )
-            int alt381=3;
-            alt381 = dfa381.predict(input);
-            switch (alt381) {
+            int alt382=3;
+            alt382 = dfa382.predict(input);
+            switch (alt382) {
                 case 1 :
                     // Objcm.g:819:4: type_in_brackets
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_type_in_brackets_in_round_brackets_end5034);
-                    type_in_brackets776=type_in_brackets();
+                    pushFollow(FOLLOW_type_in_brackets_in_round_brackets_end5037);
+                    type_in_brackets777=type_in_brackets();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, type_in_brackets776.getTree());
+                    adaptor.addChild(root_0, type_in_brackets777.getTree());
 
                     }
                     break;
@@ -27593,67 +27643,21 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_const_expr_in_round_brackets_end5039);
-                    const_expr777=const_expr();
+                    pushFollow(FOLLOW_const_expr_in_round_brackets_end5042);
+                    const_expr778=const_expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, const_expr777.getTree());
+                    adaptor.addChild(root_0, const_expr778.getTree());
 
-                    R_BR778=(Token)match(input,R_BR,FOLLOW_R_BR_in_round_brackets_end5041); 
-                    R_BR778_tree = 
-                    (Object)adaptor.create(R_BR778)
+                    R_BR779=(Token)match(input,R_BR,FOLLOW_R_BR_in_round_brackets_end5044); 
+                    R_BR779_tree = 
+                    (Object)adaptor.create(R_BR779)
                     ;
-                    adaptor.addChild(root_0, R_BR778_tree);
+                    adaptor.addChild(root_0, R_BR779_tree);
 
 
                     // Objcm.g:820:20: ( WS )*
-                    loop378:
-                    do {
-                        int alt378=2;
-                        int LA378_0 = input.LA(1);
-
-                        if ( (LA378_0==WS) ) {
-                            alt378=1;
-                        }
-
-
-                        switch (alt378) {
-                    	case 1 :
-                    	    // Objcm.g:820:20: WS
-                    	    {
-                    	    WS779=(Token)match(input,WS,FOLLOW_WS_in_round_brackets_end5043); 
-                    	    WS779_tree = 
-                    	    (Object)adaptor.create(WS779)
-                    	    ;
-                    	    adaptor.addChild(root_0, WS779_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop378;
-                        }
-                    } while (true);
-
-
-                    }
-                    break;
-                case 3 :
-                    // Objcm.g:821:4: expr ( WS )* expression_end ( in_brackets_end2 )?
-                    {
-                    root_0 = (Object)adaptor.nil();
-
-
-                    pushFollow(FOLLOW_expr_in_round_brackets_end5049);
-                    expr780=expr();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, expr780.getTree());
-
-                    // Objcm.g:821:9: ( WS )*
                     loop379:
                     do {
                         int alt379=2;
@@ -27666,13 +27670,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                         switch (alt379) {
                     	case 1 :
-                    	    // Objcm.g:821:9: WS
+                    	    // Objcm.g:820:20: WS
                     	    {
-                    	    WS781=(Token)match(input,WS,FOLLOW_WS_in_round_brackets_end5051); 
-                    	    WS781_tree = 
-                    	    (Object)adaptor.create(WS781)
+                    	    WS780=(Token)match(input,WS,FOLLOW_WS_in_round_brackets_end5046); 
+                    	    WS780_tree = 
+                    	    (Object)adaptor.create(WS780)
                     	    ;
-                    	    adaptor.addChild(root_0, WS781_tree);
+                    	    adaptor.addChild(root_0, WS780_tree);
 
 
                     	    }
@@ -27684,59 +27688,105 @@ public TreeAdaptor getTreeAdaptor() {
                     } while (true);
 
 
-                    pushFollow(FOLLOW_expression_end_in_round_brackets_end5054);
-                    expression_end782=expression_end();
+                    }
+                    break;
+                case 3 :
+                    // Objcm.g:821:4: expr ( WS )* expression_end ( in_brackets_end2 )?
+                    {
+                    root_0 = (Object)adaptor.nil();
+
+
+                    pushFollow(FOLLOW_expr_in_round_brackets_end5052);
+                    expr781=expr();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, expression_end782.getTree());
+                    adaptor.addChild(root_0, expr781.getTree());
+
+                    // Objcm.g:821:9: ( WS )*
+                    loop380:
+                    do {
+                        int alt380=2;
+                        int LA380_0 = input.LA(1);
+
+                        if ( (LA380_0==WS) ) {
+                            alt380=1;
+                        }
+
+
+                        switch (alt380) {
+                    	case 1 :
+                    	    // Objcm.g:821:9: WS
+                    	    {
+                    	    WS782=(Token)match(input,WS,FOLLOW_WS_in_round_brackets_end5054); 
+                    	    WS782_tree = 
+                    	    (Object)adaptor.create(WS782)
+                    	    ;
+                    	    adaptor.addChild(root_0, WS782_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop380;
+                        }
+                    } while (true);
+
+
+                    pushFollow(FOLLOW_expression_end_in_round_brackets_end5057);
+                    expression_end783=expression_end();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, expression_end783.getTree());
 
                     // Objcm.g:821:28: ( in_brackets_end2 )?
-                    int alt380=2;
+                    int alt381=2;
                     switch ( input.LA(1) ) {
                         case L_BR:
                             {
-                            alt380=1;
+                            alt381=1;
                             }
                             break;
                         case NUMBER:
                             {
-                            alt380=1;
+                            alt381=1;
                             }
                             break;
                         case STRING_LITERAL:
                             {
-                            alt380=1;
+                            alt381=1;
                             }
                             break;
                         case STRING_LITERAL2:
                             {
-                            alt380=1;
+                            alt381=1;
                             }
                             break;
                         case STRING_LITERAL3:
                             {
-                            alt380=1;
+                            alt381=1;
                             }
                             break;
                         case 139:
                         case 154:
                             {
-                            alt380=1;
+                            alt381=1;
                             }
                             break;
                     }
 
-                    switch (alt380) {
+                    switch (alt381) {
                         case 1 :
                             // Objcm.g:821:28: in_brackets_end2
                             {
-                            pushFollow(FOLLOW_in_brackets_end2_in_round_brackets_end5056);
-                            in_brackets_end2783=in_brackets_end2();
+                            pushFollow(FOLLOW_in_brackets_end2_in_round_brackets_end5059);
+                            in_brackets_end2784=in_brackets_end2();
 
                             state._fsp--;
 
-                            adaptor.addChild(root_0, in_brackets_end2783.getTree());
+                            adaptor.addChild(root_0, in_brackets_end2784.getTree());
 
                             }
                             break;
@@ -27777,7 +27827,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "type_in_brackets"
-    // Objcm.g:824:1: type_in_brackets : ( CONST_PREFIX )? ID ( generic ( WS )* )? R_BR ( WS )* in_brackets_end1 ;
+    // Objcm.g:824:1: type_in_brackets : ( CONST_PREFIX )? ID ( generic )? ( WS )* ( ASTERISK ( WS )* )* R_BR ( WS )* in_brackets_end1 ;
     public final ObjcmParser.type_in_brackets_return type_in_brackets() throws RecognitionException {
         ObjcmParser.type_in_brackets_return retval = new ObjcmParser.type_in_brackets_return();
         retval.start = input.LT(1);
@@ -27785,45 +27835,49 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token CONST_PREFIX784=null;
-        Token ID785=null;
-        Token WS787=null;
-        Token R_BR788=null;
-        Token WS789=null;
-        ObjcmParser.generic_return generic786 =null;
+        Token CONST_PREFIX785=null;
+        Token ID786=null;
+        Token WS788=null;
+        Token ASTERISK789=null;
+        Token WS790=null;
+        Token R_BR791=null;
+        Token WS792=null;
+        ObjcmParser.generic_return generic787 =null;
 
-        ObjcmParser.in_brackets_end1_return in_brackets_end1790 =null;
+        ObjcmParser.in_brackets_end1_return in_brackets_end1793 =null;
 
 
-        Object CONST_PREFIX784_tree=null;
-        Object ID785_tree=null;
-        Object WS787_tree=null;
-        Object R_BR788_tree=null;
-        Object WS789_tree=null;
+        Object CONST_PREFIX785_tree=null;
+        Object ID786_tree=null;
+        Object WS788_tree=null;
+        Object ASTERISK789_tree=null;
+        Object WS790_tree=null;
+        Object R_BR791_tree=null;
+        Object WS792_tree=null;
 
         try {
-            // Objcm.g:825:2: ( ( CONST_PREFIX )? ID ( generic ( WS )* )? R_BR ( WS )* in_brackets_end1 )
-            // Objcm.g:825:4: ( CONST_PREFIX )? ID ( generic ( WS )* )? R_BR ( WS )* in_brackets_end1
+            // Objcm.g:825:2: ( ( CONST_PREFIX )? ID ( generic )? ( WS )* ( ASTERISK ( WS )* )* R_BR ( WS )* in_brackets_end1 )
+            // Objcm.g:825:4: ( CONST_PREFIX )? ID ( generic )? ( WS )* ( ASTERISK ( WS )* )* R_BR ( WS )* in_brackets_end1
             {
             root_0 = (Object)adaptor.nil();
 
 
             // Objcm.g:825:4: ( CONST_PREFIX )?
-            int alt382=2;
-            int LA382_0 = input.LA(1);
+            int alt383=2;
+            int LA383_0 = input.LA(1);
 
-            if ( (LA382_0==CONST_PREFIX) ) {
-                alt382=1;
+            if ( (LA383_0==CONST_PREFIX) ) {
+                alt383=1;
             }
-            switch (alt382) {
+            switch (alt383) {
                 case 1 :
                     // Objcm.g:825:4: CONST_PREFIX
                     {
-                    CONST_PREFIX784=(Token)match(input,CONST_PREFIX,FOLLOW_CONST_PREFIX_in_type_in_brackets5070); 
-                    CONST_PREFIX784_tree = 
-                    (Object)adaptor.create(CONST_PREFIX784)
+                    CONST_PREFIX785=(Token)match(input,CONST_PREFIX,FOLLOW_CONST_PREFIX_in_type_in_brackets5073); 
+                    CONST_PREFIX785_tree = 
+                    (Object)adaptor.create(CONST_PREFIX785)
                     ;
-                    adaptor.addChild(root_0, CONST_PREFIX784_tree);
+                    adaptor.addChild(root_0, CONST_PREFIX785_tree);
 
 
                     }
@@ -27832,14 +27886,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            ID785=(Token)match(input,ID,FOLLOW_ID_in_type_in_brackets5073); 
-            ID785_tree = 
-            (Object)adaptor.create(ID785)
+            ID786=(Token)match(input,ID,FOLLOW_ID_in_type_in_brackets5076); 
+            ID786_tree = 
+            (Object)adaptor.create(ID786)
             ;
-            adaptor.addChild(root_0, ID785_tree);
+            adaptor.addChild(root_0, ID786_tree);
 
 
-            // Objcm.g:825:21: ( generic ( WS )* )?
+            // Objcm.g:825:21: ( generic )?
             int alt384=2;
             int LA384_0 = input.LA(1);
 
@@ -27848,45 +27902,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt384) {
                 case 1 :
-                    // Objcm.g:825:22: generic ( WS )*
+                    // Objcm.g:825:21: generic
                     {
-                    pushFollow(FOLLOW_generic_in_type_in_brackets5076);
-                    generic786=generic();
+                    pushFollow(FOLLOW_generic_in_type_in_brackets5078);
+                    generic787=generic();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, generic786.getTree());
-
-                    // Objcm.g:825:30: ( WS )*
-                    loop383:
-                    do {
-                        int alt383=2;
-                        int LA383_0 = input.LA(1);
-
-                        if ( (LA383_0==WS) ) {
-                            alt383=1;
-                        }
-
-
-                        switch (alt383) {
-                    	case 1 :
-                    	    // Objcm.g:825:30: WS
-                    	    {
-                    	    WS787=(Token)match(input,WS,FOLLOW_WS_in_type_in_brackets5078); 
-                    	    WS787_tree = 
-                    	    (Object)adaptor.create(WS787)
-                    	    ;
-                    	    adaptor.addChild(root_0, WS787_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop383;
-                        }
-                    } while (true);
-
+                    adaptor.addChild(root_0, generic787.getTree());
 
                     }
                     break;
@@ -27894,14 +27917,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            R_BR788=(Token)match(input,R_BR,FOLLOW_R_BR_in_type_in_brackets5083); 
-            R_BR788_tree = 
-            (Object)adaptor.create(R_BR788)
-            ;
-            adaptor.addChild(root_0, R_BR788_tree);
-
-
-            // Objcm.g:825:41: ( WS )*
+            // Objcm.g:825:30: ( WS )*
             loop385:
             do {
                 int alt385=2;
@@ -27914,13 +27930,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt385) {
             	case 1 :
-            	    // Objcm.g:825:41: WS
+            	    // Objcm.g:825:30: WS
             	    {
-            	    WS789=(Token)match(input,WS,FOLLOW_WS_in_type_in_brackets5085); 
-            	    WS789_tree = 
-            	    (Object)adaptor.create(WS789)
+            	    WS788=(Token)match(input,WS,FOLLOW_WS_in_type_in_brackets5081); 
+            	    WS788_tree = 
+            	    (Object)adaptor.create(WS788)
             	    ;
-            	    adaptor.addChild(root_0, WS789_tree);
+            	    adaptor.addChild(root_0, WS788_tree);
 
 
             	    }
@@ -27932,12 +27948,112 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            pushFollow(FOLLOW_in_brackets_end1_in_type_in_brackets5088);
-            in_brackets_end1790=in_brackets_end1();
+            // Objcm.g:825:34: ( ASTERISK ( WS )* )*
+            loop387:
+            do {
+                int alt387=2;
+                int LA387_0 = input.LA(1);
+
+                if ( (LA387_0==ASTERISK) ) {
+                    alt387=1;
+                }
+
+
+                switch (alt387) {
+            	case 1 :
+            	    // Objcm.g:825:35: ASTERISK ( WS )*
+            	    {
+            	    ASTERISK789=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_type_in_brackets5085); 
+            	    ASTERISK789_tree = 
+            	    (Object)adaptor.create(ASTERISK789)
+            	    ;
+            	    adaptor.addChild(root_0, ASTERISK789_tree);
+
+
+            	    // Objcm.g:825:44: ( WS )*
+            	    loop386:
+            	    do {
+            	        int alt386=2;
+            	        int LA386_0 = input.LA(1);
+
+            	        if ( (LA386_0==WS) ) {
+            	            alt386=1;
+            	        }
+
+
+            	        switch (alt386) {
+            	    	case 1 :
+            	    	    // Objcm.g:825:44: WS
+            	    	    {
+            	    	    WS790=(Token)match(input,WS,FOLLOW_WS_in_type_in_brackets5087); 
+            	    	    WS790_tree = 
+            	    	    (Object)adaptor.create(WS790)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS790_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop386;
+            	        }
+            	    } while (true);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop387;
+                }
+            } while (true);
+
+
+            R_BR791=(Token)match(input,R_BR,FOLLOW_R_BR_in_type_in_brackets5092); 
+            R_BR791_tree = 
+            (Object)adaptor.create(R_BR791)
+            ;
+            adaptor.addChild(root_0, R_BR791_tree);
+
+
+            // Objcm.g:825:55: ( WS )*
+            loop388:
+            do {
+                int alt388=2;
+                int LA388_0 = input.LA(1);
+
+                if ( (LA388_0==WS) ) {
+                    alt388=1;
+                }
+
+
+                switch (alt388) {
+            	case 1 :
+            	    // Objcm.g:825:55: WS
+            	    {
+            	    WS792=(Token)match(input,WS,FOLLOW_WS_in_type_in_brackets5094); 
+            	    WS792_tree = 
+            	    (Object)adaptor.create(WS792)
+            	    ;
+            	    adaptor.addChild(root_0, WS792_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop388;
+                }
+            } while (true);
+
+
+            pushFollow(FOLLOW_in_brackets_end1_in_type_in_brackets5097);
+            in_brackets_end1793=in_brackets_end1();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, in_brackets_end1790.getTree());
+            adaptor.addChild(root_0, in_brackets_end1793.getTree());
 
             }
 
@@ -27978,15 +28094,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_KBR791=null;
-        Token WS792=null;
-        Token R_KBR794=null;
-        ObjcmParser.method_call_wrapper2_return method_call_wrapper2793 =null;
+        Token L_KBR794=null;
+        Token WS795=null;
+        Token R_KBR797=null;
+        ObjcmParser.method_call_wrapper2_return method_call_wrapper2796 =null;
 
 
-        Object L_KBR791_tree=null;
-        Object WS792_tree=null;
-        Object R_KBR794_tree=null;
+        Object L_KBR794_tree=null;
+        Object WS795_tree=null;
+        Object R_KBR797_tree=null;
 
         try {
             // Objcm.g:829:2: ( L_KBR ( WS )* method_call_wrapper2 R_KBR )
@@ -27995,56 +28111,56 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_KBR791=(Token)match(input,L_KBR,FOLLOW_L_KBR_in_square_brackets5104); 
-            L_KBR791_tree = 
-            (Object)adaptor.create(L_KBR791)
+            L_KBR794=(Token)match(input,L_KBR,FOLLOW_L_KBR_in_square_brackets5113); 
+            L_KBR794_tree = 
+            (Object)adaptor.create(L_KBR794)
             ;
-            adaptor.addChild(root_0, L_KBR791_tree);
+            adaptor.addChild(root_0, L_KBR794_tree);
 
 
             // Objcm.g:830:8: ( WS )*
-            loop386:
+            loop389:
             do {
-                int alt386=2;
-                int LA386_0 = input.LA(1);
+                int alt389=2;
+                int LA389_0 = input.LA(1);
 
-                if ( (LA386_0==WS) ) {
-                    alt386=1;
+                if ( (LA389_0==WS) ) {
+                    alt389=1;
                 }
 
 
-                switch (alt386) {
+                switch (alt389) {
             	case 1 :
             	    // Objcm.g:830:8: WS
             	    {
-            	    WS792=(Token)match(input,WS,FOLLOW_WS_in_square_brackets5106); 
-            	    WS792_tree = 
-            	    (Object)adaptor.create(WS792)
+            	    WS795=(Token)match(input,WS,FOLLOW_WS_in_square_brackets5115); 
+            	    WS795_tree = 
+            	    (Object)adaptor.create(WS795)
             	    ;
-            	    adaptor.addChild(root_0, WS792_tree);
+            	    adaptor.addChild(root_0, WS795_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop386;
+            	    break loop389;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_method_call_wrapper2_in_square_brackets5109);
-            method_call_wrapper2793=method_call_wrapper2();
+            pushFollow(FOLLOW_method_call_wrapper2_in_square_brackets5118);
+            method_call_wrapper2796=method_call_wrapper2();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_call_wrapper2793.getTree());
+            adaptor.addChild(root_0, method_call_wrapper2796.getTree());
 
-            R_KBR794=(Token)match(input,R_KBR,FOLLOW_R_KBR_in_square_brackets5111); 
-            R_KBR794_tree = 
-            (Object)adaptor.create(R_KBR794)
+            R_KBR797=(Token)match(input,R_KBR,FOLLOW_R_KBR_in_square_brackets5120); 
+            R_KBR797_tree = 
+            (Object)adaptor.create(R_KBR797)
             ;
-            adaptor.addChild(root_0, R_KBR794_tree);
+            adaptor.addChild(root_0, R_KBR797_tree);
 
 
             }
@@ -28086,15 +28202,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_KBR795=null;
-        Token WS796=null;
-        Token R_KBR798=null;
-        ObjcmParser.classical_expr_wrp_return classical_expr_wrp797 =null;
+        Token L_KBR798=null;
+        Token WS799=null;
+        Token R_KBR801=null;
+        ObjcmParser.classical_expr_wrp_return classical_expr_wrp800 =null;
 
 
-        Object L_KBR795_tree=null;
-        Object WS796_tree=null;
-        Object R_KBR798_tree=null;
+        Object L_KBR798_tree=null;
+        Object WS799_tree=null;
+        Object R_KBR801_tree=null;
 
         try {
             // Objcm.g:833:2: ( L_KBR ( WS )* classical_expr_wrp R_KBR )
@@ -28103,56 +28219,56 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_KBR795=(Token)match(input,L_KBR,FOLLOW_L_KBR_in_index_brackets5122); 
-            L_KBR795_tree = 
-            (Object)adaptor.create(L_KBR795)
+            L_KBR798=(Token)match(input,L_KBR,FOLLOW_L_KBR_in_index_brackets5131); 
+            L_KBR798_tree = 
+            (Object)adaptor.create(L_KBR798)
             ;
-            adaptor.addChild(root_0, L_KBR795_tree);
+            adaptor.addChild(root_0, L_KBR798_tree);
 
 
             // Objcm.g:833:10: ( WS )*
-            loop387:
+            loop390:
             do {
-                int alt387=2;
-                int LA387_0 = input.LA(1);
+                int alt390=2;
+                int LA390_0 = input.LA(1);
 
-                if ( (LA387_0==WS) ) {
-                    alt387=1;
+                if ( (LA390_0==WS) ) {
+                    alt390=1;
                 }
 
 
-                switch (alt387) {
+                switch (alt390) {
             	case 1 :
             	    // Objcm.g:833:10: WS
             	    {
-            	    WS796=(Token)match(input,WS,FOLLOW_WS_in_index_brackets5124); 
-            	    WS796_tree = 
-            	    (Object)adaptor.create(WS796)
+            	    WS799=(Token)match(input,WS,FOLLOW_WS_in_index_brackets5133); 
+            	    WS799_tree = 
+            	    (Object)adaptor.create(WS799)
             	    ;
-            	    adaptor.addChild(root_0, WS796_tree);
+            	    adaptor.addChild(root_0, WS799_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop387;
+            	    break loop390;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_classical_expr_wrp_in_index_brackets5127);
-            classical_expr_wrp797=classical_expr_wrp();
+            pushFollow(FOLLOW_classical_expr_wrp_in_index_brackets5136);
+            classical_expr_wrp800=classical_expr_wrp();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, classical_expr_wrp797.getTree());
+            adaptor.addChild(root_0, classical_expr_wrp800.getTree());
 
-            R_KBR798=(Token)match(input,R_KBR,FOLLOW_R_KBR_in_index_brackets5129); 
-            R_KBR798_tree = 
-            (Object)adaptor.create(R_KBR798)
+            R_KBR801=(Token)match(input,R_KBR,FOLLOW_R_KBR_in_index_brackets5138); 
+            R_KBR801_tree = 
+            (Object)adaptor.create(R_KBR801)
             ;
-            adaptor.addChild(root_0, R_KBR798_tree);
+            adaptor.addChild(root_0, R_KBR801_tree);
 
 
             }
@@ -28194,7 +28310,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.interface_declaration_return interface_declaration799 =null;
+        ObjcmParser.interface_declaration_return interface_declaration802 =null;
 
 
         RewriteRuleSubtreeStream stream_interface_declaration=new RewriteRuleSubtreeStream(adaptor,"rule interface_declaration");
@@ -28202,12 +28318,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:841:2: ( interface_declaration -> ^( INTERFACE interface_declaration ) )
             // Objcm.g:841:4: interface_declaration
             {
-            pushFollow(FOLLOW_interface_declaration_in_interface_declaration_wrapper5143);
-            interface_declaration799=interface_declaration();
+            pushFollow(FOLLOW_interface_declaration_in_interface_declaration_wrapper5152);
+            interface_declaration802=interface_declaration();
 
             state._fsp--;
 
-            stream_interface_declaration.add(interface_declaration799.getTree());
+            stream_interface_declaration.add(interface_declaration802.getTree());
 
             // AST REWRITE
             // elements: interface_declaration
@@ -28278,27 +28394,27 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal800=null;
-        Token WS801=null;
-        Token WS803=null;
-        Token WS805=null;
-        Token string_literal809=null;
-        ObjcmParser.name_return name802 =null;
+        Token string_literal803=null;
+        Token WS804=null;
+        Token WS806=null;
+        Token WS808=null;
+        Token string_literal812=null;
+        ObjcmParser.name_return name805 =null;
 
-        ObjcmParser.interface_category_return interface_category804 =null;
+        ObjcmParser.interface_category_return interface_category807 =null;
 
-        ObjcmParser.super_class_return super_class806 =null;
+        ObjcmParser.super_class_return super_class809 =null;
 
-        ObjcmParser.annotated_block_return annotated_block807 =null;
+        ObjcmParser.annotated_block_return annotated_block810 =null;
 
-        ObjcmParser.interface_methods_return interface_methods808 =null;
+        ObjcmParser.interface_methods_return interface_methods811 =null;
 
 
-        Object string_literal800_tree=null;
-        Object WS801_tree=null;
-        Object WS803_tree=null;
-        Object WS805_tree=null;
-        Object string_literal809_tree=null;
+        Object string_literal803_tree=null;
+        Object WS804_tree=null;
+        Object WS806_tree=null;
+        Object WS808_tree=null;
+        Object string_literal812_tree=null;
 
         try {
             // Objcm.g:844:2: ( '@interface' ( WS )+ name ( WS )+ ( interface_category ( WS )+ )? ( super_class )? ( annotated_block | interface_methods )+ '@end' )
@@ -28307,143 +28423,143 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal800=(Token)match(input,132,FOLLOW_132_in_interface_declaration5161); 
-            string_literal800_tree = 
-            (Object)adaptor.create(string_literal800)
+            string_literal803=(Token)match(input,132,FOLLOW_132_in_interface_declaration5170); 
+            string_literal803_tree = 
+            (Object)adaptor.create(string_literal803)
             ;
-            adaptor.addChild(root_0, string_literal800_tree);
+            adaptor.addChild(root_0, string_literal803_tree);
 
 
             // Objcm.g:844:17: ( WS )+
-            int cnt388=0;
-            loop388:
+            int cnt391=0;
+            loop391:
             do {
-                int alt388=2;
-                int LA388_0 = input.LA(1);
+                int alt391=2;
+                int LA391_0 = input.LA(1);
 
-                if ( (LA388_0==WS) ) {
-                    alt388=1;
+                if ( (LA391_0==WS) ) {
+                    alt391=1;
                 }
 
 
-                switch (alt388) {
+                switch (alt391) {
             	case 1 :
             	    // Objcm.g:844:17: WS
             	    {
-            	    WS801=(Token)match(input,WS,FOLLOW_WS_in_interface_declaration5163); 
-            	    WS801_tree = 
-            	    (Object)adaptor.create(WS801)
+            	    WS804=(Token)match(input,WS,FOLLOW_WS_in_interface_declaration5172); 
+            	    WS804_tree = 
+            	    (Object)adaptor.create(WS804)
             	    ;
-            	    adaptor.addChild(root_0, WS801_tree);
+            	    adaptor.addChild(root_0, WS804_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt388 >= 1 ) break loop388;
+            	    if ( cnt391 >= 1 ) break loop391;
                         EarlyExitException eee =
-                            new EarlyExitException(388, input);
+                            new EarlyExitException(391, input);
                         throw eee;
                 }
-                cnt388++;
+                cnt391++;
             } while (true);
 
 
-            pushFollow(FOLLOW_name_in_interface_declaration5166);
-            name802=name();
+            pushFollow(FOLLOW_name_in_interface_declaration5175);
+            name805=name();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, name802.getTree());
+            adaptor.addChild(root_0, name805.getTree());
 
             // Objcm.g:844:26: ( WS )+
-            int cnt389=0;
-            loop389:
+            int cnt392=0;
+            loop392:
             do {
-                int alt389=2;
-                int LA389_0 = input.LA(1);
+                int alt392=2;
+                int LA392_0 = input.LA(1);
 
-                if ( (LA389_0==WS) ) {
-                    alt389=1;
+                if ( (LA392_0==WS) ) {
+                    alt392=1;
                 }
 
 
-                switch (alt389) {
+                switch (alt392) {
             	case 1 :
             	    // Objcm.g:844:26: WS
             	    {
-            	    WS803=(Token)match(input,WS,FOLLOW_WS_in_interface_declaration5168); 
-            	    WS803_tree = 
-            	    (Object)adaptor.create(WS803)
+            	    WS806=(Token)match(input,WS,FOLLOW_WS_in_interface_declaration5177); 
+            	    WS806_tree = 
+            	    (Object)adaptor.create(WS806)
             	    ;
-            	    adaptor.addChild(root_0, WS803_tree);
+            	    adaptor.addChild(root_0, WS806_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt389 >= 1 ) break loop389;
+            	    if ( cnt392 >= 1 ) break loop392;
                         EarlyExitException eee =
-                            new EarlyExitException(389, input);
+                            new EarlyExitException(392, input);
                         throw eee;
                 }
-                cnt389++;
+                cnt392++;
             } while (true);
 
 
             // Objcm.g:844:30: ( interface_category ( WS )+ )?
-            int alt391=2;
-            int LA391_0 = input.LA(1);
+            int alt394=2;
+            int LA394_0 = input.LA(1);
 
-            if ( (LA391_0==L_BR) ) {
-                alt391=1;
+            if ( (LA394_0==L_BR) ) {
+                alt394=1;
             }
-            switch (alt391) {
+            switch (alt394) {
                 case 1 :
                     // Objcm.g:844:31: interface_category ( WS )+
                     {
-                    pushFollow(FOLLOW_interface_category_in_interface_declaration5172);
-                    interface_category804=interface_category();
+                    pushFollow(FOLLOW_interface_category_in_interface_declaration5181);
+                    interface_category807=interface_category();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, interface_category804.getTree());
+                    adaptor.addChild(root_0, interface_category807.getTree());
 
                     // Objcm.g:844:50: ( WS )+
-                    int cnt390=0;
-                    loop390:
+                    int cnt393=0;
+                    loop393:
                     do {
-                        int alt390=2;
-                        int LA390_0 = input.LA(1);
+                        int alt393=2;
+                        int LA393_0 = input.LA(1);
 
-                        if ( (LA390_0==WS) ) {
-                            alt390=1;
+                        if ( (LA393_0==WS) ) {
+                            alt393=1;
                         }
 
 
-                        switch (alt390) {
+                        switch (alt393) {
                     	case 1 :
                     	    // Objcm.g:844:50: WS
                     	    {
-                    	    WS805=(Token)match(input,WS,FOLLOW_WS_in_interface_declaration5174); 
-                    	    WS805_tree = 
-                    	    (Object)adaptor.create(WS805)
+                    	    WS808=(Token)match(input,WS,FOLLOW_WS_in_interface_declaration5183); 
+                    	    WS808_tree = 
+                    	    (Object)adaptor.create(WS808)
                     	    ;
-                    	    adaptor.addChild(root_0, WS805_tree);
+                    	    adaptor.addChild(root_0, WS808_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    if ( cnt390 >= 1 ) break loop390;
+                    	    if ( cnt393 >= 1 ) break loop393;
                                 EarlyExitException eee =
-                                    new EarlyExitException(390, input);
+                                    new EarlyExitException(393, input);
                                 throw eee;
                         }
-                        cnt390++;
+                        cnt393++;
                     } while (true);
 
 
@@ -28454,22 +28570,22 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:844:56: ( super_class )?
-            int alt392=2;
-            int LA392_0 = input.LA(1);
+            int alt395=2;
+            int LA395_0 = input.LA(1);
 
-            if ( (LA392_0==COLON) ) {
-                alt392=1;
+            if ( (LA395_0==COLON) ) {
+                alt395=1;
             }
-            switch (alt392) {
+            switch (alt395) {
                 case 1 :
                     // Objcm.g:844:57: super_class
                     {
-                    pushFollow(FOLLOW_super_class_in_interface_declaration5180);
-                    super_class806=super_class();
+                    pushFollow(FOLLOW_super_class_in_interface_declaration5189);
+                    super_class809=super_class();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, super_class806.getTree());
+                    adaptor.addChild(root_0, super_class809.getTree());
 
                     }
                     break;
@@ -28478,61 +28594,61 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:845:3: ( annotated_block | interface_methods )+
-            int cnt393=0;
-            loop393:
+            int cnt396=0;
+            loop396:
             do {
-                int alt393=3;
-                int LA393_0 = input.LA(1);
+                int alt396=3;
+                int LA396_0 = input.LA(1);
 
-                if ( (LA393_0==L_FBR) ) {
-                    alt393=1;
+                if ( (LA396_0==L_FBR) ) {
+                    alt396=1;
                 }
-                else if ( (LA393_0==ENUM_PREFIX||LA393_0==WS||LA393_0==111||LA393_0==113) ) {
-                    alt393=2;
+                else if ( (LA396_0==ENUM_PREFIX||LA396_0==WS||LA396_0==111||LA396_0==113) ) {
+                    alt396=2;
                 }
 
 
-                switch (alt393) {
+                switch (alt396) {
             	case 1 :
             	    // Objcm.g:845:4: annotated_block
             	    {
-            	    pushFollow(FOLLOW_annotated_block_in_interface_declaration5187);
-            	    annotated_block807=annotated_block();
+            	    pushFollow(FOLLOW_annotated_block_in_interface_declaration5196);
+            	    annotated_block810=annotated_block();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, annotated_block807.getTree());
+            	    adaptor.addChild(root_0, annotated_block810.getTree());
 
             	    }
             	    break;
             	case 2 :
             	    // Objcm.g:845:22: interface_methods
             	    {
-            	    pushFollow(FOLLOW_interface_methods_in_interface_declaration5191);
-            	    interface_methods808=interface_methods();
+            	    pushFollow(FOLLOW_interface_methods_in_interface_declaration5200);
+            	    interface_methods811=interface_methods();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, interface_methods808.getTree());
+            	    adaptor.addChild(root_0, interface_methods811.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt393 >= 1 ) break loop393;
+            	    if ( cnt396 >= 1 ) break loop396;
                         EarlyExitException eee =
-                            new EarlyExitException(393, input);
+                            new EarlyExitException(396, input);
                         throw eee;
                 }
-                cnt393++;
+                cnt396++;
             } while (true);
 
 
-            string_literal809=(Token)match(input,129,FOLLOW_129_in_interface_declaration5200); 
-            string_literal809_tree = 
-            (Object)adaptor.create(string_literal809)
+            string_literal812=(Token)match(input,129,FOLLOW_129_in_interface_declaration5209); 
+            string_literal812_tree = 
+            (Object)adaptor.create(string_literal812)
             ;
-            adaptor.addChild(root_0, string_literal809_tree);
+            adaptor.addChild(root_0, string_literal812_tree);
 
 
             }
@@ -28574,13 +28690,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_FBR810=null;
-        Token R_FBR812=null;
-        ObjcmParser.annotated_block_internal_return annotated_block_internal811 =null;
+        Token L_FBR813=null;
+        Token R_FBR815=null;
+        ObjcmParser.annotated_block_internal_return annotated_block_internal814 =null;
 
 
-        Object L_FBR810_tree=null;
-        Object R_FBR812_tree=null;
+        Object L_FBR813_tree=null;
+        Object R_FBR815_tree=null;
 
         try {
             // Objcm.g:850:2: ( L_FBR ( annotated_block_internal )* R_FBR )
@@ -28589,49 +28705,49 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_FBR810=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_annotated_block5211); 
-            L_FBR810_tree = 
-            (Object)adaptor.create(L_FBR810)
+            L_FBR813=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_annotated_block5220); 
+            L_FBR813_tree = 
+            (Object)adaptor.create(L_FBR813)
             ;
-            adaptor.addChild(root_0, L_FBR810_tree);
+            adaptor.addChild(root_0, L_FBR813_tree);
 
 
             // Objcm.g:851:3: ( annotated_block_internal )*
-            loop394:
+            loop397:
             do {
-                int alt394=2;
-                int LA394_0 = input.LA(1);
+                int alt397=2;
+                int LA397_0 = input.LA(1);
 
-                if ( (LA394_0==ID||LA394_0==VOID||LA394_0==WS||(LA394_0 >= 133 && LA394_0 <= 134)||LA394_0==159) ) {
-                    alt394=1;
+                if ( (LA397_0==ID||LA397_0==VOID||LA397_0==WS||(LA397_0 >= 133 && LA397_0 <= 134)||LA397_0==159) ) {
+                    alt397=1;
                 }
 
 
-                switch (alt394) {
+                switch (alt397) {
             	case 1 :
             	    // Objcm.g:851:3: annotated_block_internal
             	    {
-            	    pushFollow(FOLLOW_annotated_block_internal_in_annotated_block5216);
-            	    annotated_block_internal811=annotated_block_internal();
+            	    pushFollow(FOLLOW_annotated_block_internal_in_annotated_block5225);
+            	    annotated_block_internal814=annotated_block_internal();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, annotated_block_internal811.getTree());
+            	    adaptor.addChild(root_0, annotated_block_internal814.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop394;
+            	    break loop397;
                 }
             } while (true);
 
 
-            R_FBR812=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_annotated_block5221); 
-            R_FBR812_tree = 
-            (Object)adaptor.create(R_FBR812)
+            R_FBR815=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_annotated_block5230); 
+            R_FBR815_tree = 
+            (Object)adaptor.create(R_FBR815)
             ;
-            adaptor.addChild(root_0, R_FBR812_tree);
+            adaptor.addChild(root_0, R_FBR815_tree);
 
 
             }
@@ -28673,43 +28789,43 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.block_annotation_return block_annotation813 =null;
+        ObjcmParser.block_annotation_return block_annotation816 =null;
 
-        ObjcmParser.public_block_internal_return public_block_internal814 =null;
+        ObjcmParser.public_block_internal_return public_block_internal817 =null;
 
 
 
         try {
             // Objcm.g:856:2: ( block_annotation | public_block_internal )
-            int alt395=2;
-            int LA395_0 = input.LA(1);
+            int alt398=2;
+            int LA398_0 = input.LA(1);
 
-            if ( ((LA395_0 >= 133 && LA395_0 <= 134)) ) {
-                alt395=1;
+            if ( ((LA398_0 >= 133 && LA398_0 <= 134)) ) {
+                alt398=1;
             }
-            else if ( (LA395_0==ID||LA395_0==VOID||LA395_0==WS||LA395_0==159) ) {
-                alt395=2;
+            else if ( (LA398_0==ID||LA398_0==VOID||LA398_0==WS||LA398_0==159) ) {
+                alt398=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 395, 0, input);
+                    new NoViableAltException("", 398, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt395) {
+            switch (alt398) {
                 case 1 :
                     // Objcm.g:856:4: block_annotation
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_block_annotation_in_annotated_block_internal5234);
-                    block_annotation813=block_annotation();
+                    pushFollow(FOLLOW_block_annotation_in_annotated_block_internal5243);
+                    block_annotation816=block_annotation();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, block_annotation813.getTree());
+                    adaptor.addChild(root_0, block_annotation816.getTree());
 
                     }
                     break;
@@ -28719,12 +28835,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_public_block_internal_in_annotated_block_internal5241);
-                    public_block_internal814=public_block_internal();
+                    pushFollow(FOLLOW_public_block_internal_in_annotated_block_internal5250);
+                    public_block_internal817=public_block_internal();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, public_block_internal814.getTree());
+                    adaptor.addChild(root_0, public_block_internal817.getTree());
 
                     }
                     break;
@@ -28767,9 +28883,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set815=null;
+        Token set818=null;
 
-        Object set815_tree=null;
+        Object set818_tree=null;
 
         try {
             // Objcm.g:861:2: ( '@public' | '@private' )
@@ -28778,12 +28894,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set815=(Token)input.LT(1);
+            set818=(Token)input.LT(1);
 
             if ( (input.LA(1) >= 133 && input.LA(1) <= 134) ) {
                 input.consume();
                 adaptor.addChild(root_0, 
-                (Object)adaptor.create(set815)
+                (Object)adaptor.create(set818)
                 );
                 state.errorRecovery=false;
             }
@@ -28832,55 +28948,55 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS818=null;
-        ObjcmParser.simple_field_declaration_return simple_field_declaration816 =null;
+        Token WS821=null;
+        ObjcmParser.simple_field_declaration_return simple_field_declaration819 =null;
 
-        ObjcmParser.union_declaration_return union_declaration817 =null;
+        ObjcmParser.union_declaration_return union_declaration820 =null;
 
 
-        Object WS818_tree=null;
+        Object WS821_tree=null;
 
         try {
             // Objcm.g:866:2: ( simple_field_declaration | union_declaration | WS )
-            int alt396=3;
+            int alt399=3;
             switch ( input.LA(1) ) {
             case ID:
             case VOID:
                 {
-                alt396=1;
+                alt399=1;
                 }
                 break;
             case 159:
                 {
-                alt396=2;
+                alt399=2;
                 }
                 break;
             case WS:
                 {
-                alt396=3;
+                alt399=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 396, 0, input);
+                    new NoViableAltException("", 399, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt396) {
+            switch (alt399) {
                 case 1 :
                     // Objcm.g:866:4: simple_field_declaration
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_simple_field_declaration_in_public_block_internal5276);
-                    simple_field_declaration816=simple_field_declaration();
+                    pushFollow(FOLLOW_simple_field_declaration_in_public_block_internal5285);
+                    simple_field_declaration819=simple_field_declaration();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, simple_field_declaration816.getTree());
+                    adaptor.addChild(root_0, simple_field_declaration819.getTree());
 
                     }
                     break;
@@ -28890,12 +29006,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_union_declaration_in_public_block_internal5281);
-                    union_declaration817=union_declaration();
+                    pushFollow(FOLLOW_union_declaration_in_public_block_internal5290);
+                    union_declaration820=union_declaration();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, union_declaration817.getTree());
+                    adaptor.addChild(root_0, union_declaration820.getTree());
 
                     }
                     break;
@@ -28905,11 +29021,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    WS818=(Token)match(input,WS,FOLLOW_WS_in_public_block_internal5286); 
-                    WS818_tree = 
-                    (Object)adaptor.create(WS818)
+                    WS821=(Token)match(input,WS,FOLLOW_WS_in_public_block_internal5295); 
+                    WS821_tree = 
+                    (Object)adaptor.create(WS821)
                     ;
-                    adaptor.addChild(root_0, WS818_tree);
+                    adaptor.addChild(root_0, WS821_tree);
 
 
                     }
@@ -28953,15 +29069,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS821=null;
-        Token SEMICOLON822=null;
-        ObjcmParser.field_type_return field_type819 =null;
+        Token WS824=null;
+        Token SEMICOLON825=null;
+        ObjcmParser.field_type_return field_type822 =null;
 
-        ObjcmParser.name_return name820 =null;
+        ObjcmParser.name_return name823 =null;
 
 
-        Object WS821_tree=null;
-        Object SEMICOLON822_tree=null;
+        Object WS824_tree=null;
+        Object SEMICOLON825_tree=null;
 
         try {
             // Objcm.g:872:2: ( field_type name ( WS )* SEMICOLON )
@@ -28970,56 +29086,56 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_field_type_in_simple_field_declaration5300);
-            field_type819=field_type();
+            pushFollow(FOLLOW_field_type_in_simple_field_declaration5309);
+            field_type822=field_type();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, field_type819.getTree());
+            adaptor.addChild(root_0, field_type822.getTree());
 
-            pushFollow(FOLLOW_name_in_simple_field_declaration5302);
-            name820=name();
+            pushFollow(FOLLOW_name_in_simple_field_declaration5311);
+            name823=name();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, name820.getTree());
+            adaptor.addChild(root_0, name823.getTree());
 
             // Objcm.g:872:20: ( WS )*
-            loop397:
+            loop400:
             do {
-                int alt397=2;
-                int LA397_0 = input.LA(1);
+                int alt400=2;
+                int LA400_0 = input.LA(1);
 
-                if ( (LA397_0==WS) ) {
-                    alt397=1;
+                if ( (LA400_0==WS) ) {
+                    alt400=1;
                 }
 
 
-                switch (alt397) {
+                switch (alt400) {
             	case 1 :
             	    // Objcm.g:872:20: WS
             	    {
-            	    WS821=(Token)match(input,WS,FOLLOW_WS_in_simple_field_declaration5304); 
-            	    WS821_tree = 
-            	    (Object)adaptor.create(WS821)
+            	    WS824=(Token)match(input,WS,FOLLOW_WS_in_simple_field_declaration5313); 
+            	    WS824_tree = 
+            	    (Object)adaptor.create(WS824)
             	    ;
-            	    adaptor.addChild(root_0, WS821_tree);
+            	    adaptor.addChild(root_0, WS824_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop397;
+            	    break loop400;
                 }
             } while (true);
 
 
-            SEMICOLON822=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_simple_field_declaration5307); 
-            SEMICOLON822_tree = 
-            (Object)adaptor.create(SEMICOLON822)
+            SEMICOLON825=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_simple_field_declaration5316); 
+            SEMICOLON825_tree = 
+            (Object)adaptor.create(SEMICOLON825)
             ;
-            adaptor.addChild(root_0, SEMICOLON822_tree);
+            adaptor.addChild(root_0, SEMICOLON825_tree);
 
 
             }
@@ -29061,29 +29177,29 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal823=null;
-        Token WS824=null;
-        Token L_FBR825=null;
-        Token WS826=null;
-        Token WS828=null;
-        Token R_FBR829=null;
-        Token WS830=null;
-        Token ID831=null;
-        Token WS832=null;
-        Token SEMICOLON833=null;
-        ObjcmParser.simple_field_declaration_return simple_field_declaration827 =null;
+        Token string_literal826=null;
+        Token WS827=null;
+        Token L_FBR828=null;
+        Token WS829=null;
+        Token WS831=null;
+        Token R_FBR832=null;
+        Token WS833=null;
+        Token ID834=null;
+        Token WS835=null;
+        Token SEMICOLON836=null;
+        ObjcmParser.simple_field_declaration_return simple_field_declaration830 =null;
 
 
-        Object string_literal823_tree=null;
-        Object WS824_tree=null;
-        Object L_FBR825_tree=null;
-        Object WS826_tree=null;
-        Object WS828_tree=null;
-        Object R_FBR829_tree=null;
-        Object WS830_tree=null;
-        Object ID831_tree=null;
-        Object WS832_tree=null;
-        Object SEMICOLON833_tree=null;
+        Object string_literal826_tree=null;
+        Object WS827_tree=null;
+        Object L_FBR828_tree=null;
+        Object WS829_tree=null;
+        Object WS831_tree=null;
+        Object R_FBR832_tree=null;
+        Object WS833_tree=null;
+        Object ID834_tree=null;
+        Object WS835_tree=null;
+        Object SEMICOLON836_tree=null;
 
         try {
             // Objcm.g:876:2: ( 'union' ( WS )* L_FBR ( WS )* ( simple_field_declaration | WS )+ R_FBR ( WS )* ID ( WS )* SEMICOLON )
@@ -29092,141 +29208,14 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal823=(Token)match(input,159,FOLLOW_159_in_union_declaration5320); 
-            string_literal823_tree = 
-            (Object)adaptor.create(string_literal823)
+            string_literal826=(Token)match(input,159,FOLLOW_159_in_union_declaration5329); 
+            string_literal826_tree = 
+            (Object)adaptor.create(string_literal826)
             ;
-            adaptor.addChild(root_0, string_literal823_tree);
+            adaptor.addChild(root_0, string_literal826_tree);
 
 
             // Objcm.g:876:12: ( WS )*
-            loop398:
-            do {
-                int alt398=2;
-                int LA398_0 = input.LA(1);
-
-                if ( (LA398_0==WS) ) {
-                    alt398=1;
-                }
-
-
-                switch (alt398) {
-            	case 1 :
-            	    // Objcm.g:876:12: WS
-            	    {
-            	    WS824=(Token)match(input,WS,FOLLOW_WS_in_union_declaration5322); 
-            	    WS824_tree = 
-            	    (Object)adaptor.create(WS824)
-            	    ;
-            	    adaptor.addChild(root_0, WS824_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop398;
-                }
-            } while (true);
-
-
-            L_FBR825=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_union_declaration5325); 
-            L_FBR825_tree = 
-            (Object)adaptor.create(L_FBR825)
-            ;
-            adaptor.addChild(root_0, L_FBR825_tree);
-
-
-            // Objcm.g:876:22: ( WS )*
-            loop399:
-            do {
-                int alt399=2;
-                int LA399_0 = input.LA(1);
-
-                if ( (LA399_0==WS) ) {
-                    alt399=1;
-                }
-
-
-                switch (alt399) {
-            	case 1 :
-            	    // Objcm.g:876:22: WS
-            	    {
-            	    WS826=(Token)match(input,WS,FOLLOW_WS_in_union_declaration5327); 
-            	    WS826_tree = 
-            	    (Object)adaptor.create(WS826)
-            	    ;
-            	    adaptor.addChild(root_0, WS826_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop399;
-                }
-            } while (true);
-
-
-            // Objcm.g:877:4: ( simple_field_declaration | WS )+
-            int cnt400=0;
-            loop400:
-            do {
-                int alt400=3;
-                int LA400_0 = input.LA(1);
-
-                if ( (LA400_0==ID||LA400_0==VOID) ) {
-                    alt400=1;
-                }
-                else if ( (LA400_0==WS) ) {
-                    alt400=2;
-                }
-
-
-                switch (alt400) {
-            	case 1 :
-            	    // Objcm.g:877:5: simple_field_declaration
-            	    {
-            	    pushFollow(FOLLOW_simple_field_declaration_in_union_declaration5334);
-            	    simple_field_declaration827=simple_field_declaration();
-
-            	    state._fsp--;
-
-            	    adaptor.addChild(root_0, simple_field_declaration827.getTree());
-
-            	    }
-            	    break;
-            	case 2 :
-            	    // Objcm.g:877:32: WS
-            	    {
-            	    WS828=(Token)match(input,WS,FOLLOW_WS_in_union_declaration5338); 
-            	    WS828_tree = 
-            	    (Object)adaptor.create(WS828)
-            	    ;
-            	    adaptor.addChild(root_0, WS828_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt400 >= 1 ) break loop400;
-                        EarlyExitException eee =
-                            new EarlyExitException(400, input);
-                        throw eee;
-                }
-                cnt400++;
-            } while (true);
-
-
-            R_FBR829=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_union_declaration5344); 
-            R_FBR829_tree = 
-            (Object)adaptor.create(R_FBR829)
-            ;
-            adaptor.addChild(root_0, R_FBR829_tree);
-
-
-            // Objcm.g:878:9: ( WS )*
             loop401:
             do {
                 int alt401=2;
@@ -29239,13 +29228,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt401) {
             	case 1 :
-            	    // Objcm.g:878:9: WS
+            	    // Objcm.g:876:12: WS
             	    {
-            	    WS830=(Token)match(input,WS,FOLLOW_WS_in_union_declaration5346); 
-            	    WS830_tree = 
-            	    (Object)adaptor.create(WS830)
+            	    WS827=(Token)match(input,WS,FOLLOW_WS_in_union_declaration5331); 
+            	    WS827_tree = 
+            	    (Object)adaptor.create(WS827)
             	    ;
-            	    adaptor.addChild(root_0, WS830_tree);
+            	    adaptor.addChild(root_0, WS827_tree);
 
 
             	    }
@@ -29257,14 +29246,14 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            ID831=(Token)match(input,ID,FOLLOW_ID_in_union_declaration5349); 
-            ID831_tree = 
-            (Object)adaptor.create(ID831)
+            L_FBR828=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_union_declaration5334); 
+            L_FBR828_tree = 
+            (Object)adaptor.create(L_FBR828)
             ;
-            adaptor.addChild(root_0, ID831_tree);
+            adaptor.addChild(root_0, L_FBR828_tree);
 
 
-            // Objcm.g:878:16: ( WS )*
+            // Objcm.g:876:22: ( WS )*
             loop402:
             do {
                 int alt402=2;
@@ -29277,13 +29266,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt402) {
             	case 1 :
-            	    // Objcm.g:878:16: WS
+            	    // Objcm.g:876:22: WS
             	    {
-            	    WS832=(Token)match(input,WS,FOLLOW_WS_in_union_declaration5351); 
-            	    WS832_tree = 
-            	    (Object)adaptor.create(WS832)
+            	    WS829=(Token)match(input,WS,FOLLOW_WS_in_union_declaration5336); 
+            	    WS829_tree = 
+            	    (Object)adaptor.create(WS829)
             	    ;
-            	    adaptor.addChild(root_0, WS832_tree);
+            	    adaptor.addChild(root_0, WS829_tree);
 
 
             	    }
@@ -29295,11 +29284,138 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            SEMICOLON833=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_union_declaration5354); 
-            SEMICOLON833_tree = 
-            (Object)adaptor.create(SEMICOLON833)
+            // Objcm.g:877:4: ( simple_field_declaration | WS )+
+            int cnt403=0;
+            loop403:
+            do {
+                int alt403=3;
+                int LA403_0 = input.LA(1);
+
+                if ( (LA403_0==ID||LA403_0==VOID) ) {
+                    alt403=1;
+                }
+                else if ( (LA403_0==WS) ) {
+                    alt403=2;
+                }
+
+
+                switch (alt403) {
+            	case 1 :
+            	    // Objcm.g:877:5: simple_field_declaration
+            	    {
+            	    pushFollow(FOLLOW_simple_field_declaration_in_union_declaration5343);
+            	    simple_field_declaration830=simple_field_declaration();
+
+            	    state._fsp--;
+
+            	    adaptor.addChild(root_0, simple_field_declaration830.getTree());
+
+            	    }
+            	    break;
+            	case 2 :
+            	    // Objcm.g:877:32: WS
+            	    {
+            	    WS831=(Token)match(input,WS,FOLLOW_WS_in_union_declaration5347); 
+            	    WS831_tree = 
+            	    (Object)adaptor.create(WS831)
+            	    ;
+            	    adaptor.addChild(root_0, WS831_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    if ( cnt403 >= 1 ) break loop403;
+                        EarlyExitException eee =
+                            new EarlyExitException(403, input);
+                        throw eee;
+                }
+                cnt403++;
+            } while (true);
+
+
+            R_FBR832=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_union_declaration5353); 
+            R_FBR832_tree = 
+            (Object)adaptor.create(R_FBR832)
             ;
-            adaptor.addChild(root_0, SEMICOLON833_tree);
+            adaptor.addChild(root_0, R_FBR832_tree);
+
+
+            // Objcm.g:878:9: ( WS )*
+            loop404:
+            do {
+                int alt404=2;
+                int LA404_0 = input.LA(1);
+
+                if ( (LA404_0==WS) ) {
+                    alt404=1;
+                }
+
+
+                switch (alt404) {
+            	case 1 :
+            	    // Objcm.g:878:9: WS
+            	    {
+            	    WS833=(Token)match(input,WS,FOLLOW_WS_in_union_declaration5355); 
+            	    WS833_tree = 
+            	    (Object)adaptor.create(WS833)
+            	    ;
+            	    adaptor.addChild(root_0, WS833_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop404;
+                }
+            } while (true);
+
+
+            ID834=(Token)match(input,ID,FOLLOW_ID_in_union_declaration5358); 
+            ID834_tree = 
+            (Object)adaptor.create(ID834)
+            ;
+            adaptor.addChild(root_0, ID834_tree);
+
+
+            // Objcm.g:878:16: ( WS )*
+            loop405:
+            do {
+                int alt405=2;
+                int LA405_0 = input.LA(1);
+
+                if ( (LA405_0==WS) ) {
+                    alt405=1;
+                }
+
+
+                switch (alt405) {
+            	case 1 :
+            	    // Objcm.g:878:16: WS
+            	    {
+            	    WS835=(Token)match(input,WS,FOLLOW_WS_in_union_declaration5360); 
+            	    WS835_tree = 
+            	    (Object)adaptor.create(WS835)
+            	    ;
+            	    adaptor.addChild(root_0, WS835_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop405;
+                }
+            } while (true);
+
+
+            SEMICOLON836=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_union_declaration5363); 
+            SEMICOLON836_tree = 
+            (Object)adaptor.create(SEMICOLON836)
+            ;
+            adaptor.addChild(root_0, SEMICOLON836_tree);
 
 
             }
@@ -29341,15 +29457,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token COLON834=null;
-        Token WS835=null;
-        Token ID836=null;
-        Token WS837=null;
+        Token COLON837=null;
+        Token WS838=null;
+        Token ID839=null;
+        Token WS840=null;
 
-        Object COLON834_tree=null;
-        Object WS835_tree=null;
-        Object ID836_tree=null;
-        Object WS837_tree=null;
+        Object COLON837_tree=null;
+        Object WS838_tree=null;
+        Object ID839_tree=null;
+        Object WS840_tree=null;
         RewriteRuleTokenStream stream_COLON=new RewriteRuleTokenStream(adaptor,"token COLON");
         RewriteRuleTokenStream stream_WS=new RewriteRuleTokenStream(adaptor,"token WS");
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
@@ -29358,66 +29474,66 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:882:2: ( COLON ( WS )* ID ( WS )* -> ^( SUPER_CLASS ID ) )
             // Objcm.g:882:4: COLON ( WS )* ID ( WS )*
             {
-            COLON834=(Token)match(input,COLON,FOLLOW_COLON_in_super_class5368);  
-            stream_COLON.add(COLON834);
+            COLON837=(Token)match(input,COLON,FOLLOW_COLON_in_super_class5377);  
+            stream_COLON.add(COLON837);
 
 
             // Objcm.g:882:10: ( WS )*
-            loop403:
+            loop406:
             do {
-                int alt403=2;
-                int LA403_0 = input.LA(1);
+                int alt406=2;
+                int LA406_0 = input.LA(1);
 
-                if ( (LA403_0==WS) ) {
-                    alt403=1;
+                if ( (LA406_0==WS) ) {
+                    alt406=1;
                 }
 
 
-                switch (alt403) {
+                switch (alt406) {
             	case 1 :
             	    // Objcm.g:882:10: WS
             	    {
-            	    WS835=(Token)match(input,WS,FOLLOW_WS_in_super_class5370);  
-            	    stream_WS.add(WS835);
+            	    WS838=(Token)match(input,WS,FOLLOW_WS_in_super_class5379);  
+            	    stream_WS.add(WS838);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop403;
+            	    break loop406;
                 }
             } while (true);
 
 
-            ID836=(Token)match(input,ID,FOLLOW_ID_in_super_class5373);  
-            stream_ID.add(ID836);
+            ID839=(Token)match(input,ID,FOLLOW_ID_in_super_class5382);  
+            stream_ID.add(ID839);
 
 
             // Objcm.g:882:17: ( WS )*
-            loop404:
+            loop407:
             do {
-                int alt404=2;
-                int LA404_0 = input.LA(1);
+                int alt407=2;
+                int LA407_0 = input.LA(1);
 
-                if ( (LA404_0==WS) ) {
-                    alt404=1;
+                if ( (LA407_0==WS) ) {
+                    alt407=1;
                 }
 
 
-                switch (alt404) {
+                switch (alt407) {
             	case 1 :
             	    // Objcm.g:882:17: WS
             	    {
-            	    WS837=(Token)match(input,WS,FOLLOW_WS_in_super_class5375);  
-            	    stream_WS.add(WS837);
+            	    WS840=(Token)match(input,WS,FOLLOW_WS_in_super_class5384);  
+            	    stream_WS.add(WS840);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop404;
+            	    break loop407;
                 }
             } while (true);
 
@@ -29493,17 +29609,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_BR838=null;
-        Token WS839=null;
-        Token ID840=null;
-        Token WS841=null;
-        Token R_BR842=null;
+        Token L_BR841=null;
+        Token WS842=null;
+        Token ID843=null;
+        Token WS844=null;
+        Token R_BR845=null;
 
-        Object L_BR838_tree=null;
-        Object WS839_tree=null;
-        Object ID840_tree=null;
-        Object WS841_tree=null;
-        Object R_BR842_tree=null;
+        Object L_BR841_tree=null;
+        Object WS842_tree=null;
+        Object ID843_tree=null;
+        Object WS844_tree=null;
+        Object R_BR845_tree=null;
         RewriteRuleTokenStream stream_WS=new RewriteRuleTokenStream(adaptor,"token WS");
         RewriteRuleTokenStream stream_R_BR=new RewriteRuleTokenStream(adaptor,"token R_BR");
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
@@ -29513,76 +29629,76 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:885:2: ( L_BR ( WS )* ID ( WS )* R_BR -> ^( CATEGORY L_BR ( WS )* ID ( WS )* R_BR ) )
             // Objcm.g:885:4: L_BR ( WS )* ID ( WS )* R_BR
             {
-            L_BR838=(Token)match(input,L_BR,FOLLOW_L_BR_in_interface_category5395);  
-            stream_L_BR.add(L_BR838);
+            L_BR841=(Token)match(input,L_BR,FOLLOW_L_BR_in_interface_category5404);  
+            stream_L_BR.add(L_BR841);
 
 
             // Objcm.g:885:9: ( WS )*
-            loop405:
+            loop408:
             do {
-                int alt405=2;
-                int LA405_0 = input.LA(1);
+                int alt408=2;
+                int LA408_0 = input.LA(1);
 
-                if ( (LA405_0==WS) ) {
-                    alt405=1;
+                if ( (LA408_0==WS) ) {
+                    alt408=1;
                 }
 
 
-                switch (alt405) {
+                switch (alt408) {
             	case 1 :
             	    // Objcm.g:885:9: WS
             	    {
-            	    WS839=(Token)match(input,WS,FOLLOW_WS_in_interface_category5397);  
-            	    stream_WS.add(WS839);
+            	    WS842=(Token)match(input,WS,FOLLOW_WS_in_interface_category5406);  
+            	    stream_WS.add(WS842);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop405;
+            	    break loop408;
                 }
             } while (true);
 
 
-            ID840=(Token)match(input,ID,FOLLOW_ID_in_interface_category5400);  
-            stream_ID.add(ID840);
+            ID843=(Token)match(input,ID,FOLLOW_ID_in_interface_category5409);  
+            stream_ID.add(ID843);
 
 
             // Objcm.g:885:16: ( WS )*
-            loop406:
+            loop409:
             do {
-                int alt406=2;
-                int LA406_0 = input.LA(1);
+                int alt409=2;
+                int LA409_0 = input.LA(1);
 
-                if ( (LA406_0==WS) ) {
-                    alt406=1;
+                if ( (LA409_0==WS) ) {
+                    alt409=1;
                 }
 
 
-                switch (alt406) {
+                switch (alt409) {
             	case 1 :
             	    // Objcm.g:885:16: WS
             	    {
-            	    WS841=(Token)match(input,WS,FOLLOW_WS_in_interface_category5402);  
-            	    stream_WS.add(WS841);
+            	    WS844=(Token)match(input,WS,FOLLOW_WS_in_interface_category5411);  
+            	    stream_WS.add(WS844);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop406;
+            	    break loop409;
                 }
             } while (true);
 
 
-            R_BR842=(Token)match(input,R_BR,FOLLOW_R_BR_in_interface_category5405);  
-            stream_R_BR.add(R_BR842);
+            R_BR845=(Token)match(input,R_BR,FOLLOW_R_BR_in_interface_category5414);  
+            stream_R_BR.add(R_BR845);
 
 
             // AST REWRITE
-            // elements: WS, L_BR, R_BR, WS, ID
+            // elements: R_BR, ID, WS, L_BR, WS
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -29678,13 +29794,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS845=null;
-        ObjcmParser.enum_declaration_return enum_declaration843 =null;
+        Token WS848=null;
+        ObjcmParser.enum_declaration_return enum_declaration846 =null;
 
-        ObjcmParser.interface_method_return interface_method844 =null;
+        ObjcmParser.interface_method_return interface_method847 =null;
 
 
-        Object WS845_tree=null;
+        Object WS848_tree=null;
 
         try {
             // Objcm.g:888:2: ( ( enum_declaration | interface_method | WS )+ )
@@ -29694,75 +29810,75 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:888:4: ( enum_declaration | interface_method | WS )+
-            int cnt407=0;
-            loop407:
+            int cnt410=0;
+            loop410:
             do {
-                int alt407=4;
+                int alt410=4;
                 switch ( input.LA(1) ) {
                 case ENUM_PREFIX:
                     {
-                    alt407=1;
+                    alt410=1;
                     }
                     break;
                 case 111:
                 case 113:
                     {
-                    alt407=2;
+                    alt410=2;
                     }
                     break;
                 case WS:
                     {
-                    alt407=3;
+                    alt410=3;
                     }
                     break;
 
                 }
 
-                switch (alt407) {
+                switch (alt410) {
             	case 1 :
             	    // Objcm.g:888:5: enum_declaration
             	    {
-            	    pushFollow(FOLLOW_enum_declaration_in_interface_methods5438);
-            	    enum_declaration843=enum_declaration();
+            	    pushFollow(FOLLOW_enum_declaration_in_interface_methods5447);
+            	    enum_declaration846=enum_declaration();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, enum_declaration843.getTree());
+            	    adaptor.addChild(root_0, enum_declaration846.getTree());
 
             	    }
             	    break;
             	case 2 :
             	    // Objcm.g:888:24: interface_method
             	    {
-            	    pushFollow(FOLLOW_interface_method_in_interface_methods5442);
-            	    interface_method844=interface_method();
+            	    pushFollow(FOLLOW_interface_method_in_interface_methods5451);
+            	    interface_method847=interface_method();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, interface_method844.getTree());
+            	    adaptor.addChild(root_0, interface_method847.getTree());
 
             	    }
             	    break;
             	case 3 :
             	    // Objcm.g:888:43: WS
             	    {
-            	    WS845=(Token)match(input,WS,FOLLOW_WS_in_interface_methods5446); 
-            	    WS845_tree = 
-            	    (Object)adaptor.create(WS845)
+            	    WS848=(Token)match(input,WS,FOLLOW_WS_in_interface_methods5455); 
+            	    WS848_tree = 
+            	    (Object)adaptor.create(WS848)
             	    ;
-            	    adaptor.addChild(root_0, WS845_tree);
+            	    adaptor.addChild(root_0, WS848_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt407 >= 1 ) break loop407;
+            	    if ( cnt410 >= 1 ) break loop410;
                         EarlyExitException eee =
-                            new EarlyExitException(407, input);
+                            new EarlyExitException(410, input);
                         throw eee;
                 }
-                cnt407++;
+                cnt410++;
             } while (true);
 
 
@@ -29805,7 +29921,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.method_header_return method_header846 =null;
+        ObjcmParser.method_header_return method_header849 =null;
 
 
         RewriteRuleSubtreeStream stream_method_header=new RewriteRuleSubtreeStream(adaptor,"rule method_header");
@@ -29813,12 +29929,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:891:2: ( method_header -> ^( METHOD method_header ) )
             // Objcm.g:891:4: method_header
             {
-            pushFollow(FOLLOW_method_header_in_interface_method5459);
-            method_header846=method_header();
+            pushFollow(FOLLOW_method_header_in_interface_method5468);
+            method_header849=method_header();
 
             state._fsp--;
 
-            stream_method_header.add(method_header846.getTree());
+            stream_method_header.add(method_header849.getTree());
 
             // AST REWRITE
             // elements: method_header
@@ -29889,9 +30005,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.method_header_body_return method_header_body847 =null;
+        ObjcmParser.method_header_body_return method_header_body850 =null;
 
-        ObjcmParser.semi_return semi848 =null;
+        ObjcmParser.semi_return semi851 =null;
 
 
 
@@ -29902,30 +30018,30 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_method_header_body_in_method_header5478);
-            method_header_body847=method_header_body();
+            pushFollow(FOLLOW_method_header_body_in_method_header5487);
+            method_header_body850=method_header_body();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_header_body847.getTree());
+            adaptor.addChild(root_0, method_header_body850.getTree());
 
             // Objcm.g:894:23: ( semi )?
-            int alt408=2;
-            int LA408_0 = input.LA(1);
+            int alt411=2;
+            int LA411_0 = input.LA(1);
 
-            if ( (LA408_0==SEMICOLON) ) {
-                alt408=1;
+            if ( (LA411_0==SEMICOLON) ) {
+                alt411=1;
             }
-            switch (alt408) {
+            switch (alt411) {
                 case 1 :
                     // Objcm.g:894:23: semi
                     {
-                    pushFollow(FOLLOW_semi_in_method_header5480);
-                    semi848=semi();
+                    pushFollow(FOLLOW_semi_in_method_header5489);
+                    semi851=semi();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, semi848.getTree());
+                    adaptor.addChild(root_0, semi851.getTree());
 
                     }
                     break;
@@ -29972,23 +30088,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS850=null;
-        Token WS852=null;
-        Token WS854=null;
-        ObjcmParser.method_modifier_wrapper_return method_modifier_wrapper849 =null;
+        Token WS853=null;
+        Token WS855=null;
+        Token WS857=null;
+        ObjcmParser.method_modifier_wrapper_return method_modifier_wrapper852 =null;
 
-        ObjcmParser.method_type_return method_type851 =null;
+        ObjcmParser.method_type_return method_type854 =null;
 
-        ObjcmParser.name_return name853 =null;
+        ObjcmParser.name_return name856 =null;
 
-        ObjcmParser.method_params_return method_params855 =null;
+        ObjcmParser.method_params_return method_params858 =null;
 
-        ObjcmParser.va_args_wrapper_return va_args_wrapper856 =null;
+        ObjcmParser.va_args_wrapper_return va_args_wrapper859 =null;
 
 
-        Object WS850_tree=null;
-        Object WS852_tree=null;
-        Object WS854_tree=null;
+        Object WS853_tree=null;
+        Object WS855_tree=null;
+        Object WS857_tree=null;
 
         try {
             // Objcm.g:897:2: ( method_modifier_wrapper ( WS )* method_type ( WS )* name ( WS )* ( method_params )? ( va_args_wrapper )? )
@@ -29997,137 +30113,137 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_method_modifier_wrapper_in_method_header_body5490);
-            method_modifier_wrapper849=method_modifier_wrapper();
+            pushFollow(FOLLOW_method_modifier_wrapper_in_method_header_body5499);
+            method_modifier_wrapper852=method_modifier_wrapper();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_modifier_wrapper849.getTree());
+            adaptor.addChild(root_0, method_modifier_wrapper852.getTree());
 
             // Objcm.g:897:28: ( WS )*
-            loop409:
+            loop412:
             do {
-                int alt409=2;
-                int LA409_0 = input.LA(1);
+                int alt412=2;
+                int LA412_0 = input.LA(1);
 
-                if ( (LA409_0==WS) ) {
-                    alt409=1;
+                if ( (LA412_0==WS) ) {
+                    alt412=1;
                 }
 
 
-                switch (alt409) {
+                switch (alt412) {
             	case 1 :
             	    // Objcm.g:897:28: WS
             	    {
-            	    WS850=(Token)match(input,WS,FOLLOW_WS_in_method_header_body5492); 
-            	    WS850_tree = 
-            	    (Object)adaptor.create(WS850)
+            	    WS853=(Token)match(input,WS,FOLLOW_WS_in_method_header_body5501); 
+            	    WS853_tree = 
+            	    (Object)adaptor.create(WS853)
             	    ;
-            	    adaptor.addChild(root_0, WS850_tree);
+            	    adaptor.addChild(root_0, WS853_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop409;
+            	    break loop412;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_method_type_in_method_header_body5495);
-            method_type851=method_type();
+            pushFollow(FOLLOW_method_type_in_method_header_body5504);
+            method_type854=method_type();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_type851.getTree());
+            adaptor.addChild(root_0, method_type854.getTree());
 
             // Objcm.g:897:44: ( WS )*
-            loop410:
+            loop413:
             do {
-                int alt410=2;
-                int LA410_0 = input.LA(1);
+                int alt413=2;
+                int LA413_0 = input.LA(1);
 
-                if ( (LA410_0==WS) ) {
-                    alt410=1;
+                if ( (LA413_0==WS) ) {
+                    alt413=1;
                 }
 
 
-                switch (alt410) {
+                switch (alt413) {
             	case 1 :
             	    // Objcm.g:897:44: WS
             	    {
-            	    WS852=(Token)match(input,WS,FOLLOW_WS_in_method_header_body5497); 
-            	    WS852_tree = 
-            	    (Object)adaptor.create(WS852)
+            	    WS855=(Token)match(input,WS,FOLLOW_WS_in_method_header_body5506); 
+            	    WS855_tree = 
+            	    (Object)adaptor.create(WS855)
             	    ;
-            	    adaptor.addChild(root_0, WS852_tree);
+            	    adaptor.addChild(root_0, WS855_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop410;
+            	    break loop413;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_name_in_method_header_body5500);
-            name853=name();
+            pushFollow(FOLLOW_name_in_method_header_body5509);
+            name856=name();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, name853.getTree());
+            adaptor.addChild(root_0, name856.getTree());
 
             // Objcm.g:897:53: ( WS )*
-            loop411:
+            loop414:
             do {
-                int alt411=2;
-                int LA411_0 = input.LA(1);
+                int alt414=2;
+                int LA414_0 = input.LA(1);
 
-                if ( (LA411_0==WS) ) {
-                    alt411=1;
+                if ( (LA414_0==WS) ) {
+                    alt414=1;
                 }
 
 
-                switch (alt411) {
+                switch (alt414) {
             	case 1 :
             	    // Objcm.g:897:53: WS
             	    {
-            	    WS854=(Token)match(input,WS,FOLLOW_WS_in_method_header_body5502); 
-            	    WS854_tree = 
-            	    (Object)adaptor.create(WS854)
+            	    WS857=(Token)match(input,WS,FOLLOW_WS_in_method_header_body5511); 
+            	    WS857_tree = 
+            	    (Object)adaptor.create(WS857)
             	    ;
-            	    adaptor.addChild(root_0, WS854_tree);
+            	    adaptor.addChild(root_0, WS857_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop411;
+            	    break loop414;
                 }
             } while (true);
 
 
             // Objcm.g:897:57: ( method_params )?
-            int alt412=2;
-            int LA412_0 = input.LA(1);
+            int alt415=2;
+            int LA415_0 = input.LA(1);
 
-            if ( (LA412_0==COLON||LA412_0==ID) ) {
-                alt412=1;
+            if ( (LA415_0==COLON||LA415_0==ID) ) {
+                alt415=1;
             }
-            switch (alt412) {
+            switch (alt415) {
                 case 1 :
                     // Objcm.g:897:57: method_params
                     {
-                    pushFollow(FOLLOW_method_params_in_method_header_body5505);
-                    method_params855=method_params();
+                    pushFollow(FOLLOW_method_params_in_method_header_body5514);
+                    method_params858=method_params();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, method_params855.getTree());
+                    adaptor.addChild(root_0, method_params858.getTree());
 
                     }
                     break;
@@ -30136,22 +30252,22 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:897:72: ( va_args_wrapper )?
-            int alt413=2;
-            int LA413_0 = input.LA(1);
+            int alt416=2;
+            int LA416_0 = input.LA(1);
 
-            if ( (LA413_0==COMMA) ) {
-                alt413=1;
+            if ( (LA416_0==COMMA) ) {
+                alt416=1;
             }
-            switch (alt413) {
+            switch (alt416) {
                 case 1 :
                     // Objcm.g:897:72: va_args_wrapper
                     {
-                    pushFollow(FOLLOW_va_args_wrapper_in_method_header_body5508);
-                    va_args_wrapper856=va_args_wrapper();
+                    pushFollow(FOLLOW_va_args_wrapper_in_method_header_body5517);
+                    va_args_wrapper859=va_args_wrapper();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, va_args_wrapper856.getTree());
+                    adaptor.addChild(root_0, va_args_wrapper859.getTree());
 
                     }
                     break;
@@ -30198,7 +30314,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.va_args_return va_args857 =null;
+        ObjcmParser.va_args_return va_args860 =null;
 
 
         RewriteRuleSubtreeStream stream_va_args=new RewriteRuleSubtreeStream(adaptor,"rule va_args");
@@ -30206,12 +30322,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:900:2: ( va_args -> ^( VA_ARGS va_args ) )
             // Objcm.g:900:4: va_args
             {
-            pushFollow(FOLLOW_va_args_in_va_args_wrapper5518);
-            va_args857=va_args();
+            pushFollow(FOLLOW_va_args_in_va_args_wrapper5527);
+            va_args860=va_args();
 
             state._fsp--;
 
-            stream_va_args.add(va_args857.getTree());
+            stream_va_args.add(va_args860.getTree());
 
             // AST REWRITE
             // elements: va_args
@@ -30282,17 +30398,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token COMMA858=null;
-        Token WS859=null;
-        Token string_literal860=null;
-        Token WS861=null;
-        ObjcmParser.semi_return semi862 =null;
+        Token COMMA861=null;
+        Token WS862=null;
+        Token string_literal863=null;
+        Token WS864=null;
+        ObjcmParser.semi_return semi865 =null;
 
 
-        Object COMMA858_tree=null;
-        Object WS859_tree=null;
-        Object string_literal860_tree=null;
-        Object WS861_tree=null;
+        Object COMMA861_tree=null;
+        Object WS862_tree=null;
+        Object string_literal863_tree=null;
+        Object WS864_tree=null;
 
         try {
             // Objcm.g:902:9: ( COMMA ( WS )* '...' ( WS )* ( semi )? )
@@ -30301,99 +30417,99 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            COMMA858=(Token)match(input,COMMA,FOLLOW_COMMA_in_va_args5535); 
-            COMMA858_tree = 
-            (Object)adaptor.create(COMMA858)
+            COMMA861=(Token)match(input,COMMA,FOLLOW_COMMA_in_va_args5544); 
+            COMMA861_tree = 
+            (Object)adaptor.create(COMMA861)
             ;
-            adaptor.addChild(root_0, COMMA858_tree);
+            adaptor.addChild(root_0, COMMA861_tree);
 
 
             // Objcm.g:902:17: ( WS )*
-            loop414:
+            loop417:
             do {
-                int alt414=2;
-                int LA414_0 = input.LA(1);
+                int alt417=2;
+                int LA417_0 = input.LA(1);
 
-                if ( (LA414_0==WS) ) {
-                    alt414=1;
+                if ( (LA417_0==WS) ) {
+                    alt417=1;
                 }
 
 
-                switch (alt414) {
+                switch (alt417) {
             	case 1 :
             	    // Objcm.g:902:17: WS
             	    {
-            	    WS859=(Token)match(input,WS,FOLLOW_WS_in_va_args5537); 
-            	    WS859_tree = 
-            	    (Object)adaptor.create(WS859)
+            	    WS862=(Token)match(input,WS,FOLLOW_WS_in_va_args5546); 
+            	    WS862_tree = 
+            	    (Object)adaptor.create(WS862)
             	    ;
-            	    adaptor.addChild(root_0, WS859_tree);
+            	    adaptor.addChild(root_0, WS862_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop414;
+            	    break loop417;
                 }
             } while (true);
 
 
-            string_literal860=(Token)match(input,116,FOLLOW_116_in_va_args5540); 
-            string_literal860_tree = 
-            (Object)adaptor.create(string_literal860)
+            string_literal863=(Token)match(input,116,FOLLOW_116_in_va_args5549); 
+            string_literal863_tree = 
+            (Object)adaptor.create(string_literal863)
             ;
-            adaptor.addChild(root_0, string_literal860_tree);
+            adaptor.addChild(root_0, string_literal863_tree);
 
 
             // Objcm.g:902:27: ( WS )*
-            loop415:
+            loop418:
             do {
-                int alt415=2;
-                int LA415_0 = input.LA(1);
+                int alt418=2;
+                int LA418_0 = input.LA(1);
 
-                if ( (LA415_0==WS) ) {
-                    alt415=1;
+                if ( (LA418_0==WS) ) {
+                    alt418=1;
                 }
 
 
-                switch (alt415) {
+                switch (alt418) {
             	case 1 :
             	    // Objcm.g:902:27: WS
             	    {
-            	    WS861=(Token)match(input,WS,FOLLOW_WS_in_va_args5542); 
-            	    WS861_tree = 
-            	    (Object)adaptor.create(WS861)
+            	    WS864=(Token)match(input,WS,FOLLOW_WS_in_va_args5551); 
+            	    WS864_tree = 
+            	    (Object)adaptor.create(WS864)
             	    ;
-            	    adaptor.addChild(root_0, WS861_tree);
+            	    adaptor.addChild(root_0, WS864_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop415;
+            	    break loop418;
                 }
             } while (true);
 
 
             // Objcm.g:902:31: ( semi )?
-            int alt416=2;
-            int LA416_0 = input.LA(1);
+            int alt419=2;
+            int LA419_0 = input.LA(1);
 
-            if ( (LA416_0==SEMICOLON) ) {
-                alt416=1;
+            if ( (LA419_0==SEMICOLON) ) {
+                alt419=1;
             }
-            switch (alt416) {
+            switch (alt419) {
                 case 1 :
                     // Objcm.g:902:31: semi
                     {
-                    pushFollow(FOLLOW_semi_in_va_args5545);
-                    semi862=semi();
+                    pushFollow(FOLLOW_semi_in_va_args5554);
+                    semi865=semi();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, semi862.getTree());
+                    adaptor.addChild(root_0, semi865.getTree());
 
                     }
                     break;
@@ -30440,15 +30556,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS865=null;
-        ObjcmParser.method_type_return method_type863 =null;
+        Token WS868=null;
+        ObjcmParser.method_type_return method_type866 =null;
 
-        ObjcmParser.name_return name864 =null;
+        ObjcmParser.name_return name867 =null;
 
-        ObjcmParser.method_params2_return method_params2866 =null;
+        ObjcmParser.method_params2_return method_params2869 =null;
 
 
-        Object WS865_tree=null;
+        Object WS868_tree=null;
 
         try {
             // Objcm.g:905:2: ( method_type name ( WS )* ( method_params2 )? )
@@ -30457,68 +30573,68 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_method_type_in_method_header_body25556);
-            method_type863=method_type();
+            pushFollow(FOLLOW_method_type_in_method_header_body25565);
+            method_type866=method_type();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_type863.getTree());
+            adaptor.addChild(root_0, method_type866.getTree());
 
-            pushFollow(FOLLOW_name_in_method_header_body25558);
-            name864=name();
+            pushFollow(FOLLOW_name_in_method_header_body25567);
+            name867=name();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, name864.getTree());
+            adaptor.addChild(root_0, name867.getTree());
 
             // Objcm.g:905:21: ( WS )*
-            loop417:
+            loop420:
             do {
-                int alt417=2;
-                int LA417_0 = input.LA(1);
+                int alt420=2;
+                int LA420_0 = input.LA(1);
 
-                if ( (LA417_0==WS) ) {
-                    alt417=1;
+                if ( (LA420_0==WS) ) {
+                    alt420=1;
                 }
 
 
-                switch (alt417) {
+                switch (alt420) {
             	case 1 :
             	    // Objcm.g:905:21: WS
             	    {
-            	    WS865=(Token)match(input,WS,FOLLOW_WS_in_method_header_body25560); 
-            	    WS865_tree = 
-            	    (Object)adaptor.create(WS865)
+            	    WS868=(Token)match(input,WS,FOLLOW_WS_in_method_header_body25569); 
+            	    WS868_tree = 
+            	    (Object)adaptor.create(WS868)
             	    ;
-            	    adaptor.addChild(root_0, WS865_tree);
+            	    adaptor.addChild(root_0, WS868_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop417;
+            	    break loop420;
                 }
             } while (true);
 
 
             // Objcm.g:905:25: ( method_params2 )?
-            int alt418=2;
-            int LA418_0 = input.LA(1);
+            int alt421=2;
+            int LA421_0 = input.LA(1);
 
-            if ( (LA418_0==L_BR) ) {
-                alt418=1;
+            if ( (LA421_0==L_BR) ) {
+                alt421=1;
             }
-            switch (alt418) {
+            switch (alt421) {
                 case 1 :
                     // Objcm.g:905:25: method_params2
                     {
-                    pushFollow(FOLLOW_method_params2_in_method_header_body25563);
-                    method_params2866=method_params2();
+                    pushFollow(FOLLOW_method_params2_in_method_header_body25572);
+                    method_params2869=method_params2();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, method_params2866.getTree());
+                    adaptor.addChild(root_0, method_params2869.getTree());
 
                     }
                     break;
@@ -30565,7 +30681,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.method_params2_return method_params2867 =null;
+        ObjcmParser.method_params2_return method_params2870 =null;
 
 
 
@@ -30576,12 +30692,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_method_params2_in_method_header_body35573);
-            method_params2867=method_params2();
+            pushFollow(FOLLOW_method_params2_in_method_header_body35582);
+            method_params2870=method_params2();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_params2867.getTree());
+            adaptor.addChild(root_0, method_params2870.getTree());
 
             }
 
@@ -30622,7 +30738,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.method_modifier_return method_modifier868 =null;
+        ObjcmParser.method_modifier_return method_modifier871 =null;
 
 
         RewriteRuleSubtreeStream stream_method_modifier=new RewriteRuleSubtreeStream(adaptor,"rule method_modifier");
@@ -30630,12 +30746,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:911:2: ( method_modifier -> ^( MODIFIER method_modifier ) )
             // Objcm.g:911:4: method_modifier
             {
-            pushFollow(FOLLOW_method_modifier_in_method_modifier_wrapper5582);
-            method_modifier868=method_modifier();
+            pushFollow(FOLLOW_method_modifier_in_method_modifier_wrapper5591);
+            method_modifier871=method_modifier();
 
             state._fsp--;
 
-            stream_method_modifier.add(method_modifier868.getTree());
+            stream_method_modifier.add(method_modifier871.getTree());
 
             // AST REWRITE
             // elements: method_modifier
@@ -30706,9 +30822,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set869=null;
+        Token set872=null;
 
-        Object set869_tree=null;
+        Object set872_tree=null;
 
         try {
             // Objcm.g:914:2: ( '+' | '-' )
@@ -30717,12 +30833,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set869=(Token)input.LT(1);
+            set872=(Token)input.LT(1);
 
             if ( input.LA(1)==111||input.LA(1)==113 ) {
                 input.consume();
                 adaptor.addChild(root_0, 
-                (Object)adaptor.create(set869)
+                (Object)adaptor.create(set872)
                 );
                 state.errorRecovery=false;
             }
@@ -30771,51 +30887,51 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_BR870=null;
-        Token WS871=null;
-        Token STRUCT_PREFIX872=null;
+        Token L_BR873=null;
         Token WS874=null;
-        Token WS876=null;
-        Token ASTERISK877=null;
-        Token WS878=null;
-        Token R_BR879=null;
-        Token L_BR880=null;
+        Token STRUCT_PREFIX875=null;
+        Token WS877=null;
+        Token WS879=null;
+        Token ASTERISK880=null;
         Token WS881=null;
-        Token CONST_PREFIX882=null;
+        Token R_BR882=null;
+        Token L_BR883=null;
         Token WS884=null;
-        Token ID885=null;
-        Token WS886=null;
-        Token WS888=null;
-        Token ASTERISK889=null;
-        Token WS890=null;
-        Token R_BR891=null;
-        ObjcmParser.type_internal_return type_internal873 =null;
+        Token CONST_PREFIX885=null;
+        Token WS887=null;
+        Token ID888=null;
+        Token WS889=null;
+        Token WS891=null;
+        Token ASTERISK892=null;
+        Token WS893=null;
+        Token R_BR894=null;
+        ObjcmParser.type_internal_return type_internal876 =null;
 
-        ObjcmParser.generic_return generic875 =null;
+        ObjcmParser.generic_return generic878 =null;
 
-        ObjcmParser.known_types_return known_types883 =null;
+        ObjcmParser.known_types_return known_types886 =null;
 
-        ObjcmParser.generic_return generic887 =null;
+        ObjcmParser.generic_return generic890 =null;
 
 
-        Object L_BR870_tree=null;
-        Object WS871_tree=null;
-        Object STRUCT_PREFIX872_tree=null;
+        Object L_BR873_tree=null;
         Object WS874_tree=null;
-        Object WS876_tree=null;
-        Object ASTERISK877_tree=null;
-        Object WS878_tree=null;
-        Object R_BR879_tree=null;
-        Object L_BR880_tree=null;
+        Object STRUCT_PREFIX875_tree=null;
+        Object WS877_tree=null;
+        Object WS879_tree=null;
+        Object ASTERISK880_tree=null;
         Object WS881_tree=null;
-        Object CONST_PREFIX882_tree=null;
+        Object R_BR882_tree=null;
+        Object L_BR883_tree=null;
         Object WS884_tree=null;
-        Object ID885_tree=null;
-        Object WS886_tree=null;
-        Object WS888_tree=null;
-        Object ASTERISK889_tree=null;
-        Object WS890_tree=null;
-        Object R_BR891_tree=null;
+        Object CONST_PREFIX885_tree=null;
+        Object WS887_tree=null;
+        Object ID888_tree=null;
+        Object WS889_tree=null;
+        Object WS891_tree=null;
+        Object ASTERISK892_tree=null;
+        Object WS893_tree=null;
+        Object R_BR894_tree=null;
         RewriteRuleTokenStream stream_WS=new RewriteRuleTokenStream(adaptor,"token WS");
         RewriteRuleTokenStream stream_R_BR=new RewriteRuleTokenStream(adaptor,"token R_BR");
         RewriteRuleTokenStream stream_STRUCT_PREFIX=new RewriteRuleTokenStream(adaptor,"token STRUCT_PREFIX");
@@ -30828,88 +30944,32 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_known_types=new RewriteRuleSubtreeStream(adaptor,"rule known_types");
         try {
             // Objcm.g:917:2: ( L_BR ( WS )* ( STRUCT_PREFIX )? type_internal ( WS )* ( generic ( WS )* )? ( ( ASTERISK )+ ( WS )* )? R_BR -> ^( TYPE type_internal ) | L_BR ( WS )* ( CONST_PREFIX )? ( known_types ( WS )* )? ( ID ( WS )* )* ( generic ( WS )* )? ( ( ASTERISK )+ ( WS )* )? R_BR -> ^( TYPE ( ID )+ ) )
-            int alt438=2;
-            alt438 = dfa438.predict(input);
-            switch (alt438) {
+            int alt441=2;
+            alt441 = dfa441.predict(input);
+            switch (alt441) {
                 case 1 :
                     // Objcm.g:917:4: L_BR ( WS )* ( STRUCT_PREFIX )? type_internal ( WS )* ( generic ( WS )* )? ( ( ASTERISK )+ ( WS )* )? R_BR
                     {
-                    L_BR870=(Token)match(input,L_BR,FOLLOW_L_BR_in_method_type5614);  
-                    stream_L_BR.add(L_BR870);
+                    L_BR873=(Token)match(input,L_BR,FOLLOW_L_BR_in_method_type5623);  
+                    stream_L_BR.add(L_BR873);
 
 
                     // Objcm.g:917:9: ( WS )*
-                    loop419:
+                    loop422:
                     do {
-                        int alt419=2;
-                        int LA419_0 = input.LA(1);
+                        int alt422=2;
+                        int LA422_0 = input.LA(1);
 
-                        if ( (LA419_0==WS) ) {
-                            alt419=1;
+                        if ( (LA422_0==WS) ) {
+                            alt422=1;
                         }
 
 
-                        switch (alt419) {
+                        switch (alt422) {
                     	case 1 :
                     	    // Objcm.g:917:9: WS
                     	    {
-                    	    WS871=(Token)match(input,WS,FOLLOW_WS_in_method_type5616);  
-                    	    stream_WS.add(WS871);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop419;
-                        }
-                    } while (true);
-
-
-                    // Objcm.g:917:13: ( STRUCT_PREFIX )?
-                    int alt420=2;
-                    int LA420_0 = input.LA(1);
-
-                    if ( (LA420_0==STRUCT_PREFIX) ) {
-                        alt420=1;
-                    }
-                    switch (alt420) {
-                        case 1 :
-                            // Objcm.g:917:13: STRUCT_PREFIX
-                            {
-                            STRUCT_PREFIX872=(Token)match(input,STRUCT_PREFIX,FOLLOW_STRUCT_PREFIX_in_method_type5619);  
-                            stream_STRUCT_PREFIX.add(STRUCT_PREFIX872);
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    pushFollow(FOLLOW_type_internal_in_method_type5622);
-                    type_internal873=type_internal();
-
-                    state._fsp--;
-
-                    stream_type_internal.add(type_internal873.getTree());
-
-                    // Objcm.g:917:42: ( WS )*
-                    loop421:
-                    do {
-                        int alt421=2;
-                        int LA421_0 = input.LA(1);
-
-                        if ( (LA421_0==WS) ) {
-                            alt421=1;
-                        }
-
-
-                        switch (alt421) {
-                    	case 1 :
-                    	    // Objcm.g:917:42: WS
-                    	    {
-                    	    WS874=(Token)match(input,WS,FOLLOW_WS_in_method_type5624);  
+                    	    WS874=(Token)match(input,WS,FOLLOW_WS_in_method_type5625);  
                     	    stream_WS.add(WS874);
 
 
@@ -30917,55 +30977,24 @@ public TreeAdaptor getTreeAdaptor() {
                     	    break;
 
                     	default :
-                    	    break loop421;
+                    	    break loop422;
                         }
                     } while (true);
 
 
-                    // Objcm.g:917:46: ( generic ( WS )* )?
+                    // Objcm.g:917:13: ( STRUCT_PREFIX )?
                     int alt423=2;
                     int LA423_0 = input.LA(1);
 
-                    if ( (LA423_0==L_UBR) ) {
+                    if ( (LA423_0==STRUCT_PREFIX) ) {
                         alt423=1;
                     }
                     switch (alt423) {
                         case 1 :
-                            // Objcm.g:917:47: generic ( WS )*
+                            // Objcm.g:917:13: STRUCT_PREFIX
                             {
-                            pushFollow(FOLLOW_generic_in_method_type5628);
-                            generic875=generic();
-
-                            state._fsp--;
-
-                            stream_generic.add(generic875.getTree());
-
-                            // Objcm.g:917:55: ( WS )*
-                            loop422:
-                            do {
-                                int alt422=2;
-                                int LA422_0 = input.LA(1);
-
-                                if ( (LA422_0==WS) ) {
-                                    alt422=1;
-                                }
-
-
-                                switch (alt422) {
-                            	case 1 :
-                            	    // Objcm.g:917:55: WS
-                            	    {
-                            	    WS876=(Token)match(input,WS,FOLLOW_WS_in_method_type5630);  
-                            	    stream_WS.add(WS876);
-
-
-                            	    }
-                            	    break;
-
-                            	default :
-                            	    break loop422;
-                                }
-                            } while (true);
+                            STRUCT_PREFIX875=(Token)match(input,STRUCT_PREFIX,FOLLOW_STRUCT_PREFIX_in_method_type5628);  
+                            stream_STRUCT_PREFIX.add(STRUCT_PREFIX875);
 
 
                             }
@@ -30974,51 +31003,60 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    // Objcm.g:917:61: ( ( ASTERISK )+ ( WS )* )?
+                    pushFollow(FOLLOW_type_internal_in_method_type5631);
+                    type_internal876=type_internal();
+
+                    state._fsp--;
+
+                    stream_type_internal.add(type_internal876.getTree());
+
+                    // Objcm.g:917:42: ( WS )*
+                    loop424:
+                    do {
+                        int alt424=2;
+                        int LA424_0 = input.LA(1);
+
+                        if ( (LA424_0==WS) ) {
+                            alt424=1;
+                        }
+
+
+                        switch (alt424) {
+                    	case 1 :
+                    	    // Objcm.g:917:42: WS
+                    	    {
+                    	    WS877=(Token)match(input,WS,FOLLOW_WS_in_method_type5633);  
+                    	    stream_WS.add(WS877);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop424;
+                        }
+                    } while (true);
+
+
+                    // Objcm.g:917:46: ( generic ( WS )* )?
                     int alt426=2;
                     int LA426_0 = input.LA(1);
 
-                    if ( (LA426_0==ASTERISK) ) {
+                    if ( (LA426_0==L_UBR) ) {
                         alt426=1;
                     }
                     switch (alt426) {
                         case 1 :
-                            // Objcm.g:917:62: ( ASTERISK )+ ( WS )*
+                            // Objcm.g:917:47: generic ( WS )*
                             {
-                            // Objcm.g:917:62: ( ASTERISK )+
-                            int cnt424=0;
-                            loop424:
-                            do {
-                                int alt424=2;
-                                int LA424_0 = input.LA(1);
+                            pushFollow(FOLLOW_generic_in_method_type5637);
+                            generic878=generic();
 
-                                if ( (LA424_0==ASTERISK) ) {
-                                    alt424=1;
-                                }
+                            state._fsp--;
 
+                            stream_generic.add(generic878.getTree());
 
-                                switch (alt424) {
-                            	case 1 :
-                            	    // Objcm.g:917:62: ASTERISK
-                            	    {
-                            	    ASTERISK877=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_method_type5636);  
-                            	    stream_ASTERISK.add(ASTERISK877);
-
-
-                            	    }
-                            	    break;
-
-                            	default :
-                            	    if ( cnt424 >= 1 ) break loop424;
-                                        EarlyExitException eee =
-                                            new EarlyExitException(424, input);
-                                        throw eee;
-                                }
-                                cnt424++;
-                            } while (true);
-
-
-                            // Objcm.g:917:72: ( WS )*
+                            // Objcm.g:917:55: ( WS )*
                             loop425:
                             do {
                                 int alt425=2;
@@ -31031,10 +31069,10 @@ public TreeAdaptor getTreeAdaptor() {
 
                                 switch (alt425) {
                             	case 1 :
-                            	    // Objcm.g:917:72: WS
+                            	    // Objcm.g:917:55: WS
                             	    {
-                            	    WS878=(Token)match(input,WS,FOLLOW_WS_in_method_type5639);  
-                            	    stream_WS.add(WS878);
+                            	    WS879=(Token)match(input,WS,FOLLOW_WS_in_method_type5639);  
+                            	    stream_WS.add(WS879);
 
 
                             	    }
@@ -31052,8 +31090,86 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    R_BR879=(Token)match(input,R_BR,FOLLOW_R_BR_in_method_type5644);  
-                    stream_R_BR.add(R_BR879);
+                    // Objcm.g:917:61: ( ( ASTERISK )+ ( WS )* )?
+                    int alt429=2;
+                    int LA429_0 = input.LA(1);
+
+                    if ( (LA429_0==ASTERISK) ) {
+                        alt429=1;
+                    }
+                    switch (alt429) {
+                        case 1 :
+                            // Objcm.g:917:62: ( ASTERISK )+ ( WS )*
+                            {
+                            // Objcm.g:917:62: ( ASTERISK )+
+                            int cnt427=0;
+                            loop427:
+                            do {
+                                int alt427=2;
+                                int LA427_0 = input.LA(1);
+
+                                if ( (LA427_0==ASTERISK) ) {
+                                    alt427=1;
+                                }
+
+
+                                switch (alt427) {
+                            	case 1 :
+                            	    // Objcm.g:917:62: ASTERISK
+                            	    {
+                            	    ASTERISK880=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_method_type5645);  
+                            	    stream_ASTERISK.add(ASTERISK880);
+
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    if ( cnt427 >= 1 ) break loop427;
+                                        EarlyExitException eee =
+                                            new EarlyExitException(427, input);
+                                        throw eee;
+                                }
+                                cnt427++;
+                            } while (true);
+
+
+                            // Objcm.g:917:72: ( WS )*
+                            loop428:
+                            do {
+                                int alt428=2;
+                                int LA428_0 = input.LA(1);
+
+                                if ( (LA428_0==WS) ) {
+                                    alt428=1;
+                                }
+
+
+                                switch (alt428) {
+                            	case 1 :
+                            	    // Objcm.g:917:72: WS
+                            	    {
+                            	    WS881=(Token)match(input,WS,FOLLOW_WS_in_method_type5648);  
+                            	    stream_WS.add(WS881);
+
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    break loop428;
+                                }
+                            } while (true);
+
+
+                            }
+                            break;
+
+                    }
+
+
+                    R_BR882=(Token)match(input,R_BR,FOLLOW_R_BR_in_method_type5653);  
+                    stream_R_BR.add(R_BR882);
 
 
                     // AST REWRITE
@@ -31091,51 +31207,51 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // Objcm.g:918:5: L_BR ( WS )* ( CONST_PREFIX )? ( known_types ( WS )* )? ( ID ( WS )* )* ( generic ( WS )* )? ( ( ASTERISK )+ ( WS )* )? R_BR
                     {
-                    L_BR880=(Token)match(input,L_BR,FOLLOW_L_BR_in_method_type5658);  
-                    stream_L_BR.add(L_BR880);
+                    L_BR883=(Token)match(input,L_BR,FOLLOW_L_BR_in_method_type5667);  
+                    stream_L_BR.add(L_BR883);
 
 
                     // Objcm.g:918:10: ( WS )*
-                    loop427:
+                    loop430:
                     do {
-                        int alt427=2;
-                        int LA427_0 = input.LA(1);
+                        int alt430=2;
+                        int LA430_0 = input.LA(1);
 
-                        if ( (LA427_0==WS) ) {
-                            alt427=1;
+                        if ( (LA430_0==WS) ) {
+                            alt430=1;
                         }
 
 
-                        switch (alt427) {
+                        switch (alt430) {
                     	case 1 :
                     	    // Objcm.g:918:10: WS
                     	    {
-                    	    WS881=(Token)match(input,WS,FOLLOW_WS_in_method_type5660);  
-                    	    stream_WS.add(WS881);
+                    	    WS884=(Token)match(input,WS,FOLLOW_WS_in_method_type5669);  
+                    	    stream_WS.add(WS884);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop427;
+                    	    break loop430;
                         }
                     } while (true);
 
 
                     // Objcm.g:918:14: ( CONST_PREFIX )?
-                    int alt428=2;
-                    int LA428_0 = input.LA(1);
+                    int alt431=2;
+                    int LA431_0 = input.LA(1);
 
-                    if ( (LA428_0==CONST_PREFIX) ) {
-                        alt428=1;
+                    if ( (LA431_0==CONST_PREFIX) ) {
+                        alt431=1;
                     }
-                    switch (alt428) {
+                    switch (alt431) {
                         case 1 :
                             // Objcm.g:918:14: CONST_PREFIX
                             {
-                            CONST_PREFIX882=(Token)match(input,CONST_PREFIX,FOLLOW_CONST_PREFIX_in_method_type5663);  
-                            stream_CONST_PREFIX.add(CONST_PREFIX882);
+                            CONST_PREFIX885=(Token)match(input,CONST_PREFIX,FOLLOW_CONST_PREFIX_in_method_type5672);  
+                            stream_CONST_PREFIX.add(CONST_PREFIX885);
 
 
                             }
@@ -31145,47 +31261,47 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // Objcm.g:918:28: ( known_types ( WS )* )?
-                    int alt430=2;
-                    int LA430_0 = input.LA(1);
+                    int alt433=2;
+                    int LA433_0 = input.LA(1);
 
-                    if ( (LA430_0==VOID||LA430_0==160) ) {
-                        alt430=1;
+                    if ( (LA433_0==VOID||LA433_0==160) ) {
+                        alt433=1;
                     }
-                    switch (alt430) {
+                    switch (alt433) {
                         case 1 :
                             // Objcm.g:918:29: known_types ( WS )*
                             {
-                            pushFollow(FOLLOW_known_types_in_method_type5667);
-                            known_types883=known_types();
+                            pushFollow(FOLLOW_known_types_in_method_type5676);
+                            known_types886=known_types();
 
                             state._fsp--;
 
-                            stream_known_types.add(known_types883.getTree());
+                            stream_known_types.add(known_types886.getTree());
 
                             // Objcm.g:918:41: ( WS )*
-                            loop429:
+                            loop432:
                             do {
-                                int alt429=2;
-                                int LA429_0 = input.LA(1);
+                                int alt432=2;
+                                int LA432_0 = input.LA(1);
 
-                                if ( (LA429_0==WS) ) {
-                                    alt429=1;
+                                if ( (LA432_0==WS) ) {
+                                    alt432=1;
                                 }
 
 
-                                switch (alt429) {
+                                switch (alt432) {
                             	case 1 :
                             	    // Objcm.g:918:41: WS
                             	    {
-                            	    WS884=(Token)match(input,WS,FOLLOW_WS_in_method_type5669);  
-                            	    stream_WS.add(WS884);
+                            	    WS887=(Token)match(input,WS,FOLLOW_WS_in_method_type5678);  
+                            	    stream_WS.add(WS887);
 
 
                             	    }
                             	    break;
 
                             	default :
-                            	    break loop429;
+                            	    break loop432;
                                 }
                             } while (true);
 
@@ -31197,48 +31313,48 @@ public TreeAdaptor getTreeAdaptor() {
 
 
                     // Objcm.g:918:47: ( ID ( WS )* )*
-                    loop432:
+                    loop435:
                     do {
-                        int alt432=2;
-                        int LA432_0 = input.LA(1);
+                        int alt435=2;
+                        int LA435_0 = input.LA(1);
 
-                        if ( (LA432_0==ID) ) {
-                            alt432=1;
+                        if ( (LA435_0==ID) ) {
+                            alt435=1;
                         }
 
 
-                        switch (alt432) {
+                        switch (alt435) {
                     	case 1 :
                     	    // Objcm.g:918:48: ID ( WS )*
                     	    {
-                    	    ID885=(Token)match(input,ID,FOLLOW_ID_in_method_type5675);  
-                    	    stream_ID.add(ID885);
+                    	    ID888=(Token)match(input,ID,FOLLOW_ID_in_method_type5684);  
+                    	    stream_ID.add(ID888);
 
 
                     	    // Objcm.g:918:51: ( WS )*
-                    	    loop431:
+                    	    loop434:
                     	    do {
-                    	        int alt431=2;
-                    	        int LA431_0 = input.LA(1);
+                    	        int alt434=2;
+                    	        int LA434_0 = input.LA(1);
 
-                    	        if ( (LA431_0==WS) ) {
-                    	            alt431=1;
+                    	        if ( (LA434_0==WS) ) {
+                    	            alt434=1;
                     	        }
 
 
-                    	        switch (alt431) {
+                    	        switch (alt434) {
                     	    	case 1 :
                     	    	    // Objcm.g:918:51: WS
                     	    	    {
-                    	    	    WS886=(Token)match(input,WS,FOLLOW_WS_in_method_type5677);  
-                    	    	    stream_WS.add(WS886);
+                    	    	    WS889=(Token)match(input,WS,FOLLOW_WS_in_method_type5686);  
+                    	    	    stream_WS.add(WS889);
 
 
                     	    	    }
                     	    	    break;
 
                     	    	default :
-                    	    	    break loop431;
+                    	    	    break loop434;
                     	        }
                     	    } while (true);
 
@@ -31247,108 +31363,30 @@ public TreeAdaptor getTreeAdaptor() {
                     	    break;
 
                     	default :
-                    	    break loop432;
+                    	    break loop435;
                         }
                     } while (true);
 
 
                     // Objcm.g:918:57: ( generic ( WS )* )?
-                    int alt434=2;
-                    int LA434_0 = input.LA(1);
-
-                    if ( (LA434_0==L_UBR) ) {
-                        alt434=1;
-                    }
-                    switch (alt434) {
-                        case 1 :
-                            // Objcm.g:918:58: generic ( WS )*
-                            {
-                            pushFollow(FOLLOW_generic_in_method_type5683);
-                            generic887=generic();
-
-                            state._fsp--;
-
-                            stream_generic.add(generic887.getTree());
-
-                            // Objcm.g:918:66: ( WS )*
-                            loop433:
-                            do {
-                                int alt433=2;
-                                int LA433_0 = input.LA(1);
-
-                                if ( (LA433_0==WS) ) {
-                                    alt433=1;
-                                }
-
-
-                                switch (alt433) {
-                            	case 1 :
-                            	    // Objcm.g:918:66: WS
-                            	    {
-                            	    WS888=(Token)match(input,WS,FOLLOW_WS_in_method_type5685);  
-                            	    stream_WS.add(WS888);
-
-
-                            	    }
-                            	    break;
-
-                            	default :
-                            	    break loop433;
-                                }
-                            } while (true);
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    // Objcm.g:918:72: ( ( ASTERISK )+ ( WS )* )?
                     int alt437=2;
                     int LA437_0 = input.LA(1);
 
-                    if ( (LA437_0==ASTERISK) ) {
+                    if ( (LA437_0==L_UBR) ) {
                         alt437=1;
                     }
                     switch (alt437) {
                         case 1 :
-                            // Objcm.g:918:73: ( ASTERISK )+ ( WS )*
+                            // Objcm.g:918:58: generic ( WS )*
                             {
-                            // Objcm.g:918:73: ( ASTERISK )+
-                            int cnt435=0;
-                            loop435:
-                            do {
-                                int alt435=2;
-                                int LA435_0 = input.LA(1);
+                            pushFollow(FOLLOW_generic_in_method_type5692);
+                            generic890=generic();
 
-                                if ( (LA435_0==ASTERISK) ) {
-                                    alt435=1;
-                                }
+                            state._fsp--;
 
+                            stream_generic.add(generic890.getTree());
 
-                                switch (alt435) {
-                            	case 1 :
-                            	    // Objcm.g:918:73: ASTERISK
-                            	    {
-                            	    ASTERISK889=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_method_type5691);  
-                            	    stream_ASTERISK.add(ASTERISK889);
-
-
-                            	    }
-                            	    break;
-
-                            	default :
-                            	    if ( cnt435 >= 1 ) break loop435;
-                                        EarlyExitException eee =
-                                            new EarlyExitException(435, input);
-                                        throw eee;
-                                }
-                                cnt435++;
-                            } while (true);
-
-
-                            // Objcm.g:918:83: ( WS )*
+                            // Objcm.g:918:66: ( WS )*
                             loop436:
                             do {
                                 int alt436=2;
@@ -31361,10 +31399,10 @@ public TreeAdaptor getTreeAdaptor() {
 
                                 switch (alt436) {
                             	case 1 :
-                            	    // Objcm.g:918:83: WS
+                            	    // Objcm.g:918:66: WS
                             	    {
-                            	    WS890=(Token)match(input,WS,FOLLOW_WS_in_method_type5694);  
-                            	    stream_WS.add(WS890);
+                            	    WS891=(Token)match(input,WS,FOLLOW_WS_in_method_type5694);  
+                            	    stream_WS.add(WS891);
 
 
                             	    }
@@ -31382,8 +31420,86 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    R_BR891=(Token)match(input,R_BR,FOLLOW_R_BR_in_method_type5699);  
-                    stream_R_BR.add(R_BR891);
+                    // Objcm.g:918:72: ( ( ASTERISK )+ ( WS )* )?
+                    int alt440=2;
+                    int LA440_0 = input.LA(1);
+
+                    if ( (LA440_0==ASTERISK) ) {
+                        alt440=1;
+                    }
+                    switch (alt440) {
+                        case 1 :
+                            // Objcm.g:918:73: ( ASTERISK )+ ( WS )*
+                            {
+                            // Objcm.g:918:73: ( ASTERISK )+
+                            int cnt438=0;
+                            loop438:
+                            do {
+                                int alt438=2;
+                                int LA438_0 = input.LA(1);
+
+                                if ( (LA438_0==ASTERISK) ) {
+                                    alt438=1;
+                                }
+
+
+                                switch (alt438) {
+                            	case 1 :
+                            	    // Objcm.g:918:73: ASTERISK
+                            	    {
+                            	    ASTERISK892=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_method_type5700);  
+                            	    stream_ASTERISK.add(ASTERISK892);
+
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    if ( cnt438 >= 1 ) break loop438;
+                                        EarlyExitException eee =
+                                            new EarlyExitException(438, input);
+                                        throw eee;
+                                }
+                                cnt438++;
+                            } while (true);
+
+
+                            // Objcm.g:918:83: ( WS )*
+                            loop439:
+                            do {
+                                int alt439=2;
+                                int LA439_0 = input.LA(1);
+
+                                if ( (LA439_0==WS) ) {
+                                    alt439=1;
+                                }
+
+
+                                switch (alt439) {
+                            	case 1 :
+                            	    // Objcm.g:918:83: WS
+                            	    {
+                            	    WS893=(Token)match(input,WS,FOLLOW_WS_in_method_type5703);  
+                            	    stream_WS.add(WS893);
+
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    break loop439;
+                                }
+                            } while (true);
+
+
+                            }
+                            break;
+
+                    }
+
+
+                    R_BR894=(Token)match(input,R_BR,FOLLOW_R_BR_in_method_type5708);  
+                    stream_R_BR.add(R_BR894);
 
 
                     // AST REWRITE
@@ -31466,17 +31582,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS893=null;
-        Token L_KBR894=null;
-        Token WS895=null;
-        Token R_KBR896=null;
-        ObjcmParser.type_internal1_return type_internal1892 =null;
+        Token WS896=null;
+        Token L_KBR897=null;
+        Token WS898=null;
+        Token R_KBR899=null;
+        ObjcmParser.type_internal1_return type_internal1895 =null;
 
 
-        Object WS893_tree=null;
-        Object L_KBR894_tree=null;
-        Object WS895_tree=null;
-        Object R_KBR896_tree=null;
+        Object WS896_tree=null;
+        Object L_KBR897_tree=null;
+        Object WS898_tree=null;
+        Object R_KBR899_tree=null;
 
         try {
             // Objcm.g:922:2: ( type_internal1 ( ( WS )* L_KBR ( WS )* R_KBR )? )
@@ -31485,164 +31601,164 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_type_internal1_in_type_internal5724);
-            type_internal1892=type_internal1();
+            pushFollow(FOLLOW_type_internal1_in_type_internal5733);
+            type_internal1895=type_internal1();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, type_internal1892.getTree());
+            adaptor.addChild(root_0, type_internal1895.getTree());
 
             // Objcm.g:922:19: ( ( WS )* L_KBR ( WS )* R_KBR )?
-            int alt441=2;
-            int LA441_0 = input.LA(1);
+            int alt444=2;
+            int LA444_0 = input.LA(1);
 
-            if ( (LA441_0==WS) ) {
-                int LA441_1 = input.LA(2);
+            if ( (LA444_0==WS) ) {
+                int LA444_1 = input.LA(2);
 
-                if ( (LA441_1==L_KBR) ) {
-                    int LA441_9 = input.LA(3);
+                if ( (LA444_1==L_KBR) ) {
+                    int LA444_9 = input.LA(3);
 
-                    if ( (LA441_9==WS) ) {
-                        int LA441_20 = input.LA(4);
+                    if ( (LA444_9==WS) ) {
+                        int LA444_20 = input.LA(4);
 
-                        if ( (LA441_20==R_KBR) ) {
-                            alt441=1;
+                        if ( (LA444_20==R_KBR) ) {
+                            alt444=1;
                         }
-                        else if ( (LA441_20==WS) ) {
-                            alt441=1;
-                        }
-                    }
-                    else if ( (LA441_9==R_KBR) ) {
-                        alt441=1;
-                    }
-                }
-                else if ( (LA441_1==WS) ) {
-                    int LA441_10 = input.LA(3);
-
-                    if ( (LA441_10==L_KBR) ) {
-                        int LA441_23 = input.LA(4);
-
-                        if ( (LA441_23==WS) ) {
-                            alt441=1;
-                        }
-                        else if ( (LA441_23==R_KBR) ) {
-                            alt441=1;
+                        else if ( (LA444_20==WS) ) {
+                            alt444=1;
                         }
                     }
-                    else if ( (LA441_10==WS) ) {
-                        int LA441_24 = input.LA(4);
-
-                        if ( (LA441_24==L_KBR) ) {
-                            alt441=1;
-                        }
-                        else if ( (LA441_24==WS) ) {
-                            alt441=1;
-                        }
+                    else if ( (LA444_9==R_KBR) ) {
+                        alt444=1;
                     }
                 }
-            }
-            else if ( (LA441_0==L_KBR) ) {
-                int LA441_2 = input.LA(2);
+                else if ( (LA444_1==WS) ) {
+                    int LA444_10 = input.LA(3);
 
-                if ( (LA441_2==WS) ) {
-                    int LA441_17 = input.LA(3);
+                    if ( (LA444_10==L_KBR) ) {
+                        int LA444_23 = input.LA(4);
 
-                    if ( (LA441_17==R_KBR) ) {
-                        alt441=1;
-                    }
-                    else if ( (LA441_17==WS) ) {
-                        int LA441_32 = input.LA(4);
-
-                        if ( (LA441_32==R_KBR) ) {
-                            alt441=1;
+                        if ( (LA444_23==WS) ) {
+                            alt444=1;
                         }
-                        else if ( (LA441_32==WS) ) {
-                            alt441=1;
+                        else if ( (LA444_23==R_KBR) ) {
+                            alt444=1;
                         }
                     }
-                }
-                else if ( (LA441_2==R_KBR) ) {
-                    alt441=1;
+                    else if ( (LA444_10==WS) ) {
+                        int LA444_24 = input.LA(4);
+
+                        if ( (LA444_24==L_KBR) ) {
+                            alt444=1;
+                        }
+                        else if ( (LA444_24==WS) ) {
+                            alt444=1;
+                        }
+                    }
                 }
             }
-            switch (alt441) {
+            else if ( (LA444_0==L_KBR) ) {
+                int LA444_2 = input.LA(2);
+
+                if ( (LA444_2==WS) ) {
+                    int LA444_17 = input.LA(3);
+
+                    if ( (LA444_17==R_KBR) ) {
+                        alt444=1;
+                    }
+                    else if ( (LA444_17==WS) ) {
+                        int LA444_32 = input.LA(4);
+
+                        if ( (LA444_32==R_KBR) ) {
+                            alt444=1;
+                        }
+                        else if ( (LA444_32==WS) ) {
+                            alt444=1;
+                        }
+                    }
+                }
+                else if ( (LA444_2==R_KBR) ) {
+                    alt444=1;
+                }
+            }
+            switch (alt444) {
                 case 1 :
                     // Objcm.g:922:20: ( WS )* L_KBR ( WS )* R_KBR
                     {
                     // Objcm.g:922:20: ( WS )*
-                    loop439:
+                    loop442:
                     do {
-                        int alt439=2;
-                        int LA439_0 = input.LA(1);
+                        int alt442=2;
+                        int LA442_0 = input.LA(1);
 
-                        if ( (LA439_0==WS) ) {
-                            alt439=1;
+                        if ( (LA442_0==WS) ) {
+                            alt442=1;
                         }
 
 
-                        switch (alt439) {
+                        switch (alt442) {
                     	case 1 :
                     	    // Objcm.g:922:20: WS
                     	    {
-                    	    WS893=(Token)match(input,WS,FOLLOW_WS_in_type_internal5727); 
-                    	    WS893_tree = 
-                    	    (Object)adaptor.create(WS893)
+                    	    WS896=(Token)match(input,WS,FOLLOW_WS_in_type_internal5736); 
+                    	    WS896_tree = 
+                    	    (Object)adaptor.create(WS896)
                     	    ;
-                    	    adaptor.addChild(root_0, WS893_tree);
+                    	    adaptor.addChild(root_0, WS896_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop439;
+                    	    break loop442;
                         }
                     } while (true);
 
 
-                    L_KBR894=(Token)match(input,L_KBR,FOLLOW_L_KBR_in_type_internal5730); 
-                    L_KBR894_tree = 
-                    (Object)adaptor.create(L_KBR894)
+                    L_KBR897=(Token)match(input,L_KBR,FOLLOW_L_KBR_in_type_internal5739); 
+                    L_KBR897_tree = 
+                    (Object)adaptor.create(L_KBR897)
                     ;
-                    adaptor.addChild(root_0, L_KBR894_tree);
+                    adaptor.addChild(root_0, L_KBR897_tree);
 
 
                     // Objcm.g:922:30: ( WS )*
-                    loop440:
+                    loop443:
                     do {
-                        int alt440=2;
-                        int LA440_0 = input.LA(1);
+                        int alt443=2;
+                        int LA443_0 = input.LA(1);
 
-                        if ( (LA440_0==WS) ) {
-                            alt440=1;
+                        if ( (LA443_0==WS) ) {
+                            alt443=1;
                         }
 
 
-                        switch (alt440) {
+                        switch (alt443) {
                     	case 1 :
                     	    // Objcm.g:922:30: WS
                     	    {
-                    	    WS895=(Token)match(input,WS,FOLLOW_WS_in_type_internal5732); 
-                    	    WS895_tree = 
-                    	    (Object)adaptor.create(WS895)
+                    	    WS898=(Token)match(input,WS,FOLLOW_WS_in_type_internal5741); 
+                    	    WS898_tree = 
+                    	    (Object)adaptor.create(WS898)
                     	    ;
-                    	    adaptor.addChild(root_0, WS895_tree);
+                    	    adaptor.addChild(root_0, WS898_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop440;
+                    	    break loop443;
                         }
                     } while (true);
 
 
-                    R_KBR896=(Token)match(input,R_KBR,FOLLOW_R_KBR_in_type_internal5735); 
-                    R_KBR896_tree = 
-                    (Object)adaptor.create(R_KBR896)
+                    R_KBR899=(Token)match(input,R_KBR,FOLLOW_R_KBR_in_type_internal5744); 
+                    R_KBR899_tree = 
+                    (Object)adaptor.create(R_KBR899)
                     ;
-                    adaptor.addChild(root_0, R_KBR896_tree);
+                    adaptor.addChild(root_0, R_KBR899_tree);
 
 
                     }
@@ -31690,9 +31806,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set897=null;
+        Token set900=null;
 
-        Object set897_tree=null;
+        Object set900_tree=null;
 
         try {
             // Objcm.g:926:2: ( VOID | ID )
@@ -31701,12 +31817,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set897=(Token)input.LT(1);
+            set900=(Token)input.LT(1);
 
             if ( input.LA(1)==ID||input.LA(1)==VOID ) {
                 input.consume();
                 adaptor.addChild(root_0, 
-                (Object)adaptor.create(set897)
+                (Object)adaptor.create(set900)
                 );
                 state.errorRecovery=false;
             }
@@ -31755,13 +31871,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_UBR898=null;
-        Token R_UBR900=null;
-        ObjcmParser.generic_internal_return generic_internal899 =null;
+        Token L_UBR901=null;
+        Token R_UBR903=null;
+        ObjcmParser.generic_internal_return generic_internal902 =null;
 
 
-        Object L_UBR898_tree=null;
-        Object R_UBR900_tree=null;
+        Object L_UBR901_tree=null;
+        Object R_UBR903_tree=null;
         RewriteRuleTokenStream stream_R_UBR=new RewriteRuleTokenStream(adaptor,"token R_UBR");
         RewriteRuleTokenStream stream_L_UBR=new RewriteRuleTokenStream(adaptor,"token L_UBR");
         RewriteRuleSubtreeStream stream_generic_internal=new RewriteRuleSubtreeStream(adaptor,"rule generic_internal");
@@ -31769,19 +31885,19 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:930:8: ( L_UBR generic_internal R_UBR -> ^( GENERIC generic_internal ) )
             // Objcm.g:930:10: L_UBR generic_internal R_UBR
             {
-            L_UBR898=(Token)match(input,L_UBR,FOLLOW_L_UBR_in_generic5768);  
-            stream_L_UBR.add(L_UBR898);
+            L_UBR901=(Token)match(input,L_UBR,FOLLOW_L_UBR_in_generic5777);  
+            stream_L_UBR.add(L_UBR901);
 
 
-            pushFollow(FOLLOW_generic_internal_in_generic5770);
-            generic_internal899=generic_internal();
+            pushFollow(FOLLOW_generic_internal_in_generic5779);
+            generic_internal902=generic_internal();
 
             state._fsp--;
 
-            stream_generic_internal.add(generic_internal899.getTree());
+            stream_generic_internal.add(generic_internal902.getTree());
 
-            R_UBR900=(Token)match(input,R_UBR,FOLLOW_R_UBR_in_generic5772);  
-            stream_R_UBR.add(R_UBR900);
+            R_UBR903=(Token)match(input,R_UBR,FOLLOW_R_UBR_in_generic5781);  
+            stream_R_UBR.add(R_UBR903);
 
 
             // AST REWRITE
@@ -31853,27 +31969,27 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS901=null;
-        Token ID902=null;
-        Token WS903=null;
-        Token ASTERISK904=null;
-        Token WS905=null;
-        Token COMMA906=null;
-        Token WS907=null;
-        Token ID908=null;
-        Token WS909=null;
-        Token ASTERISK910=null;
+        Token WS904=null;
+        Token ID905=null;
+        Token WS906=null;
+        Token ASTERISK907=null;
+        Token WS908=null;
+        Token COMMA909=null;
+        Token WS910=null;
+        Token ID911=null;
+        Token WS912=null;
+        Token ASTERISK913=null;
 
-        Object WS901_tree=null;
-        Object ID902_tree=null;
-        Object WS903_tree=null;
-        Object ASTERISK904_tree=null;
-        Object WS905_tree=null;
-        Object COMMA906_tree=null;
-        Object WS907_tree=null;
-        Object ID908_tree=null;
-        Object WS909_tree=null;
-        Object ASTERISK910_tree=null;
+        Object WS904_tree=null;
+        Object ID905_tree=null;
+        Object WS906_tree=null;
+        Object ASTERISK907_tree=null;
+        Object WS908_tree=null;
+        Object COMMA909_tree=null;
+        Object WS910_tree=null;
+        Object ID911_tree=null;
+        Object WS912_tree=null;
+        Object ASTERISK913_tree=null;
 
         try {
             // Objcm.g:933:2: ( ( WS )* ID ( WS )* ( ( ASTERISK )+ ( WS )* )? ( COMMA ( WS )* ID ( WS )* ( ASTERISK )* )* )
@@ -31883,148 +31999,148 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:933:4: ( WS )*
-            loop442:
+            loop445:
             do {
-                int alt442=2;
-                int LA442_0 = input.LA(1);
+                int alt445=2;
+                int LA445_0 = input.LA(1);
 
-                if ( (LA442_0==WS) ) {
-                    alt442=1;
+                if ( (LA445_0==WS) ) {
+                    alt445=1;
                 }
 
 
-                switch (alt442) {
+                switch (alt445) {
             	case 1 :
             	    // Objcm.g:933:4: WS
             	    {
-            	    WS901=(Token)match(input,WS,FOLLOW_WS_in_generic_internal5790); 
-            	    WS901_tree = 
-            	    (Object)adaptor.create(WS901)
+            	    WS904=(Token)match(input,WS,FOLLOW_WS_in_generic_internal5799); 
+            	    WS904_tree = 
+            	    (Object)adaptor.create(WS904)
             	    ;
-            	    adaptor.addChild(root_0, WS901_tree);
+            	    adaptor.addChild(root_0, WS904_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop442;
+            	    break loop445;
                 }
             } while (true);
 
 
-            ID902=(Token)match(input,ID,FOLLOW_ID_in_generic_internal5793); 
-            ID902_tree = 
-            (Object)adaptor.create(ID902)
+            ID905=(Token)match(input,ID,FOLLOW_ID_in_generic_internal5802); 
+            ID905_tree = 
+            (Object)adaptor.create(ID905)
             ;
-            adaptor.addChild(root_0, ID902_tree);
+            adaptor.addChild(root_0, ID905_tree);
 
 
             // Objcm.g:933:11: ( WS )*
-            loop443:
+            loop446:
             do {
-                int alt443=2;
-                int LA443_0 = input.LA(1);
+                int alt446=2;
+                int LA446_0 = input.LA(1);
 
-                if ( (LA443_0==WS) ) {
-                    alt443=1;
+                if ( (LA446_0==WS) ) {
+                    alt446=1;
                 }
 
 
-                switch (alt443) {
+                switch (alt446) {
             	case 1 :
             	    // Objcm.g:933:11: WS
             	    {
-            	    WS903=(Token)match(input,WS,FOLLOW_WS_in_generic_internal5795); 
-            	    WS903_tree = 
-            	    (Object)adaptor.create(WS903)
+            	    WS906=(Token)match(input,WS,FOLLOW_WS_in_generic_internal5804); 
+            	    WS906_tree = 
+            	    (Object)adaptor.create(WS906)
             	    ;
-            	    adaptor.addChild(root_0, WS903_tree);
+            	    adaptor.addChild(root_0, WS906_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop443;
+            	    break loop446;
                 }
             } while (true);
 
 
             // Objcm.g:933:15: ( ( ASTERISK )+ ( WS )* )?
-            int alt446=2;
-            int LA446_0 = input.LA(1);
+            int alt449=2;
+            int LA449_0 = input.LA(1);
 
-            if ( (LA446_0==ASTERISK) ) {
-                alt446=1;
+            if ( (LA449_0==ASTERISK) ) {
+                alt449=1;
             }
-            switch (alt446) {
+            switch (alt449) {
                 case 1 :
                     // Objcm.g:933:16: ( ASTERISK )+ ( WS )*
                     {
                     // Objcm.g:933:16: ( ASTERISK )+
-                    int cnt444=0;
-                    loop444:
+                    int cnt447=0;
+                    loop447:
                     do {
-                        int alt444=2;
-                        int LA444_0 = input.LA(1);
+                        int alt447=2;
+                        int LA447_0 = input.LA(1);
 
-                        if ( (LA444_0==ASTERISK) ) {
-                            alt444=1;
+                        if ( (LA447_0==ASTERISK) ) {
+                            alt447=1;
                         }
 
 
-                        switch (alt444) {
+                        switch (alt447) {
                     	case 1 :
                     	    // Objcm.g:933:16: ASTERISK
                     	    {
-                    	    ASTERISK904=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_generic_internal5799); 
-                    	    ASTERISK904_tree = 
-                    	    (Object)adaptor.create(ASTERISK904)
+                    	    ASTERISK907=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_generic_internal5808); 
+                    	    ASTERISK907_tree = 
+                    	    (Object)adaptor.create(ASTERISK907)
                     	    ;
-                    	    adaptor.addChild(root_0, ASTERISK904_tree);
+                    	    adaptor.addChild(root_0, ASTERISK907_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    if ( cnt444 >= 1 ) break loop444;
+                    	    if ( cnt447 >= 1 ) break loop447;
                                 EarlyExitException eee =
-                                    new EarlyExitException(444, input);
+                                    new EarlyExitException(447, input);
                                 throw eee;
                         }
-                        cnt444++;
+                        cnt447++;
                     } while (true);
 
 
                     // Objcm.g:933:26: ( WS )*
-                    loop445:
+                    loop448:
                     do {
-                        int alt445=2;
-                        int LA445_0 = input.LA(1);
+                        int alt448=2;
+                        int LA448_0 = input.LA(1);
 
-                        if ( (LA445_0==WS) ) {
-                            alt445=1;
+                        if ( (LA448_0==WS) ) {
+                            alt448=1;
                         }
 
 
-                        switch (alt445) {
+                        switch (alt448) {
                     	case 1 :
                     	    // Objcm.g:933:26: WS
                     	    {
-                    	    WS905=(Token)match(input,WS,FOLLOW_WS_in_generic_internal5802); 
-                    	    WS905_tree = 
-                    	    (Object)adaptor.create(WS905)
+                    	    WS908=(Token)match(input,WS,FOLLOW_WS_in_generic_internal5811); 
+                    	    WS908_tree = 
+                    	    (Object)adaptor.create(WS908)
                     	    ;
-                    	    adaptor.addChild(root_0, WS905_tree);
+                    	    adaptor.addChild(root_0, WS908_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop445;
+                    	    break loop448;
                         }
                     } while (true);
 
@@ -32036,123 +32152,123 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:933:32: ( COMMA ( WS )* ID ( WS )* ( ASTERISK )* )*
-            loop450:
+            loop453:
             do {
-                int alt450=2;
-                int LA450_0 = input.LA(1);
+                int alt453=2;
+                int LA453_0 = input.LA(1);
 
-                if ( (LA450_0==COMMA) ) {
-                    alt450=1;
+                if ( (LA453_0==COMMA) ) {
+                    alt453=1;
                 }
 
 
-                switch (alt450) {
+                switch (alt453) {
             	case 1 :
             	    // Objcm.g:933:33: COMMA ( WS )* ID ( WS )* ( ASTERISK )*
             	    {
-            	    COMMA906=(Token)match(input,COMMA,FOLLOW_COMMA_in_generic_internal5808); 
-            	    COMMA906_tree = 
-            	    (Object)adaptor.create(COMMA906)
+            	    COMMA909=(Token)match(input,COMMA,FOLLOW_COMMA_in_generic_internal5817); 
+            	    COMMA909_tree = 
+            	    (Object)adaptor.create(COMMA909)
             	    ;
-            	    adaptor.addChild(root_0, COMMA906_tree);
+            	    adaptor.addChild(root_0, COMMA909_tree);
 
 
             	    // Objcm.g:933:39: ( WS )*
-            	    loop447:
+            	    loop450:
             	    do {
-            	        int alt447=2;
-            	        int LA447_0 = input.LA(1);
+            	        int alt450=2;
+            	        int LA450_0 = input.LA(1);
 
-            	        if ( (LA447_0==WS) ) {
-            	            alt447=1;
+            	        if ( (LA450_0==WS) ) {
+            	            alt450=1;
             	        }
 
 
-            	        switch (alt447) {
+            	        switch (alt450) {
             	    	case 1 :
             	    	    // Objcm.g:933:39: WS
             	    	    {
-            	    	    WS907=(Token)match(input,WS,FOLLOW_WS_in_generic_internal5810); 
-            	    	    WS907_tree = 
-            	    	    (Object)adaptor.create(WS907)
+            	    	    WS910=(Token)match(input,WS,FOLLOW_WS_in_generic_internal5819); 
+            	    	    WS910_tree = 
+            	    	    (Object)adaptor.create(WS910)
             	    	    ;
-            	    	    adaptor.addChild(root_0, WS907_tree);
+            	    	    adaptor.addChild(root_0, WS910_tree);
 
 
             	    	    }
             	    	    break;
 
             	    	default :
-            	    	    break loop447;
+            	    	    break loop450;
             	        }
             	    } while (true);
 
 
-            	    ID908=(Token)match(input,ID,FOLLOW_ID_in_generic_internal5813); 
-            	    ID908_tree = 
-            	    (Object)adaptor.create(ID908)
+            	    ID911=(Token)match(input,ID,FOLLOW_ID_in_generic_internal5822); 
+            	    ID911_tree = 
+            	    (Object)adaptor.create(ID911)
             	    ;
-            	    adaptor.addChild(root_0, ID908_tree);
+            	    adaptor.addChild(root_0, ID911_tree);
 
 
             	    // Objcm.g:933:46: ( WS )*
-            	    loop448:
+            	    loop451:
             	    do {
-            	        int alt448=2;
-            	        int LA448_0 = input.LA(1);
+            	        int alt451=2;
+            	        int LA451_0 = input.LA(1);
 
-            	        if ( (LA448_0==WS) ) {
-            	            alt448=1;
+            	        if ( (LA451_0==WS) ) {
+            	            alt451=1;
             	        }
 
 
-            	        switch (alt448) {
+            	        switch (alt451) {
             	    	case 1 :
             	    	    // Objcm.g:933:46: WS
             	    	    {
-            	    	    WS909=(Token)match(input,WS,FOLLOW_WS_in_generic_internal5815); 
-            	    	    WS909_tree = 
-            	    	    (Object)adaptor.create(WS909)
+            	    	    WS912=(Token)match(input,WS,FOLLOW_WS_in_generic_internal5824); 
+            	    	    WS912_tree = 
+            	    	    (Object)adaptor.create(WS912)
             	    	    ;
-            	    	    adaptor.addChild(root_0, WS909_tree);
+            	    	    adaptor.addChild(root_0, WS912_tree);
 
 
             	    	    }
             	    	    break;
 
             	    	default :
-            	    	    break loop448;
+            	    	    break loop451;
             	        }
             	    } while (true);
 
 
             	    // Objcm.g:933:50: ( ASTERISK )*
-            	    loop449:
+            	    loop452:
             	    do {
-            	        int alt449=2;
-            	        int LA449_0 = input.LA(1);
+            	        int alt452=2;
+            	        int LA452_0 = input.LA(1);
 
-            	        if ( (LA449_0==ASTERISK) ) {
-            	            alt449=1;
+            	        if ( (LA452_0==ASTERISK) ) {
+            	            alt452=1;
             	        }
 
 
-            	        switch (alt449) {
+            	        switch (alt452) {
             	    	case 1 :
             	    	    // Objcm.g:933:50: ASTERISK
             	    	    {
-            	    	    ASTERISK910=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_generic_internal5818); 
-            	    	    ASTERISK910_tree = 
-            	    	    (Object)adaptor.create(ASTERISK910)
+            	    	    ASTERISK913=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_generic_internal5827); 
+            	    	    ASTERISK913_tree = 
+            	    	    (Object)adaptor.create(ASTERISK913)
             	    	    ;
-            	    	    adaptor.addChild(root_0, ASTERISK910_tree);
+            	    	    adaptor.addChild(root_0, ASTERISK913_tree);
 
 
             	    	    }
             	    	    break;
 
             	    	default :
-            	    	    break loop449;
+            	    	    break loop452;
             	        }
             	    } while (true);
 
@@ -32161,7 +32277,7 @@ public TreeAdaptor getTreeAdaptor() {
             	    break;
 
             	default :
-            	    break loop450;
+            	    break loop453;
                 }
             } while (true);
 
@@ -32205,25 +32321,25 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_BR911=null;
-        Token WS912=null;
-        Token WS914=null;
-        Token COMMA915=null;
-        Token WS916=null;
-        Token WS918=null;
-        Token R_BR919=null;
-        ObjcmParser.method_param_wrapper2_return method_param_wrapper2913 =null;
+        Token L_BR914=null;
+        Token WS915=null;
+        Token WS917=null;
+        Token COMMA918=null;
+        Token WS919=null;
+        Token WS921=null;
+        Token R_BR922=null;
+        ObjcmParser.method_param_wrapper2_return method_param_wrapper2916 =null;
 
-        ObjcmParser.method_param_wrapper2_return method_param_wrapper2917 =null;
+        ObjcmParser.method_param_wrapper2_return method_param_wrapper2920 =null;
 
 
-        Object L_BR911_tree=null;
-        Object WS912_tree=null;
-        Object WS914_tree=null;
-        Object COMMA915_tree=null;
-        Object WS916_tree=null;
-        Object WS918_tree=null;
-        Object R_BR919_tree=null;
+        Object L_BR914_tree=null;
+        Object WS915_tree=null;
+        Object WS917_tree=null;
+        Object COMMA918_tree=null;
+        Object WS919_tree=null;
+        Object WS921_tree=null;
+        Object R_BR922_tree=null;
 
         try {
             // Objcm.g:936:2: ( L_BR ( WS )* method_param_wrapper2 ( WS )* ( COMMA ( WS )* method_param_wrapper2 ( WS )* )* R_BR )
@@ -32232,171 +32348,71 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_BR911=(Token)match(input,L_BR,FOLLOW_L_BR_in_method_params25830); 
-            L_BR911_tree = 
-            (Object)adaptor.create(L_BR911)
+            L_BR914=(Token)match(input,L_BR,FOLLOW_L_BR_in_method_params25839); 
+            L_BR914_tree = 
+            (Object)adaptor.create(L_BR914)
             ;
-            adaptor.addChild(root_0, L_BR911_tree);
+            adaptor.addChild(root_0, L_BR914_tree);
 
 
             // Objcm.g:936:9: ( WS )*
-            loop451:
+            loop454:
             do {
-                int alt451=2;
-                int LA451_0 = input.LA(1);
+                int alt454=2;
+                int LA454_0 = input.LA(1);
 
-                if ( (LA451_0==WS) ) {
-                    alt451=1;
+                if ( (LA454_0==WS) ) {
+                    alt454=1;
                 }
 
 
-                switch (alt451) {
+                switch (alt454) {
             	case 1 :
             	    // Objcm.g:936:9: WS
             	    {
-            	    WS912=(Token)match(input,WS,FOLLOW_WS_in_method_params25832); 
-            	    WS912_tree = 
-            	    (Object)adaptor.create(WS912)
+            	    WS915=(Token)match(input,WS,FOLLOW_WS_in_method_params25841); 
+            	    WS915_tree = 
+            	    (Object)adaptor.create(WS915)
             	    ;
-            	    adaptor.addChild(root_0, WS912_tree);
+            	    adaptor.addChild(root_0, WS915_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop451;
+            	    break loop454;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_method_param_wrapper2_in_method_params25835);
-            method_param_wrapper2913=method_param_wrapper2();
+            pushFollow(FOLLOW_method_param_wrapper2_in_method_params25844);
+            method_param_wrapper2916=method_param_wrapper2();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_param_wrapper2913.getTree());
+            adaptor.addChild(root_0, method_param_wrapper2916.getTree());
 
             // Objcm.g:936:35: ( WS )*
-            loop452:
-            do {
-                int alt452=2;
-                int LA452_0 = input.LA(1);
-
-                if ( (LA452_0==WS) ) {
-                    alt452=1;
-                }
-
-
-                switch (alt452) {
-            	case 1 :
-            	    // Objcm.g:936:35: WS
-            	    {
-            	    WS914=(Token)match(input,WS,FOLLOW_WS_in_method_params25837); 
-            	    WS914_tree = 
-            	    (Object)adaptor.create(WS914)
-            	    ;
-            	    adaptor.addChild(root_0, WS914_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop452;
-                }
-            } while (true);
-
-
-            // Objcm.g:936:39: ( COMMA ( WS )* method_param_wrapper2 ( WS )* )*
             loop455:
             do {
                 int alt455=2;
                 int LA455_0 = input.LA(1);
 
-                if ( (LA455_0==COMMA) ) {
+                if ( (LA455_0==WS) ) {
                     alt455=1;
                 }
 
 
                 switch (alt455) {
             	case 1 :
-            	    // Objcm.g:936:40: COMMA ( WS )* method_param_wrapper2 ( WS )*
+            	    // Objcm.g:936:35: WS
             	    {
-            	    COMMA915=(Token)match(input,COMMA,FOLLOW_COMMA_in_method_params25841); 
-            	    COMMA915_tree = 
-            	    (Object)adaptor.create(COMMA915)
+            	    WS917=(Token)match(input,WS,FOLLOW_WS_in_method_params25846); 
+            	    WS917_tree = 
+            	    (Object)adaptor.create(WS917)
             	    ;
-            	    adaptor.addChild(root_0, COMMA915_tree);
-
-
-            	    // Objcm.g:936:46: ( WS )*
-            	    loop453:
-            	    do {
-            	        int alt453=2;
-            	        int LA453_0 = input.LA(1);
-
-            	        if ( (LA453_0==WS) ) {
-            	            alt453=1;
-            	        }
-
-
-            	        switch (alt453) {
-            	    	case 1 :
-            	    	    // Objcm.g:936:46: WS
-            	    	    {
-            	    	    WS916=(Token)match(input,WS,FOLLOW_WS_in_method_params25843); 
-            	    	    WS916_tree = 
-            	    	    (Object)adaptor.create(WS916)
-            	    	    ;
-            	    	    adaptor.addChild(root_0, WS916_tree);
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop453;
-            	        }
-            	    } while (true);
-
-
-            	    pushFollow(FOLLOW_method_param_wrapper2_in_method_params25846);
-            	    method_param_wrapper2917=method_param_wrapper2();
-
-            	    state._fsp--;
-
-            	    adaptor.addChild(root_0, method_param_wrapper2917.getTree());
-
-            	    // Objcm.g:936:72: ( WS )*
-            	    loop454:
-            	    do {
-            	        int alt454=2;
-            	        int LA454_0 = input.LA(1);
-
-            	        if ( (LA454_0==WS) ) {
-            	            alt454=1;
-            	        }
-
-
-            	        switch (alt454) {
-            	    	case 1 :
-            	    	    // Objcm.g:936:72: WS
-            	    	    {
-            	    	    WS918=(Token)match(input,WS,FOLLOW_WS_in_method_params25848); 
-            	    	    WS918_tree = 
-            	    	    (Object)adaptor.create(WS918)
-            	    	    ;
-            	    	    adaptor.addChild(root_0, WS918_tree);
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop454;
-            	        }
-            	    } while (true);
+            	    adaptor.addChild(root_0, WS917_tree);
 
 
             	    }
@@ -32408,11 +32424,111 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            R_BR919=(Token)match(input,R_BR,FOLLOW_R_BR_in_method_params25854); 
-            R_BR919_tree = 
-            (Object)adaptor.create(R_BR919)
+            // Objcm.g:936:39: ( COMMA ( WS )* method_param_wrapper2 ( WS )* )*
+            loop458:
+            do {
+                int alt458=2;
+                int LA458_0 = input.LA(1);
+
+                if ( (LA458_0==COMMA) ) {
+                    alt458=1;
+                }
+
+
+                switch (alt458) {
+            	case 1 :
+            	    // Objcm.g:936:40: COMMA ( WS )* method_param_wrapper2 ( WS )*
+            	    {
+            	    COMMA918=(Token)match(input,COMMA,FOLLOW_COMMA_in_method_params25850); 
+            	    COMMA918_tree = 
+            	    (Object)adaptor.create(COMMA918)
+            	    ;
+            	    adaptor.addChild(root_0, COMMA918_tree);
+
+
+            	    // Objcm.g:936:46: ( WS )*
+            	    loop456:
+            	    do {
+            	        int alt456=2;
+            	        int LA456_0 = input.LA(1);
+
+            	        if ( (LA456_0==WS) ) {
+            	            alt456=1;
+            	        }
+
+
+            	        switch (alt456) {
+            	    	case 1 :
+            	    	    // Objcm.g:936:46: WS
+            	    	    {
+            	    	    WS919=(Token)match(input,WS,FOLLOW_WS_in_method_params25852); 
+            	    	    WS919_tree = 
+            	    	    (Object)adaptor.create(WS919)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS919_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop456;
+            	        }
+            	    } while (true);
+
+
+            	    pushFollow(FOLLOW_method_param_wrapper2_in_method_params25855);
+            	    method_param_wrapper2920=method_param_wrapper2();
+
+            	    state._fsp--;
+
+            	    adaptor.addChild(root_0, method_param_wrapper2920.getTree());
+
+            	    // Objcm.g:936:72: ( WS )*
+            	    loop457:
+            	    do {
+            	        int alt457=2;
+            	        int LA457_0 = input.LA(1);
+
+            	        if ( (LA457_0==WS) ) {
+            	            alt457=1;
+            	        }
+
+
+            	        switch (alt457) {
+            	    	case 1 :
+            	    	    // Objcm.g:936:72: WS
+            	    	    {
+            	    	    WS921=(Token)match(input,WS,FOLLOW_WS_in_method_params25857); 
+            	    	    WS921_tree = 
+            	    	    (Object)adaptor.create(WS921)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS921_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop457;
+            	        }
+            	    } while (true);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop458;
+                }
+            } while (true);
+
+
+            R_BR922=(Token)match(input,R_BR,FOLLOW_R_BR_in_method_params25863); 
+            R_BR922_tree = 
+            (Object)adaptor.create(R_BR922)
             ;
-            adaptor.addChild(root_0, R_BR919_tree);
+            adaptor.addChild(root_0, R_BR922_tree);
 
 
             }
@@ -32454,7 +32570,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.method_param2_return method_param2920 =null;
+        ObjcmParser.method_param2_return method_param2923 =null;
 
 
         RewriteRuleSubtreeStream stream_method_param2=new RewriteRuleSubtreeStream(adaptor,"rule method_param2");
@@ -32462,12 +32578,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:940:2: ( method_param2 -> ^( PARAM method_param2 ) )
             // Objcm.g:940:4: method_param2
             {
-            pushFollow(FOLLOW_method_param2_in_method_param_wrapper25865);
-            method_param2920=method_param2();
+            pushFollow(FOLLOW_method_param2_in_method_param_wrapper25874);
+            method_param2923=method_param2();
 
             state._fsp--;
 
-            stream_method_param2.add(method_param2920.getTree());
+            stream_method_param2.add(method_param2923.getTree());
 
             // AST REWRITE
             // elements: method_param2
@@ -32538,23 +32654,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token CONST_PREFIX921=null;
-        Token ENUM_PREFIX922=null;
-        Token STRUCT_PREFIX923=null;
-        Token string_literal924=null;
-        Token WS925=null;
-        ObjcmParser.field_type_return field_type926 =null;
+        Token CONST_PREFIX924=null;
+        Token ENUM_PREFIX925=null;
+        Token STRUCT_PREFIX926=null;
+        Token string_literal927=null;
+        Token WS928=null;
+        ObjcmParser.field_type_return field_type929 =null;
 
-        ObjcmParser.name_return name927 =null;
+        ObjcmParser.name_return name930 =null;
 
-        ObjcmParser.indexed_return indexed928 =null;
+        ObjcmParser.indexed_return indexed931 =null;
 
 
-        Object CONST_PREFIX921_tree=null;
-        Object ENUM_PREFIX922_tree=null;
-        Object STRUCT_PREFIX923_tree=null;
-        Object string_literal924_tree=null;
-        Object WS925_tree=null;
+        Object CONST_PREFIX924_tree=null;
+        Object ENUM_PREFIX925_tree=null;
+        Object STRUCT_PREFIX926_tree=null;
+        Object string_literal927_tree=null;
+        Object WS928_tree=null;
 
         try {
             // Objcm.g:943:2: ( ( CONST_PREFIX )? ( ENUM_PREFIX )? ( STRUCT_PREFIX )? ( 'unsigned' ( WS )+ )? field_type ( name )? ( indexed )? )
@@ -32564,21 +32680,21 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:943:4: ( CONST_PREFIX )?
-            int alt456=2;
-            int LA456_0 = input.LA(1);
+            int alt459=2;
+            int LA459_0 = input.LA(1);
 
-            if ( (LA456_0==CONST_PREFIX) ) {
-                alt456=1;
+            if ( (LA459_0==CONST_PREFIX) ) {
+                alt459=1;
             }
-            switch (alt456) {
+            switch (alt459) {
                 case 1 :
                     // Objcm.g:943:4: CONST_PREFIX
                     {
-                    CONST_PREFIX921=(Token)match(input,CONST_PREFIX,FOLLOW_CONST_PREFIX_in_method_param25883); 
-                    CONST_PREFIX921_tree = 
-                    (Object)adaptor.create(CONST_PREFIX921)
+                    CONST_PREFIX924=(Token)match(input,CONST_PREFIX,FOLLOW_CONST_PREFIX_in_method_param25892); 
+                    CONST_PREFIX924_tree = 
+                    (Object)adaptor.create(CONST_PREFIX924)
                     ;
-                    adaptor.addChild(root_0, CONST_PREFIX921_tree);
+                    adaptor.addChild(root_0, CONST_PREFIX924_tree);
 
 
                     }
@@ -32588,21 +32704,21 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:943:18: ( ENUM_PREFIX )?
-            int alt457=2;
-            int LA457_0 = input.LA(1);
+            int alt460=2;
+            int LA460_0 = input.LA(1);
 
-            if ( (LA457_0==ENUM_PREFIX) ) {
-                alt457=1;
+            if ( (LA460_0==ENUM_PREFIX) ) {
+                alt460=1;
             }
-            switch (alt457) {
+            switch (alt460) {
                 case 1 :
                     // Objcm.g:943:18: ENUM_PREFIX
                     {
-                    ENUM_PREFIX922=(Token)match(input,ENUM_PREFIX,FOLLOW_ENUM_PREFIX_in_method_param25886); 
-                    ENUM_PREFIX922_tree = 
-                    (Object)adaptor.create(ENUM_PREFIX922)
+                    ENUM_PREFIX925=(Token)match(input,ENUM_PREFIX,FOLLOW_ENUM_PREFIX_in_method_param25895); 
+                    ENUM_PREFIX925_tree = 
+                    (Object)adaptor.create(ENUM_PREFIX925)
                     ;
-                    adaptor.addChild(root_0, ENUM_PREFIX922_tree);
+                    adaptor.addChild(root_0, ENUM_PREFIX925_tree);
 
 
                     }
@@ -32612,21 +32728,21 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:943:31: ( STRUCT_PREFIX )?
-            int alt458=2;
-            int LA458_0 = input.LA(1);
+            int alt461=2;
+            int LA461_0 = input.LA(1);
 
-            if ( (LA458_0==STRUCT_PREFIX) ) {
-                alt458=1;
+            if ( (LA461_0==STRUCT_PREFIX) ) {
+                alt461=1;
             }
-            switch (alt458) {
+            switch (alt461) {
                 case 1 :
                     // Objcm.g:943:31: STRUCT_PREFIX
                     {
-                    STRUCT_PREFIX923=(Token)match(input,STRUCT_PREFIX,FOLLOW_STRUCT_PREFIX_in_method_param25889); 
-                    STRUCT_PREFIX923_tree = 
-                    (Object)adaptor.create(STRUCT_PREFIX923)
+                    STRUCT_PREFIX926=(Token)match(input,STRUCT_PREFIX,FOLLOW_STRUCT_PREFIX_in_method_param25898); 
+                    STRUCT_PREFIX926_tree = 
+                    (Object)adaptor.create(STRUCT_PREFIX926)
                     ;
-                    adaptor.addChild(root_0, STRUCT_PREFIX923_tree);
+                    adaptor.addChild(root_0, STRUCT_PREFIX926_tree);
 
 
                     }
@@ -32636,56 +32752,56 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:943:46: ( 'unsigned' ( WS )+ )?
-            int alt460=2;
-            int LA460_0 = input.LA(1);
+            int alt463=2;
+            int LA463_0 = input.LA(1);
 
-            if ( (LA460_0==160) ) {
-                alt460=1;
+            if ( (LA463_0==160) ) {
+                alt463=1;
             }
-            switch (alt460) {
+            switch (alt463) {
                 case 1 :
                     // Objcm.g:943:47: 'unsigned' ( WS )+
                     {
-                    string_literal924=(Token)match(input,160,FOLLOW_160_in_method_param25893); 
-                    string_literal924_tree = 
-                    (Object)adaptor.create(string_literal924)
+                    string_literal927=(Token)match(input,160,FOLLOW_160_in_method_param25902); 
+                    string_literal927_tree = 
+                    (Object)adaptor.create(string_literal927)
                     ;
-                    adaptor.addChild(root_0, string_literal924_tree);
+                    adaptor.addChild(root_0, string_literal927_tree);
 
 
                     // Objcm.g:943:58: ( WS )+
-                    int cnt459=0;
-                    loop459:
+                    int cnt462=0;
+                    loop462:
                     do {
-                        int alt459=2;
-                        int LA459_0 = input.LA(1);
+                        int alt462=2;
+                        int LA462_0 = input.LA(1);
 
-                        if ( (LA459_0==WS) ) {
-                            alt459=1;
+                        if ( (LA462_0==WS) ) {
+                            alt462=1;
                         }
 
 
-                        switch (alt459) {
+                        switch (alt462) {
                     	case 1 :
                     	    // Objcm.g:943:58: WS
                     	    {
-                    	    WS925=(Token)match(input,WS,FOLLOW_WS_in_method_param25895); 
-                    	    WS925_tree = 
-                    	    (Object)adaptor.create(WS925)
+                    	    WS928=(Token)match(input,WS,FOLLOW_WS_in_method_param25904); 
+                    	    WS928_tree = 
+                    	    (Object)adaptor.create(WS928)
                     	    ;
-                    	    adaptor.addChild(root_0, WS925_tree);
+                    	    adaptor.addChild(root_0, WS928_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    if ( cnt459 >= 1 ) break loop459;
+                    	    if ( cnt462 >= 1 ) break loop462;
                                 EarlyExitException eee =
-                                    new EarlyExitException(459, input);
+                                    new EarlyExitException(462, input);
                                 throw eee;
                         }
-                        cnt459++;
+                        cnt462++;
                     } while (true);
 
 
@@ -32695,30 +32811,30 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_field_type_in_method_param25900);
-            field_type926=field_type();
+            pushFollow(FOLLOW_field_type_in_method_param25909);
+            field_type929=field_type();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, field_type926.getTree());
+            adaptor.addChild(root_0, field_type929.getTree());
 
             // Objcm.g:943:75: ( name )?
-            int alt461=2;
-            int LA461_0 = input.LA(1);
+            int alt464=2;
+            int LA464_0 = input.LA(1);
 
-            if ( (LA461_0==ID||LA461_0==152) ) {
-                alt461=1;
+            if ( (LA464_0==ID||LA464_0==152) ) {
+                alt464=1;
             }
-            switch (alt461) {
+            switch (alt464) {
                 case 1 :
                     // Objcm.g:943:75: name
                     {
-                    pushFollow(FOLLOW_name_in_method_param25902);
-                    name927=name();
+                    pushFollow(FOLLOW_name_in_method_param25911);
+                    name930=name();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, name927.getTree());
+                    adaptor.addChild(root_0, name930.getTree());
 
                     }
                     break;
@@ -32727,22 +32843,22 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:943:81: ( indexed )?
-            int alt462=2;
-            int LA462_0 = input.LA(1);
+            int alt465=2;
+            int LA465_0 = input.LA(1);
 
-            if ( (LA462_0==L_KBR) ) {
-                alt462=1;
+            if ( (LA465_0==L_KBR) ) {
+                alt465=1;
             }
-            switch (alt462) {
+            switch (alt465) {
                 case 1 :
                     // Objcm.g:943:81: indexed
                     {
-                    pushFollow(FOLLOW_indexed_in_method_param25905);
-                    indexed928=indexed();
+                    pushFollow(FOLLOW_indexed_in_method_param25914);
+                    indexed931=indexed();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, indexed928.getTree());
+                    adaptor.addChild(root_0, indexed931.getTree());
 
                     }
                     break;
@@ -32789,17 +32905,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_KBR929=null;
-        Token WS930=null;
-        Token NUMBER931=null;
-        Token WS932=null;
-        Token R_KBR933=null;
+        Token L_KBR932=null;
+        Token WS933=null;
+        Token NUMBER934=null;
+        Token WS935=null;
+        Token R_KBR936=null;
 
-        Object L_KBR929_tree=null;
-        Object WS930_tree=null;
-        Object NUMBER931_tree=null;
-        Object WS932_tree=null;
-        Object R_KBR933_tree=null;
+        Object L_KBR932_tree=null;
+        Object WS933_tree=null;
+        Object NUMBER934_tree=null;
+        Object WS935_tree=null;
+        Object R_KBR936_tree=null;
 
         try {
             // Objcm.g:945:9: ( L_KBR ( WS )* ( NUMBER ( WS )* )? R_KBR )
@@ -32808,89 +32924,89 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_KBR929=(Token)match(input,L_KBR,FOLLOW_L_KBR_in_indexed5915); 
-            L_KBR929_tree = 
-            (Object)adaptor.create(L_KBR929)
+            L_KBR932=(Token)match(input,L_KBR,FOLLOW_L_KBR_in_indexed5924); 
+            L_KBR932_tree = 
+            (Object)adaptor.create(L_KBR932)
             ;
-            adaptor.addChild(root_0, L_KBR929_tree);
+            adaptor.addChild(root_0, L_KBR932_tree);
 
 
             // Objcm.g:945:17: ( WS )*
-            loop463:
+            loop466:
             do {
-                int alt463=2;
-                int LA463_0 = input.LA(1);
+                int alt466=2;
+                int LA466_0 = input.LA(1);
 
-                if ( (LA463_0==WS) ) {
-                    alt463=1;
+                if ( (LA466_0==WS) ) {
+                    alt466=1;
                 }
 
 
-                switch (alt463) {
+                switch (alt466) {
             	case 1 :
             	    // Objcm.g:945:17: WS
             	    {
-            	    WS930=(Token)match(input,WS,FOLLOW_WS_in_indexed5917); 
-            	    WS930_tree = 
-            	    (Object)adaptor.create(WS930)
+            	    WS933=(Token)match(input,WS,FOLLOW_WS_in_indexed5926); 
+            	    WS933_tree = 
+            	    (Object)adaptor.create(WS933)
             	    ;
-            	    adaptor.addChild(root_0, WS930_tree);
+            	    adaptor.addChild(root_0, WS933_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop463;
+            	    break loop466;
                 }
             } while (true);
 
 
             // Objcm.g:945:21: ( NUMBER ( WS )* )?
-            int alt465=2;
-            int LA465_0 = input.LA(1);
+            int alt468=2;
+            int LA468_0 = input.LA(1);
 
-            if ( (LA465_0==NUMBER) ) {
-                alt465=1;
+            if ( (LA468_0==NUMBER) ) {
+                alt468=1;
             }
-            switch (alt465) {
+            switch (alt468) {
                 case 1 :
                     // Objcm.g:945:22: NUMBER ( WS )*
                     {
-                    NUMBER931=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_indexed5921); 
-                    NUMBER931_tree = 
-                    (Object)adaptor.create(NUMBER931)
+                    NUMBER934=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_indexed5930); 
+                    NUMBER934_tree = 
+                    (Object)adaptor.create(NUMBER934)
                     ;
-                    adaptor.addChild(root_0, NUMBER931_tree);
+                    adaptor.addChild(root_0, NUMBER934_tree);
 
 
                     // Objcm.g:945:29: ( WS )*
-                    loop464:
+                    loop467:
                     do {
-                        int alt464=2;
-                        int LA464_0 = input.LA(1);
+                        int alt467=2;
+                        int LA467_0 = input.LA(1);
 
-                        if ( (LA464_0==WS) ) {
-                            alt464=1;
+                        if ( (LA467_0==WS) ) {
+                            alt467=1;
                         }
 
 
-                        switch (alt464) {
+                        switch (alt467) {
                     	case 1 :
                     	    // Objcm.g:945:29: WS
                     	    {
-                    	    WS932=(Token)match(input,WS,FOLLOW_WS_in_indexed5923); 
-                    	    WS932_tree = 
-                    	    (Object)adaptor.create(WS932)
+                    	    WS935=(Token)match(input,WS,FOLLOW_WS_in_indexed5932); 
+                    	    WS935_tree = 
+                    	    (Object)adaptor.create(WS935)
                     	    ;
-                    	    adaptor.addChild(root_0, WS932_tree);
+                    	    adaptor.addChild(root_0, WS935_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop464;
+                    	    break loop467;
                         }
                     } while (true);
 
@@ -32901,11 +33017,11 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            R_KBR933=(Token)match(input,R_KBR,FOLLOW_R_KBR_in_indexed5928); 
-            R_KBR933_tree = 
-            (Object)adaptor.create(R_KBR933)
+            R_KBR936=(Token)match(input,R_KBR,FOLLOW_R_KBR_in_indexed5937); 
+            R_KBR936_tree = 
+            (Object)adaptor.create(R_KBR936)
             ;
-            adaptor.addChild(root_0, R_KBR933_tree);
+            adaptor.addChild(root_0, R_KBR936_tree);
 
 
             }
@@ -32947,7 +33063,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.method_param_return method_param934 =null;
+        ObjcmParser.method_param_return method_param937 =null;
 
 
         RewriteRuleSubtreeStream stream_method_param=new RewriteRuleSubtreeStream(adaptor,"rule method_param");
@@ -32956,38 +33072,38 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:948:4: ( method_param )+
             {
             // Objcm.g:948:4: ( method_param )+
-            int cnt466=0;
-            loop466:
+            int cnt469=0;
+            loop469:
             do {
-                int alt466=2;
-                int LA466_0 = input.LA(1);
+                int alt469=2;
+                int LA469_0 = input.LA(1);
 
-                if ( (LA466_0==COLON||LA466_0==ID) ) {
-                    alt466=1;
+                if ( (LA469_0==COLON||LA469_0==ID) ) {
+                    alt469=1;
                 }
 
 
-                switch (alt466) {
+                switch (alt469) {
             	case 1 :
             	    // Objcm.g:948:4: method_param
             	    {
-            	    pushFollow(FOLLOW_method_param_in_method_params5938);
-            	    method_param934=method_param();
+            	    pushFollow(FOLLOW_method_param_in_method_params5947);
+            	    method_param937=method_param();
 
             	    state._fsp--;
 
-            	    stream_method_param.add(method_param934.getTree());
+            	    stream_method_param.add(method_param937.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt466 >= 1 ) break loop466;
+            	    if ( cnt469 >= 1 ) break loop469;
                         EarlyExitException eee =
-                            new EarlyExitException(466, input);
+                            new EarlyExitException(469, input);
                         throw eee;
                 }
-                cnt466++;
+                cnt469++;
             } while (true);
 
 
@@ -33067,23 +33183,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS936=null;
-        Token COLON937=null;
-        Token WS938=null;
-        Token WS940=null;
-        Token WS942=null;
-        ObjcmParser.prefix_return prefix935 =null;
+        Token WS939=null;
+        Token COLON940=null;
+        Token WS941=null;
+        Token WS943=null;
+        Token WS945=null;
+        ObjcmParser.prefix_return prefix938 =null;
 
-        ObjcmParser.method_type_return method_type939 =null;
+        ObjcmParser.method_type_return method_type942 =null;
 
-        ObjcmParser.name_return name941 =null;
+        ObjcmParser.name_return name944 =null;
 
 
-        Object WS936_tree=null;
-        Object COLON937_tree=null;
-        Object WS938_tree=null;
-        Object WS940_tree=null;
-        Object WS942_tree=null;
+        Object WS939_tree=null;
+        Object COLON940_tree=null;
+        Object WS941_tree=null;
+        Object WS943_tree=null;
+        Object WS945_tree=null;
 
         try {
             // Objcm.g:951:2: ( ( prefix ( WS )* )? COLON ( WS )* ( method_type ( WS )* )? name ( WS )* )
@@ -33093,117 +33209,24 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:951:4: ( prefix ( WS )* )?
-            int alt468=2;
-            int LA468_0 = input.LA(1);
-
-            if ( (LA468_0==ID) ) {
-                alt468=1;
-            }
-            switch (alt468) {
-                case 1 :
-                    // Objcm.g:951:5: prefix ( WS )*
-                    {
-                    pushFollow(FOLLOW_prefix_in_method_param5960);
-                    prefix935=prefix();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, prefix935.getTree());
-
-                    // Objcm.g:951:12: ( WS )*
-                    loop467:
-                    do {
-                        int alt467=2;
-                        int LA467_0 = input.LA(1);
-
-                        if ( (LA467_0==WS) ) {
-                            alt467=1;
-                        }
-
-
-                        switch (alt467) {
-                    	case 1 :
-                    	    // Objcm.g:951:12: WS
-                    	    {
-                    	    WS936=(Token)match(input,WS,FOLLOW_WS_in_method_param5962); 
-                    	    WS936_tree = 
-                    	    (Object)adaptor.create(WS936)
-                    	    ;
-                    	    adaptor.addChild(root_0, WS936_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop467;
-                        }
-                    } while (true);
-
-
-                    }
-                    break;
-
-            }
-
-
-            COLON937=(Token)match(input,COLON,FOLLOW_COLON_in_method_param5967); 
-            COLON937_tree = 
-            (Object)adaptor.create(COLON937)
-            ;
-            adaptor.addChild(root_0, COLON937_tree);
-
-
-            // Objcm.g:951:24: ( WS )*
-            loop469:
-            do {
-                int alt469=2;
-                int LA469_0 = input.LA(1);
-
-                if ( (LA469_0==WS) ) {
-                    alt469=1;
-                }
-
-
-                switch (alt469) {
-            	case 1 :
-            	    // Objcm.g:951:24: WS
-            	    {
-            	    WS938=(Token)match(input,WS,FOLLOW_WS_in_method_param5969); 
-            	    WS938_tree = 
-            	    (Object)adaptor.create(WS938)
-            	    ;
-            	    adaptor.addChild(root_0, WS938_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop469;
-                }
-            } while (true);
-
-
-            // Objcm.g:951:28: ( method_type ( WS )* )?
             int alt471=2;
             int LA471_0 = input.LA(1);
 
-            if ( (LA471_0==L_BR) ) {
+            if ( (LA471_0==ID) ) {
                 alt471=1;
             }
             switch (alt471) {
                 case 1 :
-                    // Objcm.g:951:29: method_type ( WS )*
+                    // Objcm.g:951:5: prefix ( WS )*
                     {
-                    pushFollow(FOLLOW_method_type_in_method_param5973);
-                    method_type939=method_type();
+                    pushFollow(FOLLOW_prefix_in_method_param5969);
+                    prefix938=prefix();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, method_type939.getTree());
+                    adaptor.addChild(root_0, prefix938.getTree());
 
-                    // Objcm.g:951:41: ( WS )*
+                    // Objcm.g:951:12: ( WS )*
                     loop470:
                     do {
                         int alt470=2;
@@ -33216,13 +33239,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                         switch (alt470) {
                     	case 1 :
-                    	    // Objcm.g:951:41: WS
+                    	    // Objcm.g:951:12: WS
                     	    {
-                    	    WS940=(Token)match(input,WS,FOLLOW_WS_in_method_param5975); 
-                    	    WS940_tree = 
-                    	    (Object)adaptor.create(WS940)
+                    	    WS939=(Token)match(input,WS,FOLLOW_WS_in_method_param5971); 
+                    	    WS939_tree = 
+                    	    (Object)adaptor.create(WS939)
                     	    ;
-                    	    adaptor.addChild(root_0, WS940_tree);
+                    	    adaptor.addChild(root_0, WS939_tree);
 
 
                     	    }
@@ -33240,14 +33263,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_name_in_method_param5980);
-            name941=name();
+            COLON940=(Token)match(input,COLON,FOLLOW_COLON_in_method_param5976); 
+            COLON940_tree = 
+            (Object)adaptor.create(COLON940)
+            ;
+            adaptor.addChild(root_0, COLON940_tree);
 
-            state._fsp--;
 
-            adaptor.addChild(root_0, name941.getTree());
-
-            // Objcm.g:951:52: ( WS )*
+            // Objcm.g:951:24: ( WS )*
             loop472:
             do {
                 int alt472=2;
@@ -33260,13 +33283,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt472) {
             	case 1 :
-            	    // Objcm.g:951:52: WS
+            	    // Objcm.g:951:24: WS
             	    {
-            	    WS942=(Token)match(input,WS,FOLLOW_WS_in_method_param5982); 
-            	    WS942_tree = 
-            	    (Object)adaptor.create(WS942)
+            	    WS941=(Token)match(input,WS,FOLLOW_WS_in_method_param5978); 
+            	    WS941_tree = 
+            	    (Object)adaptor.create(WS941)
             	    ;
-            	    adaptor.addChild(root_0, WS942_tree);
+            	    adaptor.addChild(root_0, WS941_tree);
 
 
             	    }
@@ -33274,6 +33297,99 @@ public TreeAdaptor getTreeAdaptor() {
 
             	default :
             	    break loop472;
+                }
+            } while (true);
+
+
+            // Objcm.g:951:28: ( method_type ( WS )* )?
+            int alt474=2;
+            int LA474_0 = input.LA(1);
+
+            if ( (LA474_0==L_BR) ) {
+                alt474=1;
+            }
+            switch (alt474) {
+                case 1 :
+                    // Objcm.g:951:29: method_type ( WS )*
+                    {
+                    pushFollow(FOLLOW_method_type_in_method_param5982);
+                    method_type942=method_type();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, method_type942.getTree());
+
+                    // Objcm.g:951:41: ( WS )*
+                    loop473:
+                    do {
+                        int alt473=2;
+                        int LA473_0 = input.LA(1);
+
+                        if ( (LA473_0==WS) ) {
+                            alt473=1;
+                        }
+
+
+                        switch (alt473) {
+                    	case 1 :
+                    	    // Objcm.g:951:41: WS
+                    	    {
+                    	    WS943=(Token)match(input,WS,FOLLOW_WS_in_method_param5984); 
+                    	    WS943_tree = 
+                    	    (Object)adaptor.create(WS943)
+                    	    ;
+                    	    adaptor.addChild(root_0, WS943_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop473;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
+
+            }
+
+
+            pushFollow(FOLLOW_name_in_method_param5989);
+            name944=name();
+
+            state._fsp--;
+
+            adaptor.addChild(root_0, name944.getTree());
+
+            // Objcm.g:951:52: ( WS )*
+            loop475:
+            do {
+                int alt475=2;
+                int LA475_0 = input.LA(1);
+
+                if ( (LA475_0==WS) ) {
+                    alt475=1;
+                }
+
+
+                switch (alt475) {
+            	case 1 :
+            	    // Objcm.g:951:52: WS
+            	    {
+            	    WS945=(Token)match(input,WS,FOLLOW_WS_in_method_param5991); 
+            	    WS945_tree = 
+            	    (Object)adaptor.create(WS945)
+            	    ;
+            	    adaptor.addChild(root_0, WS945_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop475;
                 }
             } while (true);
 
@@ -33317,17 +33433,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ID943=null;
+        Token ID946=null;
 
-        Object ID943_tree=null;
+        Object ID946_tree=null;
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
 
         try {
             // Objcm.g:954:8: ( ID -> ^( PREFIX ID ) )
             // Objcm.g:954:10: ID
             {
-            ID943=(Token)match(input,ID,FOLLOW_ID_in_prefix5995);  
-            stream_ID.add(ID943);
+            ID946=(Token)match(input,ID,FOLLOW_ID_in_prefix6004);  
+            stream_ID.add(ID946);
 
 
             // AST REWRITE
@@ -33401,7 +33517,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.typedef_struct_declaration_return typedef_struct_declaration944 =null;
+        ObjcmParser.typedef_struct_declaration_return typedef_struct_declaration947 =null;
 
 
         RewriteRuleSubtreeStream stream_typedef_struct_declaration=new RewriteRuleSubtreeStream(adaptor,"rule typedef_struct_declaration");
@@ -33409,12 +33525,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:962:2: ( typedef_struct_declaration -> ^( TYPEDEF_STRUCT typedef_struct_declaration ) )
             // Objcm.g:962:4: typedef_struct_declaration
             {
-            pushFollow(FOLLOW_typedef_struct_declaration_in_typedef_struct_declaration_wrapper6017);
-            typedef_struct_declaration944=typedef_struct_declaration();
+            pushFollow(FOLLOW_typedef_struct_declaration_in_typedef_struct_declaration_wrapper6026);
+            typedef_struct_declaration947=typedef_struct_declaration();
 
             state._fsp--;
 
-            stream_typedef_struct_declaration.add(typedef_struct_declaration944.getTree());
+            stream_typedef_struct_declaration.add(typedef_struct_declaration947.getTree());
 
             // AST REWRITE
             // elements: typedef_struct_declaration
@@ -33485,27 +33601,27 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token STRUCT_PREFIX945=null;
-        Token WS947=null;
-        Token L_FBR948=null;
-        Token R_FBR950=null;
-        Token WS951=null;
-        Token WS953=null;
-        ObjcmParser.name_return name946 =null;
+        Token STRUCT_PREFIX948=null;
+        Token WS950=null;
+        Token L_FBR951=null;
+        Token R_FBR953=null;
+        Token WS954=null;
+        Token WS956=null;
+        ObjcmParser.name_return name949 =null;
 
-        ObjcmParser.typedef_struct_body_return typedef_struct_body949 =null;
+        ObjcmParser.typedef_struct_body_return typedef_struct_body952 =null;
 
-        ObjcmParser.name_return name952 =null;
+        ObjcmParser.name_return name955 =null;
 
-        ObjcmParser.semi_return semi954 =null;
+        ObjcmParser.semi_return semi957 =null;
 
 
-        Object STRUCT_PREFIX945_tree=null;
-        Object WS947_tree=null;
-        Object L_FBR948_tree=null;
-        Object R_FBR950_tree=null;
-        Object WS951_tree=null;
-        Object WS953_tree=null;
+        Object STRUCT_PREFIX948_tree=null;
+        Object WS950_tree=null;
+        Object L_FBR951_tree=null;
+        Object R_FBR953_tree=null;
+        Object WS954_tree=null;
+        Object WS956_tree=null;
 
         try {
             // Objcm.g:966:2: ( STRUCT_PREFIX ( name ( WS )* )? L_FBR ( typedef_struct_body )+ R_FBR ( WS )* ( name ( WS )* )? ( semi )? )
@@ -33514,58 +33630,58 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            STRUCT_PREFIX945=(Token)match(input,STRUCT_PREFIX,FOLLOW_STRUCT_PREFIX_in_typedef_struct_declaration6037); 
-            STRUCT_PREFIX945_tree = 
-            (Object)adaptor.create(STRUCT_PREFIX945)
+            STRUCT_PREFIX948=(Token)match(input,STRUCT_PREFIX,FOLLOW_STRUCT_PREFIX_in_typedef_struct_declaration6046); 
+            STRUCT_PREFIX948_tree = 
+            (Object)adaptor.create(STRUCT_PREFIX948)
             ;
-            adaptor.addChild(root_0, STRUCT_PREFIX945_tree);
+            adaptor.addChild(root_0, STRUCT_PREFIX948_tree);
 
 
             // Objcm.g:966:18: ( name ( WS )* )?
-            int alt474=2;
-            int LA474_0 = input.LA(1);
+            int alt477=2;
+            int LA477_0 = input.LA(1);
 
-            if ( (LA474_0==ID||LA474_0==152) ) {
-                alt474=1;
+            if ( (LA477_0==ID||LA477_0==152) ) {
+                alt477=1;
             }
-            switch (alt474) {
+            switch (alt477) {
                 case 1 :
                     // Objcm.g:966:19: name ( WS )*
                     {
-                    pushFollow(FOLLOW_name_in_typedef_struct_declaration6040);
-                    name946=name();
+                    pushFollow(FOLLOW_name_in_typedef_struct_declaration6049);
+                    name949=name();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, name946.getTree());
+                    adaptor.addChild(root_0, name949.getTree());
 
                     // Objcm.g:966:24: ( WS )*
-                    loop473:
+                    loop476:
                     do {
-                        int alt473=2;
-                        int LA473_0 = input.LA(1);
+                        int alt476=2;
+                        int LA476_0 = input.LA(1);
 
-                        if ( (LA473_0==WS) ) {
-                            alt473=1;
+                        if ( (LA476_0==WS) ) {
+                            alt476=1;
                         }
 
 
-                        switch (alt473) {
+                        switch (alt476) {
                     	case 1 :
                     	    // Objcm.g:966:24: WS
                     	    {
-                    	    WS947=(Token)match(input,WS,FOLLOW_WS_in_typedef_struct_declaration6042); 
-                    	    WS947_tree = 
-                    	    (Object)adaptor.create(WS947)
+                    	    WS950=(Token)match(input,WS,FOLLOW_WS_in_typedef_struct_declaration6051); 
+                    	    WS950_tree = 
+                    	    (Object)adaptor.create(WS950)
                     	    ;
-                    	    adaptor.addChild(root_0, WS947_tree);
+                    	    adaptor.addChild(root_0, WS950_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop473;
+                    	    break loop476;
                         }
                     } while (true);
 
@@ -33576,128 +33692,128 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            L_FBR948=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_typedef_struct_declaration6048); 
-            L_FBR948_tree = 
-            (Object)adaptor.create(L_FBR948)
+            L_FBR951=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_typedef_struct_declaration6057); 
+            L_FBR951_tree = 
+            (Object)adaptor.create(L_FBR951)
             ;
-            adaptor.addChild(root_0, L_FBR948_tree);
+            adaptor.addChild(root_0, L_FBR951_tree);
 
 
             // Objcm.g:968:3: ( typedef_struct_body )+
-            int cnt475=0;
-            loop475:
+            int cnt478=0;
+            loop478:
             do {
-                int alt475=2;
-                int LA475_0 = input.LA(1);
+                int alt478=2;
+                int LA478_0 = input.LA(1);
 
-                if ( (LA475_0==ID||LA475_0==VOID||LA475_0==WS) ) {
-                    alt475=1;
+                if ( (LA478_0==ID||LA478_0==VOID||LA478_0==WS) ) {
+                    alt478=1;
                 }
 
 
-                switch (alt475) {
+                switch (alt478) {
             	case 1 :
             	    // Objcm.g:968:3: typedef_struct_body
             	    {
-            	    pushFollow(FOLLOW_typedef_struct_body_in_typedef_struct_declaration6053);
-            	    typedef_struct_body949=typedef_struct_body();
+            	    pushFollow(FOLLOW_typedef_struct_body_in_typedef_struct_declaration6062);
+            	    typedef_struct_body952=typedef_struct_body();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, typedef_struct_body949.getTree());
+            	    adaptor.addChild(root_0, typedef_struct_body952.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt475 >= 1 ) break loop475;
+            	    if ( cnt478 >= 1 ) break loop478;
                         EarlyExitException eee =
-                            new EarlyExitException(475, input);
+                            new EarlyExitException(478, input);
                         throw eee;
                 }
-                cnt475++;
+                cnt478++;
             } while (true);
 
 
-            R_FBR950=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_typedef_struct_declaration6057); 
-            R_FBR950_tree = 
-            (Object)adaptor.create(R_FBR950)
+            R_FBR953=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_typedef_struct_declaration6066); 
+            R_FBR953_tree = 
+            (Object)adaptor.create(R_FBR953)
             ;
-            adaptor.addChild(root_0, R_FBR950_tree);
+            adaptor.addChild(root_0, R_FBR953_tree);
 
 
             // Objcm.g:969:8: ( WS )*
-            loop476:
+            loop479:
             do {
-                int alt476=2;
-                int LA476_0 = input.LA(1);
+                int alt479=2;
+                int LA479_0 = input.LA(1);
 
-                if ( (LA476_0==WS) ) {
-                    alt476=1;
+                if ( (LA479_0==WS) ) {
+                    alt479=1;
                 }
 
 
-                switch (alt476) {
+                switch (alt479) {
             	case 1 :
             	    // Objcm.g:969:8: WS
             	    {
-            	    WS951=(Token)match(input,WS,FOLLOW_WS_in_typedef_struct_declaration6059); 
-            	    WS951_tree = 
-            	    (Object)adaptor.create(WS951)
+            	    WS954=(Token)match(input,WS,FOLLOW_WS_in_typedef_struct_declaration6068); 
+            	    WS954_tree = 
+            	    (Object)adaptor.create(WS954)
             	    ;
-            	    adaptor.addChild(root_0, WS951_tree);
+            	    adaptor.addChild(root_0, WS954_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop476;
+            	    break loop479;
                 }
             } while (true);
 
 
             // Objcm.g:969:12: ( name ( WS )* )?
-            int alt478=2;
-            alt478 = dfa478.predict(input);
-            switch (alt478) {
+            int alt481=2;
+            alt481 = dfa481.predict(input);
+            switch (alt481) {
                 case 1 :
                     // Objcm.g:969:13: name ( WS )*
                     {
-                    pushFollow(FOLLOW_name_in_typedef_struct_declaration6063);
-                    name952=name();
+                    pushFollow(FOLLOW_name_in_typedef_struct_declaration6072);
+                    name955=name();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, name952.getTree());
+                    adaptor.addChild(root_0, name955.getTree());
 
                     // Objcm.g:969:18: ( WS )*
-                    loop477:
+                    loop480:
                     do {
-                        int alt477=2;
-                        int LA477_0 = input.LA(1);
+                        int alt480=2;
+                        int LA480_0 = input.LA(1);
 
-                        if ( (LA477_0==WS) ) {
-                            alt477=1;
+                        if ( (LA480_0==WS) ) {
+                            alt480=1;
                         }
 
 
-                        switch (alt477) {
+                        switch (alt480) {
                     	case 1 :
                     	    // Objcm.g:969:18: WS
                     	    {
-                    	    WS953=(Token)match(input,WS,FOLLOW_WS_in_typedef_struct_declaration6065); 
-                    	    WS953_tree = 
-                    	    (Object)adaptor.create(WS953)
+                    	    WS956=(Token)match(input,WS,FOLLOW_WS_in_typedef_struct_declaration6074); 
+                    	    WS956_tree = 
+                    	    (Object)adaptor.create(WS956)
                     	    ;
-                    	    adaptor.addChild(root_0, WS953_tree);
+                    	    adaptor.addChild(root_0, WS956_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop477;
+                    	    break loop480;
                         }
                     } while (true);
 
@@ -33709,22 +33825,22 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:969:24: ( semi )?
-            int alt479=2;
-            int LA479_0 = input.LA(1);
+            int alt482=2;
+            int LA482_0 = input.LA(1);
 
-            if ( (LA479_0==SEMICOLON) ) {
-                alt479=1;
+            if ( (LA482_0==SEMICOLON) ) {
+                alt482=1;
             }
-            switch (alt479) {
+            switch (alt482) {
                 case 1 :
                     // Objcm.g:969:24: semi
                     {
-                    pushFollow(FOLLOW_semi_in_typedef_struct_declaration6070);
-                    semi954=semi();
+                    pushFollow(FOLLOW_semi_in_typedef_struct_declaration6079);
+                    semi957=semi();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, semi954.getTree());
+                    adaptor.addChild(root_0, semi957.getTree());
 
                     }
                     break;
@@ -33771,43 +33887,43 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS956=null;
-        ObjcmParser.typedef_struct_declaration_element_wrapper_return typedef_struct_declaration_element_wrapper955 =null;
+        Token WS959=null;
+        ObjcmParser.typedef_struct_declaration_element_wrapper_return typedef_struct_declaration_element_wrapper958 =null;
 
 
-        Object WS956_tree=null;
+        Object WS959_tree=null;
 
         try {
             // Objcm.g:973:2: ( typedef_struct_declaration_element_wrapper | WS )
-            int alt480=2;
-            int LA480_0 = input.LA(1);
+            int alt483=2;
+            int LA483_0 = input.LA(1);
 
-            if ( (LA480_0==ID||LA480_0==VOID) ) {
-                alt480=1;
+            if ( (LA483_0==ID||LA483_0==VOID) ) {
+                alt483=1;
             }
-            else if ( (LA480_0==WS) ) {
-                alt480=2;
+            else if ( (LA483_0==WS) ) {
+                alt483=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 480, 0, input);
+                    new NoViableAltException("", 483, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt480) {
+            switch (alt483) {
                 case 1 :
                     // Objcm.g:973:4: typedef_struct_declaration_element_wrapper
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_typedef_struct_declaration_element_wrapper_in_typedef_struct_body6083);
-                    typedef_struct_declaration_element_wrapper955=typedef_struct_declaration_element_wrapper();
+                    pushFollow(FOLLOW_typedef_struct_declaration_element_wrapper_in_typedef_struct_body6092);
+                    typedef_struct_declaration_element_wrapper958=typedef_struct_declaration_element_wrapper();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, typedef_struct_declaration_element_wrapper955.getTree());
+                    adaptor.addChild(root_0, typedef_struct_declaration_element_wrapper958.getTree());
 
                     }
                     break;
@@ -33817,11 +33933,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    WS956=(Token)match(input,WS,FOLLOW_WS_in_typedef_struct_body6088); 
-                    WS956_tree = 
-                    (Object)adaptor.create(WS956)
+                    WS959=(Token)match(input,WS,FOLLOW_WS_in_typedef_struct_body6097); 
+                    WS959_tree = 
+                    (Object)adaptor.create(WS959)
                     ;
-                    adaptor.addChild(root_0, WS956_tree);
+                    adaptor.addChild(root_0, WS959_tree);
 
 
                     }
@@ -33865,7 +33981,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.struct_field_return struct_field957 =null;
+        ObjcmParser.struct_field_return struct_field960 =null;
 
 
         RewriteRuleSubtreeStream stream_struct_field=new RewriteRuleSubtreeStream(adaptor,"rule struct_field");
@@ -33873,12 +33989,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:978:2: ( struct_field -> ^( STRUCT_FIELD struct_field ) )
             // Objcm.g:978:4: struct_field
             {
-            pushFollow(FOLLOW_struct_field_in_typedef_struct_declaration_element_wrapper6101);
-            struct_field957=struct_field();
+            pushFollow(FOLLOW_struct_field_in_typedef_struct_declaration_element_wrapper6110);
+            struct_field960=struct_field();
 
             state._fsp--;
 
-            stream_struct_field.add(struct_field957.getTree());
+            stream_struct_field.add(struct_field960.getTree());
 
             // AST REWRITE
             // elements: struct_field
@@ -33949,21 +34065,21 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS960=null;
-        Token COMMA961=null;
-        Token WS962=null;
-        Token SEMICOLON964=null;
-        ObjcmParser.field_type_return field_type958 =null;
+        Token WS963=null;
+        Token COMMA964=null;
+        Token WS965=null;
+        Token SEMICOLON967=null;
+        ObjcmParser.field_type_return field_type961 =null;
 
-        ObjcmParser.name_return name959 =null;
+        ObjcmParser.name_return name962 =null;
 
-        ObjcmParser.name_return name963 =null;
+        ObjcmParser.name_return name966 =null;
 
 
-        Object WS960_tree=null;
-        Object COMMA961_tree=null;
-        Object WS962_tree=null;
-        Object SEMICOLON964_tree=null;
+        Object WS963_tree=null;
+        Object COMMA964_tree=null;
+        Object WS965_tree=null;
+        Object SEMICOLON967_tree=null;
 
         try {
             // Objcm.g:981:2: ( field_type name ( WS )* ( COMMA ( WS )* name )* SEMICOLON )
@@ -33972,125 +34088,125 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_field_type_in_struct_field6119);
-            field_type958=field_type();
+            pushFollow(FOLLOW_field_type_in_struct_field6128);
+            field_type961=field_type();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, field_type958.getTree());
+            adaptor.addChild(root_0, field_type961.getTree());
 
-            pushFollow(FOLLOW_name_in_struct_field6121);
-            name959=name();
+            pushFollow(FOLLOW_name_in_struct_field6130);
+            name962=name();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, name959.getTree());
+            adaptor.addChild(root_0, name962.getTree());
 
             // Objcm.g:981:20: ( WS )*
-            loop481:
+            loop484:
             do {
-                int alt481=2;
-                int LA481_0 = input.LA(1);
+                int alt484=2;
+                int LA484_0 = input.LA(1);
 
-                if ( (LA481_0==WS) ) {
-                    alt481=1;
+                if ( (LA484_0==WS) ) {
+                    alt484=1;
                 }
 
 
-                switch (alt481) {
+                switch (alt484) {
             	case 1 :
             	    // Objcm.g:981:20: WS
             	    {
-            	    WS960=(Token)match(input,WS,FOLLOW_WS_in_struct_field6123); 
-            	    WS960_tree = 
-            	    (Object)adaptor.create(WS960)
+            	    WS963=(Token)match(input,WS,FOLLOW_WS_in_struct_field6132); 
+            	    WS963_tree = 
+            	    (Object)adaptor.create(WS963)
             	    ;
-            	    adaptor.addChild(root_0, WS960_tree);
+            	    adaptor.addChild(root_0, WS963_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop481;
+            	    break loop484;
                 }
             } while (true);
 
 
             // Objcm.g:981:24: ( COMMA ( WS )* name )*
-            loop483:
+            loop486:
             do {
-                int alt483=2;
-                int LA483_0 = input.LA(1);
+                int alt486=2;
+                int LA486_0 = input.LA(1);
 
-                if ( (LA483_0==COMMA) ) {
-                    alt483=1;
+                if ( (LA486_0==COMMA) ) {
+                    alt486=1;
                 }
 
 
-                switch (alt483) {
+                switch (alt486) {
             	case 1 :
             	    // Objcm.g:981:25: COMMA ( WS )* name
             	    {
-            	    COMMA961=(Token)match(input,COMMA,FOLLOW_COMMA_in_struct_field6127); 
-            	    COMMA961_tree = 
-            	    (Object)adaptor.create(COMMA961)
+            	    COMMA964=(Token)match(input,COMMA,FOLLOW_COMMA_in_struct_field6136); 
+            	    COMMA964_tree = 
+            	    (Object)adaptor.create(COMMA964)
             	    ;
-            	    adaptor.addChild(root_0, COMMA961_tree);
+            	    adaptor.addChild(root_0, COMMA964_tree);
 
 
             	    // Objcm.g:981:31: ( WS )*
-            	    loop482:
+            	    loop485:
             	    do {
-            	        int alt482=2;
-            	        int LA482_0 = input.LA(1);
+            	        int alt485=2;
+            	        int LA485_0 = input.LA(1);
 
-            	        if ( (LA482_0==WS) ) {
-            	            alt482=1;
+            	        if ( (LA485_0==WS) ) {
+            	            alt485=1;
             	        }
 
 
-            	        switch (alt482) {
+            	        switch (alt485) {
             	    	case 1 :
             	    	    // Objcm.g:981:31: WS
             	    	    {
-            	    	    WS962=(Token)match(input,WS,FOLLOW_WS_in_struct_field6129); 
-            	    	    WS962_tree = 
-            	    	    (Object)adaptor.create(WS962)
+            	    	    WS965=(Token)match(input,WS,FOLLOW_WS_in_struct_field6138); 
+            	    	    WS965_tree = 
+            	    	    (Object)adaptor.create(WS965)
             	    	    ;
-            	    	    adaptor.addChild(root_0, WS962_tree);
+            	    	    adaptor.addChild(root_0, WS965_tree);
 
 
             	    	    }
             	    	    break;
 
             	    	default :
-            	    	    break loop482;
+            	    	    break loop485;
             	        }
             	    } while (true);
 
 
-            	    pushFollow(FOLLOW_name_in_struct_field6132);
-            	    name963=name();
+            	    pushFollow(FOLLOW_name_in_struct_field6141);
+            	    name966=name();
 
             	    state._fsp--;
 
-            	    adaptor.addChild(root_0, name963.getTree());
+            	    adaptor.addChild(root_0, name966.getTree());
 
             	    }
             	    break;
 
             	default :
-            	    break loop483;
+            	    break loop486;
                 }
             } while (true);
 
 
-            SEMICOLON964=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_struct_field6136); 
-            SEMICOLON964_tree = 
-            (Object)adaptor.create(SEMICOLON964)
+            SEMICOLON967=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_struct_field6145); 
+            SEMICOLON967_tree = 
+            (Object)adaptor.create(SEMICOLON967)
             ;
-            adaptor.addChild(root_0, SEMICOLON964_tree);
+            adaptor.addChild(root_0, SEMICOLON967_tree);
 
 
             }
@@ -34132,7 +34248,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.typedef_declaration_return typedef_declaration965 =null;
+        ObjcmParser.typedef_declaration_return typedef_declaration968 =null;
 
 
         RewriteRuleSubtreeStream stream_typedef_declaration=new RewriteRuleSubtreeStream(adaptor,"rule typedef_declaration");
@@ -34140,12 +34256,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:989:2: ( typedef_declaration -> ^( TYPEDEF typedef_declaration ) )
             // Objcm.g:989:4: typedef_declaration
             {
-            pushFollow(FOLLOW_typedef_declaration_in_typedef_declaration_wrapper6152);
-            typedef_declaration965=typedef_declaration();
+            pushFollow(FOLLOW_typedef_declaration_in_typedef_declaration_wrapper6161);
+            typedef_declaration968=typedef_declaration();
 
             state._fsp--;
 
-            stream_typedef_declaration.add(typedef_declaration965.getTree());
+            stream_typedef_declaration.add(typedef_declaration968.getTree());
 
             // AST REWRITE
             // elements: typedef_declaration
@@ -34216,7 +34332,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.typedef_declaration_return typedef_declaration966 =null;
+        ObjcmParser.typedef_declaration_return typedef_declaration969 =null;
 
 
         RewriteRuleSubtreeStream stream_typedef_declaration=new RewriteRuleSubtreeStream(adaptor,"rule typedef_declaration");
@@ -34224,12 +34340,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:993:2: ( typedef_declaration -> ^( ENUM typedef_declaration ) )
             // Objcm.g:993:4: typedef_declaration
             {
-            pushFollow(FOLLOW_typedef_declaration_in_enum_declaration6172);
-            typedef_declaration966=typedef_declaration();
+            pushFollow(FOLLOW_typedef_declaration_in_enum_declaration6181);
+            typedef_declaration969=typedef_declaration();
 
             state._fsp--;
 
-            stream_typedef_declaration.add(typedef_declaration966.getTree());
+            stream_typedef_declaration.add(typedef_declaration969.getTree());
 
             // AST REWRITE
             // elements: typedef_declaration
@@ -34300,35 +34416,35 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ENUM_PREFIX967=null;
-        Token L_FBR968=null;
-        Token WS969=null;
-        Token WS971=null;
-        Token COMMA972=null;
-        Token WS973=null;
-        Token WS975=null;
-        Token R_FBR976=null;
-        Token WS977=null;
-        Token WS979=null;
-        Token SEMICOLON980=null;
-        ObjcmParser.typedef_declaration_element_wrapper_return typedef_declaration_element_wrapper970 =null;
+        Token ENUM_PREFIX970=null;
+        Token L_FBR971=null;
+        Token WS972=null;
+        Token WS974=null;
+        Token COMMA975=null;
+        Token WS976=null;
+        Token WS978=null;
+        Token R_FBR979=null;
+        Token WS980=null;
+        Token WS982=null;
+        Token SEMICOLON983=null;
+        ObjcmParser.typedef_declaration_element_wrapper_return typedef_declaration_element_wrapper973 =null;
 
-        ObjcmParser.typedef_declaration_element_wrapper_return typedef_declaration_element_wrapper974 =null;
+        ObjcmParser.typedef_declaration_element_wrapper_return typedef_declaration_element_wrapper977 =null;
 
-        ObjcmParser.name_return name978 =null;
+        ObjcmParser.name_return name981 =null;
 
 
-        Object ENUM_PREFIX967_tree=null;
-        Object L_FBR968_tree=null;
-        Object WS969_tree=null;
-        Object WS971_tree=null;
-        Object COMMA972_tree=null;
-        Object WS973_tree=null;
-        Object WS975_tree=null;
-        Object R_FBR976_tree=null;
-        Object WS977_tree=null;
-        Object WS979_tree=null;
-        Object SEMICOLON980_tree=null;
+        Object ENUM_PREFIX970_tree=null;
+        Object L_FBR971_tree=null;
+        Object WS972_tree=null;
+        Object WS974_tree=null;
+        Object COMMA975_tree=null;
+        Object WS976_tree=null;
+        Object WS978_tree=null;
+        Object R_FBR979_tree=null;
+        Object WS980_tree=null;
+        Object WS982_tree=null;
+        Object SEMICOLON983_tree=null;
 
         try {
             // Objcm.g:996:2: ( ENUM_PREFIX L_FBR ( WS )* typedef_declaration_element_wrapper ( WS )* ( COMMA ( WS )* typedef_declaration_element_wrapper ( WS )* )* R_FBR ( WS )* ( name ( WS )* )? SEMICOLON )
@@ -34337,178 +34453,78 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            ENUM_PREFIX967=(Token)match(input,ENUM_PREFIX,FOLLOW_ENUM_PREFIX_in_typedef_declaration6192); 
-            ENUM_PREFIX967_tree = 
-            (Object)adaptor.create(ENUM_PREFIX967)
+            ENUM_PREFIX970=(Token)match(input,ENUM_PREFIX,FOLLOW_ENUM_PREFIX_in_typedef_declaration6201); 
+            ENUM_PREFIX970_tree = 
+            (Object)adaptor.create(ENUM_PREFIX970)
             ;
-            adaptor.addChild(root_0, ENUM_PREFIX967_tree);
+            adaptor.addChild(root_0, ENUM_PREFIX970_tree);
 
 
-            L_FBR968=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_typedef_declaration6194); 
-            L_FBR968_tree = 
-            (Object)adaptor.create(L_FBR968)
+            L_FBR971=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_typedef_declaration6203); 
+            L_FBR971_tree = 
+            (Object)adaptor.create(L_FBR971)
             ;
-            adaptor.addChild(root_0, L_FBR968_tree);
+            adaptor.addChild(root_0, L_FBR971_tree);
 
 
             // Objcm.g:996:23: ( WS )*
-            loop484:
+            loop487:
             do {
-                int alt484=2;
-                int LA484_0 = input.LA(1);
+                int alt487=2;
+                int LA487_0 = input.LA(1);
 
-                if ( (LA484_0==WS) ) {
-                    alt484=1;
+                if ( (LA487_0==WS) ) {
+                    alt487=1;
                 }
 
 
-                switch (alt484) {
+                switch (alt487) {
             	case 1 :
             	    // Objcm.g:996:23: WS
             	    {
-            	    WS969=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6196); 
-            	    WS969_tree = 
-            	    (Object)adaptor.create(WS969)
+            	    WS972=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6205); 
+            	    WS972_tree = 
+            	    (Object)adaptor.create(WS972)
             	    ;
-            	    adaptor.addChild(root_0, WS969_tree);
+            	    adaptor.addChild(root_0, WS972_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop484;
+            	    break loop487;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_typedef_declaration_element_wrapper_in_typedef_declaration6199);
-            typedef_declaration_element_wrapper970=typedef_declaration_element_wrapper();
+            pushFollow(FOLLOW_typedef_declaration_element_wrapper_in_typedef_declaration6208);
+            typedef_declaration_element_wrapper973=typedef_declaration_element_wrapper();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, typedef_declaration_element_wrapper970.getTree());
+            adaptor.addChild(root_0, typedef_declaration_element_wrapper973.getTree());
 
             // Objcm.g:996:63: ( WS )*
-            loop485:
-            do {
-                int alt485=2;
-                int LA485_0 = input.LA(1);
-
-                if ( (LA485_0==WS) ) {
-                    alt485=1;
-                }
-
-
-                switch (alt485) {
-            	case 1 :
-            	    // Objcm.g:996:63: WS
-            	    {
-            	    WS971=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6201); 
-            	    WS971_tree = 
-            	    (Object)adaptor.create(WS971)
-            	    ;
-            	    adaptor.addChild(root_0, WS971_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop485;
-                }
-            } while (true);
-
-
-            // Objcm.g:996:67: ( COMMA ( WS )* typedef_declaration_element_wrapper ( WS )* )*
             loop488:
             do {
                 int alt488=2;
                 int LA488_0 = input.LA(1);
 
-                if ( (LA488_0==COMMA) ) {
+                if ( (LA488_0==WS) ) {
                     alt488=1;
                 }
 
 
                 switch (alt488) {
             	case 1 :
-            	    // Objcm.g:996:68: COMMA ( WS )* typedef_declaration_element_wrapper ( WS )*
+            	    // Objcm.g:996:63: WS
             	    {
-            	    COMMA972=(Token)match(input,COMMA,FOLLOW_COMMA_in_typedef_declaration6205); 
-            	    COMMA972_tree = 
-            	    (Object)adaptor.create(COMMA972)
+            	    WS974=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6210); 
+            	    WS974_tree = 
+            	    (Object)adaptor.create(WS974)
             	    ;
-            	    adaptor.addChild(root_0, COMMA972_tree);
-
-
-            	    // Objcm.g:996:74: ( WS )*
-            	    loop486:
-            	    do {
-            	        int alt486=2;
-            	        int LA486_0 = input.LA(1);
-
-            	        if ( (LA486_0==WS) ) {
-            	            alt486=1;
-            	        }
-
-
-            	        switch (alt486) {
-            	    	case 1 :
-            	    	    // Objcm.g:996:74: WS
-            	    	    {
-            	    	    WS973=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6207); 
-            	    	    WS973_tree = 
-            	    	    (Object)adaptor.create(WS973)
-            	    	    ;
-            	    	    adaptor.addChild(root_0, WS973_tree);
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop486;
-            	        }
-            	    } while (true);
-
-
-            	    pushFollow(FOLLOW_typedef_declaration_element_wrapper_in_typedef_declaration6210);
-            	    typedef_declaration_element_wrapper974=typedef_declaration_element_wrapper();
-
-            	    state._fsp--;
-
-            	    adaptor.addChild(root_0, typedef_declaration_element_wrapper974.getTree());
-
-            	    // Objcm.g:996:114: ( WS )*
-            	    loop487:
-            	    do {
-            	        int alt487=2;
-            	        int LA487_0 = input.LA(1);
-
-            	        if ( (LA487_0==WS) ) {
-            	            alt487=1;
-            	        }
-
-
-            	        switch (alt487) {
-            	    	case 1 :
-            	    	    // Objcm.g:996:114: WS
-            	    	    {
-            	    	    WS975=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6212); 
-            	    	    WS975_tree = 
-            	    	    (Object)adaptor.create(WS975)
-            	    	    ;
-            	    	    adaptor.addChild(root_0, WS975_tree);
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop487;
-            	        }
-            	    } while (true);
+            	    adaptor.addChild(root_0, WS974_tree);
 
 
             	    }
@@ -34520,89 +34536,189 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            R_FBR976=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_typedef_declaration6217); 
-            R_FBR976_tree = 
-            (Object)adaptor.create(R_FBR976)
-            ;
-            adaptor.addChild(root_0, R_FBR976_tree);
-
-
-            // Objcm.g:996:126: ( WS )*
-            loop489:
+            // Objcm.g:996:67: ( COMMA ( WS )* typedef_declaration_element_wrapper ( WS )* )*
+            loop491:
             do {
-                int alt489=2;
-                int LA489_0 = input.LA(1);
+                int alt491=2;
+                int LA491_0 = input.LA(1);
 
-                if ( (LA489_0==WS) ) {
-                    alt489=1;
+                if ( (LA491_0==COMMA) ) {
+                    alt491=1;
                 }
 
 
-                switch (alt489) {
+                switch (alt491) {
             	case 1 :
-            	    // Objcm.g:996:126: WS
+            	    // Objcm.g:996:68: COMMA ( WS )* typedef_declaration_element_wrapper ( WS )*
             	    {
-            	    WS977=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6219); 
-            	    WS977_tree = 
-            	    (Object)adaptor.create(WS977)
+            	    COMMA975=(Token)match(input,COMMA,FOLLOW_COMMA_in_typedef_declaration6214); 
+            	    COMMA975_tree = 
+            	    (Object)adaptor.create(COMMA975)
             	    ;
-            	    adaptor.addChild(root_0, WS977_tree);
+            	    adaptor.addChild(root_0, COMMA975_tree);
+
+
+            	    // Objcm.g:996:74: ( WS )*
+            	    loop489:
+            	    do {
+            	        int alt489=2;
+            	        int LA489_0 = input.LA(1);
+
+            	        if ( (LA489_0==WS) ) {
+            	            alt489=1;
+            	        }
+
+
+            	        switch (alt489) {
+            	    	case 1 :
+            	    	    // Objcm.g:996:74: WS
+            	    	    {
+            	    	    WS976=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6216); 
+            	    	    WS976_tree = 
+            	    	    (Object)adaptor.create(WS976)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS976_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop489;
+            	        }
+            	    } while (true);
+
+
+            	    pushFollow(FOLLOW_typedef_declaration_element_wrapper_in_typedef_declaration6219);
+            	    typedef_declaration_element_wrapper977=typedef_declaration_element_wrapper();
+
+            	    state._fsp--;
+
+            	    adaptor.addChild(root_0, typedef_declaration_element_wrapper977.getTree());
+
+            	    // Objcm.g:996:114: ( WS )*
+            	    loop490:
+            	    do {
+            	        int alt490=2;
+            	        int LA490_0 = input.LA(1);
+
+            	        if ( (LA490_0==WS) ) {
+            	            alt490=1;
+            	        }
+
+
+            	        switch (alt490) {
+            	    	case 1 :
+            	    	    // Objcm.g:996:114: WS
+            	    	    {
+            	    	    WS978=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6221); 
+            	    	    WS978_tree = 
+            	    	    (Object)adaptor.create(WS978)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS978_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop490;
+            	        }
+            	    } while (true);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop489;
+            	    break loop491;
+                }
+            } while (true);
+
+
+            R_FBR979=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_typedef_declaration6226); 
+            R_FBR979_tree = 
+            (Object)adaptor.create(R_FBR979)
+            ;
+            adaptor.addChild(root_0, R_FBR979_tree);
+
+
+            // Objcm.g:996:126: ( WS )*
+            loop492:
+            do {
+                int alt492=2;
+                int LA492_0 = input.LA(1);
+
+                if ( (LA492_0==WS) ) {
+                    alt492=1;
+                }
+
+
+                switch (alt492) {
+            	case 1 :
+            	    // Objcm.g:996:126: WS
+            	    {
+            	    WS980=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6228); 
+            	    WS980_tree = 
+            	    (Object)adaptor.create(WS980)
+            	    ;
+            	    adaptor.addChild(root_0, WS980_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop492;
                 }
             } while (true);
 
 
             // Objcm.g:996:130: ( name ( WS )* )?
-            int alt491=2;
-            int LA491_0 = input.LA(1);
+            int alt494=2;
+            int LA494_0 = input.LA(1);
 
-            if ( (LA491_0==ID||LA491_0==152) ) {
-                alt491=1;
+            if ( (LA494_0==ID||LA494_0==152) ) {
+                alt494=1;
             }
-            switch (alt491) {
+            switch (alt494) {
                 case 1 :
                     // Objcm.g:996:131: name ( WS )*
                     {
-                    pushFollow(FOLLOW_name_in_typedef_declaration6223);
-                    name978=name();
+                    pushFollow(FOLLOW_name_in_typedef_declaration6232);
+                    name981=name();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, name978.getTree());
+                    adaptor.addChild(root_0, name981.getTree());
 
                     // Objcm.g:996:136: ( WS )*
-                    loop490:
+                    loop493:
                     do {
-                        int alt490=2;
-                        int LA490_0 = input.LA(1);
+                        int alt493=2;
+                        int LA493_0 = input.LA(1);
 
-                        if ( (LA490_0==WS) ) {
-                            alt490=1;
+                        if ( (LA493_0==WS) ) {
+                            alt493=1;
                         }
 
 
-                        switch (alt490) {
+                        switch (alt493) {
                     	case 1 :
                     	    // Objcm.g:996:136: WS
                     	    {
-                    	    WS979=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6225); 
-                    	    WS979_tree = 
-                    	    (Object)adaptor.create(WS979)
+                    	    WS982=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration6234); 
+                    	    WS982_tree = 
+                    	    (Object)adaptor.create(WS982)
                     	    ;
-                    	    adaptor.addChild(root_0, WS979_tree);
+                    	    adaptor.addChild(root_0, WS982_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop490;
+                    	    break loop493;
                         }
                     } while (true);
 
@@ -34613,11 +34729,11 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            SEMICOLON980=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_typedef_declaration6230); 
-            SEMICOLON980_tree = 
-            (Object)adaptor.create(SEMICOLON980)
+            SEMICOLON983=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_typedef_declaration6239); 
+            SEMICOLON983_tree = 
+            (Object)adaptor.create(SEMICOLON983)
             ;
-            adaptor.addChild(root_0, SEMICOLON980_tree);
+            adaptor.addChild(root_0, SEMICOLON983_tree);
 
 
             }
@@ -34659,7 +34775,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.typedef_declaration_element_return typedef_declaration_element981 =null;
+        ObjcmParser.typedef_declaration_element_return typedef_declaration_element984 =null;
 
 
         RewriteRuleSubtreeStream stream_typedef_declaration_element=new RewriteRuleSubtreeStream(adaptor,"rule typedef_declaration_element");
@@ -34667,12 +34783,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:999:2: ( typedef_declaration_element -> ^( TYPEDEF_ELEMENT typedef_declaration_element ) )
             // Objcm.g:999:4: typedef_declaration_element
             {
-            pushFollow(FOLLOW_typedef_declaration_element_in_typedef_declaration_element_wrapper6240);
-            typedef_declaration_element981=typedef_declaration_element();
+            pushFollow(FOLLOW_typedef_declaration_element_in_typedef_declaration_element_wrapper6249);
+            typedef_declaration_element984=typedef_declaration_element();
 
             state._fsp--;
 
-            stream_typedef_declaration_element.add(typedef_declaration_element981.getTree());
+            stream_typedef_declaration_element.add(typedef_declaration_element984.getTree());
 
             // AST REWRITE
             // elements: typedef_declaration_element
@@ -34743,17 +34859,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ID982=null;
-        Token WS983=null;
-        Token L_EQ984=null;
-        Token WS985=null;
-        Token set986=null;
+        Token ID985=null;
+        Token WS986=null;
+        Token L_EQ987=null;
+        Token WS988=null;
+        Token set989=null;
 
-        Object ID982_tree=null;
-        Object WS983_tree=null;
-        Object L_EQ984_tree=null;
-        Object WS985_tree=null;
-        Object set986_tree=null;
+        Object ID985_tree=null;
+        Object WS986_tree=null;
+        Object L_EQ987_tree=null;
+        Object WS988_tree=null;
+        Object set989_tree=null;
 
         try {
             // Objcm.g:1003:2: ( ID ( WS )* ( L_EQ ( WS )* ( ID | NUMBER ) )? )
@@ -34762,99 +34878,99 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            ID982=(Token)match(input,ID,FOLLOW_ID_in_typedef_declaration_element6259); 
-            ID982_tree = 
-            (Object)adaptor.create(ID982)
+            ID985=(Token)match(input,ID,FOLLOW_ID_in_typedef_declaration_element6268); 
+            ID985_tree = 
+            (Object)adaptor.create(ID985)
             ;
-            adaptor.addChild(root_0, ID982_tree);
+            adaptor.addChild(root_0, ID985_tree);
 
 
             // Objcm.g:1003:7: ( WS )*
-            loop492:
+            loop495:
             do {
-                int alt492=2;
-                int LA492_0 = input.LA(1);
+                int alt495=2;
+                int LA495_0 = input.LA(1);
 
-                if ( (LA492_0==WS) ) {
-                    alt492=1;
+                if ( (LA495_0==WS) ) {
+                    alt495=1;
                 }
 
 
-                switch (alt492) {
+                switch (alt495) {
             	case 1 :
             	    // Objcm.g:1003:7: WS
             	    {
-            	    WS983=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration_element6261); 
-            	    WS983_tree = 
-            	    (Object)adaptor.create(WS983)
+            	    WS986=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration_element6270); 
+            	    WS986_tree = 
+            	    (Object)adaptor.create(WS986)
             	    ;
-            	    adaptor.addChild(root_0, WS983_tree);
+            	    adaptor.addChild(root_0, WS986_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop492;
+            	    break loop495;
                 }
             } while (true);
 
 
             // Objcm.g:1003:11: ( L_EQ ( WS )* ( ID | NUMBER ) )?
-            int alt494=2;
-            int LA494_0 = input.LA(1);
+            int alt497=2;
+            int LA497_0 = input.LA(1);
 
-            if ( (LA494_0==L_EQ) ) {
-                alt494=1;
+            if ( (LA497_0==L_EQ) ) {
+                alt497=1;
             }
-            switch (alt494) {
+            switch (alt497) {
                 case 1 :
                     // Objcm.g:1003:12: L_EQ ( WS )* ( ID | NUMBER )
                     {
-                    L_EQ984=(Token)match(input,L_EQ,FOLLOW_L_EQ_in_typedef_declaration_element6265); 
-                    L_EQ984_tree = 
-                    (Object)adaptor.create(L_EQ984)
+                    L_EQ987=(Token)match(input,L_EQ,FOLLOW_L_EQ_in_typedef_declaration_element6274); 
+                    L_EQ987_tree = 
+                    (Object)adaptor.create(L_EQ987)
                     ;
-                    adaptor.addChild(root_0, L_EQ984_tree);
+                    adaptor.addChild(root_0, L_EQ987_tree);
 
 
                     // Objcm.g:1003:17: ( WS )*
-                    loop493:
+                    loop496:
                     do {
-                        int alt493=2;
-                        int LA493_0 = input.LA(1);
+                        int alt496=2;
+                        int LA496_0 = input.LA(1);
 
-                        if ( (LA493_0==WS) ) {
-                            alt493=1;
+                        if ( (LA496_0==WS) ) {
+                            alt496=1;
                         }
 
 
-                        switch (alt493) {
+                        switch (alt496) {
                     	case 1 :
                     	    // Objcm.g:1003:17: WS
                     	    {
-                    	    WS985=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration_element6267); 
-                    	    WS985_tree = 
-                    	    (Object)adaptor.create(WS985)
+                    	    WS988=(Token)match(input,WS,FOLLOW_WS_in_typedef_declaration_element6276); 
+                    	    WS988_tree = 
+                    	    (Object)adaptor.create(WS988)
                     	    ;
-                    	    adaptor.addChild(root_0, WS985_tree);
+                    	    adaptor.addChild(root_0, WS988_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop493;
+                    	    break loop496;
                         }
                     } while (true);
 
 
-                    set986=(Token)input.LT(1);
+                    set989=(Token)input.LT(1);
 
                     if ( input.LA(1)==ID||input.LA(1)==NUMBER ) {
                         input.consume();
                         adaptor.addChild(root_0, 
-                        (Object)adaptor.create(set986)
+                        (Object)adaptor.create(set989)
                         );
                         state.errorRecovery=false;
                     }
@@ -34909,7 +35025,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.field_declaration_return field_declaration987 =null;
+        ObjcmParser.field_declaration_return field_declaration990 =null;
 
 
         RewriteRuleSubtreeStream stream_field_declaration=new RewriteRuleSubtreeStream(adaptor,"rule field_declaration");
@@ -34917,12 +35033,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:1011:2: ( field_declaration -> ^( FIELD field_declaration ) )
             // Objcm.g:1011:4: field_declaration
             {
-            pushFollow(FOLLOW_field_declaration_in_field_declaration_wrapper6291);
-            field_declaration987=field_declaration();
+            pushFollow(FOLLOW_field_declaration_in_field_declaration_wrapper6300);
+            field_declaration990=field_declaration();
 
             state._fsp--;
 
-            stream_field_declaration.add(field_declaration987.getTree());
+            stream_field_declaration.add(field_declaration990.getTree());
 
             // AST REWRITE
             // elements: field_declaration
@@ -34993,17 +35109,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS989=null;
-        ObjcmParser.field_modifier_wrapper_return field_modifier_wrapper988 =null;
+        Token WS992=null;
+        ObjcmParser.field_modifier_wrapper_return field_modifier_wrapper991 =null;
 
-        ObjcmParser.field_type_return field_type990 =null;
+        ObjcmParser.field_type_return field_type993 =null;
 
-        ObjcmParser.name_return name991 =null;
+        ObjcmParser.name_return name994 =null;
 
-        ObjcmParser.field_declaration_end_return field_declaration_end992 =null;
+        ObjcmParser.field_declaration_end_return field_declaration_end995 =null;
 
 
-        Object WS989_tree=null;
+        Object WS992_tree=null;
 
         try {
             // Objcm.g:1014:2: ( field_modifier_wrapper ( WS )* field_type name field_declaration_end )
@@ -35012,64 +35128,64 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_field_modifier_wrapper_in_field_declaration6308);
-            field_modifier_wrapper988=field_modifier_wrapper();
+            pushFollow(FOLLOW_field_modifier_wrapper_in_field_declaration6317);
+            field_modifier_wrapper991=field_modifier_wrapper();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, field_modifier_wrapper988.getTree());
+            adaptor.addChild(root_0, field_modifier_wrapper991.getTree());
 
             // Objcm.g:1014:27: ( WS )*
-            loop495:
+            loop498:
             do {
-                int alt495=2;
-                int LA495_0 = input.LA(1);
+                int alt498=2;
+                int LA498_0 = input.LA(1);
 
-                if ( (LA495_0==WS) ) {
-                    alt495=1;
+                if ( (LA498_0==WS) ) {
+                    alt498=1;
                 }
 
 
-                switch (alt495) {
+                switch (alt498) {
             	case 1 :
             	    // Objcm.g:1014:27: WS
             	    {
-            	    WS989=(Token)match(input,WS,FOLLOW_WS_in_field_declaration6310); 
-            	    WS989_tree = 
-            	    (Object)adaptor.create(WS989)
+            	    WS992=(Token)match(input,WS,FOLLOW_WS_in_field_declaration6319); 
+            	    WS992_tree = 
+            	    (Object)adaptor.create(WS992)
             	    ;
-            	    adaptor.addChild(root_0, WS989_tree);
+            	    adaptor.addChild(root_0, WS992_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop495;
+            	    break loop498;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_field_type_in_field_declaration6313);
-            field_type990=field_type();
+            pushFollow(FOLLOW_field_type_in_field_declaration6322);
+            field_type993=field_type();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, field_type990.getTree());
+            adaptor.addChild(root_0, field_type993.getTree());
 
-            pushFollow(FOLLOW_name_in_field_declaration6315);
-            name991=name();
-
-            state._fsp--;
-
-            adaptor.addChild(root_0, name991.getTree());
-
-            pushFollow(FOLLOW_field_declaration_end_in_field_declaration6317);
-            field_declaration_end992=field_declaration_end();
+            pushFollow(FOLLOW_name_in_field_declaration6324);
+            name994=name();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, field_declaration_end992.getTree());
+            adaptor.addChild(root_0, name994.getTree());
+
+            pushFollow(FOLLOW_field_declaration_end_in_field_declaration6326);
+            field_declaration_end995=field_declaration_end();
+
+            state._fsp--;
+
+            adaptor.addChild(root_0, field_declaration_end995.getTree());
 
             }
 
@@ -35110,15 +35226,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS993=null;
-        Token WS995=null;
-        ObjcmParser.value_set_return value_set994 =null;
+        Token WS996=null;
+        Token WS998=null;
+        ObjcmParser.value_set_return value_set997 =null;
 
-        ObjcmParser.semi_return semi996 =null;
+        ObjcmParser.semi_return semi999 =null;
 
 
-        Object WS993_tree=null;
-        Object WS995_tree=null;
+        Object WS996_tree=null;
+        Object WS998_tree=null;
 
         try {
             // Objcm.g:1017:2: ( ( WS )+ ( value_set ( WS )* )? semi )
@@ -35128,86 +35244,86 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:1017:4: ( WS )+
-            int cnt496=0;
-            loop496:
+            int cnt499=0;
+            loop499:
             do {
-                int alt496=2;
-                int LA496_0 = input.LA(1);
+                int alt499=2;
+                int LA499_0 = input.LA(1);
 
-                if ( (LA496_0==WS) ) {
-                    alt496=1;
+                if ( (LA499_0==WS) ) {
+                    alt499=1;
                 }
 
 
-                switch (alt496) {
+                switch (alt499) {
             	case 1 :
             	    // Objcm.g:1017:4: WS
             	    {
-            	    WS993=(Token)match(input,WS,FOLLOW_WS_in_field_declaration_end6327); 
-            	    WS993_tree = 
-            	    (Object)adaptor.create(WS993)
+            	    WS996=(Token)match(input,WS,FOLLOW_WS_in_field_declaration_end6336); 
+            	    WS996_tree = 
+            	    (Object)adaptor.create(WS996)
             	    ;
-            	    adaptor.addChild(root_0, WS993_tree);
+            	    adaptor.addChild(root_0, WS996_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    if ( cnt496 >= 1 ) break loop496;
+            	    if ( cnt499 >= 1 ) break loop499;
                         EarlyExitException eee =
-                            new EarlyExitException(496, input);
+                            new EarlyExitException(499, input);
                         throw eee;
                 }
-                cnt496++;
+                cnt499++;
             } while (true);
 
 
             // Objcm.g:1017:8: ( value_set ( WS )* )?
-            int alt498=2;
-            int LA498_0 = input.LA(1);
+            int alt501=2;
+            int LA501_0 = input.LA(1);
 
-            if ( (LA498_0==L_EQ) ) {
-                alt498=1;
+            if ( (LA501_0==L_EQ) ) {
+                alt501=1;
             }
-            switch (alt498) {
+            switch (alt501) {
                 case 1 :
                     // Objcm.g:1017:9: value_set ( WS )*
                     {
-                    pushFollow(FOLLOW_value_set_in_field_declaration_end6331);
-                    value_set994=value_set();
+                    pushFollow(FOLLOW_value_set_in_field_declaration_end6340);
+                    value_set997=value_set();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, value_set994.getTree());
+                    adaptor.addChild(root_0, value_set997.getTree());
 
                     // Objcm.g:1017:19: ( WS )*
-                    loop497:
+                    loop500:
                     do {
-                        int alt497=2;
-                        int LA497_0 = input.LA(1);
+                        int alt500=2;
+                        int LA500_0 = input.LA(1);
 
-                        if ( (LA497_0==WS) ) {
-                            alt497=1;
+                        if ( (LA500_0==WS) ) {
+                            alt500=1;
                         }
 
 
-                        switch (alt497) {
+                        switch (alt500) {
                     	case 1 :
                     	    // Objcm.g:1017:19: WS
                     	    {
-                    	    WS995=(Token)match(input,WS,FOLLOW_WS_in_field_declaration_end6333); 
-                    	    WS995_tree = 
-                    	    (Object)adaptor.create(WS995)
+                    	    WS998=(Token)match(input,WS,FOLLOW_WS_in_field_declaration_end6342); 
+                    	    WS998_tree = 
+                    	    (Object)adaptor.create(WS998)
                     	    ;
-                    	    adaptor.addChild(root_0, WS995_tree);
+                    	    adaptor.addChild(root_0, WS998_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop497;
+                    	    break loop500;
                         }
                     } while (true);
 
@@ -35218,12 +35334,12 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_semi_in_field_declaration_end6338);
-            semi996=semi();
+            pushFollow(FOLLOW_semi_in_field_declaration_end6347);
+            semi999=semi();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, semi996.getTree());
+            adaptor.addChild(root_0, semi999.getTree());
 
             }
 
@@ -35264,7 +35380,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.type_start_return type_start997 =null;
+        ObjcmParser.type_start_return type_start1000 =null;
 
 
         RewriteRuleSubtreeStream stream_type_start=new RewriteRuleSubtreeStream(adaptor,"rule type_start");
@@ -35272,12 +35388,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:1020:2: ( type_start -> ^( M_TYPE_START type_start ) )
             // Objcm.g:1020:4: type_start
             {
-            pushFollow(FOLLOW_type_start_in_type_start_wrapper6349);
-            type_start997=type_start();
+            pushFollow(FOLLOW_type_start_in_type_start_wrapper6358);
+            type_start1000=type_start();
 
             state._fsp--;
 
-            stream_type_start.add(type_start997.getTree());
+            stream_type_start.add(type_start1000.getTree());
 
             // AST REWRITE
             // elements: type_start
@@ -35348,15 +35464,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token CONST_PREFIX998=null;
-        ObjcmParser.field_type_return field_type999 =null;
+        Token CONST_PREFIX1001=null;
+        ObjcmParser.field_type_return field_type1002 =null;
 
-        ObjcmParser.name_return name1000 =null;
+        ObjcmParser.name_return name1003 =null;
 
-        ObjcmParser.type_end_return type_end1001 =null;
+        ObjcmParser.type_end_return type_end1004 =null;
 
 
-        Object CONST_PREFIX998_tree=null;
+        Object CONST_PREFIX1001_tree=null;
 
         try {
             // Objcm.g:1023:2: ( ( CONST_PREFIX )? field_type name type_end )
@@ -35366,21 +35482,21 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:1023:4: ( CONST_PREFIX )?
-            int alt499=2;
-            int LA499_0 = input.LA(1);
+            int alt502=2;
+            int LA502_0 = input.LA(1);
 
-            if ( (LA499_0==CONST_PREFIX) ) {
-                alt499=1;
+            if ( (LA502_0==CONST_PREFIX) ) {
+                alt502=1;
             }
-            switch (alt499) {
+            switch (alt502) {
                 case 1 :
                     // Objcm.g:1023:4: CONST_PREFIX
                     {
-                    CONST_PREFIX998=(Token)match(input,CONST_PREFIX,FOLLOW_CONST_PREFIX_in_type_start6366); 
-                    CONST_PREFIX998_tree = 
-                    (Object)adaptor.create(CONST_PREFIX998)
+                    CONST_PREFIX1001=(Token)match(input,CONST_PREFIX,FOLLOW_CONST_PREFIX_in_type_start6375); 
+                    CONST_PREFIX1001_tree = 
+                    (Object)adaptor.create(CONST_PREFIX1001)
                     ;
-                    adaptor.addChild(root_0, CONST_PREFIX998_tree);
+                    adaptor.addChild(root_0, CONST_PREFIX1001_tree);
 
 
                     }
@@ -35389,26 +35505,26 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_field_type_in_type_start6369);
-            field_type999=field_type();
+            pushFollow(FOLLOW_field_type_in_type_start6378);
+            field_type1002=field_type();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, field_type999.getTree());
+            adaptor.addChild(root_0, field_type1002.getTree());
 
-            pushFollow(FOLLOW_name_in_type_start6371);
-            name1000=name();
-
-            state._fsp--;
-
-            adaptor.addChild(root_0, name1000.getTree());
-
-            pushFollow(FOLLOW_type_end_in_type_start6373);
-            type_end1001=type_end();
+            pushFollow(FOLLOW_name_in_type_start6380);
+            name1003=name();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, type_end1001.getTree());
+            adaptor.addChild(root_0, name1003.getTree());
+
+            pushFollow(FOLLOW_type_end_in_type_start6382);
+            type_end1004=type_end();
+
+            state._fsp--;
+
+            adaptor.addChild(root_0, type_end1004.getTree());
 
             }
 
@@ -35449,16 +35565,16 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.field_declaration4_return field_declaration41002 =null;
+        ObjcmParser.field_declaration4_return field_declaration41005 =null;
 
-        ObjcmParser.method_declaration4_return method_declaration41003 =null;
+        ObjcmParser.method_declaration4_return method_declaration41006 =null;
 
 
         RewriteRuleSubtreeStream stream_field_declaration4=new RewriteRuleSubtreeStream(adaptor,"rule field_declaration4");
         RewriteRuleSubtreeStream stream_method_declaration4=new RewriteRuleSubtreeStream(adaptor,"rule method_declaration4");
         try {
             // Objcm.g:1025:9: ( field_declaration4 -> ^( FIELD field_declaration4 ) | method_declaration4 -> ^( STATIC_METHOD method_declaration4 ) )
-            int alt500=2;
+            int alt503=2;
             switch ( input.LA(1) ) {
             case WS:
                 {
@@ -35466,7 +35582,7 @@ public TreeAdaptor getTreeAdaptor() {
                 case L_EQ:
                 case SEMICOLON:
                     {
-                    alt500=1;
+                    alt503=1;
                     }
                     break;
                 case WS:
@@ -35475,7 +35591,7 @@ public TreeAdaptor getTreeAdaptor() {
                     case L_EQ:
                     case SEMICOLON:
                         {
-                        alt500=1;
+                        alt503=1;
                         }
                         break;
                     case WS:
@@ -35484,22 +35600,22 @@ public TreeAdaptor getTreeAdaptor() {
                         case L_EQ:
                         case SEMICOLON:
                             {
-                            alt500=1;
+                            alt503=1;
                             }
                             break;
                         case WS:
                             {
-                            alt500=1;
+                            alt503=1;
                             }
                             break;
                         case L_BR:
                             {
-                            alt500=2;
+                            alt503=2;
                             }
                             break;
                         default:
                             NoViableAltException nvae =
-                                new NoViableAltException("", 500, 11, input);
+                                new NoViableAltException("", 503, 11, input);
 
                             throw nvae;
 
@@ -35509,12 +35625,12 @@ public TreeAdaptor getTreeAdaptor() {
                         break;
                     case L_BR:
                         {
-                        alt500=2;
+                        alt503=2;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("", 500, 7, input);
+                            new NoViableAltException("", 503, 7, input);
 
                         throw nvae;
 
@@ -35524,12 +35640,12 @@ public TreeAdaptor getTreeAdaptor() {
                     break;
                 case L_BR:
                     {
-                    alt500=2;
+                    alt503=2;
                     }
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("", 500, 1, input);
+                        new NoViableAltException("", 503, 1, input);
 
                     throw nvae;
 
@@ -35540,32 +35656,32 @@ public TreeAdaptor getTreeAdaptor() {
             case L_EQ:
             case SEMICOLON:
                 {
-                alt500=1;
+                alt503=1;
                 }
                 break;
             case L_BR:
                 {
-                alt500=2;
+                alt503=2;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 500, 0, input);
+                    new NoViableAltException("", 503, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt500) {
+            switch (alt503) {
                 case 1 :
                     // Objcm.g:1025:11: field_declaration4
                     {
-                    pushFollow(FOLLOW_field_declaration4_in_type_end6381);
-                    field_declaration41002=field_declaration4();
+                    pushFollow(FOLLOW_field_declaration4_in_type_end6390);
+                    field_declaration41005=field_declaration4();
 
                     state._fsp--;
 
-                    stream_field_declaration4.add(field_declaration41002.getTree());
+                    stream_field_declaration4.add(field_declaration41005.getTree());
 
                     // AST REWRITE
                     // elements: field_declaration4
@@ -35602,12 +35718,12 @@ public TreeAdaptor getTreeAdaptor() {
                 case 2 :
                     // Objcm.g:1026:4: method_declaration4
                     {
-                    pushFollow(FOLLOW_method_declaration4_in_type_end6394);
-                    method_declaration41003=method_declaration4();
+                    pushFollow(FOLLOW_method_declaration4_in_type_end6403);
+                    method_declaration41006=method_declaration4();
 
                     state._fsp--;
 
-                    stream_method_declaration4.add(method_declaration41003.getTree());
+                    stream_method_declaration4.add(method_declaration41006.getTree());
 
                     // AST REWRITE
                     // elements: method_declaration4
@@ -35680,15 +35796,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS1004=null;
-        Token WS1006=null;
-        Token SEMICOLON1007=null;
-        ObjcmParser.value_set_return value_set1005 =null;
+        Token WS1007=null;
+        Token WS1009=null;
+        Token SEMICOLON1010=null;
+        ObjcmParser.value_set_return value_set1008 =null;
 
 
-        Object WS1004_tree=null;
-        Object WS1006_tree=null;
-        Object SEMICOLON1007_tree=null;
+        Object WS1007_tree=null;
+        Object WS1009_tree=null;
+        Object SEMICOLON1010_tree=null;
 
         try {
             // Objcm.g:1030:2: ( ( WS )* ( value_set ( WS )* )? SEMICOLON )
@@ -35698,81 +35814,81 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:1030:4: ( WS )*
-            loop501:
+            loop504:
             do {
-                int alt501=2;
-                int LA501_0 = input.LA(1);
+                int alt504=2;
+                int LA504_0 = input.LA(1);
 
-                if ( (LA501_0==WS) ) {
-                    alt501=1;
+                if ( (LA504_0==WS) ) {
+                    alt504=1;
                 }
 
 
-                switch (alt501) {
+                switch (alt504) {
             	case 1 :
             	    // Objcm.g:1030:4: WS
             	    {
-            	    WS1004=(Token)match(input,WS,FOLLOW_WS_in_field_declaration46415); 
-            	    WS1004_tree = 
-            	    (Object)adaptor.create(WS1004)
+            	    WS1007=(Token)match(input,WS,FOLLOW_WS_in_field_declaration46424); 
+            	    WS1007_tree = 
+            	    (Object)adaptor.create(WS1007)
             	    ;
-            	    adaptor.addChild(root_0, WS1004_tree);
+            	    adaptor.addChild(root_0, WS1007_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop501;
+            	    break loop504;
                 }
             } while (true);
 
 
             // Objcm.g:1030:8: ( value_set ( WS )* )?
-            int alt503=2;
-            int LA503_0 = input.LA(1);
+            int alt506=2;
+            int LA506_0 = input.LA(1);
 
-            if ( (LA503_0==L_EQ) ) {
-                alt503=1;
+            if ( (LA506_0==L_EQ) ) {
+                alt506=1;
             }
-            switch (alt503) {
+            switch (alt506) {
                 case 1 :
                     // Objcm.g:1030:9: value_set ( WS )*
                     {
-                    pushFollow(FOLLOW_value_set_in_field_declaration46419);
-                    value_set1005=value_set();
+                    pushFollow(FOLLOW_value_set_in_field_declaration46428);
+                    value_set1008=value_set();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, value_set1005.getTree());
+                    adaptor.addChild(root_0, value_set1008.getTree());
 
                     // Objcm.g:1030:19: ( WS )*
-                    loop502:
+                    loop505:
                     do {
-                        int alt502=2;
-                        int LA502_0 = input.LA(1);
+                        int alt505=2;
+                        int LA505_0 = input.LA(1);
 
-                        if ( (LA502_0==WS) ) {
-                            alt502=1;
+                        if ( (LA505_0==WS) ) {
+                            alt505=1;
                         }
 
 
-                        switch (alt502) {
+                        switch (alt505) {
                     	case 1 :
                     	    // Objcm.g:1030:19: WS
                     	    {
-                    	    WS1006=(Token)match(input,WS,FOLLOW_WS_in_field_declaration46421); 
-                    	    WS1006_tree = 
-                    	    (Object)adaptor.create(WS1006)
+                    	    WS1009=(Token)match(input,WS,FOLLOW_WS_in_field_declaration46430); 
+                    	    WS1009_tree = 
+                    	    (Object)adaptor.create(WS1009)
                     	    ;
-                    	    adaptor.addChild(root_0, WS1006_tree);
+                    	    adaptor.addChild(root_0, WS1009_tree);
 
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop502;
+                    	    break loop505;
                         }
                     } while (true);
 
@@ -35783,11 +35899,11 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            SEMICOLON1007=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_field_declaration46426); 
-            SEMICOLON1007_tree = 
-            (Object)adaptor.create(SEMICOLON1007)
+            SEMICOLON1010=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_field_declaration46435); 
+            SEMICOLON1010_tree = 
+            (Object)adaptor.create(SEMICOLON1010)
             ;
-            adaptor.addChild(root_0, SEMICOLON1007_tree);
+            adaptor.addChild(root_0, SEMICOLON1010_tree);
 
 
             }
@@ -35829,15 +35945,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS1008=null;
-        Token WS1010=null;
-        ObjcmParser.method_params2_return method_params21009 =null;
+        Token WS1011=null;
+        Token WS1013=null;
+        ObjcmParser.method_params2_return method_params21012 =null;
 
-        ObjcmParser.block_wrapper_return block_wrapper1011 =null;
+        ObjcmParser.block_wrapper_return block_wrapper1014 =null;
 
 
-        Object WS1008_tree=null;
-        Object WS1010_tree=null;
+        Object WS1011_tree=null;
+        Object WS1013_tree=null;
 
         try {
             // Objcm.g:1034:2: ( ( WS )* method_params2 ( WS )* block_wrapper )
@@ -35847,80 +35963,80 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // Objcm.g:1034:4: ( WS )*
-            loop504:
+            loop507:
             do {
-                int alt504=2;
-                int LA504_0 = input.LA(1);
+                int alt507=2;
+                int LA507_0 = input.LA(1);
 
-                if ( (LA504_0==WS) ) {
-                    alt504=1;
+                if ( (LA507_0==WS) ) {
+                    alt507=1;
                 }
 
 
-                switch (alt504) {
+                switch (alt507) {
             	case 1 :
             	    // Objcm.g:1034:4: WS
             	    {
-            	    WS1008=(Token)match(input,WS,FOLLOW_WS_in_method_declaration46438); 
-            	    WS1008_tree = 
-            	    (Object)adaptor.create(WS1008)
+            	    WS1011=(Token)match(input,WS,FOLLOW_WS_in_method_declaration46447); 
+            	    WS1011_tree = 
+            	    (Object)adaptor.create(WS1011)
             	    ;
-            	    adaptor.addChild(root_0, WS1008_tree);
+            	    adaptor.addChild(root_0, WS1011_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop504;
+            	    break loop507;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_method_params2_in_method_declaration46441);
-            method_params21009=method_params2();
+            pushFollow(FOLLOW_method_params2_in_method_declaration46450);
+            method_params21012=method_params2();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_params21009.getTree());
+            adaptor.addChild(root_0, method_params21012.getTree());
 
             // Objcm.g:1034:23: ( WS )*
-            loop505:
+            loop508:
             do {
-                int alt505=2;
-                int LA505_0 = input.LA(1);
+                int alt508=2;
+                int LA508_0 = input.LA(1);
 
-                if ( (LA505_0==WS) ) {
-                    alt505=1;
+                if ( (LA508_0==WS) ) {
+                    alt508=1;
                 }
 
 
-                switch (alt505) {
+                switch (alt508) {
             	case 1 :
             	    // Objcm.g:1034:23: WS
             	    {
-            	    WS1010=(Token)match(input,WS,FOLLOW_WS_in_method_declaration46443); 
-            	    WS1010_tree = 
-            	    (Object)adaptor.create(WS1010)
+            	    WS1013=(Token)match(input,WS,FOLLOW_WS_in_method_declaration46452); 
+            	    WS1013_tree = 
+            	    (Object)adaptor.create(WS1013)
             	    ;
-            	    adaptor.addChild(root_0, WS1010_tree);
+            	    adaptor.addChild(root_0, WS1013_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop505;
+            	    break loop508;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_block_wrapper_in_method_declaration46448);
-            block_wrapper1011=block_wrapper();
+            pushFollow(FOLLOW_block_wrapper_in_method_declaration46457);
+            block_wrapper1014=block_wrapper();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, block_wrapper1011.getTree());
+            adaptor.addChild(root_0, block_wrapper1014.getTree());
 
             }
 
@@ -35961,7 +36077,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.field_modifier_return field_modifier1012 =null;
+        ObjcmParser.field_modifier_return field_modifier1015 =null;
 
 
         RewriteRuleSubtreeStream stream_field_modifier=new RewriteRuleSubtreeStream(adaptor,"rule field_modifier");
@@ -35969,12 +36085,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:1039:2: ( field_modifier -> ^( MODIFIER field_modifier ) )
             // Objcm.g:1039:4: field_modifier
             {
-            pushFollow(FOLLOW_field_modifier_in_field_modifier_wrapper6460);
-            field_modifier1012=field_modifier();
+            pushFollow(FOLLOW_field_modifier_in_field_modifier_wrapper6469);
+            field_modifier1015=field_modifier();
 
             state._fsp--;
 
-            stream_field_modifier.add(field_modifier1012.getTree());
+            stream_field_modifier.add(field_modifier1015.getTree());
 
             // AST REWRITE
             // elements: field_modifier
@@ -36045,9 +36161,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal1013=null;
+        Token string_literal1016=null;
 
-        Object string_literal1013_tree=null;
+        Object string_literal1016_tree=null;
 
         try {
             // Objcm.g:1042:2: ( 'extern' )
@@ -36056,11 +36172,11 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal1013=(Token)match(input,149,FOLLOW_149_in_field_modifier6478); 
-            string_literal1013_tree = 
-            (Object)adaptor.create(string_literal1013)
+            string_literal1016=(Token)match(input,149,FOLLOW_149_in_field_modifier6487); 
+            string_literal1016_tree = 
+            (Object)adaptor.create(string_literal1016)
             ;
-            adaptor.addChild(root_0, string_literal1013_tree);
+            adaptor.addChild(root_0, string_literal1016_tree);
 
 
             }
@@ -36102,7 +36218,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.field_type_internal_return field_type_internal1014 =null;
+        ObjcmParser.field_type_internal_return field_type_internal1017 =null;
 
 
         RewriteRuleSubtreeStream stream_field_type_internal=new RewriteRuleSubtreeStream(adaptor,"rule field_type_internal");
@@ -36110,12 +36226,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:1046:2: ( field_type_internal -> ^( TYPE field_type_internal ) )
             // Objcm.g:1046:5: field_type_internal
             {
-            pushFollow(FOLLOW_field_type_internal_in_field_type6490);
-            field_type_internal1014=field_type_internal();
+            pushFollow(FOLLOW_field_type_internal_in_field_type6499);
+            field_type_internal1017=field_type_internal();
 
             state._fsp--;
 
-            stream_field_type_internal.add(field_type_internal1014.getTree());
+            stream_field_type_internal.add(field_type_internal1017.getTree());
 
             // AST REWRITE
             // elements: field_type_internal
@@ -36186,19 +36302,19 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token WS1016=null;
-        Token WS1018=null;
-        Token ASTERISK1019=null;
-        Token WS1020=null;
-        ObjcmParser.type_internal_return type_internal1015 =null;
+        Token WS1019=null;
+        Token WS1021=null;
+        Token ASTERISK1022=null;
+        Token WS1023=null;
+        ObjcmParser.type_internal_return type_internal1018 =null;
 
-        ObjcmParser.generic_return generic1017 =null;
+        ObjcmParser.generic_return generic1020 =null;
 
 
-        Object WS1016_tree=null;
-        Object WS1018_tree=null;
-        Object ASTERISK1019_tree=null;
-        Object WS1020_tree=null;
+        Object WS1019_tree=null;
+        Object WS1021_tree=null;
+        Object ASTERISK1022_tree=null;
+        Object WS1023_tree=null;
 
         try {
             // Objcm.g:1049:2: ( type_internal ( WS )* ( generic ( WS )* )? ( ( ASTERISK )+ ( WS )* )? )
@@ -36207,147 +36323,63 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_type_internal_in_field_type_internal6509);
-            type_internal1015=type_internal();
+            pushFollow(FOLLOW_type_internal_in_field_type_internal6518);
+            type_internal1018=type_internal();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, type_internal1015.getTree());
+            adaptor.addChild(root_0, type_internal1018.getTree());
 
             // Objcm.g:1049:18: ( WS )*
-            loop506:
+            loop509:
             do {
-                int alt506=2;
-                int LA506_0 = input.LA(1);
+                int alt509=2;
+                int LA509_0 = input.LA(1);
 
-                if ( (LA506_0==WS) ) {
-                    alt506=1;
+                if ( (LA509_0==WS) ) {
+                    alt509=1;
                 }
 
 
-                switch (alt506) {
+                switch (alt509) {
             	case 1 :
             	    // Objcm.g:1049:18: WS
             	    {
-            	    WS1016=(Token)match(input,WS,FOLLOW_WS_in_field_type_internal6511); 
-            	    WS1016_tree = 
-            	    (Object)adaptor.create(WS1016)
+            	    WS1019=(Token)match(input,WS,FOLLOW_WS_in_field_type_internal6520); 
+            	    WS1019_tree = 
+            	    (Object)adaptor.create(WS1019)
             	    ;
-            	    adaptor.addChild(root_0, WS1016_tree);
+            	    adaptor.addChild(root_0, WS1019_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop506;
+            	    break loop509;
                 }
             } while (true);
 
 
             // Objcm.g:1049:22: ( generic ( WS )* )?
-            int alt508=2;
-            int LA508_0 = input.LA(1);
-
-            if ( (LA508_0==L_UBR) ) {
-                alt508=1;
-            }
-            switch (alt508) {
-                case 1 :
-                    // Objcm.g:1049:23: generic ( WS )*
-                    {
-                    pushFollow(FOLLOW_generic_in_field_type_internal6515);
-                    generic1017=generic();
-
-                    state._fsp--;
-
-                    adaptor.addChild(root_0, generic1017.getTree());
-
-                    // Objcm.g:1049:31: ( WS )*
-                    loop507:
-                    do {
-                        int alt507=2;
-                        int LA507_0 = input.LA(1);
-
-                        if ( (LA507_0==WS) ) {
-                            alt507=1;
-                        }
-
-
-                        switch (alt507) {
-                    	case 1 :
-                    	    // Objcm.g:1049:31: WS
-                    	    {
-                    	    WS1018=(Token)match(input,WS,FOLLOW_WS_in_field_type_internal6517); 
-                    	    WS1018_tree = 
-                    	    (Object)adaptor.create(WS1018)
-                    	    ;
-                    	    adaptor.addChild(root_0, WS1018_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop507;
-                        }
-                    } while (true);
-
-
-                    }
-                    break;
-
-            }
-
-
-            // Objcm.g:1049:37: ( ( ASTERISK )+ ( WS )* )?
             int alt511=2;
             int LA511_0 = input.LA(1);
 
-            if ( (LA511_0==ASTERISK) ) {
+            if ( (LA511_0==L_UBR) ) {
                 alt511=1;
             }
             switch (alt511) {
                 case 1 :
-                    // Objcm.g:1049:38: ( ASTERISK )+ ( WS )*
+                    // Objcm.g:1049:23: generic ( WS )*
                     {
-                    // Objcm.g:1049:38: ( ASTERISK )+
-                    int cnt509=0;
-                    loop509:
-                    do {
-                        int alt509=2;
-                        int LA509_0 = input.LA(1);
+                    pushFollow(FOLLOW_generic_in_field_type_internal6524);
+                    generic1020=generic();
 
-                        if ( (LA509_0==ASTERISK) ) {
-                            alt509=1;
-                        }
+                    state._fsp--;
 
+                    adaptor.addChild(root_0, generic1020.getTree());
 
-                        switch (alt509) {
-                    	case 1 :
-                    	    // Objcm.g:1049:38: ASTERISK
-                    	    {
-                    	    ASTERISK1019=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_field_type_internal6523); 
-                    	    ASTERISK1019_tree = 
-                    	    (Object)adaptor.create(ASTERISK1019)
-                    	    ;
-                    	    adaptor.addChild(root_0, ASTERISK1019_tree);
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    if ( cnt509 >= 1 ) break loop509;
-                                EarlyExitException eee =
-                                    new EarlyExitException(509, input);
-                                throw eee;
-                        }
-                        cnt509++;
-                    } while (true);
-
-
-                    // Objcm.g:1049:48: ( WS )*
+                    // Objcm.g:1049:31: ( WS )*
                     loop510:
                     do {
                         int alt510=2;
@@ -36360,13 +36392,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                         switch (alt510) {
                     	case 1 :
-                    	    // Objcm.g:1049:48: WS
+                    	    // Objcm.g:1049:31: WS
                     	    {
-                    	    WS1020=(Token)match(input,WS,FOLLOW_WS_in_field_type_internal6526); 
-                    	    WS1020_tree = 
-                    	    (Object)adaptor.create(WS1020)
+                    	    WS1021=(Token)match(input,WS,FOLLOW_WS_in_field_type_internal6526); 
+                    	    WS1021_tree = 
+                    	    (Object)adaptor.create(WS1021)
                     	    ;
-                    	    adaptor.addChild(root_0, WS1020_tree);
+                    	    adaptor.addChild(root_0, WS1021_tree);
 
 
                     	    }
@@ -36374,6 +36406,90 @@ public TreeAdaptor getTreeAdaptor() {
 
                     	default :
                     	    break loop510;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
+
+            }
+
+
+            // Objcm.g:1049:37: ( ( ASTERISK )+ ( WS )* )?
+            int alt514=2;
+            int LA514_0 = input.LA(1);
+
+            if ( (LA514_0==ASTERISK) ) {
+                alt514=1;
+            }
+            switch (alt514) {
+                case 1 :
+                    // Objcm.g:1049:38: ( ASTERISK )+ ( WS )*
+                    {
+                    // Objcm.g:1049:38: ( ASTERISK )+
+                    int cnt512=0;
+                    loop512:
+                    do {
+                        int alt512=2;
+                        int LA512_0 = input.LA(1);
+
+                        if ( (LA512_0==ASTERISK) ) {
+                            alt512=1;
+                        }
+
+
+                        switch (alt512) {
+                    	case 1 :
+                    	    // Objcm.g:1049:38: ASTERISK
+                    	    {
+                    	    ASTERISK1022=(Token)match(input,ASTERISK,FOLLOW_ASTERISK_in_field_type_internal6532); 
+                    	    ASTERISK1022_tree = 
+                    	    (Object)adaptor.create(ASTERISK1022)
+                    	    ;
+                    	    adaptor.addChild(root_0, ASTERISK1022_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt512 >= 1 ) break loop512;
+                                EarlyExitException eee =
+                                    new EarlyExitException(512, input);
+                                throw eee;
+                        }
+                        cnt512++;
+                    } while (true);
+
+
+                    // Objcm.g:1049:48: ( WS )*
+                    loop513:
+                    do {
+                        int alt513=2;
+                        int LA513_0 = input.LA(1);
+
+                        if ( (LA513_0==WS) ) {
+                            alt513=1;
+                        }
+
+
+                        switch (alt513) {
+                    	case 1 :
+                    	    // Objcm.g:1049:48: WS
+                    	    {
+                    	    WS1023=(Token)match(input,WS,FOLLOW_WS_in_field_type_internal6535); 
+                    	    WS1023_tree = 
+                    	    (Object)adaptor.create(WS1023)
+                    	    ;
+                    	    adaptor.addChild(root_0, WS1023_tree);
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop513;
                         }
                     } while (true);
 
@@ -36423,7 +36539,7 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjcmParser.name_internal_return name_internal1021 =null;
+        ObjcmParser.name_internal_return name_internal1024 =null;
 
 
         RewriteRuleSubtreeStream stream_name_internal=new RewriteRuleSubtreeStream(adaptor,"rule name_internal");
@@ -36431,12 +36547,12 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:1056:2: ( name_internal -> ^( NAME name_internal ) )
             // Objcm.g:1056:4: name_internal
             {
-            pushFollow(FOLLOW_name_internal_in_name6543);
-            name_internal1021=name_internal();
+            pushFollow(FOLLOW_name_internal_in_name6552);
+            name_internal1024=name_internal();
 
             state._fsp--;
 
-            stream_name_internal.add(name_internal1021.getTree());
+            stream_name_internal.add(name_internal1024.getTree());
 
             // AST REWRITE
             // elements: name_internal
@@ -36507,9 +36623,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set1022=null;
+        Token set1025=null;
 
-        Object set1022_tree=null;
+        Object set1025_tree=null;
 
         try {
             // Objcm.g:1060:2: ( ID | 'in' )
@@ -36518,12 +36634,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set1022=(Token)input.LT(1);
+            set1025=(Token)input.LT(1);
 
             if ( input.LA(1)==ID||input.LA(1)==152 ) {
                 input.consume();
                 adaptor.addChild(root_0, 
-                (Object)adaptor.create(set1022)
+                (Object)adaptor.create(set1025)
                 );
                 state.errorRecovery=false;
             }
@@ -36572,13 +36688,13 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_EQ1023=null;
-        Token WS1024=null;
-        ObjcmParser.value_return value1025 =null;
+        Token L_EQ1026=null;
+        Token WS1027=null;
+        ObjcmParser.value_return value1028 =null;
 
 
-        Object L_EQ1023_tree=null;
-        Object WS1024_tree=null;
+        Object L_EQ1026_tree=null;
+        Object WS1027_tree=null;
         RewriteRuleTokenStream stream_L_EQ=new RewriteRuleTokenStream(adaptor,"token L_EQ");
         RewriteRuleTokenStream stream_WS=new RewriteRuleTokenStream(adaptor,"token WS");
         RewriteRuleSubtreeStream stream_value=new RewriteRuleSubtreeStream(adaptor,"rule value");
@@ -36586,44 +36702,44 @@ public TreeAdaptor getTreeAdaptor() {
             // Objcm.g:1065:2: ( L_EQ ( WS )* value -> ^( VALUE value ) )
             // Objcm.g:1065:4: L_EQ ( WS )* value
             {
-            L_EQ1023=(Token)match(input,L_EQ,FOLLOW_L_EQ_in_value_set6583);  
-            stream_L_EQ.add(L_EQ1023);
+            L_EQ1026=(Token)match(input,L_EQ,FOLLOW_L_EQ_in_value_set6592);  
+            stream_L_EQ.add(L_EQ1026);
 
 
             // Objcm.g:1065:9: ( WS )*
-            loop512:
+            loop515:
             do {
-                int alt512=2;
-                int LA512_0 = input.LA(1);
+                int alt515=2;
+                int LA515_0 = input.LA(1);
 
-                if ( (LA512_0==WS) ) {
-                    alt512=1;
+                if ( (LA515_0==WS) ) {
+                    alt515=1;
                 }
 
 
-                switch (alt512) {
+                switch (alt515) {
             	case 1 :
             	    // Objcm.g:1065:9: WS
             	    {
-            	    WS1024=(Token)match(input,WS,FOLLOW_WS_in_value_set6585);  
-            	    stream_WS.add(WS1024);
+            	    WS1027=(Token)match(input,WS,FOLLOW_WS_in_value_set6594);  
+            	    stream_WS.add(WS1027);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop512;
+            	    break loop515;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_value_in_value_set6588);
-            value1025=value();
+            pushFollow(FOLLOW_value_in_value_set6597);
+            value1028=value();
 
             state._fsp--;
 
-            stream_value.add(value1025.getTree());
+            stream_value.add(value1028.getTree());
 
             // AST REWRITE
             // elements: value
@@ -36694,36 +36810,36 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ID1026=null;
-        Token NUMBER1030=null;
-        ObjcmParser.string_value_return string_value1027 =null;
+        Token ID1029=null;
+        Token NUMBER1033=null;
+        ObjcmParser.string_value_return string_value1030 =null;
 
-        ObjcmParser.null_stmt_return null_stmt1028 =null;
+        ObjcmParser.null_stmt_return null_stmt1031 =null;
 
-        ObjcmParser.array_return array1029 =null;
+        ObjcmParser.array_return array1032 =null;
 
-        ObjcmParser.struct_init2_return struct_init21031 =null;
+        ObjcmParser.struct_init2_return struct_init21034 =null;
 
 
-        Object ID1026_tree=null;
-        Object NUMBER1030_tree=null;
+        Object ID1029_tree=null;
+        Object NUMBER1033_tree=null;
 
         try {
             // Objcm.g:1067:7: ( ID | string_value | null_stmt | array | NUMBER | struct_init2 )
-            int alt513=6;
-            alt513 = dfa513.predict(input);
-            switch (alt513) {
+            int alt516=6;
+            alt516 = dfa516.predict(input);
+            switch (alt516) {
                 case 1 :
                     // Objcm.g:1067:9: ID
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    ID1026=(Token)match(input,ID,FOLLOW_ID_in_value6604); 
-                    ID1026_tree = 
-                    (Object)adaptor.create(ID1026)
+                    ID1029=(Token)match(input,ID,FOLLOW_ID_in_value6613); 
+                    ID1029_tree = 
+                    (Object)adaptor.create(ID1029)
                     ;
-                    adaptor.addChild(root_0, ID1026_tree);
+                    adaptor.addChild(root_0, ID1029_tree);
 
 
                     }
@@ -36734,12 +36850,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_string_value_in_value6608);
-                    string_value1027=string_value();
+                    pushFollow(FOLLOW_string_value_in_value6617);
+                    string_value1030=string_value();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, string_value1027.getTree());
+                    adaptor.addChild(root_0, string_value1030.getTree());
 
                     }
                     break;
@@ -36749,12 +36865,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_null_stmt_in_value6612);
-                    null_stmt1028=null_stmt();
+                    pushFollow(FOLLOW_null_stmt_in_value6621);
+                    null_stmt1031=null_stmt();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, null_stmt1028.getTree());
+                    adaptor.addChild(root_0, null_stmt1031.getTree());
 
                     }
                     break;
@@ -36764,12 +36880,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_array_in_value6616);
-                    array1029=array();
+                    pushFollow(FOLLOW_array_in_value6625);
+                    array1032=array();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, array1029.getTree());
+                    adaptor.addChild(root_0, array1032.getTree());
 
                     }
                     break;
@@ -36779,11 +36895,11 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    NUMBER1030=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_value6620); 
-                    NUMBER1030_tree = 
-                    (Object)adaptor.create(NUMBER1030)
+                    NUMBER1033=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_value6629); 
+                    NUMBER1033_tree = 
+                    (Object)adaptor.create(NUMBER1033)
                     ;
-                    adaptor.addChild(root_0, NUMBER1030_tree);
+                    adaptor.addChild(root_0, NUMBER1033_tree);
 
 
                     }
@@ -36794,12 +36910,12 @@ public TreeAdaptor getTreeAdaptor() {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_struct_init2_in_value6624);
-                    struct_init21031=struct_init2();
+                    pushFollow(FOLLOW_struct_init2_in_value6633);
+                    struct_init21034=struct_init2();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, struct_init21031.getTree());
+                    adaptor.addChild(root_0, struct_init21034.getTree());
 
                     }
                     break;
@@ -36842,9 +36958,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token STRING_LITERAL1032=null;
+        Token STRING_LITERAL1035=null;
 
-        Object STRING_LITERAL1032_tree=null;
+        Object STRING_LITERAL1035_tree=null;
 
         try {
             // Objcm.g:1070:2: ( STRING_LITERAL )
@@ -36853,11 +36969,11 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            STRING_LITERAL1032=(Token)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_string_value6634); 
-            STRING_LITERAL1032_tree = 
-            (Object)adaptor.create(STRING_LITERAL1032)
+            STRING_LITERAL1035=(Token)match(input,STRING_LITERAL,FOLLOW_STRING_LITERAL_in_string_value6643); 
+            STRING_LITERAL1035_tree = 
+            (Object)adaptor.create(STRING_LITERAL1035)
             ;
-            adaptor.addChild(root_0, STRING_LITERAL1032_tree);
+            adaptor.addChild(root_0, STRING_LITERAL1035_tree);
 
 
             }
@@ -36899,9 +37015,9 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set1033=null;
+        Token set1036=null;
 
-        Object set1033_tree=null;
+        Object set1036_tree=null;
 
         try {
             // Objcm.g:1072:11: ( 'nil' | 'Nil' )
@@ -36910,12 +37026,12 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            set1033=(Token)input.LT(1);
+            set1036=(Token)input.LT(1);
 
             if ( input.LA(1)==139||input.LA(1)==154 ) {
                 input.consume();
                 adaptor.addChild(root_0, 
-                (Object)adaptor.create(set1033)
+                (Object)adaptor.create(set1036)
                 );
                 state.errorRecovery=false;
             }
@@ -36964,25 +37080,25 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token L_FBR1034=null;
-        Token WS1035=null;
-        Token WS1037=null;
-        Token COMMA1038=null;
-        Token WS1039=null;
-        Token WS1041=null;
-        Token R_FBR1042=null;
-        ObjcmParser.value_return value1036 =null;
+        Token L_FBR1037=null;
+        Token WS1038=null;
+        Token WS1040=null;
+        Token COMMA1041=null;
+        Token WS1042=null;
+        Token WS1044=null;
+        Token R_FBR1045=null;
+        ObjcmParser.value_return value1039 =null;
 
-        ObjcmParser.value_return value1040 =null;
+        ObjcmParser.value_return value1043 =null;
 
 
-        Object L_FBR1034_tree=null;
-        Object WS1035_tree=null;
-        Object WS1037_tree=null;
-        Object COMMA1038_tree=null;
-        Object WS1039_tree=null;
-        Object WS1041_tree=null;
-        Object R_FBR1042_tree=null;
+        Object L_FBR1037_tree=null;
+        Object WS1038_tree=null;
+        Object WS1040_tree=null;
+        Object COMMA1041_tree=null;
+        Object WS1042_tree=null;
+        Object WS1044_tree=null;
+        Object R_FBR1045_tree=null;
 
         try {
             // Objcm.g:1074:7: ( L_FBR ( WS )* value ( WS )* ( COMMA ( WS )* value ( WS )* )* R_FBR )
@@ -36991,171 +37107,71 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            L_FBR1034=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_array6655); 
-            L_FBR1034_tree = 
-            (Object)adaptor.create(L_FBR1034)
+            L_FBR1037=(Token)match(input,L_FBR,FOLLOW_L_FBR_in_array6664); 
+            L_FBR1037_tree = 
+            (Object)adaptor.create(L_FBR1037)
             ;
-            adaptor.addChild(root_0, L_FBR1034_tree);
+            adaptor.addChild(root_0, L_FBR1037_tree);
 
 
             // Objcm.g:1074:15: ( WS )*
-            loop514:
+            loop517:
             do {
-                int alt514=2;
-                int LA514_0 = input.LA(1);
+                int alt517=2;
+                int LA517_0 = input.LA(1);
 
-                if ( (LA514_0==WS) ) {
-                    alt514=1;
+                if ( (LA517_0==WS) ) {
+                    alt517=1;
                 }
 
 
-                switch (alt514) {
+                switch (alt517) {
             	case 1 :
             	    // Objcm.g:1074:15: WS
             	    {
-            	    WS1035=(Token)match(input,WS,FOLLOW_WS_in_array6657); 
-            	    WS1035_tree = 
-            	    (Object)adaptor.create(WS1035)
+            	    WS1038=(Token)match(input,WS,FOLLOW_WS_in_array6666); 
+            	    WS1038_tree = 
+            	    (Object)adaptor.create(WS1038)
             	    ;
-            	    adaptor.addChild(root_0, WS1035_tree);
+            	    adaptor.addChild(root_0, WS1038_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop514;
+            	    break loop517;
                 }
             } while (true);
 
 
-            pushFollow(FOLLOW_value_in_array6660);
-            value1036=value();
+            pushFollow(FOLLOW_value_in_array6669);
+            value1039=value();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, value1036.getTree());
+            adaptor.addChild(root_0, value1039.getTree());
 
             // Objcm.g:1074:25: ( WS )*
-            loop515:
-            do {
-                int alt515=2;
-                int LA515_0 = input.LA(1);
-
-                if ( (LA515_0==WS) ) {
-                    alt515=1;
-                }
-
-
-                switch (alt515) {
-            	case 1 :
-            	    // Objcm.g:1074:25: WS
-            	    {
-            	    WS1037=(Token)match(input,WS,FOLLOW_WS_in_array6662); 
-            	    WS1037_tree = 
-            	    (Object)adaptor.create(WS1037)
-            	    ;
-            	    adaptor.addChild(root_0, WS1037_tree);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop515;
-                }
-            } while (true);
-
-
-            // Objcm.g:1074:29: ( COMMA ( WS )* value ( WS )* )*
             loop518:
             do {
                 int alt518=2;
                 int LA518_0 = input.LA(1);
 
-                if ( (LA518_0==COMMA) ) {
+                if ( (LA518_0==WS) ) {
                     alt518=1;
                 }
 
 
                 switch (alt518) {
             	case 1 :
-            	    // Objcm.g:1074:30: COMMA ( WS )* value ( WS )*
+            	    // Objcm.g:1074:25: WS
             	    {
-            	    COMMA1038=(Token)match(input,COMMA,FOLLOW_COMMA_in_array6666); 
-            	    COMMA1038_tree = 
-            	    (Object)adaptor.create(COMMA1038)
+            	    WS1040=(Token)match(input,WS,FOLLOW_WS_in_array6671); 
+            	    WS1040_tree = 
+            	    (Object)adaptor.create(WS1040)
             	    ;
-            	    adaptor.addChild(root_0, COMMA1038_tree);
-
-
-            	    // Objcm.g:1074:36: ( WS )*
-            	    loop516:
-            	    do {
-            	        int alt516=2;
-            	        int LA516_0 = input.LA(1);
-
-            	        if ( (LA516_0==WS) ) {
-            	            alt516=1;
-            	        }
-
-
-            	        switch (alt516) {
-            	    	case 1 :
-            	    	    // Objcm.g:1074:36: WS
-            	    	    {
-            	    	    WS1039=(Token)match(input,WS,FOLLOW_WS_in_array6668); 
-            	    	    WS1039_tree = 
-            	    	    (Object)adaptor.create(WS1039)
-            	    	    ;
-            	    	    adaptor.addChild(root_0, WS1039_tree);
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop516;
-            	        }
-            	    } while (true);
-
-
-            	    pushFollow(FOLLOW_value_in_array6671);
-            	    value1040=value();
-
-            	    state._fsp--;
-
-            	    adaptor.addChild(root_0, value1040.getTree());
-
-            	    // Objcm.g:1074:46: ( WS )*
-            	    loop517:
-            	    do {
-            	        int alt517=2;
-            	        int LA517_0 = input.LA(1);
-
-            	        if ( (LA517_0==WS) ) {
-            	            alt517=1;
-            	        }
-
-
-            	        switch (alt517) {
-            	    	case 1 :
-            	    	    // Objcm.g:1074:46: WS
-            	    	    {
-            	    	    WS1041=(Token)match(input,WS,FOLLOW_WS_in_array6673); 
-            	    	    WS1041_tree = 
-            	    	    (Object)adaptor.create(WS1041)
-            	    	    ;
-            	    	    adaptor.addChild(root_0, WS1041_tree);
-
-
-            	    	    }
-            	    	    break;
-
-            	    	default :
-            	    	    break loop517;
-            	        }
-            	    } while (true);
+            	    adaptor.addChild(root_0, WS1040_tree);
 
 
             	    }
@@ -37167,11 +37183,111 @@ public TreeAdaptor getTreeAdaptor() {
             } while (true);
 
 
-            R_FBR1042=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_array6678); 
-            R_FBR1042_tree = 
-            (Object)adaptor.create(R_FBR1042)
+            // Objcm.g:1074:29: ( COMMA ( WS )* value ( WS )* )*
+            loop521:
+            do {
+                int alt521=2;
+                int LA521_0 = input.LA(1);
+
+                if ( (LA521_0==COMMA) ) {
+                    alt521=1;
+                }
+
+
+                switch (alt521) {
+            	case 1 :
+            	    // Objcm.g:1074:30: COMMA ( WS )* value ( WS )*
+            	    {
+            	    COMMA1041=(Token)match(input,COMMA,FOLLOW_COMMA_in_array6675); 
+            	    COMMA1041_tree = 
+            	    (Object)adaptor.create(COMMA1041)
+            	    ;
+            	    adaptor.addChild(root_0, COMMA1041_tree);
+
+
+            	    // Objcm.g:1074:36: ( WS )*
+            	    loop519:
+            	    do {
+            	        int alt519=2;
+            	        int LA519_0 = input.LA(1);
+
+            	        if ( (LA519_0==WS) ) {
+            	            alt519=1;
+            	        }
+
+
+            	        switch (alt519) {
+            	    	case 1 :
+            	    	    // Objcm.g:1074:36: WS
+            	    	    {
+            	    	    WS1042=(Token)match(input,WS,FOLLOW_WS_in_array6677); 
+            	    	    WS1042_tree = 
+            	    	    (Object)adaptor.create(WS1042)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS1042_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop519;
+            	        }
+            	    } while (true);
+
+
+            	    pushFollow(FOLLOW_value_in_array6680);
+            	    value1043=value();
+
+            	    state._fsp--;
+
+            	    adaptor.addChild(root_0, value1043.getTree());
+
+            	    // Objcm.g:1074:46: ( WS )*
+            	    loop520:
+            	    do {
+            	        int alt520=2;
+            	        int LA520_0 = input.LA(1);
+
+            	        if ( (LA520_0==WS) ) {
+            	            alt520=1;
+            	        }
+
+
+            	        switch (alt520) {
+            	    	case 1 :
+            	    	    // Objcm.g:1074:46: WS
+            	    	    {
+            	    	    WS1044=(Token)match(input,WS,FOLLOW_WS_in_array6682); 
+            	    	    WS1044_tree = 
+            	    	    (Object)adaptor.create(WS1044)
+            	    	    ;
+            	    	    adaptor.addChild(root_0, WS1044_tree);
+
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop520;
+            	        }
+            	    } while (true);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop521;
+                }
+            } while (true);
+
+
+            R_FBR1045=(Token)match(input,R_FBR,FOLLOW_R_FBR_in_array6687); 
+            R_FBR1045_tree = 
+            (Object)adaptor.create(R_FBR1045)
             ;
-            adaptor.addChild(root_0, R_FBR1042_tree);
+            adaptor.addChild(root_0, R_FBR1045_tree);
 
 
             }
@@ -37213,11 +37329,11 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token SEMICOLON1043=null;
-        Token WS1044=null;
+        Token SEMICOLON1046=null;
+        Token WS1047=null;
 
-        Object SEMICOLON1043_tree=null;
-        Object WS1044_tree=null;
+        Object SEMICOLON1046_tree=null;
+        Object WS1047_tree=null;
 
         try {
             // Objcm.g:1076:6: ( SEMICOLON ( WS )* )
@@ -37226,40 +37342,40 @@ public TreeAdaptor getTreeAdaptor() {
             root_0 = (Object)adaptor.nil();
 
 
-            SEMICOLON1043=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_semi6686); 
-            SEMICOLON1043_tree = 
-            (Object)adaptor.create(SEMICOLON1043)
+            SEMICOLON1046=(Token)match(input,SEMICOLON,FOLLOW_SEMICOLON_in_semi6695); 
+            SEMICOLON1046_tree = 
+            (Object)adaptor.create(SEMICOLON1046)
             ;
-            adaptor.addChild(root_0, SEMICOLON1043_tree);
+            adaptor.addChild(root_0, SEMICOLON1046_tree);
 
 
             // Objcm.g:1076:18: ( WS )*
-            loop519:
+            loop522:
             do {
-                int alt519=2;
-                int LA519_0 = input.LA(1);
+                int alt522=2;
+                int LA522_0 = input.LA(1);
 
-                if ( (LA519_0==WS) ) {
-                    alt519=1;
+                if ( (LA522_0==WS) ) {
+                    alt522=1;
                 }
 
 
-                switch (alt519) {
+                switch (alt522) {
             	case 1 :
             	    // Objcm.g:1076:18: WS
             	    {
-            	    WS1044=(Token)match(input,WS,FOLLOW_WS_in_semi6688); 
-            	    WS1044_tree = 
-            	    (Object)adaptor.create(WS1044)
+            	    WS1047=(Token)match(input,WS,FOLLOW_WS_in_semi6697); 
+            	    WS1047_tree = 
+            	    (Object)adaptor.create(WS1047)
             	    ;
-            	    adaptor.addChild(root_0, WS1044_tree);
+            	    adaptor.addChild(root_0, WS1047_tree);
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop519;
+            	    break loop522;
                 }
             } while (true);
 
@@ -37293,70 +37409,33 @@ public TreeAdaptor getTreeAdaptor() {
     protected DFA168 dfa168 = new DFA168(this);
     protected DFA181 dfa181 = new DFA181(this);
     protected DFA189 dfa189 = new DFA189(this);
-    protected DFA240 dfa240 = new DFA240(this);
     protected DFA241 dfa241 = new DFA241(this);
-    protected DFA319 dfa319 = new DFA319(this);
+    protected DFA242 dfa242 = new DFA242(this);
+    protected DFA320 dfa320 = new DFA320(this);
+    protected DFA325 dfa325 = new DFA325(this);
     protected DFA324 dfa324 = new DFA324(this);
-    protected DFA323 dfa323 = new DFA323(this);
-    protected DFA330 dfa330 = new DFA330(this);
-    protected DFA357 dfa357 = new DFA357(this);
-    protected DFA362 dfa362 = new DFA362(this);
-    protected DFA381 dfa381 = new DFA381(this);
-    protected DFA438 dfa438 = new DFA438(this);
-    protected DFA478 dfa478 = new DFA478(this);
-    protected DFA513 dfa513 = new DFA513(this);
-    static final String DFA168_eotS =
-        "\u00d8\uffff";
-    static final String DFA168_eofS =
-        "\u00d8\uffff";
-    static final String DFA168_minS =
-        "\1\4\1\uffff\2\4\2\uffff\2\4\2\uffff\1\4\4\uffff\1\4\3\uffff\1\4"+
-        "\1\uffff\1\4\1\uffff\1\37\2\uffff\1\4\1\uffff\1\4\2\uffff\1\4\23"+
-        "\uffff\1\4\3\uffff\1\4\1\uffff\1\4\1\uffff\1\4\1\uffff\1\37\3\uffff"+
-        "\1\4\15\uffff\1\4\2\uffff\1\4\u0085\uffff";
-    static final String DFA168_maxS =
-        "\1\u00a0\1\uffff\1\145\1\u00a3\2\uffff\1\145\1\u0098\2\uffff\1\u00a5"+
-        "\4\uffff\1\u00a3\3\uffff\1\u0098\1\uffff\1\u00a5\1\uffff\1\u0098"+
-        "\2\uffff\1\145\1\uffff\1\u0098\2\uffff\1\u00a5\23\uffff\1\u00a3"+
-        "\3\uffff\1\u0098\1\uffff\1\u00a5\1\uffff\1\u00a3\1\uffff\1\u0098"+
-        "\3\uffff\1\u00a5\15\uffff\1\u00a4\2\uffff\1\u0098\u0085\uffff";
-    static final String DFA168_acceptS =
-        "\1\uffff\1\1\6\uffff\1\2\121\uffff\1\1\1\uffff\1\1\2\uffff\1\1\1"+
-        "\uffff\1\1\25\uffff\2\1\4\uffff\1\1\3\uffff\1\1\1\uffff\1\1\2\uffff"+
-        "\1\1\3\uffff\1\1\15\uffff\1\1\2\uffff\1\1\11\uffff\1\1\1\uffff\1"+
-        "\1\1\uffff\1\1\2\uffff\1\1\16\uffff\1\1\2\uffff\1\1\3\uffff\1\1"+
-        "\3\uffff\1\1\2\uffff\1\1\6\uffff\1\1\2\uffff\1\1\4\uffff";
-    static final String DFA168_specialS =
-        "\u00d8\uffff}>";
+    protected DFA331 dfa331 = new DFA331(this);
+    protected DFA358 dfa358 = new DFA358(this);
+    protected DFA363 dfa363 = new DFA363(this);
+    protected DFA382 dfa382 = new DFA382(this);
+    protected DFA441 dfa441 = new DFA441(this);
+    protected DFA481 dfa481 = new DFA481(this);
+    protected DFA516 dfa516 = new DFA516(this);
 
-    static final short[] DFA168_eot = DFA.unpackEncodedString(DFA168_eotS);
-    static final short[] DFA168_eof = DFA.unpackEncodedString(DFA168_eofS);
-    static final char[] DFA168_min = DFA.unpackEncodedStringToUnsignedChars(DFA168_minS);
-    static final char[] DFA168_max = DFA.unpackEncodedStringToUnsignedChars(DFA168_maxS);
-    static final short[] DFA168_accept = DFA.unpackEncodedString(DFA168_acceptS);
-    static final short[] DFA168_special = DFA.unpackEncodedString(DFA168_specialS);
-    static final short[][] DFA168_transition;
 
-    static {
-        int numStates = ObjcmParserExtensions.DFA168_transitionS.length;
-        DFA168_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA168_transition[i] = DFA.unpackEncodedString(ObjcmParserExtensions.DFA168_transitionS[i]);
-        }
-    }
 
     class DFA168 extends DFA {
 
         public DFA168(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 168;
-            this.eot = DFA168_eot;
-            this.eof = DFA168_eof;
-            this.min = DFA168_min;
-            this.max = DFA168_max;
-            this.accept = DFA168_accept;
-            this.special = DFA168_special;
-            this.transition = DFA168_transition;
+            this.eot = ObjcmParserExtensions.DFA168_eot;
+            this.eof = ObjcmParserExtensions.DFA168_eof;
+            this.min = ObjcmParserExtensions.DFA168_min;
+            this.max = ObjcmParserExtensions.DFA168_max;
+            this.accept = ObjcmParserExtensions.DFA168_accept;
+            this.special = ObjcmParserExtensions.DFA168_special;
+            this.transition = ObjcmParserExtensions.DFA168_transition;
         }
         public String getDescription() {
             return "484:1: id_start_variable : ( simple_start_v | func_pointer1 );";
@@ -37376,201 +37455,6 @@ public TreeAdaptor getTreeAdaptor() {
         "\1\uffff\1\1\23\uffff\2\1\3\uffff\1\1\1\uffff\5\1\20\uffff";
     static final String DFA181_specialS =
         "\u00a2\uffff}>";
-    static final String[] DFA181_transitionS = {
-            "\1\2\17\uffff\1\2\12\uffff\1\2\6\uffff\2\2\2\uffff\2\2\1\1\30"+
-            "\uffff\1\2\2\uffff\1\2\34\uffff\1\2\4\uffff\1\2\2\uffff\2\2"+
-            "\1\uffff\1\2\1\uffff\2\2\2\uffff\1\2\1\uffff\4\2\1\uffff\1\2"+
-            "\17\uffff\1\2\12\uffff\1\2\12\uffff\1\2",
-            "\1\2\32\uffff\1\15\6\uffff\1\2\2\uffff\3\2\15\uffff\1\2\26"+
-            "\uffff\3\2\22\uffff\1\14\1\2\5\uffff\1\2\2\uffff\1\2\1\uffff"+
-            "\1\2\16\uffff\1\2\6\uffff\1\2\3\uffff\1\2\3\uffff\1\2\10\uffff"+
-            "\1\2\1\uffff\1\2\1\uffff\1\2\10\uffff\1\2",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\2\32\uffff\1\41\6\uffff\1\2\2\uffff\3\2\15\uffff\1\2\26"+
-            "\uffff\3\2\22\uffff\1\42\1\2\5\uffff\1\2\2\uffff\1\2\1\uffff"+
-            "\1\2\16\uffff\1\2\6\uffff\1\2\3\uffff\1\2\3\uffff\1\2\10\uffff"+
-            "\1\2\1\uffff\1\2\1\uffff\1\2\10\uffff\1\2",
-            "\1\67\12\uffff\1\70\4\uffff\1\2\12\uffff\1\2\6\uffff\2\2\1"+
-            "\uffff\4\2\30\uffff\1\71\2\uffff\1\2\34\uffff\1\66\1\uffff\1"+
-            "\2\1\uffff\1\2\1\uffff\11\2\1\uffff\3\2\1\uffff\4\2\1\uffff"+
-            "\1\2\15\uffff\1\2\13\uffff\1\2\11\uffff\1\2\1\uffff\1\2",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\104\12\uffff\1\105\4\uffff\1\2\12\uffff\1\2\6\uffff\2\2"+
-            "\1\uffff\4\2\30\uffff\1\106\2\uffff\1\2\34\uffff\1\103\1\uffff"+
-            "\1\2\1\uffff\1\2\1\uffff\11\2\1\uffff\3\2\1\uffff\4\2\1\uffff"+
-            "\1\2\15\uffff\1\2\13\uffff\1\2\11\uffff\1\2\1\uffff\1\2",
-            "\1\2\32\uffff\1\120\6\uffff\1\2\2\uffff\3\2\15\uffff\1\2\26"+
-            "\uffff\3\2\22\uffff\1\121\1\2\5\uffff\1\2\2\uffff\1\2\1\uffff"+
-            "\1\2\16\uffff\1\2\6\uffff\1\2\3\uffff\1\2\3\uffff\1\2\10\uffff"+
-            "\1\2\1\uffff\1\2\1\uffff\1\2\10\uffff\1\2",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\145\12\uffff\1\146\17\uffff\1\2\6\uffff\2\2\2\uffff\3\2"+
-            "\30\uffff\1\147\2\uffff\1\2\34\uffff\1\150\1\uffff\1\2\1\uffff"+
-            "\1\2\1\uffff\10\2\2\uffff\3\2\1\uffff\4\2\1\uffff\1\2\15\uffff"+
-            "\1\2\13\uffff\1\2\11\uffff\1\2\1\uffff\1\2",
-            "\1\162\12\uffff\1\160\17\uffff\1\2\6\uffff\1\2\2\uffff\3\2"+
-            "\15\uffff\1\2\13\uffff\1\160\12\uffff\3\2\22\uffff\1\157\1\2"+
-            "\5\uffff\1\2\2\uffff\1\2\1\uffff\1\2\16\uffff\1\2\6\uffff\1"+
-            "\2\3\uffff\1\2\3\uffff\1\2\10\uffff\1\2\1\uffff\1\2\1\uffff"+
-            "\1\2\10\uffff\1\2",
-            "\1\u0087\105\uffff\1\u0086\62\uffff\1\2",
-            "\1\u008f\17\uffff\1\160\12\uffff\1\u0090\6\uffff\1\u0091\1"+
-            "\160\1\uffff\1\2\1\u008e\1\u008d\1\160\14\uffff\1\2\13\uffff"+
-            "\1\160\2\uffff\1\160\7\uffff\3\2\22\uffff\1\u008b\1\2\3\uffff"+
-            "\1\160\1\uffff\1\2\2\160\1\2\1\160\1\2\2\160\2\uffff\1\160\1"+
-            "\uffff\4\160\1\uffff\1\160\2\uffff\1\2\6\uffff\1\2\3\uffff\1"+
-            "\2\1\uffff\1\160\1\uffff\1\2\10\uffff\1\u0090\1\uffff\1\2\1"+
-            "\uffff\1\2\6\uffff\1\160\1\uffff\1\2",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-    };
 
     static final short[] DFA181_eot = DFA.unpackEncodedString(DFA181_eotS);
     static final short[] DFA181_eof = DFA.unpackEncodedString(DFA181_eofS);
@@ -37581,10 +37465,10 @@ public TreeAdaptor getTreeAdaptor() {
     static final short[][] DFA181_transition;
 
     static {
-        int numStates = DFA181_transitionS.length;
+        int numStates = ObjcmParserExtensions.DFA181_transitionS.length;
         DFA181_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA181_transition[i] = DFA.unpackEncodedString(DFA181_transitionS[i]);
+            DFA181_transition[i] = DFA.unpackEncodedString(ObjcmParserExtensions.DFA181_transitionS[i]);
         }
     }
 
@@ -39157,21 +39041,21 @@ public TreeAdaptor getTreeAdaptor() {
             return "()* loopback of 519:26: ( L_KBR ( WS )* ( classical_expr_wrp )? R_KBR )*";
         }
     }
-    static final String DFA240_eotS =
+    static final String DFA241_eotS =
         "\u00a4\uffff";
-    static final String DFA240_eofS =
+    static final String DFA241_eofS =
         "\u00a4\uffff";
-    static final String DFA240_minS =
+    static final String DFA241_minS =
         "\2\4\22\uffff\7\4\21\uffff\7\4\161\uffff";
-    static final String DFA240_maxS =
+    static final String DFA241_maxS =
         "\2\u00a5\22\uffff\1\u00a5\6\u00a4\21\uffff\6\u00a4\1\u00a5\161\uffff";
-    static final String DFA240_acceptS =
+    static final String DFA241_acceptS =
         "\2\uffff\1\2\101\uffff\1\1\12\uffff\1\1\4\uffff\1\1\4\uffff\1\1"+
         "\4\uffff\1\1\4\uffff\1\1\4\uffff\1\1\12\uffff\1\1\4\uffff\1\1\4"+
         "\uffff\1\1\4\uffff\1\1\4\uffff\1\1\4\uffff\7\1\21\uffff";
-    static final String DFA240_specialS =
+    static final String DFA241_specialS =
         "\u00a4\uffff}>";
-    static final String[] DFA240_transitionS = {
+    static final String[] DFA241_transitionS = {
             "\1\2\32\uffff\1\2\6\uffff\1\1\2\uffff\3\2\15\uffff\1\2\26\uffff"+
             "\3\2\23\uffff\1\2\5\uffff\1\2\2\uffff\1\2\1\uffff\1\2\16\uffff"+
             "\1\2\6\uffff\1\2\3\uffff\1\2\3\uffff\1\2\10\uffff\1\2\1\uffff"+
@@ -39389,55 +39273,55 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA240_eot = DFA.unpackEncodedString(DFA240_eotS);
-    static final short[] DFA240_eof = DFA.unpackEncodedString(DFA240_eofS);
-    static final char[] DFA240_min = DFA.unpackEncodedStringToUnsignedChars(DFA240_minS);
-    static final char[] DFA240_max = DFA.unpackEncodedStringToUnsignedChars(DFA240_maxS);
-    static final short[] DFA240_accept = DFA.unpackEncodedString(DFA240_acceptS);
-    static final short[] DFA240_special = DFA.unpackEncodedString(DFA240_specialS);
-    static final short[][] DFA240_transition;
+    static final short[] DFA241_eot = DFA.unpackEncodedString(DFA241_eotS);
+    static final short[] DFA241_eof = DFA.unpackEncodedString(DFA241_eofS);
+    static final char[] DFA241_min = DFA.unpackEncodedStringToUnsignedChars(DFA241_minS);
+    static final char[] DFA241_max = DFA.unpackEncodedStringToUnsignedChars(DFA241_maxS);
+    static final short[] DFA241_accept = DFA.unpackEncodedString(DFA241_acceptS);
+    static final short[] DFA241_special = DFA.unpackEncodedString(DFA241_specialS);
+    static final short[][] DFA241_transition;
 
     static {
-        int numStates = DFA240_transitionS.length;
-        DFA240_transition = new short[numStates][];
+        int numStates = DFA241_transitionS.length;
+        DFA241_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA240_transition[i] = DFA.unpackEncodedString(DFA240_transitionS[i]);
+            DFA241_transition[i] = DFA.unpackEncodedString(DFA241_transitionS[i]);
         }
     }
 
-    class DFA240 extends DFA {
+    class DFA241 extends DFA {
 
-        public DFA240(BaseRecognizer recognizer) {
+        public DFA241(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 240;
-            this.eot = DFA240_eot;
-            this.eof = DFA240_eof;
-            this.min = DFA240_min;
-            this.max = DFA240_max;
-            this.accept = DFA240_accept;
-            this.special = DFA240_special;
-            this.transition = DFA240_transition;
+            this.decisionNumber = 241;
+            this.eot = DFA241_eot;
+            this.eof = DFA241_eof;
+            this.min = DFA241_min;
+            this.max = DFA241_max;
+            this.accept = DFA241_accept;
+            this.special = DFA241_special;
+            this.transition = DFA241_transition;
         }
         public String getDescription() {
-            return "605:1: msg_expr : ( L_BR ( WS )* ( ID | const_expr ) R_BR ( WS )* | classical_expr_wrp );";
+            return "605:1: msg_expr : ( L_BR ( WS )* ( ID | const_expr ) R_BR ( classical_expr_wrp )? ( WS )* | classical_expr_wrp );";
         }
     }
-    static final String DFA241_eotS =
+    static final String DFA242_eotS =
         "\u00b2\uffff";
-    static final String DFA241_eofS =
-        "\107\uffff\1\1\152\uffff";
-    static final String DFA241_minS =
+    static final String DFA242_eofS =
+        "\111\uffff\1\1\150\uffff";
+    static final String DFA242_minS =
         "\1\4\21\uffff\1\4\1\uffff\1\4\1\uffff\1\4\27\uffff\1\4\23\uffff"+
-        "\1\4\4\uffff\1\4\3\uffff\1\4\146\uffff";
-    static final String DFA241_maxS =
+        "\1\4\4\uffff\1\4\1\uffff\1\4\150\uffff";
+    static final String DFA242_maxS =
         "\1\u00a5\21\uffff\1\u00a5\1\uffff\1\u00a5\1\uffff\1\u00a4\27\uffff"+
-        "\1\u00a4\23\uffff\1\u00a5\4\uffff\1\u00a5\3\uffff\1\u00a4\146\uffff";
-    static final String DFA241_acceptS =
-        "\1\uffff\1\1\52\uffff\1\2\45\uffff\1\1\3\uffff\1\1\6\uffff\1\1\23"+
-        "\uffff\1\1\3\uffff\1\1\46\uffff\1\1\17\uffff\1\1\3\uffff\1\1\1\uffff";
-    static final String DFA241_specialS =
+        "\1\u00a4\23\uffff\1\u00a5\4\uffff\1\u00a4\1\uffff\1\u00a5\150\uffff";
+    static final String DFA242_acceptS =
+        "\1\uffff\1\1\52\uffff\1\2\45\uffff\1\1\1\uffff\1\1\10\uffff\1\1"+
+        "\23\uffff\1\1\4\uffff\2\1\5\uffff\1\1\46\uffff\1\1\15\uffff";
+    static final String DFA242_specialS =
         "\u00b2\uffff}>";
-    static final String[] DFA241_transitionS = {
+    static final String[] DFA242_transitionS = {
             "\1\1\32\uffff\1\1\6\uffff\1\22\2\uffff\3\1\15\uffff\1\1\26\uffff"+
             "\3\1\23\uffff\1\1\5\uffff\1\1\2\uffff\1\1\1\uffff\1\1\16\uffff"+
             "\1\1\6\uffff\1\1\3\uffff\1\1\3\uffff\1\1\10\uffff\1\1\1\uffff"+
@@ -39471,8 +39355,8 @@ public TreeAdaptor getTreeAdaptor() {
             "\uffff\1\1\3\uffff\1\1\3\uffff\1\1\10\uffff\1\1\1\uffff\1\1"+
             "\1\uffff\1\1\3\uffff\1\1\4\uffff\1\1",
             "",
-            "\1\1\17\uffff\1\1\21\uffff\2\1\1\uffff\4\1\25\uffff\1\107\2"+
-            "\uffff\1\1\37\uffff\1\113\1\uffff\1\1\1\uffff\1\1\1\uffff\11"+
+            "\1\1\17\uffff\1\1\21\uffff\2\1\1\uffff\4\1\25\uffff\1\111\2"+
+            "\uffff\1\1\37\uffff\1\107\1\uffff\1\1\1\uffff\1\1\1\uffff\11"+
             "\1\1\uffff\3\1\1\uffff\4\1\1\uffff\1\1\15\uffff\1\1\25\uffff"+
             "\1\1\1\uffff\1\1",
             "",
@@ -39498,8 +39382,8 @@ public TreeAdaptor getTreeAdaptor() {
             "",
             "",
             "",
-            "\1\1\17\uffff\1\1\21\uffff\2\1\1\uffff\4\1\25\uffff\1\122\2"+
-            "\uffff\1\1\37\uffff\1\126\1\uffff\1\1\1\uffff\1\1\1\uffff\11"+
+            "\1\1\17\uffff\1\1\21\uffff\2\1\1\uffff\4\1\25\uffff\1\124\2"+
+            "\uffff\1\1\37\uffff\1\122\1\uffff\1\1\1\uffff\1\1\1\uffff\11"+
             "\1\1\uffff\3\1\1\uffff\4\1\1\uffff\1\1\15\uffff\1\1\25\uffff"+
             "\1\1\1\uffff\1\1",
             "",
@@ -39530,20 +39414,20 @@ public TreeAdaptor getTreeAdaptor() {
             "",
             "",
             "",
+            "\1\1\41\uffff\2\1\1\uffff\4\1\25\uffff\1\166\2\uffff\1\1\37"+
+            "\uffff\1\167\1\uffff\1\1\1\uffff\1\1\1\uffff\10\1\2\uffff\3"+
+            "\1\1\uffff\4\1\1\uffff\1\1\15\uffff\1\1\25\uffff\1\1\1\uffff"+
+            "\1\1",
+            "",
             "\1\1\2\uffff\1\1\6\uffff\3\1\3\uffff\1\1\1\uffff\1\1\10\uffff"+
-            "\1\1\6\uffff\2\1\1\u009c\4\1\14\uffff\1\1\10\uffff\4\1\2\uffff"+
+            "\1\1\6\uffff\2\1\1\u00a4\4\1\14\uffff\1\1\10\uffff\4\1\2\uffff"+
             "\1\1\2\uffff\1\1\2\uffff\1\1\1\uffff\3\1\1\uffff\1\1\15\uffff"+
-            "\1\1\2\uffff\1\165\2\1\1\uffff\1\1\1\uffff\11\1\1\uffff\3\1"+
+            "\1\1\2\uffff\1\175\2\1\1\uffff\1\1\1\uffff\11\1\1\uffff\3\1"+
             "\1\uffff\4\1\1\uffff\1\1\1\uffff\1\1\6\uffff\1\1\1\uffff\4\1"+
             "\2\uffff\2\1\1\uffff\3\1\1\uffff\3\1\1\uffff\4\1\2\uffff\3\1"+
             "\1\uffff\2\1",
             "",
             "",
-            "",
-            "\1\1\41\uffff\2\1\1\uffff\4\1\25\uffff\1\u00b0\2\uffff\1\1"+
-            "\37\uffff\1\u00ac\1\uffff\1\1\1\uffff\1\1\1\uffff\10\1\2\uffff"+
-            "\3\1\1\uffff\4\1\1\uffff\1\1\15\uffff\1\1\25\uffff\1\1\1\uffff"+
-            "\1\1",
             "",
             "",
             "",
@@ -39648,55 +39532,55 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA241_eot = DFA.unpackEncodedString(DFA241_eotS);
-    static final short[] DFA241_eof = DFA.unpackEncodedString(DFA241_eofS);
-    static final char[] DFA241_min = DFA.unpackEncodedStringToUnsignedChars(DFA241_minS);
-    static final char[] DFA241_max = DFA.unpackEncodedStringToUnsignedChars(DFA241_maxS);
-    static final short[] DFA241_accept = DFA.unpackEncodedString(DFA241_acceptS);
-    static final short[] DFA241_special = DFA.unpackEncodedString(DFA241_specialS);
-    static final short[][] DFA241_transition;
+    static final short[] DFA242_eot = DFA.unpackEncodedString(DFA242_eotS);
+    static final short[] DFA242_eof = DFA.unpackEncodedString(DFA242_eofS);
+    static final char[] DFA242_min = DFA.unpackEncodedStringToUnsignedChars(DFA242_minS);
+    static final char[] DFA242_max = DFA.unpackEncodedStringToUnsignedChars(DFA242_maxS);
+    static final short[] DFA242_accept = DFA.unpackEncodedString(DFA242_acceptS);
+    static final short[] DFA242_special = DFA.unpackEncodedString(DFA242_specialS);
+    static final short[][] DFA242_transition;
 
     static {
-        int numStates = DFA241_transitionS.length;
-        DFA241_transition = new short[numStates][];
+        int numStates = DFA242_transitionS.length;
+        DFA242_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA241_transition[i] = DFA.unpackEncodedString(DFA241_transitionS[i]);
+            DFA242_transition[i] = DFA.unpackEncodedString(DFA242_transitionS[i]);
         }
     }
 
-    class DFA241 extends DFA {
+    class DFA242 extends DFA {
 
-        public DFA241(BaseRecognizer recognizer) {
+        public DFA242(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 241;
-            this.eot = DFA241_eot;
-            this.eof = DFA241_eof;
-            this.min = DFA241_min;
-            this.max = DFA241_max;
-            this.accept = DFA241_accept;
-            this.special = DFA241_special;
-            this.transition = DFA241_transition;
+            this.decisionNumber = 242;
+            this.eot = DFA242_eot;
+            this.eof = DFA242_eof;
+            this.min = DFA242_min;
+            this.max = DFA242_max;
+            this.accept = DFA242_accept;
+            this.special = DFA242_special;
+            this.transition = DFA242_transition;
         }
         public String getDescription() {
             return "613:1: expression : ( classical_expr_wrp | struct_init );";
         }
     }
-    static final String DFA319_eotS =
+    static final String DFA320_eotS =
         "\u00c2\uffff";
-    static final String DFA319_eofS =
+    static final String DFA320_eofS =
         "\67\uffff\1\2\u008a\uffff";
-    static final String DFA319_minS =
+    static final String DFA320_minS =
         "\1\37\1\4\2\uffff\1\4\1\uffff\1\4\26\uffff\2\4\25\uffff\4\4\u008a"+
         "\uffff";
-    static final String DFA319_maxS =
+    static final String DFA320_maxS =
         "\1\u0098\1\u00a5\2\uffff\1\u00a5\1\uffff\1\u00a4\26\uffff\1\u00a4"+
         "\1\u00a5\25\uffff\1\u00a4\2\u00a5\1\u00a4\u008a\uffff";
-    static final String DFA319_acceptS =
+    static final String DFA320_acceptS =
         "\2\uffff\1\2\2\uffff\1\1\71\uffff\4\1\10\uffff\2\1\26\uffff\3\1"+
         "\4\uffff\2\1\23\uffff\3\1\23\uffff\5\1\50\uffff";
-    static final String DFA319_specialS =
+    static final String DFA320_specialS =
         "\u00c2\uffff}>";
-    static final String[] DFA319_transitionS = {
+    static final String[] DFA320_transitionS = {
             "\1\2\6\uffff\1\1\105\uffff\1\2\53\uffff\1\2",
             "\1\2\13\uffff\1\2\16\uffff\1\6\6\uffff\1\2\2\uffff\3\2\15\uffff"+
             "\1\2\26\uffff\3\2\17\uffff\1\5\2\uffff\1\4\1\2\5\uffff\1\2\2"+
@@ -39927,44 +39811,44 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA319_eot = DFA.unpackEncodedString(DFA319_eotS);
-    static final short[] DFA319_eof = DFA.unpackEncodedString(DFA319_eofS);
-    static final char[] DFA319_min = DFA.unpackEncodedStringToUnsignedChars(DFA319_minS);
-    static final char[] DFA319_max = DFA.unpackEncodedStringToUnsignedChars(DFA319_maxS);
-    static final short[] DFA319_accept = DFA.unpackEncodedString(DFA319_acceptS);
-    static final short[] DFA319_special = DFA.unpackEncodedString(DFA319_specialS);
-    static final short[][] DFA319_transition;
+    static final short[] DFA320_eot = DFA.unpackEncodedString(DFA320_eotS);
+    static final short[] DFA320_eof = DFA.unpackEncodedString(DFA320_eofS);
+    static final char[] DFA320_min = DFA.unpackEncodedStringToUnsignedChars(DFA320_minS);
+    static final char[] DFA320_max = DFA.unpackEncodedStringToUnsignedChars(DFA320_maxS);
+    static final short[] DFA320_accept = DFA.unpackEncodedString(DFA320_acceptS);
+    static final short[] DFA320_special = DFA.unpackEncodedString(DFA320_specialS);
+    static final short[][] DFA320_transition;
 
     static {
-        int numStates = DFA319_transitionS.length;
-        DFA319_transition = new short[numStates][];
+        int numStates = DFA320_transitionS.length;
+        DFA320_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA319_transition[i] = DFA.unpackEncodedString(DFA319_transitionS[i]);
+            DFA320_transition[i] = DFA.unpackEncodedString(DFA320_transitionS[i]);
         }
     }
 
-    class DFA319 extends DFA {
+    class DFA320 extends DFA {
 
-        public DFA319(BaseRecognizer recognizer) {
+        public DFA320(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 319;
-            this.eot = DFA319_eot;
-            this.eof = DFA319_eof;
-            this.min = DFA319_min;
-            this.max = DFA319_max;
-            this.accept = DFA319_accept;
-            this.special = DFA319_special;
-            this.transition = DFA319_transition;
+            this.decisionNumber = 320;
+            this.eot = DFA320_eot;
+            this.eof = DFA320_eof;
+            this.min = DFA320_min;
+            this.max = DFA320_max;
+            this.accept = DFA320_accept;
+            this.special = DFA320_special;
+            this.transition = DFA320_transition;
         }
         public String getDescription() {
             return "748:20: ( type_convertion )?";
         }
     }
-    static final String DFA324_eotS =
+    static final String DFA325_eotS =
         "\u08a9\uffff";
-    static final String DFA324_eofS =
+    static final String DFA325_eofS =
         "\1\3\1\55\u08a7\uffff";
-    static final String DFA324_minS =
+    static final String DFA325_minS =
         "\3\4\53\uffff\1\4\16\uffff\1\4\33\uffff\14\4\2\46\2\4\1\46\2\4\1"+
         "\37\2\uffff\1\4\2\uffff\1\4\1\uffff\2\37\45\uffff\1\4\2\uffff\2"+
         "\37\1\4\45\uffff\13\4\2\46\2\4\1\46\2\4\1\37\1\uffff\1\4\1\uffff"+
@@ -39974,7 +39858,7 @@ public TreeAdaptor getTreeAdaptor() {
         "\2\uffff\4\4\2\uffff\4\4\2\uffff\1\37\2\4\2\37\6\4\2\uffff\4\4\1"+
         "\46\1\37\5\4\1\37\14\4\2\46\2\4\1\46\2\4\1\37\1\145\1\4\16\37\2"+
         "\46\1\24\1\37\u071a\uffff";
-    static final String DFA324_maxS =
+    static final String DFA325_maxS =
         "\2\u00a4\1\u00a5\53\uffff\1\u00a3\16\uffff\1\u00a3\33\uffff\1\u00a5"+
         "\6\u009c\5\u00a4\2\46\1\u00a4\2\145\1\u0098\2\u00a5\2\uffff\1\u00a3"+
         "\2\uffff\1\u00a5\1\uffff\2\u0098\45\uffff\1\u00a5\2\uffff\2\u0098"+
@@ -39990,7 +39874,7 @@ public TreeAdaptor getTreeAdaptor() {
         "\1\u0098\1\u00a4\1\u0098\1\u00a5\1\37\6\u00a4\6\u009c\2\46\1\u00a4"+
         "\2\145\1\u0098\2\u00a5\2\145\1\37\1\u00a5\1\145\6\u009a\5\145\2"+
         "\46\1\163\1\u00a5\u071a\uffff";
-    static final String DFA324_acceptS =
+    static final String DFA325_acceptS =
         "\3\uffff\1\3\51\uffff\1\1\77\uffff\1\2\16\uffff\1\1\52\uffff\1\1"+
         "\u008d\uffff\1\2\5\uffff\1\2\5\uffff\1\2\5\uffff\1\2\5\uffff\1\2"+
         "\14\uffff\1\2\65\uffff\1\1\6\uffff\1\1\37\uffff\56\1\6\uffff\2\1"+
@@ -40005,9 +39889,9 @@ public TreeAdaptor getTreeAdaptor() {
         "\5\2\1\uffff\5\2\1\uffff\5\2\1\uffff\14\2\1\uffff\70\2\1\uffff\101"+
         "\2\1\uffff\101\2\1\uffff\101\2\1\uffff\101\2\1\uffff\135\2\1\uffff"+
         "\5\2\1\uffff\137\2\1\uffff\52\2\1\uffff\u0150\2";
-    static final String DFA324_specialS =
+    static final String DFA325_specialS =
         "\u08a9\uffff}>";
-    static final String[] DFA324_transitionS = {
+    static final String[] DFA325_transitionS = {
             "\1\3\2\uffff\1\3\6\uffff\3\3\3\uffff\1\3\1\uffff\1\3\10\uffff"+
             "\1\3\6\uffff\1\2\3\3\2\1\1\3\14\uffff\1\3\10\uffff\4\3\2\uffff"+
             "\1\3\2\uffff\1\3\2\uffff\1\3\1\uffff\3\3\1\uffff\1\3\15\uffff"+
@@ -40938,10 +40822,10 @@ public TreeAdaptor getTreeAdaptor() {
             "\u076f\10\uffff\1\u076d\1\uffff\1\u0764\1\uffff\1\u076e\3\uffff"+
             "\1\u0774\4\uffff\1\u076a",
             "\1\u0777",
-            "\1\u0780\17\uffff\1\u077b\21\uffff\1\u077f\1\u0781\1\uffff"+
-            "\1\u077a\2\u077e\1\u0778\25\uffff\1\u0779\2\uffff\1\u0781\37"+
-            "\uffff\1\u077d\1\uffff\1\u0781\1\uffff\1\u0781\1\uffff\10\u0781"+
-            "\1\u077c\1\uffff\3\u0781\1\uffff\4\u0781\1\uffff\1\u0782\15"+
+            "\1\u077a\17\uffff\1\u077d\21\uffff\1\u0780\1\u0781\1\uffff"+
+            "\1\u077c\2\u077f\1\u0778\25\uffff\1\u077b\2\uffff\1\u0781\37"+
+            "\uffff\1\u0779\1\uffff\1\u0781\1\uffff\1\u0781\1\uffff\10\u0781"+
+            "\1\u077e\1\uffff\3\u0781\1\uffff\4\u0781\1\uffff\1\u0782\15"+
             "\uffff\1\u0781\25\uffff\1\u0781\1\uffff\1\u0781",
             "\1\u0785\42\uffff\1\u0786\4\uffff\1\u0786\25\uffff\1\u0783"+
             "\2\uffff\1\u0786\37\uffff\1\u0784\1\uffff\1\u0786\1\uffff\1"+
@@ -42878,51 +42762,51 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA324_eot = DFA.unpackEncodedString(DFA324_eotS);
-    static final short[] DFA324_eof = DFA.unpackEncodedString(DFA324_eofS);
-    static final char[] DFA324_min = DFA.unpackEncodedStringToUnsignedChars(DFA324_minS);
-    static final char[] DFA324_max = DFA.unpackEncodedStringToUnsignedChars(DFA324_maxS);
-    static final short[] DFA324_accept = DFA.unpackEncodedString(DFA324_acceptS);
-    static final short[] DFA324_special = DFA.unpackEncodedString(DFA324_specialS);
-    static final short[][] DFA324_transition;
+    static final short[] DFA325_eot = DFA.unpackEncodedString(DFA325_eotS);
+    static final short[] DFA325_eof = DFA.unpackEncodedString(DFA325_eofS);
+    static final char[] DFA325_min = DFA.unpackEncodedStringToUnsignedChars(DFA325_minS);
+    static final char[] DFA325_max = DFA.unpackEncodedStringToUnsignedChars(DFA325_maxS);
+    static final short[] DFA325_accept = DFA.unpackEncodedString(DFA325_acceptS);
+    static final short[] DFA325_special = DFA.unpackEncodedString(DFA325_specialS);
+    static final short[][] DFA325_transition;
 
     static {
-        int numStates = DFA324_transitionS.length;
-        DFA324_transition = new short[numStates][];
+        int numStates = DFA325_transitionS.length;
+        DFA325_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA324_transition[i] = DFA.unpackEncodedString(DFA324_transitionS[i]);
+            DFA325_transition[i] = DFA.unpackEncodedString(DFA325_transitionS[i]);
         }
     }
 
-    class DFA324 extends DFA {
+    class DFA325 extends DFA {
 
-        public DFA324(BaseRecognizer recognizer) {
+        public DFA325(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 324;
-            this.eot = DFA324_eot;
-            this.eof = DFA324_eof;
-            this.min = DFA324_min;
-            this.max = DFA324_max;
-            this.accept = DFA324_accept;
-            this.special = DFA324_special;
-            this.transition = DFA324_transition;
+            this.decisionNumber = 325;
+            this.eot = DFA325_eot;
+            this.eof = DFA325_eof;
+            this.min = DFA325_min;
+            this.max = DFA325_max;
+            this.accept = DFA325_accept;
+            this.special = DFA325_special;
+            this.transition = DFA325_transition;
         }
         public String getDescription() {
             return "755:20: ( ( L_PLUS_PLUS | L_MINUS_MINUS ) | method_brackets ( index_brackets )* )?";
         }
     }
-    static final String DFA323_eotS =
+    static final String DFA324_eotS =
         "\u0476\uffff";
-    static final String DFA323_eofS =
+    static final String DFA324_eofS =
         "\1\1\u0475\uffff";
-    static final String DFA323_minS =
+    static final String DFA324_minS =
         "\1\4\22\uffff\1\4\31\uffff\14\4\2\46\1\4\1\37\1\4\3\uffff\2\4\26"+
         "\uffff\6\4\2\46\1\4\1\37\4\uffff\6\4\2\46\1\4\1\37\4\uffff\6\4\2"+
         "\46\1\4\1\37\4\uffff\6\4\2\46\1\4\1\37\4\uffff\6\4\2\46\1\4\1\37"+
         "\4\uffff\6\4\2\46\1\4\1\37\4\uffff\1\4\5\uffff\1\4\5\uffff\1\4\5"+
         "\uffff\1\4\5\uffff\1\4\5\uffff\1\37\2\4\2\37\3\4\5\uffff\15\37\2"+
         "\46\1\24\1\37\14\4\2\46\1\4\1\37\1\4\u037c\uffff";
-    static final String DFA323_maxS =
+    static final String DFA324_maxS =
         "\1\u00a4\22\uffff\1\u00a5\31\uffff\1\u00a5\6\u009c\5\u00a4\2\46"+
         "\1\u00a4\2\u00a5\3\uffff\2\u00a5\26\uffff\1\u009c\5\u00a4\2\46\1"+
         "\u00a4\1\u00a5\4\uffff\1\u009c\5\u00a4\2\46\1\u00a4\1\u00a5\4\uffff"+
@@ -42933,7 +42817,7 @@ public TreeAdaptor getTreeAdaptor() {
         "\uffff\1\145\2\u00a5\2\u0098\2\u00a4\1\u00a5\5\uffff\1\u00a5\1\145"+
         "\6\u009a\5\145\2\46\1\163\2\u00a5\6\u009c\5\u00a4\2\46\1\u00a4\2"+
         "\u00a5\u037c\uffff";
-    static final String DFA323_acceptS =
+    static final String DFA324_acceptS =
         "\1\uffff\1\2\74\uffff\1\1\u00be\uffff\2\1\26\uffff\10\1\14\uffff"+
         "\3\1\4\uffff\12\1\4\uffff\1\1\5\uffff\1\1\5\uffff\1\1\5\uffff\1"+
         "\1\5\uffff\1\1\5\uffff\10\1\5\uffff\33\1\4\uffff\1\1\5\uffff\1\1"+
@@ -42948,9 +42832,9 @@ public TreeAdaptor getTreeAdaptor() {
         "\12\1\4\uffff\12\1\4\uffff\12\1\4\uffff\12\1\4\uffff\12\1\4\uffff"+
         "\12\1\4\uffff\1\1\5\uffff\1\1\5\uffff\1\1\5\uffff\1\1\5\uffff\1"+
         "\1\5\uffff\10\1\5\uffff\42\1\3\uffff";
-    static final String DFA323_specialS =
+    static final String DFA324_specialS =
         "\u0476\uffff}>";
-    static final String[] DFA323_transitionS = {
+    static final String[] DFA324_transitionS = {
             "\1\1\2\uffff\1\1\6\uffff\3\1\3\uffff\1\1\1\uffff\1\1\10\uffff"+
             "\1\1\6\uffff\3\1\1\23\3\1\14\uffff\1\1\10\uffff\4\1\2\uffff"+
             "\1\1\2\uffff\1\1\2\uffff\1\1\1\uffff\3\1\1\uffff\1\1\15\uffff"+
@@ -44423,60 +44307,60 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA323_eot = DFA.unpackEncodedString(DFA323_eotS);
-    static final short[] DFA323_eof = DFA.unpackEncodedString(DFA323_eofS);
-    static final char[] DFA323_min = DFA.unpackEncodedStringToUnsignedChars(DFA323_minS);
-    static final char[] DFA323_max = DFA.unpackEncodedStringToUnsignedChars(DFA323_maxS);
-    static final short[] DFA323_accept = DFA.unpackEncodedString(DFA323_acceptS);
-    static final short[] DFA323_special = DFA.unpackEncodedString(DFA323_specialS);
-    static final short[][] DFA323_transition;
+    static final short[] DFA324_eot = DFA.unpackEncodedString(DFA324_eotS);
+    static final short[] DFA324_eof = DFA.unpackEncodedString(DFA324_eofS);
+    static final char[] DFA324_min = DFA.unpackEncodedStringToUnsignedChars(DFA324_minS);
+    static final char[] DFA324_max = DFA.unpackEncodedStringToUnsignedChars(DFA324_maxS);
+    static final short[] DFA324_accept = DFA.unpackEncodedString(DFA324_acceptS);
+    static final short[] DFA324_special = DFA.unpackEncodedString(DFA324_specialS);
+    static final short[][] DFA324_transition;
 
     static {
-        int numStates = DFA323_transitionS.length;
-        DFA323_transition = new short[numStates][];
+        int numStates = DFA324_transitionS.length;
+        DFA324_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA323_transition[i] = DFA.unpackEncodedString(DFA323_transitionS[i]);
+            DFA324_transition[i] = DFA.unpackEncodedString(DFA324_transitionS[i]);
         }
     }
 
-    class DFA323 extends DFA {
+    class DFA324 extends DFA {
 
-        public DFA323(BaseRecognizer recognizer) {
+        public DFA324(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 323;
-            this.eot = DFA323_eot;
-            this.eof = DFA323_eof;
-            this.min = DFA323_min;
-            this.max = DFA323_max;
-            this.accept = DFA323_accept;
-            this.special = DFA323_special;
-            this.transition = DFA323_transition;
+            this.decisionNumber = 324;
+            this.eot = DFA324_eot;
+            this.eof = DFA324_eof;
+            this.min = DFA324_min;
+            this.max = DFA324_max;
+            this.accept = DFA324_accept;
+            this.special = DFA324_special;
+            this.transition = DFA324_transition;
         }
         public String getDescription() {
             return "()* loopback of 755:67: ( index_brackets )*";
         }
     }
-    static final String DFA330_eotS =
+    static final String DFA331_eotS =
         "\u00ef\uffff";
-    static final String DFA330_eofS =
-        "\64\uffff\1\u0085\u00ba\uffff";
-    static final String DFA330_minS =
+    static final String DFA331_eofS =
+        "\66\uffff\1\u00a3\u00b8\uffff";
+    static final String DFA331_minS =
         "\1\46\1\4\1\uffff\1\4\1\uffff\1\4\24\uffff\1\4\1\uffff\1\4\23\uffff"+
-        "\1\4\1\uffff\1\4\1\uffff\2\4\2\uffff\1\4\1\uffff\2\4\2\uffff\1\4"+
-        "\1\104\u00af\uffff";
-    static final String DFA330_maxS =
+        "\1\4\1\uffff\1\4\1\uffff\4\4\3\uffff\1\4\2\uffff\1\4\1\104\u00af"+
+        "\uffff";
+    static final String DFA331_maxS =
         "\1\51\1\u00a5\1\uffff\1\u00a5\1\uffff\1\u00a4\24\uffff\1\145\1\uffff"+
-        "\1\u00a4\23\uffff\1\u00a5\1\uffff\1\145\1\uffff\2\u00a5\2\uffff"+
-        "\1\u00a4\1\uffff\2\u00a5\2\uffff\2\145\u00af\uffff";
-    static final String DFA330_acceptS =
-        "\2\uffff\1\2\1\uffff\1\1\24\uffff\1\3\50\uffff\1\4\1\uffff\2\1\2"+
-        "\uffff\1\1\1\uffff\2\1\3\uffff\1\1\23\uffff\1\1\1\uffff\3\3\3\uffff"+
-        "\12\1\4\uffff\2\1\12\uffff\1\1\13\uffff\1\1\5\uffff\3\1\6\uffff"+
-        "\1\1\23\uffff\1\1\2\uffff\2\1\2\uffff\1\1\1\3\1\1\20\uffff\1\1\4"+
-        "\uffff\2\1\20\uffff\1\1\3\uffff\2\3\2\uffff\2\3";
-    static final String DFA330_specialS =
+        "\1\u00a4\23\uffff\1\u00a5\1\uffff\1\145\1\uffff\1\u00a4\3\u00a5"+
+        "\3\uffff\1\u00a5\2\uffff\2\145\u00af\uffff";
+    static final String DFA331_acceptS =
+        "\2\uffff\1\2\1\uffff\1\1\24\uffff\1\3\50\uffff\1\4\1\uffff\4\1\3"+
+        "\uffff\1\1\3\uffff\1\1\23\uffff\1\1\1\uffff\3\3\3\uffff\3\1\4\uffff"+
+        "\1\3\3\1\23\uffff\12\1\4\uffff\2\1\12\uffff\1\1\13\uffff\1\1\5\uffff"+
+        "\3\1\6\uffff\1\1\23\uffff\2\1\20\uffff\1\1\4\uffff\2\3\2\uffff\2"+
+        "\3";
+    static final String DFA331_specialS =
         "\u00ef\uffff}>";
-    static final String[] DFA330_transitionS = {
+    static final String[] DFA331_transitionS = {
             "\1\1\2\uffff\1\2",
             "\1\4\13\uffff\1\4\16\uffff\1\5\6\uffff\1\4\2\uffff\3\4\15\uffff"+
             "\1\4\26\uffff\3\4\17\uffff\1\32\2\uffff\1\3\1\4\5\uffff\1\4"+
@@ -44490,8 +44374,8 @@ public TreeAdaptor getTreeAdaptor() {
             "\1\4\3\uffff\1\4\10\uffff\1\4\1\uffff\1\4\1\uffff\1\4\3\uffff"+
             "\1\31\4\uffff\1\4",
             "",
-            "\1\73\17\uffff\1\4\21\uffff\1\72\1\4\1\uffff\1\65\3\4\25\uffff"+
-            "\1\64\2\uffff\1\4\37\uffff\1\70\1\uffff\1\4\1\uffff\1\4\1\uffff"+
+            "\1\65\17\uffff\1\4\21\uffff\1\73\1\4\1\uffff\1\67\3\4\25\uffff"+
+            "\1\66\2\uffff\1\4\37\uffff\1\64\1\uffff\1\4\1\uffff\1\4\1\uffff"+
             "\11\4\1\uffff\3\4\1\uffff\4\4\1\uffff\1\4\15\uffff\1\4\25\uffff"+
             "\1\4\1\uffff\1\4",
             "",
@@ -44517,8 +44401,8 @@ public TreeAdaptor getTreeAdaptor() {
             "\1\31\41\uffff\1\102\2\uffff\1\77\30\uffff\1\31\42\uffff\1"+
             "\76",
             "",
-            "\1\113\17\uffff\1\4\21\uffff\1\112\1\4\1\uffff\1\105\3\4\25"+
-            "\uffff\1\104\2\uffff\1\4\37\uffff\1\110\1\uffff\1\4\1\uffff"+
+            "\1\105\17\uffff\1\4\21\uffff\1\113\1\4\1\uffff\1\107\3\4\25"+
+            "\uffff\1\106\2\uffff\1\4\37\uffff\1\104\1\uffff\1\4\1\uffff"+
             "\1\4\1\uffff\11\4\1\uffff\3\4\1\uffff\4\4\1\uffff\1\4\15\uffff"+
             "\1\4\25\uffff\1\4\1\uffff\1\4",
             "",
@@ -44549,43 +44433,40 @@ public TreeAdaptor getTreeAdaptor() {
             "\1\31\41\uffff\1\102\2\uffff\1\147\30\uffff\1\31\42\uffff\1"+
             "\146",
             "",
-            "\1\171\2\uffff\1\u0085\6\uffff\3\163\3\uffff\1\163\1\uffff"+
-            "\1\u0085\10\uffff\1\155\6\uffff\1\154\2\u0085\1\164\1\156\1"+
-            "\u0099\1\u0085\14\uffff\1\157\10\uffff\2\163\2\u0085\2\uffff"+
-            "\1\163\2\uffff\1\u0085\2\uffff\1\163\1\uffff\1\160\1\161\1\162"+
-            "\1\uffff\1\u0085\15\uffff\1\163\2\uffff\1\153\1\31\1\u0085\1"+
-            "\uffff\1\u0085\1\uffff\1\u0085\1\u0098\2\u0085\1\172\1\u0085"+
-            "\1\u0097\1\u0085\1\163\1\uffff\3\u0085\1\uffff\4\u0085\1\uffff"+
-            "\1\163\1\uffff\1\31\6\uffff\1\31\1\uffff\3\163\1\u0085\2\uffff"+
-            "\1\u0091\1\u0085\1\uffff\1\u0085\1\163\1\u0085\1\uffff\3\u0085"+
-            "\1\uffff\1\163\1\u0085\1\31\1\u0085\2\uffff\3\u0085\1\uffff"+
-            "\1\u0085\1\31",
-            "\1\u0085\32\uffff\1\u0085\6\uffff\1\u0085\2\uffff\3\u0085\15"+
-            "\uffff\1\u0085\12\uffff\1\u00b4\13\uffff\3\u0085\22\uffff\1"+
-            "\u00a0\1\u0085\5\uffff\1\u0085\2\uffff\1\u0085\1\uffff\1\u0085"+
-            "\16\uffff\1\u0085\6\uffff\1\u0085\3\uffff\1\u0085\3\uffff\1"+
-            "\u0085\10\uffff\1\u0085\1\uffff\1\u0085\1\uffff\1\u0085\10\uffff"+
-            "\1\u0085",
+            "\1\153\41\uffff\2\4\1\uffff\1\162\3\4\25\uffff\1\154\2\uffff"+
+            "\1\4\37\uffff\1\155\1\uffff\1\4\1\uffff\1\4\1\uffff\10\4\2\uffff"+
+            "\3\4\1\uffff\4\4\1\uffff\1\4\15\uffff\1\4\25\uffff\1\4\1\uffff"+
+            "\1\4",
+            "\1\165\32\uffff\1\4\6\uffff\1\4\2\uffff\3\4\15\uffff\1\4\10"+
+            "\uffff\1\164\15\uffff\3\4\22\uffff\1\163\1\4\5\uffff\1\4\2\uffff"+
+            "\1\4\1\uffff\1\4\16\uffff\1\4\6\uffff\1\4\3\uffff\1\4\3\uffff"+
+            "\1\4\10\uffff\1\4\1\uffff\1\4\1\uffff\1\4\10\uffff\1\4",
+            "\1\u0097\2\uffff\1\u00a3\6\uffff\3\u0091\3\uffff\1\u0091\1"+
+            "\uffff\1\u00a3\10\uffff\1\u008b\6\uffff\1\u008a\2\u00a3\1\u0092"+
+            "\1\u008c\1\u00b7\1\u00a3\14\uffff\1\u008d\10\uffff\2\u0091\2"+
+            "\u00a3\2\uffff\1\u0091\2\uffff\1\u00a3\2\uffff\1\u0091\1\uffff"+
+            "\1\u008e\1\u008f\1\u0090\1\uffff\1\u00a3\15\uffff\1\u0091\2"+
+            "\uffff\1\u0089\1\31\1\u00a3\1\uffff\1\u00a3\1\uffff\1\u00a3"+
+            "\1\u00b6\2\u00a3\1\u0098\1\u00a3\1\u00b5\1\u00a3\1\u0091\1\uffff"+
+            "\3\u00a3\1\uffff\4\u00a3\1\uffff\1\u0091\1\uffff\1\31\6\uffff"+
+            "\1\31\1\uffff\3\u0091\1\u00a3\2\uffff\1\u00af\1\u00a3\1\uffff"+
+            "\1\u00a3\1\u0091\1\u00a3\1\uffff\3\u00a3\1\uffff\1\u0091\1\u00a3"+
+            "\1\31\1\u00a3\2\uffff\3\u00a3\1\uffff\1\u00a3\1\31",
+            "\1\u00a3\32\uffff\1\u00a3\6\uffff\1\u00a3\2\uffff\3\u00a3\15"+
+            "\uffff\1\u00a3\12\uffff\1\u00d2\13\uffff\3\u00a3\22\uffff\1"+
+            "\u00be\1\u00a3\5\uffff\1\u00a3\2\uffff\1\u00a3\1\uffff\1\u00a3"+
+            "\16\uffff\1\u00a3\6\uffff\1\u00a3\3\uffff\1\u00a3\3\uffff\1"+
+            "\u00a3\10\uffff\1\u00a3\1\uffff\1\u00a3\1\uffff\1\u00a3\10\uffff"+
+            "\1\u00a3",
             "",
             "",
-            "\1\u00b8\41\uffff\2\u0085\1\uffff\1\u00bc\3\u0085\25\uffff"+
-            "\1\u00bb\2\uffff\1\u0085\37\uffff\1\u00b7\1\uffff\1\u0085\1"+
-            "\uffff\1\u0085\1\uffff\10\u0085\2\uffff\3\u0085\1\uffff\4\u0085"+
-            "\1\uffff\1\u0085\15\uffff\1\u0085\25\uffff\1\u0085\1\uffff\1"+
-            "\u0085",
             "",
-            "\1\u00ce\32\uffff\1\u0085\6\uffff\1\u0085\2\uffff\3\u0085\15"+
-            "\uffff\1\u0085\10\uffff\1\u0085\15\uffff\3\u0085\22\uffff\1"+
-            "\u00bd\1\u0085\5\uffff\1\u0085\2\uffff\1\u0085\1\uffff\1\u0085"+
-            "\16\uffff\1\u0085\6\uffff\1\u0085\3\uffff\1\u0085\3\uffff\1"+
-            "\u0085\10\uffff\1\u0085\1\uffff\1\u0085\1\uffff\1\u0085\10\uffff"+
-            "\1\u0085",
-            "\1\u00e5\32\uffff\1\u0085\6\uffff\1\u0085\2\uffff\3\u0085\15"+
-            "\uffff\1\u0085\10\uffff\1\u00d4\15\uffff\3\u0085\22\uffff\1"+
-            "\u00d3\1\u0085\5\uffff\1\u0085\2\uffff\1\u0085\1\uffff\1\u0085"+
-            "\16\uffff\1\u0085\6\uffff\1\u0085\3\uffff\1\u0085\3\uffff\1"+
-            "\u0085\10\uffff\1\u0085\1\uffff\1\u0085\1\uffff\1\u0085\10\uffff"+
-            "\1\u0085",
+            "\1\u00e4\32\uffff\1\u00a3\6\uffff\1\u00a3\2\uffff\3\u00a3\15"+
+            "\uffff\1\u00a3\10\uffff\1\u00a3\15\uffff\3\u00a3\22\uffff\1"+
+            "\u00d3\1\u00a3\5\uffff\1\u00a3\2\uffff\1\u00a3\1\uffff\1\u00a3"+
+            "\16\uffff\1\u00a3\6\uffff\1\u00a3\3\uffff\1\u00a3\3\uffff\1"+
+            "\u00a3\10\uffff\1\u00a3\1\uffff\1\u00a3\1\uffff\1\u00a3\10\uffff"+
+            "\1\u00a3",
             "",
             "",
             "\1\31\44\uffff\1\u00e9\30\uffff\1\31\42\uffff\1\u00ea",
@@ -44767,51 +44648,51 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA330_eot = DFA.unpackEncodedString(DFA330_eotS);
-    static final short[] DFA330_eof = DFA.unpackEncodedString(DFA330_eofS);
-    static final char[] DFA330_min = DFA.unpackEncodedStringToUnsignedChars(DFA330_minS);
-    static final char[] DFA330_max = DFA.unpackEncodedStringToUnsignedChars(DFA330_maxS);
-    static final short[] DFA330_accept = DFA.unpackEncodedString(DFA330_acceptS);
-    static final short[] DFA330_special = DFA.unpackEncodedString(DFA330_specialS);
-    static final short[][] DFA330_transition;
+    static final short[] DFA331_eot = DFA.unpackEncodedString(DFA331_eotS);
+    static final short[] DFA331_eof = DFA.unpackEncodedString(DFA331_eofS);
+    static final char[] DFA331_min = DFA.unpackEncodedStringToUnsignedChars(DFA331_minS);
+    static final char[] DFA331_max = DFA.unpackEncodedStringToUnsignedChars(DFA331_maxS);
+    static final short[] DFA331_accept = DFA.unpackEncodedString(DFA331_acceptS);
+    static final short[] DFA331_special = DFA.unpackEncodedString(DFA331_specialS);
+    static final short[][] DFA331_transition;
 
     static {
-        int numStates = DFA330_transitionS.length;
-        DFA330_transition = new short[numStates][];
+        int numStates = DFA331_transitionS.length;
+        DFA331_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA330_transition[i] = DFA.unpackEncodedString(DFA330_transitionS[i]);
+            DFA331_transition[i] = DFA.unpackEncodedString(DFA331_transitionS[i]);
         }
     }
 
-    class DFA330 extends DFA {
+    class DFA331 extends DFA {
 
-        public DFA330(BaseRecognizer recognizer) {
+        public DFA331(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 330;
-            this.eot = DFA330_eot;
-            this.eof = DFA330_eof;
-            this.min = DFA330_min;
-            this.max = DFA330_max;
-            this.accept = DFA330_accept;
-            this.special = DFA330_special;
-            this.transition = DFA330_transition;
+            this.decisionNumber = 331;
+            this.eot = DFA331_eot;
+            this.eof = DFA331_eof;
+            this.min = DFA331_min;
+            this.max = DFA331_max;
+            this.accept = DFA331_accept;
+            this.special = DFA331_special;
+            this.transition = DFA331_transition;
         }
         public String getDescription() {
             return "760:1: in_brackets : ( round_brackets | square_brackets | type_convertion expression | func_pointer2 );";
         }
     }
-    static final String DFA357_eotS =
+    static final String DFA358_eotS =
         "\u0476\uffff";
-    static final String DFA357_eofS =
+    static final String DFA358_eofS =
         "\1\2\u0475\uffff";
-    static final String DFA357_minS =
+    static final String DFA358_minS =
         "\2\4\53\uffff\14\4\2\46\1\4\3\uffff\1\4\1\37\13\4\2\46\1\4\3\uffff"+
         "\1\4\1\37\7\4\2\46\1\4\4\uffff\1\37\6\4\2\46\1\4\4\uffff\1\37\6"+
         "\4\2\46\1\4\4\uffff\1\37\6\4\2\46\1\4\4\uffff\1\37\6\4\2\46\1\4"+
         "\4\uffff\1\37\6\4\2\46\1\4\4\uffff\1\37\1\4\5\uffff\1\4\5\uffff"+
         "\1\4\5\uffff\1\4\5\uffff\1\4\5\uffff\1\37\2\4\2\37\3\4\5\uffff\1"+
         "\4\1\uffff\1\4\25\uffff\15\37\2\46\1\24\1\37\u0379\uffff";
-    static final String DFA357_maxS =
+    static final String DFA358_maxS =
         "\1\u00a4\1\u00a5\53\uffff\1\u00a5\6\u009c\5\u00a4\2\46\1\u00a4\3"+
         "\uffff\2\u00a5\6\u009c\5\u00a4\2\46\1\u00a4\3\uffff\3\u00a5\1\u009c"+
         "\5\u00a4\2\46\1\u00a4\4\uffff\1\u00a5\1\u009c\5\u00a4\2\46\1\u00a4"+
@@ -44822,7 +44703,7 @@ public TreeAdaptor getTreeAdaptor() {
         "\uffff\1\u00a4\5\uffff\1\145\2\u00a5\2\u0098\2\u00a4\1\u00a5\5\uffff"+
         "\1\u00a5\1\uffff\1\u00a5\25\uffff\1\u00a5\1\145\6\u009a\5\145\2"+
         "\46\1\163\1\u00a5\u0379\uffff";
-    static final String DFA357_acceptS =
+    static final String DFA358_acceptS =
         "\2\uffff\1\2\71\uffff\1\1\u00c0\uffff\11\1\4\uffff\12\1\4\uffff"+
         "\12\1\4\uffff\12\1\4\uffff\12\1\4\uffff\12\1\4\uffff\2\1\5\uffff"+
         "\1\1\5\uffff\1\1\5\uffff\1\1\5\uffff\1\1\5\uffff\10\1\5\uffff\1"+
@@ -44836,11 +44717,11 @@ public TreeAdaptor getTreeAdaptor() {
         "\10\1\5\uffff\31\1\4\uffff\3\1\5\uffff\1\1\5\uffff\1\1\5\uffff\1"+
         "\1\5\uffff\1\1\5\uffff\10\1\5\uffff\21\1\4\uffff\1\1\5\uffff\1\1"+
         "\5\uffff\1\1\5\uffff\1\1\5\uffff\1\1\1\uffff\35\1\5\uffff\1\1\5"+
-        "\uffff\25\1\1\uffff\1\1\23\uffff\1\1\2\uffff\3\1\2\uffff\5\1\1\uffff"+
+        "\uffff\25\1\1\uffff\1\1\23\uffff\1\1\2\uffff\5\1\2\uffff\3\1\1\uffff"+
         "\3\1\15\uffff\163\1";
-    static final String DFA357_specialS =
+    static final String DFA358_specialS =
         "\u0476\uffff}>";
-    static final String[] DFA357_transitionS = {
+    static final String[] DFA358_transitionS = {
             "\1\2\2\uffff\1\2\6\uffff\3\2\3\uffff\1\2\1\uffff\1\2\10\uffff"+
             "\1\2\6\uffff\3\2\1\1\3\2\14\uffff\1\2\10\uffff\4\2\2\uffff\1"+
             "\2\2\uffff\1\2\2\uffff\1\2\1\uffff\3\2\1\uffff\1\2\15\uffff"+
@@ -45355,9 +45236,9 @@ public TreeAdaptor getTreeAdaptor() {
             "\uffff\1\74\3\uffff\1\74\3\uffff\1\74\10\uffff\1\74\1\uffff"+
             "\1\74\1\uffff\1\74\3\uffff\1\74\4\uffff\1\74",
             "",
-            "\1\u03f0\17\uffff\1\74\12\uffff\1\2\6\uffff\1\u03ef\1\74\1"+
-            "\uffff\1\u03ea\1\u03ee\1\u03f5\1\u03e8\14\uffff\1\2\10\uffff"+
-            "\1\u03e9\2\uffff\1\74\12\uffff\3\2\22\uffff\1\u03ed\1\2\1\74"+
+            "\1\u03ea\17\uffff\1\74\12\uffff\1\2\6\uffff\1\u03f0\1\74\1"+
+            "\uffff\1\u03ec\1\u03ef\1\u03f5\1\u03e8\14\uffff\1\2\10\uffff"+
+            "\1\u03eb\2\uffff\1\74\12\uffff\3\2\22\uffff\1\u03e9\1\2\1\74"+
             "\1\uffff\1\74\1\uffff\1\74\1\u03f4\2\74\1\u03f1\1\74\1\u03f3"+
             "\2\74\1\uffff\3\74\1\uffff\4\74\1\uffff\1\74\1\uffff\1\2\6\uffff"+
             "\1\2\3\uffff\1\2\1\74\2\uffff\1\2\10\uffff\1\2\1\uffff\1\2\1"+
@@ -46312,44 +46193,44 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA357_eot = DFA.unpackEncodedString(DFA357_eotS);
-    static final short[] DFA357_eof = DFA.unpackEncodedString(DFA357_eofS);
-    static final char[] DFA357_min = DFA.unpackEncodedStringToUnsignedChars(DFA357_minS);
-    static final char[] DFA357_max = DFA.unpackEncodedStringToUnsignedChars(DFA357_maxS);
-    static final short[] DFA357_accept = DFA.unpackEncodedString(DFA357_acceptS);
-    static final short[] DFA357_special = DFA.unpackEncodedString(DFA357_specialS);
-    static final short[][] DFA357_transition;
+    static final short[] DFA358_eot = DFA.unpackEncodedString(DFA358_eotS);
+    static final short[] DFA358_eof = DFA.unpackEncodedString(DFA358_eofS);
+    static final char[] DFA358_min = DFA.unpackEncodedStringToUnsignedChars(DFA358_minS);
+    static final char[] DFA358_max = DFA.unpackEncodedStringToUnsignedChars(DFA358_maxS);
+    static final short[] DFA358_accept = DFA.unpackEncodedString(DFA358_acceptS);
+    static final short[] DFA358_special = DFA.unpackEncodedString(DFA358_specialS);
+    static final short[][] DFA358_transition;
 
     static {
-        int numStates = DFA357_transitionS.length;
-        DFA357_transition = new short[numStates][];
+        int numStates = DFA358_transitionS.length;
+        DFA358_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA357_transition[i] = DFA.unpackEncodedString(DFA357_transitionS[i]);
+            DFA358_transition[i] = DFA.unpackEncodedString(DFA358_transitionS[i]);
         }
     }
 
-    class DFA357 extends DFA {
+    class DFA358 extends DFA {
 
-        public DFA357(BaseRecognizer recognizer) {
+        public DFA358(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 357;
-            this.eot = DFA357_eot;
-            this.eof = DFA357_eof;
-            this.min = DFA357_min;
-            this.max = DFA357_max;
-            this.accept = DFA357_accept;
-            this.special = DFA357_special;
-            this.transition = DFA357_transition;
+            this.decisionNumber = 358;
+            this.eot = DFA358_eot;
+            this.eof = DFA358_eof;
+            this.min = DFA358_min;
+            this.max = DFA358_max;
+            this.accept = DFA358_accept;
+            this.special = DFA358_special;
+            this.transition = DFA358_transition;
         }
         public String getDescription() {
             return "780:17: ( index_brackets )?";
         }
     }
-    static final String DFA362_eotS =
+    static final String DFA363_eotS =
         "\u07a9\uffff";
-    static final String DFA362_eofS =
+    static final String DFA363_eofS =
         "\1\2\u07a8\uffff";
-    static final String DFA362_minS =
+    static final String DFA363_minS =
         "\2\4\53\uffff\14\4\2\46\2\4\1\46\2\4\1\37\2\uffff\13\4\2\46\2\4"+
         "\1\46\2\4\1\37\1\uffff\1\4\1\uffff\6\4\2\46\2\4\1\46\2\4\1\37\6"+
         "\4\2\46\2\4\1\46\2\4\1\37\6\4\2\46\2\4\1\46\2\4\1\37\6\4\2\46\2"+
@@ -46357,7 +46238,7 @@ public TreeAdaptor getTreeAdaptor() {
         "\4\1\37\4\4\2\uffff\4\4\2\uffff\4\4\2\uffff\4\4\2\uffff\4\4\2\uffff"+
         "\1\37\2\4\2\37\6\4\2\uffff\4\4\1\46\1\37\5\4\1\37\14\4\2\46\2\4"+
         "\1\46\2\4\1\37\1\145\1\4\16\37\2\46\1\24\1\37\u069d\uffff";
-    static final String DFA362_maxS =
+    static final String DFA363_maxS =
         "\1\u00a4\1\u00a5\53\uffff\1\u00a5\6\u009c\5\u00a4\2\46\1\u00a4\2"+
         "\145\1\u0098\2\u00a5\2\uffff\6\u009c\5\u00a4\2\46\1\u00a4\2\145"+
         "\1\u0098\2\u00a5\1\uffff\1\u00a5\1\uffff\1\u009c\5\u00a4\2\46\1"+
@@ -46371,7 +46252,7 @@ public TreeAdaptor getTreeAdaptor() {
         "\1\u00a4\2\145\1\u00a5\1\u0098\1\u00a4\1\u0098\1\u00a5\1\37\6\u00a4"+
         "\6\u009c\2\46\1\u00a4\2\145\1\u0098\2\u00a5\2\145\1\37\1\u00a5\1"+
         "\145\6\u009a\5\145\2\46\1\163\1\u00a5\u069d\uffff";
-    static final String DFA362_acceptS =
+    static final String DFA363_acceptS =
         "\2\uffff\1\2\76\uffff\1\1\160\uffff\1\1\5\uffff\1\1\5\uffff\1\1"+
         "\5\uffff\1\1\5\uffff\1\1\14\uffff\1\1\64\uffff\130\1\1\uffff\5\1"+
         "\1\uffff\5\1\1\uffff\5\1\1\uffff\5\1\1\uffff\14\1\1\uffff\110\1"+
@@ -46385,9 +46266,9 @@ public TreeAdaptor getTreeAdaptor() {
         "\1\uffff\14\1\1\uffff\70\1\1\uffff\101\1\1\uffff\101\1\1\uffff\101"+
         "\1\1\uffff\101\1\1\uffff\135\1\1\uffff\5\1\1\uffff\137\1\1\uffff"+
         "\52\1\1\uffff\u0150\1";
-    static final String DFA362_specialS =
+    static final String DFA363_specialS =
         "\u07a9\uffff}>";
-    static final String[] DFA362_transitionS = {
+    static final String[] DFA363_transitionS = {
             "\1\2\2\uffff\1\2\6\uffff\3\2\3\uffff\1\2\1\uffff\1\2\10\uffff"+
             "\1\2\6\uffff\1\1\6\2\14\uffff\1\2\10\uffff\4\2\2\uffff\1\2\2"+
             "\uffff\1\2\2\uffff\1\2\1\uffff\3\2\1\uffff\1\2\15\uffff\1\2"+
@@ -47136,10 +47017,10 @@ public TreeAdaptor getTreeAdaptor() {
             "\u066f\10\uffff\1\u066d\1\uffff\1\u0664\1\uffff\1\u066e\3\uffff"+
             "\1\u0674\4\uffff\1\u066a",
             "\1\u0677",
-            "\1\u0680\17\uffff\1\u067b\21\uffff\1\u067f\1\u0681\1\uffff"+
-            "\1\u067a\2\u067e\1\u0678\25\uffff\1\u0679\2\uffff\1\u0681\37"+
-            "\uffff\1\u067d\1\uffff\1\u0681\1\uffff\1\u0681\1\uffff\10\u0681"+
-            "\1\u067c\1\uffff\3\u0681\1\uffff\4\u0681\1\uffff\1\u0682\15"+
+            "\1\u067a\17\uffff\1\u067d\21\uffff\1\u0680\1\u0681\1\uffff"+
+            "\1\u067c\2\u067f\1\u0678\25\uffff\1\u067b\2\uffff\1\u0681\37"+
+            "\uffff\1\u0679\1\uffff\1\u0681\1\uffff\1\u0681\1\uffff\10\u0681"+
+            "\1\u067e\1\uffff\3\u0681\1\uffff\4\u0681\1\uffff\1\u0682\15"+
             "\uffff\1\u0681\25\uffff\1\u0681\1\uffff\1\u0681",
             "\1\u0685\42\uffff\1\u0686\4\uffff\1\u0686\25\uffff\1\u0683"+
             "\2\uffff\1\u0686\37\uffff\1\u0684\1\uffff\1\u0686\1\uffff\1"+
@@ -48951,65 +48832,67 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA362_eot = DFA.unpackEncodedString(DFA362_eotS);
-    static final short[] DFA362_eof = DFA.unpackEncodedString(DFA362_eofS);
-    static final char[] DFA362_min = DFA.unpackEncodedStringToUnsignedChars(DFA362_minS);
-    static final char[] DFA362_max = DFA.unpackEncodedStringToUnsignedChars(DFA362_maxS);
-    static final short[] DFA362_accept = DFA.unpackEncodedString(DFA362_acceptS);
-    static final short[] DFA362_special = DFA.unpackEncodedString(DFA362_specialS);
-    static final short[][] DFA362_transition;
+    static final short[] DFA363_eot = DFA.unpackEncodedString(DFA363_eotS);
+    static final short[] DFA363_eof = DFA.unpackEncodedString(DFA363_eofS);
+    static final char[] DFA363_min = DFA.unpackEncodedStringToUnsignedChars(DFA363_minS);
+    static final char[] DFA363_max = DFA.unpackEncodedStringToUnsignedChars(DFA363_maxS);
+    static final short[] DFA363_accept = DFA.unpackEncodedString(DFA363_acceptS);
+    static final short[] DFA363_special = DFA.unpackEncodedString(DFA363_specialS);
+    static final short[][] DFA363_transition;
 
     static {
-        int numStates = DFA362_transitionS.length;
-        DFA362_transition = new short[numStates][];
+        int numStates = DFA363_transitionS.length;
+        DFA363_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA362_transition[i] = DFA.unpackEncodedString(DFA362_transitionS[i]);
+            DFA363_transition[i] = DFA.unpackEncodedString(DFA363_transitionS[i]);
         }
     }
 
-    class DFA362 extends DFA {
+    class DFA363 extends DFA {
 
-        public DFA362(BaseRecognizer recognizer) {
+        public DFA363(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 362;
-            this.eot = DFA362_eot;
-            this.eof = DFA362_eof;
-            this.min = DFA362_min;
-            this.max = DFA362_max;
-            this.accept = DFA362_accept;
-            this.special = DFA362_special;
-            this.transition = DFA362_transition;
+            this.decisionNumber = 363;
+            this.eot = DFA363_eot;
+            this.eof = DFA363_eof;
+            this.min = DFA363_min;
+            this.max = DFA363_max;
+            this.accept = DFA363_accept;
+            this.special = DFA363_special;
+            this.transition = DFA363_transition;
         }
         public String getDescription() {
             return "793:7: ( method_brackets )?";
         }
     }
-    static final String DFA381_eotS =
-        "\u00df\uffff";
-    static final String DFA381_eofS =
-        "\27\uffff\1\10\67\uffff\1\10\u008f\uffff";
-    static final String DFA381_minS =
-        "\1\4\1\uffff\6\4\16\uffff\2\4\42\uffff\2\4\23\uffff\2\4\1\uffff"+
-        "\1\37\u008c\uffff";
-    static final String DFA381_maxS =
-        "\1\u00a5\1\uffff\6\u00a4\16\uffff\1\u00a5\1\u00a4\42\uffff\1\u00a5"+
-        "\1\u00a4\23\uffff\1\u00a4\1\u00a5\1\uffff\1\u0098\u008c\uffff";
-    static final String DFA381_acceptS =
+    static final String DFA382_eotS =
+        "\u0186\uffff";
+    static final String DFA382_eofS =
+        "\31\uffff\1\10\66\uffff\1\10\33\uffff\1\10\u0119\uffff";
+    static final String DFA382_minS =
+        "\1\4\1\uffff\6\4\16\uffff\4\4\40\uffff\2\4\23\uffff\3\4\4\uffff"+
+        "\3\4\23\uffff\2\4\1\uffff\1\37\u0116\uffff";
+    static final String DFA382_maxS =
+        "\1\u00a5\1\uffff\6\u00a4\16\uffff\1\u00a5\1\u00a4\1\u00a5\1\u00a4"+
+        "\40\uffff\1\u00a5\1\u00a4\23\uffff\1\u00a5\2\u00a4\4\uffff\3\u00a5"+
+        "\23\uffff\1\u00a4\1\u00a5\1\uffff\1\u0098\u0116\uffff";
+    static final String DFA382_acceptS =
         "\1\uffff\1\1\6\uffff\1\3\30\uffff\1\2\4\uffff\1\2\4\uffff\1\2\4"+
-        "\uffff\1\2\4\uffff\1\2\33\uffff\1\1\1\uffff\5\1\43\uffff\2\1\23"+
-        "\uffff\2\1\1\uffff\1\1\10\uffff\11\1\43\uffff\24\1\1\uffff\1\1\1"+
-        "\uffff";
-    static final String DFA381_specialS =
-        "\u00df\uffff}>";
-    static final String[] DFA381_transitionS = {
+        "\uffff\1\2\4\uffff\1\2\70\uffff\1\1\1\uffff\5\1\43\uffff\2\1\23"+
+        "\uffff\2\1\1\uffff\1\1\10\uffff\3\1\23\uffff\11\1\43\uffff\3\1\4"+
+        "\uffff\3\1\23\uffff\11\1\2\uffff\1\1\11\uffff\3\1\23\uffff\11\1"+
+        "\43\uffff\24\1\1\uffff\1\1\1\uffff";
+    static final String DFA382_specialS =
+        "\u0186\uffff}>";
+    static final String[] DFA382_transitionS = {
             "\1\10\13\uffff\1\1\16\uffff\1\2\6\uffff\1\10\2\uffff\3\10\15"+
             "\uffff\1\3\26\uffff\1\4\1\5\1\6\23\uffff\1\10\5\uffff\1\10\2"+
             "\uffff\1\10\1\uffff\1\10\16\uffff\1\10\6\uffff\1\10\3\uffff"+
             "\1\7\3\uffff\1\10\10\uffff\1\10\1\uffff\1\7\1\uffff\1\10\10"+
             "\uffff\1\10",
             "",
-            "\1\10\17\uffff\1\10\21\uffff\2\10\1\uffff\3\10\1\26\25\uffff"+
-            "\1\27\2\uffff\1\10\37\uffff\1\10\1\uffff\1\10\1\uffff\1\10\1"+
+            "\1\30\17\uffff\1\10\21\uffff\2\10\1\uffff\3\10\1\26\25\uffff"+
+            "\1\31\2\uffff\1\10\37\uffff\1\27\1\uffff\1\10\1\uffff\1\10\1"+
             "\uffff\11\10\1\uffff\3\10\1\uffff\4\10\1\uffff\1\10\15\uffff"+
             "\1\10\25\uffff\1\10\1\uffff\1\10",
             "\1\10\42\uffff\1\10\4\uffff\1\10\25\uffff\1\41\2\uffff\1\10"+
@@ -49050,13 +48933,22 @@ public TreeAdaptor getTreeAdaptor() {
             "\26\uffff\3\10\22\uffff\1\72\1\10\5\uffff\1\10\2\uffff\1\10"+
             "\1\uffff\1\10\16\uffff\1\10\6\uffff\1\10\3\uffff\1\10\3\uffff"+
             "\1\10\10\uffff\1\10\1\uffff\1\10\1\uffff\1\10\10\uffff\1\10",
+            "\1\117\41\uffff\2\10\2\uffff\3\10\25\uffff\1\120\2\uffff\1"+
+            "\10\37\uffff\1\121\1\uffff\1\10\1\uffff\1\10\1\uffff\10\10\2"+
+            "\uffff\3\10\1\uffff\4\10\1\uffff\1\10\15\uffff\1\10\25\uffff"+
+            "\1\10\1\uffff\1\10",
+            "\1\130\32\uffff\1\10\6\uffff\1\10\2\uffff\3\10\15\uffff\1\10"+
+            "\10\uffff\1\127\15\uffff\3\10\22\uffff\1\126\1\10\5\uffff\1"+
+            "\10\2\uffff\1\10\1\uffff\1\10\16\uffff\1\10\6\uffff\1\10\3\uffff"+
+            "\1\10\3\uffff\1\10\10\uffff\1\10\1\uffff\1\10\1\uffff\1\10\10"+
+            "\uffff\1\10",
             "\1\10\2\uffff\1\10\6\uffff\3\10\3\uffff\1\10\1\uffff\1\10\10"+
-            "\uffff\1\121\6\uffff\1\120\3\10\2\122\1\10\14\uffff\1\123\10"+
+            "\uffff\1\156\6\uffff\1\155\3\10\2\157\1\10\14\uffff\1\160\10"+
             "\uffff\4\10\2\uffff\1\10\2\uffff\1\10\2\uffff\1\10\1\uffff\1"+
-            "\124\1\125\1\126\1\uffff\1\10\15\uffff\1\10\2\uffff\1\117\1"+
+            "\161\1\162\1\163\1\uffff\1\10\15\uffff\1\10\2\uffff\1\154\1"+
             "\uffff\1\10\1\uffff\1\10\1\uffff\11\10\1\uffff\3\10\1\uffff"+
-            "\4\10\1\uffff\1\10\12\uffff\2\10\1\127\1\10\2\uffff\2\10\1\uffff"+
-            "\3\10\1\uffff\3\10\1\uffff\1\127\1\10\1\uffff\1\10\2\uffff\3"+
+            "\4\10\1\uffff\1\10\12\uffff\2\10\1\164\1\10\2\uffff\2\10\1\uffff"+
+            "\3\10\1\uffff\3\10\1\uffff\1\164\1\10\1\uffff\1\10\2\uffff\3"+
             "\10\1\uffff\1\10",
             "",
             "",
@@ -49090,14 +48982,13 @@ public TreeAdaptor getTreeAdaptor() {
             "",
             "",
             "",
-            "",
-            "",
-            "\1\10\32\uffff\1\173\6\uffff\1\10\2\uffff\3\10\15\uffff\1\10"+
-            "\26\uffff\3\10\22\uffff\1\174\1\10\5\uffff\1\10\2\uffff\1\10"+
-            "\1\uffff\1\10\16\uffff\1\10\6\uffff\1\10\3\uffff\1\10\3\uffff"+
-            "\1\10\10\uffff\1\10\1\uffff\1\10\1\uffff\1\10\10\uffff\1\10",
-            "\1\u0091\12\uffff\1\127\4\uffff\1\10\21\uffff\2\10\1\uffff"+
-            "\4\10\25\uffff\1\10\2\uffff\1\u0093\37\uffff\1\u0090\1\uffff"+
+            "\1\10\32\uffff\1\u0098\6\uffff\1\10\2\uffff\3\10\15\uffff\1"+
+            "\10\26\uffff\3\10\22\uffff\1\u0099\1\10\5\uffff\1\10\2\uffff"+
+            "\1\10\1\uffff\1\10\16\uffff\1\10\6\uffff\1\10\3\uffff\1\10\3"+
+            "\uffff\1\10\10\uffff\1\10\1\uffff\1\10\1\uffff\1\10\10\uffff"+
+            "\1\10",
+            "\1\u00ae\12\uffff\1\164\4\uffff\1\10\21\uffff\2\10\1\uffff"+
+            "\4\10\25\uffff\1\10\2\uffff\1\u00b0\37\uffff\1\u00ad\1\uffff"+
             "\1\10\1\uffff\1\10\1\uffff\11\10\1\uffff\3\10\1\uffff\4\10\1"+
             "\uffff\1\10\15\uffff\1\10\25\uffff\1\10\1\uffff\1\10",
             "",
@@ -49119,22 +49010,215 @@ public TreeAdaptor getTreeAdaptor() {
             "",
             "",
             "",
+            "\1\u00bb\32\uffff\1\10\6\uffff\1\10\2\uffff\3\10\15\uffff\1"+
+            "\10\10\uffff\1\u00ba\15\uffff\3\10\22\uffff\1\u00b9\1\10\5\uffff"+
+            "\1\10\2\uffff\1\10\1\uffff\1\10\16\uffff\1\10\6\uffff\1\10\3"+
+            "\uffff\1\10\3\uffff\1\10\10\uffff\1\10\1\uffff\1\10\1\uffff"+
+            "\1\10\10\uffff\1\10",
             "\1\10\2\uffff\1\10\6\uffff\3\10\3\uffff\1\10\1\uffff\1\10\10"+
-            "\uffff\1\u009d\6\uffff\1\u009c\3\10\2\u009e\1\10\14\uffff\1"+
-            "\u009f\10\uffff\4\10\2\uffff\1\10\2\uffff\1\10\2\uffff\1\10"+
-            "\1\uffff\1\u00a0\1\u00a1\1\u00a2\1\uffff\1\10\15\uffff\1\10"+
-            "\2\uffff\1\u00a4\1\uffff\1\10\1\uffff\1\10\1\uffff\11\10\1\uffff"+
-            "\3\10\1\uffff\4\10\1\uffff\1\10\12\uffff\2\10\1\u00a3\1\10\2"+
-            "\uffff\2\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\u00a3\1\10\1"+
+            "\uffff\1\u00d1\6\uffff\1\u00d0\3\10\2\u00d2\1\10\14\uffff\1"+
+            "\u00d3\10\uffff\4\10\2\uffff\1\10\2\uffff\1\10\2\uffff\1\10"+
+            "\1\uffff\1\u00d4\1\u00d5\1\u00d6\1\uffff\1\10\15\uffff\1\10"+
+            "\2\uffff\1\u00cf\1\uffff\1\10\1\uffff\1\10\1\uffff\11\10\1\uffff"+
+            "\3\10\1\uffff\4\10\1\uffff\1\10\12\uffff\2\10\1\u00d7\1\10\2"+
+            "\uffff\2\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\u00d7\1\10\1"+
             "\uffff\1\10\2\uffff\3\10\1\uffff\1\10",
-            "\1\u00d9\32\uffff\1\u00d6\6\uffff\1\u00da\2\uffff\1\u00db\1"+
-            "\u00cb\1\u00cc\15\uffff\1\u00cf\26\uffff\1\u00d0\1\u00d1\1\u00d2"+
-            "\17\uffff\1\10\2\uffff\1\u00c8\1\u00cd\5\uffff\1\u00d9\2\uffff"+
-            "\1\u00c9\1\uffff\1\u00ca\16\uffff\1\u00d5\6\uffff\1\u00d4\3"+
-            "\uffff\1\u00d3\3\uffff\1\u00d8\10\uffff\1\u00d6\1\uffff\1\u00d3"+
-            "\1\uffff\1\u00d7\3\uffff\1\10\4\uffff\1\u00ce",
+            "\1\u00fb\41\uffff\2\10\2\uffff\3\10\25\uffff\1\u00fc\2\uffff"+
+            "\1\10\37\uffff\1\u00fd\1\uffff\1\10\1\uffff\1\10\1\uffff\10"+
+            "\10\2\uffff\3\10\1\uffff\4\10\1\uffff\1\10\15\uffff\1\10\25"+
+            "\uffff\1\10\1\uffff\1\10",
             "",
-            "\1\u00dd\170\uffff\1\10",
+            "",
+            "",
+            "",
+            "\1\u0103\32\uffff\1\10\6\uffff\1\10\2\uffff\3\10\15\uffff\1"+
+            "\10\10\uffff\1\u0102\15\uffff\3\10\22\uffff\1\u0104\1\10\5\uffff"+
+            "\1\10\2\uffff\1\10\1\uffff\1\10\16\uffff\1\10\6\uffff\1\10\3"+
+            "\uffff\1\10\3\uffff\1\10\10\uffff\1\10\1\uffff\1\10\1\uffff"+
+            "\1\10\10\uffff\1\10",
+            "\1\10\32\uffff\1\u011a\6\uffff\1\u0119\2\uffff\1\10\1\u011b"+
+            "\1\u0123\15\uffff\1\u011c\26\uffff\1\u011d\1\u011e\1\u011f\22"+
+            "\uffff\1\u0118\1\10\5\uffff\1\10\2\uffff\1\10\1\uffff\1\10\16"+
+            "\uffff\1\10\6\uffff\1\10\3\uffff\1\u0120\3\uffff\1\10\10\uffff"+
+            "\1\10\1\uffff\1\u0120\1\uffff\1\10\10\uffff\1\10",
+            "\1\u012f\32\uffff\1\10\6\uffff\1\10\2\uffff\3\10\15\uffff\1"+
+            "\10\10\uffff\1\u012e\15\uffff\3\10\22\uffff\1\u012d\1\10\5\uffff"+
+            "\1\10\2\uffff\1\10\1\uffff\1\10\16\uffff\1\10\6\uffff\1\10\3"+
+            "\uffff\1\10\3\uffff\1\10\10\uffff\1\10\1\uffff\1\10\1\uffff"+
+            "\1\10\10\uffff\1\10",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\10\2\uffff\1\10\6\uffff\3\10\3\uffff\1\10\1\uffff\1\10\10"+
+            "\uffff\1\u0144\6\uffff\1\u0143\3\10\2\u0145\1\10\14\uffff\1"+
+            "\u0146\10\uffff\4\10\2\uffff\1\10\2\uffff\1\10\2\uffff\1\10"+
+            "\1\uffff\1\u0147\1\u0148\1\u0149\1\uffff\1\10\15\uffff\1\10"+
+            "\2\uffff\1\u014b\1\uffff\1\10\1\uffff\1\10\1\uffff\11\10\1\uffff"+
+            "\3\10\1\uffff\4\10\1\uffff\1\10\12\uffff\2\10\1\u014a\1\10\2"+
+            "\uffff\2\10\1\uffff\3\10\1\uffff\3\10\1\uffff\1\u014a\1\10\1"+
+            "\uffff\1\10\2\uffff\3\10\1\uffff\1\10",
+            "\1\u0180\32\uffff\1\u017d\6\uffff\1\u0181\2\uffff\1\u0182\1"+
+            "\u0172\1\u0173\15\uffff\1\u0176\26\uffff\1\u0177\1\u0178\1\u0179"+
+            "\17\uffff\1\10\2\uffff\1\u016f\1\u0174\5\uffff\1\u0180\2\uffff"+
+            "\1\u0170\1\uffff\1\u0171\16\uffff\1\u017c\6\uffff\1\u017b\3"+
+            "\uffff\1\u017a\3\uffff\1\u017f\10\uffff\1\u017d\1\uffff\1\u017a"+
+            "\1\uffff\1\u017e\3\uffff\1\10\4\uffff\1\u0175",
+            "",
+            "\1\u0184\170\uffff\1\10",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -49277,57 +49361,57 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA381_eot = DFA.unpackEncodedString(DFA381_eotS);
-    static final short[] DFA381_eof = DFA.unpackEncodedString(DFA381_eofS);
-    static final char[] DFA381_min = DFA.unpackEncodedStringToUnsignedChars(DFA381_minS);
-    static final char[] DFA381_max = DFA.unpackEncodedStringToUnsignedChars(DFA381_maxS);
-    static final short[] DFA381_accept = DFA.unpackEncodedString(DFA381_acceptS);
-    static final short[] DFA381_special = DFA.unpackEncodedString(DFA381_specialS);
-    static final short[][] DFA381_transition;
+    static final short[] DFA382_eot = DFA.unpackEncodedString(DFA382_eotS);
+    static final short[] DFA382_eof = DFA.unpackEncodedString(DFA382_eofS);
+    static final char[] DFA382_min = DFA.unpackEncodedStringToUnsignedChars(DFA382_minS);
+    static final char[] DFA382_max = DFA.unpackEncodedStringToUnsignedChars(DFA382_maxS);
+    static final short[] DFA382_accept = DFA.unpackEncodedString(DFA382_acceptS);
+    static final short[] DFA382_special = DFA.unpackEncodedString(DFA382_specialS);
+    static final short[][] DFA382_transition;
 
     static {
-        int numStates = DFA381_transitionS.length;
-        DFA381_transition = new short[numStates][];
+        int numStates = DFA382_transitionS.length;
+        DFA382_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA381_transition[i] = DFA.unpackEncodedString(DFA381_transitionS[i]);
+            DFA382_transition[i] = DFA.unpackEncodedString(DFA382_transitionS[i]);
         }
     }
 
-    class DFA381 extends DFA {
+    class DFA382 extends DFA {
 
-        public DFA381(BaseRecognizer recognizer) {
+        public DFA382(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 381;
-            this.eot = DFA381_eot;
-            this.eof = DFA381_eof;
-            this.min = DFA381_min;
-            this.max = DFA381_max;
-            this.accept = DFA381_accept;
-            this.special = DFA381_special;
-            this.transition = DFA381_transition;
+            this.decisionNumber = 382;
+            this.eot = DFA382_eot;
+            this.eof = DFA382_eof;
+            this.min = DFA382_min;
+            this.max = DFA382_max;
+            this.accept = DFA382_accept;
+            this.special = DFA382_special;
+            this.transition = DFA382_transition;
         }
         public String getDescription() {
             return "818:1: round_brackets_end : ( type_in_brackets | const_expr R_BR ( WS )* | expr ( WS )* expression_end ( in_brackets_end2 )? );";
         }
     }
-    static final String DFA438_eotS =
+    static final String DFA441_eotS =
         "\113\uffff";
-    static final String DFA438_eofS =
+    static final String DFA441_eofS =
         "\113\uffff";
-    static final String DFA438_minS =
+    static final String DFA441_minS =
         "\1\46\2\4\1\uffff\1\4\1\uffff\1\4\5\uffff\2\4\1\uffff\1\4\4\uffff"+
         "\1\4\1\uffff\1\37\1\4\2\uffff\1\4\1\uffff\1\37\1\4\55\uffff";
-    static final String DFA438_maxS =
+    static final String DFA441_maxS =
         "\1\46\2\u00a0\1\uffff\1\145\1\uffff\1\145\5\uffff\1\145\1\u00a0"+
         "\1\uffff\1\145\4\uffff\1\145\1\uffff\2\145\2\uffff\1\145\1\uffff"+
         "\2\145\55\uffff";
-    static final String DFA438_acceptS =
+    static final String DFA441_acceptS =
         "\3\uffff\1\1\1\uffff\1\2\22\uffff\1\1\5\uffff\1\1\1\uffff\1\1\1"+
         "\uffff\3\1\2\uffff\2\1\1\uffff\1\1\4\uffff\1\1\1\uffff\3\1\2\uffff"+
         "\4\1\1\uffff\5\1\1\uffff\4\1\1\uffff\5\1";
-    static final String DFA438_specialS =
+    static final String DFA441_specialS =
         "\113\uffff}>";
-    static final String[] DFA438_transitionS = {
+    static final String[] DFA441_transitionS = {
             "\1\1",
             "\1\5\13\uffff\1\5\16\uffff\1\6\14\uffff\1\5\25\uffff\1\5\21"+
             "\uffff\1\3\15\uffff\1\4\2\uffff\1\2\72\uffff\1\5",
@@ -49414,55 +49498,55 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA438_eot = DFA.unpackEncodedString(DFA438_eotS);
-    static final short[] DFA438_eof = DFA.unpackEncodedString(DFA438_eofS);
-    static final char[] DFA438_min = DFA.unpackEncodedStringToUnsignedChars(DFA438_minS);
-    static final char[] DFA438_max = DFA.unpackEncodedStringToUnsignedChars(DFA438_maxS);
-    static final short[] DFA438_accept = DFA.unpackEncodedString(DFA438_acceptS);
-    static final short[] DFA438_special = DFA.unpackEncodedString(DFA438_specialS);
-    static final short[][] DFA438_transition;
+    static final short[] DFA441_eot = DFA.unpackEncodedString(DFA441_eotS);
+    static final short[] DFA441_eof = DFA.unpackEncodedString(DFA441_eofS);
+    static final char[] DFA441_min = DFA.unpackEncodedStringToUnsignedChars(DFA441_minS);
+    static final char[] DFA441_max = DFA.unpackEncodedStringToUnsignedChars(DFA441_maxS);
+    static final short[] DFA441_accept = DFA.unpackEncodedString(DFA441_acceptS);
+    static final short[] DFA441_special = DFA.unpackEncodedString(DFA441_specialS);
+    static final short[][] DFA441_transition;
 
     static {
-        int numStates = DFA438_transitionS.length;
-        DFA438_transition = new short[numStates][];
+        int numStates = DFA441_transitionS.length;
+        DFA441_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA438_transition[i] = DFA.unpackEncodedString(DFA438_transitionS[i]);
+            DFA441_transition[i] = DFA.unpackEncodedString(DFA441_transitionS[i]);
         }
     }
 
-    class DFA438 extends DFA {
+    class DFA441 extends DFA {
 
-        public DFA438(BaseRecognizer recognizer) {
+        public DFA441(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 438;
-            this.eot = DFA438_eot;
-            this.eof = DFA438_eof;
-            this.min = DFA438_min;
-            this.max = DFA438_max;
-            this.accept = DFA438_accept;
-            this.special = DFA438_special;
-            this.transition = DFA438_transition;
+            this.decisionNumber = 441;
+            this.eot = DFA441_eot;
+            this.eof = DFA441_eof;
+            this.min = DFA441_min;
+            this.max = DFA441_max;
+            this.accept = DFA441_accept;
+            this.special = DFA441_special;
+            this.transition = DFA441_transition;
         }
         public String getDescription() {
             return "916:1: method_type : ( L_BR ( WS )* ( STRUCT_PREFIX )? type_internal ( WS )* ( generic ( WS )* )? ( ( ASTERISK )+ ( WS )* )? R_BR -> ^( TYPE type_internal ) | L_BR ( WS )* ( CONST_PREFIX )? ( known_types ( WS )* )? ( ID ( WS )* )* ( generic ( WS )* )? ( ( ASTERISK )+ ( WS )* )? R_BR -> ^( TYPE ( ID )+ ) );";
         }
     }
-    static final String DFA478_eotS =
+    static final String DFA481_eotS =
         "\142\uffff";
-    static final String DFA478_eofS =
+    static final String DFA481_eofS =
         "\1\2\1\10\17\uffff\1\10\23\uffff\1\10\74\uffff";
-    static final String DFA478_minS =
+    static final String DFA481_minS =
         "\1\20\1\4\17\uffff\1\4\5\uffff\1\4\15\uffff\1\4\4\uffff\1\4\14\uffff"+
         "\1\4\52\uffff";
-    static final String DFA478_maxS =
+    static final String DFA481_maxS =
         "\2\u009e\17\uffff\1\u009e\5\uffff\1\u0098\15\uffff\1\u009e\4\uffff"+
         "\1\u0098\14\uffff\1\u0098\52\uffff";
-    static final String DFA478_acceptS =
+    static final String DFA481_acceptS =
         "\2\uffff\1\2\5\uffff\1\1\72\uffff\1\1\3\uffff\1\1\12\uffff\1\1\10"+
         "\uffff\1\1\6\uffff";
-    static final String DFA478_specialS =
+    static final String DFA481_specialS =
         "\142\uffff}>";
-    static final String[] DFA478_transitionS = {
+    static final String[] DFA481_transitionS = {
             "\1\2\16\uffff\1\1\50\uffff\1\2\5\uffff\1\2\5\uffff\1\2\15\uffff"+
             "\1\2\2\uffff\1\2\11\uffff\1\2\1\uffff\1\2\17\uffff\1\2\1\uffff"+
             "\2\2\3\uffff\1\2\14\uffff\1\2\2\uffff\1\10\5\uffff\1\2",
@@ -49577,61 +49661,61 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA478_eot = DFA.unpackEncodedString(DFA478_eotS);
-    static final short[] DFA478_eof = DFA.unpackEncodedString(DFA478_eofS);
-    static final char[] DFA478_min = DFA.unpackEncodedStringToUnsignedChars(DFA478_minS);
-    static final char[] DFA478_max = DFA.unpackEncodedStringToUnsignedChars(DFA478_maxS);
-    static final short[] DFA478_accept = DFA.unpackEncodedString(DFA478_acceptS);
-    static final short[] DFA478_special = DFA.unpackEncodedString(DFA478_specialS);
-    static final short[][] DFA478_transition;
+    static final short[] DFA481_eot = DFA.unpackEncodedString(DFA481_eotS);
+    static final short[] DFA481_eof = DFA.unpackEncodedString(DFA481_eofS);
+    static final char[] DFA481_min = DFA.unpackEncodedStringToUnsignedChars(DFA481_minS);
+    static final char[] DFA481_max = DFA.unpackEncodedStringToUnsignedChars(DFA481_maxS);
+    static final short[] DFA481_accept = DFA.unpackEncodedString(DFA481_acceptS);
+    static final short[] DFA481_special = DFA.unpackEncodedString(DFA481_specialS);
+    static final short[][] DFA481_transition;
 
     static {
-        int numStates = DFA478_transitionS.length;
-        DFA478_transition = new short[numStates][];
+        int numStates = DFA481_transitionS.length;
+        DFA481_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA478_transition[i] = DFA.unpackEncodedString(DFA478_transitionS[i]);
+            DFA481_transition[i] = DFA.unpackEncodedString(DFA481_transitionS[i]);
         }
     }
 
-    class DFA478 extends DFA {
+    class DFA481 extends DFA {
 
-        public DFA478(BaseRecognizer recognizer) {
+        public DFA481(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 478;
-            this.eot = DFA478_eot;
-            this.eof = DFA478_eof;
-            this.min = DFA478_min;
-            this.max = DFA478_max;
-            this.accept = DFA478_accept;
-            this.special = DFA478_special;
-            this.transition = DFA478_transition;
+            this.decisionNumber = 481;
+            this.eot = DFA481_eot;
+            this.eof = DFA481_eof;
+            this.min = DFA481_min;
+            this.max = DFA481_max;
+            this.accept = DFA481_accept;
+            this.special = DFA481_special;
+            this.transition = DFA481_transition;
         }
         public String getDescription() {
             return "969:12: ( name ( WS )* )?";
         }
     }
-    static final String DFA513_eotS =
+    static final String DFA516_eotS =
         "\u00ff\uffff";
-    static final String DFA513_eofS =
+    static final String DFA516_eofS =
         "\u00ff\uffff";
-    static final String DFA513_minS =
+    static final String DFA516_minS =
         "\1\37\3\uffff\1\4\1\uffff\4\4\1\uffff\1\4\21\uffff\3\4\1\uffff\2"+
         "\4\23\uffff\2\4\11\uffff\2\4\4\uffff\2\4\4\uffff\2\4\u00b0\uffff";
-    static final String DFA513_maxS =
+    static final String DFA516_maxS =
         "\1\u009a\3\uffff\1\u00a5\1\uffff\1\u00a5\3\u00a4\1\uffff\1\u00a4"+
         "\21\uffff\3\u00a4\1\uffff\1\u00a4\1\u00a5\23\uffff\1\u00a4\1\u00a5"+
         "\11\uffff\1\u00a4\1\u00a5\4\uffff\1\u00a4\1\u00a5\4\uffff\1\u00a4"+
         "\1\u00a5\u00b0\uffff";
-    static final String DFA513_acceptS =
+    static final String DFA516_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\uffff\1\5\4\uffff\1\4\1\uffff\1\6\53\uffff"+
         "\1\4\12\uffff\1\4\5\uffff\1\4\5\uffff\1\4\3\uffff\3\4\10\uffff\3"+
         "\4\3\uffff\3\4\3\uffff\3\4\3\uffff\3\4\1\uffff\2\4\23\uffff\3\4"+
         "\5\uffff\4\4\1\uffff\1\4\21\uffff\3\4\3\uffff\4\4\1\uffff\1\4\21"+
         "\uffff\3\4\3\uffff\4\4\1\uffff\1\4\21\uffff\3\4\3\uffff\4\4\1\uffff"+
         "\1\4\21\uffff";
-    static final String DFA513_specialS =
+    static final String DFA516_specialS =
         "\u00ff\uffff}>";
-    static final String[] DFA513_transitionS = {
+    static final String[] DFA516_transitionS = {
             "\1\1\10\uffff\1\4\20\uffff\1\5\26\uffff\1\2\72\uffff\1\3\16"+
             "\uffff\1\3",
             "",
@@ -49954,34 +50038,34 @@ public TreeAdaptor getTreeAdaptor() {
             ""
     };
 
-    static final short[] DFA513_eot = DFA.unpackEncodedString(DFA513_eotS);
-    static final short[] DFA513_eof = DFA.unpackEncodedString(DFA513_eofS);
-    static final char[] DFA513_min = DFA.unpackEncodedStringToUnsignedChars(DFA513_minS);
-    static final char[] DFA513_max = DFA.unpackEncodedStringToUnsignedChars(DFA513_maxS);
-    static final short[] DFA513_accept = DFA.unpackEncodedString(DFA513_acceptS);
-    static final short[] DFA513_special = DFA.unpackEncodedString(DFA513_specialS);
-    static final short[][] DFA513_transition;
+    static final short[] DFA516_eot = DFA.unpackEncodedString(DFA516_eotS);
+    static final short[] DFA516_eof = DFA.unpackEncodedString(DFA516_eofS);
+    static final char[] DFA516_min = DFA.unpackEncodedStringToUnsignedChars(DFA516_minS);
+    static final char[] DFA516_max = DFA.unpackEncodedStringToUnsignedChars(DFA516_maxS);
+    static final short[] DFA516_accept = DFA.unpackEncodedString(DFA516_acceptS);
+    static final short[] DFA516_special = DFA.unpackEncodedString(DFA516_specialS);
+    static final short[][] DFA516_transition;
 
     static {
-        int numStates = DFA513_transitionS.length;
-        DFA513_transition = new short[numStates][];
+        int numStates = DFA516_transitionS.length;
+        DFA516_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA513_transition[i] = DFA.unpackEncodedString(DFA513_transitionS[i]);
+            DFA516_transition[i] = DFA.unpackEncodedString(DFA516_transitionS[i]);
         }
     }
 
-    class DFA513 extends DFA {
+    class DFA516 extends DFA {
 
-        public DFA513(BaseRecognizer recognizer) {
+        public DFA516(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 513;
-            this.eot = DFA513_eot;
-            this.eof = DFA513_eof;
-            this.min = DFA513_min;
-            this.max = DFA513_max;
-            this.accept = DFA513_accept;
-            this.special = DFA513_special;
-            this.transition = DFA513_transition;
+            this.decisionNumber = 516;
+            this.eot = DFA516_eot;
+            this.eof = DFA516_eof;
+            this.min = DFA516_min;
+            this.max = DFA516_max;
+            this.accept = DFA516_accept;
+            this.special = DFA516_special;
+            this.transition = DFA516_transition;
         }
         public String getDescription() {
             return "1067:1: value : ( ID | string_value | null_stmt | array | NUMBER | struct_init2 );";

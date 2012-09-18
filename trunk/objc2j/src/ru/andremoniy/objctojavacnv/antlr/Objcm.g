@@ -602,7 +602,7 @@ method_call_message
 message	:	msg_expr (COMMA WS* msg_expr)* -> ^(MESSAGE msg_expr (COMMA WS* msg_expr)*)/
 	;
 		
-msg_expr:	L_BR WS* (ID | const_expr) R_BR WS*
+msg_expr:	L_BR WS* (ID | const_expr) R_BR classical_expr_wrp? WS*
 	|	classical_expr_wrp
 	;	
 	
@@ -822,7 +822,7 @@ round_brackets_end
 	;	
 	
 type_in_brackets
-	:	CONST_PREFIX? ID (generic WS*)? R_BR WS* in_brackets_end1
+	:	CONST_PREFIX? ID generic? WS* (ASTERISK WS*)* R_BR WS* in_brackets_end1
 	;
 			
 square_brackets
