@@ -280,6 +280,7 @@ public class ConvertorM {
                     StringBuilder sb1 = new StringBuilder();
                     readChildren(sb1, childTree, cc.gem(false));
                     lsb.append(transformType(sb1.toString(), cc));
+                    lsb.append(" ");
                     break;
                 case ObjcmLexer.NAME:
                     readChildren(lsb, childTree, cc.gem(false));
@@ -291,6 +292,7 @@ public class ConvertorM {
                 default:
                     if (child.toString().equals("static")) isStatic = true;
                     lsb.append(Utils.getText(childTree));
+                    lsb.append(" ");
                     break;
             }
         }
@@ -313,6 +315,7 @@ public class ConvertorM {
                     readChildren(sb1, childTree, cc.gem(true));
                     sb.append(" public ");
                     sb.append(transformType(sb1.toString(), cc));
+                    sb.append(" ");
                     break;
                 case ObjcmLexer.NAME:
                     readChildren(sb, childTree, cc.gem(true));
@@ -337,6 +340,7 @@ public class ConvertorM {
                     break;
                 default:
                     sb.append(Utils.getText(childTree));
+                    sb.append(" ");
                     break;
             }
         }
@@ -516,7 +520,7 @@ public class ConvertorM {
         if (blockTree != null) {
             m_process_block(sb, blockTree, cc.gem(static_flag, name));
         } else {
-            sb.append("{};");
+            sb.append("{};\n");
         }
         sb.append("\n\n");
     }
@@ -583,6 +587,7 @@ public class ConvertorM {
                     break;
                 case ObjcmLexer.RETURN_STMT:
                     cc.isBreak = true;
+                    sb.append("return ");
                     StringBuilder rsb = new StringBuilder();
                     m_process_block(rsb, childTree, cc);
                     sb.append(rsb);
@@ -635,7 +640,7 @@ public class ConvertorM {
                     if (wasReturn && prepared.equals("break") || prepared.startsWith("break ")) {
                         // skip
                     } else {
-                        sb.append(lsb);
+                        sb.append(lsb).append(" ");
                     }
                     wasReturn = prepared.equals("return") || prepared.startsWith("return ");
 
