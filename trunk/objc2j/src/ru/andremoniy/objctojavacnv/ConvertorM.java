@@ -114,14 +114,14 @@ public class ConvertorM {
             sb.append("package ").append(packageName).append(";\n\n");
 
             // process imports sections
-            sb.append("import ru.andremoniy.cocoa.*;\n");
+            sb.append("import ru.andremoniy.jcocoa.*;\n");
             sb.append("import java.util.List;\n");
             sb.append("import java.util.Arrays;\n");
             sb.append("import java.util.ArrayList;\n");
-            sb.append("import static ru.andremoniy.cocoa.MathEx.*;\n");
-            sb.append("import static ru.andremoniy.cocoa.Utils.*;\n");
-            sb.append("import static ru.andremoniy.cocoa.NSException.*;\n");
-            sb.append("import static ru.andremoniy.cocoa.Constants.*;\n");
+            sb.append("import static ru.andremoniy.jcocoa.MathEx.*;\n");
+            sb.append("import static ru.andremoniy.jcocoa.Utils.*;\n");
+            sb.append("import static ru.andremoniy.jcocoa.NSException.*;\n");
+            sb.append("import static ru.andremoniy.jcocoa.Constants.*;\n");
 
         }
 

@@ -2,6 +2,7 @@ package ru.andremoniy.objctojavacnv;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.andremoniy.objctojavacnv.antlr.Macros;
 import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 
 import java.io.File;
@@ -50,6 +51,11 @@ public class Convertor {
             preprocess(context, path, path, processedImports, NOT_IFS);
             //preprocess(macrosMap, path, processedImports, ONLY_IFS);
         } while (preprocess(context, path, path, processedImports, ONLY_IFS));
+
+        // add special macroses:
+        // todo: customization
+        context.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER", "")));
+        context.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_6_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_6_AND_LATER", "")));
 
         convertInternal(context, path, 0); // конвертируем сначала header файлы
         convertInternal(context, path, 1); // конвертируем m-файлы

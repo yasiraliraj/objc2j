@@ -5,8 +5,7 @@ import org.antlr.runtime.tree.CommonTree;
 import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorParser;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * User: Andremoniy
@@ -14,6 +13,9 @@ import java.util.Map;
  * Time: 9:33
  */
 public class Utils {
+
+    private static final List<String> implementedCocoa = Arrays.asList("NSEvent");
+
     static String transformObject(String obj, CurrentContext cc) {
         switch (obj) {
             case "nil":
@@ -100,24 +102,44 @@ public class Utils {
         if (cc.ctx != null) {
             if (!cc.ctx.localProcessedImports.contains(type) && !cc.ctx.addImports.contains(type)) {
                 cc.ctx.addImports.add(type);
+            } else if (type.startsWith("NS")) {
+                cc.ctx.addImports.add(type);
             }
+
         }
 
         return type;
     }
 
     public static void addAdditionalImports(StringBuilder sb, Context ctx) {
+        Set<String> nsImports = new HashSet<>();
         for (String addImport : ctx.addImports) {
             String classPath = ctx.imports.get(addImport);
             if (classPath != null) {
                 if (!classPath.contains("+")) {
                     sb.append("import ").append(classPath).append(";\n");
                     sb.append("import static ").append(classPath).append(".*;\n");
+                    addNSHeaderImport(sb, classPath);
                 }
                 addStaticFromHeaderImports(ctx, sb, classPath.substring(classPath.lastIndexOf(".") + 1));
+            } else if (addImport.startsWith("NS")) {
+                if (!nsImports.contains(addImport) && implementedCocoa.contains(addImport)) {
+                    sb.append("import static ru.andremoniy.jcocoa.I").append(addImport).append(".*;\n");
+//                    sb.append("import ru.andremoniy.jcocoa.I").append(addImport).append(".*;\n");
+                    nsImports.add(addImport);
+                }
             }
         }
         sb.append("\n");
+    }
+
+    private static void addNSHeaderImport(StringBuilder sb, String classPath) {
+        String importClassName = classPath.substring(classPath.lastIndexOf(".") + 1);
+        if (importClassName.startsWith("NS")) {
+            String interfaceName = classPath.substring(0, classPath.lastIndexOf(".")) + ".I" + importClassName;
+            sb.append("import ").append(interfaceName).append(";\n");
+            sb.append("import static ").append(interfaceName).append(".*;\n");
+        }
     }
 
     public static void addStaticFromHeaderImports(Context ctx, StringBuilder sb, String className) {
@@ -168,6 +190,7 @@ public class Utils {
                         } else {
                             sb.append("import ").append(classPath).append(";\n");
                             sb.append("import static ").append(classPath).append(".*;\n");
+                            addNSHeaderImport(sb, classPath);
                         }
                         addStaticFromHeaderImports(ctx, sb, className);
                         ctx.localProcessedImports.add(className);

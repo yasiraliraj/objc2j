@@ -80,7 +80,7 @@ public class ConvertorH {
             sb.append("package ").append(packageName).append(";\n\n");
 
             // todo: process imports sections
-            sb.append("import ru.andremoniy.cocoa.*;\n");
+            sb.append("import ru.andremoniy.jcocoa.*;\n");
             sb.append(originalImportsSb);
         }
 
