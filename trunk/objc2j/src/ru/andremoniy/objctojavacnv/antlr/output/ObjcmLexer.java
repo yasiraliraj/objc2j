@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Objcm.g 2012-09-19 00:38:03
+// $ANTLR 3.4 Objcm.g 2012-09-19 09:04:39
 
 package ru.andremoniy.objctojavacnv.antlr.output;
 
@@ -1646,8 +1646,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_FBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1082:6: ( '{' )
-            // Objcm.g:1082:8: '{'
+            // Objcm.g:1078:6: ( '{' )
+            // Objcm.g:1078:8: '{'
             {
             match('{'); 
 
@@ -1667,8 +1667,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = R_FBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1083:6: ( '}' )
-            // Objcm.g:1083:8: '}'
+            // Objcm.g:1079:6: ( '}' )
+            // Objcm.g:1079:8: '}'
             {
             match('}'); 
 
@@ -1688,8 +1688,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_BR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1084:6: ( '(' )
-            // Objcm.g:1084:8: '('
+            // Objcm.g:1080:6: ( '(' )
+            // Objcm.g:1080:8: '('
             {
             match('('); 
 
@@ -1709,8 +1709,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = R_BR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1085:6: ( ')' )
-            // Objcm.g:1085:8: ')'
+            // Objcm.g:1081:6: ( ')' )
+            // Objcm.g:1081:8: ')'
             {
             match(')'); 
 
@@ -1730,8 +1730,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_KBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1086:6: ( '[' )
-            // Objcm.g:1086:8: '['
+            // Objcm.g:1082:6: ( '[' )
+            // Objcm.g:1082:8: '['
             {
             match('['); 
 
@@ -1751,8 +1751,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = R_KBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1087:6: ( ']' )
-            // Objcm.g:1087:8: ']'
+            // Objcm.g:1083:6: ( ']' )
+            // Objcm.g:1083:8: ']'
             {
             match(']'); 
 
@@ -1772,8 +1772,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1089:2: ( ';' )
-            // Objcm.g:1089:4: ';'
+            // Objcm.g:1085:2: ( ';' )
+            // Objcm.g:1085:4: ';'
             {
             match(';'); 
 
@@ -1793,8 +1793,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1090:6: ( ':' )
-            // Objcm.g:1090:8: ':'
+            // Objcm.g:1086:6: ( ':' )
+            // Objcm.g:1086:8: ':'
             {
             match(':'); 
 
@@ -1814,8 +1814,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_UBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1091:6: ( '<' )
-            // Objcm.g:1091:8: '<'
+            // Objcm.g:1087:6: ( '<' )
+            // Objcm.g:1087:8: '<'
             {
             match('<'); 
 
@@ -1835,8 +1835,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = R_UBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1092:6: ( '>' )
-            // Objcm.g:1092:8: '>'
+            // Objcm.g:1088:6: ( '>' )
+            // Objcm.g:1088:8: '>'
             {
             match('>'); 
 
@@ -1856,8 +1856,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1093:4: ( '.' )
-            // Objcm.g:1093:6: '.'
+            // Objcm.g:1089:4: ( '.' )
+            // Objcm.g:1089:6: '.'
             {
             match('.'); 
 
@@ -1877,8 +1877,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1094:6: ( ',' )
-            // Objcm.g:1094:8: ','
+            // Objcm.g:1090:6: ( ',' )
+            // Objcm.g:1090:8: ','
             {
             match(','); 
 
@@ -1898,8 +1898,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1095:6: ( '=' )
-            // Objcm.g:1095:8: '='
+            // Objcm.g:1091:6: ( '=' )
+            // Objcm.g:1091:8: '='
             {
             match('='); 
 
@@ -1919,8 +1919,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = ASTERISK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1097:2: ( '*' )
-            // Objcm.g:1097:4: '*'
+            // Objcm.g:1093:2: ( '*' )
+            // Objcm.g:1093:4: '*'
             {
             match('*'); 
 
@@ -1940,8 +1940,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_PLUS_PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1099:2: ( '++' )
-            // Objcm.g:1099:4: '++'
+            // Objcm.g:1095:2: ( '++' )
+            // Objcm.g:1095:4: '++'
             {
             match("++"); 
 
@@ -1963,8 +1963,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_MINUS_MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1101:2: ( '--' )
-            // Objcm.g:1101:4: '--'
+            // Objcm.g:1097:2: ( '--' )
+            // Objcm.g:1097:4: '--'
             {
             match("--"); 
 
@@ -1986,43 +1986,11 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = CONST_PREFIX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1104:3: ( 'const' ( WS )+ )
-            // Objcm.g:1104:5: 'const' ( WS )+
+            // Objcm.g:1100:3: ( 'const' )
+            // Objcm.g:1100:5: 'const'
             {
             match("const"); 
 
-
-
-            // Objcm.g:1104:13: ( WS )+
-            int cnt1=0;
-            loop1:
-            do {
-                int alt1=2;
-                int LA1_0 = input.LA(1);
-
-                if ( ((LA1_0 >= '\t' && LA1_0 <= '\n')||(LA1_0 >= '\f' && LA1_0 <= '\r')||LA1_0==' ') ) {
-                    alt1=1;
-                }
-
-
-                switch (alt1) {
-            	case 1 :
-            	    // Objcm.g:1104:13: WS
-            	    {
-            	    mWS(); 
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt1 >= 1 ) break loop1;
-                        EarlyExitException eee =
-                            new EarlyExitException(1, input);
-                        throw eee;
-                }
-                cnt1++;
-            } while (true);
 
 
             }
@@ -2041,43 +2009,11 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = ENUM_PREFIX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1107:2: ( 'enum' ( WS )+ )
-            // Objcm.g:1107:4: 'enum' ( WS )+
+            // Objcm.g:1103:2: ( 'enum' )
+            // Objcm.g:1103:4: 'enum'
             {
             match("enum"); 
 
-
-
-            // Objcm.g:1107:11: ( WS )+
-            int cnt2=0;
-            loop2:
-            do {
-                int alt2=2;
-                int LA2_0 = input.LA(1);
-
-                if ( ((LA2_0 >= '\t' && LA2_0 <= '\n')||(LA2_0 >= '\f' && LA2_0 <= '\r')||LA2_0==' ') ) {
-                    alt2=1;
-                }
-
-
-                switch (alt2) {
-            	case 1 :
-            	    // Objcm.g:1107:11: WS
-            	    {
-            	    mWS(); 
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt2 >= 1 ) break loop2;
-                        EarlyExitException eee =
-                            new EarlyExitException(2, input);
-                        throw eee;
-                }
-                cnt2++;
-            } while (true);
 
 
             }
@@ -2096,43 +2032,11 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = STRUCT_PREFIX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1110:2: ( 'struct' ( WS )+ )
-            // Objcm.g:1110:4: 'struct' ( WS )+
+            // Objcm.g:1106:2: ( 'struct' )
+            // Objcm.g:1106:4: 'struct'
             {
             match("struct"); 
 
-
-
-            // Objcm.g:1110:13: ( WS )+
-            int cnt3=0;
-            loop3:
-            do {
-                int alt3=2;
-                int LA3_0 = input.LA(1);
-
-                if ( ((LA3_0 >= '\t' && LA3_0 <= '\n')||(LA3_0 >= '\f' && LA3_0 <= '\r')||LA3_0==' ') ) {
-                    alt3=1;
-                }
-
-
-                switch (alt3) {
-            	case 1 :
-            	    // Objcm.g:1110:13: WS
-            	    {
-            	    mWS(); 
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt3 >= 1 ) break loop3;
-                        EarlyExitException eee =
-                            new EarlyExitException(3, input);
-                        throw eee;
-                }
-                cnt3++;
-            } while (true);
 
 
             }
@@ -2151,43 +2055,11 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = STATIC_PREFIX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1113:2: ( 'static' ( WS )+ )
-            // Objcm.g:1113:4: 'static' ( WS )+
+            // Objcm.g:1109:2: ( 'static' )
+            // Objcm.g:1109:4: 'static'
             {
             match("static"); 
 
-
-
-            // Objcm.g:1113:13: ( WS )+
-            int cnt4=0;
-            loop4:
-            do {
-                int alt4=2;
-                int LA4_0 = input.LA(1);
-
-                if ( ((LA4_0 >= '\t' && LA4_0 <= '\n')||(LA4_0 >= '\f' && LA4_0 <= '\r')||LA4_0==' ') ) {
-                    alt4=1;
-                }
-
-
-                switch (alt4) {
-            	case 1 :
-            	    // Objcm.g:1113:13: WS
-            	    {
-            	    mWS(); 
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    if ( cnt4 >= 1 ) break loop4;
-                        EarlyExitException eee =
-                            new EarlyExitException(4, input);
-                        throw eee;
-                }
-                cnt4++;
-            } while (true);
 
 
             }
@@ -2206,25 +2078,25 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = SINGLE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1116:2: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
-            // Objcm.g:1116:4: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
+            // Objcm.g:1112:2: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
+            // Objcm.g:1112:4: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
             {
             match("//"); 
 
 
 
-            // Objcm.g:1116:9: (~ ( '\\r' | '\\n' ) )*
-            loop5:
+            // Objcm.g:1112:9: (~ ( '\\r' | '\\n' ) )*
+            loop1:
             do {
-                int alt5=2;
-                int LA5_0 = input.LA(1);
+                int alt1=2;
+                int LA1_0 = input.LA(1);
 
-                if ( ((LA5_0 >= '\u0000' && LA5_0 <= '\t')||(LA5_0 >= '\u000B' && LA5_0 <= '\f')||(LA5_0 >= '\u000E' && LA5_0 <= '\uFFFF')) ) {
-                    alt5=1;
+                if ( ((LA1_0 >= '\u0000' && LA1_0 <= '\t')||(LA1_0 >= '\u000B' && LA1_0 <= '\f')||(LA1_0 >= '\u000E' && LA1_0 <= '\uFFFF')) ) {
+                    alt1=1;
                 }
 
 
-                switch (alt5) {
+                switch (alt1) {
             	case 1 :
             	    // Objcm.g:
             	    {
@@ -2242,37 +2114,37 @@ public class ObjcmLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop5;
+            	    break loop1;
                 }
             } while (true);
 
 
-            // Objcm.g:1116:25: ( ( '\\r' )? '\\n' )+
-            int cnt7=0;
-            loop7:
+            // Objcm.g:1112:25: ( ( '\\r' )? '\\n' )+
+            int cnt3=0;
+            loop3:
             do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
+                int alt3=2;
+                int LA3_0 = input.LA(1);
 
-                if ( (LA7_0=='\n'||LA7_0=='\r') ) {
-                    alt7=1;
+                if ( (LA3_0=='\n'||LA3_0=='\r') ) {
+                    alt3=1;
                 }
 
 
-                switch (alt7) {
+                switch (alt3) {
             	case 1 :
-            	    // Objcm.g:1116:26: ( '\\r' )? '\\n'
+            	    // Objcm.g:1112:26: ( '\\r' )? '\\n'
             	    {
-            	    // Objcm.g:1116:26: ( '\\r' )?
-            	    int alt6=2;
-            	    int LA6_0 = input.LA(1);
+            	    // Objcm.g:1112:26: ( '\\r' )?
+            	    int alt2=2;
+            	    int LA2_0 = input.LA(1);
 
-            	    if ( (LA6_0=='\r') ) {
-            	        alt6=1;
+            	    if ( (LA2_0=='\r') ) {
+            	        alt2=1;
             	    }
-            	    switch (alt6) {
+            	    switch (alt2) {
             	        case 1 :
-            	            // Objcm.g:1116:26: '\\r'
+            	            // Objcm.g:1112:26: '\\r'
             	            {
             	            match('\r'); 
 
@@ -2288,12 +2160,12 @@ public class ObjcmLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt7 >= 1 ) break loop7;
+            	    if ( cnt3 >= 1 ) break loop3;
                         EarlyExitException eee =
-                            new EarlyExitException(7, input);
+                            new EarlyExitException(3, input);
                         throw eee;
                 }
-                cnt7++;
+                cnt3++;
             } while (true);
 
 
@@ -2315,39 +2187,39 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = MULTI_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1119:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
-            // Objcm.g:1119:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
+            // Objcm.g:1115:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
+            // Objcm.g:1115:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
             {
             match("/*"); 
 
 
 
-            // Objcm.g:1119:10: ( . )*
-            loop8:
+            // Objcm.g:1115:10: ( . )*
+            loop4:
             do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+                int alt4=2;
+                int LA4_0 = input.LA(1);
 
-                if ( (LA8_0=='*') ) {
-                    int LA8_1 = input.LA(2);
+                if ( (LA4_0=='*') ) {
+                    int LA4_1 = input.LA(2);
 
-                    if ( (LA8_1=='/') ) {
-                        alt8=2;
+                    if ( (LA4_1=='/') ) {
+                        alt4=2;
                     }
-                    else if ( ((LA8_1 >= '\u0000' && LA8_1 <= '.')||(LA8_1 >= '0' && LA8_1 <= '\uFFFF')) ) {
-                        alt8=1;
+                    else if ( ((LA4_1 >= '\u0000' && LA4_1 <= '.')||(LA4_1 >= '0' && LA4_1 <= '\uFFFF')) ) {
+                        alt4=1;
                     }
 
 
                 }
-                else if ( ((LA8_0 >= '\u0000' && LA8_0 <= ')')||(LA8_0 >= '+' && LA8_0 <= '\uFFFF')) ) {
-                    alt8=1;
+                else if ( ((LA4_0 >= '\u0000' && LA4_0 <= ')')||(LA4_0 >= '+' && LA4_0 <= '\uFFFF')) ) {
+                    alt4=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt4) {
             	case 1 :
-            	    // Objcm.g:1119:10: .
+            	    // Objcm.g:1115:10: .
             	    {
             	    matchAny(); 
 
@@ -2355,7 +2227,7 @@ public class ObjcmLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop8;
+            	    break loop4;
                 }
             } while (true);
 
@@ -2364,27 +2236,27 @@ public class ObjcmLexer extends Lexer {
 
 
 
-            // Objcm.g:1119:18: ( ( '\\r' )? '\\n' )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            // Objcm.g:1115:18: ( ( '\\r' )? '\\n' )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-            if ( (LA10_0=='\n'||LA10_0=='\r') ) {
-                alt10=1;
+            if ( (LA6_0=='\n'||LA6_0=='\r') ) {
+                alt6=1;
             }
-            switch (alt10) {
+            switch (alt6) {
                 case 1 :
-                    // Objcm.g:1119:19: ( '\\r' )? '\\n'
+                    // Objcm.g:1115:19: ( '\\r' )? '\\n'
                     {
-                    // Objcm.g:1119:19: ( '\\r' )?
-                    int alt9=2;
-                    int LA9_0 = input.LA(1);
+                    // Objcm.g:1115:19: ( '\\r' )?
+                    int alt5=2;
+                    int LA5_0 = input.LA(1);
 
-                    if ( (LA9_0=='\r') ) {
-                        alt9=1;
+                    if ( (LA5_0=='\r') ) {
+                        alt5=1;
                     }
-                    switch (alt9) {
+                    switch (alt5) {
                         case 1 :
-                            // Objcm.g:1119:19: '\\r'
+                            // Objcm.g:1115:19: '\\r'
                             {
                             match('\r'); 
 
@@ -2420,23 +2292,23 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = PREPROCESSOR_DECLARATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1122:2: ( '#' (~ ( '\\\\' | '\\r' | '\\n' ) )* ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )* ( '\\r' | '\\n' )+ )
-            // Objcm.g:1122:5: '#' (~ ( '\\\\' | '\\r' | '\\n' ) )* ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )* ( '\\r' | '\\n' )+
+            // Objcm.g:1118:2: ( '#' (~ ( '\\\\' | '\\r' | '\\n' ) )* ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )* ( '\\r' | '\\n' )+ )
+            // Objcm.g:1118:5: '#' (~ ( '\\\\' | '\\r' | '\\n' ) )* ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )* ( '\\r' | '\\n' )+
             {
             match('#'); 
 
-            // Objcm.g:1122:9: (~ ( '\\\\' | '\\r' | '\\n' ) )*
-            loop11:
+            // Objcm.g:1118:9: (~ ( '\\\\' | '\\r' | '\\n' ) )*
+            loop7:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt7=2;
+                int LA7_0 = input.LA(1);
 
-                if ( ((LA11_0 >= '\u0000' && LA11_0 <= '\t')||(LA11_0 >= '\u000B' && LA11_0 <= '\f')||(LA11_0 >= '\u000E' && LA11_0 <= '[')||(LA11_0 >= ']' && LA11_0 <= '\uFFFF')) ) {
-                    alt11=1;
+                if ( ((LA7_0 >= '\u0000' && LA7_0 <= '\t')||(LA7_0 >= '\u000B' && LA7_0 <= '\f')||(LA7_0 >= '\u000E' && LA7_0 <= '[')||(LA7_0 >= ']' && LA7_0 <= '\uFFFF')) ) {
+                    alt7=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt7) {
             	case 1 :
             	    // Objcm.g:
             	    {
@@ -2454,41 +2326,41 @@ public class ObjcmLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop11;
+            	    break loop7;
                 }
             } while (true);
 
 
-            // Objcm.g:1122:32: ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )*
-            loop14:
+            // Objcm.g:1118:32: ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )*
+            loop10:
             do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+                int alt10=2;
+                int LA10_0 = input.LA(1);
 
-                if ( (LA14_0=='\\') ) {
-                    alt14=1;
+                if ( (LA10_0=='\\') ) {
+                    alt10=1;
                 }
 
 
-                switch (alt14) {
+                switch (alt10) {
             	case 1 :
-            	    // Objcm.g:1122:33: '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+
+            	    // Objcm.g:1118:33: '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+
             	    {
             	    match('\\'); 
 
-            	    // Objcm.g:1122:38: ( '\\r' | '\\n' )+
-            	    int cnt12=0;
-            	    loop12:
+            	    // Objcm.g:1118:38: ( '\\r' | '\\n' )+
+            	    int cnt8=0;
+            	    loop8:
             	    do {
-            	        int alt12=2;
-            	        int LA12_0 = input.LA(1);
+            	        int alt8=2;
+            	        int LA8_0 = input.LA(1);
 
-            	        if ( (LA12_0=='\n'||LA12_0=='\r') ) {
-            	            alt12=1;
+            	        if ( (LA8_0=='\n'||LA8_0=='\r') ) {
+            	            alt8=1;
             	        }
 
 
-            	        switch (alt12) {
+            	        switch (alt8) {
             	    	case 1 :
             	    	    // Objcm.g:
             	    	    {
@@ -2506,28 +2378,28 @@ public class ObjcmLexer extends Lexer {
             	    	    break;
 
             	    	default :
-            	    	    if ( cnt12 >= 1 ) break loop12;
+            	    	    if ( cnt8 >= 1 ) break loop8;
             	                EarlyExitException eee =
-            	                    new EarlyExitException(12, input);
+            	                    new EarlyExitException(8, input);
             	                throw eee;
             	        }
-            	        cnt12++;
+            	        cnt8++;
             	    } while (true);
 
 
-            	    // Objcm.g:1122:53: (~ ( '\\\\' | '\\r' | '\\n' ) )+
-            	    int cnt13=0;
-            	    loop13:
+            	    // Objcm.g:1118:53: (~ ( '\\\\' | '\\r' | '\\n' ) )+
+            	    int cnt9=0;
+            	    loop9:
             	    do {
-            	        int alt13=2;
-            	        int LA13_0 = input.LA(1);
+            	        int alt9=2;
+            	        int LA9_0 = input.LA(1);
 
-            	        if ( ((LA13_0 >= '\u0000' && LA13_0 <= '\t')||(LA13_0 >= '\u000B' && LA13_0 <= '\f')||(LA13_0 >= '\u000E' && LA13_0 <= '[')||(LA13_0 >= ']' && LA13_0 <= '\uFFFF')) ) {
-            	            alt13=1;
+            	        if ( ((LA9_0 >= '\u0000' && LA9_0 <= '\t')||(LA9_0 >= '\u000B' && LA9_0 <= '\f')||(LA9_0 >= '\u000E' && LA9_0 <= '[')||(LA9_0 >= ']' && LA9_0 <= '\uFFFF')) ) {
+            	            alt9=1;
             	        }
 
 
-            	        switch (alt13) {
+            	        switch (alt9) {
             	    	case 1 :
             	    	    // Objcm.g:
             	    	    {
@@ -2545,12 +2417,12 @@ public class ObjcmLexer extends Lexer {
             	    	    break;
 
             	    	default :
-            	    	    if ( cnt13 >= 1 ) break loop13;
+            	    	    if ( cnt9 >= 1 ) break loop9;
             	                EarlyExitException eee =
-            	                    new EarlyExitException(13, input);
+            	                    new EarlyExitException(9, input);
             	                throw eee;
             	        }
-            	        cnt13++;
+            	        cnt9++;
             	    } while (true);
 
 
@@ -2558,24 +2430,24 @@ public class ObjcmLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop14;
+            	    break loop10;
                 }
             } while (true);
 
 
-            // Objcm.g:1122:78: ( '\\r' | '\\n' )+
-            int cnt15=0;
-            loop15:
+            // Objcm.g:1118:78: ( '\\r' | '\\n' )+
+            int cnt11=0;
+            loop11:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( (LA15_0=='\n'||LA15_0=='\r') ) {
-                    alt15=1;
+                if ( (LA11_0=='\n'||LA11_0=='\r') ) {
+                    alt11=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt11) {
             	case 1 :
             	    // Objcm.g:
             	    {
@@ -2593,12 +2465,12 @@ public class ObjcmLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt15 >= 1 ) break loop15;
+            	    if ( cnt11 >= 1 ) break loop11;
                         EarlyExitException eee =
-                            new EarlyExitException(15, input);
+                            new EarlyExitException(11, input);
                         throw eee;
                 }
-                cnt15++;
+                cnt11++;
             } while (true);
 
 
@@ -2620,26 +2492,26 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1124:9: ( ( DIGIT )+ ( 'u' | 'U' )? | ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )? | ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )? | ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )? | ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+ )
-            int alt33=5;
-            alt33 = dfa33.predict(input);
-            switch (alt33) {
+            // Objcm.g:1120:9: ( ( DIGIT )+ ( 'u' | 'U' )? | ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )? | ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )? | ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )? | ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+ )
+            int alt29=5;
+            alt29 = dfa29.predict(input);
+            switch (alt29) {
                 case 1 :
-                    // Objcm.g:1124:11: ( DIGIT )+ ( 'u' | 'U' )?
+                    // Objcm.g:1120:11: ( DIGIT )+ ( 'u' | 'U' )?
                     {
-                    // Objcm.g:1124:11: ( DIGIT )+
-                    int cnt16=0;
-                    loop16:
+                    // Objcm.g:1120:11: ( DIGIT )+
+                    int cnt12=0;
+                    loop12:
                     do {
-                        int alt16=2;
-                        int LA16_0 = input.LA(1);
+                        int alt12=2;
+                        int LA12_0 = input.LA(1);
 
-                        if ( ((LA16_0 >= '0' && LA16_0 <= '9')) ) {
-                            alt16=1;
+                        if ( ((LA12_0 >= '0' && LA12_0 <= '9')) ) {
+                            alt12=1;
                         }
 
 
-                        switch (alt16) {
+                        switch (alt12) {
                     	case 1 :
                     	    // Objcm.g:
                     	    {
@@ -2657,23 +2529,23 @@ public class ObjcmLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    if ( cnt16 >= 1 ) break loop16;
+                    	    if ( cnt12 >= 1 ) break loop12;
                                 EarlyExitException eee =
-                                    new EarlyExitException(16, input);
+                                    new EarlyExitException(12, input);
                                 throw eee;
                         }
-                        cnt16++;
+                        cnt12++;
                     } while (true);
 
 
-                    // Objcm.g:1124:18: ( 'u' | 'U' )?
-                    int alt17=2;
-                    int LA17_0 = input.LA(1);
+                    // Objcm.g:1120:18: ( 'u' | 'U' )?
+                    int alt13=2;
+                    int LA13_0 = input.LA(1);
 
-                    if ( (LA17_0=='U'||LA17_0=='u') ) {
-                        alt17=1;
+                    if ( (LA13_0=='U'||LA13_0=='u') ) {
+                        alt13=1;
                     }
-                    switch (alt17) {
+                    switch (alt13) {
                         case 1 :
                             // Objcm.g:
                             {
@@ -2696,9 +2568,154 @@ public class ObjcmLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Objcm.g:1125:4: ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )?
+                    // Objcm.g:1121:4: ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )?
                     {
-                    // Objcm.g:1125:4: ( DIGIT )+
+                    // Objcm.g:1121:4: ( DIGIT )+
+                    int cnt14=0;
+                    loop14:
+                    do {
+                        int alt14=2;
+                        int LA14_0 = input.LA(1);
+
+                        if ( ((LA14_0 >= '0' && LA14_0 <= '9')) ) {
+                            alt14=1;
+                        }
+
+
+                        switch (alt14) {
+                    	case 1 :
+                    	    // Objcm.g:
+                    	    {
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt14 >= 1 ) break loop14;
+                                EarlyExitException eee =
+                                    new EarlyExitException(14, input);
+                                throw eee;
+                        }
+                        cnt14++;
+                    } while (true);
+
+
+                    mDOT(); 
+
+
+                    // Objcm.g:1121:15: ( DIGIT )*
+                    loop15:
+                    do {
+                        int alt15=2;
+                        int LA15_0 = input.LA(1);
+
+                        if ( ((LA15_0 >= '0' && LA15_0 <= '9')) ) {
+                            alt15=1;
+                        }
+
+
+                        switch (alt15) {
+                    	case 1 :
+                    	    // Objcm.g:
+                    	    {
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop15;
+                        }
+                    } while (true);
+
+
+                    // Objcm.g:1121:22: ( 'f' | 'F' )?
+                    int alt16=2;
+                    int LA16_0 = input.LA(1);
+
+                    if ( (LA16_0=='F'||LA16_0=='f') ) {
+                        alt16=1;
+                    }
+                    switch (alt16) {
+                        case 1 :
+                            // Objcm.g:
+                            {
+                            if ( input.LA(1)=='F'||input.LA(1)=='f' ) {
+                                input.consume();
+                            }
+                            else {
+                                MismatchedSetException mse = new MismatchedSetException(null,input);
+                                recover(mse);
+                                throw mse;
+                            }
+
+
+                            }
+                            break;
+
+                    }
+
+
+                    }
+                    break;
+                case 3 :
+                    // Objcm.g:1122:4: ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )?
+                    {
+                    // Objcm.g:1122:4: ( DIGIT )*
+                    loop17:
+                    do {
+                        int alt17=2;
+                        int LA17_0 = input.LA(1);
+
+                        if ( ((LA17_0 >= '0' && LA17_0 <= '9')) ) {
+                            alt17=1;
+                        }
+
+
+                        switch (alt17) {
+                    	case 1 :
+                    	    // Objcm.g:
+                    	    {
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop17;
+                        }
+                    } while (true);
+
+
+                    mDOT(); 
+
+
+                    // Objcm.g:1122:15: ( DIGIT )+
                     int cnt18=0;
                     loop18:
                     do {
@@ -2737,159 +2754,14 @@ public class ObjcmLexer extends Lexer {
                     } while (true);
 
 
-                    mDOT(); 
+                    // Objcm.g:1122:22: ( 'f' | 'F' )?
+                    int alt19=2;
+                    int LA19_0 = input.LA(1);
 
-
-                    // Objcm.g:1125:15: ( DIGIT )*
-                    loop19:
-                    do {
-                        int alt19=2;
-                        int LA19_0 = input.LA(1);
-
-                        if ( ((LA19_0 >= '0' && LA19_0 <= '9')) ) {
-                            alt19=1;
-                        }
-
-
-                        switch (alt19) {
-                    	case 1 :
-                    	    // Objcm.g:
-                    	    {
-                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-                    	        input.consume();
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;
-                    	    }
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop19;
-                        }
-                    } while (true);
-
-
-                    // Objcm.g:1125:22: ( 'f' | 'F' )?
-                    int alt20=2;
-                    int LA20_0 = input.LA(1);
-
-                    if ( (LA20_0=='F'||LA20_0=='f') ) {
-                        alt20=1;
+                    if ( (LA19_0=='F'||LA19_0=='f') ) {
+                        alt19=1;
                     }
-                    switch (alt20) {
-                        case 1 :
-                            // Objcm.g:
-                            {
-                            if ( input.LA(1)=='F'||input.LA(1)=='f' ) {
-                                input.consume();
-                            }
-                            else {
-                                MismatchedSetException mse = new MismatchedSetException(null,input);
-                                recover(mse);
-                                throw mse;
-                            }
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    }
-                    break;
-                case 3 :
-                    // Objcm.g:1126:4: ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )?
-                    {
-                    // Objcm.g:1126:4: ( DIGIT )*
-                    loop21:
-                    do {
-                        int alt21=2;
-                        int LA21_0 = input.LA(1);
-
-                        if ( ((LA21_0 >= '0' && LA21_0 <= '9')) ) {
-                            alt21=1;
-                        }
-
-
-                        switch (alt21) {
-                    	case 1 :
-                    	    // Objcm.g:
-                    	    {
-                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-                    	        input.consume();
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;
-                    	    }
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop21;
-                        }
-                    } while (true);
-
-
-                    mDOT(); 
-
-
-                    // Objcm.g:1126:15: ( DIGIT )+
-                    int cnt22=0;
-                    loop22:
-                    do {
-                        int alt22=2;
-                        int LA22_0 = input.LA(1);
-
-                        if ( ((LA22_0 >= '0' && LA22_0 <= '9')) ) {
-                            alt22=1;
-                        }
-
-
-                        switch (alt22) {
-                    	case 1 :
-                    	    // Objcm.g:
-                    	    {
-                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-                    	        input.consume();
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;
-                    	    }
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    if ( cnt22 >= 1 ) break loop22;
-                                EarlyExitException eee =
-                                    new EarlyExitException(22, input);
-                                throw eee;
-                        }
-                        cnt22++;
-                    } while (true);
-
-
-                    // Objcm.g:1126:22: ( 'f' | 'F' )?
-                    int alt23=2;
-                    int LA23_0 = input.LA(1);
-
-                    if ( (LA23_0=='F'||LA23_0=='f') ) {
-                        alt23=1;
-                    }
-                    switch (alt23) {
+                    switch (alt19) {
                         case 1 :
                             // Objcm.g:
                             {
@@ -2912,35 +2784,35 @@ public class ObjcmLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // Objcm.g:1127:4: ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )?
+                    // Objcm.g:1123:4: ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )?
                     {
-                    // Objcm.g:1127:4: ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )?
-                    int alt27=2;
-                    int LA27_0 = input.LA(1);
+                    // Objcm.g:1123:4: ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )?
+                    int alt23=2;
+                    int LA23_0 = input.LA(1);
 
-                    if ( (LA27_0=='0') ) {
-                        alt27=1;
+                    if ( (LA23_0=='0') ) {
+                        alt23=1;
                     }
-                    switch (alt27) {
+                    switch (alt23) {
                         case 1 :
-                            // Objcm.g:1127:5: '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )?
+                            // Objcm.g:1123:5: '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )?
                             {
                             match("0x"); 
 
 
 
-                            // Objcm.g:1127:11: ( DIGIT | 'A' .. 'F' )*
-                            loop24:
+                            // Objcm.g:1123:11: ( DIGIT | 'A' .. 'F' )*
+                            loop20:
                             do {
-                                int alt24=2;
-                                int LA24_0 = input.LA(1);
+                                int alt20=2;
+                                int LA20_0 = input.LA(1);
 
-                                if ( ((LA24_0 >= '0' && LA24_0 <= '9')||(LA24_0 >= 'A' && LA24_0 <= 'F')) ) {
-                                    alt24=1;
+                                if ( ((LA20_0 >= '0' && LA20_0 <= '9')||(LA20_0 >= 'A' && LA20_0 <= 'F')) ) {
+                                    alt20=1;
                                 }
 
 
-                                switch (alt24) {
+                                switch (alt20) {
                             	case 1 :
                             	    // Objcm.g:
                             	    {
@@ -2958,38 +2830,38 @@ public class ObjcmLexer extends Lexer {
                             	    break;
 
                             	default :
-                            	    break loop24;
+                            	    break loop20;
                                 }
                             } while (true);
 
 
-                            // Objcm.g:1127:28: ( DOT ( DIGIT )+ )?
-                            int alt26=2;
-                            int LA26_0 = input.LA(1);
+                            // Objcm.g:1123:28: ( DOT ( DIGIT )+ )?
+                            int alt22=2;
+                            int LA22_0 = input.LA(1);
 
-                            if ( (LA26_0=='.') ) {
-                                alt26=1;
+                            if ( (LA22_0=='.') ) {
+                                alt22=1;
                             }
-                            switch (alt26) {
+                            switch (alt22) {
                                 case 1 :
-                                    // Objcm.g:1127:29: DOT ( DIGIT )+
+                                    // Objcm.g:1123:29: DOT ( DIGIT )+
                                     {
                                     mDOT(); 
 
 
-                                    // Objcm.g:1127:33: ( DIGIT )+
-                                    int cnt25=0;
-                                    loop25:
+                                    // Objcm.g:1123:33: ( DIGIT )+
+                                    int cnt21=0;
+                                    loop21:
                                     do {
-                                        int alt25=2;
-                                        int LA25_0 = input.LA(1);
+                                        int alt21=2;
+                                        int LA21_0 = input.LA(1);
 
-                                        if ( ((LA25_0 >= '0' && LA25_0 <= '9')) ) {
-                                            alt25=1;
+                                        if ( ((LA21_0 >= '0' && LA21_0 <= '9')) ) {
+                                            alt21=1;
                                         }
 
 
-                                        switch (alt25) {
+                                        switch (alt21) {
                                     	case 1 :
                                     	    // Objcm.g:
                                     	    {
@@ -3007,12 +2879,12 @@ public class ObjcmLexer extends Lexer {
                                     	    break;
 
                                     	default :
-                                    	    if ( cnt25 >= 1 ) break loop25;
+                                    	    if ( cnt21 >= 1 ) break loop21;
                                                 EarlyExitException eee =
-                                                    new EarlyExitException(25, input);
+                                                    new EarlyExitException(21, input);
                                                 throw eee;
                                         }
-                                        cnt25++;
+                                        cnt21++;
                                     } while (true);
 
 
@@ -3031,9 +2903,136 @@ public class ObjcmLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // Objcm.g:1128:4: ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+
+                    // Objcm.g:1124:4: ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+
                     {
-                    // Objcm.g:1128:4: ( DIGIT )+
+                    // Objcm.g:1124:4: ( DIGIT )+
+                    int cnt24=0;
+                    loop24:
+                    do {
+                        int alt24=2;
+                        int LA24_0 = input.LA(1);
+
+                        if ( ((LA24_0 >= '0' && LA24_0 <= '9')) ) {
+                            alt24=1;
+                        }
+
+
+                        switch (alt24) {
+                    	case 1 :
+                    	    // Objcm.g:
+                    	    {
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt24 >= 1 ) break loop24;
+                                EarlyExitException eee =
+                                    new EarlyExitException(24, input);
+                                throw eee;
+                        }
+                        cnt24++;
+                    } while (true);
+
+
+                    // Objcm.g:1124:11: ( DOT ( DIGIT )+ )?
+                    int alt26=2;
+                    int LA26_0 = input.LA(1);
+
+                    if ( (LA26_0=='.') ) {
+                        alt26=1;
+                    }
+                    switch (alt26) {
+                        case 1 :
+                            // Objcm.g:1124:12: DOT ( DIGIT )+
+                            {
+                            mDOT(); 
+
+
+                            // Objcm.g:1124:16: ( DIGIT )+
+                            int cnt25=0;
+                            loop25:
+                            do {
+                                int alt25=2;
+                                int LA25_0 = input.LA(1);
+
+                                if ( ((LA25_0 >= '0' && LA25_0 <= '9')) ) {
+                                    alt25=1;
+                                }
+
+
+                                switch (alt25) {
+                            	case 1 :
+                            	    // Objcm.g:
+                            	    {
+                            	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                            	        input.consume();
+                            	    }
+                            	    else {
+                            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                            	        recover(mse);
+                            	        throw mse;
+                            	    }
+
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    if ( cnt25 >= 1 ) break loop25;
+                                        EarlyExitException eee =
+                                            new EarlyExitException(25, input);
+                                        throw eee;
+                                }
+                                cnt25++;
+                            } while (true);
+
+
+                            }
+                            break;
+
+                    }
+
+
+                    match('e'); 
+
+                    // Objcm.g:1124:29: ( '-' | '+' )?
+                    int alt27=2;
+                    int LA27_0 = input.LA(1);
+
+                    if ( (LA27_0=='+'||LA27_0=='-') ) {
+                        alt27=1;
+                    }
+                    switch (alt27) {
+                        case 1 :
+                            // Objcm.g:
+                            {
+                            if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
+                                input.consume();
+                            }
+                            else {
+                                MismatchedSetException mse = new MismatchedSetException(null,input);
+                                recover(mse);
+                                throw mse;
+                            }
+
+
+                            }
+                            break;
+
+                    }
+
+
+                    // Objcm.g:1124:40: ( DIGIT )+
                     int cnt28=0;
                     loop28:
                     do {
@@ -3072,133 +3071,6 @@ public class ObjcmLexer extends Lexer {
                     } while (true);
 
 
-                    // Objcm.g:1128:11: ( DOT ( DIGIT )+ )?
-                    int alt30=2;
-                    int LA30_0 = input.LA(1);
-
-                    if ( (LA30_0=='.') ) {
-                        alt30=1;
-                    }
-                    switch (alt30) {
-                        case 1 :
-                            // Objcm.g:1128:12: DOT ( DIGIT )+
-                            {
-                            mDOT(); 
-
-
-                            // Objcm.g:1128:16: ( DIGIT )+
-                            int cnt29=0;
-                            loop29:
-                            do {
-                                int alt29=2;
-                                int LA29_0 = input.LA(1);
-
-                                if ( ((LA29_0 >= '0' && LA29_0 <= '9')) ) {
-                                    alt29=1;
-                                }
-
-
-                                switch (alt29) {
-                            	case 1 :
-                            	    // Objcm.g:
-                            	    {
-                            	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-                            	        input.consume();
-                            	    }
-                            	    else {
-                            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                            	        recover(mse);
-                            	        throw mse;
-                            	    }
-
-
-                            	    }
-                            	    break;
-
-                            	default :
-                            	    if ( cnt29 >= 1 ) break loop29;
-                                        EarlyExitException eee =
-                                            new EarlyExitException(29, input);
-                                        throw eee;
-                                }
-                                cnt29++;
-                            } while (true);
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    match('e'); 
-
-                    // Objcm.g:1128:29: ( '-' | '+' )?
-                    int alt31=2;
-                    int LA31_0 = input.LA(1);
-
-                    if ( (LA31_0=='+'||LA31_0=='-') ) {
-                        alt31=1;
-                    }
-                    switch (alt31) {
-                        case 1 :
-                            // Objcm.g:
-                            {
-                            if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
-                                input.consume();
-                            }
-                            else {
-                                MismatchedSetException mse = new MismatchedSetException(null,input);
-                                recover(mse);
-                                throw mse;
-                            }
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    // Objcm.g:1128:40: ( DIGIT )+
-                    int cnt32=0;
-                    loop32:
-                    do {
-                        int alt32=2;
-                        int LA32_0 = input.LA(1);
-
-                        if ( ((LA32_0 >= '0' && LA32_0 <= '9')) ) {
-                            alt32=1;
-                        }
-
-
-                        switch (alt32) {
-                    	case 1 :
-                    	    // Objcm.g:
-                    	    {
-                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-                    	        input.consume();
-                    	    }
-                    	    else {
-                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
-                    	        recover(mse);
-                    	        throw mse;
-                    	    }
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    if ( cnt32 >= 1 ) break loop32;
-                                EarlyExitException eee =
-                                    new EarlyExitException(32, input);
-                                throw eee;
-                        }
-                        cnt32++;
-                    } while (true);
-
-
                     }
                     break;
 
@@ -3217,22 +3089,22 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1130:4: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-            // Objcm.g:1130:6: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // Objcm.g:1126:4: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+            // Objcm.g:1126:6: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             {
-            // Objcm.g:1130:6: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
-            int cnt34=0;
-            loop34:
+            // Objcm.g:1126:6: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            int cnt30=0;
+            loop30:
             do {
-                int alt34=2;
-                int LA34_0 = input.LA(1);
+                int alt30=2;
+                int LA30_0 = input.LA(1);
 
-                if ( ((LA34_0 >= '\t' && LA34_0 <= '\n')||(LA34_0 >= '\f' && LA34_0 <= '\r')||LA34_0==' ') ) {
-                    alt34=1;
+                if ( ((LA30_0 >= '\t' && LA30_0 <= '\n')||(LA30_0 >= '\f' && LA30_0 <= '\r')||LA30_0==' ') ) {
+                    alt30=1;
                 }
 
 
-                switch (alt34) {
+                switch (alt30) {
             	case 1 :
             	    // Objcm.g:
             	    {
@@ -3250,14 +3122,16 @@ public class ObjcmLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt34 >= 1 ) break loop34;
+            	    if ( cnt30 >= 1 ) break loop30;
                         EarlyExitException eee =
-                            new EarlyExitException(34, input);
+                            new EarlyExitException(30, input);
                         throw eee;
                 }
-                cnt34++;
+                cnt30++;
             } while (true);
 
+
+             _channel = HIDDEN; 
 
             }
 
@@ -3275,38 +3149,11 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = SINGLE_OP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1133:2: ( 'continue' ( WS )* SEMICOLON )
-            // Objcm.g:1133:4: 'continue' ( WS )* SEMICOLON
+            // Objcm.g:1129:2: ( 'continue' SEMICOLON )
+            // Objcm.g:1129:4: 'continue' SEMICOLON
             {
             match("continue"); 
 
-
-
-            // Objcm.g:1133:15: ( WS )*
-            loop35:
-            do {
-                int alt35=2;
-                int LA35_0 = input.LA(1);
-
-                if ( ((LA35_0 >= '\t' && LA35_0 <= '\n')||(LA35_0 >= '\f' && LA35_0 <= '\r')||LA35_0==' ') ) {
-                    alt35=1;
-                }
-
-
-                switch (alt35) {
-            	case 1 :
-            	    // Objcm.g:1133:15: WS
-            	    {
-            	    mWS(); 
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop35;
-                }
-            } while (true);
 
 
             mSEMICOLON(); 
@@ -3328,8 +3175,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = BREAK_WORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1137:2: ( 'break' )
-            // Objcm.g:1137:4: 'break'
+            // Objcm.g:1133:2: ( 'break' )
+            // Objcm.g:1133:4: 'break'
             {
             match("break"); 
 
@@ -3351,8 +3198,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = VOID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1139:6: ( 'void' )
-            // Objcm.g:1139:8: 'void'
+            // Objcm.g:1135:6: ( 'void' )
+            // Objcm.g:1135:8: 'void'
             {
             match("void"); 
 
@@ -3374,24 +3221,24 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1141:4: ( LETTER ( DIGIT | LETTER )* )
-            // Objcm.g:1141:6: LETTER ( DIGIT | LETTER )*
+            // Objcm.g:1137:4: ( LETTER ( DIGIT | LETTER )* )
+            // Objcm.g:1137:6: LETTER ( DIGIT | LETTER )*
             {
             mLETTER(); 
 
 
-            // Objcm.g:1141:13: ( DIGIT | LETTER )*
-            loop36:
+            // Objcm.g:1137:13: ( DIGIT | LETTER )*
+            loop31:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt31=2;
+                int LA31_0 = input.LA(1);
 
-                if ( ((LA36_0 >= '0' && LA36_0 <= '9')||(LA36_0 >= 'A' && LA36_0 <= 'Z')||LA36_0=='_'||(LA36_0 >= 'a' && LA36_0 <= 'z')) ) {
-                    alt36=1;
+                if ( ((LA31_0 >= '0' && LA31_0 <= '9')||(LA31_0 >= 'A' && LA31_0 <= 'Z')||LA31_0=='_'||(LA31_0 >= 'a' && LA31_0 <= 'z')) ) {
+                    alt31=1;
                 }
 
 
-                switch (alt36) {
+                switch (alt31) {
             	case 1 :
             	    // Objcm.g:
             	    {
@@ -3409,7 +3256,7 @@ public class ObjcmLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop36;
+            	    break loop31;
                 }
             } while (true);
 
@@ -3430,50 +3277,50 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = STRING_LITERAL2;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1147:2: ( '\"' ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )* '\"' )
-            // Objcm.g:1147:4: '\"' ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )* '\"'
+            // Objcm.g:1143:2: ( '\"' ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )* '\"' )
+            // Objcm.g:1143:4: '\"' ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )* '\"'
             {
             match('\"'); 
 
-            // Objcm.g:1147:8: ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )*
-            loop37:
+            // Objcm.g:1143:8: ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )*
+            loop32:
             do {
-                int alt37=4;
-                int LA37_0 = input.LA(1);
+                int alt32=4;
+                int LA32_0 = input.LA(1);
 
-                if ( ((LA37_0 >= '\t' && LA37_0 <= '\n')||(LA37_0 >= '\f' && LA37_0 <= '\r')||LA37_0==' ') ) {
-                    alt37=1;
+                if ( ((LA32_0 >= '\t' && LA32_0 <= '\n')||(LA32_0 >= '\f' && LA32_0 <= '\r')||LA32_0==' ') ) {
+                    alt32=1;
                 }
-                else if ( (LA37_0=='\\') ) {
-                    int LA37_3 = input.LA(2);
+                else if ( (LA32_0=='\\') ) {
+                    int LA32_3 = input.LA(2);
 
-                    if ( (LA37_3=='\"') ) {
-                        int LA37_5 = input.LA(3);
+                    if ( (LA32_3=='\"') ) {
+                        int LA32_5 = input.LA(3);
 
-                        if ( ((LA37_5 >= '\u0000' && LA37_5 <= '\uFFFF')) ) {
-                            alt37=2;
+                        if ( ((LA32_5 >= '\u0000' && LA32_5 <= '\uFFFF')) ) {
+                            alt32=2;
                         }
 
                         else {
-                            alt37=3;
+                            alt32=3;
                         }
 
 
                     }
-                    else if ( ((LA37_3 >= '\u0000' && LA37_3 <= '!')||(LA37_3 >= '#' && LA37_3 <= '\uFFFF')) ) {
-                        alt37=3;
+                    else if ( ((LA32_3 >= '\u0000' && LA32_3 <= '!')||(LA32_3 >= '#' && LA32_3 <= '\uFFFF')) ) {
+                        alt32=3;
                     }
 
 
                 }
-                else if ( ((LA37_0 >= '\u0000' && LA37_0 <= '\b')||LA37_0=='\u000B'||(LA37_0 >= '\u000E' && LA37_0 <= '\u001F')||LA37_0=='!'||(LA37_0 >= '#' && LA37_0 <= '[')||(LA37_0 >= ']' && LA37_0 <= '\uFFFF')) ) {
-                    alt37=3;
+                else if ( ((LA32_0 >= '\u0000' && LA32_0 <= '\b')||LA32_0=='\u000B'||(LA32_0 >= '\u000E' && LA32_0 <= '\u001F')||LA32_0=='!'||(LA32_0 >= '#' && LA32_0 <= '[')||(LA32_0 >= ']' && LA32_0 <= '\uFFFF')) ) {
+                    alt32=3;
                 }
 
 
-                switch (alt37) {
+                switch (alt32) {
             	case 1 :
-            	    // Objcm.g:1147:9: WS
+            	    // Objcm.g:1143:9: WS
             	    {
             	    mWS(); 
 
@@ -3481,7 +3328,7 @@ public class ObjcmLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Objcm.g:1147:14: ESC
+            	    // Objcm.g:1143:14: ESC
             	    {
             	    mESC(); 
 
@@ -3489,7 +3336,7 @@ public class ObjcmLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // Objcm.g:1147:20: ~ ( '\\r' | '\\n' | '\"' )
+            	    // Objcm.g:1143:20: ~ ( '\\r' | '\\n' | '\"' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -3505,7 +3352,7 @@ public class ObjcmLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop37;
+            	    break loop32;
                 }
             } while (true);
 
@@ -3528,40 +3375,40 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = STRING_LITERAL3;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1150:2: ( '\\'' ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )* '\\'' )
-            // Objcm.g:1150:4: '\\'' ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )* '\\''
+            // Objcm.g:1146:2: ( '\\'' ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )* '\\'' )
+            // Objcm.g:1146:4: '\\'' ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )* '\\''
             {
             match('\''); 
 
-            // Objcm.g:1150:9: ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )*
-            loop38:
+            // Objcm.g:1146:9: ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )*
+            loop33:
             do {
-                int alt38=4;
-                int LA38_0 = input.LA(1);
+                int alt33=4;
+                int LA33_0 = input.LA(1);
 
-                if ( ((LA38_0 >= '\t' && LA38_0 <= '\n')||(LA38_0 >= '\f' && LA38_0 <= '\r')||LA38_0==' ') ) {
-                    alt38=1;
+                if ( ((LA33_0 >= '\t' && LA33_0 <= '\n')||(LA33_0 >= '\f' && LA33_0 <= '\r')||LA33_0==' ') ) {
+                    alt33=1;
                 }
-                else if ( (LA38_0=='\\') ) {
-                    int LA38_3 = input.LA(2);
+                else if ( (LA33_0=='\\') ) {
+                    int LA33_3 = input.LA(2);
 
-                    if ( (LA38_3=='\"') ) {
-                        alt38=2;
+                    if ( (LA33_3=='\"') ) {
+                        alt33=2;
                     }
-                    else if ( ((LA38_3 >= '\u0000' && LA38_3 <= '!')||(LA38_3 >= '#' && LA38_3 <= '\uFFFF')) ) {
-                        alt38=3;
+                    else if ( ((LA33_3 >= '\u0000' && LA33_3 <= '!')||(LA33_3 >= '#' && LA33_3 <= '\uFFFF')) ) {
+                        alt33=3;
                     }
 
 
                 }
-                else if ( ((LA38_0 >= '\u0000' && LA38_0 <= '\b')||LA38_0=='\u000B'||(LA38_0 >= '\u000E' && LA38_0 <= '\u001F')||(LA38_0 >= '!' && LA38_0 <= '&')||(LA38_0 >= '(' && LA38_0 <= '[')||(LA38_0 >= ']' && LA38_0 <= '\uFFFF')) ) {
-                    alt38=3;
+                else if ( ((LA33_0 >= '\u0000' && LA33_0 <= '\b')||LA33_0=='\u000B'||(LA33_0 >= '\u000E' && LA33_0 <= '\u001F')||(LA33_0 >= '!' && LA33_0 <= '&')||(LA33_0 >= '(' && LA33_0 <= '[')||(LA33_0 >= ']' && LA33_0 <= '\uFFFF')) ) {
+                    alt33=3;
                 }
 
 
-                switch (alt38) {
+                switch (alt33) {
             	case 1 :
-            	    // Objcm.g:1150:10: WS
+            	    // Objcm.g:1146:10: WS
             	    {
             	    mWS(); 
 
@@ -3569,7 +3416,7 @@ public class ObjcmLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Objcm.g:1150:15: ESC
+            	    // Objcm.g:1146:15: ESC
             	    {
             	    mESC(); 
 
@@ -3577,7 +3424,7 @@ public class ObjcmLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // Objcm.g:1150:21: ~ ( '\\r' | '\\n' | '\\'' )
+            	    // Objcm.g:1146:21: ~ ( '\\r' | '\\n' | '\\'' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -3593,7 +3440,7 @@ public class ObjcmLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop38;
+            	    break loop33;
                 }
             } while (true);
 
@@ -3616,19 +3463,19 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = STRING_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1152:16: ( ( '`' )? '@' STRING_LITERAL2 )
-            // Objcm.g:1152:18: ( '`' )? '@' STRING_LITERAL2
+            // Objcm.g:1148:16: ( ( '`' )? '@' STRING_LITERAL2 )
+            // Objcm.g:1148:18: ( '`' )? '@' STRING_LITERAL2
             {
-            // Objcm.g:1152:18: ( '`' )?
-            int alt39=2;
-            int LA39_0 = input.LA(1);
+            // Objcm.g:1148:18: ( '`' )?
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-            if ( (LA39_0=='`') ) {
-                alt39=1;
+            if ( (LA34_0=='`') ) {
+                alt34=1;
             }
-            switch (alt39) {
+            switch (alt34) {
                 case 1 :
-                    // Objcm.g:1152:18: '`'
+                    // Objcm.g:1148:18: '`'
                     {
                     match('`'); 
 
@@ -3657,7 +3504,7 @@ public class ObjcmLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // Objcm.g:1154:17: ( '0' .. '9' )
+            // Objcm.g:1150:17: ( '0' .. '9' )
             // Objcm.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -3683,7 +3530,7 @@ public class ObjcmLexer extends Lexer {
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
-            // Objcm.g:1155:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // Objcm.g:1151:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
             // Objcm.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -3709,8 +3556,8 @@ public class ObjcmLexer extends Lexer {
     // $ANTLR start "ESC"
     public final void mESC() throws RecognitionException {
         try {
-            // Objcm.g:1157:2: ( '\\\\' '\"' )
-            // Objcm.g:1157:4: '\\\\' '\"'
+            // Objcm.g:1153:2: ( '\\\\' '\"' )
+            // Objcm.g:1153:4: '\\\\' '\"'
             {
             match('\\'); 
 
@@ -3730,9 +3577,9 @@ public class ObjcmLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // Objcm.g:1:8: ( T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | L_FBR | R_FBR | L_BR | R_BR | L_KBR | R_KBR | SEMICOLON | COLON | L_UBR | R_UBR | DOT | COMMA | L_EQ | ASTERISK | L_PLUS_PLUS | L_MINUS_MINUS | CONST_PREFIX | ENUM_PREFIX | STRUCT_PREFIX | STATIC_PREFIX | SINGLE_COMMENT | MULTI_COMMENT | PREPROCESSOR_DECLARATION | NUMBER | WS | SINGLE_OP | BREAK_WORD | VOID | ID | STRING_LITERAL2 | STRING_LITERAL3 | STRING_LITERAL )
-        int alt40=96;
-        alt40 = dfa40.predict(input);
-        switch (alt40) {
+        int alt35=96;
+        alt35 = dfa35.predict(input);
+        switch (alt35) {
             case 1 :
                 // Objcm.g:1:10: T__102
                 {
@@ -4507,21 +4354,21 @@ public class ObjcmLexer extends Lexer {
     }
 
 
-    protected DFA33 dfa33 = new DFA33(this);
-    protected DFA40 dfa40 = new DFA40(this);
-    static final String DFA33_eotS =
+    protected DFA29 dfa29 = new DFA29(this);
+    protected DFA35 dfa35 = new DFA35(this);
+    static final String DFA29_eotS =
         "\1\4\1\5\1\uffff\1\5\2\uffff\1\10\2\uffff\2\10";
-    static final String DFA33_eofS =
+    static final String DFA29_eofS =
         "\13\uffff";
-    static final String DFA33_minS =
+    static final String DFA29_minS =
         "\2\56\1\uffff\1\56\2\uffff\1\60\2\uffff\2\60";
-    static final String DFA33_maxS =
+    static final String DFA29_maxS =
         "\1\71\1\170\1\uffff\1\145\2\uffff\1\71\2\uffff\2\145";
-    static final String DFA33_acceptS =
+    static final String DFA29_acceptS =
         "\2\uffff\1\3\1\uffff\1\4\1\1\1\uffff\1\5\1\2\2\uffff";
-    static final String DFA33_specialS =
+    static final String DFA29_specialS =
         "\13\uffff}>";
-    static final String[] DFA33_transitionS = {
+    static final String[] DFA29_transitionS = {
             "\1\2\1\uffff\1\1\11\3",
             "\1\6\1\uffff\12\3\53\uffff\1\7\22\uffff\1\4",
             "",
@@ -4535,54 +4382,54 @@ public class ObjcmLexer extends Lexer {
             "\12\12\53\uffff\1\7"
     };
 
-    static final short[] DFA33_eot = DFA.unpackEncodedString(DFA33_eotS);
-    static final short[] DFA33_eof = DFA.unpackEncodedString(DFA33_eofS);
-    static final char[] DFA33_min = DFA.unpackEncodedStringToUnsignedChars(DFA33_minS);
-    static final char[] DFA33_max = DFA.unpackEncodedStringToUnsignedChars(DFA33_maxS);
-    static final short[] DFA33_accept = DFA.unpackEncodedString(DFA33_acceptS);
-    static final short[] DFA33_special = DFA.unpackEncodedString(DFA33_specialS);
-    static final short[][] DFA33_transition;
+    static final short[] DFA29_eot = DFA.unpackEncodedString(DFA29_eotS);
+    static final short[] DFA29_eof = DFA.unpackEncodedString(DFA29_eofS);
+    static final char[] DFA29_min = DFA.unpackEncodedStringToUnsignedChars(DFA29_minS);
+    static final char[] DFA29_max = DFA.unpackEncodedStringToUnsignedChars(DFA29_maxS);
+    static final short[] DFA29_accept = DFA.unpackEncodedString(DFA29_acceptS);
+    static final short[] DFA29_special = DFA.unpackEncodedString(DFA29_specialS);
+    static final short[][] DFA29_transition;
 
     static {
-        int numStates = DFA33_transitionS.length;
-        DFA33_transition = new short[numStates][];
+        int numStates = DFA29_transitionS.length;
+        DFA29_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA33_transition[i] = DFA.unpackEncodedString(DFA33_transitionS[i]);
+            DFA29_transition[i] = DFA.unpackEncodedString(DFA29_transitionS[i]);
         }
     }
 
-    class DFA33 extends DFA {
+    class DFA29 extends DFA {
 
-        public DFA33(BaseRecognizer recognizer) {
+        public DFA29(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 33;
-            this.eot = DFA33_eot;
-            this.eof = DFA33_eof;
-            this.min = DFA33_min;
-            this.max = DFA33_max;
-            this.accept = DFA33_accept;
-            this.special = DFA33_special;
-            this.transition = DFA33_transition;
+            this.decisionNumber = 29;
+            this.eot = DFA29_eot;
+            this.eof = DFA29_eof;
+            this.min = DFA29_min;
+            this.max = DFA29_max;
+            this.accept = DFA29_accept;
+            this.special = DFA29_special;
+            this.transition = DFA29_transition;
         }
         public String getDescription() {
-            return "1124:1: NUMBER : ( ( DIGIT )+ ( 'u' | 'U' )? | ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )? | ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )? | ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )? | ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+ );";
+            return "1120:1: NUMBER : ( ( DIGIT )+ ( 'u' | 'U' )? | ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )? | ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )? | ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )? | ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+ );";
         }
     }
-    static final String DFA40_eotS =
+    static final String DFA35_eotS =
         "\1\51\1\61\1\uffff\1\65\1\70\1\72\1\75\1\101\1\103\1\107\1\112\1"+
         "\114\1\117\2\uffff\1\55\1\131\14\55\1\157\15\uffff\2\55\33\uffff"+
         "\1\164\5\uffff\1\166\10\uffff\1\55\2\uffff\4\55\1\u0086\4\55\1\u008b"+
         "\1\u008d\10\55\3\uffff\2\55\16\uffff\1\u009d\5\55\1\uffff\3\55\1"+
         "\u00a7\1\uffff\1\55\1\uffff\1\u00a9\13\55\4\uffff\2\55\1\u00b7\3"+
-        "\55\1\u00bb\2\55\1\uffff\1\55\1\uffff\12\55\1\u00c9\2\55\1\uffff"+
-        "\3\55\1\uffff\1\55\1\uffff\7\55\1\u00d8\1\55\1\u00da\1\u00db\1\uffff"+
-        "\3\55\1\uffff\2\55\1\u00e1\1\u00e2\1\u00e3\1\u00e4\1\u00e5\3\55"+
-        "\1\uffff\1\55\2\uffff\4\55\1\u00ee\7\uffff\1\u00ef\5\55\2\uffff"+
-        "\1\u00f5\3\55\2\uffff\1\55\1\u00fa\2\55\1\uffff\1\u00fd\1\55\1\uffff"+
-        "\1\u00ff\1\uffff";
-    static final String DFA40_eofS =
+        "\55\1\u00bb\1\55\1\u00bd\1\uffff\1\55\1\uffff\12\55\1\u00c9\2\55"+
+        "\1\uffff\1\u00cd\2\55\1\uffff\1\55\1\uffff\7\55\1\u00d8\1\55\1\u00da"+
+        "\1\u00db\1\uffff\3\55\1\uffff\2\55\1\u00e1\1\u00e2\1\u00e3\1\u00e4"+
+        "\1\u00e5\1\u00e6\1\u00e7\1\55\1\uffff\1\55\2\uffff\4\55\1\u00ee"+
+        "\7\uffff\1\u00ef\5\55\2\uffff\1\u00f5\3\55\2\uffff\1\55\1\u00fa"+
+        "\2\55\1\uffff\1\u00fd\1\55\1\uffff\1\u00ff\1\uffff";
+    static final String DFA35_eofS =
         "\u0100\uffff";
-    static final String DFA40_minS =
+    static final String DFA35_minS =
         "\1\11\1\75\1\0\1\75\1\46\1\75\1\53\1\55\1\56\1\52\1\74\2\75\1\uffff"+
         "\1\42\1\151\1\75\1\137\1\141\1\145\1\154\1\157\1\146\1\151\1\145"+
         "\1\151\1\171\1\156\1\150\1\75\15\uffff\1\162\1\157\5\uffff\1\0\25"+
@@ -4592,15 +4439,15 @@ public class ObjcmLexer extends Lexer {
         "\1\145\1\151\5\uffff\1\143\10\uffff\1\60\1\164\1\171\1\145\1\163"+
         "\1\141\1\uffff\2\145\1\155\1\60\1\uffff\1\151\1\uffff\1\60\1\165"+
         "\1\145\1\164\1\165\1\164\1\145\1\157\1\151\1\154\1\141\1\144\4\uffff"+
-        "\1\164\1\160\1\60\1\164\1\151\1\165\1\60\1\162\1\11\1\uffff\1\156"+
+        "\1\164\1\160\1\60\1\164\1\151\1\165\1\60\1\162\1\60\1\uffff\1\156"+
         "\1\uffff\1\162\1\157\2\143\1\151\1\144\1\156\1\147\1\145\1\153\1"+
-        "\60\1\162\1\145\1\uffff\1\11\1\156\1\154\1\uffff\1\156\1\uffff\1"+
+        "\60\1\162\1\145\1\uffff\1\60\1\156\1\154\1\uffff\1\156\1\uffff\1"+
         "\145\1\156\1\146\1\150\1\164\1\143\1\145\1\60\1\156\2\60\1\uffff"+
-        "\1\151\1\157\1\165\1\uffff\1\165\1\164\5\60\2\11\1\146\1\uffff\1"+
-        "\145\2\uffff\1\142\1\146\1\143\1\145\1\60\7\uffff\1\60\1\144\1\165"+
-        "\1\137\1\164\1\11\2\uffff\1\60\1\164\1\137\1\157\2\uffff\1\145\1"+
-        "\60\1\162\1\137\1\uffff\1\60\1\137\1\uffff\1\60\1\uffff";
-    static final String DFA40_maxS =
+        "\1\151\1\157\1\165\1\uffff\1\165\1\164\7\60\1\146\1\uffff\1\145"+
+        "\2\uffff\1\142\1\146\1\143\1\145\1\60\7\uffff\1\60\1\144\1\165\1"+
+        "\137\1\164\1\73\2\uffff\1\60\1\164\1\137\1\157\2\uffff\1\145\1\60"+
+        "\1\162\1\137\1\uffff\1\60\1\137\1\uffff\1\60\1\uffff";
+    static final String DFA35_maxS =
         "\1\176\1\75\1\uffff\4\75\1\76\1\71\3\75\1\76\1\uffff\1\164\1\151"+
         "\1\75\1\137\2\157\1\170\1\157\1\156\1\151\1\145\1\167\1\171\1\156"+
         "\1\150\1\174\15\uffff\1\162\1\157\5\uffff\1\uffff\25\uffff\1\75"+
@@ -4610,15 +4457,15 @@ public class ObjcmLexer extends Lexer {
         "\1\151\5\uffff\1\144\10\uffff\1\172\1\164\1\171\1\145\1\164\1\141"+
         "\1\uffff\2\145\1\155\1\172\1\uffff\1\151\1\uffff\1\172\1\165\1\145"+
         "\1\164\1\165\1\164\1\145\1\157\1\151\1\154\1\141\1\144\4\uffff\1"+
-        "\164\1\160\1\172\1\164\1\151\1\165\1\172\1\162\1\40\1\uffff\1\156"+
+        "\164\1\160\1\172\1\164\1\151\1\165\1\172\1\162\1\172\1\uffff\1\156"+
         "\1\uffff\1\162\1\157\2\143\1\151\1\144\1\156\1\147\1\145\1\153\1"+
-        "\172\1\162\1\145\1\uffff\1\162\1\156\1\154\1\uffff\1\156\1\uffff"+
+        "\172\1\162\1\145\1\uffff\1\172\1\156\1\154\1\uffff\1\156\1\uffff"+
         "\1\145\1\156\1\146\1\150\1\164\1\143\1\145\1\172\1\156\2\172\1\uffff"+
-        "\1\151\1\157\1\165\1\uffff\1\165\1\164\5\172\2\40\1\146\1\uffff"+
-        "\1\145\2\uffff\1\142\1\146\1\143\1\145\1\172\7\uffff\1\172\1\144"+
-        "\1\165\1\137\1\164\1\73\2\uffff\1\172\1\164\1\137\1\157\2\uffff"+
-        "\1\145\1\172\1\162\1\137\1\uffff\1\172\1\137\1\uffff\1\172\1\uffff";
-    static final String DFA40_acceptS =
+        "\1\151\1\157\1\165\1\uffff\1\165\1\164\7\172\1\146\1\uffff\1\145"+
+        "\2\uffff\1\142\1\146\1\143\1\145\1\172\7\uffff\1\172\1\144\1\165"+
+        "\1\137\1\164\1\73\2\uffff\1\172\1\164\1\137\1\157\2\uffff\1\145"+
+        "\1\172\1\162\1\137\1\uffff\1\172\1\137\1\uffff\1\172\1\uffff";
+    static final String DFA35_acceptS =
         "\15\uffff\1\31\20\uffff\1\100\1\101\1\102\1\103\1\104\1\105\1\106"+
         "\1\107\1\110\1\114\1\127\1\130\1\131\2\uffff\1\135\1\137\1\140\1"+
         "\2\1\1\1\uffff\1\136\1\5\1\4\1\6\1\10\1\7\1\11\1\116\1\13\1\117"+
@@ -4631,9 +4478,9 @@ public class ObjcmLexer extends Lexer {
         "\1\134\3\uffff\1\121\12\uffff\1\72\1\uffff\1\74\1\133\5\uffff\1"+
         "\60\1\64\1\66\1\67\1\70\1\123\1\124\6\uffff\1\55\1\71\4\uffff\1"+
         "\132\1\73\4\uffff\1\52\2\uffff\1\54\1\uffff\1\51";
-    static final String DFA40_specialS =
+    static final String DFA35_specialS =
         "\2\uffff\1\1\57\uffff\1\0\u00cd\uffff}>";
-    static final String[] DFA40_transitionS = {
+    static final String[] DFA35_transitionS = {
             "\2\52\1\uffff\2\52\22\uffff\1\52\1\1\1\2\1\50\1\uffff\1\3\1"+
             "\4\1\56\1\41\1\42\1\5\1\6\1\47\1\7\1\10\1\11\12\uffff\1\46\1"+
             "\45\1\12\1\13\1\14\1\15\1\16\15\55\1\17\14\55\1\43\1\uffff\1"+
@@ -4807,7 +4654,7 @@ public class ObjcmLexer extends Lexer {
             "\1\u00ba",
             "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
             "\1\u00bc",
-            "\2\u00bd\1\uffff\2\u00bd\22\uffff\1\u00bd",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
             "",
             "\1\u00be",
             "",
@@ -4825,7 +4672,8 @@ public class ObjcmLexer extends Lexer {
             "\1\u00ca",
             "\1\u00cb",
             "",
-            "\2\u00cd\1\uffff\2\u00cd\22\uffff\1\u00cd\121\uffff\1\u00cc",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\21\55\1\u00cc\10"+
+            "\55",
             "\1\u00ce",
             "\1\u00cf",
             "",
@@ -4854,8 +4702,8 @@ public class ObjcmLexer extends Lexer {
             "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
             "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
             "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
-            "\2\u00e6\1\uffff\2\u00e6\22\uffff\1\u00e6",
-            "\2\u00e7\1\uffff\2\u00e7\22\uffff\1\u00e7",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
             "\1\u00e8",
             "",
             "\1\u00e9",
@@ -4878,7 +4726,7 @@ public class ObjcmLexer extends Lexer {
             "\1\u00f1",
             "\1\u00f2",
             "\1\u00f3",
-            "\2\u00f4\1\uffff\2\u00f4\22\uffff\1\u00f4\32\uffff\1\u00f4",
+            "\1\u00f4",
             "",
             "",
             "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55",
@@ -4899,34 +4747,34 @@ public class ObjcmLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA40_eot = DFA.unpackEncodedString(DFA40_eotS);
-    static final short[] DFA40_eof = DFA.unpackEncodedString(DFA40_eofS);
-    static final char[] DFA40_min = DFA.unpackEncodedStringToUnsignedChars(DFA40_minS);
-    static final char[] DFA40_max = DFA.unpackEncodedStringToUnsignedChars(DFA40_maxS);
-    static final short[] DFA40_accept = DFA.unpackEncodedString(DFA40_acceptS);
-    static final short[] DFA40_special = DFA.unpackEncodedString(DFA40_specialS);
-    static final short[][] DFA40_transition;
+    static final short[] DFA35_eot = DFA.unpackEncodedString(DFA35_eotS);
+    static final short[] DFA35_eof = DFA.unpackEncodedString(DFA35_eofS);
+    static final char[] DFA35_min = DFA.unpackEncodedStringToUnsignedChars(DFA35_minS);
+    static final char[] DFA35_max = DFA.unpackEncodedStringToUnsignedChars(DFA35_maxS);
+    static final short[] DFA35_accept = DFA.unpackEncodedString(DFA35_acceptS);
+    static final short[] DFA35_special = DFA.unpackEncodedString(DFA35_specialS);
+    static final short[][] DFA35_transition;
 
     static {
-        int numStates = DFA40_transitionS.length;
-        DFA40_transition = new short[numStates][];
+        int numStates = DFA35_transitionS.length;
+        DFA35_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA40_transition[i] = DFA.unpackEncodedString(DFA40_transitionS[i]);
+            DFA35_transition[i] = DFA.unpackEncodedString(DFA35_transitionS[i]);
         }
     }
 
-    class DFA40 extends DFA {
+    class DFA35 extends DFA {
 
-        public DFA40(BaseRecognizer recognizer) {
+        public DFA35(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 40;
-            this.eot = DFA40_eot;
-            this.eof = DFA40_eof;
-            this.min = DFA40_min;
-            this.max = DFA40_max;
-            this.accept = DFA40_accept;
-            this.special = DFA40_special;
-            this.transition = DFA40_transition;
+            this.decisionNumber = 35;
+            this.eot = DFA35_eot;
+            this.eof = DFA35_eof;
+            this.min = DFA35_min;
+            this.max = DFA35_max;
+            this.accept = DFA35_accept;
+            this.special = DFA35_special;
+            this.transition = DFA35_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | L_FBR | R_FBR | L_BR | R_BR | L_KBR | R_KBR | SEMICOLON | COLON | L_UBR | R_UBR | DOT | COMMA | L_EQ | ASTERISK | L_PLUS_PLUS | L_MINUS_MINUS | CONST_PREFIX | ENUM_PREFIX | STRUCT_PREFIX | STATIC_PREFIX | SINGLE_COMMENT | MULTI_COMMENT | PREPROCESSOR_DECLARATION | NUMBER | WS | SINGLE_OP | BREAK_WORD | VOID | ID | STRING_LITERAL2 | STRING_LITERAL3 | STRING_LITERAL );";
@@ -4936,29 +4784,29 @@ public class ObjcmLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA40_50 = input.LA(1);
+                        int LA35_50 = input.LA(1);
 
                         s = -1;
-                        if ( (LA40_50=='\"') ) {s = 114;}
+                        if ( (LA35_50=='\"') ) {s = 114;}
 
-                        else if ( ((LA40_50 >= '\u0000' && LA40_50 <= '!')||(LA40_50 >= '#' && LA40_50 <= '\uFFFF')) ) {s = 51;}
+                        else if ( ((LA35_50 >= '\u0000' && LA35_50 <= '!')||(LA35_50 >= '#' && LA35_50 <= '\uFFFF')) ) {s = 51;}
 
                         if ( s>=0 ) return s;
                         break;
 
                     case 1 : 
-                        int LA40_2 = input.LA(1);
+                        int LA35_2 = input.LA(1);
 
                         s = -1;
-                        if ( (LA40_2=='C') ) {s = 50;}
+                        if ( (LA35_2=='C') ) {s = 50;}
 
-                        else if ( ((LA40_2 >= '\u0000' && LA40_2 <= 'B')||(LA40_2 >= 'D' && LA40_2 <= '\uFFFF')) ) {s = 51;}
+                        else if ( ((LA35_2 >= '\u0000' && LA35_2 <= 'B')||(LA35_2 >= 'D' && LA35_2 <= '\uFFFF')) ) {s = 51;}
 
                         if ( s>=0 ) return s;
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 40, _s, input);
+                new NoViableAltException(getDescription(), 35, _s, input);
             error(nvae);
             throw nvae;
         }

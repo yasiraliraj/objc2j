@@ -23,6 +23,10 @@ public class Macros {
 
     private boolean simpleReplace;
 
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     public String getName() {
         return name;
     }

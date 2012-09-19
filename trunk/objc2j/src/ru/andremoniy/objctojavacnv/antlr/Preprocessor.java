@@ -396,6 +396,7 @@ public class Preprocessor {
 
                                     // счетчик открытых скобок
                                     int bracketsCounter = 0;
+                                    if (paramToken.value.equals("(")) bracketsCounter++;
 
                                     do {
                                         paramToken = st.nextToken();

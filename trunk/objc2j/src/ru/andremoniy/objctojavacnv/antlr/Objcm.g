@@ -96,11 +96,11 @@ operator_wrapper
 	:	operator -> ^(OPERATOR operator);
  
 operator
-	:	extern_wrapper WS*
+	:	extern_wrapper 
 	|	static_section_wrapper
-	|	type_start_wrapper WS*
-	| 	interface_declaration_wrapper WS*
-	|	typedef_struct_declaration WS*
+	|	type_start_wrapper 
+	| 	interface_declaration_wrapper 
+	|	typedef_struct_declaration 
 	;
 	
 /*------------------------------------------------------------------
@@ -111,18 +111,18 @@ operator
  	:	extern -> ^(EXTERN)
  	;
  
- extern	:	'extern' WS+ '"C"' WS+ L_FBR ~(R_FBR) R_FBR
+ extern	:	'extern'  '"C"'  L_FBR ~(R_FBR) R_FBR
  	;
 implementation_wrapper
  	:	implementation -> ^(IMPLEMENTATION implementation);
  	
 implementation
-	:	'@implementation' WS+ name WS* (category WS*)? (super_class WS*)?
+	:	'@implementation'  name  (category )? (super_class )?
 		implementation_body+
-		'@end' WS* semi?
+		'@end'  semi?
 	; 	
 
-category:	L_BR WS* name WS* R_BR -> ^(CATEGORY name);	
+category:	L_BR  name  R_BR -> ^(CATEGORY name);	
 
 implementation_body
 	:	directives
@@ -140,10 +140,10 @@ directives
 	;	
 	
 synthesize
-	:	'@synthesize' WS+ ID WS* semi
+	:	'@synthesize'  ID  semi
 	;	
 	
-typedef	:	'typedef' WS+ (typedef_declaration_wrapper | typedef_struct_declaration_wrapper) WS*
+typedef	:	'typedef'  (typedef_declaration_wrapper | typedef_struct_declaration_wrapper) 
 	;
 		
 static_section_wrapper
@@ -153,16 +153,16 @@ static_section
 	:	STATIC_PREFIX CONST_PREFIX? STRUCT_PREFIX? ENUM_PREFIX? static_section2;
 
 static_section2
-	:	inline_section WS*
-	| 	implementation_method_wrapper2 WS*
+	:	inline_section 
+	| 	implementation_method_wrapper2 
 	| 	static_section3
 	;
 	
 inline_section
-	:	'inline' WS+ field_type name WS* (method_params2 WS*)? (block_wrapper | SEMICOLON);	
+	:	'inline'  field_type name  (method_params2 )? (block_wrapper | SEMICOLON);	
 	
 static_section3
-	:	field_type name indexed* WS* static_end;
+	:	field_type name indexed*  static_end;
 	
 	
 static_end
@@ -173,19 +173,19 @@ field_end
 	:	field_end_internal -> ^(FIELD field_end_internal);
 	
 field_end_internal
-	:	(value_set WS*)? semi;	
+	:	(value_set )? semi;	
 		
 implementation_method_wrapper3
 	:	implementation_method3 -> ^(METHOD implementation_method3);
 	
 implementation_method3
-	:	method_header_body3 WS* semi?
-		(attribute WS*)?
-		(block_wrapper WS*)?
+	:	method_header_body3  semi?
+		(attribute )?
+		(block_wrapper )?
 	;
 	
 attribute
-	:	'__attribute__' WS* L_BR WS* L_BR WS* 'constructor' WS* R_BR WS* R_BR WS* SEMICOLON;	
+	:	'__attribute__'  L_BR  L_BR  'constructor'  R_BR  R_BR  SEMICOLON;	
 	
 implementation_method2
 	:	 semi?
@@ -205,9 +205,9 @@ classic_method_declaration_wrapper
 	:	classic_method_declaration -> ^(STATIC_METHOD classic_method_declaration);	
 	
 classic_method_declaration
-//	:	field_type name method_params2 WS*
-	:	method_params2 WS*
-		block_wrapper WS*
+//	:	field_type name method_params2 
+	:	method_params2 
+		block_wrapper 
 	;	
 
 implementation_method_wrapper
@@ -218,7 +218,7 @@ implementation_method_wrapper2
 
 implementation_method
 	:	method_header_body semi?
-		block_wrapper WS*
+		block_wrapper 
 	;
 	
 block_wrapper
@@ -226,21 +226,20 @@ block_wrapper
 	
 block	:		
 		L_FBR
-			(block_internal_full | block)+		
+			(block_internal_full | block)*		
 		R_FBR
 	;
 
 block_case
 	:		
 		L_FBR
-			(block_internal_full | block)+		
+			(block_internal_full | block)*		
 			default_stmt?
 		R_FBR
 	;
 	
 block_internal_full
-	:	WS
-	|	block_internal
+	:	block_internal
 	;
 
 block_internal
@@ -254,7 +253,7 @@ block_internal
 	|	if_stmt_wrapper
 	|	else_stmt
 	|	switch_stmt_wrapper
-	|	return_stmt_wrapper
+	|	return_stmt
 	|	for_stmt
 	|	while_stmt_wrapper
 	|	single_operators
@@ -263,7 +262,7 @@ block_internal
 	|	struct_variable
 	|	enum_variable
 	|	typeof_started
-	|	const_expr WS* SEMICOLON
+	|	const_expr  SEMICOLON
 	|	SEMICOLON	
 	;
 	
@@ -278,7 +277,7 @@ enum_variable
 	:	ENUM_PREFIX id_start_variable;
 	
 in_brackets_block
-	:	L_BR WS* (known_types WS* | expression) R_BR WS* in_brackets_block_ends;
+	:	L_BR  (known_types  | expression) R_BR  in_brackets_block_ends;
 	
 in_brackets_block_ends
 	:	in_brackets_block_end1
@@ -286,7 +285,7 @@ in_brackets_block_ends
 	;
 	
 in_brackets_block_end1
-	:	id_part_end? WS* ((L_PLUS_PLUS|L_MINUS_MINUS) WS*)? (set_internal_end_wrapper)? SEMICOLON
+	:	id_part_end?  ((L_PLUS_PLUS|L_MINUS_MINUS) )? (set_internal_end_wrapper)? SEMICOLON
 	;
 			
 in_brackets_block_end2
@@ -296,25 +295,25 @@ in_brackets_block_end2
 const_expression
 	:	CONST_PREFIX id_start_variable;		
 		
-xcrement:	(L_PLUS_PLUS|L_MINUS_MINUS) object_name WS* SEMICOLON
+xcrement:	(L_PLUS_PLUS|L_MINUS_MINUS) object_name  SEMICOLON
 	;
 	
 throw_stmt
-	:	'@throw' WS* SEMICOLON	
+	:	'@throw'  SEMICOLON	
 	;
 	
-try_stmt:	'@try' WS* block WS* catch_stmt* ('@finally' WS* block)?
+try_stmt:	'@try'  block  catch_stmt* ('@finally'  block)?
 	;
 	
 catch_stmt
-	:	'@catch' WS* L_BR WS* ID WS* (ASTERISK+ WS*)? ID WS* R_BR WS* block WS*
+	:	'@catch'  L_BR  ID  (ASTERISK+ )? ID  R_BR  block 
 	;	
 
 switch_stmt_wrapper
 	:	switch_stmt -> ^(SWITCH switch_stmt);
 
 switch_stmt
-	:	'switch' WS* L_BR WS* switch_expr R_BR WS* 
+	:	'switch'  L_BR  switch_expr R_BR  
 		switch_body_wrapper
 	;	
 	
@@ -337,7 +336,7 @@ case_stmt_wrapper
 	:	case_stmt -> ^(CASE_STMT case_stmt);
 
 case_stmt
-	:	'case' WS+ case_expr WS* COLON WS*
+	:	'case'  case_expr  COLON 
 		case_body_wrapper?
 	;	
 	
@@ -353,14 +352,14 @@ case_expr
 	:	expr -> ^(CASE_EXPR expr);	
 	
 block_break
-	:	block_case WS* (single_operators WS*)?
+	:	block_case  (single_operators )?
 	;
 
 default_stmt_wrapper
 	:	default_stmt -> ^(DEFAULT_STMT default_stmt);
 
 default_stmt
-	:	'default' WS* COLON WS*
+	:	'default'  COLON 
 		default_body_wrapper?
 	;	
 
@@ -382,25 +381,25 @@ break_wrapper
 	:	break_stmt -> ^(BREAK break_stmt);
 	
 break_stmt
-	:	BREAK_WORD WS* SEMICOLON;	
+	:	BREAK_WORD  SEMICOLON;	
 	
-do_stmt	:	'do' WS* if_stmt_block WS* 'while' WS* L_BR WS* expression R_BR;
+do_stmt	:	'do'  if_stmt_block  'while'  L_BR  expression R_BR;
 
 while_stmt_wrapper
 	:	while_stmt -> ^(WHILE_STMT while_stmt)
 	;
 
 while_stmt
-	:	'while' WS* L_BR WS* while_expr R_BR WS* if_stmt_block_wrapper; 	
+	:	'while'  L_BR  while_expr R_BR  if_stmt_block_wrapper; 	
 	
 while_expr
 	:	 expression -> ^(WHILE_EXPR expression);	
 	
-for_stmt:	'for' WS* L_BR WS* for_stmt_iterator? for_stmt_internal R_BR WS* if_stmt_block
+for_stmt:	'for'  L_BR  for_stmt_iterator? for_stmt_internal R_BR  if_stmt_block
 	;
 	
 for_stmt_iterator
-	:	ID WS* ((ASTERISK+ WS*)? ID WS*)?
+	:	ID  ((ASTERISK+ )? ID )?
 	;	
 	
 for_stmt_internal
@@ -409,33 +408,33 @@ for_stmt_internal
 	;	
 	
 for_stmt_int1
-	:	'in' WS+ expr WS* -> ^(FOR_IN_STMT WS+ expr WS*);	
+	:	'in'  expr  -> ^(FOR_IN_STMT  expr );	
 	
 for_stmt_int2
-	:	(L_EQ WS* expression)? semi expression? semi (id_start_variable_light)?
+	:	(L_EQ  expression)? semi expression? semi (id_start_variable_light)?
 	;
 
-return_stmt_wrapper
-	:	return_stmt -> ^(RETURN_STMT return_stmt)
-	;
+//return_stmt_wrapper
+//	:	return_stmt -> ^(RETURN_STMT return_stmt)
+//	;
 	
 return_stmt
-	:	'return' WS* expression? SEMICOLON;	
+	:	'return' expression? SEMICOLON -> ^(RETURN_STMT expression? SEMICOLON);	
 
 if_stmt_wrapper
 	:	if_stmt -> ^(IF_STMT if_stmt);
 
-if_stmt	:	'if' WS* L_BR WS* if_expr R_BR WS* if_stmt_block_wrapper
+if_stmt	:	'if'  L_BR  if_expr R_BR  if_stmt_block_wrapper
 	;	
 	
 if_expr	:	expression -> ^(IF_EXPR expression);	
 	
 else_stmt
-	:	'else' WS* if_stmt_block;
+	:	'else'  if_stmt_block;
 	
 variable_set
-//	:	variable_set_internal WS* (COMMA WS* variable_set_internal WS*)* isv_end;
-	:	variable_set_internal (COMMA WS* variable_set_internal)* semi?;
+//	:	variable_set_internal  (COMMA  variable_set_internal )* isv_end;
+	:	variable_set_internal (COMMA  variable_set_internal)* semi?;
 
 if_stmt_block_wrapper
 	:	if_stmt_block -> ^(IF_BLOCK if_stmt_block);
@@ -447,15 +446,15 @@ if_stmt_block
 		
 	
 variable_set_light
-	:	variable_set_internal (COMMA WS* variable_set_internal)*;
+	:	variable_set_internal (COMMA  variable_set_internal)*;
 
 variable_set_internal
-	:	(ASTERISK+ WS*)? id_part WS* (set_internal_end_wrapper WS*)?
+	:	(ASTERISK+ )? id_part  (set_internal_end_wrapper )?
 	;
 
 isv_end	:	SEMICOLON 
-//	| 	COMMA WS* id_start_variable;
-	| 	COMMA WS* id_part simple_start_v_end;
+//	| 	COMMA  id_start_variable;
+	| 	COMMA  id_part simple_start_v_end;
 
 
 // эта обертка нужна, чтобы отслеживать: был ли объект инициализирован?
@@ -463,12 +462,12 @@ set_internal_end_wrapper
 	:	set_internal_end -> ^(SET_INTERNAL set_internal_end);
 
 set_internal_end
-	:	op5 WS* (in_q_brackets | classical_expr_wrp);
+	:	op5  (in_q_brackets | classical_expr_wrp);
 		
 variable_set_end
-	:       op5 WS* expression
-	|	L_PLUS_PLUS WS* set_internal_end_wrapper?
-	|	L_MINUS_MINUS WS* set_internal_end_wrapper?	
+	:       op5  expression
+	|	L_PLUS_PLUS  set_internal_end_wrapper?
+	|	L_MINUS_MINUS  set_internal_end_wrapper?	
 	;
 	
 op5	:	'%=' | '==' | L_EQ | '+=' | '-=' | '&=' | '/=' | '|=' | '*=' | '^=' | '<<=' | '>>=' | '<=' | '>=' | L_UBR | R_UBR
@@ -487,7 +486,7 @@ id_start_variable
 	;
 	
 simple_start_v
-	:	(ASTERISK+ WS*)? (known_types (ASTERISK+ WS+ | WS+ (ASTERISK+ WS+)?))? id_part simple_start_v_end
+	:	(ASTERISK+ )? (known_types (ASTERISK+  |  (ASTERISK+ )?))? id_part simple_start_v_end
 	;
 
 simple_start_v_end
@@ -500,7 +499,7 @@ simple_start_v1
 	;
 	
 simple_start_v2
-	:	generic? id_part_end? WS* (id_start_variable_end | SEMICOLON)
+	:	generic? id_part_end?  (id_start_variable_end | SEMICOLON)
 	;			
 	
 id_part_end
@@ -516,16 +515,16 @@ known_types
 	|	VOID
 	;	
 
-id_part	:	 name_internal (L_KBR WS* classical_expr_wrp? R_KBR)*
+id_part	:	 name_internal (L_KBR  classical_expr_wrp? R_KBR)*
 	;
 	
 id_start_variable_end
 	:	(variable_set_end (variable_set | isv_end)) 
 	| 	variable_set
-	|	L_BR WS* (expression (COMMA WS* expression)*)? R_BR WS* isv_end;	
+	|	L_BR  (expression (COMMA  expression)*)? R_BR  isv_end;	
 
 id_start_variable_light
-	:	(L_PLUS_PLUS|L_MINUS_MINUS)? (ASTERISK+ WS*)? object_name WS* ( (variable_set_end variable_set_light?) | variable_set_light)?;
+	:	(L_PLUS_PLUS|L_MINUS_MINUS)? (ASTERISK+ )? object_name  ( (variable_set_end variable_set_light?) | variable_set_light)?;
 	
 object_name
 	:	id_part id_part_end?
@@ -544,13 +543,13 @@ method_call_wrapper2
 	:	method_call2 -> ^(METHOD_CALL method_call2);	
 	
 method_call2
-	:	object_wrapper method_name (WS* method_call_message_list_wrapper)?;
+	:	object_wrapper method_name ( method_call_message_list_wrapper)?;
 
 method_call_wrapper3
 	:	method_call3 -> ^(METHOD_CALL method_call3);	
 	
 method_call3
-	:	object_wrapper3 L_BR WS* (method_message3 (COMMA WS* method_message3)*)? R_BR;
+	:	object_wrapper3 L_BR  (method_message3 (COMMA  method_message3)*)? R_BR;
 
 method_message3
 	:	expression -> ^(MESSAGE expression);
@@ -563,20 +562,20 @@ object_wrapper
 	:	object -> ^(OBJECT object);	
 	
 object	:	type_convertion2 expression
-	|	expr2 WS*
+	|	expr2 
 	;
 	
 type_convertion2
-	:	type_convertion_start (type_convertion_end | (expr WS* expression_end R_BR));	
+	:	type_convertion_start (type_convertion_end | (expr  expression_end R_BR));	
 	
 type_convertion_start
-	:	L_BR WS* ID generic? WS* -> ^(TYPE_CONVERTION_MAY_BE ID generic?);
+	:	L_BR  ID generic?  -> ^(TYPE_CONVERTION_MAY_BE ID generic?);
 	
 type_convertion_end
-	:	(ASTERISK+ WS*)? R_BR WS* -> ^(TYPE_CONVERTION_TRUE);
+	:	(ASTERISK+ )? R_BR  -> ^(TYPE_CONVERTION_TRUE);
 	
 type_convertion
-	:	L_BR WS* ('unsigned' WS+)? type_internal WS* (ASTERISK+ WS*)? R_BR WS* -> ^(TYPE_CONVERTION type_internal);
+	:	L_BR  ('unsigned' )? type_internal  (ASTERISK+ )? R_BR  -> ^(TYPE_CONVERTION type_internal);
 
 method_name
 	:	ID -> ^(METHOD_NAME ID);
@@ -591,18 +590,18 @@ method_call_message_first_wrapper
 	:	method_call_message_first -> ^(METHOD_MSG method_call_message_first);
 
 method_call_message_first
-	:	COLON WS* message;
+	:	COLON  message;
 	
 method_call_message_wrapper
 	:	method_call_message -> ^(METHOD_MSG method_call_message);
 	
 method_call_message
-	:	prefix WS* COLON WS* message;
+	:	prefix  COLON  message;
 	
-message	:	msg_expr (COMMA WS* msg_expr)* -> ^(MESSAGE msg_expr (COMMA WS* msg_expr)*)/
+message	:	msg_expr (COMMA  msg_expr)* -> ^(MESSAGE msg_expr (COMMA  msg_expr)*)/
 	;
 		
-msg_expr:	L_BR WS* (ID | const_expr) R_BR classical_expr_wrp? WS*
+msg_expr:	L_BR  (ID | const_expr) R_BR classical_expr_wrp? 
 	|	classical_expr_wrp
 	;	
 	
@@ -619,15 +618,15 @@ classical_expr_wrp
 	:	classical_expr -> ^(CLASSICAL_EXPR classical_expr);	
 	
 classical_expr
-	:	expr_wrp WS* oper_wrp*
+	:	expr_wrp  oper_wrp*
 	;	
 
-if3	:	'?' WS* classical_expr_wrp COLON WS* classical_expr_wrp
+if3	:	'?'  classical_expr_wrp COLON  classical_expr_wrp
 	;	
 	
 oper_wrp:	oper -> ^(OPER oper);	
 	
-oper	:	op_wrp WS* expr_wrp WS*
+oper	:	op_wrp  expr_wrp 
 	|	if3
 	;
 
@@ -637,55 +636,54 @@ expr_wrp:	expr -> ^(EXPR expr);
 //	:	expr3 -> ^(EXPR expr3);
 
 op_wrp	:	op -> ^(OP op)
-	//|	'?' WS* classical_expr ':' classical_expr
+	//|	'?'  classical_expr ':' classical_expr
 	;
 	
 struct_init
-	:	L_BR WS* STRUCT_PREFIX? ID WS* R_BR WS* L_FBR WS*
-			struct_init_line (COMMA WS* struct_init_line)*
-		R_FBR WS*
+	:	L_BR  STRUCT_PREFIX? ID  R_BR  L_FBR 
+			struct_init_line (COMMA  struct_init_line)*
+		R_FBR 
 	;	
 	
 struct_init2
-	:	L_FBR WS*
-			struct_init_line (COMMA WS* struct_init_line)*
-		R_FBR WS*
+	:	L_FBR 
+			struct_init_line (COMMA  struct_init_line)*
+		R_FBR 
 	;	
 
 struct_init_line
 	:	struct_init_var
 //	|	struct_init_method
 	|	struct_init_expression
-	|	WS
 	;	
 	
 struct_init_expression
 	:	classical_expr;	
 	
 struct_init_method
-	:	expr WS*;	
+	:	expr ;	
 	
 struct_init_var
-	:	(DOT id_part)+ WS* L_EQ WS* (in_q_brackets | expression) WS*;	
+	:	(DOT id_part)+  L_EQ  (in_q_brackets | expression) ;	
 
 expression_end
 	:	expression_asterix 
 	| 	expression_other
-	|	R_BR WS*
+	|	R_BR 
 	;
 	
 expression_asterix
-	:	ASTERISK+ WS* expression_end2
+	:	ASTERISK+  expression_end2
 	;
 
 expression_other
-	:	op3 WS* classical_expr_wrp R_BR WS*
-	|	if3 R_BR WS*
+	:	op3  classical_expr_wrp R_BR 
+	|	if3 R_BR 
 	;
 	
 expression_end2
-	:	R_BR WS* expression -> ^(TYPE_CONVERTION expression)
-	|	expr WS* (op WS* expr WS*)* R_BR WS*
+	:	R_BR  expression -> ^(TYPE_CONVERTION expression)
+	|	expr  (op  expr )* R_BR 
 	;
 
 op	:	ASTERISK | op3;
@@ -696,10 +694,10 @@ op3	:	'-' | '/' | '+' | '%' | '&' | '&&' | '|' | '||' | R_UBR | '>=' | L_UBR | '
 	// TODO  expr "?" expr ":" expr - support !!!
 
 
-//expr2	:	(op2 WS*)? (const_expr | a_started | id_started | square_brackets) index_brackets*;
-//expr	:	(op2 WS*)? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets?)) index_brackets*;
-expr2	:	(op2 WS*)? (const_expr | a_started | id_started | square_brackets);
-expr	:	(op2 WS*)? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets? id_part_end?));
+//expr2	:	(op2 )? (const_expr | a_started | id_started | square_brackets) index_brackets*;
+//expr	:	(op2 )? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets?)) index_brackets*;
+expr2	:	(op2 )? (const_expr | a_started | id_started | square_brackets);
+expr	:	(op2 )? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets? id_part_end?));
 
 a_started
 	:	a_selector_wrapper
@@ -712,11 +710,11 @@ special_op
 	|	typeof id_started
 	;
 	
-sizeof1	:	'sizeof' L_BR WS* (ASTERISK+ WS*)? ID WS* R_BR;
+sizeof1	:	'sizeof' L_BR  (ASTERISK+ )? ID  R_BR;
 
-sizeof2	:	'sizeof' WS* (ASTERISK+ WS*)? ID WS*;
+sizeof2	:	'sizeof'  (ASTERISK+ )? ID ;
 
-typeof	:	'__typeof__' WS* L_BR WS* ID WS* R_BR WS*;
+typeof	:	'__typeof__'  L_BR  ID  R_BR ;
 	
 a_selector_wrapper
 	:	a_selector -> ^(SELECTOR a_selector);	
@@ -727,7 +725,7 @@ a_selector_value_wrapper
 	:	a_selector_value -> ^(SELECTOR_VALUE a_selector_value);
 	
 a_selector_value
-	:	WS* ID WS* (COLON WS* (ID WS* COLON WS*)*)?;	
+	:	 ID  (COLON  (ID  COLON )*)?;	
 
 
 a_encode:	'@encode' L_BR ~(R_BR)+ R_BR;
@@ -752,10 +750,10 @@ special_started_end
 	| 	'&'? id_started;
 
 id_started
-	:	object_name WS* ((L_PLUS_PLUS|L_MINUS_MINUS) | method_brackets index_brackets*)?;
+	:	object_name  ((L_PLUS_PLUS|L_MINUS_MINUS) | method_brackets index_brackets*)?;
 
 method_brackets
-	:	L_BR WS* (expression WS* (COMMA WS* classical_expr_wrp)*)? R_BR;
+	:	L_BR  (expression  (COMMA  classical_expr_wrp)*)? R_BR;
 
 in_brackets
 	:	round_brackets
@@ -765,18 +763,18 @@ in_brackets
 	;
 	
 func_pointer1
-	:	type_internal WS* (ASTERISK WS*)? L_BR WS* (ASTERISK WS*)? type_internal WS* R_BR WS* func_pointer_params WS* variable_set_end? SEMICOLON
+	:	type_internal  (ASTERISK )? L_BR  (ASTERISK )? type_internal  R_BR  func_pointer_params  variable_set_end? SEMICOLON
 	;
 	
 func_pointer2
-	:	L_BR WS* type_internal L_BR WS* ASTERISK WS* R_BR WS* func_pointer_params WS* R_BR
+	:	L_BR  type_internal L_BR  ASTERISK  R_BR  func_pointer_params  R_BR
 	;	
 	
 func_pointer_params
-	:	L_BR WS* ID WS* (ASTERISK WS*)* (COMMA WS* ID WS* (ASTERISK WS*)*)* R_BR;	
+	:	L_BR  ID  (ASTERISK )* (COMMA  ID  (ASTERISK )*)* R_BR;	
 	
 in_brackets_end1
-	:	L_BR WS* expression WS* R_BR
+	:	L_BR  expression  R_BR
 	|	method_start index_brackets?
 	|	(L_PLUS_PLUS | L_MINUS_MINUS) method_start
 	|	const_expr
@@ -784,7 +782,7 @@ in_brackets_end1
 	;	
 
 in_brackets_end2
-	:	L_BR WS* expression WS* R_BR
+	:	L_BR  expression  R_BR
 	|	const_expr
 	//|	 simple_method_call
 	;	
@@ -793,7 +791,7 @@ method_start
 	:	ID method_brackets?;
 	
 in_q_brackets
-	:	L_FBR WS* q_brackets_source R_FBR
+	:	L_FBR  q_brackets_source R_FBR
 	;
 	
 q_brackets_source
@@ -802,35 +800,35 @@ q_brackets_source
 	;	
 	
 q_br_source
-	:	in_q_brackets WS* (COMMA WS* in_q_brackets WS*)* (COMMA WS*)?
+	:	in_q_brackets  (COMMA  in_q_brackets )* (COMMA )?
 	;
 	
-q_source:	(expression WS* (COMMA WS* expression WS*)*)?
+q_source:	(expression  (COMMA  expression )*)?
 	;	
 	
 simple_method_call
 	:	ID method_brackets?;	
 	
 round_brackets
-	:	L_BR WS* round_brackets_end
+	:	L_BR  round_brackets_end
 	;
 	
 round_brackets_end
 	:	type_in_brackets
-	|	const_expr R_BR WS*
-	|	expr WS* expression_end in_brackets_end2?
+	|	const_expr R_BR 
+	|	expr  expression_end in_brackets_end2?
 	;	
 	
 type_in_brackets
-	:	CONST_PREFIX? ID generic? WS* (ASTERISK WS*)* R_BR WS* in_brackets_end1
+	:	CONST_PREFIX? ID generic?  (ASTERISK )* R_BR  in_brackets_end1
 	;
 			
 square_brackets
 	:	
-	L_KBR WS* method_call_wrapper2 R_KBR;	
+	L_KBR  method_call_wrapper2 R_KBR;	
 	
 index_brackets
-	:	L_KBR WS* classical_expr_wrp R_KBR
+	:	L_KBR  classical_expr_wrp R_KBR
 	;
 
 /*------------------------------------------------------------------
@@ -841,7 +839,7 @@ interface_declaration_wrapper
 	:	interface_declaration -> ^(INTERFACE interface_declaration);
 	
 interface_declaration
-	:	'@interface' WS+ name WS+ (interface_category WS+)? (super_class)?
+	:	'@interface'  name  (interface_category )? (super_class)?
 		(annotated_block | interface_methods)+
 		
 		'@end';
@@ -865,27 +863,26 @@ block_annotation
 public_block_internal
 	:	simple_field_declaration
 	|	union_declaration
-	|	WS
-	;		
+	;
 	
 simple_field_declaration
-	:	field_type name WS* SEMICOLON
+	:	field_type name  SEMICOLON
 	;	
 	
 union_declaration
-	:	'union' WS* L_FBR WS*
-			(simple_field_declaration | WS)+
-		R_FBR WS* ID WS* SEMICOLON
+	:	'union'  L_FBR 
+			simple_field_declaration+
+		R_FBR  ID  SEMICOLON
 	;	
 		
 super_class
-	:	COLON WS* ID WS* -> ^(SUPER_CLASS ID);		
+	:	COLON  ID  -> ^(SUPER_CLASS ID);		
 
 interface_category
-	:	L_BR WS* ID WS* R_BR -> ^(CATEGORY L_BR WS* ID WS* R_BR);				
+	:	L_BR  ID  R_BR -> ^(CATEGORY L_BR  ID  R_BR);				
 	
 interface_methods
-	:	(enum_declaration | interface_method | WS)+;	
+	:	(enum_declaration | interface_method)+;
 	
 interface_method
 	:	method_header -> ^(METHOD method_header);	
@@ -894,15 +891,15 @@ method_header
 	:	method_header_body semi?;
 
 method_header_body
-	:	method_modifier_wrapper WS* method_type WS* name WS* method_params? va_args_wrapper?;
+	:	method_modifier_wrapper  method_type  name  method_params? va_args_wrapper?;
 
 va_args_wrapper
 	:	va_args -> ^(VA_ARGS va_args);
 	
-va_args	:	COMMA WS* '...' WS* semi?;	
+va_args	:	COMMA  '...'  semi?;	
 
 method_header_body2
-	:	method_type name WS* method_params2?;
+	:	method_type name  method_params2?;
 
 method_header_body3
 	:	method_params2;
@@ -914,12 +911,12 @@ method_modifier
 	:	'+' | '-';	
 	
 method_type
-	:	L_BR WS* STRUCT_PREFIX? type_internal WS* (generic WS*)? (ASTERISK+ WS*)? R_BR -> ^(TYPE type_internal)
-	| 	L_BR WS* CONST_PREFIX? (known_types WS*)? (ID WS*)* (generic WS*)? (ASTERISK+ WS*)? R_BR -> ^(TYPE ID+)
+	:	L_BR  STRUCT_PREFIX? type_internal  (generic )? (ASTERISK+ )? R_BR -> ^(TYPE type_internal)
+	| 	L_BR  CONST_PREFIX? (known_types )? (ID )* (generic )? (ASTERISK+ )? R_BR -> ^(TYPE ID+)
 	;			
 		
 type_internal
-	:	type_internal1 (WS* L_KBR WS* R_KBR)?
+	:	type_internal1 ( L_KBR  R_KBR)?
 	;		
 		
 type_internal1
@@ -930,25 +927,25 @@ type_internal1
 generic:	L_UBR generic_internal R_UBR -> ^(GENERIC generic_internal);	
 
 generic_internal
-	:	WS* ID WS* (ASTERISK+ WS*)? (COMMA WS* ID WS* ASTERISK*)*;
+	:	 ID  (ASTERISK+ )? (COMMA  ID  ASTERISK*)*;
 
 method_params2
-	:	L_BR WS* method_param_wrapper2 WS* (COMMA WS* method_param_wrapper2 WS* )* R_BR
+	:	L_BR  method_param_wrapper2  (COMMA  method_param_wrapper2  )* R_BR
 	;
 
 method_param_wrapper2
 	:	method_param2 -> ^(PARAM method_param2);
 	
 method_param2
-	:	CONST_PREFIX? ENUM_PREFIX? STRUCT_PREFIX? ('unsigned' WS+)? field_type name? indexed?;
+	:	CONST_PREFIX? ENUM_PREFIX? STRUCT_PREFIX? ('unsigned' )? field_type name? indexed?;
 	
-indexed	:	L_KBR WS*	(NUMBER WS*)? R_KBR;
+indexed	:	L_KBR 	(NUMBER )? R_KBR;
 	
 method_params
 	:	method_param+ -> ^(PARAM method_param)+;	
 	
 method_param
-	:	(prefix WS*)? COLON WS* (method_type WS*)? name WS*
+	:	(prefix )? COLON  (method_type )? name 
 	;	
 	
 prefix	:	ID -> ^(PREFIX ID);
@@ -963,22 +960,21 @@ typedef_struct_declaration_wrapper
 	; 
 
 typedef_struct_declaration
-	: STRUCT_PREFIX (name WS*)?
+	: STRUCT_PREFIX (name )?
 	L_FBR 
 		typedef_struct_body+
-	R_FBR WS* (name WS*)? semi?
+	R_FBR  (name )? semi?
 	;
 	
 typedef_struct_body
 	:	typedef_struct_declaration_element_wrapper
-	|	WS
-	;	
+	;
 	
 typedef_struct_declaration_element_wrapper
 	: struct_field -> ^(STRUCT_FIELD struct_field);
 	
 struct_field
-	:	field_type name WS* (COMMA WS* name)* SEMICOLON	
+	:	field_type name  (COMMA  name)* SEMICOLON	
 	;
 
 /*------------------------------------------------------------------
@@ -993,14 +989,14 @@ enum_declaration
 	:	typedef_declaration -> ^(ENUM typedef_declaration);	
 	
 typedef_declaration
-	:  ENUM_PREFIX L_FBR WS* typedef_declaration_element_wrapper WS* (COMMA WS* typedef_declaration_element_wrapper WS*)* R_FBR WS* (name WS*)? SEMICOLON;
+	:  ENUM_PREFIX L_FBR  typedef_declaration_element_wrapper  (COMMA  typedef_declaration_element_wrapper )* R_FBR  (name )? SEMICOLON;
 	
 typedef_declaration_element_wrapper
 	:	typedef_declaration_element -> ^(TYPEDEF_ELEMENT typedef_declaration_element)
 	;
 
 typedef_declaration_element
-	: ID WS* (L_EQ WS* (ID| NUMBER))?
+	: ID  (L_EQ  (ID| NUMBER))?
 	;
 
 /*------------------------------------------------------------------
@@ -1011,10 +1007,10 @@ field_declaration_wrapper
 	:	field_declaration -> ^(FIELD field_declaration);
 
 field_declaration
-	:	field_modifier_wrapper WS* field_type name field_declaration_end;
+	:	field_modifier_wrapper  field_type name field_declaration_end;
 	
 field_declaration_end
-	:	WS+ (value_set WS*)? semi;	
+	:	 (value_set )? semi;	
 	
 type_start_wrapper
 	:	type_start -> ^(M_TYPE_START type_start);
@@ -1027,11 +1023,11 @@ type_end:	field_declaration4 -> ^(FIELD field_declaration4)
 	;	
 	
 field_declaration4
-	:	WS* (value_set WS*)? SEMICOLON
+	:	 (value_set )? SEMICOLON
 	;
 	
 method_declaration4
-	:	WS* method_params2 WS*
+	:	 method_params2 
 		block_wrapper
 	;	
 
@@ -1046,7 +1042,7 @@ field_type
 	:	 field_type_internal -> ^(TYPE field_type_internal);	
 	
 field_type_internal
-	:	type_internal WS* (generic WS*)? (ASTERISK+ WS*)?;	
+	:	type_internal  (generic )? (ASTERISK+ )?;	
 
 /*------------------------------------------------------------------
  * COMMON RULES
@@ -1062,7 +1058,7 @@ name_internal
 	;
 
 value_set
-	:	L_EQ WS* value -> ^(VALUE value);
+	:	L_EQ  value -> ^(VALUE value);
 
 value	:	ID | string_value | null_stmt | array | NUMBER | struct_init2;	
 
@@ -1071,9 +1067,9 @@ string_value
 	
 null_stmt	:	'nil' | 'Nil';
 
-array	:	L_FBR WS* value WS* (COMMA WS* value WS*)* R_FBR;
+array	:	L_FBR  value  (COMMA  value )* R_FBR;
 
-semi	:	SEMICOLON WS*;
+semi	:	SEMICOLON ;
 
 /*------------------------------------------------------------------
  * LEXER RULES
@@ -1101,16 +1097,16 @@ L_MINUS_MINUS
 	:	'--';
 
 CONST_PREFIX
- 	:	'const' WS+;
+ 	:	'const' ;
  	
 ENUM_PREFIX
-	:	'enum' WS+;
+	:	'enum' ;
 
 STRUCT_PREFIX
-	:	'struct' WS+;
+	:	'struct' ;
 
 STATIC_PREFIX
-	:	'static' WS+;
+	:	'static' ;
 
 SINGLE_COMMENT
 	:	'//' ~('\r' | '\n')* ('\r'? '\n')+ { skip(); };
@@ -1127,10 +1123,10 @@ NUMBER  : DIGIT+ ('u'|'U')?
 	| ('0x'  (DIGIT|'A'..'F')*(DOT DIGIT+)?)?
 	| DIGIT+ (DOT DIGIT+)? 'e' ('-'|'+')? DIGIT+;
 
-WS : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+ /*  { $channel = HIDDEN; } */;
+WS : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+  { $channel = HIDDEN; } ;
 
 SINGLE_OP
-	:	'continue' WS* SEMICOLON
+	:	'continue'  SEMICOLON
 	;
 	
 BREAK_WORD

@@ -135,6 +135,7 @@ public class Utils {
     }
 
     public static String getText(CommonTree tree) {
+        if (tree == null) return "";
         if (tree.getChildCount() == 0) return tree.getText();
         StringBuilder sb = new StringBuilder();
         for (Object child : tree.getChildren()) {
