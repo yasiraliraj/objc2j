@@ -36,6 +36,7 @@ tokens {
 	STRUCT;
 	VALUE;
 	INIT_DECLARATION;
+	UNION;
 }
 
 @header {
@@ -73,6 +74,7 @@ extern_declarations
 declarations
 	:	optional_prefix? method_declaration_wrapper
 	|	property_prefix? optional_prefix? field_declaration_wrapper
+	|	ns_inline ~'{'+ ~'}'+ '}' // do not parse such inline methods yet
 	;
 	
 method_declaration_wrapper
@@ -86,6 +88,9 @@ property_prefix
 	
 optional_prefix
 	:	'@optional';
+	
+ns_inline
+	:	'NS_INLINE';	
 	
 property_prefix_param
 	:	'retain'
@@ -113,13 +118,17 @@ typedef_internal
 	:	typedef_enum_wrapper2 
 	| 	typedef_rename 
 	| 	typedef_struct_wrapper
-	|	union_declaration;
+	|	union_declaration_wrapper
+	;
+	
+union_declaration_wrapper
+	:	union_declaration -> ^(UNION union_declaration);	
 	
 union_declaration
 	:	'union' 
 		'{'
-			union_internal+
-		'}'
+			typedef_struct+
+		'}' union_name?
 	;	
 	
 union_internal
@@ -229,10 +238,17 @@ interface_declaration
 interface_body
 	:
 	'{'
-		(group_modifier_wrapper ?
-		simple_fields_declaration)*
+		interface_body_item*
 	'}'
 	;
+	
+interface_body_item
+	:	group_modifier_wrapper? simple_fields_declaration
+	|	union_declaration_wrapper ';'
+	;
+
+union_name
+	:	ID -> ^(NAME ID);	
 	
 group_modifier_wrapper
 	:	group_modifier -> ^(GROUP_MODIFIER group_modifier);	

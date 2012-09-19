@@ -349,7 +349,7 @@ public class Preprocessor {
     public static String replace(String input, Context ctx, String fileName) {
         for (List<Macros> macrosList : ctx.macrosMap.values()) {
             for (Macros macros : macrosList) {
-                if (macros.getFileName().equals(fileName)) {
+                if (macros.getFileName() != null && macros.getFileName().equals(fileName)) {
                     // вычищаем объ€вление макроса из кода
                     input = input.replaceAll("\\#define\\s+" + macros.getName(), "//define");
                     if (macros.getReplace().contains("\n")) {

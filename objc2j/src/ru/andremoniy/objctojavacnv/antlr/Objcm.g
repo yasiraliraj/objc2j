@@ -117,7 +117,7 @@ implementation_wrapper
  	:	implementation -> ^(IMPLEMENTATION implementation);
  	
 implementation
-	:	'@implementation'  name  (category )? (super_class )?
+	:	'@implementation'  name  category? super_class?
 		implementation_body+
 		'@end'  semi?
 	; 	
@@ -159,7 +159,7 @@ static_section2
 	;
 	
 inline_section
-	:	'inline'  field_type name  (method_params2 )? (block_wrapper | SEMICOLON);	
+	:	'inline'  field_type name  method_params2? (block_wrapper | SEMICOLON);	
 	
 static_section3
 	:	field_type name indexed*  static_end;
@@ -173,15 +173,15 @@ field_end
 	:	field_end_internal -> ^(FIELD field_end_internal);
 	
 field_end_internal
-	:	(value_set )? semi;	
+	:	value_set? semi;	
 		
 implementation_method_wrapper3
 	:	implementation_method3 -> ^(METHOD implementation_method3);
 	
 implementation_method3
 	:	method_header_body3  semi?
-		(attribute )?
-		(block_wrapper )?
+		attribute?
+		block_wrapper?
 	;
 	
 attribute
@@ -285,7 +285,7 @@ in_brackets_block_ends
 	;
 	
 in_brackets_block_end1
-	:	id_part_end?  ((L_PLUS_PLUS|L_MINUS_MINUS) )? (set_internal_end_wrapper)? SEMICOLON
+	:	id_part_end?  (L_PLUS_PLUS|L_MINUS_MINUS)? (set_internal_end_wrapper)? SEMICOLON
 	;
 			
 in_brackets_block_end2
@@ -306,7 +306,7 @@ try_stmt:	'@try'  block  catch_stmt* ('@finally'  block)?
 	;
 	
 catch_stmt
-	:	'@catch'  L_BR  ID  (ASTERISK+ )? ID  R_BR  block 
+	:	'@catch'  L_BR  ID  ASTERISK* ID  R_BR  block 
 	;	
 
 switch_stmt_wrapper
@@ -352,7 +352,7 @@ case_expr
 	:	expr -> ^(CASE_EXPR expr);	
 	
 block_break
-	:	block_case  (single_operators )?
+	:	block_case single_operators?
 	;
 
 default_stmt_wrapper
@@ -399,7 +399,7 @@ for_stmt:	'for'  L_BR  for_stmt_iterator? for_stmt_internal R_BR  if_stmt_block
 	;
 	
 for_stmt_iterator
-	:	ID  ((ASTERISK+ )? ID )?
+	:	ID  (ASTERISK* ID)?
 	;	
 	
 for_stmt_internal
@@ -408,7 +408,7 @@ for_stmt_internal
 	;	
 	
 for_stmt_int1
-	:	'in'  expr  -> ^(FOR_IN_STMT  expr );	
+	:	'in'  expr  -> ^(FOR_IN_STMT  expr);	
 	
 for_stmt_int2
 	:	(L_EQ  expression)? semi expression? semi (id_start_variable_light)?
@@ -433,7 +433,7 @@ else_stmt
 	:	'else'  if_stmt_block;
 	
 variable_set
-//	:	variable_set_internal  (COMMA  variable_set_internal )* isv_end;
+//	:	variable_set_internal  (COMMA  variable_set_internal)* isv_end;
 	:	variable_set_internal (COMMA  variable_set_internal)* semi?;
 
 if_stmt_block_wrapper
@@ -449,7 +449,7 @@ variable_set_light
 	:	variable_set_internal (COMMA  variable_set_internal)*;
 
 variable_set_internal
-	:	(ASTERISK+ )? id_part  (set_internal_end_wrapper )?
+	:	ASTERISK* id_part set_internal_end_wrapper?
 	;
 
 isv_end	:	SEMICOLON 
@@ -486,7 +486,7 @@ id_start_variable
 	;
 	
 simple_start_v
-	:	(ASTERISK+ )? (known_types (ASTERISK+  |  (ASTERISK+ )?))? id_part simple_start_v_end
+	:	ASTERISK* (known_types ASTERISK*)? id_part simple_start_v_end
 	;
 
 simple_start_v_end
@@ -524,7 +524,7 @@ id_start_variable_end
 	|	L_BR  (expression (COMMA  expression)*)? R_BR  isv_end;	
 
 id_start_variable_light
-	:	(L_PLUS_PLUS|L_MINUS_MINUS)? (ASTERISK+ )? object_name  ( (variable_set_end variable_set_light?) | variable_set_light)?;
+	:	(L_PLUS_PLUS|L_MINUS_MINUS)? ASTERISK* object_name  ( (variable_set_end variable_set_light?) | variable_set_light)?;
 	
 object_name
 	:	id_part id_part_end?
@@ -572,10 +572,10 @@ type_convertion_start
 	:	L_BR  ID generic?  -> ^(TYPE_CONVERTION_MAY_BE ID generic?);
 	
 type_convertion_end
-	:	(ASTERISK+ )? R_BR  -> ^(TYPE_CONVERTION_TRUE);
+	:	ASTERISK* R_BR  -> ^(TYPE_CONVERTION_TRUE);
 	
 type_convertion
-	:	L_BR  ('unsigned' )? type_internal  (ASTERISK+ )? R_BR  -> ^(TYPE_CONVERTION type_internal);
+	:	L_BR  'unsigned'? type_internal  ASTERISK* R_BR  -> ^(TYPE_CONVERTION type_internal);
 
 method_name
 	:	ID -> ^(METHOD_NAME ID);
@@ -683,7 +683,7 @@ expression_other
 	
 expression_end2
 	:	R_BR  expression -> ^(TYPE_CONVERTION expression)
-	|	expr  (op  expr )* R_BR 
+	|	expr  (op  expr)* R_BR
 	;
 
 op	:	ASTERISK | op3;
@@ -694,10 +694,10 @@ op3	:	'-' | '/' | '+' | '%' | '&' | '&&' | '|' | '||' | R_UBR | '>=' | L_UBR | '
 	// TODO  expr "?" expr ":" expr - support !!!
 
 
-//expr2	:	(op2 )? (const_expr | a_started | id_started | square_brackets) index_brackets*;
-//expr	:	(op2 )? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets?)) index_brackets*;
-expr2	:	(op2 )? (const_expr | a_started | id_started | square_brackets);
-expr	:	(op2 )? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets? id_part_end?));
+//expr2	:	op2? (const_expr | a_started | id_started | square_brackets) index_brackets*;
+//expr	:	op2? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets?)) index_brackets*;
+expr2	:	op2? (const_expr | a_started | id_started | square_brackets);
+expr	:	op2? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets? id_part_end?));
 
 a_started
 	:	a_selector_wrapper
@@ -710,9 +710,9 @@ special_op
 	|	typeof id_started
 	;
 	
-sizeof1	:	'sizeof' L_BR  (ASTERISK+ )? ID  R_BR;
+sizeof1	:	'sizeof' L_BR  ASTERISK* ID  R_BR;
 
-sizeof2	:	'sizeof'  (ASTERISK+ )? ID ;
+sizeof2	:	'sizeof'  ASTERISK* ID ;
 
 typeof	:	'__typeof__'  L_BR  ID  R_BR ;
 	
@@ -725,7 +725,7 @@ a_selector_value_wrapper
 	:	a_selector_value -> ^(SELECTOR_VALUE a_selector_value);
 	
 a_selector_value
-	:	 ID  (COLON  (ID  COLON )*)?;	
+	:	 ID  (COLON  (ID  COLON)*)?;
 
 
 a_encode:	'@encode' L_BR ~(R_BR)+ R_BR;
@@ -763,7 +763,7 @@ in_brackets
 	;
 	
 func_pointer1
-	:	type_internal  (ASTERISK )? L_BR  (ASTERISK )? type_internal  R_BR  func_pointer_params  variable_set_end? SEMICOLON
+	:	type_internal  ASTERISK? L_BR ASTERISK? type_internal  R_BR  func_pointer_params  variable_set_end? SEMICOLON
 	;
 	
 func_pointer2
@@ -771,7 +771,7 @@ func_pointer2
 	;	
 	
 func_pointer_params
-	:	L_BR  ID  (ASTERISK )* (COMMA  ID  (ASTERISK )*)* R_BR;	
+	:	L_BR  ID  ASTERISK* (COMMA  ID  ASTERISK*)* R_BR;
 	
 in_brackets_end1
 	:	L_BR  expression  R_BR
@@ -800,10 +800,10 @@ q_brackets_source
 	;	
 	
 q_br_source
-	:	in_q_brackets  (COMMA  in_q_brackets )* (COMMA )?
+	:	in_q_brackets  (COMMA  in_q_brackets)* COMMA?
 	;
 	
-q_source:	(expression  (COMMA  expression )*)?
+q_source:	(expression  (COMMA  expression)*)?
 	;	
 	
 simple_method_call
@@ -820,7 +820,7 @@ round_brackets_end
 	;	
 	
 type_in_brackets
-	:	CONST_PREFIX? ID generic?  (ASTERISK )* R_BR  in_brackets_end1
+	:	CONST_PREFIX? ID generic? ASTERISK* R_BR  in_brackets_end1
 	;
 			
 square_brackets
@@ -839,7 +839,7 @@ interface_declaration_wrapper
 	:	interface_declaration -> ^(INTERFACE interface_declaration);
 	
 interface_declaration
-	:	'@interface'  name  (interface_category )? (super_class)?
+	:	'@interface'  name  interface_category? (super_class)?
 		(annotated_block | interface_methods)+
 		
 		'@end';
@@ -911,12 +911,12 @@ method_modifier
 	:	'+' | '-';	
 	
 method_type
-	:	L_BR  STRUCT_PREFIX? type_internal  (generic )? (ASTERISK+ )? R_BR -> ^(TYPE type_internal)
-	| 	L_BR  CONST_PREFIX? (known_types )? (ID )* (generic )? (ASTERISK+ )? R_BR -> ^(TYPE ID+)
+	:	L_BR  STRUCT_PREFIX? type_internal  generic? ASTERISK* R_BR -> ^(TYPE type_internal)
+	| 	L_BR  CONST_PREFIX? known_types? ID* generic? ASTERISK* R_BR -> ^(TYPE ID+)
 	;			
 		
 type_internal
-	:	type_internal1 ( L_KBR  R_KBR)?
+	:	type_internal1 (L_KBR  R_KBR)?
 	;		
 		
 type_internal1
@@ -927,25 +927,25 @@ type_internal1
 generic:	L_UBR generic_internal R_UBR -> ^(GENERIC generic_internal);	
 
 generic_internal
-	:	 ID  (ASTERISK+ )? (COMMA  ID  ASTERISK*)*;
+	:	 ID  ASTERISK* (COMMA  ID  ASTERISK*)*;
 
 method_params2
-	:	L_BR  method_param_wrapper2  (COMMA  method_param_wrapper2  )* R_BR
+	:	L_BR  method_param_wrapper2  (COMMA  method_param_wrapper2)* R_BR
 	;
 
 method_param_wrapper2
 	:	method_param2 -> ^(PARAM method_param2);
 	
 method_param2
-	:	CONST_PREFIX? ENUM_PREFIX? STRUCT_PREFIX? ('unsigned' )? field_type name? indexed?;
+	:	CONST_PREFIX? ENUM_PREFIX? STRUCT_PREFIX? 'unsigned'? field_type name? indexed?;
 	
-indexed	:	L_KBR 	(NUMBER )? R_KBR;
+indexed	:	L_KBR NUMBER? R_KBR;
 	
 method_params
 	:	method_param+ -> ^(PARAM method_param)+;	
 	
 method_param
-	:	(prefix )? COLON  (method_type )? name 
+	:	prefix? COLON  method_type? name
 	;	
 	
 prefix	:	ID -> ^(PREFIX ID);
@@ -960,10 +960,10 @@ typedef_struct_declaration_wrapper
 	; 
 
 typedef_struct_declaration
-	: STRUCT_PREFIX (name )?
+	: STRUCT_PREFIX name?
 	L_FBR 
 		typedef_struct_body+
-	R_FBR  (name )? semi?
+	R_FBR  name? semi?
 	;
 	
 typedef_struct_body
@@ -989,7 +989,7 @@ enum_declaration
 	:	typedef_declaration -> ^(ENUM typedef_declaration);	
 	
 typedef_declaration
-	:  ENUM_PREFIX L_FBR  typedef_declaration_element_wrapper  (COMMA  typedef_declaration_element_wrapper )* R_FBR  (name )? SEMICOLON;
+	:  ENUM_PREFIX L_FBR  typedef_declaration_element_wrapper  (COMMA  typedef_declaration_element_wrapper)* R_FBR  name? SEMICOLON;
 	
 typedef_declaration_element_wrapper
 	:	typedef_declaration_element -> ^(TYPEDEF_ELEMENT typedef_declaration_element)
@@ -1010,7 +1010,7 @@ field_declaration
 	:	field_modifier_wrapper  field_type name field_declaration_end;
 	
 field_declaration_end
-	:	 (value_set )? semi;	
+	:	 value_set? semi;
 	
 type_start_wrapper
 	:	type_start -> ^(M_TYPE_START type_start);
@@ -1023,7 +1023,7 @@ type_end:	field_declaration4 -> ^(FIELD field_declaration4)
 	;	
 	
 field_declaration4
-	:	 (value_set )? SEMICOLON
+	:	 value_set? SEMICOLON
 	;
 	
 method_declaration4
@@ -1042,7 +1042,7 @@ field_type
 	:	 field_type_internal -> ^(TYPE field_type_internal);	
 	
 field_type_internal
-	:	type_internal  (generic )? (ASTERISK+ )?;	
+	:	type_internal  generic? ASTERISK*;
 
 /*------------------------------------------------------------------
  * COMMON RULES
@@ -1067,7 +1067,7 @@ string_value
 	
 null_stmt	:	'nil' | 'Nil';
 
-array	:	L_FBR  value  (COMMA  value )* R_FBR;
+array	:	L_FBR  value  (COMMA  value)* R_FBR;
 
 semi	:	SEMICOLON ;
 
@@ -1123,7 +1123,7 @@ NUMBER  : DIGIT+ ('u'|'U')?
 	| ('0x'  (DIGIT|'A'..'F')*(DOT DIGIT+)?)?
 	| DIGIT+ (DOT DIGIT+)? 'e' ('-'|'+')? DIGIT+;
 
-WS : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+  { $channel = HIDDEN; } ;
+WS : ( '\t' | ' ' | '\r' | '\n'| '\u000C')+  { $channel = HIDDEN; } ;
 
 SINGLE_OP
 	:	'continue'  SEMICOLON

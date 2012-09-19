@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g 2012-09-18 20:12:27
+// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g 2012-09-19 21:06:23
 
 package ru.andremoniy.objctojavacnv.antlr.output;
 
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class ObjchLexer extends Lexer {
     public static final int EOF=-1;
-    public static final int T__42=42;
     public static final int T__43=43;
     public static final int T__44=44;
     public static final int T__45=45;
@@ -54,6 +53,8 @@ public class ObjchLexer extends Lexer {
     public static final int T__82=82;
     public static final int T__83=83;
     public static final int T__84=84;
+    public static final int T__85=85;
+    public static final int T__86=86;
     public static final int CATEGORY=4;
     public static final int DIGIT=5;
     public static final int ENUM=6;
@@ -90,8 +91,9 @@ public class ObjchLexer extends Lexer {
     public static final int TYPEDEF=37;
     public static final int TYPEDEF_ELEMENT=38;
     public static final int TYPEDEF_NAME=39;
-    public static final int VALUE=40;
-    public static final int WHITESPACE=41;
+    public static final int UNION=40;
+    public static final int VALUE=41;
+    public static final int WHITESPACE=42;
 
     // delegates
     // delegators
@@ -106,40 +108,17 @@ public class ObjchLexer extends Lexer {
     public ObjchLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
-    public String getGrammarFileName() { return "C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g"; }
-
-    // $ANTLR start "T__42"
-    public final void mT__42() throws RecognitionException {
-        try {
-            int _type = T__42;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:6:7: ( '&' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:6:9: '&'
-            {
-            match('&'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__42"
+    public String getGrammarFileName() { return "C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g"; }
 
     // $ANTLR start "T__43"
     public final void mT__43() throws RecognitionException {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:7:7: ( '&~' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:7:9: '&~'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:6:7: ( '&' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:6:9: '&'
             {
-            match("&~"); 
-
-
+            match('&'); 
 
             }
 
@@ -157,10 +136,12 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:8:7: ( '(' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:8:9: '('
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:7:7: ( '&~' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:7:9: '&~'
             {
-            match('('); 
+            match("&~"); 
+
+
 
             }
 
@@ -178,10 +159,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:9:7: ( ')' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:9:9: ')'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:8:7: ( '(' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:8:9: '('
             {
-            match(')'); 
+            match('('); 
 
             }
 
@@ -199,10 +180,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:10:7: ( '*' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:10:9: '*'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:9:7: ( ')' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:9:9: ')'
             {
-            match('*'); 
+            match(')'); 
 
             }
 
@@ -220,10 +201,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:11:7: ( '+' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:11:9: '+'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:10:7: ( '*' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:10:9: '*'
             {
-            match('+'); 
+            match('*'); 
 
             }
 
@@ -241,10 +222,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:12:7: ( ',' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:12:9: ','
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:11:7: ( '+' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:11:9: '+'
             {
-            match(','); 
+            match('+'); 
 
             }
 
@@ -262,10 +243,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:13:7: ( '-' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:13:9: '-'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:12:7: ( ',' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:12:9: ','
             {
-            match('-'); 
+            match(','); 
 
             }
 
@@ -283,10 +264,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:14:7: ( ':' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:14:9: ':'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:13:7: ( '-' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:13:9: '-'
             {
-            match(':'); 
+            match('-'); 
 
             }
 
@@ -304,10 +285,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:15:7: ( ';' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:15:9: ';'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:14:7: ( ':' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:14:9: ':'
             {
-            match(';'); 
+            match(':'); 
 
             }
 
@@ -325,10 +306,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:16:7: ( '<' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:16:9: '<'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:15:7: ( ';' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:15:9: ';'
             {
-            match('<'); 
+            match(';'); 
 
             }
 
@@ -346,12 +327,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:17:7: ( '<<' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:17:9: '<<'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:16:7: ( '<' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:16:9: '<'
             {
-            match("<<"); 
-
-
+            match('<'); 
 
             }
 
@@ -369,10 +348,12 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:18:7: ( '=' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:18:9: '='
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:17:7: ( '<<' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:17:9: '<<'
             {
-            match('='); 
+            match("<<"); 
+
+
 
             }
 
@@ -390,10 +371,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:19:7: ( '>' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:19:9: '>'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:18:7: ( '=' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:18:9: '='
             {
-            match('>'); 
+            match('='); 
 
             }
 
@@ -411,12 +392,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:20:7: ( '>>' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:20:9: '>>'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:19:7: ( '>' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:19:9: '>'
             {
-            match(">>"); 
-
-
+            match('>'); 
 
             }
 
@@ -434,10 +413,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:21:7: ( '@class' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:21:9: '@class'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:20:7: ( '>>' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:20:9: '>>'
             {
-            match("@class"); 
+            match(">>"); 
 
 
 
@@ -457,10 +436,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:22:7: ( '@end' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:22:9: '@end'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:21:7: ( '@class' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:21:9: '@class'
             {
-            match("@end"); 
+            match("@class"); 
 
 
 
@@ -480,10 +459,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:23:7: ( '@interface' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:23:9: '@interface'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:22:7: ( '@end' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:22:9: '@end'
             {
-            match("@interface"); 
+            match("@end"); 
 
 
 
@@ -503,10 +482,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:24:7: ( '@optional' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:24:9: '@optional'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:23:7: ( '@interface' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:23:9: '@interface'
             {
-            match("@optional"); 
+            match("@interface"); 
 
 
 
@@ -526,10 +505,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:25:7: ( '@private' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:25:9: '@private'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:24:7: ( '@optional' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:24:9: '@optional'
             {
-            match("@private"); 
+            match("@optional"); 
 
 
 
@@ -549,10 +528,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:26:7: ( '@property' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:26:9: '@property'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:25:7: ( '@private' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:25:9: '@private'
             {
-            match("@property"); 
+            match("@private"); 
 
 
 
@@ -572,10 +551,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:27:7: ( '@protected' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:27:9: '@protected'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:26:7: ( '@property' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:26:9: '@property'
             {
-            match("@protected"); 
+            match("@property"); 
 
 
 
@@ -595,10 +574,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:28:7: ( '@protocol' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:28:9: '@protocol'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:27:7: ( '@protected' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:27:9: '@protected'
             {
-            match("@protocol"); 
+            match("@protected"); 
 
 
 
@@ -618,10 +597,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:29:7: ( '@public' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:29:9: '@public'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:28:7: ( '@protocol' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:28:9: '@protocol'
             {
-            match("@public"); 
+            match("@protocol"); 
 
 
 
@@ -641,10 +620,12 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:30:7: ( '[' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:30:9: '['
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:29:7: ( '@public' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:29:9: '@public'
             {
-            match('['); 
+            match("@public"); 
+
+
 
             }
 
@@ -662,10 +643,12 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:31:7: ( ']' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:31:9: ']'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:30:7: ( 'NS_INLINE' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:30:9: 'NS_INLINE'
             {
-            match(']'); 
+            match("NS_INLINE"); 
+
+
 
             }
 
@@ -683,12 +666,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:32:7: ( 'const' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:32:9: 'const'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:31:7: ( '[' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:31:9: '['
             {
-            match("const"); 
-
-
+            match('['); 
 
             }
 
@@ -706,12 +687,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:33:7: ( 'enum' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:33:9: 'enum'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:32:7: ( ']' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:32:9: ']'
             {
-            match("enum"); 
-
-
+            match(']'); 
 
             }
 
@@ -729,10 +708,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:34:7: ( 'extern' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:34:9: 'extern'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:33:7: ( 'const' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:33:9: 'const'
             {
-            match("extern"); 
+            match("const"); 
 
 
 
@@ -752,10 +731,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:35:7: ( 'initWithType' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:35:9: 'initWithType'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:34:7: ( 'enum' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:34:9: 'enum'
             {
-            match("initWithType"); 
+            match("enum"); 
 
 
 
@@ -775,10 +754,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:36:7: ( 'int' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:36:9: 'int'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:35:7: ( 'extern' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:35:9: 'extern'
             {
-            match("int"); 
+            match("extern"); 
 
 
 
@@ -798,10 +777,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:37:7: ( 'long' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:37:9: 'long'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:36:7: ( 'initWithType' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:36:9: 'initWithType'
             {
-            match("long"); 
+            match("initWithType"); 
 
 
 
@@ -821,10 +800,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:38:7: ( 'nonatomic' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:38:9: 'nonatomic'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:37:7: ( 'int' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:37:9: 'int'
             {
-            match("nonatomic"); 
+            match("int"); 
 
 
 
@@ -844,10 +823,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:39:7: ( 'readonly' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:39:9: 'readonly'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:38:7: ( 'long' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:38:9: 'long'
             {
-            match("readonly"); 
+            match("long"); 
 
 
 
@@ -867,10 +846,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:40:7: ( 'readwrite' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:40:9: 'readwrite'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:39:7: ( 'nonatomic' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:39:9: 'nonatomic'
             {
-            match("readwrite"); 
+            match("nonatomic"); 
 
 
 
@@ -890,10 +869,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:41:7: ( 'retain' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:41:9: 'retain'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:40:7: ( 'readonly' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:40:9: 'readonly'
             {
-            match("retain"); 
+            match("readonly"); 
 
 
 
@@ -913,10 +892,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:42:7: ( 'struct' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:42:9: 'struct'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:41:7: ( 'readwrite' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:41:9: 'readwrite'
             {
-            match("struct"); 
+            match("readwrite"); 
 
 
 
@@ -936,10 +915,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:43:7: ( 'typedef' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:43:9: 'typedef'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:42:7: ( 'retain' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:42:9: 'retain'
             {
-            match("typedef"); 
+            match("retain"); 
 
 
 
@@ -959,10 +938,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:44:7: ( 'union' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:44:9: 'union'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:43:7: ( 'struct' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:43:9: 'struct'
             {
-            match("union"); 
+            match("struct"); 
 
 
 
@@ -982,10 +961,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:45:7: ( 'unsigned' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:45:9: 'unsigned'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:44:7: ( 'typedef' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:44:9: 'typedef'
             {
-            match("unsigned"); 
+            match("typedef"); 
 
 
 
@@ -1005,10 +984,12 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:46:7: ( '{' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:46:9: '{'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:45:7: ( 'union' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:45:9: 'union'
             {
-            match('{'); 
+            match("union"); 
+
+
 
             }
 
@@ -1026,10 +1007,12 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:47:7: ( '|' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:47:9: '|'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:46:7: ( 'unsigned' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:46:9: 'unsigned'
             {
-            match('|'); 
+            match("unsigned"); 
+
+
 
             }
 
@@ -1047,10 +1030,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:48:7: ( '}' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:48:9: '}'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:47:7: ( '{' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:47:9: '{'
             {
-            match('}'); 
+            match('{'); 
 
             }
 
@@ -1063,19 +1046,61 @@ public class ObjchLexer extends Lexer {
     }
     // $ANTLR end "T__84"
 
+    // $ANTLR start "T__85"
+    public final void mT__85() throws RecognitionException {
+        try {
+            int _type = T__85;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:48:7: ( '|' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:48:9: '|'
+            {
+            match('|'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__85"
+
+    // $ANTLR start "T__86"
+    public final void mT__86() throws RecognitionException {
+        try {
+            int _type = T__86;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:49:7: ( '}' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:49:9: '}'
+            {
+            match('}'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__86"
+
     // $ANTLR start "SINGLE_COMMENT"
     public final void mSINGLE_COMMENT() throws RecognitionException {
         try {
             int _type = SINGLE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:344:2: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:344:4: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:360:2: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:360:4: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
             {
             match("//"); 
 
 
 
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:344:9: (~ ( '\\r' | '\\n' ) )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:360:9: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -1088,7 +1113,7 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -1109,7 +1134,7 @@ public class ObjchLexer extends Lexer {
             } while (true);
 
 
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:344:25: ( ( '\\r' )? '\\n' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:360:25: ( ( '\\r' )? '\\n' )+
             int cnt3=0;
             loop3:
             do {
@@ -1123,9 +1148,9 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:344:26: ( '\\r' )? '\\n'
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:360:26: ( '\\r' )? '\\n'
             	    {
-            	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:344:26: ( '\\r' )?
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:360:26: ( '\\r' )?
             	    int alt2=2;
             	    int LA2_0 = input.LA(1);
 
@@ -1134,7 +1159,7 @@ public class ObjchLexer extends Lexer {
             	    }
             	    switch (alt2) {
             	        case 1 :
-            	            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:344:26: '\\r'
+            	            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:360:26: '\\r'
             	            {
             	            match('\r'); 
 
@@ -1177,14 +1202,14 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = MULTI_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:347:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:347:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:363:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:363:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
             {
             match("/*"); 
 
 
 
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:347:10: ( . )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:363:10: ( . )*
             loop4:
             do {
                 int alt4=2;
@@ -1209,7 +1234,7 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:347:10: .
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:363:10: .
             	    {
             	    matchAny(); 
 
@@ -1226,7 +1251,7 @@ public class ObjchLexer extends Lexer {
 
 
 
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:347:18: ( ( '\\r' )? '\\n' )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:363:18: ( ( '\\r' )? '\\n' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1235,9 +1260,9 @@ public class ObjchLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:347:19: ( '\\r' )? '\\n'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:363:19: ( '\\r' )? '\\n'
                     {
-                    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:347:19: ( '\\r' )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:363:19: ( '\\r' )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -1246,7 +1271,7 @@ public class ObjchLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:347:19: '\\r'
+                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:363:19: '\\r'
                             {
                             match('\r'); 
 
@@ -1282,12 +1307,12 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = PREPROCESSOR_DECLARATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:2: ( '#' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+ )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:4: '#' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:366:2: ( '#' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+ )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:366:4: '#' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+
             {
             match('#'); 
 
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:8: (~ ( '\\r' | '\\n' ) )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:366:8: (~ ( '\\r' | '\\n' ) )*
             loop7:
             do {
                 int alt7=2;
@@ -1300,7 +1325,7 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -1321,7 +1346,7 @@ public class ObjchLexer extends Lexer {
             } while (true);
 
 
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:24: ( '\\r' | '\\n' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:366:24: ( '\\r' | '\\n' )+
             int cnt8=0;
             loop8:
             do {
@@ -1335,7 +1360,7 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
             	    {
             	    if ( input.LA(1)=='\n'||input.LA(1)=='\r' ) {
             	        input.consume();
@@ -1378,7 +1403,7 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:352:9: ( ( '-' )? ( DIGIT )+ | '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+ )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:368:9: ( ( '-' )? ( DIGIT )+ | '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+ )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1404,9 +1429,9 @@ public class ObjchLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:352:11: ( '-' )? ( DIGIT )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:368:11: ( '-' )? ( DIGIT )+
                     {
-                    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:352:11: ( '-' )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:368:11: ( '-' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1415,7 +1440,7 @@ public class ObjchLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:352:11: '-'
+                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:368:11: '-'
                             {
                             match('-'); 
 
@@ -1425,7 +1450,7 @@ public class ObjchLexer extends Lexer {
                     }
 
 
-                    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:352:16: ( DIGIT )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:368:16: ( DIGIT )+
                     int cnt10=0;
                     loop10:
                     do {
@@ -1439,7 +1464,7 @@ public class ObjchLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
+                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
                     	    {
                     	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                     	        input.consume();
@@ -1467,13 +1492,13 @@ public class ObjchLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:353:4: '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:369:4: '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+
                     {
                     match("0x"); 
 
 
 
-                    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:353:9: ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:369:9: ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | DIGIT )+
                     int cnt11=0;
                     loop11:
                     do {
@@ -1487,7 +1512,7 @@ public class ObjchLexer extends Lexer {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
+                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
                     	    {
                     	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F') ) {
                     	        input.consume();
@@ -1530,10 +1555,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:355:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:355:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:371:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:371:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             {
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:355:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:371:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             int cnt13=0;
             loop13:
             do {
@@ -1547,7 +1572,7 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
             	    {
             	    if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||(input.LA(1) >= '\f' && input.LA(1) <= '\r')||input.LA(1)==' ' ) {
             	        input.consume();
@@ -1590,13 +1615,13 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:357:4: ( LETTER ( DIGIT | LETTER )* )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:357:6: LETTER ( DIGIT | LETTER )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:373:4: ( LETTER ( DIGIT | LETTER )* )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:373:6: LETTER ( DIGIT | LETTER )*
             {
             mLETTER(); 
 
 
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:357:13: ( DIGIT | LETTER )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:373:13: ( DIGIT | LETTER )*
             loop14:
             do {
                 int alt14=2;
@@ -1609,7 +1634,7 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
             	    {
             	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
             	        input.consume();
@@ -1646,10 +1671,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = FILE_NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:359:12: ( ( LETTER | NUMBER )+ ( '.' ( LETTER | NUMBER )+ )? )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:359:14: ( LETTER | NUMBER )+ ( '.' ( LETTER | NUMBER )+ )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:375:12: ( ( LETTER | NUMBER )+ ( '.' ( LETTER | NUMBER )+ )? )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:375:14: ( LETTER | NUMBER )+ ( '.' ( LETTER | NUMBER )+ )?
             {
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:359:14: ( LETTER | NUMBER )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:375:14: ( LETTER | NUMBER )+
             int cnt15=0;
             loop15:
             do {
@@ -1666,7 +1691,7 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:359:15: LETTER
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:375:15: LETTER
             	    {
             	    mLETTER(); 
 
@@ -1674,7 +1699,7 @@ public class ObjchLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:359:22: NUMBER
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:375:22: NUMBER
             	    {
             	    mNUMBER(); 
 
@@ -1692,7 +1717,7 @@ public class ObjchLexer extends Lexer {
             } while (true);
 
 
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:359:31: ( '.' ( LETTER | NUMBER )+ )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:375:31: ( '.' ( LETTER | NUMBER )+ )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -1701,11 +1726,11 @@ public class ObjchLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:359:32: '.' ( LETTER | NUMBER )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:375:32: '.' ( LETTER | NUMBER )+
                     {
                     match('.'); 
 
-                    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:359:35: ( LETTER | NUMBER )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:375:35: ( LETTER | NUMBER )+
                     int cnt16=0;
                     loop16:
                     do {
@@ -1722,7 +1747,7 @@ public class ObjchLexer extends Lexer {
 
                         switch (alt16) {
                     	case 1 :
-                    	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:359:36: LETTER
+                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:375:36: LETTER
                     	    {
                     	    mLETTER(); 
 
@@ -1730,7 +1755,7 @@ public class ObjchLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:359:43: NUMBER
+                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:375:43: NUMBER
                     	    {
                     	    mNUMBER(); 
 
@@ -1768,8 +1793,8 @@ public class ObjchLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:361:17: ( '0' .. '9' )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:377:17: ( '0' .. '9' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                 input.consume();
@@ -1794,8 +1819,8 @@ public class ObjchLexer extends Lexer {
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:362:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
-            // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:378:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -1818,404 +1843,412 @@ public class ObjchLexer extends Lexer {
     // $ANTLR end "LETTER"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:8: ( T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | SINGLE_COMMENT | MULTI_COMMENT | PREPROCESSOR_DECLARATION | NUMBER | WHITESPACE | ID | FILE_NAME )
-        int alt18=50;
+        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:8: ( T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | SINGLE_COMMENT | MULTI_COMMENT | PREPROCESSOR_DECLARATION | NUMBER | WHITESPACE | ID | FILE_NAME )
+        int alt18=51;
         alt18 = dfa18.predict(input);
         switch (alt18) {
             case 1 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:10: T__42
-                {
-                mT__42(); 
-
-
-                }
-                break;
-            case 2 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:16: T__43
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:10: T__43
                 {
                 mT__43(); 
 
 
                 }
                 break;
-            case 3 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:22: T__44
+            case 2 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:16: T__44
                 {
                 mT__44(); 
 
 
                 }
                 break;
-            case 4 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:28: T__45
+            case 3 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:22: T__45
                 {
                 mT__45(); 
 
 
                 }
                 break;
-            case 5 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:34: T__46
+            case 4 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:28: T__46
                 {
                 mT__46(); 
 
 
                 }
                 break;
-            case 6 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:40: T__47
+            case 5 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:34: T__47
                 {
                 mT__47(); 
 
 
                 }
                 break;
-            case 7 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:46: T__48
+            case 6 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:40: T__48
                 {
                 mT__48(); 
 
 
                 }
                 break;
-            case 8 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:52: T__49
+            case 7 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:46: T__49
                 {
                 mT__49(); 
 
 
                 }
                 break;
-            case 9 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:58: T__50
+            case 8 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:52: T__50
                 {
                 mT__50(); 
 
 
                 }
                 break;
-            case 10 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:64: T__51
+            case 9 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:58: T__51
                 {
                 mT__51(); 
 
 
                 }
                 break;
-            case 11 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:70: T__52
+            case 10 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:64: T__52
                 {
                 mT__52(); 
 
 
                 }
                 break;
-            case 12 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:76: T__53
+            case 11 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:70: T__53
                 {
                 mT__53(); 
 
 
                 }
                 break;
-            case 13 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:82: T__54
+            case 12 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:76: T__54
                 {
                 mT__54(); 
 
 
                 }
                 break;
-            case 14 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:88: T__55
+            case 13 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:82: T__55
                 {
                 mT__55(); 
 
 
                 }
                 break;
-            case 15 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:94: T__56
+            case 14 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:88: T__56
                 {
                 mT__56(); 
 
 
                 }
                 break;
-            case 16 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:100: T__57
+            case 15 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:94: T__57
                 {
                 mT__57(); 
 
 
                 }
                 break;
-            case 17 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:106: T__58
+            case 16 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:100: T__58
                 {
                 mT__58(); 
 
 
                 }
                 break;
-            case 18 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:112: T__59
+            case 17 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:106: T__59
                 {
                 mT__59(); 
 
 
                 }
                 break;
-            case 19 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:118: T__60
+            case 18 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:112: T__60
                 {
                 mT__60(); 
 
 
                 }
                 break;
-            case 20 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:124: T__61
+            case 19 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:118: T__61
                 {
                 mT__61(); 
 
 
                 }
                 break;
-            case 21 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:130: T__62
+            case 20 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:124: T__62
                 {
                 mT__62(); 
 
 
                 }
                 break;
-            case 22 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:136: T__63
+            case 21 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:130: T__63
                 {
                 mT__63(); 
 
 
                 }
                 break;
-            case 23 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:142: T__64
+            case 22 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:136: T__64
                 {
                 mT__64(); 
 
 
                 }
                 break;
-            case 24 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:148: T__65
+            case 23 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:142: T__65
                 {
                 mT__65(); 
 
 
                 }
                 break;
-            case 25 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:154: T__66
+            case 24 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:148: T__66
                 {
                 mT__66(); 
 
 
                 }
                 break;
-            case 26 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:160: T__67
+            case 25 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:154: T__67
                 {
                 mT__67(); 
 
 
                 }
                 break;
-            case 27 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:166: T__68
+            case 26 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:160: T__68
                 {
                 mT__68(); 
 
 
                 }
                 break;
-            case 28 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:172: T__69
+            case 27 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:166: T__69
                 {
                 mT__69(); 
 
 
                 }
                 break;
-            case 29 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:178: T__70
+            case 28 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:172: T__70
                 {
                 mT__70(); 
 
 
                 }
                 break;
-            case 30 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:184: T__71
+            case 29 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:178: T__71
                 {
                 mT__71(); 
 
 
                 }
                 break;
-            case 31 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:190: T__72
+            case 30 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:184: T__72
                 {
                 mT__72(); 
 
 
                 }
                 break;
-            case 32 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:196: T__73
+            case 31 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:190: T__73
                 {
                 mT__73(); 
 
 
                 }
                 break;
-            case 33 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:202: T__74
+            case 32 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:196: T__74
                 {
                 mT__74(); 
 
 
                 }
                 break;
-            case 34 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:208: T__75
+            case 33 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:202: T__75
                 {
                 mT__75(); 
 
 
                 }
                 break;
-            case 35 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:214: T__76
+            case 34 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:208: T__76
                 {
                 mT__76(); 
 
 
                 }
                 break;
-            case 36 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:220: T__77
+            case 35 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:214: T__77
                 {
                 mT__77(); 
 
 
                 }
                 break;
-            case 37 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:226: T__78
+            case 36 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:220: T__78
                 {
                 mT__78(); 
 
 
                 }
                 break;
-            case 38 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:232: T__79
+            case 37 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:226: T__79
                 {
                 mT__79(); 
 
 
                 }
                 break;
-            case 39 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:238: T__80
+            case 38 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:232: T__80
                 {
                 mT__80(); 
 
 
                 }
                 break;
-            case 40 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:244: T__81
+            case 39 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:238: T__81
                 {
                 mT__81(); 
 
 
                 }
                 break;
-            case 41 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:250: T__82
+            case 40 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:244: T__82
                 {
                 mT__82(); 
 
 
                 }
                 break;
-            case 42 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:256: T__83
+            case 41 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:250: T__83
                 {
                 mT__83(); 
 
 
                 }
                 break;
-            case 43 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:262: T__84
+            case 42 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:256: T__84
                 {
                 mT__84(); 
 
 
                 }
                 break;
+            case 43 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:262: T__85
+                {
+                mT__85(); 
+
+
+                }
+                break;
             case 44 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:268: SINGLE_COMMENT
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:268: T__86
+                {
+                mT__86(); 
+
+
+                }
+                break;
+            case 45 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:274: SINGLE_COMMENT
                 {
                 mSINGLE_COMMENT(); 
 
 
                 }
                 break;
-            case 45 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:283: MULTI_COMMENT
+            case 46 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:289: MULTI_COMMENT
                 {
                 mMULTI_COMMENT(); 
 
 
                 }
                 break;
-            case 46 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:297: PREPROCESSOR_DECLARATION
+            case 47 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:303: PREPROCESSOR_DECLARATION
                 {
                 mPREPROCESSOR_DECLARATION(); 
 
 
                 }
                 break;
-            case 47 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:322: NUMBER
+            case 48 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:328: NUMBER
                 {
                 mNUMBER(); 
 
 
                 }
                 break;
-            case 48 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:329: WHITESPACE
+            case 49 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:335: WHITESPACE
                 {
                 mWHITESPACE(); 
 
 
                 }
                 break;
-            case 49 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:340: ID
+            case 50 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:346: ID
                 {
                 mID(); 
 
 
                 }
                 break;
-            case 50 :
-                // C:\\Work\\ObjC2J\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:343: FILE_NAME
+            case 51 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:1:349: FILE_NAME
                 {
                 mFILE_NAME(); 
 
@@ -2230,93 +2263,98 @@ public class ObjchLexer extends Lexer {
 
     protected DFA18 dfa18 = new DFA18(this);
     static final String DFA18_eotS =
-        "\1\uffff\1\43\5\uffff\1\44\2\uffff\1\46\1\uffff\1\50\3\uffff\11"+
-        "\57\5\uffff\2\100\1\uffff\1\57\14\uffff\1\57\1\uffff\1\57\1\uffff"+
-        "\13\57\2\uffff\1\61\1\uffff\1\100\2\uffff\5\57\1\136\10\57\3\100"+
-        "\2\uffff\4\57\1\152\2\57\1\uffff\1\155\7\57\2\uffff\1\170\1\uffff"+
-        "\2\57\1\uffff\6\57\1\u0081\1\57\3\uffff\1\u0083\4\57\1\u0088\1\u0089"+
-        "\1\57\1\uffff\1\57\1\uffff\4\57\2\uffff\1\u0090\3\57\1\u0094\1\57"+
-        "\1\uffff\1\u0096\1\57\1\u0098\1\uffff\1\u0099\1\uffff\1\57\2\uffff"+
-        "\1\57\1\u009c\1\uffff";
+        "\1\uffff\1\44\5\uffff\1\45\2\uffff\1\47\1\uffff\1\51\1\uffff\1\60"+
+        "\2\uffff\11\60\5\uffff\2\102\1\uffff\1\60\14\uffff\1\60\1\uffff"+
+        "\1\60\1\uffff\14\60\2\uffff\1\62\1\uffff\1\102\2\uffff\6\60\1\142"+
+        "\10\60\3\102\2\uffff\5\60\1\157\2\60\1\uffff\1\162\7\60\2\uffff"+
+        "\1\60\1\176\1\uffff\2\60\1\uffff\6\60\1\u0087\1\60\2\uffff\1\60"+
+        "\1\uffff\1\u008a\4\60\1\u008f\1\u0090\1\60\1\uffff\2\60\1\uffff"+
+        "\4\60\2\uffff\1\u0098\4\60\1\u009d\1\60\1\uffff\1\u009f\1\u00a0"+
+        "\1\60\1\u00a2\1\uffff\1\u00a3\2\uffff\1\60\2\uffff\1\60\1\u00a6"+
+        "\1\uffff";
     static final String DFA18_eofS =
-        "\u009d\uffff";
+        "\u00a7\uffff";
     static final String DFA18_minS =
-        "\1\11\1\176\5\uffff\1\60\2\uffff\1\74\1\uffff\1\76\1\143\2\uffff"+
-        "\11\55\3\uffff\1\52\1\uffff\2\55\1\uffff\1\55\13\uffff\1\162\1\55"+
-        "\1\uffff\1\55\1\uffff\13\55\2\uffff\1\60\1\uffff\1\55\1\151\1\uffff"+
-        "\21\55\1\uffff\1\160\7\55\1\uffff\10\55\1\uffff\1\145\1\55\1\uffff"+
-        "\2\55\1\uffff\10\55\3\uffff\10\55\1\uffff\1\55\1\uffff\4\55\2\uffff"+
-        "\6\55\1\uffff\3\55\1\uffff\1\55\1\uffff\1\55\2\uffff\2\55\1\uffff";
+        "\1\11\1\176\5\uffff\1\60\2\uffff\1\74\1\uffff\1\76\1\143\1\55\2"+
+        "\uffff\11\55\3\uffff\1\52\1\uffff\2\55\1\uffff\1\55\13\uffff\1\162"+
+        "\1\55\1\uffff\1\55\1\uffff\14\55\2\uffff\1\60\1\uffff\1\55\1\151"+
+        "\1\uffff\22\55\1\uffff\1\160\10\55\1\uffff\10\55\1\uffff\1\145\2"+
+        "\55\1\uffff\2\55\1\uffff\10\55\2\uffff\1\55\1\uffff\10\55\1\uffff"+
+        "\2\55\1\uffff\4\55\2\uffff\7\55\1\uffff\4\55\1\uffff\1\55\2\uffff"+
+        "\1\55\2\uffff\2\55\1\uffff";
     static final String DFA18_maxS =
-        "\1\175\1\176\5\uffff\1\71\2\uffff\1\74\1\uffff\1\76\1\160\2\uffff"+
-        "\11\172\3\uffff\1\57\1\uffff\2\172\1\uffff\1\172\13\uffff\1\165"+
-        "\1\172\1\uffff\1\172\1\uffff\13\172\2\uffff\1\106\1\uffff\1\172"+
-        "\1\157\1\uffff\21\172\1\uffff\1\164\7\172\1\uffff\10\172\1\uffff"+
-        "\1\157\1\172\1\uffff\2\172\1\uffff\10\172\3\uffff\10\172\1\uffff"+
-        "\1\172\1\uffff\4\172\2\uffff\6\172\1\uffff\3\172\1\uffff\1\172\1"+
-        "\uffff\1\172\2\uffff\2\172\1\uffff";
+        "\1\175\1\176\5\uffff\1\71\2\uffff\1\74\1\uffff\1\76\1\160\1\172"+
+        "\2\uffff\11\172\3\uffff\1\57\1\uffff\2\172\1\uffff\1\172\13\uffff"+
+        "\1\165\1\172\1\uffff\1\172\1\uffff\14\172\2\uffff\1\106\1\uffff"+
+        "\1\172\1\157\1\uffff\22\172\1\uffff\1\164\10\172\1\uffff\10\172"+
+        "\1\uffff\1\157\2\172\1\uffff\2\172\1\uffff\10\172\2\uffff\1\172"+
+        "\1\uffff\10\172\1\uffff\2\172\1\uffff\4\172\2\uffff\7\172\1\uffff"+
+        "\4\172\1\uffff\1\172\2\uffff\1\172\2\uffff\2\172\1\uffff";
     static final String DFA18_acceptS =
-        "\2\uffff\1\3\1\4\1\5\1\6\1\7\1\uffff\1\11\1\12\1\uffff\1\15\2\uffff"+
-        "\1\31\1\32\11\uffff\1\51\1\52\1\53\1\uffff\1\56\2\uffff\1\60\1\uffff"+
+        "\2\uffff\1\3\1\4\1\5\1\6\1\7\1\uffff\1\11\1\12\1\uffff\1\15\3\uffff"+
+        "\1\32\1\33\11\uffff\1\52\1\53\1\54\1\uffff\1\57\2\uffff\1\61\1\uffff"+
         "\1\2\1\1\1\10\1\14\1\13\1\17\1\16\1\20\1\21\1\22\1\23\2\uffff\1"+
-        "\61\1\uffff\1\62\13\uffff\1\54\1\55\1\uffff\1\57\2\uffff\1\30\21"+
-        "\uffff\1\24\10\uffff\1\37\10\uffff\1\25\2\uffff\1\34\2\uffff\1\40"+
-        "\10\uffff\1\26\1\27\1\33\10\uffff\1\47\1\uffff\1\35\4\uffff\1\44"+
-        "\1\45\6\uffff\1\46\3\uffff\1\42\1\uffff\1\50\1\uffff\1\41\1\43\2"+
-        "\uffff\1\36";
+        "\62\1\uffff\1\63\14\uffff\1\55\1\56\1\uffff\1\60\2\uffff\1\30\22"+
+        "\uffff\1\24\11\uffff\1\40\10\uffff\1\25\3\uffff\1\35\2\uffff\1\41"+
+        "\10\uffff\1\26\1\27\1\uffff\1\34\10\uffff\1\50\2\uffff\1\36\4\uffff"+
+        "\1\45\1\46\7\uffff\1\47\4\uffff\1\43\1\uffff\1\51\1\31\1\uffff\1"+
+        "\42\1\44\2\uffff\1\37";
     static final String DFA18_specialS =
-        "\u009d\uffff}>";
+        "\u00a7\uffff}>";
     static final String[] DFA18_transitionS = {
-            "\2\40\1\uffff\2\40\22\uffff\1\40\2\uffff\1\35\2\uffff\1\1\1"+
-            "\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\uffff\1\34\1\36\11\37\1\10"+
-            "\1\11\1\12\1\13\1\14\1\uffff\1\15\32\41\1\16\1\uffff\1\17\1"+
-            "\uffff\1\41\1\uffff\2\41\1\20\1\41\1\21\3\41\1\22\2\41\1\23"+
-            "\1\41\1\24\3\41\1\25\1\26\1\27\1\30\5\41\1\31\1\32\1\33",
-            "\1\42",
+            "\2\41\1\uffff\2\41\22\uffff\1\41\2\uffff\1\36\2\uffff\1\1\1"+
+            "\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\uffff\1\35\1\37\11\40\1\10"+
+            "\1\11\1\12\1\13\1\14\1\uffff\1\15\15\42\1\16\14\42\1\17\1\uffff"+
+            "\1\20\1\uffff\1\42\1\uffff\2\42\1\21\1\42\1\22\3\42\1\23\2\42"+
+            "\1\24\1\42\1\25\3\42\1\26\1\27\1\30\1\31\5\42\1\32\1\33\1\34",
+            "\1\43",
             "",
             "",
             "",
             "",
             "",
-            "\12\37",
+            "\12\40",
             "",
             "",
-            "\1\45",
+            "\1\46",
             "",
-            "\1\47",
-            "\1\51\1\uffff\1\52\3\uffff\1\53\5\uffff\1\54\1\55",
-            "",
-            "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\16\60\1\56\13\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\64\11\60\1\65\2\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\66\14\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\16\60\1\67\13\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\16\60\1\70\13\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\4\60\1\71\25\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\23\60\1\72\6\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\30\60\1\73\1\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\74\14\60",
+            "\1\50",
+            "\1\52\1\uffff\1\53\3\uffff\1\54\5\uffff\1\55\1\56",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\22\61\1\57\7\61\4\uffff\1"+
+            "\61\1\uffff\32\61",
             "",
             "",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\16\61\1\65\13\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\66\11\61\1\67\2\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\70\14\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\16\61\1\71\13\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\16\61\1\72\13\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\4\61\1\73\25\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\23\61\1\74\6\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\30\61\1\75\1\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\76\14\61",
             "",
-            "\1\76\4\uffff\1\75",
             "",
-            "\2\61\1\uffff\1\101\11\37\7\uffff\32\61\4\uffff\1\61\1\uffff"+
-            "\27\61\1\77\2\61",
-            "\2\61\1\uffff\1\101\11\37\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "",
+            "\1\100\4\uffff\1\77",
+            "",
+            "\2\62\1\uffff\1\103\11\40\7\uffff\32\62\4\uffff\1\62\1\uffff"+
+            "\27\62\1\101\2\62",
+            "\2\62\1\uffff\1\103\11\40\7\uffff\32\62\4\uffff\1\62\1\uffff"+
+            "\32\62",
+            "",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
             "\32\61",
             "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
             "",
             "",
             "",
@@ -2327,201 +2365,217 @@ public class ObjchLexer extends Lexer {
             "",
             "",
             "",
-            "",
-            "\1\102\2\uffff\1\103",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\104\14\60",
-            "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\27\60\1\105\2\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\24\60\1\106\5\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\23\60\1\107\6\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\10\60\1\110\12\60\1\111\6\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\112\14\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\113\14\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\1\114\22\60\1\115\6\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\21\60\1\116\10\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\17\60\1\117\12\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\10\60\1\120\11\60\1\121\7\60",
-            "",
-            "",
-            "\1\123\11\124\7\uffff\6\122",
-            "",
-            "\2\61\1\uffff\1\101\11\37\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\1\104\2\uffff\1\105",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\106\1\uffff"+
             "\32\61",
-            "\1\125\5\uffff\1\126",
             "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\22\60\1\127\7\60",
-            "\2\61\1\uffff\1\131\11\132\7\uffff\6\130\24\60\4\uffff\1\60"+
-            "\1\uffff\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\14\60\1\133\15\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\4\60\1\134\25\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\23\60\1\135\6\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\6\60\1\137\23\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\1\140\31\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\3\60\1\141\26\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\1\142\31\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\24\60\1\143\5\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\4\60\1\144\25\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\16\60\1\145\13\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\10\60\1\146\21\60",
-            "\2\61\1\uffff\1\123\11\124\7\uffff\6\122\24\61\4\uffff\1\61"+
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\27\61\1\107\2\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\110\14\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\24\61\1\111\5\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\23\61\1\112\6\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\10\61\1\113\12\61\1\114\6\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\115\14\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\116\14\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\1\117\22\61\1\120\6\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\21\61\1\121\10\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\17\61\1\122\12\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\10\61\1\123\11\61\1\124\7\61",
+            "",
+            "",
+            "\1\126\11\127\7\uffff\6\125",
+            "",
+            "\2\62\1\uffff\1\103\11\40\7\uffff\32\62\4\uffff\1\62\1\uffff"+
+            "\32\62",
+            "\1\130\5\uffff\1\131",
+            "",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\10\61\1\132\21\61\4\uffff"+
+            "\1\61\1\uffff\32\61",
+            "\2\62\1\uffff\1\134\11\135\7\uffff\6\133\24\61\4\uffff\1\61"+
             "\1\uffff\32\61",
-            "\2\61\1\uffff\1\123\11\124\7\uffff\6\122\24\61\4\uffff\1\61"+
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\22\61\1\136\7\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\14\61\1\137\15\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\4\61\1\140\25\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\23\61\1\141\6\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\6\61\1\143\23\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\1\144\31\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\3\61\1\145\26\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\1\146\31\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\24\61\1\147\5\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\4\61\1\150\25\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\16\61\1\151\13\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\10\61\1\152\21\61",
+            "\2\62\1\uffff\1\126\11\127\7\uffff\6\125\24\62\4\uffff\1\62"+
+            "\1\uffff\32\62",
+            "\2\62\1\uffff\1\126\11\127\7\uffff\6\125\24\62\4\uffff\1\62"+
+            "\1\uffff\32\62",
+            "\2\62\1\uffff\1\126\11\127\7\uffff\6\125\24\62\4\uffff\1\62"+
+            "\1\uffff\32\62",
+            "",
+            "\1\153\3\uffff\1\154",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\15\61\1\155\14\61\4\uffff"+
+            "\1\61\1\uffff\32\61",
+            "\2\62\1\uffff\1\134\11\135\7\uffff\6\133\24\61\4\uffff\1\61"+
             "\1\uffff\32\61",
-            "\2\61\1\uffff\1\123\11\124\7\uffff\6\122\24\61\4\uffff\1\61"+
+            "\2\62\1\uffff\1\134\11\135\7\uffff\6\133\24\61\4\uffff\1\61"+
+            "\1\uffff\27\61\1\107\2\61",
+            "\2\62\1\uffff\1\134\11\135\7\uffff\6\133\24\61\4\uffff\1\61"+
             "\1\uffff\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\23\61\1\156\6\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\21\61\1\160\10\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\26\61\1\161\3\61\4\uffff\1"+
+            "\61\1\uffff\32\61",
             "",
-            "\1\147\3\uffff\1\150",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\23\60\1\151\6\60",
-            "\2\61\1\uffff\1\131\11\132\7\uffff\6\130\24\60\4\uffff\1\60"+
-            "\1\uffff\32\60",
-            "\2\61\1\uffff\1\131\11\132\7\uffff\6\130\24\60\4\uffff\1\60"+
-            "\1\uffff\27\60\1\105\2\60",
-            "\2\61\1\uffff\1\131\11\132\7\uffff\6\130\24\60\4\uffff\1\60"+
-            "\1\uffff\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\21\60\1\153\10\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\26\60\1\154\3\60\4\uffff\1"+
-            "\60\1\uffff\32\60",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\23\61\1\163\6\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\16\61\1\164\7\61\1\165\3\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\10\61\1\166\21\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\2\61\1\167\27\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\3\61\1\170\26\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\171\14\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\6\61\1\172\23\61",
             "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\23\60\1\156\6\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\16\60\1\157\7\60\1\160\3\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\10\60\1\161\21\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\2\60\1\162\27\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\3\60\1\163\26\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\164\14\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\6\60\1\165\23\60",
+            "\1\173\11\uffff\1\174",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\13\61\1\175\16\61\4\uffff"+
+            "\1\61\1\uffff\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
             "",
-            "\1\166\11\uffff\1\167",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\177\14\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\10\61\1\u0080\21\61",
             "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\171\14\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\10\60\1\172\21\60",
-            "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\16\60\1\173\13\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\174\14\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\21\60\1\175\10\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\176\14\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\23\60\1\177\6\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\4\60\1\u0080\25\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\15\60\1\u0082\14\60",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\16\61\1\u0081\13\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\u0082\14\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\21\61\1\u0083\10\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\u0084\14\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\23\61\1\u0085\6\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\4\61\1\u0086\25\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\15\61\1\u0088\14\61",
             "",
             "",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\10\61\1\u0089\21\61\4\uffff"+
+            "\1\61\1\uffff\32\61",
             "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\23\60\1\u0084\6\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\14\60\1\u0085\15\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\13\60\1\u0086\16\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\10\60\1\u0087\21\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\5\60\1\u008a\24\60",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\23\61\1\u008b\6\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\14\61\1\u008c\15\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\13\61\1\u008d\16\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\10\61\1\u008e\21\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\5\61\1\u0091\24\61",
             "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\4\60\1\u008b\25\60",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\4\61\1\u0092\25\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\15\61\1\u0093\14\61\4\uffff"+
+            "\1\61\1\uffff\32\61",
             "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\7\60\1\u008c\22\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\10\60\1\u008d\21\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\30\60\1\u008e\1\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\23\60\1\u008f\6\60",
-            "",
-            "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\3\60\1\u0091\26\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\23\60\1\u0092\6\60\4\uffff"+
-            "\1\60\1\uffff\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\2\60\1\u0093\27\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\4\60\1\u0095\25\60",
-            "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\30\60\1\u0097\1\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
-            "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\17\60\1\u009a\12\60",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\7\61\1\u0094\22\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\10\61\1\u0095\21\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\30\61\1\u0096\1\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\23\61\1\u0097\6\61",
             "",
             "",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\4\60\1\u009b\25\60",
-            "\2\61\1\uffff\1\62\11\63\7\uffff\32\60\4\uffff\1\60\1\uffff"+
-            "\32\60",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\3\61\1\u0099\26\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\4\61\1\u009a\25\61\4\uffff"+
+            "\1\61\1\uffff\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\23\61\1\u009b\6\61\4\uffff"+
+            "\1\61\1\uffff\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\2\61\1\u009c\27\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\4\61\1\u009e\25\61",
+            "",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\30\61\1\u00a1\1\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
+            "",
+            "",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\17\61\1\u00a4\12\61",
+            "",
+            "",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\4\61\1\u00a5\25\61",
+            "\2\62\1\uffff\1\63\11\64\7\uffff\32\61\4\uffff\1\61\1\uffff"+
+            "\32\61",
             ""
     };
 
@@ -2555,7 +2609,7 @@ public class ObjchLexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | SINGLE_COMMENT | MULTI_COMMENT | PREPROCESSOR_DECLARATION | NUMBER | WHITESPACE | ID | FILE_NAME );";
+            return "1:1: Tokens : ( T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | SINGLE_COMMENT | MULTI_COMMENT | PREPROCESSOR_DECLARATION | NUMBER | WHITESPACE | ID | FILE_NAME );";
         }
     }
  
