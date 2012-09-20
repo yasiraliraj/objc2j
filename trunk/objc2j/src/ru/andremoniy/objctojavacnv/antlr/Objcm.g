@@ -632,13 +632,10 @@ oper	:	op_wrp  expr_wrp
 
 expr_wrp:	expr -> ^(EXPR expr);
 
-//expr_wrp3
-//	:	expr3 -> ^(EXPR expr3);
-
-op_wrp	:	op -> ^(OP op)
-	//|	'?'  classical_expr ':' classical_expr
-	;
+op_wrp	:	op -> ^(OP op);
 	
+op_wrp3	:	op3 -> ^(OP op3);
+
 struct_init
 	:	L_BR  STRUCT_PREFIX? ID  R_BR  L_FBR 
 			struct_init_line (COMMA  struct_init_line)*
@@ -673,17 +670,24 @@ expression_end
 	;
 	
 expression_asterix
-	:	ASTERISK+  expression_end2
+	:	ASTERISK+ expression_end2
 	;
 
 expression_other
-	:	op3  classical_expr_wrp R_BR 
+	:	oper_wrp3 R_BR 
+//	:	oper_wrp R_BR
 	|	if3 R_BR 
 	;
 	
+oper_wrp3
+	:	oper3 -> ^(OPER oper3);	
+	
+oper3	:	op_wrp3 classical_expr_wrp;	
+	
 expression_end2
-	:	R_BR  expression -> ^(TYPE_CONVERTION expression)
-	|	expr  (op  expr)* R_BR
+	:	R_BR expression -> ^(TYPE_CONVERTION expression)
+//	|	expr_wrp oper_wrp* R_BR
+	|	classical_expr_wrp R_BR
 	;
 
 op	:	ASTERISK | op3;
@@ -691,11 +695,7 @@ op	:	ASTERISK | op3;
 op3	:	'-' | '/' | '+' | '%' | '&' | '&&' | '|' | '||' | R_UBR | '>=' | L_UBR | '<=' | '==' | '!=' 
 	| 	L_EQ | '+=' | '-=' | '/=' | '*=' | '&=' | '^' | '>>' | '<<'
 	;
-	// TODO  expr "?" expr ":" expr - support !!!
 
-
-//expr2	:	op2? (const_expr | a_started | id_started | square_brackets) index_brackets*;
-//expr	:	op2? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets?)) index_brackets*;
 expr2	:	op2? (const_expr | a_started | id_started | square_brackets);
 expr	:	op2? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets? id_part_end?));
 
