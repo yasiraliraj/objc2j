@@ -550,7 +550,7 @@ public class ConvertorM {
                     m_process_while_stmt(sb, childTree, cc);
                     break;
                 case ObjcmLexer.METHOD_CALL:
-                    fieldAccess = checkForFrieldAccess1(sb, children, i, childrenSize);
+                    fieldAccess = checkForFieldAccess1(sb, children, i, childrenSize);
                     m_process_method_call(sb, childTree, cc);
                     if (fieldAccess) {
                         sb.append(", ");
@@ -612,7 +612,12 @@ public class ConvertorM {
                 default:
                     if (testBrackets(children, i, childrenSize, child)) break;
                     StringBuilder lsb = new StringBuilder();
-                    readChildren(lsb, childTree, cc);
+                    //readChildren(lsb, childTree, cc);
+                    if (childTree.getChildCount() == 0) {
+                        lsb.append(transformObject(childTree.getText(), cc));
+                    } else {
+                        m_process_block(lsb, childTree, cc);
+                    }
                     if (lsb.toString().equals("case")) {
                         wasReturn = false;
                     }
@@ -649,7 +654,7 @@ public class ConvertorM {
         }
     }
 
-    private static boolean checkForFrieldAccess1(StringBuilder sb, List children, int i, int childrenSize) {
+    private static boolean checkForFieldAccess1(StringBuilder sb, List children, int i, int childrenSize) {
         if ((i < childrenSize - 1 && ((CommonTree) children.get(i + 1)).getType() == ObjcmLexer.FIELD_ACCESS)
                 || (i < childrenSize - 2 && ((CommonTree) children.get(i + 1)).getText().equals("]") && ((CommonTree) children.get(i + 2)).getType() == ObjcmLexer.FIELD_ACCESS)) {
             sb.append("obcj_field(");
@@ -752,7 +757,7 @@ public class ConvertorM {
                 case ObjcmLexer.OP:
                     break;
                 default:
-                    fieldAccess = checkForFrieldAccess1(sb, children, i, childrenSize);
+                    fieldAccess = checkForFieldAccess1(sb, children, i, childrenSize);
                     StringBuilder lsb = new StringBuilder();
                     readChildren(lsb, childTree, cc);
                     expr += lsb.toString();
