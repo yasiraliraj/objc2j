@@ -5,7 +5,6 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
-import org.antlr.runtime.tree.Tree;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
@@ -31,35 +30,50 @@ public class ConvertorM {
 
     public static final Logger log = LoggerFactory.getLogger(ConvertorM.class);
 
-    private static List<String> RESTRICTED_METHODS = Arrays.asList("release", "retain", /*"autorelease", */"dealloc"/*, "init"*/);
-    private static Map<String, String> OPS_NUMBER = new HashMap<String, String>() {{
-        put("-", "minus");
-        put("+", "plus");
-        put("/", "divide");
-        put("*", "multiple");
-        put("%", "percent");
-        put(">", "more");
-        put(">=", "moreEquals");
-        put("<", "less");
-        put("<=", "lessEquals");
-        put("==", "equals");
-        put("!=", "notEquals");
-        put("=", "set");
-        put("+=", "setPlus");
-        put("-=", "setMinus");
-        put("/=", "setDivide");
-        put("*=", "setMultiple");
-        // TODO:
+    private static final List<String> RESTRICTED_METHODS = Arrays.asList("release", "retain", /*"autorelease", */"dealloc"/*, "init"*/);
+    private static final Map<Integer, String> OPS_NUMBER = new HashMap<Integer, String>() {{
+        put(ObjcmLexer.L_MINUS, "minus");
+        put(ObjcmLexer.L_PLUS, "plus");
+        put(ObjcmLexer.L_DIV, "divide");
+        put(ObjcmLexer.ASTERISK, "multiple");
+        put(ObjcmLexer.L_PERC, "percent");
+        put(ObjcmLexer.L_MORE, "more");
+        put(ObjcmLexer.L_MORE_EQ, "moreEquals");
+        put(ObjcmLexer.L_LESS, "less");
+        put(ObjcmLexer.L_LESS_EQ, "lessEquals");
+        put(ObjcmLexer.L_EQ_EQ, "equals");
+        put(ObjcmLexer.L_NEQ, "notEquals");
+        put(ObjcmLexer.L_EQ, "set");
+        put(ObjcmLexer.L_PLUS_EQ, "setPlus");
+        put(ObjcmLexer.L_MINUS_EQ, "setMinus");
+        put(ObjcmLexer.L_DIV_EQ, "setDivide");
+        put(ObjcmLexer.L_MULT_EQ, "setMultiple");
+        put(ObjcmLexer.L_AND, "and");
+        put(ObjcmLexer.L_AND_AND, "andAnd");
+        put(ObjcmLexer.L_OR, "or");
+        put(ObjcmLexer.L_OR_OR, "orOr");
+        put(ObjcmLexer.L_AND_EQ, "setAnd");
+        put(ObjcmLexer.L_OR_EQ, "setOr");
+        put(ObjcmLexer.L_XOR, "xor");
+        put(ObjcmLexer.L_XOR_EQ, "setXor");
     }};
 
-    private static Map<String, String> OPS_LOGIC = new HashMap<String, String>() {{
-        put("&", "and");
-        put("&&", "andAnd");
-        put("|", "or");
-        put("||", "orOr");
-        put("&=", "setAnd");
-        // TODO:
+    private static final List<List<Integer>> OPERATIONS_ORDER = new ArrayList<List<Integer>>() {{
+        add(new ArrayList<Integer>());
+        add(Arrays.asList(ObjcmLexer.L_OR_OR));
+        add(Arrays.asList(ObjcmLexer.L_AND_AND));
+        add(Arrays.asList(ObjcmLexer.L_OR));
+        add(Arrays.asList(ObjcmLexer.L_XOR));
+        add(Arrays.asList(ObjcmLexer.L_AND));
+        add(Arrays.asList(ObjcmLexer.L_EQ_EQ, ObjcmLexer.L_NEQ));
+        add(Arrays.asList(ObjcmLexer.L_LESS, ObjcmLexer.L_MORE, ObjcmLexer.L_LEFT_EQ, ObjcmLexer.L_MORE_EQ));
+        add(Arrays.asList(ObjcmLexer.L_LEFT, ObjcmLexer.L_RIGHT));
+        add(Arrays.asList(ObjcmLexer.L_PLUS, ObjcmLexer.L_MINUS));
+        add(Arrays.asList(ObjcmLexer.ASTERISK, ObjcmLexer.L_DIV, ObjcmLexer.L_PERC));
     }};
+    private static final List<Integer> EXPR_ORDER = Arrays.asList(
+            ObjcmLexer.EXPR_OR_OR, ObjcmLexer.EXPR_AND_AND, ObjcmLexer.EXPR_OR, ObjcmLexer.EXPR_XOR, ObjcmLexer.EXPR_AND, ObjcmLexer.EXPR_EQ,
+            ObjcmLexer.EXPR_COND, ObjcmLexer.EXPR_MOV, ObjcmLexer.EXPR_ADD, ObjcmLexer.EXPR_MULT, ObjcmLexer.EXPR_TYPE);
 
     public static StringBuilder convert_m(String fileName, Context ctx, StringBuilder addSb) throws IOException, RecognitionException {
         Context.m_counter++;
@@ -371,33 +385,16 @@ public class ConvertorM {
 
     private static void readChildren(StringBuilder sb, CommonTree tree, CurrentContext cc) {
         if (tree.getChildren() == null) {
-            sb.append(transformObject(tree.toString(), cc));
+            String trObj = transformObject(tree.toString(), cc);
+            sb.append(trObj);
+            if (!trObj.equals("this")) {
+                sb.append(" ");
+            }
             return;
         }
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
-            if (childTree.getChildren() != null) {
-                m_process_block(sb, childTree, cc);
-/*
-                switch (childTree.getType()) {
-                    case ObjcmLexer.METHOD_CALL:
-                        m_process_method_call(sb, childTree, cc);
-                        break;
-                    case ObjcmLexer.BLOCK:
-                        m_process_block(sb, childTree, cc);
-                        break;
-                    case ObjcmLexer.TYPE_CONVERTION:
-                        sb.append(") ");
-                        readChildren(sb, childTree, cc);
-                        break;
-                    default:
-                        readChildren(sb, childTree, cc);
-                        break;
-                }
-*/
-            } else {
-                sb.append(transformObject(child.toString(), cc));
-            }
+            readChildren(sb, childTree, cc);
         }
     }
 
@@ -533,35 +530,32 @@ public class ConvertorM {
             Object child = children.get(i);
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
+                /*********************************/
+                /** new block with expressions **/
+                /*******************************/
+                case ObjcmLexer.CLASSICAL_EXPR_2:
+                    process_classical_expr(sb, childTree, cc, true, false);
+                    break;
+                case ObjcmLexer.CLASSICAL_EXPR:
+                    process_classical_expr(sb, childTree, cc, false, false);
+                    break;
+                case ObjcmLexer.EXPR_FULL:
+                    process_expr_full(sb, childTree, cc, true);
+                    break;
                 case ObjcmLexer.FOR_IN_STMT:
                     sb.append(" : ");
-                    m_process_block(sb, childTree, cc);
-                    break;
-                case ObjcmLexer.SET_INTERNAL:
                     m_process_block(sb, childTree, cc);
                     break;
                 case ObjcmLexer.STATIC_START:
                     m_process_static_start(sb, childTree, cc);
                     break;
-                case ObjcmLexer.NOT:
-                    // do nothing
-                    break;
                 case ObjcmLexer.WHILE_STMT:
                     m_process_while_stmt(sb, childTree, cc);
                     break;
                 case ObjcmLexer.METHOD_CALL:
-                    fieldAccess = checkForFieldAccess1(sb, children, i, childrenSize);
                     m_process_method_call(sb, childTree, cc);
-                    if (fieldAccess) {
-                        sb.append(", ");
-                    }
                     break;
                 case ObjcmLexer.BLOCK:
-                    m_process_block(sb, childTree, cc);
-                    wasReturn = false;
-                    break;
-                case ObjcmLexer.TYPE_CONVERTION:
-                    sb.append(") ");
                     m_process_block(sb, childTree, cc);
                     wasReturn = false;
                     break;
@@ -606,13 +600,9 @@ public class ConvertorM {
                     }
                     fieldAccess = false;
                     break;
-                case ObjcmLexer.CLASSICAL_EXPR:
-                    m_process_classical_expr(sb, childTree, cc);
-                    break;
                 default:
                     if (testBrackets(children, i, childrenSize, child)) break;
                     StringBuilder lsb = new StringBuilder();
-                    //readChildren(lsb, childTree, cc);
                     if (childTree.getChildCount() == 0) {
                         lsb.append(transformObject(childTree.getText(), cc));
                     } else {
@@ -654,17 +644,204 @@ public class ConvertorM {
         }
     }
 
-    private static boolean checkForFieldAccess1(StringBuilder sb, List children, int i, int childrenSize) {
-        if ((i < childrenSize - 1 && ((CommonTree) children.get(i + 1)).getType() == ObjcmLexer.FIELD_ACCESS)
-                || (i < childrenSize - 2 && ((CommonTree) children.get(i + 1)).getText().equals("]") && ((CommonTree) children.get(i + 2)).getType() == ObjcmLexer.FIELD_ACCESS)) {
-            sb.append("obcj_field(");
-            return true;
+    private static void process_expr_full(StringBuilder sb, CommonTree tree, CurrentContext cc, boolean leftAssign) {
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            if (childTree.getType() == ObjcmLexer.CLASSICAL_EXPR) {
+                process_classical_expr(sb, childTree, cc, leftAssign, false);
+            } else if (childTree.getType() == ObjcmLexer.COMMA) {
+                sb.append(", ");
+            }
+        }
+    }
+
+    private static void process_expr_assign(StringBuilder sb, CommonTree tree, CurrentContext cc) {
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            if (childTree.getType() == ObjcmLexer.CLASSICAL_EXPR) {
+                process_classical_expr(sb, childTree, cc, false, false);
+            } else {
+                // добавляем знаки приравнивания
+                readChildren(sb, childTree, cc);
+            }
+        }
+    }
+
+    private static void process_classical_expr(StringBuilder sb, CommonTree tree, CurrentContext cc, boolean leftAssign, boolean isIncompletePrefix) {
+        boolean isIf3 = tree.getFirstChildWithType(ObjcmLexer.EXPR_QUESTION) != null;
+        boolean isAssign = leftAssign || recursiveSearch(tree, ObjcmLexer.EXPR_ASSIGN);
+        int ororCounter = 0;
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+
+            switch (childTree.getType()) {
+                case ObjcmLexer.CLASSICAL_EXPR:
+                    // только внутри скобок
+                    process_classical_expr(sb, childTree, cc, isAssign, false);
+                    break;
+                case ObjcmLexer.EXPR_ASSIGN:
+                    process_expr_assign(sb, childTree, cc);
+                    break;
+                case ObjcmLexer.SIMPLE_EXPR:
+                    if (isIf3 && ororCounter == 0) {
+                        sb.append("logic(");
+                    }
+                    process_expr(sb, childTree, cc, 0, isAssign, isIncompletePrefix);
+                    if (isIf3 && ororCounter == 0) {
+                        sb.append(")");
+                    }
+                    ororCounter++;
+                    break;
+                case ObjcmLexer.L_QUESTION:
+                    sb.append("? ");
+                    break;
+                case ObjcmLexer.COLON:
+                    sb.append(": ");
+                    break;
+                default:
+                    // читаем скобки
+                    readChildren(sb, childTree, cc);
+                    break;
+            }
+        }
+    }
+
+    private static boolean recursiveSearch(CommonTree tree, int type) {
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            if (childTree.getType() == type) return true;
+            if (childTree.getChildCount() > 0) {
+                boolean result = recursiveSearch(childTree, type);
+                if (result) return true;
+            }
         }
         return false;
     }
 
+    private static void process_expr(StringBuilder sb, CommonTree tree, CurrentContext cc, int deep, boolean leftAssign, boolean isIncompletePrefix) {
+        List<Integer> operations = OPERATIONS_ORDER.get(deep);
+        int exprType = EXPR_ORDER.get(deep);
+        List<Integer> operationsOrder = new ArrayList<>();
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            if (childTree.getType() == ObjcmLexer.ASTERISK && leftAssign) {
+                continue;
+            }
+            if (operations.contains(childTree.getType())) {
+                operationsOrder.add(childTree.getType());
+            }
+        }
+        int exprCounter = 0;
+        int operationsCounter = 0;
+        int operationsLength = operationsOrder.size();
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            if (childTree.getType() == exprType) {
+                if (operationsLength > 0 && exprCounter < operationsLength) {
+                    sb.append("_").append(OPS_NUMBER.get(operationsOrder.get(exprCounter))).append("(");
+                }
+
+                if (deep == EXPR_ORDER.size() - 1) {
+                    process_expr_type(sb, childTree, cc, isIncompletePrefix);
+                } else {
+                    process_expr(sb, childTree, cc, deep + 1, leftAssign, isIncompletePrefix);
+                }
+
+                if (operationsLength > 0) {
+                    operationsCounter++;
+                    sb.append(", ");
+                }
+                exprCounter++;
+            } else if (childTree.getType() == ObjcmLexer.CLASSICAL_EXPR) {
+                process_classical_expr(sb, childTree, cc, false, false);
+                if (operationsLength > 0) {
+                    operationsCounter = 0;
+                    sb.append(")");
+                }
+            }
+        }
+    }
+
+    private static void process_expr_type(StringBuilder sb, CommonTree tree, CurrentContext cc, boolean isIncompletePrefix) {
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.getType()) {
+                case ObjcmLexer.TYPE_CONVERTION:
+                    sb.append("(");
+                    readChildren(sb, childTree, cc);
+                    sb.append(")");
+                    if (isIncompletePrefix) return;
+                    break;
+                case ObjcmLexer.EXPR_NOT:
+                    boolean isRealNot = childTree.getFirstChildWithType(ObjcmLexer.L_NOT) != null;
+                    if (isRealNot) {
+                        sb.append("_not(");
+                    }
+                    process_expr_not(sb, childTree, cc);
+                    if (isRealNot) {
+                        sb.append(")");
+                    }
+                    break;
+                case ObjcmLexer.ASTERISK:
+                case ObjcmLexer.L_AND:
+                    // эту хрень пропускаем
+                    break;
+                default:
+                    readChildren(sb, childTree, cc);
+                    break;
+            }
+        }
+    }
+
+    private static void process_expr_not(StringBuilder sb, CommonTree tree, CurrentContext cc) {
+        // test for Field_access:
+        int fieldAccessCounter = 0;
+        if (tree.getFirstChildWithType(ObjcmLexer.FIELD_ACCESS) != null) {
+            for (Object child : tree.getChildren()) {
+                CommonTree childTree = (CommonTree) child;
+                if (childTree.getType() == ObjcmLexer.FIELD_ACCESS) {
+                    fieldAccessCounter++;
+                    sb.append("obcj_field(");
+                }
+            }
+        }
+        int fieldAccessCounter2 = 0;
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.getType()) {
+                case ObjcmLexer.CLASSICAL_EXPR:
+                    process_classical_expr(sb, childTree, cc, false, false);
+                    break;
+                case ObjcmLexer.L_NOT:
+                    break;
+                case ObjcmLexer.METHOD_CALL:
+                    m_process_method_call(sb, childTree, cc);
+                    break;
+                case ObjcmLexer.SELECTOR:
+                    m_process_selector(sb, childTree, cc);
+                    break;
+                case ObjcmLexer.FIELD_ACCESS:
+                    if (fieldAccessCounter2 > 0) {
+                        sb.append(")");
+                    }
+                    fieldAccessCounter2++;
+                    sb.append(", ");
+                    break;
+                case ObjcmLexer.FUNCTION:
+                    CurrentContext cc2 = cc.gem(cc.staticFlag);
+                    cc2.transformClassNames = true;
+                    readChildren(sb, childTree, cc2);
+                    break;
+                default:
+                    readChildren(sb, childTree, cc);
+                    break;
+            }
+        }
+    }
+
     private static void m_process_static_start(StringBuilder sb, CommonTree tree, CurrentContext cc) {
-        boolean wasInitialized = tree.getFirstChildWithType(ObjcmLexer.SET_INTERNAL) != null;
+//        boolean wasInitialized = tree.getFirstChildWithType(ObjcmLexer.SET_INTERNAL) != null;
+        boolean wasInitialized = true; // TODO:
         StringBuilder isb = new StringBuilder();
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -694,89 +871,6 @@ public class ConvertorM {
 
         sb.append("while (logic(").append(exprsb).append("))\n");
         sb.append(bodysb);
-    }
-
-    private static void m_process_classical_expr(StringBuilder sb, CommonTree tree, CurrentContext cc) {
-        String expr = "";
-        boolean fieldAccess = false;
-        List children = tree.getChildren();
-        for (int i = 0, childrenSize = children.size(); i < childrenSize; i++) {
-            Object child = children.get(i);
-            CommonTree childTree = (CommonTree) child;
-            switch (childTree.getType()) {
-                case ObjcmLexer.CLASSICAL_EXPR:
-                    StringBuilder cesb = new StringBuilder();
-                    m_process_classical_expr(cesb, childTree, cc);
-                    expr += cesb.toString();
-                    break;
-                case ObjcmLexer.EXPR:
-                    StringBuilder exprsb = new StringBuilder();
-                    m_process_block(exprsb, childTree, cc);
-
-                    if (childTree.getFirstChildWithType(ObjcmLexer.NOT) != null) {
-                        expr = "_not(" + exprsb.toString() + ")";
-                    } else {
-                        expr = exprsb.toString();
-                    }
-                    break;
-                case ObjcmLexer.FIELD_ACCESS:
-                    StringBuilder fasb = new StringBuilder();
-                    m_process_block(fasb, childTree, cc);
-                    if (!fieldAccess) {
-                        // sb.append(".");
-                        expr += ".";
-                    }
-                    //sb.append(fasb);
-                    expr += fasb.toString();
-                    if (fieldAccess) {
-                        expr += ")";
-                    }
-                    fieldAccess = false;
-                    break;
-                case ObjcmLexer.OPER:
-                    Tree opTree = childTree.getFirstChildWithType(ObjcmLexer.OP);
-                    if (opTree != null) {
-                        String op = opTree.getChild(0).toString().trim();
-
-                        StringBuilder rvsb = new StringBuilder();
-                        m_process_classical_expr(rvsb, childTree, cc);
-                        String rValue = rvsb.toString();
-
-                        if (OPS_NUMBER.containsKey(op)) {
-                            expr = "_" + OPS_NUMBER.get(op) + "(" + expr + "," + rValue + ")";
-                        } else if (OPS_LOGIC.containsKey(op)) {
-                            expr = "_" + OPS_LOGIC.get(op) + "(" + expr + "," + rValue + ")";
-                        }
-                    } else {
-                        // ... ? ... : .... ?
-                        StringBuilder if3sb = new StringBuilder();
-                        m_process_classical_expr(if3sb, childTree, cc);
-                        expr += if3sb.toString();
-                    }
-                    break;
-                case ObjcmLexer.OP:
-                    break;
-                default:
-                    fieldAccess = checkForFieldAccess1(sb, children, i, childrenSize);
-                    StringBuilder lsb = new StringBuilder();
-                    readChildren(lsb, childTree, cc);
-                    expr += lsb.toString();
-                    if (fieldAccess) {
-                        expr += ",";
-                    }
-                    break;
-            }
-        }
-
-        expr = expr.trim();
-/*
-        if (exprCount == 1) {
-            if (!expr.matches("[\\d\\.]+") && !expr.equals("null") && !expr.startsWith("\"") && !expr.startsWith("'")) {
-                expr = "logic(" + expr + ")";
-            }
-        }
-*/
-        sb.append(expr);
     }
 
     private static void m_process_selector(StringBuilder sb, CommonTree tree, CurrentContext cc) {
@@ -927,9 +1021,6 @@ public class ConvertorM {
                 case ObjcmLexer.BR_STMT:
                     m_process_br_stmt(sb, childTree, cc);
                     break;
-                case ObjcmLexer.CLASSICAL_EXPR:
-                    m_process_classical_expr(sb, childTree, cc);
-                    break;
                 case ObjcmLexer.TYPE_CONVERTION_MAY_BE:
                     typeConvertionNext = "((" + Utils.transformType(childTree.getChild(0).toString(), cc) + ")";
                     break;
@@ -972,6 +1063,10 @@ public class ConvertorM {
             Object child = children.get(i);
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
+                case ObjcmLexer.CLASSICAL_EXPR:
+                    boolean isIncompletePrefix = i < childrenSize - 1 && ((CommonTree) children.get(i + 1)).getType() == ObjcmLexer.INCOMPLETE_PREFIX;
+                    process_classical_expr(sb, childTree, cc, false, isIncompletePrefix);
+                    break;
                 case ObjcmLexer.METHOD_CALL:
                     m_process_method_call(sb, childTree, cc);
                     break;
@@ -982,16 +1077,6 @@ public class ConvertorM {
                     break;
                 case ObjcmLexer.SELECTOR:
                     m_process_selector(sb, childTree, cc);
-                    break;
-                case ObjcmLexer.CLASSICAL_EXPR:
-                    StringBuilder sb1 = new StringBuilder();
-                    m_process_classical_expr(sb1, childTree, cc);
-                    String obj1 = sb1.toString();
-                    // заменяем имя класса на "имя_класса.class"
-                    if (cc.ctx.imports.keySet().contains(obj1)) {
-                        obj1 += ".class";
-                    }
-                    sb.append(obj1);
                     break;
                 default:
                     if (i == 0 && child.toString().equals("[")) continue;
@@ -1027,6 +1112,7 @@ public class ConvertorM {
                     wasMethodCall = m_process_object(lsb2, childTree, cc);
                     //lsb.append(lsb2.toString().trim());
                     object = lsb2.toString().trim();
+                    //if (object.equals("this")) object += ".";
                     break;
                 case ObjcmLexer.METHOD_NAME:
                     String name = childTree.getChild(0).toString();
@@ -1099,9 +1185,10 @@ public class ConvertorM {
                 case ObjcmLexer.METHOD_MSG:
                     CommonTree messageTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.MESSAGE);
                     if (messageTree != null) {
-
                         if (msgCount > 0) sb.append(", ");
-                        m_process_message(sb, messageTree, cc);
+                        CurrentContext cc2 = cc.gem(cc.staticFlag);
+                        cc2.transformClassNames = true;
+                        m_process_message(sb, messageTree, cc2);
                         msgCount++;
                     }
                     break;

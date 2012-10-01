@@ -17,6 +17,7 @@ public class CurrentContext {
     String methodName;
     public boolean isBreak;
     public boolean skipBreak;
+    public boolean transformClassNames;
 
     public CurrentContext(CurrentContext current, boolean staticFlag, String methodName) {
         this(current, staticFlag);
