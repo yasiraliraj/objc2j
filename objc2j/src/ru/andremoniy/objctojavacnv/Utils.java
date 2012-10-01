@@ -23,7 +23,7 @@ public class Utils {
                 return "null";
             case "self":
                 if (cc.staticFlag) {
-                    return cc.className;
+                    return cc.className + (cc.transformClassNames ? ".class" : "");
                 } else {
                     return "this";
                 }
@@ -41,9 +41,14 @@ public class Utils {
                 return "(int)Math.floor";
             case "fmodf":
                 return "MathEx.fmodf";
+            case ";":
+                return ";\n";
         }
         if (obj.startsWith("@\"")) obj = obj.substring(1);
         obj = transformType(obj, cc);
+        if (cc.transformClassNames && cc.ctx.imports.containsKey(obj.trim())) {
+            obj = obj + ".class";
+        }
         return obj;
     }
 

@@ -24,6 +24,7 @@ tokens {
 	BR_STMT;
 	TYPE_CONVERTION;
 	PREFIX;
+	INCOMPLETE_PREFIX;
 	MSG_LIST;
 	GENERIC;
 	TYPEDEF_ELEMENT;
@@ -53,11 +54,13 @@ tokens {
 	IF_EXPR;
 	IF_BLOCK;
 	SELECTOR;
+	ENCODE;
 	SELECTOR_VALUE;
 	OP;
 	OPER;
 	EXPR;
 	CLASSICAL_EXPR;
+	CLASSICAL_EXPR_2;
 	WHILE_STMT;
 	WHILE_EXPR;
 	NOT;
@@ -66,9 +69,25 @@ tokens {
 	FIELD_ACCESS;
 	FIELD_TYPE_STARTED;
 	STATIC_START;
-	SET_INTERNAL;
 	FOR_IN_STMT;
 	METHOD_MSG;
+	EXPR_FULL;
+	EXPR_ASSIGN;
+	EXPR_OR_OR;
+	EXPR_AND_AND;
+	EXPR_OR;
+	EXPR_XOR;
+	EXPR_AND;
+	EXPR_EQ;
+	EXPR_COND;
+	EXPR_MOV;
+	EXPR_ADD;
+	EXPR_MULT;
+	EXPR_TYPE;
+	EXPR_NOT;
+	SIMPLE_EXPR;
+	EXPR_QUESTION;
+	FUNCTION;
 }
 
 @header {
@@ -119,7 +138,7 @@ implementation_wrapper
 implementation
 	:	'@implementation'  name  category? super_class?
 		implementation_body+
-		'@end'  semi?
+		'@end'  SEMICOLON?
 	; 	
 
 category:	L_BR  name  R_BR -> ^(CATEGORY name);	
@@ -140,7 +159,7 @@ directives
 	;	
 	
 synthesize
-	:	'@synthesize'  ID  semi
+	:	'@synthesize'  ID  SEMICOLON
 	;	
 	
 typedef	:	'typedef'  (typedef_declaration_wrapper | typedef_struct_declaration_wrapper) 
@@ -159,7 +178,7 @@ static_section2
 	;
 	
 inline_section
-	:	'inline'  field_type name  method_params2? (block_wrapper | SEMICOLON);	
+	:	'inline'  field_type name  method_params2? (block_wrapper | SEMICOLON);
 	
 static_section3
 	:	field_type name indexed*  static_end;
@@ -173,13 +192,13 @@ field_end
 	:	field_end_internal -> ^(FIELD field_end_internal);
 	
 field_end_internal
-	:	value_set? semi;	
+	:	value_set? SEMICOLON;	
 		
 implementation_method_wrapper3
 	:	implementation_method3 -> ^(METHOD implementation_method3);
 	
 implementation_method3
-	:	method_header_body3  semi?
+	:	method_header_body3  SEMICOLON?
 		attribute?
 		block_wrapper?
 	;
@@ -188,7 +207,7 @@ attribute
 	:	'__attribute__'  L_BR  L_BR  'constructor'  R_BR  R_BR  SEMICOLON;	
 	
 implementation_method2
-	:	 semi?
+	:	 SEMICOLON?
 		block_wrapper
 	;
 	
@@ -217,7 +236,7 @@ implementation_method_wrapper2
 	:	implementation_method2 -> ^(METHOD implementation_method2);
 
 implementation_method
-	:	method_header_body semi?
+	:	method_header_body SEMICOLON?
 		block_wrapper 
 	;
 	
@@ -245,11 +264,10 @@ block_internal_full
 block_internal
 	:	try_stmt
 	|	throw_stmt
-	|	static_start_wrapper
+	|	static_start_wrapper SEMICOLON
 	|	do_stmt
-	|	const_expression
-	|	id_start_variable
-	|	method_call_wrapper SEMICOLON
+	|	const_expression SEMICOLON
+	|	full_expr_wrapper ((full_expr2? SEMICOLON) | COLON)
 	|	if_stmt_wrapper
 	|	else_stmt
 	|	switch_stmt_wrapper
@@ -257,47 +275,29 @@ block_internal
 	|	for_stmt
 	|	while_stmt_wrapper
 	|	single_operators
-	|	xcrement
-	|	in_brackets_block
-	|	struct_variable
-	|	enum_variable
-	|	typeof_started
-	|	const_expr  SEMICOLON
+	|	struct_variable SEMICOLON
+	|	enum_variable SEMICOLON
+	|	typeof_started SEMICOLON
+	|	known_type_started SEMICOLON
 	|	SEMICOLON	
 	;
 	
+known_type_started
+	:	known_types ASTERISK* full_expr2;		
+	
 typeof_started
-	:	typeof id_start_variable
+	:	typeof full_expr_wrapper
 	;	
 	
 struct_variable
-	:	STRUCT_PREFIX id_start_variable;
+	:	STRUCT_PREFIX full_expr_wrapper;
 
 enum_variable
-	:	ENUM_PREFIX id_start_variable;
-	
-in_brackets_block
-	:	L_BR  (known_types  | expression) R_BR  in_brackets_block_ends;
-	
-in_brackets_block_ends
-	:	in_brackets_block_end1
-	|	in_brackets_block_end2
-	;
-	
-in_brackets_block_end1
-	:	id_part_end?  (L_PLUS_PLUS|L_MINUS_MINUS)? (set_internal_end_wrapper)? SEMICOLON
-	;
-			
-in_brackets_block_end2
-	:	id_part simple_start_v_end;
-	
+	:	ENUM_PREFIX full_expr_wrapper;
 		
 const_expression
-	:	CONST_PREFIX id_start_variable;		
-		
-xcrement:	(L_PLUS_PLUS|L_MINUS_MINUS) object_name  SEMICOLON
-	;
-	
+	:	CONST_PREFIX full_expr_wrapper;
+
 throw_stmt
 	:	'@throw'  SEMICOLON	
 	;
@@ -326,7 +326,7 @@ switch_body
 	;	
 
 switch_expr
-	:	expression -> ^(SWITCH_EXPRESSION expression);
+	:	classical_expr_wrp -> ^(SWITCH_EXPRESSION classical_expr_wrp);
 
 switch_internal
 	:	case_stmt_wrapper
@@ -336,7 +336,7 @@ case_stmt_wrapper
 	:	case_stmt -> ^(CASE_STMT case_stmt);
 
 case_stmt
-	:	'case'  case_expr  COLON 
+	:	'case'  case_expr_wrapper  COLON 
 		case_body_wrapper?
 	;	
 	
@@ -347,9 +347,13 @@ case_body
 	:	block_break 
 	| 	block_internal_full+
 	 ;
-		
+			
+case_expr_wrapper
+	:	case_expr -> ^(CASE_EXPR case_expr);
+					
 case_expr
-	:	expr -> ^(CASE_EXPR expr);	
+	:	const_expr 
+	| 	ID;	
 	
 block_break
 	:	block_case single_operators?
@@ -393,25 +397,21 @@ while_stmt
 	:	'while'  L_BR  while_expr R_BR  if_stmt_block_wrapper; 	
 	
 while_expr
-	:	 expression -> ^(WHILE_EXPR expression);	
+	:	 classical_expr_wrp -> ^(WHILE_EXPR classical_expr_wrp);	
 	
-for_stmt:	'for'  L_BR  for_stmt_iterator? for_stmt_internal R_BR  if_stmt_block
+for_stmt:	'for'  L_BR  for_stmt_expr R_BR  if_stmt_block
 	;
 	
-for_stmt_iterator
-	:	ID  (ASTERISK* ID)?
-	;	
-	
-for_stmt_internal
-	:	for_stmt_int1
+for_stmt_expr
+	:	full_expr_wrapper (for_stmt_int1 | (full_expr2 (for_stmt_int1 | for_stmt_int2)) | for_stmt_int2)
 	|	for_stmt_int2
 	;	
-	
+			
 for_stmt_int1
-	:	'in'  expr  -> ^(FOR_IN_STMT  expr);	
+	:	'in' object_wrapped2  -> ^(FOR_IN_STMT object_wrapped2);	
 	
 for_stmt_int2
-	:	(L_EQ  expression)? semi expression? semi (id_start_variable_light)?
+	:	SEMICOLON classical_expr_wrp? SEMICOLON classical_expr_wrp?
 	;
 
 //return_stmt_wrapper
@@ -419,7 +419,7 @@ for_stmt_int2
 //	;
 	
 return_stmt
-	:	'return' expression? SEMICOLON -> ^(RETURN_STMT expression? SEMICOLON);	
+	:	'return' classical_expr_wrp? SEMICOLON -> ^(RETURN_STMT classical_expr_wrp? SEMICOLON);	
 
 if_stmt_wrapper
 	:	if_stmt -> ^(IF_STMT if_stmt);
@@ -427,14 +427,10 @@ if_stmt_wrapper
 if_stmt	:	'if'  L_BR  if_expr R_BR  if_stmt_block_wrapper
 	;	
 	
-if_expr	:	expression -> ^(IF_EXPR expression);	
+if_expr	:	 classical_expr_wrp -> ^(IF_EXPR classical_expr_wrp);	
 	
 else_stmt
 	:	'else'  if_stmt_block;
-	
-variable_set
-//	:	variable_set_internal  (COMMA  variable_set_internal)* isv_end;
-	:	variable_set_internal (COMMA  variable_set_internal)* semi?;
 
 if_stmt_block_wrapper
 	:	if_stmt_block -> ^(IF_BLOCK if_stmt_block);
@@ -443,71 +439,20 @@ if_stmt_block
 	:	block_wrapper
 	| 	block_internal
 	;	
-		
-	
-variable_set_light
-	:	variable_set_internal (COMMA  variable_set_internal)*;
-
-variable_set_internal
-	:	ASTERISK* id_part set_internal_end_wrapper?
-	;
-
-isv_end	:	SEMICOLON 
-//	| 	COMMA  id_start_variable;
-	| 	COMMA  id_part simple_start_v_end;
-
-
-// эта обертка нужна, чтобы отслеживать: был ли объект инициализирован?
-set_internal_end_wrapper
-	:	set_internal_end -> ^(SET_INTERNAL set_internal_end);
-
-set_internal_end
-	:	op5  (in_q_brackets | classical_expr_wrp);
-		
-variable_set_end
-	:       op5  expression
-	|	L_PLUS_PLUS  set_internal_end_wrapper?
-	|	L_MINUS_MINUS  set_internal_end_wrapper?	
-	;
-	
-op5	:	'%=' | '==' | L_EQ | '+=' | '-=' | '&=' | '/=' | '|=' | '*=' | '^=' | '<<=' | '>>=' | '<=' | '>=' | L_UBR | R_UBR
-	;	
 
 static_start_wrapper
 	:	static_start -> ^(STATIC_START static_start);
 	
 static_start
-	:	STATIC_PREFIX CONST_PREFIX? id_start_variable
+	:	STATIC_PREFIX CONST_PREFIX? (object_name ASTERISK*)? full_expr2
 	;
-		
-id_start_variable
-	:	simple_start_v
-	|	func_pointer1
-	;
-	
-simple_start_v
-	:	ASTERISK* (known_types ASTERISK*)? id_part simple_start_v_end
-	;
-
-simple_start_v_end
-	:	simple_start_v1
-	|	simple_start_v2
-	;
-
-simple_start_v1
-	:	COLON
-	;
-	
-simple_start_v2
-	:	generic? id_part_end?  (id_start_variable_end | SEMICOLON)
-	;			
 	
 id_part_end
 	:	id_part_end_internal+
 	;
 	
 id_part_end_internal	
-	:	(DOT|'->') id_part -> ^(FIELD_ACCESS id_part)
+	:	(DOT | '->') id_part -> ^(FIELD_ACCESS id_part)
 	;	
 	
 known_types
@@ -515,16 +460,8 @@ known_types
 	|	VOID
 	;	
 
-id_part	:	 name_internal (L_KBR  classical_expr_wrp? R_KBR)*
+id_part	:	 name_internal function_brackets_wrapper? index*
 	;
-	
-id_start_variable_end
-	:	(variable_set_end (variable_set | isv_end)) 
-	| 	variable_set
-	|	L_BR  (expression (COMMA  expression)*)? R_BR  isv_end;	
-
-id_start_variable_light
-	:	(L_PLUS_PLUS|L_MINUS_MINUS)? ASTERISK* object_name  ( (variable_set_end variable_set_light?) | variable_set_light)?;
 	
 object_name
 	:	id_part id_part_end?
@@ -545,29 +482,19 @@ method_call_wrapper2
 method_call2
 	:	object_wrapper method_name ( method_call_message_list_wrapper)?;
 
-method_call_wrapper3
-	:	method_call3 -> ^(METHOD_CALL method_call3);	
+object_wrapper
+	:	object_wrapper_internal -> ^(OBJECT object_wrapper_internal);
 	
-method_call3
-	:	object_wrapper3 L_BR  (method_message3 (COMMA  method_message3)*)? R_BR;
+object_wrapper_internal
+	:	L_BR object_name generic? ASTERISK* R_BR (object_name | method_call_wrapper)
+	|	object_name
+	|	method_call_wrapper
+	|	STRING_LITERAL
+	;	
 
 method_message3
-	:	expression -> ^(MESSAGE expression);
-//	:	object -> ^(MESSAGE object);
+	:	classical_expr_wrp -> ^(MESSAGE classical_expr_wrp);
 
-object_wrapper3
-	:	ID -> ^(OBJECT ID);
-		
-object_wrapper
-	:	object -> ^(OBJECT object);	
-	
-object	:	type_convertion2 expression
-	|	expr2 
-	;
-	
-type_convertion2
-	:	type_convertion_start (type_convertion_end | (expr  expression_end R_BR));	
-	
 type_convertion_start
 	:	L_BR  ID generic?  -> ^(TYPE_CONVERTION_MAY_BE ID generic?);
 	
@@ -575,7 +502,7 @@ type_convertion_end
 	:	ASTERISK* R_BR  -> ^(TYPE_CONVERTION_TRUE);
 	
 type_convertion
-	:	L_BR  'unsigned'? type_internal  ASTERISK* R_BR  -> ^(TYPE_CONVERTION type_internal);
+	:	L_BR 'const'? 'unsigned'? type_internal  ASTERISK* R_BR  -> ^(TYPE_CONVERTION type_internal);
 
 method_name
 	:	ID -> ^(METHOD_NAME ID);
@@ -596,13 +523,14 @@ method_call_message_wrapper
 	:	method_call_message -> ^(METHOD_MSG method_call_message);
 	
 method_call_message
-	:	prefix  COLON  message;
+	:	(prefix | incomplete_prefix)  message;
 	
-message	:	msg_expr (COMMA  msg_expr)* -> ^(MESSAGE msg_expr (COMMA  msg_expr)*)/
+message	:	msg_expr (COMMA msg_expr)* -> ^(MESSAGE msg_expr (COMMA  msg_expr)*)
 	;
 		
-msg_expr:	L_BR  (ID | const_expr) R_BR classical_expr_wrp? 
-	|	classical_expr_wrp
+
+msg_expr 
+	: 	classical_expr_wrp
 	;	
 	
 /*------------------------------------------------------------------
@@ -613,28 +541,166 @@ expression
 	:	classical_expr_wrp
 	|	struct_init
 	;
+
+full_expr_wrapper
+	:	full_expr -> ^(EXPR_FULL full_expr);
+
+full_expr
+	:	classical_expr_wrp (COMMA classical_expr_wrp)*;
+
+full_expr2
+	:	classical_expr_wrp2 (COMMA classical_expr_wrp2)*;
+
+expr_assign_wrapper
+	:	expr_assign -> ^(EXPR_ASSIGN expr_assign);
+	
+expr_assign	
+	:	assign (classical_expr_wrp | array_init | (func_pointer2 method_call_wrapper?));
+	
+array_init
+	:	L_FBR (classical_expr_wrp3 (COMMA classical_expr_wrp3)*)? R_FBR
+	;
+	
+classical_expr_wrp3
+	:	array_init 
+	|	classical_expr_wrp
+	;	
 	
 classical_expr_wrp
-	:	classical_expr -> ^(CLASSICAL_EXPR classical_expr);	
-	
-classical_expr
-	:	expr_wrp  oper_wrp*
-	;	
+	:	classical_expr -> ^(CLASSICAL_EXPR classical_expr);
 
-if3	:	'?'  classical_expr_wrp COLON  classical_expr_wrp
-	;	
+classical_expr
+	:	simple_expr_wrapper (expr_question_wrapper | expr_assign_wrapper)?;
 	
-oper_wrp:	oper -> ^(OPER oper);	
+classical_expr_wrp2
+	:	classical_expr2 -> ^(CLASSICAL_EXPR_2 classical_expr2);
+
+classical_expr2
+	:	(object_name | func_pointer1) expr_assign_wrapper?;
+
+expr_question_wrapper
+	:	expr_question -> ^(EXPR_QUESTION expr_question);
+
+expr_question
+	:	L_QUESTION classical_expr_wrp COLON classical_expr_wrp;
 	
-oper	:	op_wrp  expr_wrp 
-	|	if3
+assign
+	:	L_EQ | L_PLUS_EQ | L_MINUS_EQ | L_MULT_EQ | L_DIV_EQ
+	|   L_PERC_EQ | L_LEFT_EQ | L_RIGHT_EQ | L_AND_EQ | L_XOR_EQ | L_OR_EQ
+	;
+	
+simple_expr_wrapper
+	:	simple_expr -> ^(SIMPLE_EXPR simple_expr);	
+
+simple_expr
+	:	expr_or_or -> ^(EXPR_OR_OR expr_or_or);
+
+expr_or_or
+	:	expr_and_and_wrapper (L_OR_OR classical_expr_wrp)*;
+
+expr_and_and_wrapper
+	:	expr_and_and -> ^(EXPR_AND_AND expr_and_and);
+
+expr_and_and
+	:	expr_or_wrapper (L_AND_AND classical_expr_wrp)*;
+
+expr_or_wrapper
+	:	expr_or -> ^(EXPR_OR expr_or);
+	
+expr_or
+	:	expr_xor_wrapper (L_OR classical_expr_wrp)*;
+
+expr_xor_wrapper
+	:	expr_xor -> ^(EXPR_XOR expr_xor);
+
+expr_xor
+	:	expr_and_wrapper (L_XOR classical_expr_wrp)*;
+	
+expr_and_wrapper
+	:	expr_and -> ^(EXPR_AND expr_and);	
+
+expr_and
+	:	expr_eq_wrapper (L_AND classical_expr_wrp)*;
+	
+expr_eq_wrapper
+	:	expr_eq -> ^(EXPR_EQ expr_eq);	
+
+expr_eq
+	:	expr_cond_wrapper ((L_EQ_EQ | L_NEQ) classical_expr_wrp)*;
+
+expr_cond_wrapper
+	:	expr_cond -> ^(EXPR_COND expr_cond);
+
+expr_cond
+	:	expr_mov_wrapper ((L_LESS | L_MORE | L_LESS_EQ | L_MORE_EQ) classical_expr_wrp)*;
+
+expr_mov_wrapper
+	:	expr_mov -> ^(EXPR_MOV expr_mov);	
+
+expr_mov
+	:	expr_add_wrapper ((L_LEFT | L_RIGHT) classical_expr_wrp)*;	
+
+expr_add_wrapper
+	:	expr_add -> ^(EXPR_ADD expr_add);
+
+expr_add
+	:	expr_mult_wrapper ((L_PLUS | L_MINUS) classical_expr_wrp)*;
+
+expr_mult_wrapper
+	:	expr_mult -> ^(EXPR_MULT expr_mult);
+
+expr_mult
+	:	expr_type_wrapper ((ASTERISK | L_DIV | L_PERC) classical_expr_wrp)*;
+	
+expr_type_wrapper
+	:	expr_type -> ^(EXPR_TYPE expr_type);
+
+expr_type
+	:	type_convertion? expr_unname;
+	
+expr_unname
+	:	(ASTERISK type_convertion?)? expr_addr;
+	
+expr_addr
+	:	L_AND? expr_sign;
+	
+expr_sign
+	:	(L_MINUS | L_PLUS)? expr_not_wrapper;
+	
+expr_not_wrapper
+	:	expr_not -> ^(EXPR_NOT expr_not);	
+	
+expr_not
+	:	L_NOT? expr_not2;
+
+expr_not2
+	:	L_TILDA? expr_size_of;
+	
+expr_size_of
+	:	SIZEOF? expr_xcrement;
+	
+expr_xcrement
+	:	(L_PLUS_PLUS | L_MINUS_MINUS)? object_wrapped1;
+	
+object_wrapped1
+	:	object_wrapped2 (L_PLUS_PLUS | L_MINUS_MINUS)?
 	;
 
-expr_wrp:	expr -> ^(EXPR expr);
-
-op_wrp	:	op -> ^(OP op);
+object_wrapped2
+	: 	'unsigned'? object_name generic?
+	|	method_call_wrapper id_part_end?
+	|	L_BR classical_expr_wrp R_BR id_part_end?
+	|	const_expr
+	|	a_started
+	;
 	
-op_wrp3	:	op3 -> ^(OP op3);
+function_brackets_wrapper
+	:	function_brackets -> ^(FUNCTION function_brackets);	
+	
+function_brackets
+	:	L_BR (classical_expr_wrp (COMMA classical_expr_wrp)*)? R_BR;	
+	
+index	:	L_KBR classical_expr_wrp? R_KBR;	
 
 struct_init
 	:	L_BR  STRUCT_PREFIX? ID  R_BR  L_FBR 
@@ -650,69 +716,22 @@ struct_init2
 
 struct_init_line
 	:	struct_init_var
-//	|	struct_init_method
 	|	struct_init_expression
 	;	
 	
 struct_init_expression
-	:	classical_expr;	
+	:	classical_expr_wrp;	
 	
 struct_init_method
-	:	expr ;	
+	:	classical_expr_wrp;	
 	
 struct_init_var
 	:	(DOT id_part)+  L_EQ  (in_q_brackets | expression) ;	
 
-expression_end
-	:	expression_asterix 
-	| 	expression_other
-	|	R_BR 
-	;
-	
-expression_asterix
-	:	ASTERISK+ expression_end2
-	;
-
-expression_other
-	:	oper_wrp3 R_BR 
-//	:	oper_wrp R_BR
-	|	if3 R_BR 
-	;
-	
-oper_wrp3
-	:	oper3 -> ^(OPER oper3);	
-	
-oper3	:	op_wrp3 classical_expr_wrp;	
-	
-expression_end2
-	:	R_BR expression -> ^(TYPE_CONVERTION expression)
-//	|	expr_wrp oper_wrp* R_BR
-	|	classical_expr_wrp R_BR
-	;
-
-op	:	ASTERISK | op3;
-
-op3	:	'-' | '/' | '+' | '%' | '&' | '&&' | '|' | '||' | R_UBR | '>=' | L_UBR | '<=' | '==' | '!=' 
-	| 	L_EQ | '+=' | '-=' | '/=' | '*=' | '&=' | '^' | '>>' | '<<'
-	;
-
-expr2	:	op2? (const_expr | a_started | id_started | square_brackets);
-expr	:	op2? (const_expr | a_started | id_started | special_op | special_started | (in_brackets square_brackets? id_part_end?));
-
 a_started
 	:	a_selector_wrapper
-	|	a_encode
+	|	a_encode_wrapper
 	;
-	
-special_op
-	:	sizeof1
-	|	sizeof2
-	|	typeof id_started
-	;
-	
-sizeof1	:	'sizeof' L_BR  ASTERISK* ID  R_BR;
-
-sizeof2	:	'sizeof'  ASTERISK* ID ;
 
 typeof	:	'__typeof__'  L_BR  ID  R_BR ;
 	
@@ -721,12 +740,14 @@ a_selector_wrapper
 	
 a_selector:	'@selector' L_BR a_selector_value_wrapper R_BR;	
 
+a_encode_wrapper
+	:	a_encode -> ^(ENCODE a_encode);
+
 a_selector_value_wrapper
 	:	a_selector_value -> ^(SELECTOR_VALUE a_selector_value);
 	
 a_selector_value
 	:	 ID  (COLON  (ID  COLON)*)?;
-
 
 a_encode:	'@encode' L_BR ~(R_BR)+ R_BR;
 
@@ -736,34 +757,11 @@ const_expr
 string_literal3
 	:	STRING_LITERAL3;	
 
-op2	:	'+' | '-' | L_MINUS_MINUS | L_PLUS_PLUS | not | '~';
-
-not	:	'!' -> ^(NOT '!');
-
-op4	:	L_MINUS_MINUS | L_PLUS_PLUS;
-
-special_started
-	:	('&'|ASTERISK)+ type_convertion? special_started_end;
-	
-special_started_end
-	:	round_brackets 
-	| 	'&'? id_started;
-
-id_started
-	:	object_name  ((L_PLUS_PLUS|L_MINUS_MINUS) | method_brackets index_brackets*)?;
-
 method_brackets
 	:	L_BR  (expression  (COMMA  classical_expr_wrp)*)? R_BR;
-
-in_brackets
-	:	round_brackets
-	| 	square_brackets
-	|	type_convertion expression
-	|	func_pointer2
-	;
 	
 func_pointer1
-	:	type_internal  ASTERISK? L_BR ASTERISK? type_internal  R_BR  func_pointer_params  variable_set_end? SEMICOLON
+	:	type_internal  ASTERISK? L_BR ASTERISK? type_internal  R_BR  func_pointer_params?
 	;
 	
 func_pointer2
@@ -778,13 +776,11 @@ in_brackets_end1
 	|	method_start index_brackets?
 	|	(L_PLUS_PLUS | L_MINUS_MINUS) method_start
 	|	const_expr
-	//|	 simple_method_call
 	;	
 
 in_brackets_end2
 	:	L_BR  expression  R_BR
 	|	const_expr
-	//|	 simple_method_call
 	;	
 	
 method_start
@@ -808,16 +804,6 @@ q_source:	(expression  (COMMA  expression)*)?
 	
 simple_method_call
 	:	ID method_brackets?;	
-	
-round_brackets
-	:	L_BR  round_brackets_end
-	;
-	
-round_brackets_end
-	:	type_in_brackets
-	|	const_expr R_BR 
-	|	expr  expression_end in_brackets_end2?
-	;	
 	
 type_in_brackets
 	:	CONST_PREFIX? ID generic? ASTERISK* R_BR  in_brackets_end1
@@ -888,7 +874,7 @@ interface_method
 	:	method_header -> ^(METHOD method_header);	
 	
 method_header
-	:	method_header_body semi?;
+	:	method_header_body SEMICOLON?;
 
 method_header_body
 	:	method_modifier_wrapper  method_type  name  method_params? va_args_wrapper?;
@@ -896,7 +882,7 @@ method_header_body
 va_args_wrapper
 	:	va_args -> ^(VA_ARGS va_args);
 	
-va_args	:	COMMA  '...'  semi?;	
+va_args	:	COMMA  '...'  SEMICOLON?;	
 
 method_header_body2
 	:	method_type name  method_params2?;
@@ -924,7 +910,7 @@ type_internal1
 	|	ID
 	;	
 	
-generic:	L_UBR generic_internal R_UBR -> ^(GENERIC generic_internal);	
+generic:	L_LESS generic_internal L_MORE -> ^(GENERIC generic_internal);	
 
 generic_internal
 	:	 ID  ASTERISK* (COMMA  ID  ASTERISK*)*;
@@ -945,10 +931,13 @@ method_params
 	:	method_param+ -> ^(PARAM method_param)+;	
 	
 method_param
-	:	prefix? COLON  method_type? name
+	:	(prefix? | COLON) method_type? name
 	;	
 	
-prefix	:	ID -> ^(PREFIX ID);
+prefix	:	ID COLON -> ^(PREFIX ID COLON);
+
+incomplete_prefix
+	:	COLON -> ^(INCOMPLETE_PREFIX COLON);
 
 
 /*------------------------------------------------------------------
@@ -963,7 +952,7 @@ typedef_struct_declaration
 	: STRUCT_PREFIX name?
 	L_FBR 
 		typedef_struct_body+
-	R_FBR  name? semi?
+	R_FBR  name? SEMICOLON?
 	;
 	
 typedef_struct_body
@@ -1010,7 +999,7 @@ field_declaration
 	:	field_modifier_wrapper  field_type name field_declaration_end;
 	
 field_declaration_end
-	:	 value_set? semi;
+	:	 value_set? SEMICOLON;
 	
 type_start_wrapper
 	:	type_start -> ^(M_TYPE_START type_start);
@@ -1069,32 +1058,69 @@ null_stmt	:	'nil' | 'Nil';
 
 array	:	L_FBR  value  (COMMA  value)* R_FBR;
 
-semi	:	SEMICOLON ;
-
 /*------------------------------------------------------------------
  * LEXER RULES
  *------------------------------------------------------------------*/
 
-L_FBR:	'{';
-R_FBR:	'}';
-L_BR :	'(';
-R_BR :	')';
-L_KBR:	'[';
-R_KBR:	']';
+L_FBR	:	'{';
+R_FBR	:	'}';
+L_BR 	:	'(';
+R_BR 	:	')';
+L_KBR	:	'[';
+R_KBR	:	']';
 SEMICOLON
 	:	';';
-COLON:	':';
-L_UBR:	'<';
-R_UBR:	'>';
-DOT:	'.';
-COMMA:	',';
-L_EQ :	'=';
+COLON	:	':';
+
+L_LEFT_EQ	:	'<<=';
+L_RIGHT_EQ	:	'>>=';
+
+L_LESS_EQ
+	:	'<=';
+L_MORE_EQ
+	:	'>=';
+
+L_LEFT	:	'<<';
+L_RIGHT	:	'>>';
+L_LESS	:	'<';
+L_MORE	:	'>';
+DOT	:	'.';
+COMMA	:	',';
+L_NEQ	:	'!=';
+L_NOT	:	'!';
+L_EQ_EQ	:	'==';
+
+L_PLUS_EQ	:	'+=';
+L_MINUS_EQ	:	'-=';
+L_MULT_EQ	:	'*=';
+L_DIV_EQ	:	'/=';
+L_PERC_EQ	:	'%=';
+L_AND_EQ	:	'&=';
+L_XOR_EQ	:	'^=';
+L_OR_EQ		:	'|=';
+
+L_EQ 	:	'=';
 ASTERISK
 	:	'*';
+L_DIV	:	'/';
+L_PERC	:	'%';
 L_PLUS_PLUS
 	:	'++';
 L_MINUS_MINUS
 	:	'--';
+L_PLUS	:	'+';
+L_MINUS	:	'-';	
+	
+L_OR_OR	:	'||';
+L_AND_AND	
+	:	'&&';
+L_OR	:	'|';
+L_AND	:	'&';
+L_XOR	:	'^';
+L_TILDA	:	'~';
+SIZEOF	:	'sizeof';
+L_QUESTION
+	:	'?';
 
 CONST_PREFIX
  	:	'const' ;
