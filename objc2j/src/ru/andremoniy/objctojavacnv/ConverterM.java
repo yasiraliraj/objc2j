@@ -26,9 +26,9 @@ import static ru.andremoniy.objctojavacnv.Utils.transformType;
 
 // package ru.andremoniy.objctojavacnv.antlr.output;
 
-public class ConvertorM {
+public class ConverterM {
 
-    public static final Logger log = LoggerFactory.getLogger(ConvertorM.class);
+    public static final Logger log = LoggerFactory.getLogger(ConverterM.class);
 
     private static final List<String> RESTRICTED_METHODS = Arrays.asList("release", "retain", /*"autorelease", */"dealloc"/*, "init"*/);
     private static final Map<Integer, String> OPS_NUMBER = new HashMap<Integer, String>() {{

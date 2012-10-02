@@ -8,7 +8,7 @@ import org.antlr.runtime.tree.CommonTree;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.andremoniy.objctojavacnv.Context;
-import ru.andremoniy.objctojavacnv.Convertor;
+import ru.andremoniy.objctojavacnv.Converter;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorLexer;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorParser;
 import ru.andremoniy.objctojavacnv.tokenize.StringToken;
@@ -341,8 +341,8 @@ public class Preprocessor {
         } while (!new File(fileName).exists());
 
         Context localContext = new Context();
-        preprocessFile(localContext, fileName, processedImports, Convertor.NOT_IFS, null);
-        preprocessFile(localContext, fileName, processedImports, Convertor.ONLY_IFS, null);
+        preprocessFile(localContext, fileName, processedImports, Converter.NOT_IFS, null);
+        preprocessFile(localContext, fileName, processedImports, Converter.ONLY_IFS, null);
         return localContext.macrosMap;
     }
 
