@@ -18,9 +18,10 @@ public class CurrentContext {
     public boolean isBreak;
     public boolean skipBreak;
     public boolean transformClassNames;
+    public boolean skipObjField;
 
     public CurrentContext(CurrentContext current, boolean staticFlag, String methodName) {
-        this(current, staticFlag);
+        this(current, staticFlag, false, false);
         this.methodName = methodName;
     }
 
@@ -30,14 +31,20 @@ public class CurrentContext {
         this.staticFlag = staticFlag;
     }
 
-    public CurrentContext(CurrentContext current, boolean staticFlag) {
+    public CurrentContext(CurrentContext current, boolean staticFlag, boolean skipObjField, boolean transformClassNames) {
         this.ctx = current.ctx;
         this.className = current.className;
         this.staticFlag = staticFlag;
+        this.skipObjField = skipObjField;
+        this.transformClassNames = transformClassNames;
+    }
+
+    public CurrentContext gem() {
+        return this.gem(staticFlag);
     }
 
     public CurrentContext gem(boolean staticFlag) {
-        return new CurrentContext(this, staticFlag);
+        return new CurrentContext(this, staticFlag, skipObjField, transformClassNames);
     }
 
     public CurrentContext gem(boolean static_flag, String methodName) {

@@ -660,12 +660,15 @@ public class ConvertorM {
         }
     }
 
-    private static void process_expr_assign(StringBuilder sb, CommonTree tree, CurrentContext cc) {
+    private static void process_expr_assign(StringBuilder sb, CommonTree tree, CurrentContext cc, boolean doWrap) {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             if (childTree.getType() == ObjcmLexer.CLASSICAL_EXPR) {
                 process_classical_expr(sb, childTree, cc, false, false);
             } else {
+                if (childTree.getType() == ObjcmLexer.ASSIGN) {
+                    if (doWrap) continue;
+                }
                 // добавляем знаки приравнивания
                 readChildren(sb, childTree, cc);
             }
@@ -674,7 +677,24 @@ public class ConvertorM {
 
     private static void process_classical_expr(StringBuilder sb, CommonTree tree, CurrentContext cc, boolean leftAssign, boolean isIncompletePrefix) {
         boolean isIf3 = tree.getFirstChildWithType(ObjcmLexer.EXPR_QUESTION) != null;
-        boolean isAssign = leftAssign || recursiveSearch(tree, ObjcmLexer.EXPR_ASSIGN);
+        boolean isAssign = leftAssign || recursiveSearchExists(tree, ObjcmLexer.EXPR_ASSIGN);
+
+        boolean doWrap = false;
+        if (tree.getFirstChildWithType(ObjcmLexer.EXPR_ASSIGN) != null) {
+            // проверим, если первый найденный ClassicalExpr содержит FieldAccess, то оборачиваем все выражение:
+            CommonTree sef = tree;
+            if (tree.getType() == ObjcmLexer.CLASSICAL_EXPR) {
+                sef = (CommonTree) tree.getFirstChildWithType(ObjcmLexer.SIMPLE_EXPR);
+            } else {
+                sef = (CommonTree) tree.getChild(0);
+            }
+            boolean isLeftSimple = !(recursiveSearchExists(sef, ObjcmLexer.FIELD_ACCESS));
+            if (!isLeftSimple) {
+                CommonTree assignOperator = recursiveSearchTree((CommonTree) tree.getFirstChildWithType(ObjcmLexer.EXPR_ASSIGN), ObjcmLexer.ASSIGN);
+                sb.append(OPS_NUMBER.get(assignOperator.getChild(0).getType())).append("(");
+                doWrap = true;
+            }
+        }
         int ororCounter = 0;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -685,13 +705,21 @@ public class ConvertorM {
                     process_classical_expr(sb, childTree, cc, isAssign, false);
                     break;
                 case ObjcmLexer.EXPR_ASSIGN:
-                    process_expr_assign(sb, childTree, cc);
+                    if (doWrap) {
+                        sb.append(", ");
+                    }
+                    process_expr_assign(sb, childTree, cc, doWrap);
+                    if (doWrap) {
+                        sb.append(")");
+                    }
                     break;
                 case ObjcmLexer.SIMPLE_EXPR:
                     if (isIf3 && ororCounter == 0) {
                         sb.append("logic(");
                     }
-                    process_expr(sb, childTree, cc, 0, isAssign, isIncompletePrefix);
+                    CurrentContext cc2 = cc.gem();
+                    cc2.skipObjField = doWrap;  // флаг того, что не нужно превращать модификаторы доступа в функцию objc_field
+                    process_expr(sb, childTree, cc2, 0, isAssign, isIncompletePrefix);
                     if (isIf3 && ororCounter == 0) {
                         sb.append(")");
                     }
@@ -704,6 +732,7 @@ public class ConvertorM {
                     sb.append(": ");
                     break;
                 default:
+                    // TODO:
                     // читаем скобки
                     readChildren(sb, childTree, cc);
                     break;
@@ -711,16 +740,29 @@ public class ConvertorM {
         }
     }
 
-    private static boolean recursiveSearch(CommonTree tree, int type) {
+    private static boolean recursiveSearchExists(CommonTree tree, int type) {
+        if (tree.getChildCount() == 0) return false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             if (childTree.getType() == type) return true;
             if (childTree.getChildCount() > 0) {
-                boolean result = recursiveSearch(childTree, type);
+                boolean result = recursiveSearchExists(childTree, type);
                 if (result) return true;
             }
         }
         return false;
+    }
+
+    private static CommonTree recursiveSearchTree(CommonTree tree, int type) {
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            if (childTree.getType() == type) return childTree;
+            if (childTree.getChildCount() > 0) {
+                CommonTree result = recursiveSearchTree(childTree, type);
+                if (result != null) return result;
+            }
+        }
+        return null;
     }
 
     private static void process_expr(StringBuilder sb, CommonTree tree, CurrentContext cc, int deep, boolean leftAssign, boolean isIncompletePrefix) {
@@ -806,7 +848,9 @@ public class ConvertorM {
                 CommonTree childTree = (CommonTree) child;
                 if (childTree.getType() == ObjcmLexer.FIELD_ACCESS) {
                     fieldAccessCounter++;
-                    sb.append("obcj_field(");
+                    if (!cc.skipObjField) {
+                        sb.append("obcj_field(");
+                    }
                 }
             }
         }
@@ -832,7 +876,7 @@ public class ConvertorM {
                     readChildren(sbfa, childTree, cc);
                     sb.append(sbfa.toString().trim());
                     sb.append("\"");
-                    if (fieldAccessCounter2 > 0) {
+                    if (fieldAccessCounter2 > 0 && !cc.skipObjField) {
                         sb.append(")");
                     }
                     break;

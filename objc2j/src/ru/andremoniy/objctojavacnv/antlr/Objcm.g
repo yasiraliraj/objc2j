@@ -90,6 +90,7 @@ tokens {
 	FUNCTION;
 	THROW_STMT;
 	THROW_EXCEPTION;
+	ASSIGN;
 }
 
 @header {
@@ -560,7 +561,7 @@ expr_assign_wrapper
 	:	expr_assign -> ^(EXPR_ASSIGN expr_assign);
 	
 expr_assign	
-	:	assign (classical_expr_wrp | array_init | (func_pointer2 method_call_wrapper?));
+	:	assign_wrapper (classical_expr_wrp | array_init | (func_pointer2 method_call_wrapper?));
 	
 array_init
 	:	L_FBR (classical_expr_wrp3 (COMMA classical_expr_wrp3)*)? R_FBR
@@ -588,6 +589,9 @@ expr_question_wrapper
 
 expr_question
 	:	L_QUESTION classical_expr_wrp COLON classical_expr_wrp;
+
+assign_wrapper
+	:	assign -> ^(ASSIGN assign);
 	
 assign
 	:	L_EQ | L_PLUS_EQ | L_MINUS_EQ | L_MULT_EQ | L_DIV_EQ
