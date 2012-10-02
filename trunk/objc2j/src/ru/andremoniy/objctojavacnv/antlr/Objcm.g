@@ -88,6 +88,8 @@ tokens {
 	SIMPLE_EXPR;
 	EXPR_QUESTION;
 	FUNCTION;
+	THROW_STMT;
+	THROW_EXCEPTION;
 }
 
 @header {
@@ -263,7 +265,7 @@ block_internal_full
 
 block_internal
 	:	try_stmt
-	|	throw_stmt
+	|	throw_stmt_wrapper
 	|	static_start_wrapper SEMICOLON
 	|	do_stmt
 	|	const_expression SEMICOLON
@@ -297,6 +299,9 @@ enum_variable
 		
 const_expression
 	:	CONST_PREFIX full_expr_wrapper;
+
+throw_stmt_wrapper
+	:	throw_stmt -> ^(THROW_STMT throw_stmt);
 
 throw_stmt
 	:	'@throw'  SEMICOLON	

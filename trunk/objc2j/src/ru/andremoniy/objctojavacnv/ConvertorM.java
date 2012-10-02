@@ -108,7 +108,7 @@ public class ConvertorM {
         String input = objCcode.toString();
         input = input.replace("///", "//");
 
-        System.out.print("Preprocessing... ");
+        log.info("Preprocessing... ");
         input = Preprocessor.replace(input, ctx, fileName);
         log.info("ok");
 
@@ -586,6 +586,9 @@ public class ConvertorM {
                     m_process_block(rsb, childTree, cc);
                     sb.append(rsb);
                     break;
+                case ObjcmLexer.THROW_STMT:
+                    sb.append("throw new RuntimeException(\"empty\");\n");
+                    break;
                 case ObjcmLexer.FIELD_ACCESS:
                     StringBuilder fasb = new StringBuilder();
                     m_process_block(fasb, childTree, cc);
@@ -621,9 +624,11 @@ public class ConvertorM {
                         case "@finally":
                             lsb = new StringBuilder("finally");
                             break;
+/*
                         case "@throw":
                             lsb = new StringBuilder("throw");
                             break;
+*/
                         case "_cmd":
                             lsb = new StringBuilder("\"" + cc.methodName + "\"");
                             break;
@@ -821,16 +826,21 @@ public class ConvertorM {
                     m_process_selector(sb, childTree, cc);
                     break;
                 case ObjcmLexer.FIELD_ACCESS:
+                    fieldAccessCounter2++;
+                    sb.append(", \"");
+                    StringBuilder sbfa = new StringBuilder();
+                    readChildren(sbfa, childTree, cc);
+                    sb.append(sbfa.toString().trim());
+                    sb.append("\"");
                     if (fieldAccessCounter2 > 0) {
                         sb.append(")");
                     }
-                    fieldAccessCounter2++;
-                    sb.append(", ");
                     break;
                 case ObjcmLexer.FUNCTION:
                     CurrentContext cc2 = cc.gem(cc.staticFlag);
                     cc2.transformClassNames = true;
-                    readChildren(sb, childTree, cc2);
+                    process_classical_expr(sb, childTree, cc2, false, false);
+                    //readChildren(sb, childTree, cc2);
                     break;
                 default:
                     readChildren(sb, childTree, cc);
@@ -1056,7 +1066,7 @@ public class ConvertorM {
         }
     }
 
-    private static void m_process_message(StringBuilder sb, CommonTree tree, CurrentContext cc) {
+    private static void m_process_message(StringBuilder sb, CommonTree tree, CurrentContext cc, boolean isIncompletePrefix) {
         List children = tree.getChildren();
         boolean prevId = false;
         for (int i = 0, childrenSize = children.size(); i < childrenSize; i++) {
@@ -1064,7 +1074,6 @@ public class ConvertorM {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
                 case ObjcmLexer.CLASSICAL_EXPR:
-                    boolean isIncompletePrefix = i < childrenSize - 1 && ((CommonTree) children.get(i + 1)).getType() == ObjcmLexer.INCOMPLETE_PREFIX;
                     process_classical_expr(sb, childTree, cc, false, isIncompletePrefix);
                     break;
                 case ObjcmLexer.METHOD_CALL:
@@ -1179,16 +1188,19 @@ public class ConvertorM {
 
     private static void m_process_msg_list(StringBuilder sb, CommonTree tree, CurrentContext cc) {
         int msgCount = 0;
-        for (Object child : tree.getChildren()) {
+        List children = tree.getChildren();
+        for (int i = 0, childrenSize = children.size(); i < childrenSize; i++) {
+            Object child = children.get(i);
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
                 case ObjcmLexer.METHOD_MSG:
+                    boolean isIncompletePrefix = i < childrenSize - 1 && ((CommonTree) children.get(i + 1)).getFirstChildWithType(ObjcmLexer.INCOMPLETE_PREFIX) != null;
                     CommonTree messageTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.MESSAGE);
                     if (messageTree != null) {
                         if (msgCount > 0) sb.append(", ");
                         CurrentContext cc2 = cc.gem(cc.staticFlag);
                         cc2.transformClassNames = true;
-                        m_process_message(sb, messageTree, cc2);
+                        m_process_message(sb, messageTree, cc2, isIncompletePrefix);
                         msgCount++;
                     }
                     break;
