@@ -691,7 +691,7 @@ public class ConverterM {
             boolean isLeftSimple = !(recursiveSearchExists(sef, ObjcmLexer.FIELD_ACCESS));
             if (!isLeftSimple) {
                 CommonTree assignOperator = recursiveSearchTree((CommonTree) tree.getFirstChildWithType(ObjcmLexer.EXPR_ASSIGN), ObjcmLexer.ASSIGN);
-                sb.append(OPS_NUMBER.get(assignOperator.getChild(0).getType())).append("(");
+                sb.append("_").append(OPS_NUMBER.get(assignOperator.getChild(0).getType())).append("(");
                 doWrap = true;
             }
         }
