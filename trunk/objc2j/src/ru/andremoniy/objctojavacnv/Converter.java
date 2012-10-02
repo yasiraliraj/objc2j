@@ -13,9 +13,9 @@ import java.util.*;
  * Date: 18.06.12
  * Time: 9:35
  */
-public class Convertor {
+public class Converter {
 
-    public static final Logger log = LoggerFactory.getLogger(Convertor.class);
+    public static final Logger log = LoggerFactory.getLogger(Converter.class);
     
     public static final boolean NOT_IFS = false;
     public static final boolean ONLY_IFS = true;
@@ -75,7 +75,7 @@ public class Convertor {
                 if (f.getName().endsWith(".h")) {
                     try {
                         log.info(f.getAbsolutePath() + " converting...");
-                        ConvertorH.convert_h(f.getAbsolutePath(), context, null, null);
+                        ConverterH.convert_h(f.getAbsolutePath(), context, null, null);
                         log.info(f.getAbsolutePath() + " converted...");
                     } catch (Exception e) {
                         log.info("Error converting " + f.getAbsolutePath());
@@ -93,7 +93,7 @@ public class Convertor {
                 if (f.getName().endsWith(".m")) {
                     try {
                         log.info(f.getAbsolutePath() + " converting...");
-                        ConvertorM.convert_m(f.getAbsolutePath(), context, new StringBuilder());
+                        ConverterM.convert_m(f.getAbsolutePath(), context, new StringBuilder());
                         log.info(f.getAbsolutePath() + " converted...");
                     } catch (Exception e) {
                         log.info("Error converting " + f.getAbsolutePath());

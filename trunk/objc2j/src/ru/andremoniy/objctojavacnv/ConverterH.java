@@ -21,9 +21,9 @@ import java.util.*;
  * Date: 18.06.12
  * Time: 9:32
  */
-public class ConvertorH {
+public class ConverterH {
 
-    public static final Logger log = LoggerFactory.getLogger(ConvertorH.class);
+    public static final Logger log = LoggerFactory.getLogger(ConverterH.class);
 
     private static final int UNDEFINED_TYPEDEF = 0;
     private static final int RENAME_TYPEDEF = 1;
