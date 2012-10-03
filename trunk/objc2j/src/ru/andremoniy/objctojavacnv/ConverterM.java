@@ -320,7 +320,8 @@ public class ConverterM {
         sb.append(";");
     }
 
-    private static void m_process_static(StringBuilder sb, CommonTree tree, CurrentContext cc) {
+    private static void m_process_static(StringBuilder sb, CommonTree tree, CurrentContext _cc) {
+        CurrentContext cc = _cc.gem();
         boolean isField = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -333,7 +334,12 @@ public class ConverterM {
                     sb.append(" ");
                     break;
                 case ObjcmLexer.NAME:
-                    readChildren(sb, childTree, cc.gem(true));
+                    StringBuilder nameSb = new StringBuilder();
+                    readChildren(nameSb, childTree, cc.gem(true));
+                    sb.append(nameSb);
+                    if (tree.getFirstChildWithType(ObjcmLexer.METHOD) != null) {
+                        cc.methodName = nameSb.toString().trim();
+                    }
                     break;
                 case ObjcmLexer.FIELD:
                     isField = true;
@@ -525,6 +531,7 @@ public class ConverterM {
             // в этом случае необходимо это отследить и добавить в конце "return null;"
             CurrentContext cc2 = cc.gem(static_flag, name);
             cc2.addReturnNull = !modifier_sb.equals("void");
+            cc2.methodName = name;
             m_process_block(sb, blockTree, cc2);
 
         } else {
