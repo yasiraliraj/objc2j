@@ -24,7 +24,7 @@ public class CurrentContext {
     public String variableDeclarationType;
 
     public CurrentContext(CurrentContext current, boolean staticFlag, String methodName) {
-        this(current, staticFlag, false, false);
+        this(current, staticFlag);
         this.methodName = methodName;
     }
 
@@ -34,12 +34,18 @@ public class CurrentContext {
         this.staticFlag = staticFlag;
     }
 
-    public CurrentContext(CurrentContext current, boolean staticFlag, boolean skipObjField, boolean transformClassNames) {
+    public CurrentContext(CurrentContext current, boolean staticFlag) {
         this.ctx = current.ctx;
         this.className = current.className;
         this.staticFlag = staticFlag;
-        this.skipObjField = skipObjField;
-        this.transformClassNames = transformClassNames;
+        this.skipObjField = current.skipObjField;
+        this.transformClassNames = current.transformClassNames;
+        this.methodName = current.methodName;
+        this.isBreak = current.isBreak;
+        this.skipBreak = current.skipBreak;
+        this.addReturnNull = current.addReturnNull;
+        this.isVariableDeclaration = current.isVariableDeclaration;
+        this.variableDeclarationType = current.variableDeclarationType;
     }
 
     public CurrentContext gem() {
@@ -47,7 +53,7 @@ public class CurrentContext {
     }
 
     public CurrentContext gem(boolean staticFlag) {
-        return new CurrentContext(this, staticFlag, skipObjField, transformClassNames);
+        return new CurrentContext(this, staticFlag);
     }
 
     public CurrentContext gem(boolean static_flag, String methodName) {

@@ -19,8 +19,7 @@ public class Utils {
     static String transformObject(String obj, CurrentContext cc) {
         switch (obj) {
             case "_cmd":
-                return "null"; // TODO: здесь нужно возвращать обертку на имени метода, в котором вызвали этот объект
-                               // TODO: в принципе не сложно: передавать имя метода в контексте, но пока отложим
+                return "\"" + cc.methodName + "\"";
             case "nil":
             case "Nil":
                 return "null";
