@@ -20,6 +20,8 @@ public class CurrentContext {
     public boolean transformClassNames;
     public boolean skipObjField;
     public boolean addReturnNull;
+    public boolean isVariableDeclaration;
+    public String variableDeclarationType;
 
     public CurrentContext(CurrentContext current, boolean staticFlag, String methodName) {
         this(current, staticFlag, false, false);

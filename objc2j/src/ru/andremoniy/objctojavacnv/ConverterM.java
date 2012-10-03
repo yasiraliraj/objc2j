@@ -30,7 +30,8 @@ public class ConverterM {
 
     public static final Logger log = LoggerFactory.getLogger(ConverterM.class);
 
-    private static final List<String> RESTRICTED_METHODS = Arrays.asList("release", "retain", /*"autorelease", */"dealloc"/*, "init"*/);
+    //    private static final List<String> RESTRICTED_METHODS = Arrays.asList("release", "retain", /*"autorelease", */"dealloc"/*, "init"*/);
+    private static final List<String> RESTRICTED_METHODS = Collections.EMPTY_LIST;
     private static final Map<Integer, String> OPS_NUMBER = new HashMap<Integer, String>() {{
         put(ObjcmLexer.L_MINUS, "minus");
         put(ObjcmLexer.L_PLUS, "plus");
@@ -66,7 +67,7 @@ public class ConverterM {
         add(Arrays.asList(ObjcmLexer.L_XOR));
         add(Arrays.asList(ObjcmLexer.L_AND));
         add(Arrays.asList(ObjcmLexer.L_EQ_EQ, ObjcmLexer.L_NEQ));
-        add(Arrays.asList(ObjcmLexer.L_LESS, ObjcmLexer.L_MORE, ObjcmLexer.L_LEFT_EQ, ObjcmLexer.L_MORE_EQ));
+        add(Arrays.asList(ObjcmLexer.L_LESS, ObjcmLexer.L_MORE, ObjcmLexer.L_LESS_EQ, ObjcmLexer.L_MORE_EQ));
         add(Arrays.asList(ObjcmLexer.L_LEFT, ObjcmLexer.L_RIGHT));
         add(Arrays.asList(ObjcmLexer.L_PLUS, ObjcmLexer.L_MINUS));
         add(Arrays.asList(ObjcmLexer.ASTERISK, ObjcmLexer.L_DIV, ObjcmLexer.L_PERC));
@@ -586,10 +587,16 @@ public class ConverterM {
                 case ObjcmLexer.CLASSICAL_EXPR_2:
                     process_classical_expr(sb, childTree, cc, true, false);
                     break;
-                case ObjcmLexer.FOR_IN_STMT:
-                    sb.append(" : ");
-                    m_process_block(sb, childTree, cc);
+                case ObjcmLexer.FOR_STMT:
+                    proecss_for_stmt(sb, childTree, cc);
                     break;
+                case ObjcmLexer.FOR_IN_STMT:
+                case ObjcmLexer.FOR_STMT_EXPR:
+                    // do nothing
+                    break;
+//                    sb.append(" : ");
+//                    m_process_block(sb, childTree, cc);
+//                    break;
                 case ObjcmLexer.STATIC_START:
                     m_process_static_start(sb, childTree, cc);
                     break;
@@ -699,6 +706,55 @@ public class ConverterM {
         }
     }
 
+    private static void proecss_for_stmt(StringBuilder sb, CommonTree tree, CurrentContext cc) {
+        CommonTree forStmtExpr = (CommonTree) tree.getFirstChildWithType(ObjcmLexer.FOR_STMT_EXPR);
+
+        // определим тип for-а:
+        CommonTree forInTree = (CommonTree) forStmtExpr.getFirstChildWithType(ObjcmLexer.FOR_IN_STMT);
+        boolean forIn = forInTree != null;
+
+        if (forIn) {
+            sb.append("for (");
+
+            CommonTree typeTree = (CommonTree) forStmtExpr.getFirstChildWithType(ObjcmLexer.EXPR_FULL);
+            StringBuilder typeSb = new StringBuilder();
+            process_expr_full(typeSb, typeTree, cc, true);
+            String type = typeSb.toString().trim();
+            type = type.substring(0, type.indexOf(" "));
+
+            // for (Xxxx ...
+            sb.append(typeSb);
+
+            // for (Xxxx yyyy ....
+            CommonTree itemTree = (CommonTree) forStmtExpr.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR_2);
+            if (itemTree != null) {
+                readChildren(sb, itemTree, cc);
+            }
+
+            sb.append(" : (List<").append(type).append(">)");
+
+            m_process_block(sb, forInTree, cc);
+
+            sb.append(") ");
+        } else {
+            // само собой
+            m_process_block(sb, forStmtExpr, cc);
+        }
+
+        CommonTree lastChild = (CommonTree) tree.getChild(tree.getChildCount() - 1);
+        if (lastChild.getChildCount() > 0) {
+            m_process_block(sb, lastChild, cc);
+        } else {
+            sb.append(lastChild.getText());
+        }
+        sb.append("\n");
+/*
+        for (Object child : tree.getChildren()) {
+
+        }
+*/
+    }
+
     private static void process_variable_init(StringBuilder sb, CommonTree tree, CurrentContext cc) {
         boolean isVariableDeclaration = tree.getFirstChildWithType(ObjcmLexer.EXPR_FULL) != null && tree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR_2) != null;
 
@@ -714,7 +770,13 @@ public class ConverterM {
                     sb.append(efsb);
                     break;
                 case ObjcmLexer.CLASSICAL_EXPR_2:
-                    process_classical_expr(sb, childTree, cc, true, false);
+                    CurrentContext cc2 = cc.gem();
+                    cc2.isVariableDeclaration = isVariableDeclaration;
+                    // в Objective-C часто объекту с наследованным типом присваивается объект с типом супер-класса
+                    if (isVariableDeclaration && recursiveSearchExists(childTree, ObjcmLexer.ASSIGN)) {
+                        cc2.variableDeclarationType = variableType;
+                    }
+                    process_classical_expr(sb, childTree, cc2, true, false);
                     if (isVariableDeclaration && !recursiveSearchExists(childTree, ObjcmLexer.ASSIGN)) {
                         sb.append("= new ").append(variableType).append("(").append(needInitParam(variableType)).append(")");
                     }
@@ -760,6 +822,11 @@ public class ConverterM {
                 }
                 // добавляем знаки приравнивания
                 readChildren(sb, childTree, cc);
+
+                // принудительное приведение типа при инициализации объекта через присваивание
+                if (cc.isVariableDeclaration) {
+                    sb.append("(").append(cc.variableDeclarationType).append(")");
+                }
             }
         }
     }
