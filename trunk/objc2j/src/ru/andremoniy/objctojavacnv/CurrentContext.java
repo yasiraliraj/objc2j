@@ -19,6 +19,7 @@ public class CurrentContext {
     public boolean skipBreak;
     public boolean transformClassNames;
     public boolean skipObjField;
+    public boolean addReturnNull;
 
     public CurrentContext(CurrentContext current, boolean staticFlag, String methodName) {
         this(current, staticFlag, false, false);
