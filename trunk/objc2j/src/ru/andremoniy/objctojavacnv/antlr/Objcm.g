@@ -68,6 +68,8 @@ tokens {
 	FIELD_ACCESS;
 	FIELD_TYPE_STARTED;
 	STATIC_START;
+	FOR_STMT;
+	FOR_STMT_EXPR;
 	FOR_IN_STMT;
 	METHOD_MSG;
 	EXPR_FULL;
@@ -276,7 +278,7 @@ block_internal
 	|	else_stmt
 	|	switch_stmt_wrapper
 	|	return_stmt
-	|	for_stmt
+	|	for_stmt_wrapper
 	|	while_stmt_wrapper
 	|	single_operators
 	|	struct_variable SEMICOLON
@@ -412,8 +414,14 @@ while_stmt
 while_expr
 	:	 classical_expr_wrp -> ^(WHILE_EXPR classical_expr_wrp);	
 	
-for_stmt:	'for'  L_BR  for_stmt_expr R_BR  if_stmt_block
+for_stmt_wrapper
+	:	for_stmt -> ^(FOR_STMT for_stmt);	
+	
+for_stmt:	'for'  L_BR  for_stmt_expr_wrapper R_BR  if_stmt_block
 	;
+	
+for_stmt_expr_wrapper
+	:	for_stmt_expr -> ^(FOR_STMT_EXPR for_stmt_expr);	
 	
 for_stmt_expr
 	:	full_expr_wrapper (for_stmt_int1 | (full_expr2 (for_stmt_int1 | for_stmt_int2)) | for_stmt_int2)
