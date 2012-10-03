@@ -98,7 +98,9 @@ public class Utils {
             case "CGFloat":
                 return "Double";
             case "float":
-                return "double";
+                return "Double";
+            case "long":
+                return "Long";
 /*            case "NSArray":
                 return "List";
             case "NSMutableArray":

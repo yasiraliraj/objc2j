@@ -33,8 +33,6 @@ tokens {
 	STRUCT_FIELD;
 	STATIC;
 	STATIC_METHOD;
-	TYPE_CONVERTION_MAY_BE;
-	TYPE_CONVERTION_TRUE;
 	OPERATOR;
 	VA_ARGS;
 	ENUM;
@@ -54,6 +52,7 @@ tokens {
 	IF_EXPR;
 	IF_BLOCK;
 	SELECTOR;
+	PROTOCOL;
 	ENCODE;
 	SELECTOR_VALUE;
 	OP;
@@ -91,6 +90,8 @@ tokens {
 	THROW_STMT;
 	THROW_EXCEPTION;
 	ASSIGN;
+	VARIABLE_INIT;
+	STATIC_TYPE;
 }
 
 @header {
@@ -270,7 +271,7 @@ block_internal
 	|	static_start_wrapper SEMICOLON
 	|	do_stmt
 	|	const_expression SEMICOLON
-	|	full_expr_wrapper ((full_expr2? SEMICOLON) | COLON)
+	|	variable_init_wrapper
 	|	if_stmt_wrapper
 	|	else_stmt
 	|	switch_stmt_wrapper
@@ -284,6 +285,12 @@ block_internal
 	|	known_type_started SEMICOLON
 	|	SEMICOLON	
 	;
+
+variable_init_wrapper
+	:	variable_init -> ^(VARIABLE_INIT variable_init);
+	
+variable_init
+	:	full_expr_wrapper ((full_expr2? SEMICOLON) | COLON);	
 	
 known_type_started
 	:	known_types ASTERISK* full_expr2;		
@@ -450,8 +457,14 @@ static_start_wrapper
 	:	static_start -> ^(STATIC_START static_start);
 	
 static_start
-	:	STATIC_PREFIX CONST_PREFIX? (object_name ASTERISK*)? full_expr2
+	:	STATIC_PREFIX CONST_PREFIX? static_type_wrapper full_expr2
 	;
+	
+static_type_wrapper
+	:	static_type -> ^(STATIC_TYPE static_type);	
+	
+static_type
+	:	(object_name ASTERISK*)?;	
 	
 id_part_end
 	:	id_part_end_internal+
@@ -473,11 +486,6 @@ object_name
 	:	id_part id_part_end?
 	;	
 	
-view_stmt
-	: 	square_brackets
-	|	block_wrapper
-	;			
-
 method_call_wrapper
 	:	L_KBR method_call2 R_KBR -> ^(METHOD_CALL method_call2)
 	;
@@ -492,7 +500,8 @@ object_wrapper
 	:	object_wrapper_internal -> ^(OBJECT object_wrapper_internal);
 	
 object_wrapper_internal
-	:	L_BR object_name generic? ASTERISK* R_BR (object_name | method_call_wrapper)
+//	:	L_BR object_name generic? ASTERISK* R_BR (object_name | method_call_wrapper)
+	:	type_convertion (object_name | method_call_wrapper)
 	|	object_name
 	|	method_call_wrapper
 	|	STRING_LITERAL
@@ -500,15 +509,9 @@ object_wrapper_internal
 
 method_message3
 	:	classical_expr_wrp -> ^(MESSAGE classical_expr_wrp);
-
-type_convertion_start
-	:	L_BR  ID generic?  -> ^(TYPE_CONVERTION_MAY_BE ID generic?);
-	
-type_convertion_end
-	:	ASTERISK* R_BR  -> ^(TYPE_CONVERTION_TRUE);
-	
+		
 type_convertion
-	:	L_BR 'const'? 'unsigned'? type_internal  ASTERISK* R_BR  -> ^(TYPE_CONVERTION type_internal);
+	:	L_BR 'const'? 'unsigned'? type_internal generic? ASTERISK* R_BR  -> ^(TYPE_CONVERTION type_internal generic?);
 
 method_name
 	:	ID -> ^(METHOD_NAME ID);
@@ -740,6 +743,7 @@ struct_init_var
 a_started
 	:	a_selector_wrapper
 	|	a_encode_wrapper
+	|	a_protocol_wrapper
 	;
 
 typeof	:	'__typeof__'  L_BR  ID  R_BR ;
@@ -748,6 +752,12 @@ a_selector_wrapper
 	:	a_selector -> ^(SELECTOR a_selector);	
 	
 a_selector:	'@selector' L_BR a_selector_value_wrapper R_BR;	
+
+a_protocol_wrapper
+	:	a_protocol -> ^(PROTOCOL a_protocol);
+	
+a_protocol
+	:	'@protocol' L_BR a_selector_value_wrapper R_BR;	
 
 a_encode_wrapper
 	:	a_encode -> ^(ENCODE a_encode);
@@ -813,15 +823,7 @@ q_source:	(expression  (COMMA  expression)*)?
 	
 simple_method_call
 	:	ID method_brackets?;	
-	
-type_in_brackets
-	:	CONST_PREFIX? ID generic? ASTERISK* R_BR  in_brackets_end1
-	;
-			
-square_brackets
-	:	
-	L_KBR  method_call_wrapper2 R_KBR;	
-	
+					
 index_brackets
 	:	L_KBR  classical_expr_wrp R_KBR
 	;
