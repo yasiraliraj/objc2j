@@ -14,7 +14,7 @@ public class CurrentContext {
     Context ctx;
     String className;
     boolean staticFlag;
-    String methodName;
+    public MethodContext mc;
     public boolean isBreak;
     public boolean skipBreak;
     public boolean transformClassNames;
@@ -22,11 +22,7 @@ public class CurrentContext {
     public boolean addReturnNull;
     public boolean isVariableDeclaration;
     public String variableDeclarationType;
-
-    public CurrentContext(CurrentContext current, boolean staticFlag, String methodName) {
-        this(current, staticFlag);
-        this.methodName = methodName;
-    }
+    public boolean needSaveVariable;
 
     public CurrentContext(Context ctx, String className, boolean staticFlag) {
         this.ctx = ctx;
@@ -40,12 +36,13 @@ public class CurrentContext {
         this.staticFlag = staticFlag;
         this.skipObjField = current.skipObjField;
         this.transformClassNames = current.transformClassNames;
-        this.methodName = current.methodName;
+        this.mc = current.mc;
         this.isBreak = current.isBreak;
         this.skipBreak = current.skipBreak;
         this.addReturnNull = current.addReturnNull;
         this.isVariableDeclaration = current.isVariableDeclaration;
         this.variableDeclarationType = current.variableDeclarationType;
+        this.needSaveVariable = current.needSaveVariable;
     }
 
     public CurrentContext gem() {
@@ -56,7 +53,4 @@ public class CurrentContext {
         return new CurrentContext(this, staticFlag);
     }
 
-    public CurrentContext gem(boolean static_flag, String methodName) {
-        return new CurrentContext(this, static_flag, methodName);
-    }
 }

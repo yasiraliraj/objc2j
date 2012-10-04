@@ -338,7 +338,7 @@ public class ConverterM {
                     readChildren(nameSb, childTree, cc.gem(true));
                     sb.append(nameSb);
                     if (tree.getFirstChildWithType(ObjcmLexer.METHOD) != null) {
-                        cc.methodName = nameSb.toString().trim();
+                        cc.mc = new MethodContext(nameSb.toString().trim());
                     }
                     break;
                 case ObjcmLexer.FIELD:
@@ -500,6 +500,8 @@ public class ConverterM {
             }
         }
 
+        cc.mc = new MethodContext(name);
+
         if (name.equals("init") && params.isEmpty()) cc.ctx.containsInit = true;
         if (name.equals("autoRelease") && params.isEmpty()) cc.ctx.containsAutoRelease = true;
 
@@ -529,9 +531,8 @@ public class ConverterM {
         if (blockTree != null) {
             // есть ситуации, когда метод заканчивается оператором SWITCH, в котором не прописана конструкция default
             // в этом случае необходимо это отследить и добавить в конце "return null;"
-            CurrentContext cc2 = cc.gem(static_flag, name);
+            CurrentContext cc2 = cc.gem(static_flag);
             cc2.addReturnNull = !modifier_sb.equals("void");
-            cc2.methodName = name;
             m_process_block(sb, blockTree, cc2);
 
         } else {
@@ -583,7 +584,9 @@ public class ConverterM {
                 /** new block with expressions **/
                 /*******************************/
                 case ObjcmLexer.VARIABLE_INIT:
-                    process_variable_init(sb, childTree, cc);
+                    CurrentContext cc2 = cc.gem();
+                    cc2.needSaveVariable = true;
+                    process_variable_init(sb, childTree, cc2);
                     break;
                 case ObjcmLexer.CLASSICAL_EXPR:
                     process_classical_expr(sb, childTree, cc, false, false);
@@ -694,7 +697,7 @@ public class ConverterM {
                             break;
 */
                         case "_cmd":
-                            lsb = new StringBuilder("\"" + cc.methodName + "\"");
+                            lsb = new StringBuilder("\"" + cc.mc.methodName + "\"");
                             break;
                     }
 
@@ -769,21 +772,26 @@ public class ConverterM {
 
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
+            CurrentContext cc2 = cc.gem();
             switch (childTree.getType()) {
                 case ObjcmLexer.EXPR_FULL:
                     StringBuilder efsb = new StringBuilder();
-                    process_expr_full(efsb, childTree, cc, true);
+                    cc2.needSaveVariable = tree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR_2) == null;
+                    process_expr_full(efsb, childTree, cc2, true);
                     variableType = efsb.toString().trim();
                     sb.append(efsb);
                     break;
                 case ObjcmLexer.CLASSICAL_EXPR_2:
-                    CurrentContext cc2 = cc.gem();
+                    cc2 = cc.gem();
                     cc2.isVariableDeclaration = isVariableDeclaration;
                     // в Objective-C часто объекту с наследованным типом присваивается объект с типом супер-класса
                     if (isVariableDeclaration && recursiveSearchExists(childTree, ObjcmLexer.ASSIGN)) {
                         cc2.variableDeclarationType = variableType;
                     }
-                    process_classical_expr(sb, childTree, cc2, true, false);
+                    StringBuilder varsb = new StringBuilder();
+                    process_classical_expr(varsb, childTree, cc2, true, false);
+                    sb.append(varsb);
+
                     if (isVariableDeclaration && !recursiveSearchExists(childTree, ObjcmLexer.ASSIGN)) {
                         sb.append("= new ").append(variableType).append("(").append(needInitParam(variableType)).append(")");
                     }
@@ -827,7 +835,7 @@ public class ConverterM {
                 if (childTree.getType() == ObjcmLexer.ASSIGN) {
                     if (doWrap) continue;
                 }
-                // добавляем знаки приравнивания
+                // добавляем оператор присваивания
                 readChildren(sb, childTree, cc);
 
                 // принудительное приведение типа при инициализации объекта через присваивание
@@ -882,11 +890,18 @@ public class ConverterM {
                     }
                     CurrentContext cc2 = cc.gem();
                     cc2.skipObjField = doWrap;  // флаг того, что не нужно превращать модификаторы доступа в функцию objc_field
-                    process_expr(sb, childTree, cc2, 0, isAssign, isIncompletePrefix);
+                    StringBuilder sesb = new StringBuilder();
+                    process_expr(sesb, childTree, cc2, 0, isAssign, isIncompletePrefix);
+                    sb.append(sesb);
                     if (isIf3 && ororCounter == 0) {
                         sb.append(")");
                     }
                     ororCounter++;
+
+                    if (cc.needSaveVariable) {
+                        cc.needSaveVariable = false;
+                        cc.mc.localVariables.put(sesb.toString().trim(), cc.variableDeclarationType);
+                    }
                     break;
                 case ObjcmLexer.L_QUESTION:
                     sb.append("? ");
@@ -932,9 +947,11 @@ public class ConverterM {
         List<Integer> operations = OPERATIONS_ORDER.get(deep);
         int exprType = EXPR_ORDER.get(deep);
         List<Integer> operationsOrder = new ArrayList<>();
+        boolean saveVarType = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             if (childTree.getType() == ObjcmLexer.ASTERISK && leftAssign) {
+                saveVarType = true;
                 continue;
             }
             if (operations.contains(childTree.getType())) {
@@ -952,7 +969,15 @@ public class ConverterM {
                 }
 
                 if (deep == EXPR_ORDER.size() - 1) {
-                    process_expr_type(sb, childTree, cc, isIncompletePrefix);
+                    StringBuilder pesb = new StringBuilder();
+                    process_expr_type(pesb, childTree, cc, isIncompletePrefix);
+                    sb.append(pesb);
+
+                    if (saveVarType) {
+                        cc = cc.gem();
+                        cc.isVariableDeclaration = true;
+                        cc.variableDeclarationType = pesb.toString().trim();
+                    }
                 } else {
                     process_expr(sb, childTree, cc, deep + 1, leftAssign, isIncompletePrefix);
                 }
@@ -1089,7 +1114,14 @@ public class ConverterM {
                     //readChildren(sb, childTree, cc2);
                     break;
                 default:
-                    readChildren(sb, childTree, cc);
+                    StringBuilder defSb = new StringBuilder();
+                    readChildren(defSb, childTree, cc);
+                    sb.append(defSb);
+
+                    if (cc.needSaveVariable) {
+                        cc.needSaveVariable = false;
+                        cc.mc.localVariables.put(defSb.toString().trim(), cc.variableDeclarationType);
+                    }
                     break;
             }
         }
@@ -1097,6 +1129,8 @@ public class ConverterM {
 
     private static void m_process_static_start(StringBuilder sb, CommonTree tree, CurrentContext cc) {
 //        boolean wasInitialized = tree.getFirstChildWithType(ObjcmLexer.SET_INTERNAL) != null;
+        cc = cc.gem();
+        cc.needSaveVariable = true;
         boolean wasInitialized = true; // TODO:
         StringBuilder isb = new StringBuilder();
         String variableType = "";
@@ -1417,6 +1451,12 @@ public class ConverterM {
         if (methodName.trim().equals("new")) {
             wasMethodCall = false;
             instanceCreation = true;
+        }
+
+        if (instanceCreation && "Class".equals(cc.mc.localVariables.get(object))) {
+            methodName = "newInstance";
+            wasMethodCall = true;
+            instanceCreation = false;
         }
 
         if (wasMethodCall) {

@@ -19,7 +19,7 @@ public class Utils {
     static String transformObject(String obj, CurrentContext cc) {
         switch (obj) {
             case "_cmd":
-                return "\"" + cc.methodName + "\"";
+                return "\"" + cc.mc.methodName + "\"";
             case "nil":
             case "Nil":
                 return "null";
