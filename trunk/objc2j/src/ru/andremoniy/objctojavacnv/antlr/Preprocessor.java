@@ -7,10 +7,10 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.andremoniy.objctojavacnv.Context;
 import ru.andremoniy.objctojavacnv.Converter;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorLexer;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorParser;
+import ru.andremoniy.objctojavacnv.context.ProjectContext;
 import ru.andremoniy.objctojavacnv.tokenize.StringToken;
 
 import java.io.*;
@@ -34,7 +34,7 @@ public class Preprocessor {
     public static final String HEADERS_PATH1 = ".framework";
     public static final String HEADERS_PATH2 = File.separator + "Headers" + File.separator;
 
-    public boolean preprocessFile(Context context, String fileName, List<String> processedImports, boolean onlyIfs, String rootPath) throws IOException, RecognitionException {
+    public boolean preprocessFile(ProjectContext context, String fileName, List<String> processedImports, boolean onlyIfs, String rootPath) throws IOException, RecognitionException {
         File mfile = new File(fileName);
 
         Map<String, String> imports = context.imports;
@@ -340,13 +340,13 @@ public class Preprocessor {
             fileName = path + File.separator + HEADERS_PATH2 + headerFile;
         } while (!new File(fileName).exists());
 
-        Context localContext = new Context();
+        ProjectContext localContext = new ProjectContext();
         preprocessFile(localContext, fileName, processedImports, Converter.NOT_IFS, null);
         preprocessFile(localContext, fileName, processedImports, Converter.ONLY_IFS, null);
         return localContext.macrosMap;
     }
 
-    public static String replace(String input, Context ctx, String fileName) {
+    public static String replace(String input, ProjectContext ctx, String fileName) {
         for (List<Macros> macrosList : ctx.macrosMap.values()) {
             for (Macros macros : macrosList) {
                 if (macros.getFileName() != null && macros.getFileName().equals(fileName)) {

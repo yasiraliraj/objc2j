@@ -21,7 +21,6 @@ tokens {
 	MESSAGE;
 	BLOCK;
 	METHOD_CALL;
-	BR_STMT;
 	TYPE_CONVERTION;
 	PREFIX;
 	INCOMPLETE_PREFIX;
@@ -692,7 +691,7 @@ expr_not_wrapper
 	
 expr_not
 	:	L_NOT? expr_not2;
-
+	
 expr_not2
 	:	L_TILDA? expr_size_of;
 	
@@ -1050,7 +1049,7 @@ field_type
 	:	 field_type_internal -> ^(TYPE field_type_internal);	
 	
 field_type_internal
-	:	type_internal  generic? ASTERISK*;
+	:	type_internal generic? ASTERISK*;
 
 /*------------------------------------------------------------------
  * COMMON RULES

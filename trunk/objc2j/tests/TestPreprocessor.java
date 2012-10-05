@@ -1,7 +1,7 @@
 import org.junit.Test;
-import ru.andremoniy.objctojavacnv.Context;
 import ru.andremoniy.objctojavacnv.antlr.Macros;
 import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
+import ru.andremoniy.objctojavacnv.context.ProjectContext;
 
 import java.util.Arrays;
 
@@ -32,7 +32,7 @@ public class TestPreprocessor {
         macros.setFileName("blabla");
         macros.setReplace("_NSAssertBody((condition), (desc), (arg1), 0, 0, 0, 0)");
 
-        Context ctx = new Context();
+        ProjectContext ctx = new ProjectContext();
         ctx.macrosMap.put("NSAssert1", Arrays.asList(macros));
         String replaced = Preprocessor.replace(code, ctx, "test");
 
