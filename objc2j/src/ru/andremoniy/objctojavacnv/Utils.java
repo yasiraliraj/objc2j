@@ -4,6 +4,9 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorParser;
+import ru.andremoniy.objctojavacnv.context.ClassContext;
+import ru.andremoniy.objctojavacnv.context.ExpressionContext;
+import ru.andremoniy.objctojavacnv.context.ProjectContext;
 
 import java.util.*;
 
@@ -16,16 +19,16 @@ public class Utils {
 
     private static final List<String> implementedCocoa = Arrays.asList("NSEvent");
 
-    static String transformObject(String obj, CurrentContext cc) {
+    static String transformObject(String obj, ClassContext classCtx, ExpressionContext exprCtx) {
         switch (obj) {
             case "_cmd":
-                return "\"" + cc.mc.methodName + "\"";
+                return "\"" + classCtx.methodCtx.methodName + "\"";
             case "nil":
             case "Nil":
                 return "null";
             case "self":
-                if (cc.staticFlag) {
-                    return cc.className + (cc.transformClassNames ? ".class" : "");
+                if (classCtx.methodCtx.staticFlag) {
+                    return classCtx.className + (exprCtx.transformClassNames ? ".class" : "");
                 } else {
                     return "this";
                 }
@@ -47,8 +50,11 @@ public class Utils {
                 return ";\n";
         }
         if (obj.startsWith("@\"")) obj = obj.substring(1);
-        obj = transformType(obj, cc);
-        if (cc.transformClassNames && cc.ctx.imports.containsKey(obj.trim())) {
+        obj = transformType(obj, classCtx);
+        if (classCtx != null &&
+                exprCtx != null &&
+                exprCtx.transformClassNames &&
+                classCtx.projectCtx.imports.containsKey(obj.trim())) {
             obj = obj + ".class";
         }
         return obj;
@@ -56,14 +62,6 @@ public class Utils {
 
     static String transformMethodName(String name) {
         switch (name) {
-/*
-            case "addObject":
-                return "add";
-            case "removeObjectAtIndex":
-                return "remove";
-            case "count":
-                return "size";
-*/
             case "isEqualToString":
                 return "equals";
             case "class":
@@ -72,14 +70,12 @@ public class Utils {
         return name;
     }
 
-    static String transformType(String type, CurrentContext cc) {
+    static String transformType(String type, ClassContext classCtx) {
         if (type.matches("void\\s*\\*")) return "Object";
         // отрезаем *
         if (type.endsWith("*")) type = type.substring(0, type.length() - 1);
 
         switch (type) {
-//            case "SEL":
-//                return "java.lang.reflect.Method";
             case "signed":
             case "unsigned":
                 return "Integer";
@@ -100,37 +96,28 @@ public class Utils {
                 return "Double";
             case "long":
                 return "Long";
-/*            case "NSArray":
-                return "List";
-            case "NSMutableArray":
-                return "ArrayList";*/
         }
 
-//        if (type.equals(className)) return className + "_m";
-
-        if (cc.ctx != null) {
-            if (!cc.ctx.localProcessedImports.contains(type) && !cc.ctx.addImports.contains(type)) {
-                cc.ctx.addImports.add(type);
-            } else if (type.startsWith("NS")) {
-                cc.ctx.addImports.add(type);
-            }
-
+        if (classCtx != null && !classCtx.localProcessedImports.contains(type) && !classCtx.addImports.contains(type)) {
+            classCtx.addImports.add(type);
+        } else if (type.startsWith("NS")) {
+            classCtx.addImports.add(type);
         }
 
         return type;
     }
 
-    public static void addAdditionalImports(StringBuilder sb, Context ctx) {
+    public static void addAdditionalImports(StringBuilder sb, ProjectContext projectCtx) {
         Set<String> nsImports = new HashSet<>();
-        for (String addImport : ctx.addImports) {
-            String classPath = ctx.imports.get(addImport);
+        for (String addImport : projectCtx.classCtx.addImports) {
+            String classPath = projectCtx.imports.get(addImport);
             if (classPath != null) {
                 if (!classPath.contains("+")) {
                     sb.append("import ").append(classPath).append(";\n");
                     sb.append("import static ").append(classPath).append(".*;\n");
                     addNSHeaderImport(sb, classPath);
                 }
-                addStaticFromHeaderImports(ctx, sb, classPath.substring(classPath.lastIndexOf(".") + 1));
+                addStaticFromHeaderImports(projectCtx, sb, classPath.substring(classPath.lastIndexOf(".") + 1));
             } else if (addImport.startsWith("NS")) {
                 if (!nsImports.contains(addImport) && implementedCocoa.contains(addImport)) {
                     sb.append("import static ru.andremoniy.jcocoa.I").append(addImport).append(".*;\n");
@@ -151,7 +138,7 @@ public class Utils {
         }
     }
 
-    public static void addStaticFromHeaderImports(Context ctx, StringBuilder sb, String className) {
+    public static void addStaticFromHeaderImports(ProjectContext ctx, StringBuilder sb, String className) {
         List<String> enums = ctx.headerEnums.get("I" + className);
         if (enums != null) {
             String headerPath = ctx.imports.get(className);
@@ -182,8 +169,8 @@ public class Utils {
      * @param input file code source
      * @param sb    java code string builder
      */
-    public static void addOriginalImports(String input, Context ctx, StringBuilder sb) throws RecognitionException {
-        Map<String, String> imports = ctx.imports;
+    public static void addOriginalImports(String input, ProjectContext projectCtx, StringBuilder sb) throws RecognitionException {
+        Map<String, String> imports = projectCtx.imports;
         PreprocessorParser.code_return result = Preprocessor.getResult(input);
         for (Object child : ((CommonTree) result.getTree()).getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -195,14 +182,14 @@ public class Utils {
                     if (classPath != null) {
                         if (className.contains("+")) {
                             // сохраняем инфу о добавленных категориях, но в import не добавляем
-                            ctx.localCategories.add(className);
+                            projectCtx.classCtx.localCategories.add(className);
                         } else {
                             sb.append("import ").append(classPath).append(";\n");
                             sb.append("import static ").append(classPath).append(".*;\n");
                             addNSHeaderImport(sb, classPath);
                         }
-                        addStaticFromHeaderImports(ctx, sb, className);
-                        ctx.localProcessedImports.add(className);
+                        addStaticFromHeaderImports(projectCtx, sb, className);
+                        projectCtx.classCtx.localProcessedImports.add(className);
                     }
                     break;
             }

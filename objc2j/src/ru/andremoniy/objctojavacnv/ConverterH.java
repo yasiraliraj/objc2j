@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.antlr.output.ObjchLexer;
 import ru.andremoniy.objctojavacnv.antlr.output.ObjchParser;
+import ru.andremoniy.objctojavacnv.context.ProjectContext;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -31,8 +32,7 @@ public class ConverterH {
     private static final int STRUCT_TYPEDEF = 3;
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static StringBuilder convert_h(String fileName, Context ctx, StringBuilder originalImportsSb, StringBuilder importsSb) throws IOException, RecognitionException {
-        ctx.renew();
+    public static StringBuilder convert_h(String fileName, ProjectContext projectContext, StringBuilder originalImportsSb, StringBuilder importsSb) throws IOException, RecognitionException {
         File phfile = new File(fileName + "p");
         File hfile = phfile.exists() ? phfile : new File(fileName);
 
@@ -43,6 +43,8 @@ public class ConverterH {
         String className = "I" + hfile.getName().substring(0, hfile.getName().lastIndexOf("."))/* + "_h"*/;
         File hjfile = new File(hfile.getParent() + File.separator + className + ".java");
         hjfile.createNewFile();
+
+        projectContext.newClass(className, categoryName);
 
         String packageName = hfile.getParent().substring(hfile.getParent().lastIndexOf("src") + 4).replace(File.separator, ".");
 
@@ -59,7 +61,7 @@ public class ConverterH {
         String input = objCcode.toString();
         input = input.replace("///", "//");
 
-        input = Preprocessor.replace(input, ctx, fileName);
+        input = Preprocessor.replace(input, projectContext, fileName);
 
         CharStream cs = new ANTLRStringStream(input);
         ObjchLexer lexer = new ObjchLexer(cs);
@@ -74,7 +76,7 @@ public class ConverterH {
         if (originalImportsSb == null) {
             originalImportsSb = new StringBuilder();
         }
-        Utils.addOriginalImports(input, ctx, originalImportsSb);
+        Utils.addOriginalImports(input, projectContext, originalImportsSb);
 
         if (!categoryClass) {
             sb.append("package ").append(packageName).append(";\n\n");
@@ -95,24 +97,24 @@ public class ConverterH {
             if (interfaceTree == null) {
                 sb2.append("public abstract class ").append(className).append(" {\n");
             } else {
-                h_process_interface1(sb2, interfaceTree, ctx);
+                h_process_interface1(sb2, interfaceTree, projectContext);
             }
         }
 
-        process_header_body(ctx, className, tree, sb2, categoryName);
+        process_header_body(sb2, tree, projectContext);
 
         if (importsSb == null) {
             importsSb = new StringBuilder();
         }
-        Utils.addAdditionalImports(importsSb, ctx);
+        Utils.addAdditionalImports(importsSb, projectContext);
 
         if (!categoryClass) {
-            Set<String> categoriesList = ctx.categories.get(hfile.getName().substring(0, hfile.getName().indexOf(".")));
+            Set<String> categoriesList = projectContext.categories.get(hfile.getName().substring(0, hfile.getName().indexOf(".")));
             if (categoriesList != null) {
                 for (String category : categoriesList) {
                     sb2.append("\n\n");
                     sb2.append("\t// from category: ").append(category).append("\n\n");
-                    sb2.append(convert_h(category, ctx, originalImportsSb, importsSb));
+                    sb2.append(convert_h(category, projectContext, originalImportsSb, importsSb));
                 }
             }
 
@@ -135,29 +137,28 @@ public class ConverterH {
 
     }
 
-    private static void process_header_body(Context ctx, String className, CommonTree tree, StringBuilder sb2, String categoryName) {
+    private static void process_header_body(StringBuilder sb2, CommonTree tree, ProjectContext projectContext) {
         if (tree.getType() == ObjchParser.INTERFACE) {
-            h_process_interface2(sb2, tree, className, ctx, categoryName);
+            h_process_interface2(sb2, tree, projectContext);
         } else {
             for (Object child : tree.getChildren()) {
                 CommonTree childTree = (CommonTree) child;
                 switch (childTree.token.getType()) {
                     case ObjchParser.TYPEDEF:
-                        h_process_typedef(sb2, childTree, ctx, className);
+                        h_process_typedef(sb2, childTree, projectContext);
                         break;
                     case ObjchParser.INTERFACE:
-                        h_process_interface2(sb2, childTree, className, ctx, categoryName);
+                        h_process_interface2(sb2, childTree, projectContext);
                         break;
                     case ObjchParser.EXTERN:
-                        h_process_extern(sb2, childTree, className, ctx, categoryName);
+                        h_process_extern(sb2, childTree, projectContext);
                         break;
                     case ObjchParser.ENUM:
-                        List<String[]> enumElements = h_parse_enum(childTree, ctx);
-                        CommonTree nameTree = (CommonTree) childTree.getFirstChildWithType(ObjchParser.NAME);
-                        String name;
-                        if (nameTree != null) {
-                            name = nameTree.getChild(0).getText();
-                            finish_enum(sb2, ctx, className, name, enumElements);
+                        List<String[]> enumElements = h_parse_enum(childTree);
+                        CommonTree enumNameTree = (CommonTree) childTree.getFirstChildWithType(ObjchParser.NAME);
+                        if (enumNameTree != null) {
+                            String enumName = enumNameTree.getChild(0).getText();
+                            finish_enum(sb2, projectContext, enumName, enumElements);
                         } else {
                             for (String[] enumElement : enumElements) {
                                 sb2.append("public static Integer ").append(enumElement[0]).append(" = ").append(enumElement[1]).append(";\n");
@@ -169,7 +170,7 @@ public class ConverterH {
         }
     }
 
-    private static void h_process_extern(StringBuilder sb, CommonTree tree, String className, Context ctx, String categoryName) {
+    private static void h_process_extern(StringBuilder sb, CommonTree tree, ProjectContext projectCtx) {
         String type = "";
         String name = "";
         for (Object child : tree.getChildren()) {
@@ -183,10 +184,10 @@ public class ConverterH {
             }
         }
 
-        sb.append("\t").append("public static ").append(Utils.transformType(type, new CurrentContext(ctx, null, false))).append(" ").append(name).append(";\n");
+        sb.append("\t").append("public static ").append(Utils.transformType(type, projectCtx.classCtx)).append(" ").append(name).append(";\n");
     }
 
-    private static void h_process_method(StringBuilder sb, CommonTree tree, String className, Context context, String categoryName) {
+    private static void h_process_method(StringBuilder sb, CommonTree tree, ProjectContext projectCtx) {
         String type = "";
         String name = "";
         String modifier = "";
@@ -204,12 +205,12 @@ public class ConverterH {
                     name = ((CommonTree) child).getChild(0).toString();
                     break;
                 case ObjchParser.METHOD_PARAMS:
-                    h_process_method_params(params, (CommonTree) child, context);
+                    h_process_method_params(params, (CommonTree) child, projectCtx);
                     break;
             }
         }
-        String transType = Utils.transformType(type, new CurrentContext(context, null, false));
-        sb.append("\t").append("public ").append(transType).append(" ").append(categoryName != null ? "_" + categoryName + "_" : "").append(name).append("(");
+        String transType = Utils.transformType(type, projectCtx.classCtx);
+        sb.append("\t").append("public ").append(transType).append(" ").append(projectCtx.classCtx.categoryName != null ? "_" + projectCtx.classCtx.categoryName + "_" : "").append(name).append("(");
         boolean f = true;
         for (String pName : params.keySet()) {
             if (!f) {
@@ -222,17 +223,17 @@ public class ConverterH {
         sb.append(") { return ").append(transType.equals("void") ? "" : (transType.equals("boolean") ? "false" : "null")).append(";\n};\n");
     }
 
-    private static void h_process_method_params(Map<String, String> params, CommonTree tree, Context context) {
+    private static void h_process_method_params(Map<String, String> params, CommonTree tree, ProjectContext projectContext) {
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
                 case ObjchParser.METHOD_PARAM:
-                    h_process_method_param(params, (CommonTree) child, context);
+                    h_process_method_param(params, (CommonTree) child, projectContext);
                     break;
             }
         }
     }
 
-    private static void h_process_method_param(Map<String, String> params, CommonTree tree, Context context) {
+    private static void h_process_method_param(Map<String, String> params, CommonTree tree, ProjectContext projectCtx) {
         String type = "";
         String name = "";
         for (Object child : tree.getChildren()) {
@@ -245,10 +246,10 @@ public class ConverterH {
                     break;
             }
         }
-        params.put(name, Utils.transformType(type, new CurrentContext(context, null, false)));
+        params.put(name, Utils.transformType(type, projectCtx.classCtx));
     }
 
-    private static void h_process_interface1(StringBuilder sb, CommonTree tree, Context context) {
+    private static void h_process_interface1(StringBuilder sb, CommonTree tree, ProjectContext context) {
         String interfaceName = "";
         String superclassName = "";
         String category = "";
@@ -279,33 +280,33 @@ public class ConverterH {
 
     }
 
-    private static void h_process_interface2(StringBuilder sb, CommonTree tree, String className, Context context, String categoryName) {
+    private static void h_process_interface2(StringBuilder sb, CommonTree tree, ProjectContext projectContext) {
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
                 case ObjchParser.FIELDS:
-                    h_process_fields(sb, (CommonTree) child, className, context);
+                    h_process_fields(sb, (CommonTree) child, projectContext);
                     break;
                 case ObjchParser.METHOD:
-                    h_process_method(sb, (CommonTree) child, className, context, categoryName);
+                    h_process_method(sb, (CommonTree) child, projectContext);
                     break;
             }
         }
 
     }
 
-    private static void h_process_fields(StringBuilder sb, CommonTree tree, String className, Context context) {
+    private static void h_process_fields(StringBuilder sb, CommonTree tree, ProjectContext projectContext) {
         sb.append("\n");
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
                 case ObjchParser.FIELD:
-                    h_process_field(sb, (CommonTree) child, className, context);
+                    h_process_field(sb, (CommonTree) child, projectContext);
                     break;
             }
         }
         sb.append("\n");
     }
 
-    private static void h_process_field(StringBuilder sb, CommonTree tree, String className, Context context) {
+    private static void h_process_field(StringBuilder sb, CommonTree tree, ProjectContext projectCtx) {
         String type = "";
         List<String> fieldNameList = new ArrayList<>();
         for (Object child : tree.getChildren()) {
@@ -318,7 +319,7 @@ public class ConverterH {
                     break;
             }
         }
-        sb.append("\t").append("protected ").append(Utils.transformType(type, new CurrentContext(context, null, false))).append(" ");
+        sb.append("\t").append("protected ").append(Utils.transformType(type, projectCtx.classCtx)).append(" ");
         boolean f = true;
         for (String fieldName : fieldNameList) {
             if (!f) {
@@ -330,7 +331,7 @@ public class ConverterH {
         sb.append(";\n");
     }
 
-    private static void h_process_typedef(StringBuilder sb, CommonTree tree, Context ctx, String interfaceName) {
+    private static void h_process_typedef(StringBuilder sb, CommonTree tree, ProjectContext projectCtx) {
         String name = "";
         String oldName = "";
         int typedef_type = UNDEFINED_TYPEDEF;
@@ -348,18 +349,18 @@ public class ConverterH {
                     typedef_type = RENAME_TYPEDEF;
                     break;
                 case ObjchParser.ENUM:
-                    enumElements = h_parse_enum((CommonTree) child, ctx);
+                    enumElements = h_parse_enum((CommonTree) child);
                     typedef_type = ENUM_TYPEDEF;
                     break;
                 case ObjchParser.STRUCT:
-                    enumElements = h_parse_struct((CommonTree) child, ctx);
+                    enumElements = h_parse_struct((CommonTree) child, projectCtx);
                     typedef_type = STRUCT_TYPEDEF;
                     break;
             }
         }
         sb.append("\n");
         if (typedef_type == ENUM_TYPEDEF) {
-            finish_enum(sb, ctx, interfaceName, name, enumElements);
+            finish_enum(sb, projectCtx, name, enumElements);
         } else if (typedef_type == RENAME_TYPEDEF) {
             sb.append("\tpublic static class ").append(name).append(" extends ").append(oldName).append(" { }");
         } else if (typedef_type == STRUCT_TYPEDEF) {
@@ -371,7 +372,7 @@ public class ConverterH {
         }
     }
 
-    private static void finish_enum(StringBuilder sb, Context ctx, String interfaceName, String name, List<String[]> enumElements) {
+    private static void finish_enum(StringBuilder sb, ProjectContext projectContext, String name, List<String[]> enumElements) {
         sb.append("\tpublic ").append("enum ").append(name).append(" {\n");
         for (int i = 0, enumElementsSize = enumElements.size(); i < enumElementsSize; i++) {
             String element = enumElements.get(i)[0];
@@ -383,27 +384,27 @@ public class ConverterH {
         }
         sb.append("\t").append("}\n");
 
-        List<String> enums = ctx.headerEnums.get(interfaceName);
+        List<String> enums = projectContext.headerEnums.get(projectContext.classCtx.className);
         if (enums == null) {
             enums = new ArrayList<>();
-            ctx.headerEnums.put(interfaceName, enums);
+            projectContext.headerEnums.put(projectContext.classCtx.className, enums);
         }
         enums.add(name);
     }
 
-    private static List<String[]> h_parse_struct(CommonTree tree, Context ctx) {
+    private static List<String[]> h_parse_struct(CommonTree tree, ProjectContext projectCtx) {
         List<String[]> fields = new ArrayList<>();
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
                 case ObjchParser.FIELD:
-                    fields.add(new String[]{h_parse_field((CommonTree) child, ctx)});
+                    fields.add(new String[]{h_parse_field((CommonTree) child, projectCtx)});
                     break;
             }
         }
         return fields;
     }
 
-    private static String h_parse_field(CommonTree tree, Context ctx) {
+    private static String h_parse_field(CommonTree tree, ProjectContext projectCtx) {
         String type = "";
         String name = "";
         for (Object child : tree.getChildren()) {
@@ -416,10 +417,10 @@ public class ConverterH {
                     break;
             }
         }
-        return Utils.transformType(type, new CurrentContext(ctx, null, false)) + " " + name + ";\n";
+        return Utils.transformType(type, projectCtx.classCtx) + " " + name + ";\n";
     }
 
-    private static List<String[]> h_parse_enum(CommonTree tree, Context ctx) {
+    private static List<String[]> h_parse_enum(CommonTree tree) {
         List<String[]> enumElements = new ArrayList<>();
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
