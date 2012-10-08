@@ -22,6 +22,7 @@ public class MethodContext extends AbstractContext {
 
     public BlockContext newBlock() {
         blockCtx = new BlockContext(this);
+        blockCtx.variables.putAll(this.variables);
         return blockCtx;
     }
 

@@ -799,6 +799,9 @@ public class ConverterM {
             CommonTree childTree = (CommonTree) child;
             if (childTree.getType() == ObjcmLexer.CLASSICAL_EXPR) {
                 process_classical_expr(sb, childTree, exprCtx, false, false);
+                if (exprCtx.isVariableDeclaration) {
+                    sb.append(")");
+                }
             } else {
                 if (childTree.getType() == ObjcmLexer.ASSIGN) {
                     if (doWrap) continue;
@@ -808,7 +811,7 @@ public class ConverterM {
 
                 // принудительное приведение типа при инициализации объекта через присваивание
                 if (exprCtx.isVariableDeclaration) {
-                    sb.append("(").append(exprCtx.variableDeclarationType).append(")");
+                    sb.append("(").append(exprCtx.variableDeclarationType).append(")(");
                 }
             }
         }
@@ -866,10 +869,6 @@ public class ConverterM {
                     }
                     ororCounter++;
 
-                    if (exprCtx.needSaveVariable) {
-                        exprCtx.needSaveVariable = false;
-                        exprCtx.blockCtx.variables.put(sesb.toString().trim(), exprCtx.variableDeclarationType);
-                    }
                     break;
                 case ObjcmLexer.L_QUESTION:
                     sb.append("? ");
@@ -880,7 +879,13 @@ public class ConverterM {
                 default:
                     // TODO:
                     // читаем скобки
-                    readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+                    StringBuilder defSb = new StringBuilder();
+                    readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+                    sb.append(defSb);
+                    if (exprCtx.needSaveVariable) {
+                        exprCtx.needSaveVariable = false;
+                        exprCtx.blockCtx.variables.put(defSb.toString().trim(), exprCtx.variableDeclarationType);
+                    }
                     break;
             }
         }
@@ -995,7 +1000,7 @@ public class ConverterM {
             switch (childTree.getType()) {
                 case ObjcmLexer.TYPE_CONVERTION:
                     sb.append("(");
-                    process_type_convertion(sb, childTree, exprCtx.newExpr());
+                    process_type_convertion(sb, childTree, exprCtx.newExpr().setNoTransformClassNames());
                     sb.append(")");
                     if (isIncompletePrefix) return;
                     break;
@@ -1284,7 +1289,7 @@ public class ConverterM {
             switch (childTree.token.getType()) {
                 case ObjcmLexer.TYPE_CONVERTION:
                     sb.append("(");
-                    process_type_convertion(sb, childTree, exprCtx.newExpr());
+                    process_type_convertion(sb, childTree, exprCtx.newExpr().setNoTransformClassNames());
                     sb.append(")");
                     break;
                 case ObjcmLexer.METHOD_CALL:
@@ -1369,7 +1374,7 @@ public class ConverterM {
                     break;
                 case ObjcmLexer.MSG_LIST:
                     StringBuilder lsb = new StringBuilder();
-                    m_process_msg_list(lsb, childTree, exprCtx.newExpr());
+                    m_process_msg_list(lsb, childTree, exprCtx.newExpr().setTransformClassNames());
                     message = lsb.toString();
                     break;
             }
@@ -1396,7 +1401,7 @@ public class ConverterM {
             } else {
                 if (methodName.equals("isKindOfClass") || methodName.equals("isSubclassOfClass")) {
                     sb.append(object).append(" instanceof ").append(message.replace(".class", ""));
-                } else if (object.startsWith("NS")|| exprCtx.blockCtx.methodCtx().classCtx.projectCtx.imports.containsKey(object) /*|| methodName.equals("respondsToSelector")*/) {
+                } else if (object.startsWith("NS") || exprCtx.blockCtx.methodCtx().classCtx.projectCtx.imports.containsKey(object) /*|| methodName.equals("respondsToSelector")*/) {
                     sb.append(object).append(".").append(methodName).append("(").append(message).append(")");
                 } else {
                     sb.append("objc_msgSend(");

@@ -30,6 +30,7 @@ public class BlockContext extends AbstractContext {
     public BlockContext newBlock() {
         BlockContext newBlock = new BlockContext(methodCtx);
         newBlock.parentBlock = this;
+        newBlock.variables.putAll(this.variables);
         return newBlock;
     }
 
