@@ -752,7 +752,7 @@ public class ConverterM {
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
                     exprCtx2.isVariableDeclaration = isVariableDeclaration;
                     // в Objective-C часто объекту с наследованным типом присваивается объект с типом супер-класса
-                    if (isVariableDeclaration && recursiveSearchExists(childTree, ObjcmLexer.ASSIGN)) {
+                    if (isVariableDeclaration && (recursiveSearchExists(childTree, ObjcmLexer.ASSIGN) || (childTree.getChildCount() == 1 && childTree.getChild(0).getChildCount() == 0))) {
                         exprCtx2.variableDeclarationType = variableType;
                     }
                     StringBuilder varsb = new StringBuilder();
@@ -760,7 +760,11 @@ public class ConverterM {
                     sb.append(varsb);
 
                     if (isVariableDeclaration && !recursiveSearchExists(childTree, ObjcmLexer.ASSIGN)) {
-                        sb.append("= new ").append(variableType).append("(").append(needInitParam(variableType)).append(")");
+                        if (!variableType.trim().equals("Class")) {
+                            sb.append("= new ").append(variableType).append("(").append(needInitParam(variableType)).append(")");
+                        } else {
+                            sb.append("= Class.class");
+                        }
                     }
                     break;
                 }
@@ -1088,7 +1092,7 @@ public class ConverterM {
                     readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
                     sb.append(defSb);
 
-                    if (exprCtx.needSaveVariable) {
+                    if (exprCtx.needSaveVariable && exprCtx.variableDeclarationType != null) {
                         exprCtx.needSaveVariable = false;
                         exprCtx.blockCtx.variables.put(defSb.toString().trim(), exprCtx.variableDeclarationType);
                     }
