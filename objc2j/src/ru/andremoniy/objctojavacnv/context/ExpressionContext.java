@@ -28,11 +28,19 @@ public class ExpressionContext {
     public ExpressionContext newExpr() {
         ExpressionContext newExpr = new ExpressionContext(blockCtx);
         newExpr.parentCtx = this;
+        newExpr.transformClassNames = this.transformClassNames;
+        newExpr.skipObjField = this.skipObjField;
+        newExpr.needSaveVariable = this.needSaveVariable;
         return newExpr;
     }
 
     public ExpressionContext setTransformClassNames() {
         this.transformClassNames = true;
+        return this;
+    }
+
+    public ExpressionContext setNoTransformClassNames() {
+        this.transformClassNames = false;
         return this;
     }
 }

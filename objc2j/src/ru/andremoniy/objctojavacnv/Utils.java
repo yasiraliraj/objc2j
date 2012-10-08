@@ -100,7 +100,7 @@ public class Utils {
 
         if (classCtx != null && !classCtx.localProcessedImports.contains(type) && !classCtx.addImports.contains(type)) {
             classCtx.addImports.add(type);
-        } else if (type.startsWith("NS")) {
+        } else if (classCtx != null && type.startsWith("NS")) {
             classCtx.addImports.add(type);
         }
 
