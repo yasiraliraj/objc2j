@@ -854,7 +854,6 @@ public class ConverterM {
             }
         }
         int ororCounter = 0;
-        boolean inKvBrackets = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
 
@@ -893,28 +892,42 @@ public class ConverterM {
                 case ObjcmLexer.COLON:
                     sb.append(": ");
                     break;
+                case ObjcmLexer.INDEX:
+                    if (exprCtx.isVariableDeclaration) {
+                        exprCtx.isArrayDeclaration = true;
+                    }
+                    process_index(sb, childTree, exprCtx.newExpr());
+                    break;
                 default:
                     StringBuilder defSb = new StringBuilder();
                     readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+                    sb.append(defSb);
                     String objectName = defSb.toString().trim();
-                    if (objectName.equals("]")) {
-                        inKvBrackets = false;
-                    }
-                    if (!inKvBrackets || !exprCtx.isArrayDeclaration) {
-                        sb.append(defSb);
-                    }
-                    if (objectName.equals("[") && exprCtx.isVariableDeclaration) {
-                        exprCtx.isArrayDeclaration = true;
-                        inKvBrackets = true;
-                    }
                     if (exprCtx.needSaveVariable) {
                         exprCtx.needSaveVariable = false;
                         exprCtx.blockCtx.variables.put(objectName, exprCtx.variableDeclarationType);
                     }
-                    // cancel force type convertion for arrays:
-                    if (inKvBrackets && !objectName.equals("[")) {
-                        exprCtx.arraySizes.add(objectName);
+                    break;
+            }
+        }
+    }
+
+    private static void process_index(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.getType()) {
+                case ObjcmLexer.INDEX_NUMBER:
+                    StringBuilder inSb = new StringBuilder();
+                    process_classical_expr(inSb, childTree, exprCtx.newExpr(), false, false);
+                    if (exprCtx.isVariableDeclaration && exprCtx.isArrayDeclaration) {
+                        // skip it:
+                        exprCtx.parentCtx.arraySizes.add(inSb.toString().trim());
+                    } else {
+                        sb.append(inSb);
                     }
+                    break;
+                default:
+                    readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
                     break;
             }
         }
@@ -1111,6 +1124,11 @@ public class ConverterM {
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
                     exprCtx.transformClassNames = true;
                     process_classical_expr(sb, childTree, exprCtx2, false, false);
+                    break;
+                case ObjcmLexer.GENERIC:
+                    sb.append("<");
+                    process_generic(sb, childTree, exprCtx);
+                    sb.append(">");
                     break;
                 default:
                     StringBuilder defSb = new StringBuilder();
