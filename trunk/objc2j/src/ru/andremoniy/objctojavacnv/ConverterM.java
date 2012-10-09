@@ -347,7 +347,7 @@ public class ConverterM {
                     CommonTree blockTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.BLOCK);
                     if (blockTree != null) {
                         // TODO: точно ли здесь static = true?
-                        m_process_block(sb, blockTree, classCtx.newMethod(methodName, true).newBlock());
+                        m_process_block(sb, blockTree, classCtx.newMethod(methodName, true, null).newBlock());
                     } else {
                         m_process_params(sb, childTree, classCtx);
                     }
@@ -474,7 +474,7 @@ public class ConverterM {
         String modifier = "";
         String type = "";
         String methodName = "";
-        Map<String, String> params = new LinkedHashMap<>();
+        LinkedHashMap<String, String> params = new LinkedHashMap<>();
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
@@ -493,7 +493,7 @@ public class ConverterM {
             }
         }
 
-        classCtx.newMethod(methodName, staticFlag);
+        classCtx.newMethod(methodName, staticFlag, params);
 
         if (methodName.equals("init") && params.isEmpty()) classCtx.containsInit = true;
         if (methodName.equals("autoRelease") && params.isEmpty()) classCtx.containsAutoRelease = true;
@@ -761,7 +761,17 @@ public class ConverterM {
 
                     if (isVariableDeclaration && !recursiveSearchExists(childTree, ObjcmLexer.ASSIGN)) {
                         if (!variableType.trim().equals("Class")) {
-                            sb.append("= new ").append(variableType).append("(").append(needInitParam(variableType)).append(")");
+                            sb.append("= new ").append(variableType);
+                            if (exprCtx2.isArrayDeclaration) {
+                                if (exprCtx2.arraySizes.size() == 0) {
+                                    exprCtx2.arraySizes.add("0");
+                                }
+                                for (String arraySize : exprCtx2.arraySizes) {
+                                    sb.append("[").append(arraySize).append("]");
+                                }
+                            } else {
+                                sb.append("(").append(needInitParam(variableType)).append(")");
+                            }
                         } else {
                             sb.append("= Class.class");
                         }
@@ -844,6 +854,7 @@ public class ConverterM {
             }
         }
         int ororCounter = 0;
+        boolean inKvBrackets = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
 
@@ -883,19 +894,26 @@ public class ConverterM {
                     sb.append(": ");
                     break;
                 default:
-                    // TODO:
-                    // читаем скобки
                     StringBuilder defSb = new StringBuilder();
                     readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
-                    sb.append(defSb);
                     String objectName = defSb.toString().trim();
+                    if (objectName.equals("]")) {
+                        inKvBrackets = false;
+                    }
+                    if (!inKvBrackets || !exprCtx.isArrayDeclaration) {
+                        sb.append(defSb);
+                    }
+                    if (objectName.equals("[") && exprCtx.isVariableDeclaration) {
+                        exprCtx.isArrayDeclaration = true;
+                        inKvBrackets = true;
+                    }
                     if (exprCtx.needSaveVariable) {
                         exprCtx.needSaveVariable = false;
                         exprCtx.blockCtx.variables.put(objectName, exprCtx.variableDeclarationType);
                     }
                     // cancel force type convertion for arrays:
-                    if (objectName.equals("[") && exprCtx.isVariableDeclaration) {
-                        exprCtx.isArrayDeclaration = true;
+                    if (inKvBrackets && !objectName.equals("[")) {
+                        exprCtx.arraySizes.add(objectName);
                     }
                     break;
             }
@@ -1128,7 +1146,11 @@ public class ConverterM {
             isb.append(lsb);
             if (typeTree != null && childTree.getType() == ObjcmLexer.CLASSICAL_EXPR_2) {
                 if (!recursiveSearchExists(childTree, ObjcmLexer.ASSIGN)) {
-                    isb.append("= new ").append(variableType).append("(").append(needInitParam(variableType)).append(")");
+                    if (!variableType.trim().equals("Class")) {
+                        isb.append("= new ").append(variableType).append("(").append(needInitParam(variableType)).append(")");
+                    } else {
+                        isb.append("= Class.class");
+                    }
                 }
             }
         }
@@ -1413,7 +1435,7 @@ public class ConverterM {
             } else {
                 if (methodName.equals("isKindOfClass") || methodName.equals("isSubclassOfClass")) {
                     sb.append(object).append(" instanceof ").append(message.replace(".class", ""));
-                } else if (object.startsWith("NS") || exprCtx.blockCtx.methodCtx().classCtx.projectCtx.imports.containsKey(object) /*|| methodName.equals("respondsToSelector")*/) {
+                } else if (object.startsWith("NS") /*|| exprCtx.blockCtx.methodCtx().classCtx.projectCtx.imports.containsKey(object) || methodName.equals("respondsToSelector")*/) {
                     sb.append(object).append(".").append(methodName).append("(").append(message).append(")");
                 } else {
                     sb.append("objc_msgSend(");
@@ -1547,7 +1569,7 @@ public class ConverterM {
         StringBuilder sb = new StringBuilder();
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
-            classContext.newMethod(null, false);
+            classContext.newMethod(null, false, null);
             sb.append(transformObject(childTree.toString(), classContext, null));
         }
         return sb.toString();

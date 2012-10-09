@@ -28,10 +28,14 @@ public class ProjectContext extends AbstractContext {
         // хранит карту категорий для каждого класса
     public Map<String, Set<String>> categories = new HashMap<>();
 
+    public Map<String, Map<String, MethodInterface>> methodsInterfaces = new HashMap<>();
+
     public int m_counter;
 
     public ClassContext newClass(String className, String categoryName) {
-        classCtx = new ClassContext(className, categoryName, this);
+        Map<String, MethodInterface> classMethodsInterfaces = new HashMap<>();
+        methodsInterfaces.put(className, classMethodsInterfaces);
+        classCtx = new ClassContext(className, categoryName, this, classMethodsInterfaces);
         classCtx.variables.putAll(variables);
         return classCtx;
     }

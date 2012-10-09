@@ -1,9 +1,6 @@
 package ru.andremoniy.objctojavacnv.context;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * User: Andremoniy
@@ -31,15 +28,25 @@ public class ClassContext extends AbstractContext {
     public List<String> localProcessedImports = new ArrayList<>();
     public List<String> addImports = new ArrayList<>();
 
-    public ClassContext(String className, String categoryName, ProjectContext projectCtx) {
+    public Map<String, MethodInterface> methodsInterfaces;
+
+    public ClassContext(String className, String categoryName, ProjectContext projectCtx, Map<String, MethodInterface> methodsInterfaces) {
         this.className = className;
         this.projectCtx = projectCtx;
         this.categoryName = categoryName;
+        this.methodsInterfaces = methodsInterfaces;
     }
 
-    public MethodContext newMethod(String methodName, boolean staticFlag) {
+    public MethodContext newMethod(String methodName, boolean staticFlag, LinkedHashMap<String, String> params) {
         methodCtx = new MethodContext(methodName, staticFlag, this);
         methodCtx.variables.putAll(variables);
+
+        if (params != null) {
+            MethodInterface mi = new MethodInterface();
+            mi.types.addAll(params.values());
+            methodsInterfaces.put(methodName, mi);
+        }
+
         return methodCtx;
     }
 
