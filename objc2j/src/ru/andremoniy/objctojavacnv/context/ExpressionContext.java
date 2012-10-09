@@ -1,5 +1,8 @@
 package ru.andremoniy.objctojavacnv.context;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * User: Andremoniy
  * Date: 05.10.12
@@ -16,6 +19,7 @@ public class ExpressionContext {
     public boolean skipObjField;
     public boolean transformClassNames;
     public boolean isArrayDeclaration;
+    public List<String> arraySizes = new ArrayList<>();
 
     public ExpressionContext setNeedSaveVariable() {
         needSaveVariable = true;
