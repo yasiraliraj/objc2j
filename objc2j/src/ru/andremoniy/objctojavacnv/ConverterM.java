@@ -888,8 +888,8 @@ public class ConverterM {
                     ororCounter++;
 
                     break;
-                case ObjcmLexer.L_QUESTION:
-                    sb.append("? ");
+                case ObjcmLexer.EXPR_QUESTION:
+                    process_expr_question(sb, childTree, exprCtx.newExpr());
                     break;
                 case ObjcmLexer.COLON:
                     sb.append(": ");
@@ -909,6 +909,23 @@ public class ConverterM {
                         exprCtx.needSaveVariable = false;
                         exprCtx.blockCtx.variables.put(objectName, exprCtx.variableDeclarationType);
                     }
+                    break;
+            }
+        }
+    }
+
+    private static void process_expr_question(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.getType()) {
+                case ObjcmLexer.CLASSICAL_EXPR:
+                    process_classical_expr(sb, childTree, exprCtx.newExpr(), false, false);
+                    break;
+                case ObjcmLexer.L_QUESTION:
+                    sb.append("? ");
+                    break;
+                case ObjcmLexer.COLON:
+                    sb.append(": ");
                     break;
             }
         }
