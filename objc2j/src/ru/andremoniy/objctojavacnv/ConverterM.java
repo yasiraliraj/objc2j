@@ -520,7 +520,9 @@ public class ConverterM {
             } else {
                 f = false;
             }
-            sb.append(params.get(pName)).append(" ").append(pName);
+            String paramType = params.get(pName);
+            if (paramType.equals("void")) paramType = "Void";
+            sb.append(paramType).append(" ").append(pName);
         }
         sb.append(") ");
         CommonTree blockTree = (CommonTree) tree.getFirstChildWithType(ObjcmLexer.BLOCK);
