@@ -93,6 +93,8 @@ tokens {
 	ASSIGN;
 	VARIABLE_INIT;
 	STATIC_TYPE;
+	INDEX;
+	INDEX_NUMBER;
 }
 
 @header {
@@ -486,7 +488,7 @@ known_types
 	|	VOID
 	;	
 
-id_part	:	 name_internal function_brackets_wrapper? index*
+id_part	:	 name_internal function_brackets_wrapper? index_wrapper*
 	;
 	
 object_name
@@ -718,8 +720,17 @@ function_brackets_wrapper
 	
 function_brackets
 	:	L_BR (classical_expr_wrp (COMMA classical_expr_wrp)*)? R_BR;	
+
+index_wrapper
+	:	index -> ^(INDEX index);
 	
-index	:	L_KBR classical_expr_wrp? R_KBR;	
+index	:	L_KBR index_number_wrapper R_KBR;
+
+index_number_wrapper
+	:	index_number -> ^(INDEX_NUMBER index_number);
+
+index_number
+	:	classical_expr_wrp?;	
 
 struct_init
 	:	L_BR  STRUCT_PREFIX? ID  R_BR  L_FBR 
