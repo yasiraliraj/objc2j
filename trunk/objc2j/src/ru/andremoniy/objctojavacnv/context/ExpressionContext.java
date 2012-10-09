@@ -15,6 +15,7 @@ public class ExpressionContext {
     public BlockContext blockCtx;
     public boolean skipObjField;
     public boolean transformClassNames;
+    public boolean isArrayDeclaration;
 
     public ExpressionContext setNeedSaveVariable() {
         needSaveVariable = true;
@@ -31,6 +32,8 @@ public class ExpressionContext {
         newExpr.transformClassNames = this.transformClassNames;
         newExpr.skipObjField = this.skipObjField;
         newExpr.needSaveVariable = this.needSaveVariable;
+        newExpr.isArrayDeclaration = this.isArrayDeclaration;
+        newExpr.isVariableDeclaration = this.isVariableDeclaration;
         return newExpr;
     }
 
@@ -41,6 +44,11 @@ public class ExpressionContext {
 
     public ExpressionContext setNoTransformClassNames() {
         this.transformClassNames = false;
+        return this;
+    }
+
+    public ExpressionContext setNoArrayDeclaration() {
+        this.isArrayDeclaration = false;
         return this;
     }
 }

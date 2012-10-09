@@ -783,6 +783,8 @@ public class ConverterM {
                 return "0";
             case "String":
                 return "";
+            case "Boolean":
+                return "false";
         }
         return "";
     }
@@ -802,8 +804,8 @@ public class ConverterM {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             if (childTree.getType() == ObjcmLexer.CLASSICAL_EXPR) {
-                process_classical_expr(sb, childTree, exprCtx, false, false);
-                if (exprCtx.isVariableDeclaration) {
+                process_classical_expr(sb, childTree, exprCtx.newExpr().setNoArrayDeclaration(), false, false);
+                if (exprCtx.isVariableDeclaration && !exprCtx.isArrayDeclaration) {
                     sb.append(")");
                 }
             } else {
@@ -814,7 +816,7 @@ public class ConverterM {
                 readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
 
                 // принудительное приведение типа при инициализации объекта через присваивание
-                if (exprCtx.isVariableDeclaration) {
+                if (exprCtx.isVariableDeclaration && !exprCtx.isArrayDeclaration) {
                     sb.append("(").append(exprCtx.variableDeclarationType).append(")(");
                 }
             }
@@ -886,9 +888,14 @@ public class ConverterM {
                     StringBuilder defSb = new StringBuilder();
                     readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
                     sb.append(defSb);
+                    String objectName = defSb.toString().trim();
                     if (exprCtx.needSaveVariable) {
                         exprCtx.needSaveVariable = false;
-                        exprCtx.blockCtx.variables.put(defSb.toString().trim(), exprCtx.variableDeclarationType);
+                        exprCtx.blockCtx.variables.put(objectName, exprCtx.variableDeclarationType);
+                    }
+                    // cancel force type convertion for arrays:
+                    if (objectName.equals("[") && exprCtx.isVariableDeclaration) {
+                        exprCtx.isArrayDeclaration = true;
                     }
                     break;
             }
@@ -1094,7 +1101,8 @@ public class ConverterM {
 
                     if (exprCtx.needSaveVariable && exprCtx.variableDeclarationType != null) {
                         exprCtx.needSaveVariable = false;
-                        exprCtx.blockCtx.variables.put(defSb.toString().trim(), exprCtx.variableDeclarationType);
+                        String objectName = defSb.toString().trim();
+                        exprCtx.blockCtx.variables.put(objectName, exprCtx.variableDeclarationType);
                     }
                     break;
             }
