@@ -239,7 +239,7 @@ public class ConverterM {
 
     private static void m_process_interface(StringBuilder sb, CommonTree tree, ProjectContext projectCtx) {
         CommonTree nameTree = (CommonTree) tree.getFirstChildWithType(ObjcmLexer.NAME);
-        String interfaceName = Utils.getText(nameTree);
+        String interfaceName = Utils.getText(nameTree).trim();
         boolean sameInterface = interfaceName.equals(projectCtx.classCtx.className);
         if (!sameInterface) {
             sb.append("public static interface ").append(interfaceName).append(" {\n");
