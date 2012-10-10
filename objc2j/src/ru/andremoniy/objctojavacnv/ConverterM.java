@@ -741,7 +741,7 @@ public class ConverterM {
     }
 
     private static void process_variable_init(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
-         boolean isVariableDeclaration = tree.getFirstChildWithType(ObjcmLexer.EXPR_FULL) != null && tree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR_2) != null;
+        boolean isVariableDeclaration = tree.getFirstChildWithType(ObjcmLexer.EXPR_FULL) != null && tree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR_2) != null;
 
         String variableType = "";
 
@@ -841,9 +841,13 @@ public class ConverterM {
 
                 // принудительное приведение типа при инициализации объекта через присваивание
                 if (exprCtx.isVariableDeclaration && !exprCtx.isArrayDeclaration) {
-                    sb.append("(");
-                    if (!Utils.isNumericType(exprCtx.variableDeclarationType)) {
-                        sb.append(exprCtx.variableDeclarationType).append(")(");
+                    if (!recursiveSearchExists((CommonTree) (tree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR)), ObjcmLexer.CLASSICAL_EXPR)) {
+                        exprCtx.isVariableDeclaration = false;
+                    } else {
+                        sb.append("(");
+                        if (!Utils.isNumericType(exprCtx.variableDeclarationType)) {
+                            sb.append(exprCtx.variableDeclarationType).append(")(");
+                        }
                     }
                 }
             }
