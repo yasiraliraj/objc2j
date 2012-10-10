@@ -18,6 +18,7 @@ import java.util.*;
 public class Utils {
 
     private static final List<String> implementedCocoa = Arrays.asList("NSEvent");
+    private static final List<String> NUMERIC_TYPES = Arrays.asList("Integer", "Double", "Short", "Long");
 
     static String transformObject(String obj, ClassContext classCtx, ExpressionContext exprCtx) {
         switch (obj) {
@@ -96,6 +97,10 @@ public class Utils {
                 return "Double";
             case "long":
                 return "Long";
+            case "int":
+                return "Integer";
+            case "short":
+                return "Short";
         }
 
         if (classCtx != null && !classCtx.localProcessedImports.contains(type) && !classCtx.addImports.contains(type)) {
@@ -158,7 +163,7 @@ public class Utils {
         StringBuilder sb = new StringBuilder();
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
-            sb.append(getText(childTree));
+            sb.append(getText(childTree)).append(" ");
         }
         return sb.toString();
     }
@@ -195,5 +200,28 @@ public class Utils {
             }
         }
 
+    }
+
+    public static boolean isNumericType(String type) {
+        if (type == null) return false;
+        type = type.trim();
+        return (NUMERIC_TYPES.contains(type));
+    }
+
+    public static String getNumberMethod(String type) {
+        type = type.trim();
+        switch (type) {
+            case "Integer":
+                return ".intValue()";
+            case "Long":
+                return ".longValue()";
+            case "Double":
+                return ".doubleValue()";
+            case "Byte":
+                return ".byteValue()";
+            case "Float":
+                return ".floatValue()";
+        }
+        return "";
     }
 }

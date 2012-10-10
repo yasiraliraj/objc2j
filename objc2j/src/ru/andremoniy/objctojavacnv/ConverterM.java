@@ -318,11 +318,13 @@ public class ConverterM {
     private static void m_process_static(StringBuilder sb, CommonTree tree, ClassContext classCtx) {
         boolean isField = false;
         String methodName = "";
+        boolean isStatic = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
                 case ObjcmLexer.TYPE:
                     sb.append(" public ");
+                    if (isStatic) sb.append("static ");
                     readChildren(sb, childTree, classCtx, null);
                     break;
                 case ObjcmLexer.NAME:
@@ -346,14 +348,19 @@ public class ConverterM {
                     m_process_params(sb, childTree, classCtx);
                     CommonTree blockTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.BLOCK);
                     if (blockTree != null) {
-                        // TODO: точно ли здесь static = true?
-                        m_process_block(sb, blockTree, classCtx.newMethod(methodName, true, null).newBlock());
+                        m_process_block(sb, blockTree, classCtx.newMethod(methodName, isStatic, null).newBlock());
                     } else {
                         m_process_params(sb, childTree, classCtx);
                     }
                     break;
                 default:
-                    sb.append(Utils.getText(childTree));
+                    String text = Utils.getText(childTree).trim();
+                    if (text.equals("inline")) text = "native"; // TODO ?!
+                    if (text.equals("static")) {
+                        isStatic = true;
+                        break;
+                    }
+                    sb.append(text);
                     sb.append(" ");
                     break;
             }
@@ -734,7 +741,7 @@ public class ConverterM {
     }
 
     private static void process_variable_init(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
-        boolean isVariableDeclaration = tree.getFirstChildWithType(ObjcmLexer.EXPR_FULL) != null && tree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR_2) != null;
+         boolean isVariableDeclaration = tree.getFirstChildWithType(ObjcmLexer.EXPR_FULL) != null && tree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR_2) != null;
 
         String variableType = "";
 
@@ -777,6 +784,8 @@ public class ConverterM {
                         } else {
                             sb.append("= Class.class");
                         }
+
+                        exprCtx.blockCtx.variables.put(varsb.toString().trim(), variableType);
                     }
                     break;
                 }
@@ -819,6 +828,9 @@ public class ConverterM {
                 process_classical_expr(sb, childTree, exprCtx.newExpr().setNoArrayDeclaration(), false, false);
                 if (exprCtx.isVariableDeclaration && !exprCtx.isArrayDeclaration) {
                     sb.append(")");
+                    if (Utils.isNumericType(exprCtx.variableDeclarationType)) {
+                        sb.append(Utils.getNumberMethod(exprCtx.variableDeclarationType));
+                    }
                 }
             } else {
                 if (childTree.getType() == ObjcmLexer.ASSIGN) {
@@ -829,7 +841,10 @@ public class ConverterM {
 
                 // принудительное приведение типа при инициализации объекта через присваивание
                 if (exprCtx.isVariableDeclaration && !exprCtx.isArrayDeclaration) {
-                    sb.append("(").append(exprCtx.variableDeclarationType).append(")(");
+                    sb.append("(");
+                    if (!Utils.isNumericType(exprCtx.variableDeclarationType)) {
+                        sb.append(exprCtx.variableDeclarationType).append(")(");
+                    }
                 }
             }
         }
@@ -877,6 +892,11 @@ public class ConverterM {
                     if (isIf3 && ororCounter == 0) {
                         sb.append("logic(");
                     }
+                    if (recursiveSearchExists(childTree, "unsigned")) {
+                        exprCtx.isVariableDeclaration = true;
+                        exprCtx.variableDeclarationType = "Integer";
+                    }
+
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
                     exprCtx2.skipObjField = doWrap;  // флаг того, что не нужно превращать модификаторы доступа в функцию objc_field
                     StringBuilder sesb = new StringBuilder();
@@ -886,6 +906,11 @@ public class ConverterM {
                         sb.append(")");
                     }
                     ororCounter++;
+
+                    if (tree.getFirstChildWithType(ObjcmLexer.EXPR_ASSIGN) != null && !exprCtx.isVariableDeclaration) {
+                        exprCtx.variableDeclarationType = exprCtx.blockCtx.variables.get(sesb.toString().trim());
+                        exprCtx.isVariableDeclaration = (exprCtx.variableDeclarationType != null);
+                    }
 
                     break;
                 case ObjcmLexer.EXPR_QUESTION:
@@ -905,7 +930,7 @@ public class ConverterM {
                     readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
                     sb.append(defSb);
                     String objectName = defSb.toString().trim();
-                    if (exprCtx.needSaveVariable) {
+                    if (exprCtx.isVariableDeclaration && exprCtx.needSaveVariable) {
                         exprCtx.needSaveVariable = false;
                         exprCtx.blockCtx.variables.put(objectName, exprCtx.variableDeclarationType);
                     }
@@ -959,6 +984,19 @@ public class ConverterM {
             if (childTree.getType() == type) return true;
             if (childTree.getChildCount() > 0) {
                 boolean result = recursiveSearchExists(childTree, type);
+                if (result) return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean recursiveSearchExists(CommonTree tree, String value) {
+        if (tree.getChildCount() == 0) return false;
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            if (childTree.getChildCount() == 0 && childTree.getText().trim().equals(value)) return true;
+            if (childTree.getChildCount() > 0) {
+                boolean result = recursiveSearchExists(childTree, value);
                 if (result) return true;
             }
         }
@@ -1056,6 +1094,7 @@ public class ConverterM {
     }
 
     private static void process_expr_type(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, boolean isIncompletePrefix) {
+        boolean isUnaryMinus = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.getType()) {
@@ -1070,8 +1109,14 @@ public class ConverterM {
                     if (isRealNot) {
                         sb.append("_not(");
                     }
+                    if (isUnaryMinus) {
+                        sb.append("_uminus(");
+                    }
                     process_expr_not(sb, childTree, exprCtx.newExpr());
                     if (isRealNot) {
+                        sb.append(")");
+                    }
+                    if (isUnaryMinus) {
                         sb.append(")");
                     }
                     break;
@@ -1080,7 +1125,13 @@ public class ConverterM {
                     // эту хрень пропускаем
                     break;
                 default:
-                    readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+                    StringBuilder defSb = new StringBuilder();
+                    readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+                    if (defSb.toString().trim().equals("-")) {
+                        isUnaryMinus = true;
+                    } else {
+                        sb.append(defSb);
+                    }
                     break;
             }
         }
@@ -1154,7 +1205,7 @@ public class ConverterM {
                     readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
                     sb.append(defSb);
 
-                    if (exprCtx.needSaveVariable && exprCtx.variableDeclarationType != null) {
+                    if (exprCtx.needSaveVariable && exprCtx.isVariableDeclaration) {
                         exprCtx.needSaveVariable = false;
                         String objectName = defSb.toString().trim();
                         exprCtx.blockCtx.variables.put(objectName, exprCtx.variableDeclarationType);
