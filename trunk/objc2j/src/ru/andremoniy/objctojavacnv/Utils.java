@@ -24,6 +24,7 @@ public class Utils {
         switch (obj) {
             case "_cmd":
                 return "\"" + classCtx.methodCtx.methodName + "\"";
+            case "NULL":
             case "nil":
             case "Nil":
                 return "null";
@@ -33,6 +34,7 @@ public class Utils {
                 } else {
                     return "this";
                 }
+            case "TRUE":
             case "YES":
                 return "true";
             case "NO":
@@ -224,4 +226,5 @@ public class Utils {
         }
         return "";
     }
+
 }

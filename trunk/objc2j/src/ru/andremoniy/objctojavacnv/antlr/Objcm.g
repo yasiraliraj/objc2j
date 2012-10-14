@@ -95,6 +95,9 @@ tokens {
 	STATIC_TYPE;
 	INDEX;
 	INDEX_NUMBER;
+	ARRAY_INIT;
+	CONST_EXPR;
+	GOTO;
 }
 
 @header {
@@ -287,7 +290,14 @@ block_internal
 	|	typeof_started SEMICOLON
 	|	known_type_started SEMICOLON
 	|	SEMICOLON	
+	|	goto_wrapper
 	;
+	
+goto_wrapper
+	:	goto_operator -> ^(GOTO goto_operator);
+
+goto_operator
+	:	'goto' ID SEMICOLON;		
 
 variable_init_wrapper
 	:	variable_init -> ^(VARIABLE_INIT variable_init);
@@ -573,14 +583,17 @@ expr_assign_wrapper
 	:	expr_assign -> ^(EXPR_ASSIGN expr_assign);
 	
 expr_assign	
-	:	assign_wrapper (classical_expr_wrp | array_init | (func_pointer2 method_call_wrapper?));
+	:	assign_wrapper (classical_expr_wrp | array_init_wrapper | (func_pointer2 method_call_wrapper?));
+
+array_init_wrapper
+	:	array_init -> ^(ARRAY_INIT array_init);	
 	
 array_init
 	:	L_FBR (classical_expr_wrp3 (COMMA classical_expr_wrp3)*)? R_FBR
 	;
 	
 classical_expr_wrp3
-	:	array_init 
+	:	array_init_wrapper 
 	|	classical_expr_wrp
 	;	
 	
@@ -711,7 +724,7 @@ object_wrapped2
 	: 	'unsigned'? object_name generic?
 	|	method_call_wrapper id_part_end?
 	|	L_BR classical_expr_wrp R_BR id_part_end?
-	|	const_expr
+	|	const_expr_wrapper
 	|	a_started
 	;
 	
@@ -724,13 +737,10 @@ function_brackets
 index_wrapper
 	:	index -> ^(INDEX index);
 	
-index	:	L_KBR index_number_wrapper R_KBR;
+index	:	L_KBR index_number_wrapper? R_KBR;
 
 index_number_wrapper
-	:	index_number -> ^(INDEX_NUMBER index_number);
-
-index_number
-	:	classical_expr_wrp?;	
+	:	classical_expr_wrp -> ^(INDEX_NUMBER classical_expr_wrp);
 
 struct_init
 	:	L_BR  STRUCT_PREFIX? ID  R_BR  L_FBR 
@@ -788,6 +798,9 @@ a_selector_value
 
 a_encode:	'@encode' L_BR ~(R_BR)+ R_BR;
 
+const_expr_wrapper
+	:	const_expr -> ^(CONST_EXPR const_expr);
+
 const_expr	
 	: 	NUMBER | STRING_LITERAL | STRING_LITERAL2 | STRING_LITERAL3 | null_stmt;
 	
@@ -807,19 +820,7 @@ func_pointer2
 	
 func_pointer_params
 	:	L_BR  ID  ASTERISK* (COMMA  ID  ASTERISK*)* R_BR;
-	
-in_brackets_end1
-	:	L_BR  expression  R_BR
-	|	method_start index_brackets?
-	|	(L_PLUS_PLUS | L_MINUS_MINUS) method_start
-	|	const_expr
-	;	
-
-in_brackets_end2
-	:	L_BR  expression  R_BR
-	|	const_expr
-	;	
-	
+		
 method_start
 	:	ID method_brackets?;
 	
