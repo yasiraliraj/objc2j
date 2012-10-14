@@ -868,12 +868,15 @@ public class ConverterM {
         int simpleCounter = 0;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
-            if (childTree.getText().equals("-")) return false;
-            if (childTree.getType() == ObjcmLexer.NUMBER) {
-                simpleCounter++;
-            }
             if (childTree.getChildCount() > 0) {
                 if (!isJustANumber(childTree)) return false;
+            } else {
+                if (childTree.getText().equals("-")) return false;
+                if (childTree.getType() == ObjcmLexer.NUMBER) {
+                    simpleCounter++;
+                } else {
+                    return false;
+                }
             }
         }
         return simpleCounter <= 1;
