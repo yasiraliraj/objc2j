@@ -56,4 +56,9 @@ public class ExpressionContext {
         this.isArrayDeclaration = false;
         return this;
     }
+
+    public ExpressionContext setNoNeedSaveVariable() {
+        this.needSaveVariable = false;
+        return this;
+    }
 }
