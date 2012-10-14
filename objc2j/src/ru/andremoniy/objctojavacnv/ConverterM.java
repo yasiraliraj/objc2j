@@ -837,7 +837,7 @@ public class ConverterM {
                     break;
                 case ObjcmLexer.CLASSICAL_EXPR:
                     StringBuilder cesb = new StringBuilder();
-                    process_classical_expr(cesb, childTree, exprCtx.newExpr().setNoArrayDeclaration(), false, false);
+                    process_classical_expr(cesb, childTree, exprCtx.newExpr().setNoArrayDeclaration().setNoNeedSaveVariable(), false, false);
                     sb.append(cesb);
                     if (exprCtx.isVariableDeclaration && !exprCtx.isArrayDeclaration) {
                         sb.append(")");
