@@ -38,6 +38,7 @@ public class ExpressionContext {
         newExpr.needSaveVariable = this.needSaveVariable;
         newExpr.isArrayDeclaration = this.isArrayDeclaration;
         newExpr.isVariableDeclaration = this.isVariableDeclaration;
+        newExpr.variableDeclarationType = this.variableDeclarationType;
         return newExpr;
     }
 
