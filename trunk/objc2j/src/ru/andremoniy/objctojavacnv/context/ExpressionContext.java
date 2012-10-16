@@ -11,10 +11,10 @@ import java.util.List;
 public class ExpressionContext {
 
     public boolean needSaveVariable;
-    public boolean isVariableDeclaration;
+    boolean isVariableDeclaration;
 
     public ExpressionContext parentCtx;
-    public String variableDeclarationType;
+    String variableDeclarationType;
     public BlockContext blockCtx;
     public boolean skipObjField;
     public boolean transformClassNames;
@@ -60,5 +60,27 @@ public class ExpressionContext {
     public ExpressionContext setNoNeedSaveVariable() {
         this.needSaveVariable = false;
         return this;
+    }
+
+    public String getVariableDeclarationType() {
+        return variableDeclarationType;
+    }
+
+    public void setVariableDeclarationType(String variableDeclarationType) {
+        this.variableDeclarationType = variableDeclarationType;
+        if (this.parentCtx != null) {
+            parentCtx.setVariableDeclarationType(variableDeclarationType);
+        }
+    }
+
+    public boolean isVariableDeclaration() {
+        return isVariableDeclaration;
+    }
+
+    public void setVariableDeclaration(boolean variableDeclaration) {
+        isVariableDeclaration = variableDeclaration;
+        if (this.parentCtx != null) {
+            parentCtx.setVariableDeclaration(variableDeclaration);
+        }
     }
 }
