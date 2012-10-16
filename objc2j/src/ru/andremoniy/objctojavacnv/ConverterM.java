@@ -766,10 +766,10 @@ public class ConverterM {
                 }
                 case ObjcmLexer.CLASSICAL_EXPR_2: {
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
-                    exprCtx2.isVariableDeclaration = isVariableDeclaration;
+                    exprCtx2.setVariableDeclaration(isVariableDeclaration);
                     // в Objective-C часто объекту с наследованным типом присваивается объект с типом супер-класса
                     if (isVariableDeclaration && (recursiveSearchExists(childTree, ObjcmLexer.ASSIGN) || (childTree.getChildCount() == 1 && childTree.getChild(0).getChildCount() == 0))) {
-                        exprCtx2.variableDeclarationType = variableType;
+                        exprCtx2.setVariableDeclarationType(variableType);
                     }
                     StringBuilder varsb = new StringBuilder();
                     process_classical_expr(varsb, childTree, exprCtx2, true, false);
@@ -817,11 +817,11 @@ public class ConverterM {
         return "";
     }
 
-    private static void process_expr_full(StringBuilder sb, CommonTree tree, ExpressionContext cc, boolean leftAssign) {
+    private static void process_expr_full(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, boolean leftAssign) {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             if (childTree.getType() == ObjcmLexer.CLASSICAL_EXPR) {
-                process_classical_expr(sb, childTree, cc, leftAssign, false);
+                process_classical_expr(sb, childTree, exprCtx, leftAssign, false);
             } else if (childTree.getType() == ObjcmLexer.COMMA) {
                 sb.append(", ");
             }
@@ -831,6 +831,7 @@ public class ConverterM {
     private static void process_expr_assign(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, boolean doWrap) {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
+            boolean doBracketsWrap = exprCtx.isVariableDeclaration() && !exprCtx.isArrayDeclaration && exprCtx.getVariableDeclarationType() != null;
             switch (childTree.getType()) {
                 case ObjcmLexer.ARRAY_INIT:
                     process_array_init(sb, childTree, exprCtx.newExpr().setNoArrayDeclaration());
@@ -839,10 +840,10 @@ public class ConverterM {
                     StringBuilder cesb = new StringBuilder();
                     process_classical_expr(cesb, childTree, exprCtx.newExpr().setNoArrayDeclaration().setNoNeedSaveVariable(), false, false);
                     sb.append(cesb);
-                    if (exprCtx.isVariableDeclaration && !exprCtx.isArrayDeclaration) {
+                    if (doBracketsWrap) {
                         sb.append(")");
-                        if (Utils.isNumericType(exprCtx.variableDeclarationType) && !cesb.toString().trim().startsWith("objc_") && !isJustANumber(childTree)) {
-                            sb.append(Utils.getNumberMethod(exprCtx.variableDeclarationType));
+                        if (Utils.isNumericType(exprCtx.getVariableDeclarationType()) && !cesb.toString().trim().startsWith("objc_") && !isJustANumber(childTree)) {
+                            sb.append(Utils.getNumberMethod(exprCtx.getVariableDeclarationType()));
                         }
                     }
                     break;
@@ -853,10 +854,10 @@ public class ConverterM {
                     readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
 
                     // принудительное приведение типа при инициализации объекта через присваивание
-                    if (exprCtx.isVariableDeclaration && !exprCtx.isArrayDeclaration) {
+                    if (doBracketsWrap) {
                         sb.append("(");
-                        if (!Utils.isNumericType(exprCtx.variableDeclarationType)) {
-                            sb.append(exprCtx.variableDeclarationType).append(")(");
+                        if (!Utils.isNumericType(exprCtx.getVariableDeclarationType())) {
+                            sb.append(exprCtx.getVariableDeclarationType()).append(")(");
                         }
                     }
                     break;
@@ -891,20 +892,20 @@ public class ConverterM {
                     break;
                 case ObjcmLexer.CLASSICAL_EXPR:
                     // принудительное приведение типа при инициализации объекта через присваивание
-                    if (exprCtx.isVariableDeclaration && !exprCtx.isArrayDeclaration) {
+                    if (exprCtx.isVariableDeclaration() && !exprCtx.isArrayDeclaration) {
                         sb.append("(");
-                        if (!Utils.isNumericType(exprCtx.variableDeclarationType)) {
-                            sb.append(exprCtx.variableDeclarationType).append(")(");
+                        if (!Utils.isNumericType(exprCtx.getVariableDeclarationType())) {
+                            sb.append(exprCtx.getVariableDeclarationType()).append(")(");
                         }
                     }
 
                     StringBuilder cesb = new StringBuilder();
                     process_classical_expr(cesb, childTree, exprCtx.newExpr().setNoArrayDeclaration(), false, false);
                     sb.append(cesb);
-                    if (exprCtx.isVariableDeclaration) {
+                    if (exprCtx.isVariableDeclaration()) {
                         sb.append(")");
-                        if (Utils.isNumericType(exprCtx.variableDeclarationType) && !cesb.toString().trim().startsWith("objc_") && !isJustANumber(childTree)) {
-                            sb.append(Utils.getNumberMethod(exprCtx.variableDeclarationType));
+                        if (Utils.isNumericType(exprCtx.getVariableDeclarationType()) && !cesb.toString().trim().startsWith("objc_") && !isJustANumber(childTree)) {
+                            sb.append(Utils.getNumberMethod(exprCtx.getVariableDeclarationType()));
                         }
                     }
                     break;
@@ -950,7 +951,7 @@ public class ConverterM {
                     if (doWrap) {
                         sb.append(", ");
                     }
-                    process_expr_assign(sb, childTree, exprCtx, doWrap);
+                    process_expr_assign(sb, childTree, exprCtx.newExpr(), doWrap);
                     if (doWrap) {
                         sb.append(")");
                     }
@@ -960,8 +961,8 @@ public class ConverterM {
                         sb.append("logic(");
                     }
                     if (recursiveSearchExists(childTree, "unsigned")) {
-                        exprCtx.isVariableDeclaration = true;
-                        exprCtx.variableDeclarationType = "Integer";
+                        exprCtx.setVariableDeclaration(true);
+                        exprCtx.setVariableDeclarationType("Integer");
                     }
 
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
@@ -974,9 +975,9 @@ public class ConverterM {
                     }
                     ororCounter++;
 
-                    if (tree.getFirstChildWithType(ObjcmLexer.EXPR_ASSIGN) != null && !exprCtx.isVariableDeclaration) {
-                        exprCtx.variableDeclarationType = exprCtx.blockCtx.variables.get(sesb.toString().trim());
-                        exprCtx.isVariableDeclaration = (exprCtx.variableDeclarationType != null);
+                    if (tree.getFirstChildWithType(ObjcmLexer.EXPR_ASSIGN) != null && !exprCtx.isVariableDeclaration()) {
+                        exprCtx.setVariableDeclarationType(exprCtx.blockCtx.variables.get(sesb.toString().trim()));
+                        exprCtx.setVariableDeclaration(exprCtx.getVariableDeclarationType() != null);
                     }
 
                     break;
@@ -987,7 +988,7 @@ public class ConverterM {
                     sb.append(": ");
                     break;
                 case ObjcmLexer.INDEX:
-                    if (exprCtx.isVariableDeclaration) {
+                    if (exprCtx.isVariableDeclaration()) {
                         exprCtx.isArrayDeclaration = true;
                     }
                     process_index(sb, childTree, exprCtx.newExpr());
@@ -997,12 +998,17 @@ public class ConverterM {
                     readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
                     sb.append(defSb);
                     String objectName = defSb.toString().trim();
-                    if (exprCtx.isVariableDeclaration && exprCtx.needSaveVariable) {
-                        exprCtx.needSaveVariable = false;
-                        exprCtx.blockCtx.variables.put(objectName, exprCtx.variableDeclarationType);
-                    }
+
+                    putObjectInVariables(exprCtx, objectName);
                     break;
             }
+        }
+    }
+
+    private static void putObjectInVariables(ExpressionContext exprCtx, String objectName) {
+        if (exprCtx.isVariableDeclaration() && exprCtx.needSaveVariable) {
+            exprCtx.needSaveVariable = false;
+            exprCtx.blockCtx.variables.put(objectName, exprCtx.getVariableDeclarationType());
         }
     }
 
@@ -1030,7 +1036,7 @@ public class ConverterM {
                 case ObjcmLexer.INDEX_NUMBER:
                     StringBuilder inSb = new StringBuilder();
                     process_classical_expr(inSb, childTree, exprCtx.newExpr(), false, false);
-                    if (exprCtx.isVariableDeclaration && exprCtx.isArrayDeclaration) {
+                    if (exprCtx.isVariableDeclaration() && exprCtx.isArrayDeclaration) {
                         // skip it:
                         exprCtx.parentCtx.arraySizes.add(inSb.toString().trim());
                     } else {
@@ -1114,8 +1120,8 @@ public class ConverterM {
 
                     if (saveVarType) {
                         exprCtx = exprCtx.newExpr();
-                        exprCtx.isVariableDeclaration = true;
-                        exprCtx.variableDeclarationType = pesb.toString().trim();
+                        exprCtx.setVariableDeclaration(true);
+                        exprCtx.setVariableDeclarationType(pesb.toString().trim());
                     }
                 } else {
                     process_expr(sb, childTree, exprCtx, deep + 1, leftAssign, isIncompletePrefix);
@@ -1126,8 +1132,8 @@ public class ConverterM {
                     sb.append(", ");
                 }
                 exprCounter++;
-            } else if (childTree.getType() == ObjcmLexer.CLASSICAL_EXPR) {
-                process_classical_expr(sb, childTree, exprCtx, false, false);
+            } else if (childTree.getType() == ObjcmLexer.SIMPLE_EXPR) {
+                process_expr(sb, childTree, exprCtx, 0, leftAssign, isIncompletePrefix);
                 if (operationsLength > 0) {
                     operationsCounter = 0;
                     sb.append(")");
@@ -1136,7 +1142,7 @@ public class ConverterM {
         }
     }
 
-    private static void process_generic(StringBuilder sb, CommonTree tree, ExpressionContext cc) {
+    private static void process_generic(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             if (childTree.toString().trim().equals("*")) continue;
@@ -1271,12 +1277,9 @@ public class ConverterM {
                     StringBuilder defSb = new StringBuilder();
                     readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
                     sb.append(defSb);
+                    String objectName = defSb.toString().trim();
 
-                    if (exprCtx.needSaveVariable && exprCtx.isVariableDeclaration) {
-                        exprCtx.needSaveVariable = false;
-                        String objectName = defSb.toString().trim();
-                        exprCtx.blockCtx.variables.put(objectName, exprCtx.variableDeclarationType);
-                    }
+                    putObjectInVariables(exprCtx, objectName);
                     break;
             }
         }

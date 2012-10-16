@@ -630,61 +630,61 @@ simple_expr
 	:	expr_or_or -> ^(EXPR_OR_OR expr_or_or);
 
 expr_or_or
-	:	expr_and_and_wrapper (L_OR_OR classical_expr_wrp)*;
+	:	expr_and_and_wrapper (L_OR_OR simple_expr_wrapper)*;
 
 expr_and_and_wrapper
 	:	expr_and_and -> ^(EXPR_AND_AND expr_and_and);
 
 expr_and_and
-	:	expr_or_wrapper (L_AND_AND classical_expr_wrp)*;
+	:	expr_or_wrapper (L_AND_AND simple_expr_wrapper)*;
 
 expr_or_wrapper
 	:	expr_or -> ^(EXPR_OR expr_or);
 	
 expr_or
-	:	expr_xor_wrapper (L_OR classical_expr_wrp)*;
+	:	expr_xor_wrapper (L_OR simple_expr_wrapper)*;
 
 expr_xor_wrapper
 	:	expr_xor -> ^(EXPR_XOR expr_xor);
 
 expr_xor
-	:	expr_and_wrapper (L_XOR classical_expr_wrp)*;
+	:	expr_and_wrapper (L_XOR simple_expr_wrapper)*;
 	
 expr_and_wrapper
 	:	expr_and -> ^(EXPR_AND expr_and);	
 
 expr_and
-	:	expr_eq_wrapper (L_AND classical_expr_wrp)*;
+	:	expr_eq_wrapper (L_AND simple_expr_wrapper)*;
 	
 expr_eq_wrapper
 	:	expr_eq -> ^(EXPR_EQ expr_eq);	
 
 expr_eq
-	:	expr_cond_wrapper ((L_EQ_EQ | L_NEQ) classical_expr_wrp)*;
+	:	expr_cond_wrapper ((L_EQ_EQ | L_NEQ) simple_expr_wrapper)*;
 
 expr_cond_wrapper
 	:	expr_cond -> ^(EXPR_COND expr_cond);
 
 expr_cond
-	:	expr_mov_wrapper ((L_LESS | L_MORE | L_LESS_EQ | L_MORE_EQ) classical_expr_wrp)*;
+	:	expr_mov_wrapper ((L_LESS | L_MORE | L_LESS_EQ | L_MORE_EQ) simple_expr_wrapper)*;
 
 expr_mov_wrapper
 	:	expr_mov -> ^(EXPR_MOV expr_mov);	
 
 expr_mov
-	:	expr_add_wrapper ((L_LEFT | L_RIGHT) classical_expr_wrp)*;	
+	:	expr_add_wrapper ((L_LEFT | L_RIGHT) simple_expr_wrapper)*;	
 
 expr_add_wrapper
 	:	expr_add -> ^(EXPR_ADD expr_add);
 
 expr_add
-	:	expr_mult_wrapper ((L_PLUS | L_MINUS) classical_expr_wrp)*;
+	:	expr_mult_wrapper ((L_PLUS | L_MINUS) simple_expr_wrapper)*;
 
 expr_mult_wrapper
 	:	expr_mult -> ^(EXPR_MULT expr_mult);
 
 expr_mult
-	:	expr_type_wrapper ((ASTERISK | L_DIV | L_PERC) classical_expr_wrp)*;
+	:	expr_type_wrapper ((ASTERISK | L_DIV | L_PERC) simple_expr_wrapper)*;
 	
 expr_type_wrapper
 	:	expr_type -> ^(EXPR_TYPE expr_type);
