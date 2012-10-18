@@ -13,9 +13,11 @@ public class MethodContext extends AbstractContext {
     public boolean staticFlag;
     public String methodName;
     public boolean addReturnNull;
+    public String methodType;
 
-    public MethodContext(String methodName, boolean staticFlag, ClassContext classCtx) {
+    public MethodContext(String methodName, String methodType, boolean staticFlag, ClassContext classCtx) {
         this.methodName = methodName;
+        this.methodType = methodType;
         this.staticFlag = staticFlag;
         this.classCtx = classCtx;
     }

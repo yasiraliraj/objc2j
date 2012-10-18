@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Objcm.g 2012-10-15 09:34:49
+// $ANTLR 3.4 Objcm.g 2012-10-18 20:03:07
 
 package ru.andremoniy.objctojavacnv.antlr.output;
 
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class ObjcmLexer extends Lexer {
     public static final int EOF=-1;
-    public static final int T__160=160;
     public static final int T__161=161;
     public static final int T__162=162;
     public static final int T__163=163;
@@ -48,6 +47,7 @@ public class ObjcmLexer extends Lexer {
     public static final int T__194=194;
     public static final int T__195=195;
     public static final int T__196=196;
+    public static final int T__197=197;
     public static final int ARRAY_INIT=4;
     public static final int ASSIGN=5;
     public static final int ASTERISK=6;
@@ -181,29 +181,30 @@ public class ObjcmLexer extends Lexer {
     public static final int STATIC_PREFIX=134;
     public static final int STATIC_START=135;
     public static final int STATIC_TYPE=136;
-    public static final int STRING_LITERAL=137;
-    public static final int STRING_LITERAL2=138;
-    public static final int STRING_LITERAL3=139;
-    public static final int STRUCT_FIELD=140;
-    public static final int STRUCT_PREFIX=141;
-    public static final int SUPER_CLASS=142;
-    public static final int SWITCH=143;
-    public static final int SWITCH_BODY=144;
-    public static final int SWITCH_EXPRESSION=145;
-    public static final int THROW_EXCEPTION=146;
-    public static final int THROW_STMT=147;
-    public static final int TYPE=148;
-    public static final int TYPEDEF=149;
-    public static final int TYPEDEF_ELEMENT=150;
-    public static final int TYPEDEF_STRUCT=151;
-    public static final int TYPE_CONVERTION=152;
-    public static final int VALUE=153;
-    public static final int VARIABLE_INIT=154;
-    public static final int VA_ARGS=155;
-    public static final int VOID=156;
-    public static final int WHILE_EXPR=157;
-    public static final int WHILE_STMT=158;
-    public static final int WS=159;
+    public static final int STRING=137;
+    public static final int STRING_LITERAL=138;
+    public static final int STRING_LITERAL2=139;
+    public static final int STRING_LITERAL3=140;
+    public static final int STRUCT_FIELD=141;
+    public static final int STRUCT_PREFIX=142;
+    public static final int SUPER_CLASS=143;
+    public static final int SWITCH=144;
+    public static final int SWITCH_BODY=145;
+    public static final int SWITCH_EXPRESSION=146;
+    public static final int THROW_EXCEPTION=147;
+    public static final int THROW_STMT=148;
+    public static final int TYPE=149;
+    public static final int TYPEDEF=150;
+    public static final int TYPEDEF_ELEMENT=151;
+    public static final int TYPEDEF_STRUCT=152;
+    public static final int TYPE_CONVERTION=153;
+    public static final int VALUE=154;
+    public static final int VARIABLE_INIT=155;
+    public static final int VA_ARGS=156;
+    public static final int VOID=157;
+    public static final int WHILE_EXPR=158;
+    public static final int WHILE_STMT=159;
+    public static final int WS=160;
 
     // delegates
     // delegators
@@ -220,38 +221,15 @@ public class ObjcmLexer extends Lexer {
     }
     public String getGrammarFileName() { return "Objcm.g"; }
 
-    // $ANTLR start "T__160"
-    public final void mT__160() throws RecognitionException {
-        try {
-            int _type = T__160;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:6:8: ( '\"C\"' )
-            // Objcm.g:6:10: '\"C\"'
-            {
-            match("\"C\""); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__160"
-
     // $ANTLR start "T__161"
     public final void mT__161() throws RecognitionException {
         try {
             int _type = T__161;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:7:8: ( '->' )
-            // Objcm.g:7:10: '->'
+            // Objcm.g:6:8: ( '\"C\"' )
+            // Objcm.g:6:10: '\"C\"'
             {
-            match("->"); 
+            match("\"C\""); 
 
 
 
@@ -271,10 +249,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__162;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:8:8: ( '...' )
-            // Objcm.g:8:10: '...'
+            // Objcm.g:7:8: ( '->' )
+            // Objcm.g:7:10: '->'
             {
-            match("..."); 
+            match("->"); 
 
 
 
@@ -294,10 +272,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__163;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:9:8: ( '@catch' )
-            // Objcm.g:9:10: '@catch'
+            // Objcm.g:8:8: ( '...' )
+            // Objcm.g:8:10: '...'
             {
-            match("@catch"); 
+            match("..."); 
 
 
 
@@ -317,10 +295,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__164;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:10:8: ( '@encode' )
-            // Objcm.g:10:10: '@encode'
+            // Objcm.g:9:8: ( '@catch' )
+            // Objcm.g:9:10: '@catch'
             {
-            match("@encode"); 
+            match("@catch"); 
 
 
 
@@ -340,10 +318,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__165;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:11:8: ( '@end' )
-            // Objcm.g:11:10: '@end'
+            // Objcm.g:10:8: ( '@encode' )
+            // Objcm.g:10:10: '@encode'
             {
-            match("@end"); 
+            match("@encode"); 
 
 
 
@@ -363,10 +341,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__166;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:12:8: ( '@finally' )
-            // Objcm.g:12:10: '@finally'
+            // Objcm.g:11:8: ( '@end' )
+            // Objcm.g:11:10: '@end'
             {
-            match("@finally"); 
+            match("@end"); 
 
 
 
@@ -386,10 +364,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__167;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:13:8: ( '@implementation' )
-            // Objcm.g:13:10: '@implementation'
+            // Objcm.g:12:8: ( '@finally' )
+            // Objcm.g:12:10: '@finally'
             {
-            match("@implementation"); 
+            match("@finally"); 
 
 
 
@@ -409,10 +387,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__168;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:14:8: ( '@interface' )
-            // Objcm.g:14:10: '@interface'
+            // Objcm.g:13:8: ( '@implementation' )
+            // Objcm.g:13:10: '@implementation'
             {
-            match("@interface"); 
+            match("@implementation"); 
 
 
 
@@ -432,10 +410,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__169;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:15:8: ( '@private' )
-            // Objcm.g:15:10: '@private'
+            // Objcm.g:14:8: ( '@interface' )
+            // Objcm.g:14:10: '@interface'
             {
-            match("@private"); 
+            match("@interface"); 
 
 
 
@@ -455,10 +433,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__170;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:16:8: ( '@protocol' )
-            // Objcm.g:16:10: '@protocol'
+            // Objcm.g:15:8: ( '@private' )
+            // Objcm.g:15:10: '@private'
             {
-            match("@protocol"); 
+            match("@private"); 
 
 
 
@@ -478,10 +456,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__171;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:17:8: ( '@public' )
-            // Objcm.g:17:10: '@public'
+            // Objcm.g:16:8: ( '@protocol' )
+            // Objcm.g:16:10: '@protocol'
             {
-            match("@public"); 
+            match("@protocol"); 
 
 
 
@@ -501,10 +479,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__172;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:18:8: ( '@selector' )
-            // Objcm.g:18:10: '@selector'
+            // Objcm.g:17:8: ( '@public' )
+            // Objcm.g:17:10: '@public'
             {
-            match("@selector"); 
+            match("@public"); 
 
 
 
@@ -524,10 +502,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__173;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:19:8: ( '@synthesize' )
-            // Objcm.g:19:10: '@synthesize'
+            // Objcm.g:18:8: ( '@selector' )
+            // Objcm.g:18:10: '@selector'
             {
-            match("@synthesize"); 
+            match("@selector"); 
 
 
 
@@ -547,10 +525,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__174;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:20:8: ( '@throw' )
-            // Objcm.g:20:10: '@throw'
+            // Objcm.g:19:8: ( '@synthesize' )
+            // Objcm.g:19:10: '@synthesize'
             {
-            match("@throw"); 
+            match("@synthesize"); 
 
 
 
@@ -570,10 +548,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__175;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:21:8: ( '@try' )
-            // Objcm.g:21:10: '@try'
+            // Objcm.g:20:8: ( '@throw' )
+            // Objcm.g:20:10: '@throw'
             {
-            match("@try"); 
+            match("@throw"); 
 
 
 
@@ -593,10 +571,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__176;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:22:8: ( 'Nil' )
-            // Objcm.g:22:10: 'Nil'
+            // Objcm.g:21:8: ( '@try' )
+            // Objcm.g:21:10: '@try'
             {
-            match("Nil"); 
+            match("@try"); 
 
 
 
@@ -616,10 +594,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__177;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:23:8: ( '__attribute__' )
-            // Objcm.g:23:10: '__attribute__'
+            // Objcm.g:22:8: ( 'Nil' )
+            // Objcm.g:22:10: 'Nil'
             {
-            match("__attribute__"); 
+            match("Nil"); 
 
 
 
@@ -639,10 +617,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__178;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:24:8: ( '__typeof__' )
-            // Objcm.g:24:10: '__typeof__'
+            // Objcm.g:23:8: ( '__attribute__' )
+            // Objcm.g:23:10: '__attribute__'
             {
-            match("__typeof__"); 
+            match("__attribute__"); 
 
 
 
@@ -662,10 +640,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__179;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:25:8: ( 'case' )
-            // Objcm.g:25:10: 'case'
+            // Objcm.g:24:8: ( '__typeof__' )
+            // Objcm.g:24:10: '__typeof__'
             {
-            match("case"); 
+            match("__typeof__"); 
 
 
 
@@ -685,10 +663,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__180;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:26:8: ( 'constructor' )
-            // Objcm.g:26:10: 'constructor'
+            // Objcm.g:25:8: ( 'case' )
+            // Objcm.g:25:10: 'case'
             {
-            match("constructor"); 
+            match("case"); 
 
 
 
@@ -708,10 +686,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__181;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:27:8: ( 'default' )
-            // Objcm.g:27:10: 'default'
+            // Objcm.g:26:8: ( 'constructor' )
+            // Objcm.g:26:10: 'constructor'
             {
-            match("default"); 
+            match("constructor"); 
 
 
 
@@ -731,10 +709,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__182;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:28:8: ( 'do' )
-            // Objcm.g:28:10: 'do'
+            // Objcm.g:27:8: ( 'default' )
+            // Objcm.g:27:10: 'default'
             {
-            match("do"); 
+            match("default"); 
 
 
 
@@ -754,10 +732,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__183;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:29:8: ( 'else' )
-            // Objcm.g:29:10: 'else'
+            // Objcm.g:28:8: ( 'do' )
+            // Objcm.g:28:10: 'do'
             {
-            match("else"); 
+            match("do"); 
 
 
 
@@ -777,10 +755,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__184;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:30:8: ( 'extern' )
-            // Objcm.g:30:10: 'extern'
+            // Objcm.g:29:8: ( 'else' )
+            // Objcm.g:29:10: 'else'
             {
-            match("extern"); 
+            match("else"); 
 
 
 
@@ -800,10 +778,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__185;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:31:8: ( 'for' )
-            // Objcm.g:31:10: 'for'
+            // Objcm.g:30:8: ( 'extern' )
+            // Objcm.g:30:10: 'extern'
             {
-            match("for"); 
+            match("extern"); 
 
 
 
@@ -823,10 +801,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__186;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:32:8: ( 'goto' )
-            // Objcm.g:32:10: 'goto'
+            // Objcm.g:31:8: ( 'for' )
+            // Objcm.g:31:10: 'for'
             {
-            match("goto"); 
+            match("for"); 
 
 
 
@@ -846,10 +824,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__187;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:33:8: ( 'if' )
-            // Objcm.g:33:10: 'if'
+            // Objcm.g:32:8: ( 'goto' )
+            // Objcm.g:32:10: 'goto'
             {
-            match("if"); 
+            match("goto"); 
 
 
 
@@ -869,10 +847,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__188;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:34:8: ( 'in' )
-            // Objcm.g:34:10: 'in'
+            // Objcm.g:33:8: ( 'if' )
+            // Objcm.g:33:10: 'if'
             {
-            match("in"); 
+            match("if"); 
 
 
 
@@ -892,10 +870,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__189;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:35:8: ( 'inline' )
-            // Objcm.g:35:10: 'inline'
+            // Objcm.g:34:8: ( 'in' )
+            // Objcm.g:34:10: 'in'
             {
-            match("inline"); 
+            match("in"); 
 
 
 
@@ -915,10 +893,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__190;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:36:8: ( 'nil' )
-            // Objcm.g:36:10: 'nil'
+            // Objcm.g:35:8: ( 'inline' )
+            // Objcm.g:35:10: 'inline'
             {
-            match("nil"); 
+            match("inline"); 
 
 
 
@@ -938,10 +916,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__191;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:37:8: ( 'return' )
-            // Objcm.g:37:10: 'return'
+            // Objcm.g:36:8: ( 'nil' )
+            // Objcm.g:36:10: 'nil'
             {
-            match("return"); 
+            match("nil"); 
 
 
 
@@ -961,10 +939,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__192;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:38:8: ( 'switch' )
-            // Objcm.g:38:10: 'switch'
+            // Objcm.g:37:8: ( 'return' )
+            // Objcm.g:37:10: 'return'
             {
-            match("switch"); 
+            match("return"); 
 
 
 
@@ -984,10 +962,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__193;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:39:8: ( 'typedef' )
-            // Objcm.g:39:10: 'typedef'
+            // Objcm.g:38:8: ( 'switch' )
+            // Objcm.g:38:10: 'switch'
             {
-            match("typedef"); 
+            match("switch"); 
 
 
 
@@ -1007,10 +985,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__194;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:40:8: ( 'union' )
-            // Objcm.g:40:10: 'union'
+            // Objcm.g:39:8: ( 'typedef' )
+            // Objcm.g:39:10: 'typedef'
             {
-            match("union"); 
+            match("typedef"); 
 
 
 
@@ -1030,10 +1008,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__195;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:41:8: ( 'unsigned' )
-            // Objcm.g:41:10: 'unsigned'
+            // Objcm.g:40:8: ( 'union' )
+            // Objcm.g:40:10: 'union'
             {
-            match("unsigned"); 
+            match("union"); 
 
 
 
@@ -1053,6 +1031,29 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = T__196;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+            // Objcm.g:41:8: ( 'unsigned' )
+            // Objcm.g:41:10: 'unsigned'
+            {
+            match("unsigned"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__196"
+
+    // $ANTLR start "T__197"
+    public final void mT__197() throws RecognitionException {
+        try {
+            int _type = T__197;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
             // Objcm.g:42:8: ( 'while' )
             // Objcm.g:42:10: 'while'
             {
@@ -1069,15 +1070,15 @@ public class ObjcmLexer extends Lexer {
         	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__196"
+    // $ANTLR end "T__197"
 
     // $ANTLR start "L_FBR"
     public final void mL_FBR() throws RecognitionException {
         try {
             int _type = L_FBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1095:7: ( '{' )
-            // Objcm.g:1095:9: '{'
+            // Objcm.g:1102:7: ( '{' )
+            // Objcm.g:1102:9: '{'
             {
             match('{'); 
 
@@ -1097,8 +1098,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = R_FBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1096:7: ( '}' )
-            // Objcm.g:1096:9: '}'
+            // Objcm.g:1103:7: ( '}' )
+            // Objcm.g:1103:9: '}'
             {
             match('}'); 
 
@@ -1118,8 +1119,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_BR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1097:7: ( '(' )
-            // Objcm.g:1097:9: '('
+            // Objcm.g:1104:7: ( '(' )
+            // Objcm.g:1104:9: '('
             {
             match('('); 
 
@@ -1139,8 +1140,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = R_BR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1098:7: ( ')' )
-            // Objcm.g:1098:9: ')'
+            // Objcm.g:1105:7: ( ')' )
+            // Objcm.g:1105:9: ')'
             {
             match(')'); 
 
@@ -1160,8 +1161,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_KBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1099:7: ( '[' )
-            // Objcm.g:1099:9: '['
+            // Objcm.g:1106:7: ( '[' )
+            // Objcm.g:1106:9: '['
             {
             match('['); 
 
@@ -1181,8 +1182,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = R_KBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1100:7: ( ']' )
-            // Objcm.g:1100:9: ']'
+            // Objcm.g:1107:7: ( ']' )
+            // Objcm.g:1107:9: ']'
             {
             match(']'); 
 
@@ -1202,8 +1203,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1102:2: ( ';' )
-            // Objcm.g:1102:4: ';'
+            // Objcm.g:1109:2: ( ';' )
+            // Objcm.g:1109:4: ';'
             {
             match(';'); 
 
@@ -1223,8 +1224,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1103:7: ( ':' )
-            // Objcm.g:1103:9: ':'
+            // Objcm.g:1110:7: ( ':' )
+            // Objcm.g:1110:9: ':'
             {
             match(':'); 
 
@@ -1244,8 +1245,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_LEFT_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1105:11: ( '<<=' )
-            // Objcm.g:1105:13: '<<='
+            // Objcm.g:1112:11: ( '<<=' )
+            // Objcm.g:1112:13: '<<='
             {
             match("<<="); 
 
@@ -1267,8 +1268,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_RIGHT_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1106:12: ( '>>=' )
-            // Objcm.g:1106:14: '>>='
+            // Objcm.g:1113:12: ( '>>=' )
+            // Objcm.g:1113:14: '>>='
             {
             match(">>="); 
 
@@ -1290,8 +1291,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_LESS_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1109:2: ( '<=' )
-            // Objcm.g:1109:4: '<='
+            // Objcm.g:1116:2: ( '<=' )
+            // Objcm.g:1116:4: '<='
             {
             match("<="); 
 
@@ -1313,8 +1314,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_MORE_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1111:2: ( '>=' )
-            // Objcm.g:1111:4: '>='
+            // Objcm.g:1118:2: ( '>=' )
+            // Objcm.g:1118:4: '>='
             {
             match(">="); 
 
@@ -1336,8 +1337,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_LEFT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1113:8: ( '<<' )
-            // Objcm.g:1113:10: '<<'
+            // Objcm.g:1120:8: ( '<<' )
+            // Objcm.g:1120:10: '<<'
             {
             match("<<"); 
 
@@ -1359,8 +1360,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_RIGHT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1114:9: ( '>>' )
-            // Objcm.g:1114:11: '>>'
+            // Objcm.g:1121:9: ( '>>' )
+            // Objcm.g:1121:11: '>>'
             {
             match(">>"); 
 
@@ -1382,8 +1383,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_LESS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1115:8: ( '<' )
-            // Objcm.g:1115:10: '<'
+            // Objcm.g:1122:8: ( '<' )
+            // Objcm.g:1122:10: '<'
             {
             match('<'); 
 
@@ -1403,8 +1404,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_MORE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1116:8: ( '>' )
-            // Objcm.g:1116:10: '>'
+            // Objcm.g:1123:8: ( '>' )
+            // Objcm.g:1123:10: '>'
             {
             match('>'); 
 
@@ -1424,8 +1425,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1117:5: ( '.' )
-            // Objcm.g:1117:7: '.'
+            // Objcm.g:1124:5: ( '.' )
+            // Objcm.g:1124:7: '.'
             {
             match('.'); 
 
@@ -1445,8 +1446,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1118:7: ( ',' )
-            // Objcm.g:1118:9: ','
+            // Objcm.g:1125:7: ( ',' )
+            // Objcm.g:1125:9: ','
             {
             match(','); 
 
@@ -1466,8 +1467,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_NEQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1119:7: ( '!=' )
-            // Objcm.g:1119:9: '!='
+            // Objcm.g:1126:7: ( '!=' )
+            // Objcm.g:1126:9: '!='
             {
             match("!="); 
 
@@ -1489,8 +1490,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_NOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1120:7: ( '!' )
-            // Objcm.g:1120:9: '!'
+            // Objcm.g:1127:7: ( '!' )
+            // Objcm.g:1127:9: '!'
             {
             match('!'); 
 
@@ -1510,8 +1511,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_EQ_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1121:9: ( '==' )
-            // Objcm.g:1121:11: '=='
+            // Objcm.g:1128:9: ( '==' )
+            // Objcm.g:1128:11: '=='
             {
             match("=="); 
 
@@ -1533,8 +1534,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_PLUS_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1123:11: ( '+=' )
-            // Objcm.g:1123:13: '+='
+            // Objcm.g:1130:11: ( '+=' )
+            // Objcm.g:1130:13: '+='
             {
             match("+="); 
 
@@ -1556,8 +1557,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_MINUS_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1124:12: ( '-=' )
-            // Objcm.g:1124:14: '-='
+            // Objcm.g:1131:12: ( '-=' )
+            // Objcm.g:1131:14: '-='
             {
             match("-="); 
 
@@ -1579,8 +1580,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_MULT_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1125:11: ( '*=' )
-            // Objcm.g:1125:13: '*='
+            // Objcm.g:1132:11: ( '*=' )
+            // Objcm.g:1132:13: '*='
             {
             match("*="); 
 
@@ -1602,8 +1603,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_DIV_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1126:10: ( '/=' )
-            // Objcm.g:1126:12: '/='
+            // Objcm.g:1133:10: ( '/=' )
+            // Objcm.g:1133:12: '/='
             {
             match("/="); 
 
@@ -1625,8 +1626,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_PERC_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1127:11: ( '%=' )
-            // Objcm.g:1127:13: '%='
+            // Objcm.g:1134:11: ( '%=' )
+            // Objcm.g:1134:13: '%='
             {
             match("%="); 
 
@@ -1648,8 +1649,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_AND_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1128:10: ( '&=' )
-            // Objcm.g:1128:12: '&='
+            // Objcm.g:1135:10: ( '&=' )
+            // Objcm.g:1135:12: '&='
             {
             match("&="); 
 
@@ -1671,8 +1672,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_XOR_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1129:10: ( '^=' )
-            // Objcm.g:1129:12: '^='
+            // Objcm.g:1136:10: ( '^=' )
+            // Objcm.g:1136:12: '^='
             {
             match("^="); 
 
@@ -1694,8 +1695,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_OR_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1130:10: ( '|=' )
-            // Objcm.g:1130:12: '|='
+            // Objcm.g:1137:10: ( '|=' )
+            // Objcm.g:1137:12: '|='
             {
             match("|="); 
 
@@ -1717,8 +1718,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1132:7: ( '=' )
-            // Objcm.g:1132:9: '='
+            // Objcm.g:1139:7: ( '=' )
+            // Objcm.g:1139:9: '='
             {
             match('='); 
 
@@ -1738,8 +1739,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = ASTERISK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1134:2: ( '*' )
-            // Objcm.g:1134:4: '*'
+            // Objcm.g:1141:2: ( '*' )
+            // Objcm.g:1141:4: '*'
             {
             match('*'); 
 
@@ -1759,8 +1760,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_DIV;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1135:7: ( '/' )
-            // Objcm.g:1135:9: '/'
+            // Objcm.g:1142:7: ( '/' )
+            // Objcm.g:1142:9: '/'
             {
             match('/'); 
 
@@ -1780,8 +1781,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_PERC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1136:8: ( '%' )
-            // Objcm.g:1136:10: '%'
+            // Objcm.g:1143:8: ( '%' )
+            // Objcm.g:1143:10: '%'
             {
             match('%'); 
 
@@ -1801,8 +1802,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_PLUS_PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1138:2: ( '++' )
-            // Objcm.g:1138:4: '++'
+            // Objcm.g:1145:2: ( '++' )
+            // Objcm.g:1145:4: '++'
             {
             match("++"); 
 
@@ -1824,8 +1825,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_MINUS_MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1140:2: ( '--' )
-            // Objcm.g:1140:4: '--'
+            // Objcm.g:1147:2: ( '--' )
+            // Objcm.g:1147:4: '--'
             {
             match("--"); 
 
@@ -1847,8 +1848,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1141:8: ( '+' )
-            // Objcm.g:1141:10: '+'
+            // Objcm.g:1148:8: ( '+' )
+            // Objcm.g:1148:10: '+'
             {
             match('+'); 
 
@@ -1868,8 +1869,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1142:9: ( '-' )
-            // Objcm.g:1142:11: '-'
+            // Objcm.g:1149:9: ( '-' )
+            // Objcm.g:1149:11: '-'
             {
             match('-'); 
 
@@ -1889,8 +1890,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_OR_OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1144:9: ( '||' )
-            // Objcm.g:1144:11: '||'
+            // Objcm.g:1151:9: ( '||' )
+            // Objcm.g:1151:11: '||'
             {
             match("||"); 
 
@@ -1912,8 +1913,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_AND_AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1146:2: ( '&&' )
-            // Objcm.g:1146:4: '&&'
+            // Objcm.g:1153:2: ( '&&' )
+            // Objcm.g:1153:4: '&&'
             {
             match("&&"); 
 
@@ -1935,8 +1936,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_OR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1147:6: ( '|' )
-            // Objcm.g:1147:8: '|'
+            // Objcm.g:1154:6: ( '|' )
+            // Objcm.g:1154:8: '|'
             {
             match('|'); 
 
@@ -1956,8 +1957,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_AND;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1148:7: ( '&' )
-            // Objcm.g:1148:9: '&'
+            // Objcm.g:1155:7: ( '&' )
+            // Objcm.g:1155:9: '&'
             {
             match('&'); 
 
@@ -1977,8 +1978,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_XOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1149:7: ( '^' )
-            // Objcm.g:1149:9: '^'
+            // Objcm.g:1156:7: ( '^' )
+            // Objcm.g:1156:9: '^'
             {
             match('^'); 
 
@@ -1998,8 +1999,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_TILDA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1150:9: ( '~' )
-            // Objcm.g:1150:11: '~'
+            // Objcm.g:1157:9: ( '~' )
+            // Objcm.g:1157:11: '~'
             {
             match('~'); 
 
@@ -2019,8 +2020,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = SIZEOF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1151:8: ( 'sizeof' )
-            // Objcm.g:1151:10: 'sizeof'
+            // Objcm.g:1158:8: ( 'sizeof' )
+            // Objcm.g:1158:10: 'sizeof'
             {
             match("sizeof"); 
 
@@ -2042,8 +2043,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = L_QUESTION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1153:2: ( '?' )
-            // Objcm.g:1153:4: '?'
+            // Objcm.g:1160:2: ( '?' )
+            // Objcm.g:1160:4: '?'
             {
             match('?'); 
 
@@ -2063,8 +2064,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = CONST_PREFIX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1156:3: ( 'const' )
-            // Objcm.g:1156:5: 'const'
+            // Objcm.g:1163:3: ( 'const' )
+            // Objcm.g:1163:5: 'const'
             {
             match("const"); 
 
@@ -2086,8 +2087,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = ENUM_PREFIX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1159:2: ( 'enum' )
-            // Objcm.g:1159:4: 'enum'
+            // Objcm.g:1166:2: ( 'enum' )
+            // Objcm.g:1166:4: 'enum'
             {
             match("enum"); 
 
@@ -2109,8 +2110,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = STRUCT_PREFIX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1162:2: ( 'struct' )
-            // Objcm.g:1162:4: 'struct'
+            // Objcm.g:1169:2: ( 'struct' )
+            // Objcm.g:1169:4: 'struct'
             {
             match("struct"); 
 
@@ -2132,8 +2133,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = STATIC_PREFIX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1165:2: ( 'static' )
-            // Objcm.g:1165:4: 'static'
+            // Objcm.g:1172:2: ( 'static' )
+            // Objcm.g:1172:4: 'static'
             {
             match("static"); 
 
@@ -2155,14 +2156,14 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = SINGLE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1168:2: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
-            // Objcm.g:1168:4: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
+            // Objcm.g:1175:2: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
+            // Objcm.g:1175:4: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
             {
             match("//"); 
 
 
 
-            // Objcm.g:1168:9: (~ ( '\\r' | '\\n' ) )*
+            // Objcm.g:1175:9: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -2196,7 +2197,7 @@ public class ObjcmLexer extends Lexer {
             } while (true);
 
 
-            // Objcm.g:1168:25: ( ( '\\r' )? '\\n' )+
+            // Objcm.g:1175:25: ( ( '\\r' )? '\\n' )+
             int cnt3=0;
             loop3:
             do {
@@ -2210,9 +2211,9 @@ public class ObjcmLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // Objcm.g:1168:26: ( '\\r' )? '\\n'
+            	    // Objcm.g:1175:26: ( '\\r' )? '\\n'
             	    {
-            	    // Objcm.g:1168:26: ( '\\r' )?
+            	    // Objcm.g:1175:26: ( '\\r' )?
             	    int alt2=2;
             	    int LA2_0 = input.LA(1);
 
@@ -2221,7 +2222,7 @@ public class ObjcmLexer extends Lexer {
             	    }
             	    switch (alt2) {
             	        case 1 :
-            	            // Objcm.g:1168:26: '\\r'
+            	            // Objcm.g:1175:26: '\\r'
             	            {
             	            match('\r'); 
 
@@ -2264,14 +2265,14 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = MULTI_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1171:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
-            // Objcm.g:1171:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
+            // Objcm.g:1178:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
+            // Objcm.g:1178:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
             {
             match("/*"); 
 
 
 
-            // Objcm.g:1171:10: ( . )*
+            // Objcm.g:1178:10: ( . )*
             loop4:
             do {
                 int alt4=2;
@@ -2296,7 +2297,7 @@ public class ObjcmLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // Objcm.g:1171:10: .
+            	    // Objcm.g:1178:10: .
             	    {
             	    matchAny(); 
 
@@ -2313,7 +2314,7 @@ public class ObjcmLexer extends Lexer {
 
 
 
-            // Objcm.g:1171:18: ( ( '\\r' )? '\\n' )?
+            // Objcm.g:1178:18: ( ( '\\r' )? '\\n' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -2322,9 +2323,9 @@ public class ObjcmLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // Objcm.g:1171:19: ( '\\r' )? '\\n'
+                    // Objcm.g:1178:19: ( '\\r' )? '\\n'
                     {
-                    // Objcm.g:1171:19: ( '\\r' )?
+                    // Objcm.g:1178:19: ( '\\r' )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -2333,7 +2334,7 @@ public class ObjcmLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // Objcm.g:1171:19: '\\r'
+                            // Objcm.g:1178:19: '\\r'
                             {
                             match('\r'); 
 
@@ -2369,12 +2370,12 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = PREPROCESSOR_DECLARATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1174:2: ( '#' (~ ( '\\\\' | '\\r' | '\\n' ) )* ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )* ( '\\r' | '\\n' )+ )
-            // Objcm.g:1174:5: '#' (~ ( '\\\\' | '\\r' | '\\n' ) )* ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )* ( '\\r' | '\\n' )+
+            // Objcm.g:1181:2: ( '#' (~ ( '\\\\' | '\\r' | '\\n' ) )* ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )* ( '\\r' | '\\n' )+ )
+            // Objcm.g:1181:5: '#' (~ ( '\\\\' | '\\r' | '\\n' ) )* ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )* ( '\\r' | '\\n' )+
             {
             match('#'); 
 
-            // Objcm.g:1174:9: (~ ( '\\\\' | '\\r' | '\\n' ) )*
+            // Objcm.g:1181:9: (~ ( '\\\\' | '\\r' | '\\n' ) )*
             loop7:
             do {
                 int alt7=2;
@@ -2408,7 +2409,7 @@ public class ObjcmLexer extends Lexer {
             } while (true);
 
 
-            // Objcm.g:1174:32: ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )*
+            // Objcm.g:1181:32: ( '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+ )*
             loop10:
             do {
                 int alt10=2;
@@ -2421,11 +2422,11 @@ public class ObjcmLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // Objcm.g:1174:33: '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+
+            	    // Objcm.g:1181:33: '\\\\' ( '\\r' | '\\n' )+ (~ ( '\\\\' | '\\r' | '\\n' ) )+
             	    {
             	    match('\\'); 
 
-            	    // Objcm.g:1174:38: ( '\\r' | '\\n' )+
+            	    // Objcm.g:1181:38: ( '\\r' | '\\n' )+
             	    int cnt8=0;
             	    loop8:
             	    do {
@@ -2464,7 +2465,7 @@ public class ObjcmLexer extends Lexer {
             	    } while (true);
 
 
-            	    // Objcm.g:1174:53: (~ ( '\\\\' | '\\r' | '\\n' ) )+
+            	    // Objcm.g:1181:53: (~ ( '\\\\' | '\\r' | '\\n' ) )+
             	    int cnt9=0;
             	    loop9:
             	    do {
@@ -2512,7 +2513,7 @@ public class ObjcmLexer extends Lexer {
             } while (true);
 
 
-            // Objcm.g:1174:78: ( '\\r' | '\\n' )+
+            // Objcm.g:1181:78: ( '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -2569,14 +2570,14 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1176:9: ( ( DIGIT )+ ( 'u' | 'U' )? | ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )? | ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )? | ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )? | ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+ )
+            // Objcm.g:1183:9: ( ( DIGIT )+ ( 'u' | 'U' )? | ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )? | ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )? | ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )? | ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+ )
             int alt29=5;
             alt29 = dfa29.predict(input);
             switch (alt29) {
                 case 1 :
-                    // Objcm.g:1176:11: ( DIGIT )+ ( 'u' | 'U' )?
+                    // Objcm.g:1183:11: ( DIGIT )+ ( 'u' | 'U' )?
                     {
-                    // Objcm.g:1176:11: ( DIGIT )+
+                    // Objcm.g:1183:11: ( DIGIT )+
                     int cnt12=0;
                     loop12:
                     do {
@@ -2615,7 +2616,7 @@ public class ObjcmLexer extends Lexer {
                     } while (true);
 
 
-                    // Objcm.g:1176:18: ( 'u' | 'U' )?
+                    // Objcm.g:1183:18: ( 'u' | 'U' )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -2645,9 +2646,9 @@ public class ObjcmLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Objcm.g:1177:4: ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )?
+                    // Objcm.g:1184:4: ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )?
                     {
-                    // Objcm.g:1177:4: ( DIGIT )+
+                    // Objcm.g:1184:4: ( DIGIT )+
                     int cnt14=0;
                     loop14:
                     do {
@@ -2689,7 +2690,7 @@ public class ObjcmLexer extends Lexer {
                     mDOT(); 
 
 
-                    // Objcm.g:1177:15: ( DIGIT )*
+                    // Objcm.g:1184:15: ( DIGIT )*
                     loop15:
                     do {
                         int alt15=2;
@@ -2723,7 +2724,7 @@ public class ObjcmLexer extends Lexer {
                     } while (true);
 
 
-                    // Objcm.g:1177:22: ( 'f' | 'F' )?
+                    // Objcm.g:1184:22: ( 'f' | 'F' )?
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -2753,9 +2754,9 @@ public class ObjcmLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // Objcm.g:1178:4: ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )?
+                    // Objcm.g:1185:4: ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )?
                     {
-                    // Objcm.g:1178:4: ( DIGIT )*
+                    // Objcm.g:1185:4: ( DIGIT )*
                     loop17:
                     do {
                         int alt17=2;
@@ -2792,7 +2793,7 @@ public class ObjcmLexer extends Lexer {
                     mDOT(); 
 
 
-                    // Objcm.g:1178:15: ( DIGIT )+
+                    // Objcm.g:1185:15: ( DIGIT )+
                     int cnt18=0;
                     loop18:
                     do {
@@ -2831,7 +2832,7 @@ public class ObjcmLexer extends Lexer {
                     } while (true);
 
 
-                    // Objcm.g:1178:22: ( 'f' | 'F' )?
+                    // Objcm.g:1185:22: ( 'f' | 'F' )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -2861,9 +2862,9 @@ public class ObjcmLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // Objcm.g:1179:4: ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )?
+                    // Objcm.g:1186:4: ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )?
                     {
-                    // Objcm.g:1179:4: ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )?
+                    // Objcm.g:1186:4: ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )?
                     int alt23=2;
                     int LA23_0 = input.LA(1);
 
@@ -2872,13 +2873,13 @@ public class ObjcmLexer extends Lexer {
                     }
                     switch (alt23) {
                         case 1 :
-                            // Objcm.g:1179:5: '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )?
+                            // Objcm.g:1186:5: '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )?
                             {
                             match("0x"); 
 
 
 
-                            // Objcm.g:1179:11: ( DIGIT | 'A' .. 'F' )*
+                            // Objcm.g:1186:11: ( DIGIT | 'A' .. 'F' )*
                             loop20:
                             do {
                                 int alt20=2;
@@ -2912,7 +2913,7 @@ public class ObjcmLexer extends Lexer {
                             } while (true);
 
 
-                            // Objcm.g:1179:28: ( DOT ( DIGIT )+ )?
+                            // Objcm.g:1186:28: ( DOT ( DIGIT )+ )?
                             int alt22=2;
                             int LA22_0 = input.LA(1);
 
@@ -2921,12 +2922,12 @@ public class ObjcmLexer extends Lexer {
                             }
                             switch (alt22) {
                                 case 1 :
-                                    // Objcm.g:1179:29: DOT ( DIGIT )+
+                                    // Objcm.g:1186:29: DOT ( DIGIT )+
                                     {
                                     mDOT(); 
 
 
-                                    // Objcm.g:1179:33: ( DIGIT )+
+                                    // Objcm.g:1186:33: ( DIGIT )+
                                     int cnt21=0;
                                     loop21:
                                     do {
@@ -2980,9 +2981,9 @@ public class ObjcmLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // Objcm.g:1180:4: ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+
+                    // Objcm.g:1187:4: ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+
                     {
-                    // Objcm.g:1180:4: ( DIGIT )+
+                    // Objcm.g:1187:4: ( DIGIT )+
                     int cnt24=0;
                     loop24:
                     do {
@@ -3021,7 +3022,7 @@ public class ObjcmLexer extends Lexer {
                     } while (true);
 
 
-                    // Objcm.g:1180:11: ( DOT ( DIGIT )+ )?
+                    // Objcm.g:1187:11: ( DOT ( DIGIT )+ )?
                     int alt26=2;
                     int LA26_0 = input.LA(1);
 
@@ -3030,12 +3031,12 @@ public class ObjcmLexer extends Lexer {
                     }
                     switch (alt26) {
                         case 1 :
-                            // Objcm.g:1180:12: DOT ( DIGIT )+
+                            // Objcm.g:1187:12: DOT ( DIGIT )+
                             {
                             mDOT(); 
 
 
-                            // Objcm.g:1180:16: ( DIGIT )+
+                            // Objcm.g:1187:16: ( DIGIT )+
                             int cnt25=0;
                             loop25:
                             do {
@@ -3082,7 +3083,7 @@ public class ObjcmLexer extends Lexer {
 
                     match('e'); 
 
-                    // Objcm.g:1180:29: ( '-' | '+' )?
+                    // Objcm.g:1187:29: ( '-' | '+' )?
                     int alt27=2;
                     int LA27_0 = input.LA(1);
 
@@ -3109,7 +3110,7 @@ public class ObjcmLexer extends Lexer {
                     }
 
 
-                    // Objcm.g:1180:40: ( DIGIT )+
+                    // Objcm.g:1187:40: ( DIGIT )+
                     int cnt28=0;
                     loop28:
                     do {
@@ -3166,10 +3167,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1182:4: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-            // Objcm.g:1182:6: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // Objcm.g:1189:4: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+            // Objcm.g:1189:6: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             {
-            // Objcm.g:1182:6: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // Objcm.g:1189:6: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             int cnt30=0;
             loop30:
             do {
@@ -3226,8 +3227,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = SINGLE_OP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1185:2: ( 'continue' SEMICOLON )
-            // Objcm.g:1185:4: 'continue' SEMICOLON
+            // Objcm.g:1192:2: ( 'continue' SEMICOLON )
+            // Objcm.g:1192:4: 'continue' SEMICOLON
             {
             match("continue"); 
 
@@ -3252,8 +3253,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = BREAK_WORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1189:2: ( 'break' )
-            // Objcm.g:1189:4: 'break'
+            // Objcm.g:1196:2: ( 'break' )
+            // Objcm.g:1196:4: 'break'
             {
             match("break"); 
 
@@ -3275,8 +3276,8 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = VOID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1191:6: ( 'void' )
-            // Objcm.g:1191:8: 'void'
+            // Objcm.g:1198:6: ( 'void' )
+            // Objcm.g:1198:8: 'void'
             {
             match("void"); 
 
@@ -3298,13 +3299,13 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1193:4: ( LETTER ( DIGIT | LETTER )* )
-            // Objcm.g:1193:6: LETTER ( DIGIT | LETTER )*
+            // Objcm.g:1200:4: ( LETTER ( DIGIT | LETTER )* )
+            // Objcm.g:1200:6: LETTER ( DIGIT | LETTER )*
             {
             mLETTER(); 
 
 
-            // Objcm.g:1193:13: ( DIGIT | LETTER )*
+            // Objcm.g:1200:13: ( DIGIT | LETTER )*
             loop31:
             do {
                 int alt31=2;
@@ -3354,12 +3355,12 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = STRING_LITERAL2;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1199:2: ( '\"' ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )* '\"' )
-            // Objcm.g:1199:4: '\"' ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )* '\"'
+            // Objcm.g:1206:2: ( '\"' ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )* '\"' )
+            // Objcm.g:1206:4: '\"' ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )* '\"'
             {
             match('\"'); 
 
-            // Objcm.g:1199:8: ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )*
+            // Objcm.g:1206:8: ( WS | ESC |~ ( '\\r' | '\\n' | '\"' ) )*
             loop32:
             do {
                 int alt32=4;
@@ -3397,7 +3398,7 @@ public class ObjcmLexer extends Lexer {
 
                 switch (alt32) {
             	case 1 :
-            	    // Objcm.g:1199:9: WS
+            	    // Objcm.g:1206:9: WS
             	    {
             	    mWS(); 
 
@@ -3405,7 +3406,7 @@ public class ObjcmLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Objcm.g:1199:14: ESC
+            	    // Objcm.g:1206:14: ESC
             	    {
             	    mESC(); 
 
@@ -3413,7 +3414,7 @@ public class ObjcmLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // Objcm.g:1199:20: ~ ( '\\r' | '\\n' | '\"' )
+            	    // Objcm.g:1206:20: ~ ( '\\r' | '\\n' | '\"' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -3452,12 +3453,12 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = STRING_LITERAL3;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1202:2: ( '\\'' ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )* '\\'' )
-            // Objcm.g:1202:4: '\\'' ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )* '\\''
+            // Objcm.g:1209:2: ( '\\'' ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )* '\\'' )
+            // Objcm.g:1209:4: '\\'' ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )* '\\''
             {
             match('\''); 
 
-            // Objcm.g:1202:9: ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )*
+            // Objcm.g:1209:9: ( WS | ESC |~ ( '\\r' | '\\n' | '\\'' ) )*
             loop33:
             do {
                 int alt33=4;
@@ -3485,7 +3486,7 @@ public class ObjcmLexer extends Lexer {
 
                 switch (alt33) {
             	case 1 :
-            	    // Objcm.g:1202:10: WS
+            	    // Objcm.g:1209:10: WS
             	    {
             	    mWS(); 
 
@@ -3493,7 +3494,7 @@ public class ObjcmLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Objcm.g:1202:15: ESC
+            	    // Objcm.g:1209:15: ESC
             	    {
             	    mESC(); 
 
@@ -3501,7 +3502,7 @@ public class ObjcmLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // Objcm.g:1202:21: ~ ( '\\r' | '\\n' | '\\'' )
+            	    // Objcm.g:1209:21: ~ ( '\\r' | '\\n' | '\\'' )
             	    {
             	    if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '\t')||(input.LA(1) >= '\u000B' && input.LA(1) <= '\f')||(input.LA(1) >= '\u000E' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -3540,10 +3541,10 @@ public class ObjcmLexer extends Lexer {
         try {
             int _type = STRING_LITERAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Objcm.g:1204:16: ( ( '`' )? '@' STRING_LITERAL2 )
-            // Objcm.g:1204:18: ( '`' )? '@' STRING_LITERAL2
+            // Objcm.g:1211:16: ( ( '`' )? '@' STRING_LITERAL2 )
+            // Objcm.g:1211:18: ( '`' )? '@' STRING_LITERAL2
             {
-            // Objcm.g:1204:18: ( '`' )?
+            // Objcm.g:1211:18: ( '`' )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -3552,7 +3553,7 @@ public class ObjcmLexer extends Lexer {
             }
             switch (alt34) {
                 case 1 :
-                    // Objcm.g:1204:18: '`'
+                    // Objcm.g:1211:18: '`'
                     {
                     match('`'); 
 
@@ -3581,7 +3582,7 @@ public class ObjcmLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // Objcm.g:1206:17: ( '0' .. '9' )
+            // Objcm.g:1213:17: ( '0' .. '9' )
             // Objcm.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -3607,7 +3608,7 @@ public class ObjcmLexer extends Lexer {
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
-            // Objcm.g:1207:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // Objcm.g:1214:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
             // Objcm.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -3633,8 +3634,8 @@ public class ObjcmLexer extends Lexer {
     // $ANTLR start "ESC"
     public final void mESC() throws RecognitionException {
         try {
-            // Objcm.g:1209:2: ( '\\\\' '\"' )
-            // Objcm.g:1209:4: '\\\\' '\"'
+            // Objcm.g:1216:2: ( '\\\\' '\"' )
+            // Objcm.g:1216:4: '\\\\' '\"'
             {
             match('\\'); 
 
@@ -3653,302 +3654,302 @@ public class ObjcmLexer extends Lexer {
     // $ANTLR end "ESC"
 
     public void mTokens() throws RecognitionException {
-        // Objcm.g:1:8: ( T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | L_FBR | R_FBR | L_BR | R_BR | L_KBR | R_KBR | SEMICOLON | COLON | L_LEFT_EQ | L_RIGHT_EQ | L_LESS_EQ | L_MORE_EQ | L_LEFT | L_RIGHT | L_LESS | L_MORE | DOT | COMMA | L_NEQ | L_NOT | L_EQ_EQ | L_PLUS_EQ | L_MINUS_EQ | L_MULT_EQ | L_DIV_EQ | L_PERC_EQ | L_AND_EQ | L_XOR_EQ | L_OR_EQ | L_EQ | ASTERISK | L_DIV | L_PERC | L_PLUS_PLUS | L_MINUS_MINUS | L_PLUS | L_MINUS | L_OR_OR | L_AND_AND | L_OR | L_AND | L_XOR | L_TILDA | SIZEOF | L_QUESTION | CONST_PREFIX | ENUM_PREFIX | STRUCT_PREFIX | STATIC_PREFIX | SINGLE_COMMENT | MULTI_COMMENT | PREPROCESSOR_DECLARATION | NUMBER | WS | SINGLE_OP | BREAK_WORD | VOID | ID | STRING_LITERAL2 | STRING_LITERAL3 | STRING_LITERAL )
+        // Objcm.g:1:8: ( T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | L_FBR | R_FBR | L_BR | R_BR | L_KBR | R_KBR | SEMICOLON | COLON | L_LEFT_EQ | L_RIGHT_EQ | L_LESS_EQ | L_MORE_EQ | L_LEFT | L_RIGHT | L_LESS | L_MORE | DOT | COMMA | L_NEQ | L_NOT | L_EQ_EQ | L_PLUS_EQ | L_MINUS_EQ | L_MULT_EQ | L_DIV_EQ | L_PERC_EQ | L_AND_EQ | L_XOR_EQ | L_OR_EQ | L_EQ | ASTERISK | L_DIV | L_PERC | L_PLUS_PLUS | L_MINUS_MINUS | L_PLUS | L_MINUS | L_OR_OR | L_AND_AND | L_OR | L_AND | L_XOR | L_TILDA | SIZEOF | L_QUESTION | CONST_PREFIX | ENUM_PREFIX | STRUCT_PREFIX | STATIC_PREFIX | SINGLE_COMMENT | MULTI_COMMENT | PREPROCESSOR_DECLARATION | NUMBER | WS | SINGLE_OP | BREAK_WORD | VOID | ID | STRING_LITERAL2 | STRING_LITERAL3 | STRING_LITERAL )
         int alt35=98;
         alt35 = dfa35.predict(input);
         switch (alt35) {
             case 1 :
-                // Objcm.g:1:10: T__160
-                {
-                mT__160(); 
-
-
-                }
-                break;
-            case 2 :
-                // Objcm.g:1:17: T__161
+                // Objcm.g:1:10: T__161
                 {
                 mT__161(); 
 
 
                 }
                 break;
-            case 3 :
-                // Objcm.g:1:24: T__162
+            case 2 :
+                // Objcm.g:1:17: T__162
                 {
                 mT__162(); 
 
 
                 }
                 break;
-            case 4 :
-                // Objcm.g:1:31: T__163
+            case 3 :
+                // Objcm.g:1:24: T__163
                 {
                 mT__163(); 
 
 
                 }
                 break;
-            case 5 :
-                // Objcm.g:1:38: T__164
+            case 4 :
+                // Objcm.g:1:31: T__164
                 {
                 mT__164(); 
 
 
                 }
                 break;
-            case 6 :
-                // Objcm.g:1:45: T__165
+            case 5 :
+                // Objcm.g:1:38: T__165
                 {
                 mT__165(); 
 
 
                 }
                 break;
-            case 7 :
-                // Objcm.g:1:52: T__166
+            case 6 :
+                // Objcm.g:1:45: T__166
                 {
                 mT__166(); 
 
 
                 }
                 break;
-            case 8 :
-                // Objcm.g:1:59: T__167
+            case 7 :
+                // Objcm.g:1:52: T__167
                 {
                 mT__167(); 
 
 
                 }
                 break;
-            case 9 :
-                // Objcm.g:1:66: T__168
+            case 8 :
+                // Objcm.g:1:59: T__168
                 {
                 mT__168(); 
 
 
                 }
                 break;
-            case 10 :
-                // Objcm.g:1:73: T__169
+            case 9 :
+                // Objcm.g:1:66: T__169
                 {
                 mT__169(); 
 
 
                 }
                 break;
-            case 11 :
-                // Objcm.g:1:80: T__170
+            case 10 :
+                // Objcm.g:1:73: T__170
                 {
                 mT__170(); 
 
 
                 }
                 break;
-            case 12 :
-                // Objcm.g:1:87: T__171
+            case 11 :
+                // Objcm.g:1:80: T__171
                 {
                 mT__171(); 
 
 
                 }
                 break;
-            case 13 :
-                // Objcm.g:1:94: T__172
+            case 12 :
+                // Objcm.g:1:87: T__172
                 {
                 mT__172(); 
 
 
                 }
                 break;
-            case 14 :
-                // Objcm.g:1:101: T__173
+            case 13 :
+                // Objcm.g:1:94: T__173
                 {
                 mT__173(); 
 
 
                 }
                 break;
-            case 15 :
-                // Objcm.g:1:108: T__174
+            case 14 :
+                // Objcm.g:1:101: T__174
                 {
                 mT__174(); 
 
 
                 }
                 break;
-            case 16 :
-                // Objcm.g:1:115: T__175
+            case 15 :
+                // Objcm.g:1:108: T__175
                 {
                 mT__175(); 
 
 
                 }
                 break;
-            case 17 :
-                // Objcm.g:1:122: T__176
+            case 16 :
+                // Objcm.g:1:115: T__176
                 {
                 mT__176(); 
 
 
                 }
                 break;
-            case 18 :
-                // Objcm.g:1:129: T__177
+            case 17 :
+                // Objcm.g:1:122: T__177
                 {
                 mT__177(); 
 
 
                 }
                 break;
-            case 19 :
-                // Objcm.g:1:136: T__178
+            case 18 :
+                // Objcm.g:1:129: T__178
                 {
                 mT__178(); 
 
 
                 }
                 break;
-            case 20 :
-                // Objcm.g:1:143: T__179
+            case 19 :
+                // Objcm.g:1:136: T__179
                 {
                 mT__179(); 
 
 
                 }
                 break;
-            case 21 :
-                // Objcm.g:1:150: T__180
+            case 20 :
+                // Objcm.g:1:143: T__180
                 {
                 mT__180(); 
 
 
                 }
                 break;
-            case 22 :
-                // Objcm.g:1:157: T__181
+            case 21 :
+                // Objcm.g:1:150: T__181
                 {
                 mT__181(); 
 
 
                 }
                 break;
-            case 23 :
-                // Objcm.g:1:164: T__182
+            case 22 :
+                // Objcm.g:1:157: T__182
                 {
                 mT__182(); 
 
 
                 }
                 break;
-            case 24 :
-                // Objcm.g:1:171: T__183
+            case 23 :
+                // Objcm.g:1:164: T__183
                 {
                 mT__183(); 
 
 
                 }
                 break;
-            case 25 :
-                // Objcm.g:1:178: T__184
+            case 24 :
+                // Objcm.g:1:171: T__184
                 {
                 mT__184(); 
 
 
                 }
                 break;
-            case 26 :
-                // Objcm.g:1:185: T__185
+            case 25 :
+                // Objcm.g:1:178: T__185
                 {
                 mT__185(); 
 
 
                 }
                 break;
-            case 27 :
-                // Objcm.g:1:192: T__186
+            case 26 :
+                // Objcm.g:1:185: T__186
                 {
                 mT__186(); 
 
 
                 }
                 break;
-            case 28 :
-                // Objcm.g:1:199: T__187
+            case 27 :
+                // Objcm.g:1:192: T__187
                 {
                 mT__187(); 
 
 
                 }
                 break;
-            case 29 :
-                // Objcm.g:1:206: T__188
+            case 28 :
+                // Objcm.g:1:199: T__188
                 {
                 mT__188(); 
 
 
                 }
                 break;
-            case 30 :
-                // Objcm.g:1:213: T__189
+            case 29 :
+                // Objcm.g:1:206: T__189
                 {
                 mT__189(); 
 
 
                 }
                 break;
-            case 31 :
-                // Objcm.g:1:220: T__190
+            case 30 :
+                // Objcm.g:1:213: T__190
                 {
                 mT__190(); 
 
 
                 }
                 break;
-            case 32 :
-                // Objcm.g:1:227: T__191
+            case 31 :
+                // Objcm.g:1:220: T__191
                 {
                 mT__191(); 
 
 
                 }
                 break;
-            case 33 :
-                // Objcm.g:1:234: T__192
+            case 32 :
+                // Objcm.g:1:227: T__192
                 {
                 mT__192(); 
 
 
                 }
                 break;
-            case 34 :
-                // Objcm.g:1:241: T__193
+            case 33 :
+                // Objcm.g:1:234: T__193
                 {
                 mT__193(); 
 
 
                 }
                 break;
-            case 35 :
-                // Objcm.g:1:248: T__194
+            case 34 :
+                // Objcm.g:1:241: T__194
                 {
                 mT__194(); 
 
 
                 }
                 break;
-            case 36 :
-                // Objcm.g:1:255: T__195
+            case 35 :
+                // Objcm.g:1:248: T__195
                 {
                 mT__195(); 
 
 
                 }
                 break;
-            case 37 :
-                // Objcm.g:1:262: T__196
+            case 36 :
+                // Objcm.g:1:255: T__196
                 {
                 mT__196(); 
+
+
+                }
+                break;
+            case 37 :
+                // Objcm.g:1:262: T__197
+                {
+                mT__197(); 
 
 
                 }
@@ -4505,7 +4506,7 @@ public class ObjcmLexer extends Lexer {
             this.transition = DFA29_transition;
         }
         public String getDescription() {
-            return "1176:1: NUMBER : ( ( DIGIT )+ ( 'u' | 'U' )? | ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )? | ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )? | ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )? | ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+ );";
+            return "1183:1: NUMBER : ( ( DIGIT )+ ( 'u' | 'U' )? | ( DIGIT )+ DOT ( DIGIT )* ( 'f' | 'F' )? | ( DIGIT )* DOT ( DIGIT )+ ( 'f' | 'F' )? | ( '0x' ( DIGIT | 'A' .. 'F' )* ( DOT ( DIGIT )+ )? )? | ( DIGIT )+ ( DOT ( DIGIT )+ )? 'e' ( '-' | '+' )? ( DIGIT )+ );";
         }
     }
     static final String DFA35_eotS =
@@ -4880,7 +4881,7 @@ public class ObjcmLexer extends Lexer {
             this.transition = DFA35_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | L_FBR | R_FBR | L_BR | R_BR | L_KBR | R_KBR | SEMICOLON | COLON | L_LEFT_EQ | L_RIGHT_EQ | L_LESS_EQ | L_MORE_EQ | L_LEFT | L_RIGHT | L_LESS | L_MORE | DOT | COMMA | L_NEQ | L_NOT | L_EQ_EQ | L_PLUS_EQ | L_MINUS_EQ | L_MULT_EQ | L_DIV_EQ | L_PERC_EQ | L_AND_EQ | L_XOR_EQ | L_OR_EQ | L_EQ | ASTERISK | L_DIV | L_PERC | L_PLUS_PLUS | L_MINUS_MINUS | L_PLUS | L_MINUS | L_OR_OR | L_AND_AND | L_OR | L_AND | L_XOR | L_TILDA | SIZEOF | L_QUESTION | CONST_PREFIX | ENUM_PREFIX | STRUCT_PREFIX | STATIC_PREFIX | SINGLE_COMMENT | MULTI_COMMENT | PREPROCESSOR_DECLARATION | NUMBER | WS | SINGLE_OP | BREAK_WORD | VOID | ID | STRING_LITERAL2 | STRING_LITERAL3 | STRING_LITERAL );";
+            return "1:1: Tokens : ( T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | L_FBR | R_FBR | L_BR | R_BR | L_KBR | R_KBR | SEMICOLON | COLON | L_LEFT_EQ | L_RIGHT_EQ | L_LESS_EQ | L_MORE_EQ | L_LEFT | L_RIGHT | L_LESS | L_MORE | DOT | COMMA | L_NEQ | L_NOT | L_EQ_EQ | L_PLUS_EQ | L_MINUS_EQ | L_MULT_EQ | L_DIV_EQ | L_PERC_EQ | L_AND_EQ | L_XOR_EQ | L_OR_EQ | L_EQ | ASTERISK | L_DIV | L_PERC | L_PLUS_PLUS | L_MINUS_MINUS | L_PLUS | L_MINUS | L_OR_OR | L_AND_AND | L_OR | L_AND | L_XOR | L_TILDA | SIZEOF | L_QUESTION | CONST_PREFIX | ENUM_PREFIX | STRUCT_PREFIX | STATIC_PREFIX | SINGLE_COMMENT | MULTI_COMMENT | PREPROCESSOR_DECLARATION | NUMBER | WS | SINGLE_OP | BREAK_WORD | VOID | ID | STRING_LITERAL2 | STRING_LITERAL3 | STRING_LITERAL );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
