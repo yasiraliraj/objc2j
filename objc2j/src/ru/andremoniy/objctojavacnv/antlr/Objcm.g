@@ -98,6 +98,7 @@ tokens {
 	ARRAY_INIT;
 	CONST_EXPR;
 	GOTO;
+	STRING;
 }
 
 @header {
@@ -803,6 +804,12 @@ const_expr_wrapper
 
 const_expr	
 	: 	NUMBER | STRING_LITERAL | STRING_LITERAL2 | STRING_LITERAL3 | null_stmt;
+	
+//string_wrapper
+//	:	string_internal -> ^(STRING string_internal);	
+	
+//string_internal
+//	:	STRING_LITERAL | STRING_LITERAL2 | STRING_LITERAL3;	
 	
 string_literal3
 	:	STRING_LITERAL3;	

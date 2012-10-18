@@ -142,6 +142,7 @@ public class ConverterM {
         }
 
         Utils.addOriginalImports(input, projectCtx, addSb);
+        Utils.addStaticFromHeaderImports(projectCtx, sb, className1);
 
         StringBuilder catSb = new StringBuilder();
 
@@ -318,6 +319,7 @@ public class ConverterM {
     private static void m_process_static(StringBuilder sb, CommonTree tree, ClassContext classCtx) {
         boolean isField = false;
         String methodName = "";
+        String methodType = "";
         boolean isStatic = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -325,7 +327,10 @@ public class ConverterM {
                 case ObjcmLexer.TYPE:
                     sb.append(" public ");
                     if (isStatic) sb.append("static ");
-                    readChildren(sb, childTree, classCtx, null);
+                    StringBuilder typeSb = new StringBuilder();
+                    readChildren(typeSb, childTree, classCtx, null);
+                    sb.append(typeSb);
+                    methodType = typeSb.toString().trim();
                     break;
                 case ObjcmLexer.NAME:
                     StringBuilder nameSb = new StringBuilder();
@@ -348,7 +353,7 @@ public class ConverterM {
                     m_process_params(sb, childTree, classCtx);
                     CommonTree blockTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.BLOCK);
                     if (blockTree != null) {
-                        m_process_block(sb, blockTree, classCtx.newMethod(methodName, isStatic, null).newBlock());
+                        m_process_block(sb, blockTree, classCtx.newMethod(methodName, methodType, isStatic, null).newBlock());
                     } else {
                         m_process_params(sb, childTree, classCtx);
                     }
@@ -500,7 +505,8 @@ public class ConverterM {
             }
         }
 
-        classCtx.newMethod(methodName, staticFlag, params);
+        String methodType = transformType(type, classCtx);
+        classCtx.newMethod(methodName, methodType, staticFlag, params);
 
         if (methodName.equals("init") && params.isEmpty()) classCtx.containsInit = true;
         if (methodName.equals("autoRelease") && params.isEmpty()) classCtx.containsAutoRelease = true;
@@ -513,7 +519,7 @@ public class ConverterM {
             type = classCtx.className; // всегда имя класса в качестве типа возвращаемого значения...
         }
 
-        sb.append("public ").append(modifier_sb).append(" ").append(transformType(type, classCtx)).append(" ").append(classCtx.categoryName != null ? "_" + classCtx.categoryName + "_" : "").append(methodName).append("(");
+        sb.append("public ").append(modifier_sb).append(" ").append(methodType).append(" ").append(classCtx.categoryName != null ? "_" + classCtx.categoryName + "_" : "").append(methodName).append("(");
 
         // обратный переход,т.к. static мог бысть установлен не только из static_flag
         if (modifier_sb.equals("static")) {
@@ -627,9 +633,18 @@ public class ConverterM {
                 case ObjcmLexer.RETURN_STMT:
                     blockCtx.isBreak = true;
                     sb.append("return ");
+                    CommonTree returnStmt = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR);
+                    if (returnStmt != null) {
+                        sb.append("(").append(blockCtx.methodCtx().methodType).append(")(");
+                        process_classical_expr(sb, returnStmt, blockCtx.newExpr(), false, false);
+                        sb.append(")");
+                    }
+                    sb.append(";\n");
+/*
                     StringBuilder rsb = new StringBuilder();
                     m_process_block(rsb, childTree, blockCtx);
                     sb.append(rsb);
+*/
                     break;
                 case ObjcmLexer.THROW_STMT:
                     sb.append("throw new RuntimeException(\"empty\");\n");
@@ -1273,6 +1288,11 @@ public class ConverterM {
                     process_generic(sb, childTree, exprCtx);
                     sb.append(">");
                     break;
+//                case ObjcmLexer.STRING:
+//                    sb.append("NSString(");
+//                    readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+//                    sb.append(")");
+//                    break;
                 default:
                     StringBuilder defSb = new StringBuilder();
                     readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
@@ -1592,7 +1612,8 @@ public class ConverterM {
                 sb.append(object);
             } else {
                 if (methodName.equals("isKindOfClass") || methodName.equals("isSubclassOfClass")) {
-                    sb.append(object).append(" instanceof ").append(message.replace(".class", ""));
+//                    sb.append(object).append(" instanceof ").append(message.replace(".class", ""));
+                    sb.append("_instanceof(").append(object).append(", ").append(message).append(")");
                 } else if (object.startsWith("NS") /*|| exprCtx.blockCtx.methodCtx().classCtx.projectCtx.imports.containsKey(object) || methodName.equals("respondsToSelector")*/) {
                     sb.append(object).append(".").append(methodName).append("(").append(message).append(")");
                 } else {
@@ -1727,7 +1748,7 @@ public class ConverterM {
         StringBuilder sb = new StringBuilder();
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
-            classContext.newMethod(null, false, null);
+            classContext.newMethod(null, null, false, null);
             sb.append(transformObject(childTree.toString(), classContext, null));
         }
         return sb.toString();

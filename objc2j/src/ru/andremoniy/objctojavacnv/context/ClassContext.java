@@ -37,8 +37,8 @@ public class ClassContext extends AbstractContext {
         this.methodsInterfaces = methodsInterfaces;
     }
 
-    public MethodContext newMethod(String methodName, boolean staticFlag, LinkedHashMap<String, String> params) {
-        methodCtx = new MethodContext(methodName, staticFlag, this);
+    public MethodContext newMethod(String methodName, String methodType, boolean staticFlag, LinkedHashMap<String, String> params) {
+        methodCtx = new MethodContext(methodName, methodType, staticFlag, this);
         methodCtx.variables.putAll(variables);
 
         if (params != null) {
