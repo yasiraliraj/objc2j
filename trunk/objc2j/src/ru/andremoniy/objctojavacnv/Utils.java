@@ -59,6 +59,13 @@ public class Utils {
                 exprCtx.transformClassNames &&
                 classCtx.projectCtx.imports.containsKey(obj.trim())) {
             obj = obj + ".class";
+        } else {
+            if (classCtx != null) {
+                String _import = classCtx.projectCtx.staticFields.get(obj);
+                if (_import != null && !classCtx.addImports.contains(_import)) {
+                    classCtx.addImports.add(_import);
+                }
+            }
         }
         return obj;
     }
@@ -79,7 +86,10 @@ public class Utils {
         if (type.endsWith("*")) type = type.substring(0, type.length() - 1);
 
         switch (type) {
+            case "NSUInteger":
+            case "NSInteger":
             case "signed":
+            case "int":
             case "unsigned":
                 return "Integer";
             case "id":
@@ -88,19 +98,14 @@ public class Utils {
                 return "String";
             case "BOOL":
                 return "Boolean";
-            case "NSUInteger":
-            case "NSInteger":
-                return "Integer";
             case "IBAction":
                 return "void";
             case "CGFloat":
-                return "Double";
+            case "doule":
             case "float":
                 return "Double";
             case "long":
                 return "Long";
-            case "int":
-                return "Integer";
             case "short":
                 return "Short";
         }

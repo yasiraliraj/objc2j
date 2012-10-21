@@ -95,6 +95,7 @@ public class ConverterM {
         projectCtx.newClass(className1, categoryName);
 
         String packageName = mfile.getParent().substring(mfile.getParent().lastIndexOf("src") + 4).replace(File.separator, ".");
+        projectCtx.classCtx.packageName = packageName;
 
         StringBuilder objCcode = new StringBuilder();
         try (FileInputStream fis = new FileInputStream(mfile);
@@ -286,6 +287,7 @@ public class ConverterM {
     private static void m_process_type_start(StringBuilder sb, CommonTree tree, ClassContext classCtx) {
         StringBuilder lsb = new StringBuilder();
         boolean isStatic = false;
+        String name = "";
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
@@ -294,9 +296,15 @@ public class ConverterM {
                     readChildren(lsb, childTree, null, null); // there is no method, then null
                     break;
                 case ObjcmLexer.NAME:
-                    readChildren(lsb, childTree, null, null); // there is no method, then null
+                    StringBuilder namesb = new StringBuilder();
+                    readChildren(namesb, childTree, null, null); // there is no method, then null
+                    lsb.append(namesb);
+                    name = namesb.toString().trim();
                     break;
                 case ObjcmLexer.FIELD:
+
+                    classCtx.projectCtx.staticFields.put(name, classCtx.className);
+
                     lsb.append("=");
                     lsb.append(m_process_field_value((CommonTree) childTree.getFirstChildWithType(ObjcmLexer.VALUE), classCtx));
                     break;
@@ -319,6 +327,7 @@ public class ConverterM {
     private static void m_process_static(StringBuilder sb, CommonTree tree, ClassContext classCtx) {
         boolean isField = false;
         String methodName = "";
+        String fieldName = "";
         String methodType = "";
         boolean isStatic = false;
         for (Object child : tree.getChildren()) {
@@ -338,6 +347,8 @@ public class ConverterM {
                     sb.append(nameSb);
                     if (tree.getFirstChildWithType(ObjcmLexer.METHOD) != null) {
                         methodName = nameSb.toString().trim();
+                    } else {
+                        fieldName = nameSb.toString().trim();
                     }
                     break;
                 case ObjcmLexer.FIELD:
@@ -347,6 +358,9 @@ public class ConverterM {
                         sb.append("=");
                         sb.append(m_process_field_value(value, classCtx));
                     }
+
+                    classCtx.projectCtx.staticFields.put(fieldName, classCtx.className);
+
                     break;
                 // Это статическое поле или метод
                 case ObjcmLexer.METHOD:
@@ -1718,7 +1732,7 @@ public class ConverterM {
         sb.append(";\n");
     }
 
-    private static void m_process_field(StringBuilder sb, CommonTree tree, ClassContext cc) {
+    private static void m_process_field(StringBuilder sb, CommonTree tree, ClassContext classCtx) {
         String type = "";
         String name = "";
         String value = "";
@@ -1729,15 +1743,17 @@ public class ConverterM {
                     type = childTree.getChild(0).toString();
                     break;
                 case ObjcmLexer.NAME:
-                    name = childTree.getChild(0).toString();
+                    name = childTree.getChild(0).toString().trim();
                     break;
                 case ObjcmLexer.VALUE:
-                    value = m_process_field_value(childTree, cc);
+                    value = m_process_field_value(childTree, classCtx);
                     break;
             }
         }
 
-        sb.append("public static ").append(transformType(type, cc)).append(" ").append(name);
+        classCtx.projectCtx.staticFields.put(name,  classCtx.className);
+
+        sb.append("public static ").append(transformType(type, classCtx)).append(" ").append(name);
         if (value.length() > 0) {
             sb.append(" = ").append(value);
         }
