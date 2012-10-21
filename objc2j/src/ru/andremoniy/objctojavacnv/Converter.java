@@ -17,7 +17,7 @@ import java.util.*;
 public class Converter {
 
     public static final Logger log = LoggerFactory.getLogger(Converter.class);
-    
+
     public static final boolean NOT_IFS = false;
     public static final boolean ONLY_IFS = true;
 
@@ -31,7 +31,6 @@ public class Converter {
                         boolean wasIfs = preprocessor.preprocessFile(projectContext, f.getAbsolutePath(), processedImports, onlyIfs, rootPath);
                         if (wasIfs) return true;
                     } catch (Exception e) {
-                        // TODO: use Logger !!!
                         log.info("Failed to preprocess file: " + f.getAbsolutePath());
                         log.error(e.getMessage(), e);
                     }
@@ -59,7 +58,9 @@ public class Converter {
         projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_6_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_6_AND_LATER", "")));
 
         convertInternal(projectContext, path, 0); // конвертируем сначала header файлы
-        convertInternal(projectContext, path, 1); // конвертируем m-файлы
+        for (int i = 0; i < 2; i++) {
+            convertInternal(projectContext, path, 1); // конвертируем m-файлы
+        }
     }
 
     private void convertInternal(ProjectContext projectContext, String path, int whatConvert) {

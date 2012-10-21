@@ -21,6 +21,9 @@ public class ClassContext extends AbstractContext {
     // current class category name
     public String categoryName;
 
+    // current class package name
+    public String packageName;
+
     // локально добавленные категории
     public Set<String> localCategories = new HashSet<>();
     public String categoryList;
