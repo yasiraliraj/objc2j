@@ -373,10 +373,12 @@ public class ConverterH {
     }
 
     private static void finish_enum(StringBuilder sb, ProjectContext projectContext, String name, List<String[]> enumElements) {
-        sb.append("\tpublic ").append("enum ").append(name).append(" {\n");
+
+        sb.append("\tpublic enum ").append(name).append(" {\n");
         for (int i = 0, enumElementsSize = enumElements.size(); i < enumElementsSize; i++) {
             String element = enumElements.get(i)[0];
             sb.append("\t\t").append(element);
+            projectContext.staticFields.put(element, projectContext.classCtx.className + "." + name);
             if (i < enumElementsSize - 1) {
                 sb.append(",");
             }

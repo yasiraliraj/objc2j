@@ -122,8 +122,20 @@ public class Utils {
     public static void addAdditionalImports(StringBuilder sb, ProjectContext projectCtx) {
         Set<String> nsImports = new HashSet<>();
         for (String addImport : projectCtx.classCtx.addImports) {
-            String classPath = projectCtx.imports.get(addImport);
+            String _addImport = addImport;
+            if (addImport.contains(".")) {
+                _addImport = addImport.substring(0, addImport.indexOf("."));
+            }
+            String classPath = projectCtx.imports.get(_addImport);
+            if (classPath == null && _addImport.startsWith("I")) {
+                _addImport = _addImport.substring(1);
+                classPath = projectCtx.imports.get(_addImport);
+            }
             if (classPath != null) {
+                // reverse replace classname to appropriate
+                if (!_addImport.equals(addImport)) {
+                    classPath = classPath.substring(0, classPath.lastIndexOf(".") + 1) + addImport;
+                }
                 if (!classPath.contains("+")) {
                     sb.append("import ").append(classPath).append(";\n");
                     sb.append("import static ").append(classPath).append(".*;\n");
