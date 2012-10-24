@@ -334,14 +334,14 @@ public class ConverterH {
     }
 
     private static void h_process_typedef(StringBuilder sb, CommonTree tree, ProjectContext projectCtx) {
-        String name = "";
+        Set<String> names = new HashSet<>();
         String oldName = "";
         int typedef_type = UNDEFINED_TYPEDEF;
         List<String[]> enumElements = new ArrayList<>();
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
                 case ObjchParser.TYPEDEF_NAME:
-                    name = ((CommonTree) child).getChild(0).toString();
+                    names.add(((CommonTree) child).getChild(0).getText().trim());
                     break;
                 case ObjchParser.TYPEDEF_ELEMENT:
                     enumElements.add(new String[]{((CommonTree) child).getChild(0).toString()});
@@ -355,12 +355,24 @@ public class ConverterH {
                     typedef_type = ENUM_TYPEDEF;
                     break;
                 case ObjchParser.STRUCT:
+                    CommonTree typedefNameTree = (CommonTree) ((CommonTree) child).getFirstChildWithType(ObjchParser.TYPEDEF_NAME);
+                    if (typedefNameTree != null) {
+                        names.add(typedefNameTree.getChild(0).getText().trim());
+                    }
+                    typedefNameTree = (CommonTree) ((CommonTree) child).getFirstChildWithType(ObjchParser.NAME);
+                    if (typedefNameTree != null) {
+                        names.add(typedefNameTree.getChild(0).getText().trim());
+                    }
                     enumElements = h_parse_struct((CommonTree) child, projectCtx);
                     typedef_type = STRUCT_TYPEDEF;
                     break;
             }
         }
         sb.append("\n");
+        names.remove(null);
+        names.remove("");
+        if (names.isEmpty() && !oldName.isEmpty()) names.add(oldName);
+        String name = !names.isEmpty() ? names.iterator().next() : "";
         if (typedef_type == ENUM_TYPEDEF) {
             finish_enum(sb, projectCtx, name, enumElements);
         } else if (typedef_type == RENAME_TYPEDEF) {
