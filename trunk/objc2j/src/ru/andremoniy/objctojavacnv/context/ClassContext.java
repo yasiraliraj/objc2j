@@ -60,4 +60,12 @@ public class ClassContext extends AbstractContext {
     public ClassContext copyNoStatic() {
         return null;  //To change body of created methods use File | Settings | File Templates.
     }
+
+    public String className() {
+        if (className.contains("+")) {
+            return className.substring(0, className.indexOf("+"));
+        } else {
+            return className;
+        }
+    }
 }

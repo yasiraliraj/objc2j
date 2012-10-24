@@ -48,6 +48,8 @@ public class ConverterH {
 
         String packageName = hfile.getParent().substring(hfile.getParent().lastIndexOf("src") + 4).replace(File.separator, ".");
 
+        projectContext.imports.put(projectContext.classCtx.className(), packageName + "." + projectContext.classCtx.className());
+
         StringBuilder objCcode = new StringBuilder();
         try (FileInputStream fis = new FileInputStream(hfile);
              InputStreamReader isr = new InputStreamReader(fis, Charset.forName("utf-8"));
@@ -378,7 +380,7 @@ public class ConverterH {
         for (int i = 0, enumElementsSize = enumElements.size(); i < enumElementsSize; i++) {
             String element = enumElements.get(i)[0];
             sb.append("\t\t").append(element);
-            projectContext.staticFields.put(element, projectContext.classCtx.className + "." + name);
+            projectContext.staticFields.put(element, projectContext.classCtx.className() + "." + name);
             if (i < enumElementsSize - 1) {
                 sb.append(",");
             }

@@ -1294,7 +1294,7 @@ public class ConverterM {
                     break;
                 case ObjcmLexer.FUNCTION:
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
-                    exprCtx.transformClassNames = true;
+                    exprCtx2.transformClassNames = true;
                     process_classical_expr(sb, childTree, exprCtx2, false, false);
                     break;
                 case ObjcmLexer.GENERIC:
@@ -1521,6 +1521,17 @@ public class ConverterM {
                 case ObjcmLexer.METHOD_CALL:
                     wasMethodCall = m_process_method_call(sb, childTree, exprCtx);
                     break;
+                case ObjcmLexer.FIELD_ACCESS:
+                    StringBuilder fasb = new StringBuilder();
+                    m_process_block(fasb, childTree, exprCtx.blockCtx.newBlock());
+                    sb.append(".");
+                    sb.append(fasb);
+                    break;
+                case ObjcmLexer.FUNCTION:
+                    ExpressionContext exprCtx2 = exprCtx.newExpr();
+                    exprCtx2.transformClassNames = true;
+                    process_classical_expr(sb, childTree, exprCtx2, false, false);
+                    break;
                 default:
                     if (testBrackets(children, i, childrenSize, child)) break;
                     sb.append(transformObject(child.toString(), exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
@@ -1551,6 +1562,11 @@ public class ConverterM {
                     break;
                 case ObjcmLexer.PROTOCOL:
                     m_process_selector(sb, childTree, exprCtx, "protocol");
+                    break;
+                case ObjcmLexer.FUNCTION:
+                    ExpressionContext exprCtx2 = exprCtx.newExpr();
+                    exprCtx2.transformClassNames = true;
+                    process_classical_expr(sb, childTree, exprCtx2, false, false);
                     break;
                 default:
                     if (i == 0 && child.toString().equals("[")) continue;
@@ -1751,7 +1767,7 @@ public class ConverterM {
             }
         }
 
-        classCtx.projectCtx.staticFields.put(name,  classCtx.className);
+        classCtx.projectCtx.staticFields.put(name, classCtx.className);
 
         sb.append("public static ").append(transformType(type, classCtx)).append(" ").append(name);
         if (value.length() > 0) {
