@@ -477,14 +477,14 @@ static_start_wrapper
 	:	static_start -> ^(STATIC_START static_start);
 	
 static_start
-	:	STATIC_PREFIX CONST_PREFIX? static_type_wrapper full_expr2
+	:	STATIC_PREFIX CONST_PREFIX? static_type_wrapper? full_expr2
 	;
 	
 static_type_wrapper
 	:	static_type -> ^(STATIC_TYPE static_type);	
 	
 static_type
-	:	(object_name ASTERISK*)?;	
+	:	object_name ASTERISK*;	
 	
 id_part_end
 	:	id_part_end_internal+
@@ -531,7 +531,10 @@ method_message3
 	:	classical_expr_wrp -> ^(MESSAGE classical_expr_wrp);
 		
 type_convertion
-	:	L_BR 'const'? 'unsigned'? type_internal generic? ASTERISK* R_BR  -> ^(TYPE_CONVERTION type_internal generic?);
+	:	type_convertion_internal -> ^(TYPE_CONVERTION type_convertion_internal);
+		
+type_convertion_internal
+	:	L_BR 'const'? 'unsigned'? type_internal generic? ASTERISK* R_BR -> ^(type_internal generic?);
 
 method_name
 	:	ID -> ^(METHOD_NAME ID);
@@ -947,10 +950,10 @@ type_internal1
 	|	ID
 	;	
 	
-generic:	L_LESS generic_internal L_MORE -> ^(GENERIC generic_internal);	
+generic:	 L_LESS generic_internal L_MORE -> ^(GENERIC generic_internal);	
 
 generic_internal
-	:	 ID  ASTERISK* (COMMA  ID  ASTERISK*)*;
+	:	 ID ASTERISK* (COMMA  ID  ASTERISK*)*;
 
 method_params2
 	:	L_BR  method_param_wrapper2  (COMMA  method_param_wrapper2)* R_BR
