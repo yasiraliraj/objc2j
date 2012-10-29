@@ -20,6 +20,7 @@ public class ExpressionContext {
     public boolean transformClassNames;
     public boolean isArrayDeclaration;
     public List<String> arraySizes = new ArrayList<>();
+    public boolean checkForFunctionName;
 
     public ExpressionContext setNeedSaveVariable() {
         needSaveVariable = true;
@@ -28,6 +29,11 @@ public class ExpressionContext {
 
     public ExpressionContext(BlockContext blockCtx) {
         this.blockCtx = blockCtx;
+    }
+
+    public ExpressionContext checkForFunctionName() {
+        checkForFunctionName = true;
+        return this;
     }
 
     public ExpressionContext newExpr() {
@@ -39,6 +45,7 @@ public class ExpressionContext {
         newExpr.isArrayDeclaration = this.isArrayDeclaration;
         newExpr.isVariableDeclaration = this.isVariableDeclaration;
         newExpr.variableDeclarationType = this.variableDeclarationType;
+        newExpr.checkForFunctionName = checkForFunctionName;
         return newExpr;
     }
 

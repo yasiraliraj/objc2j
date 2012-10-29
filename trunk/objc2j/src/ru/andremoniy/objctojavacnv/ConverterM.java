@@ -511,7 +511,7 @@ public class ConverterM {
                     type = childTree.getChild(0).toString();
                     break;
                 case ObjcmLexer.NAME:
-                    methodName = childTree.getChild(0).toString();
+                    methodName = childTree.getChild(0).getText().trim();
                     break;
                 case ObjcmLexer.PARAM:
                     m_process_param(params, childTree, classCtx);
@@ -521,6 +521,9 @@ public class ConverterM {
 
         String methodType = transformType(type, classCtx);
         classCtx.newMethod(methodName, methodType, staticFlag, params);
+        for (String paramName : params.keySet()) {
+            classCtx.methodCtx.variables.put(paramName, params.get(paramName));
+        }
 
         if (methodName.equals("init") && params.isEmpty()) classCtx.containsInit = true;
         if (methodName.equals("autoRelease") && params.isEmpty()) classCtx.containsAutoRelease = true;
@@ -1295,7 +1298,7 @@ public class ConverterM {
                 case ObjcmLexer.FUNCTION:
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
                     exprCtx2.transformClassNames = true;
-                    process_classical_expr(sb, childTree, exprCtx2, false, false);
+                    process_classical_expr(sb, childTree, exprCtx2.checkForFunctionName(), false, false);
                     break;
                 case ObjcmLexer.GENERIC:
                     sb.append("<");
@@ -1364,6 +1367,8 @@ public class ConverterM {
     }
 
     private static void m_process_selector(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, String selector) {
+        exprCtx.checkForFunctionName = false;
+
         CommonTree selectorValueTree = (CommonTree) tree.getFirstChildWithType(ObjcmLexer.SELECTOR_VALUE);
         StringBuilder selectorValueSb = new StringBuilder();
         readChildren(selectorValueSb, selectorValueTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
@@ -1530,7 +1535,7 @@ public class ConverterM {
                 case ObjcmLexer.FUNCTION:
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
                     exprCtx2.transformClassNames = true;
-                    process_classical_expr(sb, childTree, exprCtx2, false, false);
+                    process_classical_expr(sb, childTree, exprCtx2.checkForFunctionName(), false, false);
                     break;
                 default:
                     if (testBrackets(children, i, childrenSize, child)) break;
@@ -1566,7 +1571,7 @@ public class ConverterM {
                 case ObjcmLexer.FUNCTION:
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
                     exprCtx2.transformClassNames = true;
-                    process_classical_expr(sb, childTree, exprCtx2, false, false);
+                    process_classical_expr(sb, childTree, exprCtx2.checkForFunctionName(), false, false);
                     break;
                 default:
                     if (i == 0 && child.toString().equals("[")) continue;
@@ -1616,7 +1621,7 @@ public class ConverterM {
                     break;
                 case ObjcmLexer.MSG_LIST:
                     StringBuilder lsb = new StringBuilder();
-                    m_process_msg_list(lsb, childTree, exprCtx.newExpr().setTransformClassNames());
+                    m_process_msg_list(lsb, childTree, exprCtx.newExpr().setTransformClassNames().checkForFunctionName());
                     message = lsb.toString();
                     break;
             }

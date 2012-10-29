@@ -149,6 +149,9 @@ public class ConverterH {
                     case ObjchParser.TYPEDEF:
                         h_process_typedef(sb2, childTree, projectContext);
                         break;
+                    case ObjchParser.PROTOCOL:
+                        h_process_protocol(sb2, childTree, projectContext);
+                        break;
                     case ObjchParser.INTERFACE:
                         h_process_interface2(sb2, childTree, projectContext);
                         break;
@@ -163,7 +166,9 @@ public class ConverterH {
                             finish_enum(sb2, projectContext, enumName, enumElements);
                         } else {
                             for (String[] enumElement : enumElements) {
-                                sb2.append("public static Integer ").append(enumElement[0]).append(" = ").append(enumElement[1]).append(";\n");
+                                String element = enumElement[0].trim();
+                                sb2.append("public static Integer ").append(element).append(" = ").append(enumElement[1]).append(";\n");
+                                projectContext.staticFields.put(element, projectContext.classCtx.className());
                             }
                         }
                         break;
@@ -279,6 +284,29 @@ public class ConverterH {
         }
 
         sb.append("public abstract class I").append(interfaceName)./*append("_h").*/append(superclassName.length() > 0 ? (" extends " + superclassName) : "").append(" {\n");
+
+    }
+
+    private static void h_process_protocol(StringBuilder sb, CommonTree tree, ProjectContext projectContext) {
+        String interfaceName = "";
+        StringBuilder bodySb = new StringBuilder();
+        for (Object child : tree.getChildren()) {
+            switch (((CommonTree) child).token.getType()) {
+                case ObjchParser.NAME:
+                    interfaceName = ((CommonTree) child).getChild(0).getText().trim();
+                    break;
+                case ObjchParser.FIELDS:
+                    h_process_fields(bodySb, (CommonTree) child, projectContext);
+                    break;
+                case ObjchParser.METHOD:
+                    h_process_method(bodySb, (CommonTree) child, projectContext);
+                    break;
+            }
+        }
+
+        sb.append("\tpublic abstract class ").append(interfaceName).append(" {\n");
+        sb.append(bodySb);
+        sb.append("\t\n}\n");
 
     }
 

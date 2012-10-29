@@ -99,6 +99,7 @@ tokens {
 	CONST_EXPR;
 	GOTO;
 	STRING;
+	TYPE_RENAME;
 }
 
 @header {
@@ -131,6 +132,8 @@ operator
 	|	type_start_wrapper 
 	| 	interface_declaration_wrapper 
 	|	typedef_struct_declaration 
+	|	typedef_declaration_wrapper
+	|	typedef
 	;
 	
 /*------------------------------------------------------------------
@@ -173,8 +176,14 @@ synthesize
 	:	'@synthesize'  ID  SEMICOLON
 	;	
 	
-typedef	:	'typedef'  (typedef_declaration_wrapper | typedef_struct_declaration_wrapper) 
+typedef	:	'typedef'  (typedef_declaration_wrapper | typedef_struct_declaration_wrapper | type_rename_wrapper) 
 	;
+	
+type_rename_wrapper
+	:	type_rename -> ^(TYPE_RENAME type_rename);	
+	
+type_rename
+	:	ID ID SEMICOLON;	
 		
 static_section_wrapper
 	:	static_section -> ^(STATIC static_section);		
@@ -988,6 +997,7 @@ typedef_struct_declaration_wrapper
 	:	typedef_struct_declaration -> ^(TYPEDEF_STRUCT typedef_struct_declaration)
 	; 
 
+
 typedef_struct_declaration
 	: STRUCT_PREFIX name?
 	L_FBR 
@@ -1018,7 +1028,7 @@ enum_declaration
 	:	typedef_declaration -> ^(ENUM typedef_declaration);	
 	
 typedef_declaration
-	:  ENUM_PREFIX L_FBR  typedef_declaration_element_wrapper  (COMMA  typedef_declaration_element_wrapper)* R_FBR  name? SEMICOLON;
+	:  ENUM_PREFIX name? L_FBR  typedef_declaration_element_wrapper  (COMMA  typedef_declaration_element_wrapper)* R_FBR  name? SEMICOLON;
 	
 typedef_declaration_element_wrapper
 	:	typedef_declaration_element -> ^(TYPEDEF_ELEMENT typedef_declaration_element)
@@ -1026,6 +1036,7 @@ typedef_declaration_element_wrapper
 
 typedef_declaration_element
 	: ID  (L_EQ  (ID| NUMBER))?
+	| NUMBER L_EQ NUMBER
 	;
 
 /*------------------------------------------------------------------
