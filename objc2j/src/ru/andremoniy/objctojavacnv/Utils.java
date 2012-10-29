@@ -67,6 +67,38 @@ public class Utils {
                 }
             }
         }
+        if (exprCtx != null && exprCtx.checkForFunctionName) {
+            boolean isVariable = false;
+            for (String varName : exprCtx.blockCtx.variables.keySet()) {
+                if (varName.equals(obj)) {
+                    isVariable = true;
+                    break;
+                }
+            }
+            if (!isVariable) {
+                for (String varName : exprCtx.blockCtx.methodCtx().variables.keySet()) {
+                    if (varName.equals(obj)) {
+                        isVariable = true;
+                        break;
+                    }
+                }
+                if (!isVariable) {
+                    for (String varName : exprCtx.blockCtx.methodCtx().classCtx.variables.keySet()) {
+                        if (varName.equals(obj)) {
+                            isVariable = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (!isVariable) {
+                for (String methodName : exprCtx.blockCtx.methodCtx().classCtx.methodsInterfaces.keySet()) {
+                    if (methodName.equals(obj)) {
+                        return "\"" + methodName + "\"";
+                    }
+                }
+            }
+        }
         return obj;
     }
 

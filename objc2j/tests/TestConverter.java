@@ -16,7 +16,8 @@ public class TestConverter {
 
         //new Preprocessor().preprocessFile(new ArrayList<Macros>(), "C:\\Work\\igor\\dia\\diagrammix\\src\\ru\\diagrammix\\drawing\\helpers\\DKDrawKitMacros.h");
 
-        new Converter().convert("C:\\Work\\igor\\dia\\diagrammix\\src\\");
+//        new Converter().convert("C:\\Work\\igor\\dia\\diagrammix\\src\\");
+        new Converter().convert("C:\\Work\\igor\\dia\\diagrammix2\\");
 
 //        ConverterH.convert_h("C:\\Work\\igor\\dia\\diagrammix\\src\\ru\\diagrammix\\dataModel\\diagrammer\\adornment\\DiaConnectorSkinBuilder.h");
 //        ConverterM.convert_m("C:\\Work\\igor\\dia\\diagrammix\\src\\ru\\diagrammix\\dataModel\\diagrammer\\import\\DiaImportFromGraffle.m");

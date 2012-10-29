@@ -44,9 +44,11 @@ public class ClassContext extends AbstractContext {
         methodCtx = new MethodContext(methodName, methodType, staticFlag, this);
         methodCtx.variables.putAll(variables);
 
-        if (params != null) {
+        if (methodName != null) {
             MethodInterface mi = new MethodInterface();
-            mi.types.addAll(params.values());
+            if (params != null) {
+                mi.types.addAll(params.values());
+            }
             methodsInterfaces.put(methodName, mi);
         }
 

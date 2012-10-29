@@ -181,6 +181,7 @@ typedef_declaration_element_wrapper
 	
 typedef_declaration_element
 	: ID ('=' element_value)?
+	| element_value ('=' element_value)?
 	;
 	
 element_value
