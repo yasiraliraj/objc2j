@@ -33,6 +33,8 @@ public class ConverterH {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static StringBuilder convert_h(String fileName, ProjectContext projectContext, StringBuilder originalImportsSb, StringBuilder importsSb) throws IOException, RecognitionException {
+        projectContext.h_counter++;
+
         File phfile = new File(fileName + "p");
         File hfile = phfile.exists() ? phfile : new File(fileName);
 

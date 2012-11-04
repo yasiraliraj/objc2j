@@ -33,6 +33,7 @@ public class ProjectContext extends AbstractContext {
     public Map<String, String> staticFields = new HashMap<>();
 
     public int m_counter;
+    public int h_counter;
 
     public ClassContext newClass(String className, String categoryName) {
         Map<String, MethodInterface> classMethodsInterfaces = new HashMap<>();

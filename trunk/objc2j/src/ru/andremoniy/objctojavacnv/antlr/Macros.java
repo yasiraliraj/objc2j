@@ -84,7 +84,6 @@ public class Macros {
                 case PreprocessorParser.T_REPLACE:
                     processReplace(macros, childTree);
                     break;
-
             }
         }
 
@@ -102,7 +101,7 @@ public class Macros {
                     replace.append("//#%#%");
                     break;
                 default:
-                    replace.append(child.toString());
+                    replace.append(child.toString()).append(" ");
                     break;
             }
         }
@@ -129,6 +128,11 @@ public class Macros {
             switch (childTree.token.getType()) {
                 case PreprocessorParser.T_PARAM:
                     macros.params.add(childTree.getChild(0).toString());
+                    break;
+                default:
+                    if (childTree.getChildCount() == 0 && childTree.getText().equals("...")) {
+                        macros.params.add("...");
+                    }
                     break;
             }
         }

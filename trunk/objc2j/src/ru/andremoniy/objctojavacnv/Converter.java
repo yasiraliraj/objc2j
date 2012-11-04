@@ -79,6 +79,7 @@ public class Converter {
                         log.info(f.getAbsolutePath() + " converting...");
                         ConverterH.convert_h(f.getAbsolutePath(), projectContext, null, null);
                         log.info(f.getAbsolutePath() + " converted...");
+                        log.info(projectContext.h_counter+" headers converted...");
                     } catch (Exception e) {
                         log.info("Error converting " + f.getAbsolutePath());
                         log.error(e.getMessage(), e);

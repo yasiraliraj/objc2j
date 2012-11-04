@@ -36,6 +36,7 @@ tokens {
 	STRUCT;
 	VALUE;
 	INIT_DECLARATION;
+	ARCHIVE_DECLARATION;
 	UNION;
 }
 
@@ -96,7 +97,10 @@ property_prefix_param
 	:	'retain'
 	|	'readwrite'
 	|	'readonly'
-	|	'nonatomic';	
+	|	'nonatomic'
+	|	'assign'
+	|	'copy'
+	;	
 
 interface_declaration_wrapper
 	:	interface_declaration -> ^(INTERFACE interface_declaration);
@@ -111,7 +115,7 @@ typedef_declaration
 	: 'typedef' typedef_internal (typedef_name | func_pointer)? ';'?;
 	
 func_pointer
-	:	'(' '*'? ID ')' '(' (ID (',' ID)*)? ')'
+	:	'(' '*'? ID ')' '(' (ID ('*' ID)? (',' ((ID ('*' ID)?) | '...') )*)? ')'
 	;
 	
 typedef_internal
@@ -244,7 +248,8 @@ interface_body
 	;
 	
 interface_body_item
-	:	group_modifier_wrapper? simple_fields_declaration
+	:	group_modifier_wrapper simple_fields_declaration?
+	|	simple_fields_declaration
 	|	union_declaration_wrapper ';'
 	;
 
@@ -266,25 +271,35 @@ superclass_name
 	:	ID generic? -> ^(SUPERCLASS_NAME ID generic?);
 	
 simple_fields_declaration
-	:	fields_declarations -> ^(FIELDS fields_declarations);	
-
-fields_declarations
-	:	field_declaration+ -> ^(FIELD field_declaration)+;
+	:	field_declaration_wrapper+ -> ^(FIELDS field_declaration_wrapper+);
 	
 field_declaration
-	:	type_declaration field_name (classical_method_params | (',' field_name)*) ';';
+	:	'__weak'? type_declaration ((field_name (classical_method_params | (',' field_name)*)) | func_pointer) ';';
 	
 classical_method_params
-	:	'(' classical_param (',' classical_param)* ')'
+	:	'(' (classical_param (',' classical_param)*)? ')' attribute?
 	;	
 	
+attribute
+	:	'__attribute__' '(' attribute_internal ')';	
+	
+attribute_internal
+	:	attribute_internal1;
+	
+attribute_internal1
+	:	'(' 'format' '(' (_format_item (',' _format_item)*)? ')' ')';		
+
+_format_item
+	:	ID
+	|	NUMBER;	
 classical_param
-	:	type_declaration ID ('[' NUMBER? ']')*;		
+	:	type_declaration ID ('[' NUMBER? ']')*
+	|	'...';		
 	
 type_declaration
 	:	'const'? 'enum'? 'typedef'? 'struct'? (('unsigned' type_dec?) | type_dec) 'const'? generic? '*'? -> ^(TYPE type_dec generic? '*'?);	
 
-type_dec:	type_dec_internal ('[' ']')*
+type_dec:	type_dec_internal ('[' ']')* 
 	;
 	
 type_dec_internal
@@ -316,29 +331,55 @@ method_modifier
 	:	'+' | '-';
 	
 method_declaration_variants
-	:	init_declaration_wrapper 
-	| 	method_declaration_common;	
+	:
+	//	init_declaration_wrapper 
+//	|	archive_declaration_wrapper
+	 	method_declaration_common;	
 
 method_declaration_common
-	:	'(' type_declaration ')' method_name method_params? ';';	
+	:	('(' type_declaration ')')? method_name method_params? ';';	
 
+/*
 init_declaration_wrapper
 	:	init_declaration -> ^(INIT_DECLARATION init_declaration);
 	
+archive_declaration_wrapper
+	:	archive_declaration -> ^(ARCHIVE_DECLARATION archive_declaration);		
+	
 init_declaration
-	:	init_name method_params? ';'
-	;
+	:	init_name method_params? ';';
+	
+archive_declaration
+	:	archive_name method_params? ';';	
 
 init_name
 	:	init_variants -> ^(METHOD_NAME init_variants);
 	
+archive_name
+	:	archive_variants -> ^(METHOD_NAME archive_variants);
+
 init_variants
-	:	'initWithType'
+	:	'init'
+	|	'initWithType'
+	|	'initWithContentsOfFile'
+	|	'initWithIconFamilyHandle'
+	|	'initWithIconOfFile'
+	|	'initWithSystemIcon'
+	|	'initWithThumbnailsOfImage'	
+	|	'initWithScrap'
 	;	
+
+archive_variants
+	:	'archiveToPropertyListForRootObject'
+	|	'unarchiveFromPropertyListFormat'
+	|	'archiveFromPropertyListFormat'
+	;	
+	*/
 	
 method_name
 	:	ID -> ^(METHOD_NAME ID)
-	|	init_variants -> ^(METHOD_NAME ID);
+//	|	init_variants -> ^(METHOD_NAME init_variants)
+	|	property_prefix_param -> ^(METHOD_NAME property_prefix_param); // uuuuur!
 	
 method_params
 	:	method_param+ -> ^(METHOD_PARAMS method_param+);
@@ -347,7 +388,8 @@ method_param
 	:	prefix? ':' ('(' type_declaration ')')? param_name -> ^(METHOD_PARAM prefix? ':' '(' type_declaration ')' param_name);	
 	
 param_name
-	:	ID -> ^(PARAM_NAME ID);
+	:	ID -> ^(PARAM_NAME ID)
+	|	'format' -> ^(PARAM_NAME 'format');
 	
 prefix	:	ID -> ^(PARAM_PREFIX ID);
 

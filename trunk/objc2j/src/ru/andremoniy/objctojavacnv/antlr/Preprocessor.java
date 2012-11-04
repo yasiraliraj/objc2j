@@ -175,51 +175,164 @@ public class Preprocessor {
         for (Object child : expressionTree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
-                case PreprocessorParser.T_EX_AND:
-                    expression = expression && processExAnd(childTree, macrosList);
+                case PreprocessorParser.T_EX_OR:
+                    expression = processExOr(childTree, macrosList);
                     break;
             }
         }
         return expression;
     }
 
-    private boolean processExAnd(CommonTree expressionTree, Map<String, List<Macros>> macrosMap) {
+    private boolean processExOr(CommonTree tree, Map<String, List<Macros>> macrosList) {
         boolean expression = false;
-        for (Object child : expressionTree.getChildren()) {
+        for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
-                case PreprocessorParser.T_NAME:
-                    List<Macros> macrosList = macrosMap.get(childTree.getChild(0).getText());
-                    Macros macros = null;
-                    if (macrosList != null) {
-                        for (Macros m : macrosList) {
-                            if (m.getParams().isEmpty()) {
-                                macros = m;
-                                break;
-                            }
-                        }
-                    }
-                    expression = expression || macros != null && Integer.parseInt(macros.getReplace().trim()) != 0;
+                case PreprocessorParser.T_EX_AND:
+                    expression = processExAnd(tree, macrosList);
                     break;
                 case PreprocessorParser.T_EXPRESSION:
-                    expression = expression || processExpr(childTree, macrosMap);
+                    expression = expression && processExpr(tree, macrosList);
                     break;
-                default:
-                    if (childTree.token.getText().equals("!")) {
-                        expression = !expression;
+
+            }
+        }
+
+        return expression;
+    }
+
+    private boolean processExAnd(CommonTree tree, Map<String, List<Macros>> macrosList) {
+        boolean expression = false;
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.token.getType()) {
+                case PreprocessorParser.T_EX_NOT:
+                    expression = processExNot(tree, macrosList);
+                    break;
+            }
+        }
+
+        return expression;
+    }
+
+    private boolean processExNot(CommonTree tree, Map<String, List<Macros>> macrosList) {
+        boolean expression = false;
+        boolean wasExc = tree.getFirstChildWithType(PreprocessorLexer.EXC) != null;
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.token.getType()) {
+                case PreprocessorParser.T_EX_COND:
+                    expression = !wasExc && processExCond(tree, macrosList);
+                    break;
+            }
+        }
+
+        return expression;
+    }
+
+    private boolean processExCond(CommonTree tree, Map<String, List<Macros>> macrosList) {
+        int expression = 0;
+        String op = null;
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.token.getType()) {
+                case PreprocessorParser.T_EX_SNGL:
+                    int expression1 = processExSngl(tree, macrosList);
+                    if (op == null) {
+                        expression = expression1;
                     } else {
-                        try {
-                            Integer intValue = Integer.parseInt(childTree.token.getText());
-                            if (intValue != 0) {
-                                expression = expression || true;
-                            }
-                        } catch (Exception ignore) {
+                        switch (op) {
+                            case "==":
+                                return expression == expression1;
+                            case ">=":
+                                return expression >= expression1;
+                            case ">":
+                                return expression > expression1;
+                            case "<":
+                                return expression < expression1;
+                            case "<=":
+                                return expression <= expression1;
                         }
                     }
+                    break;
+                case PreprocessorParser.T_COND_OP:
+                    op = childTree.getChild(0).getText();
+                    break;
+            }
+        }
+
+        return expression != 0;
+    }
+
+    private Integer processExSngl(CommonTree tree, Map<String, List<Macros>> macrosList) {
+        Integer expression = 0;
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.token.getType()) {
+                case PreprocessorParser.T_EX_MATH:
+                    expression = processExMath(childTree, macrosList);
+                    break;
+                case PreprocessorParser.T_EX_DEF:
+                    expression = processExDef(childTree, macrosList);
                     break;
             }
         }
         return expression;
+    }
+
+    private Integer processExDef(CommonTree tree, Map<String, List<Macros>> macrosList) {
+        return processExpr(tree, macrosList) ? 1 : 0;
+    }
+
+    private Integer processExMath(CommonTree tree, Map<String, List<Macros>> macrosList) {
+        Integer expression = 0;
+        boolean doMinus = false;
+        String lastOp = "";
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.token.getType()) {
+                case PreprocessorParser.T_NAME:
+                    List<Macros> macros = macrosList.get(childTree.getChild(0).getText());
+                    int nextExpression1 = (doMinus ? -1 : 1) * ((macros != null && macros.size() > 0 && !macros.get(0).getReplace().isEmpty()) ? Integer.parseInt(macros.get(0).getReplace()) : 0);
+                    expression = mathOp(expression, nextExpression1, lastOp);
+                    break;
+                case PreprocessorParser.T_EX_OP:
+                    lastOp = childTree.getChild(0).getText();
+                    break;
+                default:
+                    if (((CommonTree) child).getText().equals("-")) {
+                        doMinus = true;
+                    } else {
+                        int nextExpression2 = (doMinus ? -1 : 1) * Integer.parseInt(((CommonTree) child).getText());
+                        expression = mathOp(expression, nextExpression2, lastOp);
+                    }
+            }
+        }
+        return expression;
+    }
+
+    private Integer mathOp(Integer e1, Integer e2, String op) {
+        switch (op) {
+            case "":
+                return e2;
+            case "+":
+                return e1 + e2;
+            case "*":
+                return e1 * e2;
+            case "-":
+                return e1 - e2;
+        }
+        return e2;
+    }
+
+    private Integer getNumber(Map<String, List<Macros>> macrosList, CommonTree tree) {
+        String key = tree.getText();
+        List<Macros> list = macrosList.get(key);
+        String numberStr = key;
+        if (list != null && list.size() > 0) {
+            numberStr = list.get(0).getReplace();
+        }
+        return Integer.parseInt(numberStr);
     }
 
     private String commonIfInternal(String input, CommonTree tree, boolean positive) {
@@ -271,18 +384,8 @@ public class Preprocessor {
             if (childTree.getChildCount() > 0) {
                 block.append(getBlock(childTree));
             } else {
-                block.append(((CommonTree) child).getText());
+                block.append(((CommonTree) child).getText()).append(" ");
             }
-/*
-            switch (childTree.token.getType()) {
-                case PreprocessorParser.T_BLOCK:
-                    block.append(getBlock(childTree));
-                    break;
-                default:
-                    block.append(((CommonTree) child).getText());
-                    break;
-            }
-*/
         }
         return block;
     }
@@ -311,7 +414,7 @@ public class Preprocessor {
     }
 
     private Map<String, List<Macros>> loadFromFile(List<String> processedImports, CommonTree childTree) throws IOException, RecognitionException {
-        String hpath = getBlock(childTree).toString();
+        String hpath = getBlock(childTree).toString().replaceAll("\\s+", "");
 
         if (processedImports.contains(hpath)) return new HashMap<>();
         processedImports.add(hpath);
@@ -369,11 +472,16 @@ public class Preprocessor {
             if (!token.isDelimeter) {
                 List<Macros> macrosList = ctx.macrosMap.get(token.value);
                 if (macrosList != null) {
-                    for (Macros macros : macrosList) {
+//                    for (Macros macros : macrosList) {
+                    for (int i1 = macrosList.size() - 1; i1 >= 0; i1--) {
+                        Macros macros = macrosList.get(i1);
                         if (macros.getParams().isEmpty()) {
-                            newInput.append(macros.getReplace());
-                            continue tokens_loop;
-                        } else {
+                            if (!(macrosList.size() > 1 && macros.getReplace().trim().isEmpty())) {
+                                newInput.append(macros.getReplace());
+                                continue tokens_loop;
+                            }
+                        }
+                        {
                             StringToken prevToken = token;
                             token = st.nextToken();
                             if (token.toString().equals("(")) {
@@ -400,7 +508,7 @@ public class Preprocessor {
 
                                     do {
                                         paramToken = st.nextToken();
-
+                                        if (paramToken == null) return input;
                                         // все скобки закрыты?
                                         if (bracketsCounter == 0) {
                                             // не последний параметр? значит ожидаем запятую
@@ -416,13 +524,17 @@ public class Preprocessor {
                                     } while (true);
 
                                     if (paramString.toString().trim().equals(param)) continue;
-                                    String paramRegexp = "[^A-Za-z_]+(" + param + ")[^A-Za-z\\d_]+";
-                                    Pattern paramPattern = Pattern.compile(paramRegexp);
-                                    Matcher paramMatcher = paramPattern.matcher(replacement);
-                                    while (paramMatcher.find()) {
-                                        int paramIndex = replacement.indexOf(param, paramMatcher.start());
-                                        if (paramIndex >= 0) {
-                                            replacement = replacement.substring(0, paramIndex) + paramString.toString().trim() + replacement.substring(paramIndex + param.length());
+                                    if (param.equals("...")) {
+                                        // do nothing, replacing all in brackets...
+                                    } else {
+                                        String paramRegexp = "[^A-Za-z_]+(" + param + ")[^A-Za-z\\d_]+";
+                                        Pattern paramPattern = Pattern.compile(paramRegexp);
+                                        Matcher paramMatcher = paramPattern.matcher(replacement);
+                                        while (paramMatcher.find()) {
+                                            int paramIndex = replacement.indexOf(param, paramMatcher.start());
+                                            if (paramIndex >= 0) {
+                                                replacement = replacement.substring(0, paramIndex) + paramString.toString().trim() + replacement.substring(paramIndex + param.length());
+                                            }
                                         }
                                     }
                                 }
