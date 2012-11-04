@@ -809,7 +809,11 @@ a_selector_value_wrapper
 	:	a_selector_value -> ^(SELECTOR_VALUE a_selector_value);
 	
 a_selector_value
-	:	 ID  (COLON  (ID  COLON)*)?;
+	:	 sel_id  (COLON  (sel_id  COLON)*)?;
+	
+sel_id	:	ID
+	|	property
+	;	
 
 a_encode:	'@encode' L_BR ~(R_BR)+ R_BR;
 
@@ -877,7 +881,7 @@ interface_declaration_wrapper
 	
 interface_declaration
 	:	'@interface'  name  interface_category? (super_class)?
-		(annotated_block | interface_methods | interface_fields)+
+		(annotated_block | interface_methods | interface_fields)*
 		
 		'@end';
 		
@@ -979,6 +983,7 @@ type_internal
 type_internal1
 	:	VOID
 	|	ID
+	|	'unsigned'
 	;	
 	
 generic:	 L_LESS generic_internal L_MORE -> ^(GENERIC generic_internal);	
