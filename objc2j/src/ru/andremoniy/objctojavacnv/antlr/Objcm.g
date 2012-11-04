@@ -151,7 +151,7 @@ implementation_wrapper
  	
 implementation
 	:	'@implementation'  name  category? super_class?
-		implementation_body+
+		implementation_body*
 		'@end'  SEMICOLON?
 	; 	
 
@@ -173,7 +173,7 @@ directives
 	;	
 	
 synthesize
-	:	'@synthesize'  ID  SEMICOLON
+	:	'@synthesize'  ID (L_EQ ID)? SEMICOLON
 	;	
 	
 typedef	:	'typedef'  (typedef_declaration_wrapper | typedef_struct_declaration_wrapper | type_rename_wrapper) 
@@ -301,6 +301,7 @@ block_internal
 	|	known_type_started SEMICOLON
 	|	SEMICOLON	
 	|	goto_wrapper
+	|	'extern'
 	;
 	
 goto_wrapper
@@ -546,7 +547,8 @@ type_convertion_internal
 	:	L_BR 'const'? 'unsigned'? type_internal generic? ASTERISK* R_BR -> ^(type_internal generic?);
 
 method_name
-	:	ID -> ^(METHOD_NAME ID);
+	:	ID -> ^(METHOD_NAME ID)
+	|	property -> ^(METHOD_NAME property);
 
 method_call_message_list_wrapper
 	:	method_call_message_list -> ^(MSG_LIST method_call_message_list);
@@ -875,7 +877,7 @@ interface_declaration_wrapper
 	
 interface_declaration
 	:	'@interface'  name  interface_category? (super_class)?
-		(annotated_block | interface_methods)+
+		(annotated_block | interface_methods | interface_fields)+
 		
 		'@end';
 		
@@ -914,10 +916,30 @@ super_class
 	:	COLON  ID  -> ^(SUPER_CLASS ID);		
 
 interface_category
-	:	L_BR  ID  R_BR -> ^(CATEGORY L_BR  ID  R_BR);				
+	:	L_BR  ID?  R_BR -> ^(CATEGORY L_BR  ID?  R_BR);				
+	
+interface_fields
+	:	interface_field_wrapper+;
+	
+interface_field_wrapper
+	:	interface_field -> ^(FIELD interface_field);	
+	
+interface_field
+	:	property_prefix? interface_field_declaration;	
+	
+interface_field_declaration
+	:	field_type name SEMICOLON;	
+	
+property_prefix
+	:	'@property' L_BR property (COMMA property)* R_BR;	
+	
+property:	'readwrite'
+	|	'assign'
+	|	'copy'
+	;	
 	
 interface_methods
-	:	(enum_declaration | interface_method)+;
+	:	(enum_declaration | interface_method)+;		
 	
 interface_method
 	:	method_header -> ^(METHOD method_header);	
@@ -926,7 +948,7 @@ method_header
 	:	method_header_body SEMICOLON?;
 
 method_header_body
-	:	method_modifier_wrapper  method_type  name  method_params? va_args_wrapper?;
+	:	method_modifier_wrapper  method_type?  name  method_params? va_args_wrapper?;
 
 va_args_wrapper
 	:	va_args -> ^(VA_ARGS va_args);
@@ -1056,7 +1078,7 @@ type_start_wrapper
 	:	type_start -> ^(M_TYPE_START type_start);
 
 type_start
-	:	CONST_PREFIX? field_type name type_end;
+	:	CONST_PREFIX? field_type name (L_KBR R_KBR)? type_end;
 	
 type_end:	field_declaration4 -> ^(FIELD field_declaration4)
 	|	method_declaration4 -> ^(STATIC_METHOD method_declaration4)
@@ -1088,13 +1110,13 @@ field_type_internal
  * COMMON RULES
  *------------------------------------------------------------------*/
 	
-name
-	:	name_internal -> ^(NAME name_internal)
+name	:	name_internal -> ^(NAME name_internal)
 	;	
 	
 name_internal
 	:	ID 
 	| 	'in'	
+	| 	property
 	;
 
 value_set

@@ -305,8 +305,11 @@ public class ConverterM {
 
                     classCtx.projectCtx.staticFields.put(name, classCtx.className);
 
-                    lsb.append("=");
-                    lsb.append(m_process_field_value((CommonTree) childTree.getFirstChildWithType(ObjcmLexer.VALUE), classCtx));
+                    CommonTree valueTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.VALUE);
+                    if (valueTree != null) {
+                        lsb.append("=");
+                        lsb.append(m_process_field_value(valueTree, classCtx));
+                    }
                     break;
                 default:
                     if (child.toString().equals("static")) isStatic = true;
