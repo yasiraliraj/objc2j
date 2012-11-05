@@ -38,6 +38,7 @@ tokens {
 	INIT_DECLARATION;
 	ARCHIVE_DECLARATION;
 	UNION;
+	T_STATIC;
 }
 
 @header {
@@ -77,6 +78,9 @@ declarations
 	|	property_prefix? optional_prefix? field_declaration_wrapper
 	|	ns_inline ~'{'+ ~'}'+ '}' // do not parse such inline methods yet
 	;
+	
+static_prefix
+	:	'static' -> ^(T_STATIC 'static');	
 	
 method_declaration_wrapper
 	:	method_declaration -> ^(METHOD method_declaration);
@@ -274,7 +278,7 @@ simple_fields_declaration
 	:	field_declaration_wrapper+ -> ^(FIELDS field_declaration_wrapper+);
 	
 field_declaration
-	:	'__weak'? type_declaration ((field_name (classical_method_params | (',' field_name)*)) | func_pointer) ';';
+	:	'__weak'? static_prefix? 'inline'? type_declaration ((field_name (classical_method_params | (',' field_name)*)) | func_pointer) ';';
 	
 classical_method_params
 	:	'(' (classical_param (',' classical_param)*)? ')' attribute?
