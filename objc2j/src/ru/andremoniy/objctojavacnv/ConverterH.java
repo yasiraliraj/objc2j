@@ -42,15 +42,12 @@ public class ConverterH {
         final String categoryName = categoryClass ? hfile.getName().substring(hfile.getName().indexOf("+") + 1, hfile.getName().lastIndexOf(".")) : null;
 
         // new file with java code
-        String className = "I" + hfile.getName().substring(0, hfile.getName().lastIndexOf("."))/* + "_h"*/;
+        String pureClassName = hfile.getName().substring(0, hfile.getName().lastIndexOf("."));
+        String className = "I" + pureClassName;
         File hjfile = new File(hfile.getParent() + File.separator + className + ".java");
         hjfile.createNewFile();
 
-        projectContext.newClass(className, categoryName);
-
         String packageName = hfile.getParent().substring(hfile.getParent().lastIndexOf("src") + 4).replace(File.separator, ".");
-
-        projectContext.imports.put(projectContext.classCtx.className(), packageName + "." + projectContext.classCtx.className());
 
         StringBuilder objCcode = new StringBuilder();
         try (FileInputStream fis = new FileInputStream(hfile);
@@ -84,8 +81,6 @@ public class ConverterH {
 
         if (!categoryClass) {
             sb.append("package ").append(packageName).append(";\n\n");
-
-            // todo: process imports sections
             sb.append("import ru.andremoniy.jcocoa.*;\n");
             sb.append(originalImportsSb);
         }
@@ -93,19 +88,42 @@ public class ConverterH {
         if (result.getTree() == null) return sb; // не ошибка, просто в файле одни комментарии
         CommonTree tree = (CommonTree) result.getTree();
 
-        StringBuilder sb2 = new StringBuilder();
+        // 1. StringBuilder for main class:
+        StringBuilder mainSB = new StringBuilder();
 
-        CommonTree interfaceTree = tree.getType() == ObjchParser.INTERFACE ? tree : (CommonTree) tree.getFirstChildWithType(ObjchParser.INTERFACE);
+        // 2. StringBuilder for addinitianl not-inner interfaces
+        StringBuilder addSb = new StringBuilder();
 
-        if (!categoryClass) {
-            if (interfaceTree == null) {
-                sb2.append("public abstract class ").append(className).append(" {\n");
-            } else {
-                h_process_interface1(sb2, interfaceTree, projectContext);
+        // find interface with name, which is equals to file name:
+        CommonTree mainInterface = null;
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            if (childTree.getType() == ObjchLexer.INTERFACE) {
+                CommonTree nameTree = (CommonTree) childTree.getFirstChildWithType(ObjchLexer.INTERFACE_NAME);
+                String interfaceName = nameTree.getChild(0).getText();
+                if (interfaceName.equals(pureClassName)) {
+                    mainInterface = childTree;
+                } else {
+                    projectContext.newClass("I" + interfaceName, null);
+                    projectContext.imports.put(interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
+                    projectContext.imports.put("I" + interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
+                    process_interface(projectContext, false, childTree, addSb, true, true, sb);
+                }
             }
         }
 
-        process_header_body(sb2, tree, projectContext);
+        projectContext.newClass(className, categoryName);
+        projectContext.imports.put(pureClassName, packageName + "." + projectContext.classCtx.className());
+        projectContext.imports.put(projectContext.classCtx.className(), packageName + "." + projectContext.classCtx.className());
+
+        if (mainInterface != null) {
+            process_interface(projectContext, categoryClass, mainInterface, mainSB, false, false, sb);
+        } else {
+            mainSB.append("public abstract class ").append(className).append(" {\n");
+        }
+        process_interface_body(mainSB, tree, projectContext, true); // with skipping interfaces
+
+        mainSB.append(addSb);
 
         if (importsSb == null) {
             importsSb = new StringBuilder();
@@ -113,21 +131,21 @@ public class ConverterH {
         Utils.addAdditionalImports(importsSb, projectContext);
 
         if (!categoryClass) {
-            Set<String> categoriesList = projectContext.categories.get(hfile.getName().substring(0, hfile.getName().indexOf(".")));
+            Set<String> categoriesList = projectContext.categories.get(pureClassName);
             if (categoriesList != null) {
                 for (String category : categoriesList) {
-                    sb2.append("\n\n");
-                    sb2.append("\t// from category: ").append(category).append("\n\n");
-                    sb2.append(convert_h(category, projectContext, originalImportsSb, importsSb));
+                    mainSB.append("\n\n");
+                    mainSB.append("\t// from category: ").append(category).append("\n\n");
+                    mainSB.append(convert_h(category, projectContext, originalImportsSb, importsSb));
                 }
             }
 
-            sb2.append("}\n"); // end of class
+            mainSB.append("}\n"); // end of class
 
             sb.append(importsSb);
         }
 
-        sb.append(sb2);
+        sb.append(mainSB);
 
         if (!categoryClass) {
             try (FileOutputStream fos = new FileOutputStream(hjfile);
@@ -141,40 +159,54 @@ public class ConverterH {
 
     }
 
-    private static void process_header_body(StringBuilder sb2, CommonTree tree, ProjectContext projectContext) {
-        if (tree.getType() == ObjchParser.INTERFACE) {
-            h_process_interface2(sb2, tree, projectContext);
-        } else {
-            for (Object child : tree.getChildren()) {
-                CommonTree childTree = (CommonTree) child;
-                switch (childTree.token.getType()) {
-                    case ObjchParser.TYPEDEF:
-                        h_process_typedef(sb2, childTree, projectContext);
-                        break;
-                    case ObjchParser.PROTOCOL:
-                        h_process_protocol(sb2, childTree, projectContext);
-                        break;
-                    case ObjchParser.INTERFACE:
+    private static void process_interface(ProjectContext projectContext, boolean categoryClass, CommonTree interfaceTree, StringBuilder sb, boolean finish, boolean innerClass, StringBuilder importSb) {
+        h_process_interface1(sb, interfaceTree, projectContext, innerClass, importSb);
+
+        process_interface_body(sb, interfaceTree, projectContext, false);
+
+        if (finish) {
+            sb.append("\n}\n");
+        }
+    }
+
+    private static void process_interface_body(StringBuilder sb2, CommonTree tree, ProjectContext projectContext, boolean skipInterface) {
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.token.getType()) {
+                case ObjchParser.TYPEDEF:
+                    h_process_typedef(sb2, childTree, projectContext);
+                    break;
+                case ObjchParser.PROTOCOL:
+                    h_process_protocol(sb2, childTree, projectContext);
+                    break;
+                case ObjchParser.INTERFACE:
+                    if (!skipInterface) {
                         h_process_interface2(sb2, childTree, projectContext);
-                        break;
-                    case ObjchParser.EXTERN:
-                        h_process_extern(sb2, childTree, projectContext);
-                        break;
-                    case ObjchParser.ENUM:
-                        List<String[]> enumElements = h_parse_enum(childTree);
-                        CommonTree enumNameTree = (CommonTree) childTree.getFirstChildWithType(ObjchParser.NAME);
-                        if (enumNameTree != null) {
-                            String enumName = enumNameTree.getChild(0).getText();
-                            finish_enum(sb2, projectContext, enumName, enumElements);
-                        } else {
-                            for (String[] enumElement : enumElements) {
-                                String element = enumElement[0].trim();
-                                sb2.append("public static Integer ").append(element).append(" = ").append(enumElement[1]).append(";\n");
-                                projectContext.staticFields.put(element, projectContext.classCtx.className());
-                            }
+                    }
+                    break;
+                case ObjchParser.FIELDS:
+                    h_process_fields(sb2, (CommonTree) child, projectContext);
+                    break;
+                case ObjchParser.METHOD:
+                    h_process_method(sb2, (CommonTree) child, projectContext);
+                    break;
+                case ObjchParser.EXTERN:
+                    h_process_extern(sb2, childTree, projectContext);
+                    break;
+                case ObjchParser.ENUM:
+                    List<String[]> enumElements = h_parse_enum(childTree);
+                    CommonTree enumNameTree = (CommonTree) childTree.getFirstChildWithType(ObjchParser.NAME);
+                    if (enumNameTree != null) {
+                        String enumName = enumNameTree.getChild(0).getText();
+                        finish_enum(sb2, projectContext, enumName, enumElements);
+                    } else {
+                        for (String[] enumElement : enumElements) {
+                            String element = enumElement[0].trim();
+                            sb2.append("public static Integer ").append(element).append(" = ").append(enumElement[1]).append(";\n");
+                            projectContext.staticFields.put(element, projectContext.classCtx.className());
                         }
-                        break;
-                }
+                    }
+                    break;
             }
         }
     }
@@ -258,7 +290,7 @@ public class ConverterH {
         params.put(name, Utils.transformType(type, projectCtx.classCtx));
     }
 
-    private static void h_process_interface1(StringBuilder sb, CommonTree tree, ProjectContext context) {
+    private static void h_process_interface1(StringBuilder sb, CommonTree tree, ProjectContext context, boolean innerClass, StringBuilder importSb) {
         String interfaceName = "";
         String superclassName = "";
         String category = "";
@@ -277,15 +309,15 @@ public class ConverterH {
             }
         }
 
-        if (superclassName.length() > 0) {
+        if (superclassName.length() > 0 && !superclassName.startsWith("NS")) {
             // добавим import этого класса:
             String superClassPath = context.imports.get(superclassName);
             if (superClassPath != null) {
-                sb.append("import ").append(superClassPath).append(";\n\n");
+                importSb.append("import ").append(superClassPath).append(";\n\n");
             }
         }
 
-        sb.append("public abstract class I").append(interfaceName)./*append("_h").*/append(superclassName.length() > 0 ? (" extends " + superclassName) : "").append(" {\n");
+        sb.append("public abstract class I").append(interfaceName).append(superclassName.length() > 0 ? (" extends " + superclassName) : "").append(" {\n");
 
     }
 
