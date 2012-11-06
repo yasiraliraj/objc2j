@@ -206,9 +206,9 @@ public class ConverterM {
                 sb.append("public class ").append(javaClassName).append(" extends I").append(javaClassName).append(" {\n");
             }
         } else {
-            process_implementation(projectCtx, categoryClass, javaClassName, mainImpl, sb, false);
+            process_implementation(projectCtx, categoryClass, javaClassName, mainImpl, sb2, false);
         }
-        process_common_children(projectCtx, tree, sb);
+        process_common_children(projectCtx, tree, sb2);
 
         sb2.append(innerClasses);
 
