@@ -231,9 +231,12 @@ single_expr
 	:	(PLUS | MINUS)? single_expr2;	
 
 single_expr2
-	:	name
+	:	name (L_BR (param (',' param)*)? R_BR)?
 	|	const_expr
 	;
+	
+param	:	ID
+	|	NUMBER;	
 
 const_expr
 	:	NUMBER;
@@ -280,7 +283,7 @@ NUMBER  : 	DIGIT (DIGIT | '.')* 'L'?;
 //	: 	'@' STRING_LITERAL2;
 
 SPECIAL_CHARS
-	:	'%'|'?'|'|'|'&'|';'|'['|']'|'{'|'}'|'@'|':'|'/'|'#'|'=';
+	:	'%'|'?'|'|'|'&'|';'|'['|']'|'{'|'}'|':'|'/'|'#'|'='|'@';
 
 WS  	:	('\u000C' | ' ' | '\t')+ { $channel = HIDDEN; };
 

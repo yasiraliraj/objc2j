@@ -198,7 +198,8 @@ public class Utils {
         List<String> enums = ctx.headerEnums.get("I" + className);
         if (enums != null) {
             String headerPath = ctx.imports.get(className);
-            headerPath = headerPath.substring(0, headerPath.length() - className.length()) + "I" + className;
+            String prefix = headerPath.substring(0, headerPath.length() - className.length());
+            headerPath = prefix + (prefix.endsWith("I") ? "" : "I") + className;
             if (headerPath.contains("+")) {
                 headerPath = headerPath.substring(0, headerPath.indexOf("+"));
             }
