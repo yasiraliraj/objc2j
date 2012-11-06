@@ -317,7 +317,7 @@ public class ConverterH {
             }
         }
 
-        sb.append("public abstract class I").append(interfaceName).append(superclassName.length() > 0 ? (" extends " + superclassName) : "").append(" {\n");
+        sb.append("public abstract ").append(innerClass ? "static " : "").append("class I").append(interfaceName).append(superclassName.length() > 0 ? (" extends " + superclassName) : "").append(" {\n");
 
     }
 

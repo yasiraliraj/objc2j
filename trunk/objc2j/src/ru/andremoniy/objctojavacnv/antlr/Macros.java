@@ -105,7 +105,7 @@ public class Macros {
                     break;
             }
         }
-        macros.replace = replace.toString();
+        macros.replace = replace.toString().trim();
     }
 
     private static void processId(Macros macros, CommonTree tree) {

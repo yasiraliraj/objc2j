@@ -25,13 +25,10 @@ import static ru.andremoniy.objctojavacnv.Utils.transformType;
  * Time: 1:14
  */
 
-// package ru.andremoniy.objctojavacnv.antlr.output;
-
 public class ConverterM {
 
     public static final Logger log = LoggerFactory.getLogger(ConverterM.class);
 
-    //    private static final List<String> RESTRICTED_METHODS = Arrays.asList("release", "retain", /*"autorelease", */"dealloc"/*, "init"*/);
     private static final List<String> RESTRICTED_METHODS = Collections.EMPTY_LIST;
     private static final Map<Integer, String> OPS_NUMBER = new HashMap<Integer, String>() {{
         put(ObjcmLexer.L_MINUS, "minus");
@@ -88,14 +85,14 @@ public class ConverterM {
         final String categoryName = categoryClass ? mfile.getName().substring(mfile.getName().indexOf("+") + 1, mfile.getName().lastIndexOf(".")) : null;
 
         // new file with java code
-        String className1 = mfile.getName().substring(0, mfile.getName().lastIndexOf("."));
-        File mjfile = new File(mfile.getParent() + File.separator + className1 + ".java");
+        String javaClassName = mfile.getName().substring(0, mfile.getName().lastIndexOf("."));
+        File mjfile = new File(mfile.getParent() + File.separator + javaClassName + ".java");
         mjfile.createNewFile();
 
-        projectCtx.newClass(className1, categoryName);
-
         String packageName = mfile.getParent().substring(mfile.getParent().lastIndexOf("src") + 4).replace(File.separator, ".");
-        projectCtx.classCtx.packageName = packageName;
+
+//        projectCtx.newClass(javaClassName, categoryName);
+//        projectCtx.classCtx.packageName = packageName;
 
         StringBuilder objCcode = new StringBuilder();
         try (FileInputStream fis = new FileInputStream(mfile);
@@ -143,7 +140,7 @@ public class ConverterM {
         }
 
         Utils.addOriginalImports(input, projectCtx, addSb);
-        Utils.addStaticFromHeaderImports(projectCtx, sb, className1);
+        Utils.addStaticFromHeaderImports(projectCtx, sb, javaClassName);
 
         StringBuilder catSb = new StringBuilder();
 
@@ -154,6 +151,9 @@ public class ConverterM {
             Set<String> categoriesList = projectCtx.categories.get(mfile.getName().substring(0, mfile.getName().indexOf(".")));
             if (categoriesList != null) {
                 for (String category : categoriesList) {
+                    if (category.endsWith(".h")) {
+                        category = category.substring(0, category.lastIndexOf(".")) + ".m";
+                    }
                     catSb.append(convert_m(category, projectCtx, addSb));
                 }
             }
@@ -173,48 +173,54 @@ public class ConverterM {
 
             sb.append("\n");
         }
-        // sb - это будет основной билдер класса. Туда будем по необходимости дописывать import-ы
 
         CommonTree tree = (CommonTree) result.getTree();
-        CommonTree implementationTree = tree.getType() == ObjcmLexer.IMPLEMENTATION ? tree : (CommonTree) ((CommonTree) result.getTree()).getFirstChildWithType(ObjcmLexer.IMPLEMENTATION);
-        if (implementationTree == null) return sb;
 
-        StringBuilder sb2 = new StringBuilder(); // билдер класса
-        if (!categoryClass) {
-            m_process_implementation1(sb2, implementationTree, className1);
-        }
+        CommonTree mainImpl = null;
+        StringBuilder innerClasses = new StringBuilder();
 
-        if (tree == implementationTree) {
-            m_process_implementation2(sb2, tree, projectCtx);
+        if (tree.getType() == ObjcmLexer.IMPLEMENTATION) {
+            mainImpl = tree;
         } else {
             for (Object child : tree.getChildren()) {
                 CommonTree childTree = (CommonTree) child;
-                switch (childTree.token.getType()) {
-                    case ObjcmLexer.OPERATOR:
-                        m_process_operator(sb2, childTree, projectCtx.classCtx);
-                        break;
-                    case ObjcmLexer.FIELD:
-                        m_process_field(sb2, childTree, projectCtx.classCtx);
-                        break;
-                    case ObjcmLexer.INTERFACE:
-                        m_process_interface(sb2, childTree, projectCtx);
-                        break;
-                    case ObjcmLexer.IMPLEMENTATION:
-                        m_process_implementation2(sb2, childTree, projectCtx);
-                        break;
+                if (childTree.getType() == ObjcmLexer.IMPLEMENTATION) {
+                    String className = childTree.getFirstChildWithType(ObjcmLexer.NAME).getChild(0).toString();
+                    if (className.equals(javaClassName)) {
+                        mainImpl = childTree;
+                    } else {
+                        projectCtx.newClass(className, categoryName);
+                        projectCtx.classCtx.packageName = packageName;
+                        process_implementation(projectCtx, false, className, childTree, innerClasses, true);
+                    }
                 }
             }
         }
+
+        StringBuilder sb2 = new StringBuilder();
+
+        projectCtx.newClass(javaClassName, categoryName);
+        projectCtx.classCtx.packageName = packageName;
+        if (mainImpl == null) {
+            if (!categoryClass) {
+                sb.append("public class ").append(javaClassName).append(" extends I").append(javaClassName).append(" {\n");
+            }
+        } else {
+            process_implementation(projectCtx, categoryClass, javaClassName, mainImpl, sb, false);
+        }
+        process_common_children(projectCtx, tree, sb);
+
+        sb2.append(innerClasses);
 
         if (categoryClass) return sb2;
 
         Utils.addAdditionalImports(sb, projectCtx);
 
         if (!projectCtx.classCtx.containsInit) {
-            addInitMethod(sb2, className1);
+            addInitMethod(sb2, javaClassName);
         }
         if (!projectCtx.classCtx.containsAutoRelease) {
-            addAutoReleaseMethod(sb2, className1);
+            addAutoReleaseMethod(sb2, javaClassName);
         }
 
         sb2.append(catSb);
@@ -237,6 +243,35 @@ public class ConverterM {
         }
 
         return sb;
+    }
+
+    private static void process_implementation(ProjectContext projectCtx, boolean categoryClass, String javaClassName, CommonTree implementationTree, StringBuilder sb, boolean doFinish) {
+        if (!categoryClass) {
+            m_process_implementation1(sb, implementationTree, javaClassName, doFinish);
+        }
+
+        m_process_implementation2(sb, implementationTree, projectCtx);
+
+        if (doFinish) {
+            sb.append("}\n"); // end of class
+        }
+    }
+
+    private static void process_common_children(ProjectContext projectCtx, CommonTree implementationTree, StringBuilder sb) {
+        for (Object child : implementationTree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.token.getType()) {
+                case ObjcmLexer.OPERATOR:
+                    m_process_operator(sb, childTree, projectCtx.classCtx);
+                    break;
+                case ObjcmLexer.FIELD:
+                    m_process_field(sb, childTree, projectCtx.classCtx);
+                    break;
+                case ObjcmLexer.INTERFACE:
+                    m_process_interface(sb, childTree, projectCtx);
+                    break;
+            }
+        }
     }
 
     private static void m_process_interface(StringBuilder sb, CommonTree tree, ProjectContext projectCtx) {
@@ -427,11 +462,11 @@ public class ConverterM {
         }
     }
 
-    private static void m_process_implementation1(StringBuilder sb, CommonTree tree, String _className) {
+    private static void m_process_implementation1(StringBuilder sb, CommonTree tree, String _className, boolean isInner) {
         String className = tree.getFirstChildWithType(ObjcmLexer.NAME).getChild(0).toString();
 
         if (className.equals(_className)) {
-            sb.append("public class ").append(className).append(" extends I").append(className).append(" {\n");
+            sb.append("public ").append(isInner ? "static " : "").append("class ").append(className).append(" extends I").append(className).append(" {\n");
         }
     }
 
@@ -1139,7 +1174,6 @@ public class ConverterM {
             }
         }
         int exprCounter = 0;
-        int operationsCounter = 0;
         int operationsLength = operationsOrder.size();
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -1163,14 +1197,12 @@ public class ConverterM {
                 }
 
                 if (operationsLength > 0) {
-                    operationsCounter++;
                     sb.append(", ");
                 }
                 exprCounter++;
             } else if (childTree.getType() == ObjcmLexer.SIMPLE_EXPR) {
                 process_expr(sb, childTree, exprCtx, 0, leftAssign, isIncompletePrefix);
                 if (operationsLength > 0) {
-                    operationsCounter = 0;
                     sb.append(")");
                 }
             }

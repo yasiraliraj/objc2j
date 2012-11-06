@@ -189,7 +189,7 @@ static_section_wrapper
 	:	static_section -> ^(STATIC static_section);		
 	
 static_section
-	:	STATIC_PREFIX CONST_PREFIX? STRUCT_PREFIX? ENUM_PREFIX? static_section2;
+	:	'inline'? STATIC_PREFIX CONST_PREFIX? STRUCT_PREFIX? ENUM_PREFIX? static_section2;
 
 static_section2
 	:	inline_section 
@@ -973,7 +973,7 @@ method_modifier
 	
 method_type
 	:	L_BR  STRUCT_PREFIX? type_internal  generic? ASTERISK* R_BR -> ^(TYPE type_internal)
-	| 	L_BR  CONST_PREFIX? known_types? ID* generic? ASTERISK* R_BR -> ^(TYPE ID+)
+	| 	L_BR  CONST_PREFIX? known_types? ID* (L_KBR R_KBR)* generic? ASTERISK* R_BR -> ^(TYPE ID+)
 	;			
 		
 type_internal
@@ -992,7 +992,7 @@ generic_internal
 	:	 ID ASTERISK* (COMMA  ID  ASTERISK*)*;
 
 method_params2
-	:	L_BR  method_param_wrapper2  (COMMA  method_param_wrapper2)* R_BR
+	:	L_BR  (method_param_wrapper2 (COMMA method_param_wrapper2)*)? R_BR
 	;
 
 method_param_wrapper2

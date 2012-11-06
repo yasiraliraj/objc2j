@@ -34,6 +34,8 @@ public class Preprocessor {
     public static final String HEADERS_PATH1 = ".framework";
     public static final String HEADERS_PATH2 = File.separator + "Headers" + File.separator;
 
+    private static final List<String> doNotAppend = Arrays.asList("@", ".", "#");
+
     public boolean preprocessFile(ProjectContext context, String fileName, List<String> processedImports, boolean onlyIfs, String rootPath) throws IOException, RecognitionException {
         File mfile = new File(fileName);
 
@@ -379,14 +381,22 @@ public class Preprocessor {
 
     private StringBuilder getBlock(CommonTree tree) {
         StringBuilder block = new StringBuilder();
+        int prevPos = -1;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             if (childTree.getChildCount() > 0) {
                 block.append(getBlock(childTree));
             } else {
-                block.append(((CommonTree) child).getText()).append(" ");
+                int thisPos = childTree.getCharPositionInLine();
+                if (thisPos > prevPos) {
+                     block.append(" ");
+                }
+                String text = ((CommonTree) child).getText();
+                block.append(text);
+                prevPos = thisPos + text.length();
             }
         }
+        block.append(" "); // add " " in the end
         return block;
     }
 
