@@ -65,6 +65,11 @@ code_internal
 	|	extern_declarations
 	|	typedef_struct
 	|	declarations
+	|	garbage
+	;	
+	
+garbage	:	'_NSWINDOWS_DLL_GOOP'
+	|	'__declspec' '(' 'dllimport' ')'
 	;	
 		
 enum_wrapper
@@ -119,7 +124,7 @@ typedef_declaration
 	: 'typedef' typedef_internal (typedef_name | func_pointer)? ';'?;
 	
 func_pointer
-	:	'(' '*'? ID ')' '(' (ID ('*' ID)? (',' ((ID ('*' ID)?) | '...') )*)? ')'
+	:	'(' '*'* ID ')' '(' (ID ('*'+ ID)? (',' ((ID ('*'+ ID)?) | '...') )*)? ')'
 	;
 	
 typedef_internal
@@ -144,7 +149,7 @@ union_internal
 	|	typedef_struct_wrapper
 	;	
 typedef_rename
-	:	ID '*'? -> ^(OLD_NAME ID)
+	:	ID '*'* -> ^(OLD_NAME ID)
 	;		
 	
 typedef_enum_wrapper2
@@ -301,7 +306,7 @@ classical_param
 	|	'...';		
 	
 type_declaration
-	:	'const'? 'enum'? 'typedef'? 'struct'? (('unsigned' type_dec?) | type_dec) 'const'? generic? '*'? -> ^(TYPE type_dec generic? '*'?);	
+	:	'const'? 'enum'? 'typedef'? 'struct'? (('unsigned' type_dec?) | type_dec) 'const'? generic? '*'* -> ^(TYPE type_dec generic?);	
 
 type_dec:	type_dec_internal ('[' ']')* 
 	;
