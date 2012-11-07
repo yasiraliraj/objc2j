@@ -64,7 +64,7 @@ public class Preprocessor {
         String input = objCcode.toString();
 
         try {
-            preprocessInternal(defineList, fileName, processedImports, onlyIfs, input);
+            preprocessInternal(defineList, fileName, processedImports, onlyIfs, input, context.skipSDK);
         } catch (Exception e) {
             log.info("Failed to preprocess file: " + fileName);
             log.error(e.getMessage(), e);
@@ -74,7 +74,7 @@ public class Preprocessor {
         return false;
     }
 
-    private void preprocessInternal(Map<String, List<Macros>> macrosMap, String fileName, List<String> processedImports, boolean onlyIfs, String input) throws RecognitionException, IOException {
+    private void preprocessInternal(Map<String, List<Macros>> macrosMap, String fileName, List<String> processedImports, boolean onlyIfs, String input, boolean skipSDK) throws RecognitionException, IOException {
         boolean parseManyTimes;
         Map<String, List<Macros>> localMap = new HashMap<>();
 
@@ -106,7 +106,9 @@ public class Preprocessor {
                             }
                             break;
                         case PreprocessorParser.T_IMPORT:
-                            localMap.putAll(loadFromFile(processedImports, childTree));
+                            if (!skipSDK) {
+                                localMap.putAll(loadFromFile(processedImports, childTree));
+                            }
                             break;
                         case PreprocessorParser.T_INCLUDE:
                             break;
@@ -114,17 +116,17 @@ public class Preprocessor {
                 } else {
                     switch (childTree.token.getType()) {
                         case PreprocessorParser.T_IF_DEFINE:
-                            input = processCommonIfDefine(macrosMap, fileName, processedImports, input, childTree, true);
+                            input = processCommonIfDefine(macrosMap, fileName, processedImports, input, childTree, true, skipSDK);
                             parseManyTimes = true;
                             break childIterator;
                         case PreprocessorParser.T_IF_NOT_DEFINE:
-                            input = processCommonIfDefine(macrosMap, fileName, processedImports, input, childTree, false);
+                            input = processCommonIfDefine(macrosMap, fileName, processedImports, input, childTree, false, skipSDK);
                             parseManyTimes = true;
                             break childIterator;
                         case PreprocessorParser.T_IF_SIMPLE:
                             input = processSimpleIfs(input, childTree, macrosMap);
                             writeObjCode(new File(fileName + "p"), input);
-                            preprocessInternal(macrosMap, fileName, processedImports, false, input);
+                            preprocessInternal(macrosMap, fileName, processedImports, false, input, skipSDK);
                             parseManyTimes = true;
                             break childIterator;
                     }
@@ -144,10 +146,10 @@ public class Preprocessor {
         return parser.code();
     }
 
-    private String processCommonIfDefine(Map<String, List<Macros>> macrosMap, String fileName, List<String> processedImports, String input, CommonTree childTree, boolean defineDirection) throws RecognitionException, IOException {
+    private String processCommonIfDefine(Map<String, List<Macros>> macrosMap, String fileName, List<String> processedImports, String input, CommonTree childTree, boolean defineDirection, boolean skipSdk) throws RecognitionException, IOException {
         input = processDefineIfs(input, childTree, macrosMap, defineDirection);
         writeObjCode(new File(fileName + "p"), input);
-        preprocessInternal(macrosMap, fileName, processedImports, false, input);
+        preprocessInternal(macrosMap, fileName, processedImports, false, input, skipSdk);
         return input;
     }
 
@@ -389,7 +391,7 @@ public class Preprocessor {
             } else {
                 int thisPos = childTree.getCharPositionInLine();
                 if (thisPos > prevPos) {
-                     block.append(" ");
+                    block.append(" ");
                 }
                 String text = ((CommonTree) child).getText();
                 block.append(text);
@@ -471,9 +473,9 @@ public class Preprocessor {
                 }
             }
         }
-//        boolean changed;
-        //    do {
-        //       changed = false;
+        boolean changed;
+//        do {
+        changed = false;
         ru.andremoniy.objctojavacnv.tokenize.StringTokenizer st = new ru.andremoniy.objctojavacnv.tokenize.StringTokenizer(input);
         StringToken token;
         StringBuilder newInput = new StringBuilder();
@@ -482,12 +484,34 @@ public class Preprocessor {
             if (!token.isDelimeter) {
                 List<Macros> macrosList = ctx.macrosMap.get(token.value);
                 if (macrosList != null) {
-//                    for (Macros macros : macrosList) {
                     for (int i1 = macrosList.size() - 1; i1 >= 0; i1--) {
                         Macros macros = macrosList.get(i1);
                         if (macros.getParams().isEmpty()) {
                             if (!(macrosList.size() > 1 && macros.getReplace().trim().isEmpty())) {
-                                newInput.append(macros.getReplace());
+                                String replace = macros.getReplace();
+                                boolean do_rereplace;
+                                Set<String> processedMacroses = new HashSet<>();
+                                processedMacroses.add(macros.getName());
+                                do_rereplace:
+                                do {
+                                    do_rereplace = false;
+                                    List<Macros> rereplaceMacrosList = ctx.macrosMap.get(replace);
+                                    if (rereplaceMacrosList != null && rereplaceMacrosList.size() > 0) {
+                                        for (Macros rereplaceMacros : rereplaceMacrosList) {
+                                            if (rereplaceMacros.getParams().isEmpty()) {
+                                                if (processedMacroses.contains(rereplaceMacros.getName()))
+                                                    break do_rereplace;
+                                                processedMacroses.add(rereplaceMacros.getName());
+                                                replace = rereplaceMacros.getReplace();
+                                                if (replace.equals(rereplaceMacros.getName())) break do_rereplace;
+                                                do_rereplace = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } while (do_rereplace);
+                                newInput.append(replace);
+                                changed = true;
                                 continue tokens_loop;
                             }
                         }
@@ -549,6 +573,7 @@ public class Preprocessor {
                                     }
                                 }
                                 newInput.append(replacement);
+                                changed = true;
                                 continue tokens_loop;
                             } else {
                                 newInput.append(prevToken.value);
@@ -560,7 +585,7 @@ public class Preprocessor {
             newInput.append(token.value);
         }
         input = newInput.toString();
-        //       } while (changed);
+//        } while (changed);
 
 //        Map<String, Macros> macrosList = ctx.macrosMap;
 //        for (Macros macros : macrosList.values()) {

@@ -34,6 +34,7 @@ public class ProjectContext extends AbstractContext {
 
     public int m_counter;
     public int h_counter;
+    public boolean skipSDK;
 
     public ClassContext newClass(String className, String categoryName) {
         Map<String, MethodInterface> classMethodsInterfaces = new HashMap<>();

@@ -57,7 +57,7 @@ public class Utils {
         if (classCtx != null &&
                 exprCtx != null &&
                 exprCtx.transformClassNames &&
-                classCtx.projectCtx.imports.containsKey(obj.trim())) {
+                (classCtx.projectCtx.imports.containsKey(obj.trim()))) {
             obj = obj + ".class";
         } else {
             if (classCtx != null) {
@@ -277,4 +277,10 @@ public class Utils {
         return "";
     }
 
+    static String curClassField(String object) {
+        if (object.endsWith(".class")) {
+            object = object.substring(0, object.lastIndexOf(".class"));
+        }
+        return object;
+    }
 }

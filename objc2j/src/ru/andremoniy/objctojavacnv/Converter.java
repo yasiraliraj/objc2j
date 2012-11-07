@@ -43,8 +43,9 @@ public class Converter {
         return false;
     }
 
-    public void convert(String path) {
+    public void convert(String path, boolean skipSDK) {
         ProjectContext projectContext = new ProjectContext();
+        projectContext.skipSDK = skipSDK;
 
         List<String> processedImports = new ArrayList<>();
         do {
@@ -54,6 +55,18 @@ public class Converter {
 
         // add special macroses:
         // todo: customization
+        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_0_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_0_AND_LATER", "")));
+        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_1_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_1_AND_LATER", "")));
+        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_2_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_2_AND_LATER", "")));
+        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_3_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_3_AND_LATER", "")));
+        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_4_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_4_AND_LATER", "")));
+        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_5_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_5_AND_LATER", "")));
+        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_6_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_6_AND_LATER", "")));
+        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_0_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_0_AND_LATER", "")));
+        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_1_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_1_AND_LATER", "")));
+        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_2_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_2_AND_LATER", "")));
+        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER", "")));
+        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_4_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_4_AND_LATER", "")));
         projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER", "")));
         projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_6_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_6_AND_LATER", "")));
 

@@ -203,7 +203,12 @@ public class ConverterM {
         projectCtx.classCtx.packageName = packageName;
         if (mainImpl == null) {
             if (!categoryClass) {
-                sb.append("public class ").append(javaClassName).append(" extends I").append(javaClassName).append(" {\n");
+                sb.append("public class ").append(javaClassName);
+                // not all .m files have .h header
+                if (projectCtx.imports.get("I" + javaClassName) != null) {
+                    sb.append(" extends I").append(javaClassName);
+                }
+                sb.append(" {\n");
             }
         } else {
             process_implementation(projectCtx, categoryClass, javaClassName, mainImpl, sb2, false);
@@ -247,7 +252,7 @@ public class ConverterM {
 
     private static void process_implementation(ProjectContext projectCtx, boolean categoryClass, String javaClassName, CommonTree implementationTree, StringBuilder sb, boolean doFinish) {
         if (!categoryClass) {
-            m_process_implementation1(sb, implementationTree, javaClassName, doFinish);
+            m_process_implementation1(sb, implementationTree, javaClassName, doFinish, projectCtx);
         }
 
         m_process_implementation2(sb, implementationTree, projectCtx);
@@ -462,11 +467,17 @@ public class ConverterM {
         }
     }
 
-    private static void m_process_implementation1(StringBuilder sb, CommonTree tree, String _className, boolean isInner) {
+    private static void m_process_implementation1(StringBuilder sb, CommonTree tree, String _className, boolean isInner, ProjectContext projectCtx) {
         String className = tree.getFirstChildWithType(ObjcmLexer.NAME).getChild(0).toString();
 
         if (className.equals(_className)) {
-            sb.append("public ").append(isInner ? "static " : "").append("class ").append(className).append(" extends I").append(className).append(" {\n");
+            sb.append("public ").append(isInner ? "static " : "").append("class ").append(className);
+            // not all .m files have .h header
+            if (projectCtx.imports.get("I" + className) != null) {
+                sb.append(" extends I").append(className);
+            }
+
+            sb.append(" {\n");
         }
     }
 
@@ -1021,7 +1032,7 @@ public class ConverterM {
                     if (doWrap) {
                         sb.append(", ");
                     }
-                    process_expr_assign(sb, childTree, exprCtx.newExpr(), doWrap);
+                    process_expr_assign(sb, childTree, exprCtx.newExpr().setTransformClassNames(), doWrap);
                     if (doWrap) {
                         sb.append(")");
                     }
@@ -1682,9 +1693,10 @@ public class ConverterM {
                 sb.append(object);
             } else {
                 if (methodName.equals("isKindOfClass") || methodName.equals("isSubclassOfClass")) {
-//                    sb.append(object).append(" instanceof ").append(message.replace(".class", ""));
                     sb.append("_instanceof(").append(object).append(", ").append(message).append(")");
-                } else if (object.startsWith("NS") /*|| exprCtx.blockCtx.methodCtx().classCtx.projectCtx.imports.containsKey(object) || methodName.equals("respondsToSelector")*/) {
+                } else if (object.startsWith("NS")) {
+                    // cut wrong added ".class"
+                    object = Utils.curClassField(object);
                     sb.append(object).append(".").append(methodName).append("(").append(message).append(")");
                 } else {
                     sb.append("objc_msgSend(");
@@ -1699,6 +1711,7 @@ public class ConverterM {
                 }
             }
         } else if (instanceCreation) {
+            object = Utils.curClassField(object);
             sb.append("new ").append(object).append("()");
         }
 
