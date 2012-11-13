@@ -91,9 +91,6 @@ public class ConverterM {
 
         String packageName = mfile.getParent().substring(mfile.getParent().lastIndexOf("src") + 4).replace(File.separator, ".");
 
-//        projectCtx.newClass(javaClassName, categoryName);
-//        projectCtx.classCtx.packageName = packageName;
-
         StringBuilder objCcode = new StringBuilder();
         try (FileInputStream fis = new FileInputStream(mfile);
              InputStreamReader isr = new InputStreamReader(fis, Charset.forName("utf-8"));
@@ -139,13 +136,9 @@ public class ConverterM {
             addSb = new StringBuilder();
         }
 
-        Utils.addOriginalImports(input, projectCtx, addSb);
-        Utils.addStaticFromHeaderImports(projectCtx, sb, javaClassName);
-
         StringBuilder catSb = new StringBuilder();
 
         if (!categoryClass) {
-            sb.append(addSb);
             // идем по всем категориям в поиска import-ов
 
             Set<String> categoriesList = projectCtx.categories.get(mfile.getName().substring(0, mfile.getName().indexOf(".")));
@@ -170,8 +163,6 @@ public class ConverterM {
                 }
                 projectCtx.classCtx.categoryList = "Arrays.asList(" + projectCtx.classCtx.categoryList + ")";
             }
-
-            sb.append("\n");
         }
 
         CommonTree tree = (CommonTree) result.getTree();
@@ -201,14 +192,18 @@ public class ConverterM {
 
         projectCtx.newClass(javaClassName, categoryName);
         projectCtx.classCtx.packageName = packageName;
+
+        Utils.addOriginalImports(input, projectCtx);
+        Utils.addStaticFromHeaderImports(projectCtx, javaClassName);
+
         if (mainImpl == null) {
             if (!categoryClass) {
-                sb.append("public class ").append(javaClassName);
+                sb2.append("public class ").append(javaClassName);
                 // not all .m files have .h header
                 if (projectCtx.imports.get("I" + javaClassName) != null) {
-                    sb.append(" extends I").append(javaClassName);
+                    sb2.append(" extends I").append(javaClassName);
                 }
-                sb.append(" {\n");
+                sb2.append(" {\n");
             }
         } else {
             process_implementation(projectCtx, categoryClass, javaClassName, mainImpl, sb2, false);
@@ -219,7 +214,13 @@ public class ConverterM {
 
         if (categoryClass) return sb2;
 
-        Utils.addAdditionalImports(sb, projectCtx);
+        // already here, then not a categoryClass
+        Utils.addAdditionalImports(projectCtx);
+
+        // add imports:
+        for (String _import : projectCtx.classCtx.imports) {
+            sb.append("import ").append(_import).append(";\n");
+        }
 
         if (!projectCtx.classCtx.containsInit) {
             addInitMethod(sb2, javaClassName);
@@ -1570,7 +1571,7 @@ public class ConverterM {
                     sb.append(")");
                     break;
                 case ObjcmLexer.METHOD_CALL:
-                    wasMethodCall = m_process_method_call(sb, childTree, exprCtx);
+                    wasMethodCall = m_process_method_call(sb, childTree, exprCtx.newExpr().setTransformClassNames());
                     break;
                 case ObjcmLexer.FIELD_ACCESS:
                     StringBuilder fasb = new StringBuilder();
@@ -1579,13 +1580,11 @@ public class ConverterM {
                     sb.append(fasb);
                     break;
                 case ObjcmLexer.FUNCTION:
-                    ExpressionContext exprCtx2 = exprCtx.newExpr();
-                    exprCtx2.transformClassNames = true;
-                    process_classical_expr(sb, childTree, exprCtx2.checkForFunctionName(), false, false);
+                    process_classical_expr(sb, childTree, exprCtx.newExpr().checkForFunctionName().setTransformClassNames(), false, false);
                     break;
                 default:
                     if (testBrackets(children, i, childrenSize, child)) break;
-                    sb.append(transformObject(child.toString(), exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
+                    sb.append(transformObject(child.toString(), exprCtx.blockCtx.methodCtx().classCtx, exprCtx.newExpr().setTransformClassNames()));
                     break;
             }
         }
@@ -1627,10 +1626,6 @@ public class ConverterM {
                         return;
                     }
                     String obj = transformObject(child.toString(), exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
-                    // заменяем имя класса на "имя_класса.class"
-                    if (exprCtx.blockCtx.methodCtx().classCtx.projectCtx.imports.keySet().contains(obj)) {
-                        obj += ".class";
-                    }
                     sb.append(obj);
                     prevId = child.toString().matches("[a-zA-Z_\\d\\.]*");
                     break;
@@ -1697,10 +1692,11 @@ public class ConverterM {
                 } else if (object.startsWith("NS")) {
                     // cut wrong added ".class"
                     object = Utils.curClassField(object);
+                    if (methodName.equals("null")) methodName = "_null";
                     sb.append(object).append(".").append(methodName).append("(").append(message).append(")");
                 } else {
                     sb.append("objc_msgSend(");
-                    sb.append(fixObject(object, exprCtx.blockCtx.methodCtx().classCtx.projectCtx)).append(",").append("\"").append(methodName).append("\"");
+                    sb.append(fixObject(object)).append(",").append("\"").append(methodName).append("\"");
                     sb.append(", ");
 
                     // список категорий
@@ -1718,15 +1714,12 @@ public class ConverterM {
         return wasMethodCall || instanceCreation;
     }
 
-    private static String fixObject(String object, ProjectContext projectCtx) {
+    private static String fixObject(String object) {
         switch (object) {
             case "super":
                 return "this";
             case "String":
                 return "String.class";
-        }
-        if (projectCtx.imports.keySet().contains(object)) {
-            return object + ".class";
         }
         return object;
     }

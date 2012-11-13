@@ -17,7 +17,6 @@ import java.util.*;
  */
 public class Utils {
 
-    private static final List<String> implementedCocoa = Arrays.asList("NSEvent");
     private static final List<String> NUMERIC_TYPES = Arrays.asList("Integer", "Double", "Short", "Long");
 
     static String transformObject(String obj, ClassContext classCtx, ExpressionContext exprCtx) {
@@ -54,43 +53,15 @@ public class Utils {
         }
         if (obj.startsWith("@\"")) obj = obj.substring(1);
         obj = transformType(obj, classCtx);
-        if (classCtx != null &&
-                exprCtx != null &&
-                exprCtx.transformClassNames &&
-                (classCtx.projectCtx.imports.containsKey(obj.trim()))) {
-            obj = obj + ".class";
-        } else {
-            if (classCtx != null) {
-                String _import = classCtx.projectCtx.staticFields.get(obj);
-                if (_import != null && !classCtx.addImports.contains(_import)) {
-                    classCtx.addImports.add(_import);
-                }
+
+        if (classCtx != null) {
+            String _import = classCtx.projectCtx.staticFields.get(obj);
+            if (_import != null && !classCtx.addImports.contains(_import)) {
+                classCtx.addImports.add(_import);
             }
         }
+        boolean isVariable = checkForVariable(obj, exprCtx);
         if (exprCtx != null && exprCtx.checkForFunctionName) {
-            boolean isVariable = false;
-            for (String varName : exprCtx.blockCtx.variables.keySet()) {
-                if (varName.equals(obj)) {
-                    isVariable = true;
-                    break;
-                }
-            }
-            if (!isVariable) {
-                for (String varName : exprCtx.blockCtx.methodCtx().variables.keySet()) {
-                    if (varName.equals(obj)) {
-                        isVariable = true;
-                        break;
-                    }
-                }
-                if (!isVariable) {
-                    for (String varName : exprCtx.blockCtx.methodCtx().classCtx.variables.keySet()) {
-                        if (varName.equals(obj)) {
-                            isVariable = true;
-                            break;
-                        }
-                    }
-                }
-            }
             if (!isVariable) {
                 for (String methodName : exprCtx.blockCtx.methodCtx().classCtx.methodsInterfaces.keySet()) {
                     if (methodName.equals(obj)) {
@@ -99,7 +70,36 @@ public class Utils {
                 }
             }
         }
+        if (!isVariable) {
+            if (classCtx != null &&
+                    exprCtx != null &&
+                    exprCtx.transformClassNames &&
+                    (classCtx.projectCtx.imports.containsKey(obj.trim()))) {
+                obj = obj + ".class";
+            }
+        }
         return obj;
+    }
+
+    private static boolean checkForVariable(String obj, ExpressionContext exprCtx) {
+        if (exprCtx != null) {
+            for (String varName : exprCtx.blockCtx.variables.keySet()) {
+                if (varName.equals(obj)) {
+                    return true;
+                }
+            }
+            for (String varName : exprCtx.blockCtx.methodCtx().variables.keySet()) {
+                if (varName.equals(obj)) {
+                    return true;
+                }
+            }
+            for (String varName : exprCtx.blockCtx.methodCtx().classCtx.variables.keySet()) {
+                if (varName.equals(obj)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     static String transformMethodName(String name) {
@@ -140,6 +140,8 @@ public class Utils {
                 return "Long";
             case "short":
                 return "Short";
+            case "unichar":
+                return "Characted";
         }
 
         if (classCtx != null && !classCtx.localProcessedImports.contains(type) && !classCtx.addImports.contains(type)) {
@@ -151,60 +153,68 @@ public class Utils {
         return type;
     }
 
-    public static void addAdditionalImports(StringBuilder sb, ProjectContext projectCtx) {
+    public static void addAdditionalImports(ProjectContext projectCtx) {
         Set<String> nsImports = new HashSet<>();
         for (String addImport : projectCtx.classCtx.addImports) {
             String _addImport = addImport;
             if (addImport.contains(".")) {
                 _addImport = addImport.substring(0, addImport.indexOf("."));
             }
-            String classPath = projectCtx.imports.get(_addImport);
-            if (classPath == null && _addImport.startsWith("I")) {
+
+            Set<String> classPathList = projectCtx.imports.get(_addImport);
+            if (classPathList == null && _addImport.startsWith("I")) {
                 _addImport = _addImport.substring(1);
-                classPath = projectCtx.imports.get(_addImport);
+                classPathList = projectCtx.imports.get(_addImport);
             }
-            if (classPath != null) {
+            if (classPathList != null) {
                 // reverse replace classname to appropriate
-                if (!_addImport.equals(addImport)) {
-                    classPath = classPath.substring(0, classPath.lastIndexOf(".") + 1) + addImport;
-                }
-                if (!classPath.contains("+")) {
-                    sb.append("import ").append(classPath).append(";\n");
-                    sb.append("import static ").append(classPath).append(".*;\n");
-                    addNSHeaderImport(sb, classPath);
-                }
-                addStaticFromHeaderImports(projectCtx, sb, classPath.substring(classPath.lastIndexOf(".") + 1));
-            } else if (addImport.startsWith("NS")) {
-                if (!nsImports.contains(addImport) && implementedCocoa.contains(addImport)) {
-                    sb.append("import static ru.andremoniy.jcocoa.I").append(addImport).append(".*;\n");
-//                    sb.append("import ru.andremoniy.jcocoa.I").append(addImport).append(".*;\n");
-                    nsImports.add(addImport);
+                for (String classPath : classPathList) {
+                    if (!_addImport.equals(addImport)) {
+                        classPath = classPath.substring(0, classPath.lastIndexOf(".") + 1) + addImport;
+                    }
+                    if (!classPath.contains("+")) {
+                        projectCtx.classCtx.imports.add(classPath);
+//                        sb.append("import ").append(classPath).append(";\n");
+                        projectCtx.classCtx.imports.add("static " + classPath + ".*");
+//                        sb.append("import static ").append(classPath).append(".*;\n");
+                        addNSHeaderImport(projectCtx, classPath);
+                    }
+                    String className = classPath.substring(classPath.lastIndexOf(".") + 1);
+                    if (!projectCtx.classCtx.localProcessedImports.contains(className)) {
+                        addStaticFromHeaderImports(projectCtx, className);
+                        projectCtx.classCtx.localProcessedImports.add(className);
+                    }
                 }
             }
         }
-        sb.append("\n");
     }
 
-    private static void addNSHeaderImport(StringBuilder sb, String classPath) {
+    private static void addNSHeaderImport(ProjectContext projectCtx, String classPath) {
         String importClassName = classPath.substring(classPath.lastIndexOf(".") + 1);
         if (importClassName.startsWith("NS")) {
             String interfaceName = classPath.substring(0, classPath.lastIndexOf(".")) + ".I" + importClassName;
-            sb.append("import ").append(interfaceName).append(";\n");
-            sb.append("import static ").append(interfaceName).append(".*;\n");
+
+            projectCtx.classCtx.imports.add(interfaceName);
+            //sb.append("import ").append(interfaceName).append(";\n");
+            projectCtx.classCtx.imports.add("static " + interfaceName + ".*");
+            //sb.append("import static ").append(interfaceName).append(".*;\n");
         }
     }
 
-    public static void addStaticFromHeaderImports(ProjectContext ctx, StringBuilder sb, String className) {
-        List<String> enums = ctx.headerEnums.get("I" + className);
+    public static void addStaticFromHeaderImports(ProjectContext projectCtx, String className) {
+        List<String> enums = projectCtx.headerEnums.get("I" + className);
         if (enums != null) {
-            String headerPath = ctx.imports.get(className);
-            String prefix = headerPath.substring(0, headerPath.length() - className.length());
-            headerPath = prefix + (prefix.endsWith("I") ? "" : "I") + className;
-            if (headerPath.contains("+")) {
-                headerPath = headerPath.substring(0, headerPath.indexOf("+"));
-            }
-            for (String _enum : enums) {
-                sb.append("import static ").append(headerPath).append(".").append(_enum).append(".*;\n");
+            Set<String> headerPathList = projectCtx.imports.get(className);
+            for (String headerPath : headerPathList) {
+                String prefix = headerPath.substring(0, headerPath.length() - className.length());
+                headerPath = prefix + (prefix.endsWith("I") ? "" : "I") + className;
+                if (headerPath.contains("+")) {
+                    headerPath = headerPath.substring(0, headerPath.indexOf("+"));
+                }
+                for (String _enum : enums) {
+                    projectCtx.classCtx.imports.add("static " + headerPath + "." + _enum + ".*");
+//                    sb.append("import static ").append(headerPath).append(".").append(_enum).append(".*;\n");
+                }
             }
         }
     }
@@ -224,10 +234,9 @@ public class Utils {
      * add original imports from file
      *
      * @param input file code source
-     * @param sb    java code string builder
      */
-    public static void addOriginalImports(String input, ProjectContext projectCtx, StringBuilder sb) throws RecognitionException {
-        Map<String, String> imports = projectCtx.imports;
+    public static void addOriginalImports(String input, ProjectContext projectCtx) throws RecognitionException {
+        Map<String, Set<String>> imports = projectCtx.imports;
         PreprocessorParser.code_return result = Preprocessor.getResult(input);
         for (Object child : ((CommonTree) result.getTree()).getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -235,17 +244,21 @@ public class Utils {
                 case PreprocessorParser.T_INCLUDE:
                     String path = getText(childTree);
                     String className = path.substring(1, path.length() - 3);
-                    String classPath = imports.get(className);
-                    if (classPath != null) {
+                    Set<String> classPathList = imports.get(className);
+                    if (classPathList != null) {
                         if (className.contains("+")) {
                             // сохраняем инфу о добавленных категориях, но в import не добавляем
                             projectCtx.classCtx.localCategories.add(className);
                         } else {
-                            sb.append("import ").append(classPath).append(";\n");
-                            sb.append("import static ").append(classPath).append(".*;\n");
-                            addNSHeaderImport(sb, classPath);
+                            for (String classPath : classPathList) {
+                                projectCtx.classCtx.imports.add(classPath);
+//                                sb.append("import ").append(classPath).append(";\n");
+                                projectCtx.classCtx.imports.add("static " + classPath + ".*");
+//                                sb.append("import static ").append(classPath).append(".*;\n");
+                                addNSHeaderImport(projectCtx, classPath);
+                            }
                         }
-                        addStaticFromHeaderImports(projectCtx, sb, className);
+                        addStaticFromHeaderImports(projectCtx, className);
                         projectCtx.classCtx.localProcessedImports.add(className);
                     }
                     break;

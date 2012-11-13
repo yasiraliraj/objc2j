@@ -7,6 +7,7 @@ import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.context.ProjectContext;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -43,8 +44,9 @@ public class Converter {
         return false;
     }
 
-    public void convert(String path, boolean skipSDK) {
+    public ProjectContext convert(String path, boolean skipSDK) throws IOException {
         ProjectContext projectContext = new ProjectContext();
+        projectContext.load();
         projectContext.skipSDK = skipSDK;
 
         List<String> processedImports = new ArrayList<>();
@@ -74,6 +76,8 @@ public class Converter {
         for (int i = 0; i < 2; i++) {
             convertInternal(projectContext, path, 1); // конвертируем m-файлы
         }
+
+        return projectContext;
     }
 
     private void convertInternal(ProjectContext projectContext, String path, int whatConvert) {

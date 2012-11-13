@@ -28,7 +28,8 @@ public class ClassContext extends AbstractContext {
     public Set<String> localCategories = new HashSet<>();
     public String categoryList;
 
-    public List<String> localProcessedImports = new ArrayList<>();
+    public Set<String> imports = new LinkedHashSet<>();
+    public Set<String> localProcessedImports = new HashSet<>();
     public List<String> addImports = new ArrayList<>();
 
     public Map<String, MethodInterface> methodsInterfaces;
