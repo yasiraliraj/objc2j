@@ -39,12 +39,18 @@ public class Preprocessor {
     public boolean preprocessFile(ProjectContext context, String fileName, List<String> processedImports, boolean onlyIfs, String rootPath) throws IOException, RecognitionException {
         File mfile = new File(fileName);
 
-        Map<String, String> imports = context.imports;
+        Map<String, Set<String>> imports = context.imports;
         Map<String, List<Macros>> defineList = context.macrosMap;
 
         if (rootPath != null && imports != null && mfile.getName().endsWith(".m")) {
             String importPath = mfile.getPath().substring(rootPath.length(), mfile.getPath().length() - 2).replace(File.separator, ".");
-            imports.put(mfile.getName().substring(0, mfile.getName().length() - 2), importPath);
+            String className = mfile.getName().substring(0, mfile.getName().length() - 2);
+            Set<String> importsList = imports.get(className);
+            if (importsList == null) {
+                importsList = new HashSet<>();
+                imports.put(className, importsList);
+            }
+            importsList.add(importPath);
         }
 
         // накапливаем список категорий дл€ каждого файла
@@ -462,13 +468,33 @@ public class Preprocessor {
     }
 
     public static String replace(String input, ProjectContext ctx, String fileName) {
+        // first, let's do uniform of all defines, replacing any #define\\s+ by #define<white_space>:
+        input = input.replaceAll("#define\\s+", "#define ");
+        // commenting all defines in code
         for (List<Macros> macrosList : ctx.macrosMap.values()) {
             for (Macros macros : macrosList) {
                 if (macros.getFileName() != null && macros.getFileName().equals(fileName)) {
-                    // вычищаем объ€вление макроса из кода
-                    input = input.replaceAll("\\#define\\s+" + macros.getName(), "//define");
-                    if (macros.getReplace().contains("\n")) {
-                        input = input.replace(macros.getReplace().replace("//#%#%", "\\"), "//define\n");
+                    if (macros.getReplace().contains("//#%#%")) {
+                        String macrosDefine = "#define " + macros.getName();
+                        int macrosStart = input.indexOf(macrosDefine);
+                        // find all "\" after macros declaration:
+                        int linesNumber = macros.getReplace().split("//#%#%").length;
+                        // macros replace can start in same line, in which #define is declared
+                        // or it can start on next line, then we need to add one line to linesNumber variable
+                        int firstRetIndex = input.indexOf("\n", macrosStart);
+                        // this is the tail of the first line with #define directive till first ret
+                        int tailStart = macrosStart + macrosDefine.length();
+                        if (!macros.getParams().isEmpty()) tailStart = input.indexOf(")", tailStart) + 1;
+                        String firstLine = input.substring(tailStart, firstRetIndex).trim().replace("\\", "");
+                        if (firstLine.isEmpty()) linesNumber++;
+
+                        int lastLineIndex = macrosStart;
+                        for (int i = 0; i < linesNumber; i++) {
+                            lastLineIndex = input.indexOf("\n", lastLineIndex + 1);
+                        }
+                        input = input.substring(0, macrosStart) + input.substring(lastLineIndex + 1);
+                    } else {
+                        input = input.replace("\\#define " + macros.getName(), "//define " + macros.getName());
                     }
                 }
             }

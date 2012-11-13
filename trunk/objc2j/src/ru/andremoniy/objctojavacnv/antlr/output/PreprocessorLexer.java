@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g 2012-11-06 23:09:13
+// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g 2012-11-13 22:08:45
 
 package ru.andremoniy.objctojavacnv.antlr.output;
 
@@ -972,8 +972,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:9: ( DIGIT ( DIGIT | '.' )* ( 'L' )? )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:12: DIGIT ( DIGIT | '.' )* ( 'L' )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:9: ( DIGIT ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:12: DIGIT ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )?
             {
             mDIGIT(); 
 
@@ -1012,18 +1012,26 @@ public class PreprocessorLexer extends Lexer {
             } while (true);
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:33: ( 'L' )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:33: ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0=='L') ) {
+            if ( (LA5_0=='D'||LA5_0=='F'||LA5_0=='L'||LA5_0=='d'||LA5_0=='f'||LA5_0=='l') ) {
                 alt5=1;
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:33: 'L'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:
                     {
-                    match('L'); 
+                    if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='L'||input.LA(1)=='d'||input.LA(1)=='f'||input.LA(1)=='l' ) {
+                        input.consume();
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;
+                    }
+
 
                     }
                     break;

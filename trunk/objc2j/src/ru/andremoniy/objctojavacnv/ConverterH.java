@@ -77,7 +77,7 @@ public class ConverterH {
         if (originalImportsSb == null) {
             originalImportsSb = new StringBuilder();
         }
-        Utils.addOriginalImports(input, projectContext, originalImportsSb);
+        Utils.addOriginalImports(input, projectContext);
 
         if (!categoryClass) {
             sb.append("package ").append(packageName).append(";\n\n");
@@ -105,19 +105,20 @@ public class ConverterH {
                     mainInterface = childTree;
                 } else {
                     projectContext.newClass("I" + interfaceName, null);
-                    projectContext.imports.put(interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
-                    projectContext.imports.put("I" + interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
-                    process_interface(projectContext, false, childTree, addSb, true, true, sb);
+                    projectContext.addImports(interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
+                    projectContext.addImports("I" + interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
+                    process_interface(projectContext, childTree, addSb, true, true, sb);
                 }
             }
         }
 
         projectContext.newClass(className, categoryName);
-        projectContext.imports.put(pureClassName, packageName + "." + projectContext.classCtx.className());
-        projectContext.imports.put(projectContext.classCtx.className(), packageName + "." + projectContext.classCtx.className());
+
+        projectContext.addImports(pureClassName, packageName + "." + projectContext.classCtx.className());
+        projectContext.addImports(projectContext.classCtx.className(), packageName + "." + projectContext.classCtx.className());
 
         if (mainInterface != null) {
-            process_interface(projectContext, categoryClass, mainInterface, mainSB, false, false, sb);
+            process_interface(projectContext, mainInterface, mainSB, false, false, sb);
         } else {
             mainSB.append("public abstract class ").append(className).append(" {\n");
         }
@@ -128,7 +129,7 @@ public class ConverterH {
         if (importsSb == null) {
             importsSb = new StringBuilder();
         }
-        Utils.addAdditionalImports(importsSb, projectContext);
+        Utils.addAdditionalImports(projectContext);
 
         if (!categoryClass) {
             Set<String> categoriesList = projectContext.categories.get(pureClassName);
@@ -159,7 +160,7 @@ public class ConverterH {
 
     }
 
-    private static void process_interface(ProjectContext projectContext, boolean categoryClass, CommonTree interfaceTree, StringBuilder sb, boolean finish, boolean innerClass, StringBuilder importSb) {
+    private static void process_interface(ProjectContext projectContext, CommonTree interfaceTree, StringBuilder sb, boolean finish, boolean innerClass, StringBuilder importSb) {
         h_process_interface1(sb, interfaceTree, projectContext, innerClass, importSb);
 
         process_interface_body(sb, interfaceTree, projectContext, false);
@@ -225,13 +226,17 @@ public class ConverterH {
             }
         }
 
+        name = name.trim();
+        if (!name.isEmpty()) {
+            projectCtx.staticFields.put(name, projectCtx.classCtx.className());
+        }
         sb.append("\t").append("public static ").append(Utils.transformType(type, projectCtx.classCtx)).append(" ").append(name).append(";\n");
     }
 
     private static void h_process_method(StringBuilder sb, CommonTree tree, ProjectContext projectCtx) {
         String type = "";
         String name = "";
-        String modifier = "";
+        String modifier;
         Map<String, String> params = new LinkedHashMap<>();
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
@@ -311,9 +316,13 @@ public class ConverterH {
 
         if (superclassName.length() > 0 && !superclassName.startsWith("NS")) {
             // добавим import этого класса:
-            String superClassPath = context.imports.get(superclassName);
-            if (superClassPath != null) {
-                importSb.append("import ").append(superClassPath).append(";\n\n");
+            Set<String> superClassPathList = context.imports.get(superclassName);
+            if (superClassPathList != null) {
+                for (String superClassPath : superClassPathList) {
+                    if (superClassPath != null) {
+                        importSb.append("import ").append(superClassPath).append(";\n\n");
+                    }
+                }
             }
         }
 

@@ -163,9 +163,9 @@ typedef_struct_wrapper
 	
 typedef_struct
 	:	'struct' typedef_name?
-		'{'
+		('{'
 			struct_field_wrapper+
-		'}' (struct_name (',' struct_name)*)? ';'?
+		'}')? (struct_name (',' struct_name)*)? ';'?
 	;
 	
 struct_name
@@ -260,6 +260,7 @@ interface_body_item
 	:	group_modifier_wrapper simple_fields_declaration?
 	|	simple_fields_declaration
 	|	union_declaration_wrapper ';'
+	|	typedef_struct_wrapper
 	;
 
 union_name
@@ -306,7 +307,7 @@ classical_param
 	|	'...';		
 	
 type_declaration
-	:	'const'? 'enum'? 'typedef'? 'struct'? (('unsigned' type_dec?) | type_dec) 'const'? generic? '*'* -> ^(TYPE type_dec generic?);	
+	:	'const'? 'enum'? 'typedef'? (('unsigned' type_dec?) | type_dec) 'const'? generic? '*'* -> ^(TYPE type_dec generic?);	
 
 type_dec:	type_dec_internal ('[' ']')* 
 	;
@@ -394,7 +395,8 @@ method_params
 	:	method_param+ -> ^(METHOD_PARAMS method_param+);
 
 method_param
-	:	prefix? ':' ('(' type_declaration ')')? param_name -> ^(METHOD_PARAM prefix? ':' '(' type_declaration ')' param_name);	
+	:	prefix? ':' ('(' type_declaration ')')? param_name -> ^(METHOD_PARAM prefix? ':' '(' type_declaration ')' param_name)
+	|	',' '...' 'NS_REQUIRES_NIL_TERMINATION';	
 	
 param_name
 	:	ID -> ^(PARAM_NAME ID)
@@ -418,7 +420,7 @@ PREPROCESSOR_DECLARATION
 	: '#' ~('\r' | '\n')* ('\r' | '\n')+ { skip(); }; 	
 
 NUMBER  : '-'? DIGIT+ 
-	| '0x' ('A'|'B'|'C'|'D'|'E'|'F'|DIGIT)+;
+	| '0x' ('A'|'B'|'C'|'D'|'E'|'F'|'a'|'b'|'c'|'d'|'e'|'f'|DIGIT)+;
 
 WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+  { $channel = HIDDEN; } ;
 

@@ -275,7 +275,7 @@ RET	:	'\r' | '\n';
 
 ID	:	LETTER (DIGIT|LETTER)*;
 
-NUMBER  : 	DIGIT (DIGIT | '.')* 'L'?;
+NUMBER  : 	DIGIT (DIGIT | '.')* ('l'|'L'|'f'|'F'|'d'|'D')?;
 
 //STRING_LITERAL2
 //	:	QUOTE ( options {greedy=false;} : . )* QUOTE;
