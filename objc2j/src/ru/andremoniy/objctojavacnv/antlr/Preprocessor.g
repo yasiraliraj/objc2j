@@ -261,11 +261,15 @@ BACKSLASH
 	:	'\\';
 POINTS3	:	'...';
 
+MATH_OP	:	'++'|'--'|'+='|'-='|'*='|'/='|'%=';
+
 EXC	:	'!';
 PLUS	:	'+';
 MINUS	:	'-';
 L_BR	:	'(';
 R_BR	:	')';
+R_SHFT	:	'>>';
+L_SHFT	:	'<<';
 L_UBR	:	'<';
 R_UBR	:	'>';
 ASTERISK:	'*';
@@ -275,7 +279,7 @@ RET	:	'\r' | '\n';
 
 ID	:	LETTER (DIGIT|LETTER)*;
 
-NUMBER  : 	DIGIT (DIGIT | '.')* ('l'|'L'|'f'|'F'|'d'|'D')?;
+NUMBER  : 	DIGIT ( ((DIGIT | '.')* ('l'|'L'|'f'|'F'|'d'|'D')?) | (('X'|'x') (DIGIT | LETTER)+));
 
 //STRING_LITERAL2
 //	:	QUOTE ( options {greedy=false;} : . )* QUOTE;
