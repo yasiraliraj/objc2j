@@ -494,7 +494,7 @@ public class Preprocessor {
                         }
                         input = input.substring(0, macrosStart) + input.substring(lastLineIndex + 1);
                     } else {
-                        input = input.replace("\\#define " + macros.getName(), "//define " + macros.getName());
+                        input = input.replace("#define " + macros.getName(), "//define " + macros.getName());
                     }
                 }
             }
