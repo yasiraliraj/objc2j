@@ -804,6 +804,9 @@ a_protocol
 
 a_encode_wrapper
 	:	a_encode -> ^(ENCODE a_encode);
+	
+a_encode:	'@encode' L_BR a_selector_value_wrapper R_BR;
+	
 
 a_selector_value_wrapper
 	:	a_selector_value -> ^(SELECTOR_VALUE a_selector_value);
@@ -814,8 +817,6 @@ a_selector_value
 sel_id	:	ID
 	|	property
 	;	
-
-a_encode:	'@encode' L_BR ~(R_BR)+ R_BR;
 
 const_expr_wrapper
 	:	const_expr -> ^(CONST_EXPR const_expr);
@@ -999,7 +1000,7 @@ method_param_wrapper2
 	:	method_param2 -> ^(PARAM method_param2);
 	
 method_param2
-	:	CONST_PREFIX? ENUM_PREFIX? STRUCT_PREFIX? 'unsigned'? field_type name? indexed?;
+	:	CONST_PREFIX? ENUM_PREFIX? STRUCT_PREFIX? 'unsigned'? field_type name? index_wrapper?;
 	
 indexed	:	L_KBR NUMBER? R_KBR;
 	

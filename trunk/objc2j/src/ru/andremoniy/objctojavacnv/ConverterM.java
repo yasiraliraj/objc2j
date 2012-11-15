@@ -10,7 +10,10 @@ import org.slf4j.LoggerFactory;
 import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.antlr.output.ObjcmLexer;
 import ru.andremoniy.objctojavacnv.antlr.output.ObjcmParser;
-import ru.andremoniy.objctojavacnv.context.*;
+import ru.andremoniy.objctojavacnv.context.BlockContext;
+import ru.andremoniy.objctojavacnv.context.ClassContext;
+import ru.andremoniy.objctojavacnv.context.ExpressionContext;
+import ru.andremoniy.objctojavacnv.context.ProjectContext;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -388,11 +391,12 @@ public class ConverterM {
                 case ObjcmLexer.NAME:
                     StringBuilder nameSb = new StringBuilder();
                     readChildren(nameSb, childTree, classCtx, null);
-                    sb.append(nameSb);
+                    String trimmedName = nameSb.toString().trim();
+                    sb.append(trimmedName);
                     if (tree.getFirstChildWithType(ObjcmLexer.METHOD) != null) {
-                        methodName = nameSb.toString().trim();
+                        methodName = trimmedName;
                     } else {
-                        fieldName = nameSb.toString().trim();
+                        fieldName = trimmedName;
                     }
                     break;
                 case ObjcmLexer.FIELD:
@@ -406,6 +410,10 @@ public class ConverterM {
                     classCtx.projectCtx.staticFields.put(fieldName, classCtx.className);
 
                     break;
+                case ObjcmLexer.PARAM:
+                    process_param(sb, childTree, classCtx);
+                    isField = false;
+                    break;
                 // Это статическое поле или метод
                 case ObjcmLexer.METHOD:
                     m_process_params(sb, childTree, classCtx);
@@ -418,12 +426,14 @@ public class ConverterM {
                     break;
                 default:
                     String text = Utils.getText(childTree).trim();
-                    if (text.equals("inline")) text = "native"; // TODO ?!
+                    if (text.equals("inline")) {
+                        break;
+                    }
                     if (text.equals("static")) {
                         isStatic = true;
                         break;
                     }
-                    sb.append(text);
+                    sb.append(transformObject(text, classCtx, null));
                     sb.append(" ");
                     break;
             }
@@ -432,6 +442,42 @@ public class ConverterM {
         if (isField) {
             sb.append(";\n");
         }
+    }
+
+    private static void process_param(StringBuilder sb, CommonTree tree, ClassContext classCtx) {
+        String typeName = "";
+        String paramName = "";
+        String paramAdd = "";
+        boolean wasUnsigned = false;
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.token.getType()) {
+                case ObjcmParser.TYPE:
+                    typeName = Utils.transformType(((CommonTree) child).getChild(0).getText().trim(), classCtx);
+                    break;
+                case ObjcmParser.NAME:
+                    paramName = Utils.transformObject(((CommonTree) child).getChild(0).getText().trim(), classCtx, null);
+                    break;
+                case ObjcmParser.INDEX:
+                    paramAdd = process_index_simple(new StringBuilder(), childTree);
+                    break;
+                default:
+                    String text = ((CommonTree) child).getText().trim();
+                    if (text.equals("unsigned")) {
+                        wasUnsigned = true;
+                    } else {
+                        paramAdd += text;
+                    }
+                    break;
+            }
+        }
+
+        if (paramName.isEmpty() && wasUnsigned) {
+            paramName = Utils.transformObject(typeName, classCtx, null);
+            typeName = Utils.transformType("unsigned", classCtx);
+        }
+
+        sb.append(typeName).append(" ").append(paramName).append(paramAdd);
     }
 
     private static void m_process_params(StringBuilder sb, CommonTree tree, ClassContext classCtx) {
@@ -685,12 +731,15 @@ public class ConverterM {
                 case ObjcmLexer.IF_STMT:
                     m_process_if_stmt(sb, childTree, blockCtx.newBlock());
                     break;
-                case ObjcmLexer.SELECTOR:
-                    m_process_selector(sb, childTree, blockCtx.newExpr(), "selector");
-                    break;
-                case ObjcmLexer.PROTOCOL:
-                    m_process_selector(sb, childTree, blockCtx.newExpr(), "protocol");
-                    break;
+//                case ObjcmLexer.SELECTOR:
+//                    m_process_selector(sb, childTree, blockCtx.newExpr(), "selector");
+//                    break;
+//                case ObjcmLexer.PROTOCOL:
+//                    m_process_selector(sb, childTree, blockCtx.newExpr(), "protocol");
+//                    break;
+//                case ObjcmLexer.ENCODE:
+//                    m_process_selector(sb, childTree, blockCtx.newExpr(), "encode");
+//                    break;
                 case ObjcmLexer.BREAK:
                     blockCtx.isBreak = true;
                     if (!blockCtx.skipBreak) {
@@ -707,11 +756,6 @@ public class ConverterM {
                         sb.append(")");
                     }
                     sb.append(";\n");
-/*
-                    StringBuilder rsb = new StringBuilder();
-                    m_process_block(rsb, childTree, blockCtx);
-                    sb.append(rsb);
-*/
                     break;
                 case ObjcmLexer.THROW_STMT:
                     sb.append("throw new RuntimeException(\"empty\");\n");
@@ -731,6 +775,8 @@ public class ConverterM {
                     fieldAccess = false;
                     break;
                 default:
+                    if (a_started_cases(sb, blockCtx.newExpr(), childTree)) continue; // TODO: newExpr ??
+
                     if (testBrackets(children, i, childrenSize, child)) break;
                     StringBuilder lsb = new StringBuilder();
                     if (childTree.getChildCount() == 0) {
@@ -751,11 +797,6 @@ public class ConverterM {
                         case "@finally":
                             lsb = new StringBuilder("finally");
                             break;
-/*
-                        case "@throw":
-                            lsb = new StringBuilder("throw");
-                            break;
-*/
                         case "_cmd":
                             lsb = new StringBuilder("\"" + blockCtx.methodCtx().methodName + "\"");
                             break;
@@ -822,11 +863,6 @@ public class ConverterM {
             sb.append(lastChild.getText());
         }
         sb.append("\n");
-/*
-        for (Object child : tree.getChildren()) {
-
-        }
-*/
     }
 
     private static void process_variable_init(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
@@ -1132,6 +1168,20 @@ public class ConverterM {
         }
     }
 
+    private static String process_index_simple(StringBuilder sb, CommonTree tree) {
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            switch (childTree.getType()) {
+                case ObjcmLexer.INDEX_NUMBER:
+                    break;
+                default:
+                    sb.append(((CommonTree) child).getText().trim());
+                    break;
+            }
+        }
+        return sb.toString();
+    }
+
     private static boolean recursiveSearchExists(CommonTree tree, int type) {
         if (tree.getChildCount() == 0) return false;
         for (Object child : tree.getChildren()) {
@@ -1325,12 +1375,6 @@ public class ConverterM {
                 case ObjcmLexer.METHOD_CALL:
                     m_process_method_call(sb, childTree, exprCtx.newExpr());
                     break;
-                case ObjcmLexer.SELECTOR:
-                    m_process_selector(sb, childTree, exprCtx.newExpr(), "selector");
-                    break;
-                case ObjcmLexer.PROTOCOL:
-                    m_process_selector(sb, childTree, exprCtx.newExpr(), "protocol");
-                    break;
                 case ObjcmLexer.FIELD_ACCESS:
                     fieldAccessCounter2++;
                     sb.append(", \"");
@@ -1352,12 +1396,9 @@ public class ConverterM {
                     process_generic(sb, childTree, exprCtx);
                     sb.append(">");
                     break;
-//                case ObjcmLexer.STRING:
-//                    sb.append("NSString(");
-//                    readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
-//                    sb.append(")");
-//                    break;
                 default:
+                    if (a_started_cases(sb, exprCtx, childTree)) continue;
+
                     StringBuilder defSb = new StringBuilder();
                     readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
                     sb.append(defSb);
@@ -1367,6 +1408,21 @@ public class ConverterM {
                     break;
             }
         }
+    }
+
+    private static boolean a_started_cases(StringBuilder sb, ExpressionContext exprCtx, CommonTree childTree) {
+        switch (childTree.token.getType()) {
+            case ObjcmLexer.SELECTOR:
+                m_process_selector(sb, childTree, exprCtx.newExpr(), "selector");
+                return true;
+            case ObjcmLexer.PROTOCOL:
+                m_process_selector(sb, childTree, exprCtx.newExpr(), "protocol");
+                return true;
+            case ObjcmLexer.ENCODE:
+                m_process_selector(sb, childTree, exprCtx.newExpr(), "encode");
+                return true;
+        }
+        return false;
     }
 
     private static void m_process_static_start(StringBuilder sb, CommonTree tree, BlockContext blockCtx) {
@@ -1607,18 +1663,14 @@ public class ConverterM {
                     break;
                 case ObjcmLexer.PREFIX:
                     break;
-                case ObjcmLexer.SELECTOR:
-                    m_process_selector(sb, childTree, exprCtx, "selector");
-                    break;
-                case ObjcmLexer.PROTOCOL:
-                    m_process_selector(sb, childTree, exprCtx, "protocol");
-                    break;
                 case ObjcmLexer.FUNCTION:
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
                     exprCtx2.transformClassNames = true;
                     process_classical_expr(sb, childTree, exprCtx2.checkForFunctionName(), false, false);
                     break;
                 default:
+                    if (a_started_cases(sb, exprCtx, childTree)) continue;
+
                     if (i == 0 && child.toString().equals("[")) continue;
                     if (i == childrenSize - 1 && child.toString().equals("]")) continue;
                     // ситуация типа blabla... prefix
