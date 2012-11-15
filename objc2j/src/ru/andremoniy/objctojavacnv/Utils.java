@@ -40,8 +40,6 @@ public class Utils {
                 return "false";
             case "static":
                 return "";
-//            case "NSAssert":
-//                return "assert";
             case "MAX":
                 return "Math.max";
             case "_CGFloatFloor":
