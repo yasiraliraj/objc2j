@@ -852,8 +852,24 @@ public class ConverterM {
 
             sb.append(") ");
         } else {
+            sb.append("for (");
+            for (Object child : forStmtExpr.getChildren()) {
+                CommonTree childTree = (CommonTree) child;
+                switch (childTree.getType()) {
+                    case ObjcmParser.EXPR_FULL:
+                        process_expr_full(sb, childTree, blockCtx.newExpr(), true);
+                        break;
+                    case ObjcmParser.CLASSICAL_EXPR:
+                        process_classical_expr(sb, childTree, blockCtx.newExpr(), false, false);
+                        break;
+                    default:
+                        sb.append(((CommonTree) child).getText().trim());
+                        break;
+                }
+            }
+            sb.append(") ");
             // само собой
-            m_process_block(sb, forStmtExpr, blockCtx.newBlock());
+//            m_process_block(sb, forStmtExpr, blockCtx.newBlock());
         }
 
         CommonTree lastChild = (CommonTree) tree.getChild(tree.getChildCount() - 1);
