@@ -114,7 +114,7 @@ package ru.andremoniy.objctojavacnv.antlr.output;
  * PARSER RULES
  *------------------------------------------------------------------*/
 code	:	
-		code_internal+
+		code_internal*
 //		EOF
 	;
 	
@@ -343,7 +343,7 @@ try_stmt:	'@try'  block  catch_stmt* ('@finally'  block)?
 	;
 	
 catch_stmt
-	:	'@catch'  L_BR  ID  ASTERISK* ID  R_BR  block 
+	:	'@catch'  L_BR  ((ID  ASTERISK* ID) | '...')  R_BR  block 
 	;	
 
 switch_stmt_wrapper

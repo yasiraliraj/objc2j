@@ -165,7 +165,7 @@ typedef_struct
 	:	'struct' typedef_name?
 		('{'
 			struct_field_wrapper+
-		'}')? (struct_name (',' struct_name)*)? ';'?
+		'}')? (struct_name array_size? (',' struct_name array_size?)*)? ';'?
 	;
 	
 struct_name
@@ -186,7 +186,7 @@ struct_field2
 	:	typedef_struct;	
 	
 typedef_name
-	: ID -> ^(TYPEDEF_NAME ID);
+	: ID '*'* -> ^(TYPEDEF_NAME ID);
 
 typedef_declaration_element_wrapper
 	:	typedef_declaration_element -> ^(TYPEDEF_ELEMENT typedef_declaration_element)

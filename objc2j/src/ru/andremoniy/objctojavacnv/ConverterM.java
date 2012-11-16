@@ -170,6 +170,8 @@ public class ConverterM {
 
         CommonTree tree = (CommonTree) result.getTree();
 
+        if (tree == null) return new StringBuilder();
+
         CommonTree mainImpl = null;
         StringBuilder innerClasses = new StringBuilder();
 
@@ -316,6 +318,9 @@ public class ConverterM {
                 case ObjcmLexer.INTERFACE:
                     m_process_interface(sb, childTree, classCtx.projectCtx);
                     break;
+                case ObjcmLexer.EXTERN:
+                    // do nothing
+                    break;
                 case ObjcmLexer.STATIC:
                     m_process_static(sb, childTree, classCtx);
                     break;
@@ -346,14 +351,14 @@ public class ConverterM {
                     name = namesb.toString().trim();
                     break;
                 case ObjcmLexer.FIELD:
-
                     classCtx.projectCtx.staticFields.put(name, classCtx.className);
-
                     CommonTree valueTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.VALUE);
                     if (valueTree != null) {
                         lsb.append("=");
                         lsb.append(m_process_field_value(valueTree, classCtx));
                     }
+                    break;
+                case ObjcmLexer.EXTERN:
                     break;
                 default:
                     if (child.toString().equals("static")) isStatic = true;
@@ -423,6 +428,8 @@ public class ConverterM {
                     } else {
                         m_process_params(sb, childTree, classCtx);
                     }
+                    break;
+                case ObjcmLexer.EXTERN:
                     break;
                 default:
                     String text = Utils.getText(childTree).trim();
@@ -622,7 +629,7 @@ public class ConverterM {
         }
 
         if (methodName.equals("init") && params.isEmpty()) classCtx.containsInit = true;
-        if (methodName.equals("autoRelease") && params.isEmpty()) classCtx.containsAutoRelease = true;
+        if (methodName.toLowerCase().equals("autorelease") && params.isEmpty()) classCtx.containsAutoRelease = true;
 
         String modifier_sb = modifier.length() > 0 ? (modifier.equals("-") ? "" : "static") : "";
         if (staticFlag) modifier_sb = "static";

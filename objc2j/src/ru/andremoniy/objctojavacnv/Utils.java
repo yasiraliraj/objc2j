@@ -121,6 +121,7 @@ public class Utils {
             case "signed":
             case "int":
             case "unsigned":
+            case "size_t":
                 return "Integer";
             case "id":
                 return "NSObject";
