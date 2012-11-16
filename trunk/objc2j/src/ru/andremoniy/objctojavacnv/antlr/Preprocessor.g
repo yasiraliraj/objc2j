@@ -257,6 +257,9 @@ INCLUDE	:	'#include';
 IMPORT	:	'#import';
 DEFINED	:	'defined';
 
+RESERVED_WORDS
+	:	'@try' | '@catch' | '@throw' | '@finally';
+
 BACKSLASH
 	:	'\\';
 POINTS3	:	'...';
