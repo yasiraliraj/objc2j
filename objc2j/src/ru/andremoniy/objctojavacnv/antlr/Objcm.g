@@ -83,8 +83,8 @@ tokens {
 	EXPR_MOV;
 	EXPR_ADD;
 	EXPR_MULT;
-	EXPR_TYPE;
 	EXPR_NOT;
+	EXPR_UNNAME;
 	SIMPLE_EXPR;
 	EXPR_QUESTION;
 	FUNCTION;
@@ -189,7 +189,8 @@ static_section_wrapper
 	:	static_section -> ^(STATIC static_section);		
 	
 static_section
-	:	'inline'? STATIC_PREFIX CONST_PREFIX? STRUCT_PREFIX? ENUM_PREFIX? static_section2;
+//	:	'inline'? STATIC_PREFIX CONST_PREFIX? STRUCT_PREFIX? ENUM_PREFIX? static_section2;
+	:	 STATIC_PREFIX CONST_PREFIX? STRUCT_PREFIX? ENUM_PREFIX? static_section2;
 
 static_section2
 	:	inline_section 
@@ -198,7 +199,7 @@ static_section2
 	;
 	
 inline_section
-	:	'inline'  field_type name  method_params2? (block_wrapper | SEMICOLON);
+	:	'inline' ENUM_PREFIX? field_type name  method_params2? (block_wrapper | SEMICOLON);
 	
 static_section3
 	:	field_type name indexed*  static_end;
@@ -212,7 +213,7 @@ field_end
 	:	field_end_internal -> ^(FIELD field_end_internal);
 	
 field_end_internal
-	:	value_set? SEMICOLON;	
+	:	expr_assign_wrapper? SEMICOLON;	
 		
 implementation_method_wrapper3
 	:	implementation_method3 -> ^(METHOD implementation_method3);
@@ -324,13 +325,13 @@ typeof_started
 	;	
 	
 struct_variable
-	:	STRUCT_PREFIX full_expr_wrapper;
+	:	STRUCT_PREFIX name full_expr_wrapper (COMMA full_expr_wrapper)*;
 
 enum_variable
-	:	ENUM_PREFIX full_expr_wrapper;
+	:	ENUM_PREFIX name full_expr_wrapper (COMMA full_expr_wrapper)*;
 		
 const_expression
-	:	CONST_PREFIX full_expr_wrapper;
+	:	CONST_PREFIX type_internal full_expr_wrapper;
 
 throw_stmt_wrapper
 	:	throw_stmt -> ^(THROW_STMT throw_stmt);
@@ -456,13 +457,9 @@ for_stmt_int1
 for_stmt_int2
 	:	SEMICOLON classical_expr_wrp? SEMICOLON classical_expr_wrp?
 	;
-
-//return_stmt_wrapper
-//	:	return_stmt -> ^(RETURN_STMT return_stmt)
-//	;
 	
 return_stmt
-	:	'return' classical_expr_wrp? SEMICOLON -> ^(RETURN_STMT classical_expr_wrp? SEMICOLON);	
+	:	'return' expression? SEMICOLON -> ^(RETURN_STMT expression? SEMICOLON);	
 
 if_stmt_wrapper
 	:	if_stmt -> ^(IF_STMT if_stmt);
@@ -541,10 +538,13 @@ method_message3
 	:	classical_expr_wrp -> ^(MESSAGE classical_expr_wrp);
 		
 type_convertion
+	:	L_BR type_convertion_internal_wrapper R_BR;
+
+type_convertion_internal_wrapper
 	:	type_convertion_internal -> ^(TYPE_CONVERTION type_convertion_internal);
-		
+	
 type_convertion_internal
-	:	L_BR 'const'? 'unsigned'? type_internal generic? ASTERISK* R_BR -> ^(type_internal generic?);
+	:	'const'? 'unsigned'? type_internal generic? ASTERISK*;	
 
 method_name
 	:	ID -> ^(METHOD_NAME ID)
@@ -560,21 +560,18 @@ method_call_message_first_wrapper
 	:	method_call_message_first -> ^(METHOD_MSG method_call_message_first);
 
 method_call_message_first
-	:	COLON  message;
+	:	COLON  message_wrapper;
 	
 method_call_message_wrapper
 	:	method_call_message -> ^(METHOD_MSG method_call_message);
 	
 method_call_message
-	:	(prefix | incomplete_prefix)  message;
+	:	(prefix | incomplete_prefix) message_wrapper;
 	
-message	:	msg_expr (COMMA msg_expr)* -> ^(MESSAGE msg_expr (COMMA  msg_expr)*)
-	;
-		
-
-msg_expr 
-	: 	classical_expr_wrp
-	;	
+message_wrapper
+	:	message -> ^(MESSAGE message);	
+	
+message	:	expression (COMMA expression)*;	
 	
 /*------------------------------------------------------------------
  * COMMON EXPRESSION RULES
@@ -598,7 +595,7 @@ expr_assign_wrapper
 	:	expr_assign -> ^(EXPR_ASSIGN expr_assign);
 	
 expr_assign	
-	:	assign_wrapper (classical_expr_wrp | array_init_wrapper | (func_pointer2 method_call_wrapper?));
+	:	assign_wrapper (struct_init | classical_expr_wrp | array_init_wrapper | (func_pointer2 method_call_wrapper?));
 
 array_init_wrapper
 	:	array_init -> ^(ARRAY_INIT array_init);	
@@ -635,7 +632,7 @@ assign_wrapper
 	
 assign
 	:	L_EQ | L_PLUS_EQ | L_MINUS_EQ | L_MULT_EQ | L_DIV_EQ
-	|   L_PERC_EQ | L_LEFT_EQ | L_RIGHT_EQ | L_AND_EQ | L_XOR_EQ | L_OR_EQ
+	|   	L_PERC_EQ | L_LEFT_EQ | L_RIGHT_EQ | L_AND_EQ | L_XOR_EQ | L_OR_EQ
 	;
 	
 simple_expr_wrapper
@@ -699,14 +696,11 @@ expr_mult_wrapper
 	:	expr_mult -> ^(EXPR_MULT expr_mult);
 
 expr_mult
-	:	expr_type_wrapper ((ASTERISK | L_DIV | L_PERC) simple_expr_wrapper)*;
+	:	expr_unname_wrapper ((ASTERISK | L_DIV | L_PERC) expr_unname_wrapper)*;
 	
-expr_type_wrapper
-	:	expr_type -> ^(EXPR_TYPE expr_type);
-
-expr_type
-	:	type_convertion? expr_unname;
-	
+expr_unname_wrapper
+	:	expr_unname -> ^(EXPR_UNNAME expr_unname);	
+		
 expr_unname
 	:	(ASTERISK type_convertion?)? expr_addr;
 	
@@ -738,10 +732,14 @@ object_wrapped1
 object_wrapped2
 	: 	'unsigned'? object_name generic?
 	|	method_call_wrapper id_part_end?
-	|	L_BR classical_expr_wrp R_BR id_part_end?
+	|	L_BR l_br_end 
 	|	const_expr_wrapper
 	|	a_started
 	;
+
+l_br_end:	type_convertion_internal_wrapper R_BR classical_expr_wrp
+	|	classical_expr_wrp R_BR id_part_end?
+	;	
 	
 function_brackets_wrapper
 	:	function_brackets -> ^(FUNCTION function_brackets);	
@@ -823,12 +821,6 @@ const_expr_wrapper
 
 const_expr	
 	: 	NUMBER | STRING_LITERAL | STRING_LITERAL2 | STRING_LITERAL3 | null_stmt;
-	
-//string_wrapper
-//	:	string_internal -> ^(STRING string_internal);	
-	
-//string_internal
-//	:	STRING_LITERAL | STRING_LITERAL2 | STRING_LITERAL3;	
 	
 string_literal3
 	:	STRING_LITERAL3;	
@@ -987,7 +979,10 @@ type_internal1
 	|	'unsigned'
 	;	
 	
-generic:	 L_LESS generic_internal L_MORE -> ^(GENERIC generic_internal);	
+generic:	 L_LESS generic_internal_wrapper L_MORE;	
+
+generic_internal_wrapper
+	:	generic_internal -> ^(GENERIC generic_internal);
 
 generic_internal
 	:	 ID ASTERISK* (COMMA  ID  ASTERISK*)*;
@@ -1078,7 +1073,7 @@ field_declaration
 	:	field_modifier_wrapper  field_type name field_declaration_end;
 	
 field_declaration_end
-	:	 value_set? SEMICOLON;
+	:	 expr_assign_wrapper? SEMICOLON;
 	
 type_start_wrapper
 	:	type_start -> ^(M_TYPE_START type_start);
@@ -1091,7 +1086,7 @@ type_end:	field_declaration4 -> ^(FIELD field_declaration4)
 	;	
 	
 field_declaration4
-	:	 value_set? SEMICOLON
+	:	 expr_assign_wrapper? SEMICOLON
 	;
 	
 method_declaration4
@@ -1125,17 +1120,10 @@ name_internal
 	| 	property
 	;
 
-value_set
-	:	L_EQ  value -> ^(VALUE value);
-
-value	:	ID | string_value | null_stmt | array | NUMBER | struct_init2;	
-
 string_value
 	:	STRING_LITERAL;
 	
 null_stmt	:	'nil' | 'Nil';
-
-array	:	L_FBR  value  (COMMA  value)* R_FBR;
 
 /*------------------------------------------------------------------
  * LEXER RULES
@@ -1225,7 +1213,7 @@ PREPROCESSOR_DECLARATION
 NUMBER  : DIGIT+ ('u'|'U')?
 	| DIGIT+ DOT DIGIT* ('f'|'F')?
 	| DIGIT* DOT DIGIT+ ('f'|'F')?
-	| ('0x'  (DIGIT|'A'..'F')*(DOT DIGIT+)?)?
+	| ('0x'  (DIGIT|'A'..'F'|'a'..'f')*(DOT DIGIT+)?)?
 	| DIGIT+ (DOT DIGIT+)? 'e' ('-'|'+')? DIGIT+;
 
 WS : ( '\t' | ' ' | '\r' | '\n'| '\u000C')+  { $channel = HIDDEN; } ;

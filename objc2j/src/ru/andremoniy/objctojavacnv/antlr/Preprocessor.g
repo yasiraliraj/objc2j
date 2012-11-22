@@ -282,7 +282,7 @@ RET	:	'\r' | '\n';
 
 ID	:	LETTER (DIGIT|LETTER)*;
 
-NUMBER  : 	DIGIT ( ((DIGIT | '.')* ('l'|'L'|'f'|'F'|'d'|'D')?) | (('X'|'x') (DIGIT | LETTER)+));
+NUMBER  : 	DIGIT ( ((DIGIT | '.')* ('l'|'L'|'f'|'F'|'d'|'D')?) | (('X'|'x') (DIGIT | LETTER)+) | (('e'|'E') ('-'|'+') DIGIT+));
 
 //STRING_LITERAL2
 //	:	QUOTE ( options {greedy=false;} : . )* QUOTE;
