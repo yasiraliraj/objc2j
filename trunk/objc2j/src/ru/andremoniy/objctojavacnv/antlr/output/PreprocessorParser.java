@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g 2012-11-16 20:14:04
+// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g 2012-11-19 19:33:10
 
 package ru.andremoniy.objctojavacnv.antlr.output;
 
@@ -3130,7 +3130,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
             // AST REWRITE
-            // elements: replace_wrapper, DEFINE, id_wrapper
+            // elements: DEFINE, replace_wrapper, id_wrapper
             // token labels: 
             // rule labels: retval
             // token list labels: 

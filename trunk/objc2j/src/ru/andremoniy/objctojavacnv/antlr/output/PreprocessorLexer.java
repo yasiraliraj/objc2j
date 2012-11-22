@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g 2012-11-16 20:14:05
+// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g 2012-11-19 19:33:10
 
 package ru.andremoniy.objctojavacnv.antlr.output;
 
@@ -1270,23 +1270,32 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:9: ( DIGIT ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) ) )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:12: DIGIT ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:9: ( DIGIT ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) | ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ ) ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:12: DIGIT ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) | ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ ) )
             {
             mDIGIT(); 
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:18: ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) )
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:18: ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) | ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ ) )
+            int alt10=3;
+            switch ( input.LA(1) ) {
+            case 'X':
+            case 'x':
+                {
+                alt10=2;
+                }
+                break;
+            case 'E':
+            case 'e':
+                {
+                alt10=3;
+                }
+                break;
+            default:
+                alt10=1;
+            }
 
-            if ( (LA9_0=='X'||LA9_0=='x') ) {
-                alt9=2;
-            }
-            else {
-                alt9=1;
-            }
-            switch (alt9) {
+            switch (alt10) {
                 case 1 :
                     // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:20: ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? )
                     {
@@ -1419,6 +1428,76 @@ public class PreprocessorLexer extends Lexer {
 
                     }
                     break;
+                case 3 :
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:98: ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ )
+                    {
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:98: ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ )
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:99: ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+
+                    {
+                    if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
+                        input.consume();
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;
+                    }
+
+
+                    if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
+                        input.consume();
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;
+                    }
+
+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:119: ( DIGIT )+
+                    int cnt9=0;
+                    loop9:
+                    do {
+                        int alt9=2;
+                        int LA9_0 = input.LA(1);
+
+                        if ( ((LA9_0 >= '0' && LA9_0 <= '9')) ) {
+                            alt9=1;
+                        }
+
+
+                        switch (alt9) {
+                    	case 1 :
+                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:
+                    	    {
+                    	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+                    	        input.consume();
+                    	    }
+                    	    else {
+                    	        MismatchedSetException mse = new MismatchedSetException(null,input);
+                    	        recover(mse);
+                    	        throw mse;
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt9 >= 1 ) break loop9;
+                                EarlyExitException eee =
+                                    new EarlyExitException(9, input);
+                                throw eee;
+                        }
+                        cnt9++;
+                    } while (true);
+
+
+                    }
+
+
+                    }
+                    break;
 
             }
 
@@ -1472,18 +1551,18 @@ public class PreprocessorLexer extends Lexer {
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:295:8: ( '\\u000C' | ' ' | '\\t' )+
             {
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:295:8: ( '\\u000C' | ' ' | '\\t' )+
-            int cnt10=0;
-            loop10:
+            int cnt11=0;
+            loop11:
             do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( (LA10_0=='\t'||LA10_0=='\f'||LA10_0==' ') ) {
-                    alt10=1;
+                if ( (LA11_0=='\t'||LA11_0=='\f'||LA11_0==' ') ) {
+                    alt11=1;
                 }
 
 
-                switch (alt10) {
+                switch (alt11) {
             	case 1 :
             	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:
             	    {
@@ -1501,12 +1580,12 @@ public class PreprocessorLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt10 >= 1 ) break loop10;
+            	    if ( cnt11 >= 1 ) break loop11;
                         EarlyExitException eee =
-                            new EarlyExitException(10, input);
+                            new EarlyExitException(11, input);
                         throw eee;
                 }
-                cnt10++;
+                cnt11++;
             } while (true);
 
 
@@ -1577,9 +1656,9 @@ public class PreprocessorLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:8: ( T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | COMMENT | SINGLE_COMMENT | IFNDEF | IF | ELIF | IFDEF | ELSE | ENDIF | DEFINE | INCLUDE | IMPORT | DEFINED | RESERVED_WORDS | BACKSLASH | POINTS3 | MATH_OP | EXC | PLUS | MINUS | L_BR | R_BR | R_SHFT | L_SHFT | L_UBR | R_UBR | ASTERISK | QUOTE | RET | ID | NUMBER | SPECIAL_CHARS | WS )
-        int alt11=41;
-        alt11 = dfa11.predict(input);
-        switch (alt11) {
+        int alt12=41;
+        alt12 = dfa12.predict(input);
+        switch (alt12) {
             case 1 :
                 // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:10: T__64
                 {
@@ -1914,31 +1993,31 @@ public class PreprocessorLexer extends Lexer {
     }
 
 
-    protected DFA11 dfa11 = new DFA11(this);
-    static final String DFA11_eotS =
+    protected DFA12 dfa12 = new DFA12(this);
+    static final String DFA12_eotS =
         "\1\uffff\1\31\1\uffff\1\35\1\41\1\44\1\31\1\50\1\uffff\2\31\1\27"+
         "\1\31\1\uffff\1\57\1\60\1\61\1\31\33\uffff\1\27\4\uffff\1\72\4\uffff"+
         "\1\27\5\uffff\3\27\1\101\1\uffff";
-    static final String DFA11_eofS =
+    static final String DFA12_eofS =
         "\102\uffff";
-    static final String DFA11_minS =
+    static final String DFA12_minS =
         "\1\11\1\46\1\uffff\1\56\1\52\1\74\2\75\1\uffff\1\174\1\144\1\145"+
         "\1\143\1\uffff\1\53\1\55\2\75\30\uffff\1\146\1\154\1\uffff\1\146"+
         "\4\uffff\1\144\2\uffff\1\151\1\uffff\1\151\5\uffff\1\156\1\145\1"+
         "\144\1\60\1\uffff";
-    static final String DFA11_maxS =
+    static final String DFA12_maxS =
         "\1\175\1\46\1\uffff\1\56\3\75\1\76\1\uffff\1\174\1\151\1\145\1\164"+
         "\1\uffff\4\75\30\uffff\2\156\1\uffff\1\146\4\uffff\1\156\2\uffff"+
         "\1\163\1\uffff\1\151\5\uffff\1\156\1\145\1\144\1\172\1\uffff";
-    static final String DFA11_acceptS =
+    static final String DFA12_acceptS =
         "\2\uffff\1\2\5\uffff\1\10\4\uffff\1\27\4\uffff\1\32\1\35\1\36\1"+
         "\44\1\45\1\46\1\47\1\50\1\51\1\1\1\30\1\3\1\12\1\13\1\31\1\4\1\5"+
         "\1\40\1\41\1\6\1\7\1\37\1\42\1\11\2\uffff\1\22\1\uffff\1\26\1\33"+
         "\1\34\1\43\1\uffff\1\23\1\24\1\uffff\1\21\1\uffff\1\14\1\17\1\15"+
         "\1\16\1\20\4\uffff\1\25";
-    static final String DFA11_specialS =
+    static final String DFA12_specialS =
         "\102\uffff}>";
-    static final String[] DFA11_transitionS = {
+    static final String[] DFA12_transitionS = {
             "\1\32\1\26\1\uffff\1\32\1\26\22\uffff\1\32\1\22\1\25\1\12\1"+
             "\uffff\1\21\1\1\1\10\1\23\1\24\1\20\1\16\1\2\1\17\1\3\1\4\12"+
             "\30\2\31\1\5\1\6\1\7\1\31\1\14\32\27\1\31\1\15\1\31\1\uffff"+
@@ -2010,34 +2089,34 @@ public class PreprocessorLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA11_eot = DFA.unpackEncodedString(DFA11_eotS);
-    static final short[] DFA11_eof = DFA.unpackEncodedString(DFA11_eofS);
-    static final char[] DFA11_min = DFA.unpackEncodedStringToUnsignedChars(DFA11_minS);
-    static final char[] DFA11_max = DFA.unpackEncodedStringToUnsignedChars(DFA11_maxS);
-    static final short[] DFA11_accept = DFA.unpackEncodedString(DFA11_acceptS);
-    static final short[] DFA11_special = DFA.unpackEncodedString(DFA11_specialS);
-    static final short[][] DFA11_transition;
+    static final short[] DFA12_eot = DFA.unpackEncodedString(DFA12_eotS);
+    static final short[] DFA12_eof = DFA.unpackEncodedString(DFA12_eofS);
+    static final char[] DFA12_min = DFA.unpackEncodedStringToUnsignedChars(DFA12_minS);
+    static final char[] DFA12_max = DFA.unpackEncodedStringToUnsignedChars(DFA12_maxS);
+    static final short[] DFA12_accept = DFA.unpackEncodedString(DFA12_acceptS);
+    static final short[] DFA12_special = DFA.unpackEncodedString(DFA12_specialS);
+    static final short[][] DFA12_transition;
 
     static {
-        int numStates = DFA11_transitionS.length;
-        DFA11_transition = new short[numStates][];
+        int numStates = DFA12_transitionS.length;
+        DFA12_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA11_transition[i] = DFA.unpackEncodedString(DFA11_transitionS[i]);
+            DFA12_transition[i] = DFA.unpackEncodedString(DFA12_transitionS[i]);
         }
     }
 
-    class DFA11 extends DFA {
+    class DFA12 extends DFA {
 
-        public DFA11(BaseRecognizer recognizer) {
+        public DFA12(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 11;
-            this.eot = DFA11_eot;
-            this.eof = DFA11_eof;
-            this.min = DFA11_min;
-            this.max = DFA11_max;
-            this.accept = DFA11_accept;
-            this.special = DFA11_special;
-            this.transition = DFA11_transition;
+            this.decisionNumber = 12;
+            this.eot = DFA12_eot;
+            this.eof = DFA12_eof;
+            this.min = DFA12_min;
+            this.max = DFA12_max;
+            this.accept = DFA12_accept;
+            this.special = DFA12_special;
+            this.transition = DFA12_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | COMMENT | SINGLE_COMMENT | IFNDEF | IF | ELIF | IFDEF | ELSE | ENDIF | DEFINE | INCLUDE | IMPORT | DEFINED | RESERVED_WORDS | BACKSLASH | POINTS3 | MATH_OP | EXC | PLUS | MINUS | L_BR | R_BR | R_SHFT | L_SHFT | L_UBR | R_UBR | ASTERISK | QUOTE | RET | ID | NUMBER | SPECIAL_CHARS | WS );";

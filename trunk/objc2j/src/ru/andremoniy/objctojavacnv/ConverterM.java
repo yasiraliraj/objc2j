@@ -75,7 +75,7 @@ public class ConverterM {
     }};
     private static final List<Integer> EXPR_ORDER = Arrays.asList(
             ObjcmLexer.EXPR_OR_OR, ObjcmLexer.EXPR_AND_AND, ObjcmLexer.EXPR_OR, ObjcmLexer.EXPR_XOR, ObjcmLexer.EXPR_AND, ObjcmLexer.EXPR_EQ,
-            ObjcmLexer.EXPR_COND, ObjcmLexer.EXPR_MOV, ObjcmLexer.EXPR_ADD, ObjcmLexer.EXPR_MULT, ObjcmLexer.EXPR_TYPE);
+            ObjcmLexer.EXPR_COND, ObjcmLexer.EXPR_MOV, ObjcmLexer.EXPR_ADD, ObjcmLexer.EXPR_MULT, ObjcmLexer.EXPR_UNNAME);
 
     public static StringBuilder convert_m(String fileName, ProjectContext projectCtx, StringBuilder addSb) throws IOException, RecognitionException {
         projectCtx.m_counter++;
@@ -1267,15 +1267,16 @@ public class ConverterM {
                     sb.append("_").append(OPS_NUMBER.get(operationsOrder.get(exprCounter))).append("(");
                 }
 
-                if (deep == EXPR_ORDER.size() - 1) {
+                if (deep == EXPR_ORDER.size() - 1) {  // EXPR_UNNAME
                     StringBuilder pesb = new StringBuilder();
-                    process_expr_type(pesb, childTree, exprCtx, isIncompletePrefix);
+                    process_expr_unname(pesb, childTree, exprCtx, isIncompletePrefix);
                     sb.append(pesb);
 
                     if (saveVarType) {
                         exprCtx = exprCtx.newExpr();
                         exprCtx.setVariableDeclaration(true);
                         exprCtx.setVariableDeclarationType(pesb.toString().trim());
+                        saveVarType = false;
                     }
                 } else {
                     process_expr(sb, childTree, exprCtx, deep + 1, leftAssign, isIncompletePrefix);
@@ -1303,6 +1304,7 @@ public class ConverterM {
     }
 
     private static void process_type_convertion(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
+        sb.append("(");
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.getType()) {
@@ -1316,19 +1318,14 @@ public class ConverterM {
                     break;
             }
         }
+        sb.append(")");
     }
 
-    private static void process_expr_type(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, boolean isIncompletePrefix) {
+    private static void process_expr_unname(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, boolean isIncompletePrefix) {
         boolean isUnaryMinus = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.getType()) {
-                case ObjcmLexer.TYPE_CONVERTION:
-                    sb.append("(");
-                    process_type_convertion(sb, childTree, exprCtx.newExpr().setNoTransformClassNames());
-                    sb.append(")");
-                    if (isIncompletePrefix) return;
-                    break;
                 case ObjcmLexer.EXPR_NOT:
                     boolean isRealNot = childTree.getFirstChildWithType(ObjcmLexer.L_NOT) != null;
                     if (isRealNot) {
@@ -1390,6 +1387,9 @@ public class ConverterM {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.getType()) {
+                case ObjcmLexer.TYPE_CONVERTION:
+                    process_type_convertion(sb, childTree, exprCtx.newExpr());
+                    break;
                 case ObjcmLexer.CLASSICAL_EXPR:
                     process_classical_expr(sb, childTree, exprCtx, false, false);
                     break;

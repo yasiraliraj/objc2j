@@ -303,7 +303,7 @@ _format_item
 	:	ID
 	|	NUMBER;	
 classical_param
-	:	type_declaration ID ('[' NUMBER? ']')*
+	:	'struct'? type_declaration ID ('[' NUMBER? ']')*
 	|	'...';		
 	
 type_declaration
@@ -347,7 +347,7 @@ method_declaration_variants
 	 	method_declaration_common;	
 
 method_declaration_common
-	:	('(' type_declaration ')')? method_name method_params? ';';	
+	:	('(' 'struct'? type_declaration ')')? method_name method_params? ';';	
 
 /*
 init_declaration_wrapper
