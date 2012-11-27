@@ -63,7 +63,7 @@ code_internal
 	|	protocol_declaration_wrapper 
 	|	interface_declaration_wrapper 
 	|	extern_declarations
-	|	typedef_struct
+	|	typedef_struct_wrapper
 	|	declarations
 	|	garbage
 	;	
@@ -183,7 +183,7 @@ struct_field1
 	:	type_declaration field_name (',' field_name)* ';';
 	
 struct_field2
-	:	typedef_struct;	
+	:	typedef_struct_wrapper;	
 	
 typedef_name
 	: ID '*'* -> ^(TYPEDEF_NAME ID);
@@ -305,9 +305,13 @@ _format_item
 classical_param
 	:	'struct'? type_declaration ID ('[' NUMBER? ']')*
 	|	'...';		
-	
+
 type_declaration
-	:	'const'? 'enum'? 'typedef'? (('unsigned' type_dec?) | type_dec) 'const'? generic? '*'* -> ^(TYPE type_dec generic?);	
+	:	type_declaration_internal -> ^(TYPE type_declaration_internal);
+//	:	'const'? 'enum'? 'typedef'? (('unsigned' type_dec?) | type_dec) 'const'? generic? '*'* -> ^(TYPE type_dec generic?);	
+
+type_declaration_internal
+	:	'const'? 'enum'? 'typedef'? (('unsigned' type_dec?) | type_dec) 'const'? generic? '*'*;	
 
 type_dec:	type_dec_internal ('[' ']')* 
 	;

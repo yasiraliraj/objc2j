@@ -141,6 +141,8 @@ public class Utils {
                 return "Short";
             case "unichar":
                 return "Characted";
+            case "struct":
+                return "";
         }
 
         if (classCtx != null && !classCtx.localProcessedImports.contains(type) && !classCtx.addImports.contains(type)) {

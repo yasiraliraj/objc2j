@@ -88,7 +88,7 @@ public class ConverterM {
         final String categoryName = categoryClass ? mfile.getName().substring(mfile.getName().indexOf("+") + 1, mfile.getName().lastIndexOf(".")) : null;
 
         // new file with java code
-        String javaClassName = mfile.getName().substring(0, mfile.getName().lastIndexOf("."));
+        String javaClassName = mfile.getName().substring(0, mfile.getName().lastIndexOf(".")).replace("-", "_");
         File mjfile = new File(mfile.getParent() + File.separator + javaClassName + ".java");
         mjfile.createNewFile();
 
@@ -204,12 +204,13 @@ public class ConverterM {
         if (mainImpl == null) {
             if (!categoryClass) {
                 sb2.append("public class ").append(javaClassName);
-                // not all .m files have .h header
+                // not all .m files have .h header  TODO: really ???
                 if (projectCtx.imports.get("I" + javaClassName) != null) {
                     sb2.append(" extends I").append(javaClassName);
                 }
                 sb2.append(" {\n");
             }
+            m_process_implementation2(sb2, tree, projectCtx);
         } else {
             process_implementation(projectCtx, categoryClass, javaClassName, mainImpl, sb2, false);
         }
@@ -324,6 +325,9 @@ public class ConverterM {
                 case ObjcmLexer.STATIC:
                     m_process_static(sb, childTree, classCtx);
                     break;
+                case ObjcmLexer.TYPEDEF_STRUCT:
+                    m_process_typedef_struct(sb, childTree, classCtx);
+                    break;
                 default:
                     if (childTree.getChildCount() == 0) {
                         sb.append(childTree.getText());
@@ -376,12 +380,13 @@ public class ConverterM {
         sb.append(";");
     }
 
-    private static void m_process_static(StringBuilder sb, CommonTree tree, ClassContext classCtx) {
+    private static void m_process_static(StringBuilder sb2, CommonTree tree, ClassContext classCtx) {
         boolean isField = false;
         String methodName = "";
         String fieldName = "";
         String methodType = "";
         boolean isStatic = false;
+        StringBuilder sb = new StringBuilder();
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
@@ -411,7 +416,6 @@ public class ConverterM {
                         sb.append("=");
                         sb.append(m_process_field_value(value, classCtx));
                     }
-
                     classCtx.projectCtx.staticFields.put(fieldName, classCtx.className);
 
                     break;
@@ -426,14 +430,17 @@ public class ConverterM {
                     if (blockTree != null) {
                         m_process_block(sb, blockTree, classCtx.newMethod(methodName, methodType, isStatic, null).newBlock());
                     } else {
-                        m_process_params(sb, childTree, classCtx);
+                        if (!isField) return;
                     }
+                    /* else {
+                        m_process_params(sb, childTree, classCtx);
+                    }*/
                     break;
                 case ObjcmLexer.EXTERN:
                     break;
                 default:
                     String text = Utils.getText(childTree).trim();
-                    if (text.equals("inline")) {
+                    if (text.equals("inline") || text.equals("struct")) {
                         break;
                     }
                     if (text.equals("static")) {
@@ -445,10 +452,12 @@ public class ConverterM {
                     break;
             }
         }
-        sb.append("\n\n");
-        if (isField) {
-            sb.append(";\n");
-        }
+//        if (isField) {
+        sb.append(";\n");
+//        }
+        sb.append("\n");
+
+        sb2.append(sb);
     }
 
     private static void process_param(StringBuilder sb, CommonTree tree, ClassContext classCtx) {

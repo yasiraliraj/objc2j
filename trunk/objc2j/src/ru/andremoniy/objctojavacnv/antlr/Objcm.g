@@ -131,7 +131,7 @@ operator
 	|	static_section_wrapper
 	|	type_start_wrapper 
 	| 	interface_declaration_wrapper 
-	|	typedef_struct_declaration 
+	|	typedef_struct_declaration_wrapper
 	|	typedef_declaration_wrapper
 	|	typedef
 	;
