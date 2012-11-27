@@ -42,7 +42,7 @@ public class ConverterH {
         final String categoryName = categoryClass ? hfile.getName().substring(hfile.getName().indexOf("+") + 1, hfile.getName().lastIndexOf(".")) : null;
 
         // new file with java code
-        String pureClassName = hfile.getName().substring(0, hfile.getName().lastIndexOf("."));
+        String pureClassName = hfile.getName().substring(0, hfile.getName().lastIndexOf(".")).replace("-","_");
         String className = "I" + pureClassName;
         File hjfile = new File(hfile.getParent() + File.separator + className + ".java");
         hjfile.createNewFile();

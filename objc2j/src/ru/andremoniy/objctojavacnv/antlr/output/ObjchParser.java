@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g 2012-11-19 09:36:55
+// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g 2012-11-23 09:42:28
 
 package ru.andremoniy.objctojavacnv.antlr.output;
 
@@ -7717,7 +7717,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "type_declaration"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:309:1: type_declaration : ( 'const' )? ( 'enum' )? ( 'typedef' )? ( ( 'unsigned' ( type_dec )? ) | type_dec ) ( 'const' )? ( generic )? ( '*' )* -> ^( TYPE type_dec ( generic )? ) ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:309:1: type_declaration : type_declaration_internal -> ^( TYPE type_declaration_internal ) ;
     public final ObjchParser.type_declaration_return type_declaration() throws RecognitionException {
         ObjchParser.type_declaration_return retval = new ObjchParser.type_declaration_return();
         retval.start = input.LT(1);
@@ -7725,243 +7725,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal211=null;
-        Token string_literal212=null;
-        Token string_literal213=null;
-        Token string_literal214=null;
-        Token string_literal217=null;
-        Token char_literal219=null;
-        ObjchParser.type_dec_return type_dec215 =null;
-
-        ObjchParser.type_dec_return type_dec216 =null;
-
-        ObjchParser.generic_return generic218 =null;
+        ObjchParser.type_declaration_internal_return type_declaration_internal211 =null;
 
 
-        Object string_literal211_tree=null;
-        Object string_literal212_tree=null;
-        Object string_literal213_tree=null;
-        Object string_literal214_tree=null;
-        Object string_literal217_tree=null;
-        Object char_literal219_tree=null;
-        RewriteRuleTokenStream stream_49=new RewriteRuleTokenStream(adaptor,"token 49");
-        RewriteRuleTokenStream stream_79=new RewriteRuleTokenStream(adaptor,"token 79");
-        RewriteRuleTokenStream stream_96=new RewriteRuleTokenStream(adaptor,"token 96");
-        RewriteRuleTokenStream stream_94=new RewriteRuleTokenStream(adaptor,"token 94");
-        RewriteRuleTokenStream stream_82=new RewriteRuleTokenStream(adaptor,"token 82");
-        RewriteRuleSubtreeStream stream_generic=new RewriteRuleSubtreeStream(adaptor,"rule generic");
-        RewriteRuleSubtreeStream stream_type_dec=new RewriteRuleSubtreeStream(adaptor,"rule type_dec");
+        RewriteRuleSubtreeStream stream_type_declaration_internal=new RewriteRuleSubtreeStream(adaptor,"rule type_declaration_internal");
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:2: ( ( 'const' )? ( 'enum' )? ( 'typedef' )? ( ( 'unsigned' ( type_dec )? ) | type_dec ) ( 'const' )? ( generic )? ( '*' )* -> ^( TYPE type_dec ( generic )? ) )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:4: ( 'const' )? ( 'enum' )? ( 'typedef' )? ( ( 'unsigned' ( type_dec )? ) | type_dec ) ( 'const' )? ( generic )? ( '*' )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:2: ( type_declaration_internal -> ^( TYPE type_declaration_internal ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:4: type_declaration_internal
             {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:4: ( 'const' )?
-            int alt75=2;
-            int LA75_0 = input.LA(1);
+            pushFollow(FOLLOW_type_declaration_internal_in_type_declaration1671);
+            type_declaration_internal211=type_declaration_internal();
 
-            if ( (LA75_0==79) ) {
-                alt75=1;
-            }
-            switch (alt75) {
-                case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:4: 'const'
-                    {
-                    string_literal211=(Token)match(input,79,FOLLOW_79_in_type_declaration1672);  
-                    stream_79.add(string_literal211);
+            state._fsp--;
 
-
-                    }
-                    break;
-
-            }
-
-
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:13: ( 'enum' )?
-            int alt76=2;
-            int LA76_0 = input.LA(1);
-
-            if ( (LA76_0==82) ) {
-                alt76=1;
-            }
-            switch (alt76) {
-                case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:13: 'enum'
-                    {
-                    string_literal212=(Token)match(input,82,FOLLOW_82_in_type_declaration1675);  
-                    stream_82.add(string_literal212);
-
-
-                    }
-                    break;
-
-            }
-
-
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:21: ( 'typedef' )?
-            int alt77=2;
-            int LA77_0 = input.LA(1);
-
-            if ( (LA77_0==94) ) {
-                alt77=1;
-            }
-            switch (alt77) {
-                case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:21: 'typedef'
-                    {
-                    string_literal213=(Token)match(input,94,FOLLOW_94_in_type_declaration1678);  
-                    stream_94.add(string_literal213);
-
-
-                    }
-                    break;
-
-            }
-
-
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:32: ( ( 'unsigned' ( type_dec )? ) | type_dec )
-            int alt79=2;
-            int LA79_0 = input.LA(1);
-
-            if ( (LA79_0==96) ) {
-                alt79=1;
-            }
-            else if ( (LA79_0==ID||(LA79_0 >= 86 && LA79_0 <= 87)) ) {
-                alt79=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 79, 0, input);
-
-                throw nvae;
-
-            }
-            switch (alt79) {
-                case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:33: ( 'unsigned' ( type_dec )? )
-                    {
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:33: ( 'unsigned' ( type_dec )? )
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:34: 'unsigned' ( type_dec )?
-                    {
-                    string_literal214=(Token)match(input,96,FOLLOW_96_in_type_declaration1683);  
-                    stream_96.add(string_literal214);
-
-
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:45: ( type_dec )?
-                    int alt78=2;
-                    alt78 = dfa78.predict(input);
-                    switch (alt78) {
-                        case 1 :
-                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:45: type_dec
-                            {
-                            pushFollow(FOLLOW_type_dec_in_type_declaration1685);
-                            type_dec215=type_dec();
-
-                            state._fsp--;
-
-                            stream_type_dec.add(type_dec215.getTree());
-
-                            }
-                            break;
-
-                    }
-
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:58: type_dec
-                    {
-                    pushFollow(FOLLOW_type_dec_in_type_declaration1691);
-                    type_dec216=type_dec();
-
-                    state._fsp--;
-
-                    stream_type_dec.add(type_dec216.getTree());
-
-                    }
-                    break;
-
-            }
-
-
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:68: ( 'const' )?
-            int alt80=2;
-            int LA80_0 = input.LA(1);
-
-            if ( (LA80_0==79) ) {
-                alt80=1;
-            }
-            switch (alt80) {
-                case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:68: 'const'
-                    {
-                    string_literal217=(Token)match(input,79,FOLLOW_79_in_type_declaration1694);  
-                    stream_79.add(string_literal217);
-
-
-                    }
-                    break;
-
-            }
-
-
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:77: ( generic )?
-            int alt81=2;
-            int LA81_0 = input.LA(1);
-
-            if ( (LA81_0==56) ) {
-                alt81=1;
-            }
-            switch (alt81) {
-                case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:77: generic
-                    {
-                    pushFollow(FOLLOW_generic_in_type_declaration1697);
-                    generic218=generic();
-
-                    state._fsp--;
-
-                    stream_generic.add(generic218.getTree());
-
-                    }
-                    break;
-
-            }
-
-
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:86: ( '*' )*
-            loop82:
-            do {
-                int alt82=2;
-                int LA82_0 = input.LA(1);
-
-                if ( (LA82_0==49) ) {
-                    alt82=1;
-                }
-
-
-                switch (alt82) {
-            	case 1 :
-            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:86: '*'
-            	    {
-            	    char_literal219=(Token)match(input,49,FOLLOW_49_in_type_declaration1700);  
-            	    stream_49.add(char_literal219);
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop82;
-                }
-            } while (true);
-
+            stream_type_declaration_internal.add(type_declaration_internal211.getTree());
 
             // AST REWRITE
-            // elements: type_dec, generic
+            // elements: type_declaration_internal
             // token labels: 
             // rule labels: retval
             // token list labels: 
@@ -7971,23 +7751,16 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 310:91: -> ^( TYPE type_dec ( generic )? )
+            // 310:30: -> ^( TYPE type_declaration_internal )
             {
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:94: ^( TYPE type_dec ( generic )? )
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:33: ^( TYPE type_declaration_internal )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
                 (Object)adaptor.create(TYPE, "TYPE")
                 , root_1);
 
-                adaptor.addChild(root_1, stream_type_dec.nextTree());
-
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:310:110: ( generic )?
-                if ( stream_generic.hasNext() ) {
-                    adaptor.addChild(root_1, stream_generic.nextTree());
-
-                }
-                stream_generic.reset();
+                adaptor.addChild(root_1, stream_type_declaration_internal.nextTree());
 
                 adaptor.addChild(root_0, root_1);
                 }
@@ -8021,6 +7794,295 @@ public TreeAdaptor getTreeAdaptor() {
     // $ANTLR end "type_declaration"
 
 
+    public static class type_declaration_internal_return extends ParserRuleReturnScope {
+        Object tree;
+        public Object getTree() { return tree; }
+    };
+
+
+    // $ANTLR start "type_declaration_internal"
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:313:1: type_declaration_internal : ( 'const' )? ( 'enum' )? ( 'typedef' )? ( ( 'unsigned' ( type_dec )? ) | type_dec ) ( 'const' )? ( generic )? ( '*' )* ;
+    public final ObjchParser.type_declaration_internal_return type_declaration_internal() throws RecognitionException {
+        ObjchParser.type_declaration_internal_return retval = new ObjchParser.type_declaration_internal_return();
+        retval.start = input.LT(1);
+
+
+        Object root_0 = null;
+
+        Token string_literal212=null;
+        Token string_literal213=null;
+        Token string_literal214=null;
+        Token string_literal215=null;
+        Token string_literal218=null;
+        Token char_literal220=null;
+        ObjchParser.type_dec_return type_dec216 =null;
+
+        ObjchParser.type_dec_return type_dec217 =null;
+
+        ObjchParser.generic_return generic219 =null;
+
+
+        Object string_literal212_tree=null;
+        Object string_literal213_tree=null;
+        Object string_literal214_tree=null;
+        Object string_literal215_tree=null;
+        Object string_literal218_tree=null;
+        Object char_literal220_tree=null;
+
+        try {
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:2: ( ( 'const' )? ( 'enum' )? ( 'typedef' )? ( ( 'unsigned' ( type_dec )? ) | type_dec ) ( 'const' )? ( generic )? ( '*' )* )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:4: ( 'const' )? ( 'enum' )? ( 'typedef' )? ( ( 'unsigned' ( type_dec )? ) | type_dec ) ( 'const' )? ( generic )? ( '*' )*
+            {
+            root_0 = (Object)adaptor.nil();
+
+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:4: ( 'const' )?
+            int alt75=2;
+            int LA75_0 = input.LA(1);
+
+            if ( (LA75_0==79) ) {
+                alt75=1;
+            }
+            switch (alt75) {
+                case 1 :
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:4: 'const'
+                    {
+                    string_literal212=(Token)match(input,79,FOLLOW_79_in_type_declaration_internal1689); 
+                    string_literal212_tree = 
+                    (Object)adaptor.create(string_literal212)
+                    ;
+                    adaptor.addChild(root_0, string_literal212_tree);
+
+
+                    }
+                    break;
+
+            }
+
+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:13: ( 'enum' )?
+            int alt76=2;
+            int LA76_0 = input.LA(1);
+
+            if ( (LA76_0==82) ) {
+                alt76=1;
+            }
+            switch (alt76) {
+                case 1 :
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:13: 'enum'
+                    {
+                    string_literal213=(Token)match(input,82,FOLLOW_82_in_type_declaration_internal1692); 
+                    string_literal213_tree = 
+                    (Object)adaptor.create(string_literal213)
+                    ;
+                    adaptor.addChild(root_0, string_literal213_tree);
+
+
+                    }
+                    break;
+
+            }
+
+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:21: ( 'typedef' )?
+            int alt77=2;
+            int LA77_0 = input.LA(1);
+
+            if ( (LA77_0==94) ) {
+                alt77=1;
+            }
+            switch (alt77) {
+                case 1 :
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:21: 'typedef'
+                    {
+                    string_literal214=(Token)match(input,94,FOLLOW_94_in_type_declaration_internal1695); 
+                    string_literal214_tree = 
+                    (Object)adaptor.create(string_literal214)
+                    ;
+                    adaptor.addChild(root_0, string_literal214_tree);
+
+
+                    }
+                    break;
+
+            }
+
+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:32: ( ( 'unsigned' ( type_dec )? ) | type_dec )
+            int alt79=2;
+            int LA79_0 = input.LA(1);
+
+            if ( (LA79_0==96) ) {
+                alt79=1;
+            }
+            else if ( (LA79_0==ID||(LA79_0 >= 86 && LA79_0 <= 87)) ) {
+                alt79=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 79, 0, input);
+
+                throw nvae;
+
+            }
+            switch (alt79) {
+                case 1 :
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:33: ( 'unsigned' ( type_dec )? )
+                    {
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:33: ( 'unsigned' ( type_dec )? )
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:34: 'unsigned' ( type_dec )?
+                    {
+                    string_literal215=(Token)match(input,96,FOLLOW_96_in_type_declaration_internal1700); 
+                    string_literal215_tree = 
+                    (Object)adaptor.create(string_literal215)
+                    ;
+                    adaptor.addChild(root_0, string_literal215_tree);
+
+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:45: ( type_dec )?
+                    int alt78=2;
+                    alt78 = dfa78.predict(input);
+                    switch (alt78) {
+                        case 1 :
+                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:45: type_dec
+                            {
+                            pushFollow(FOLLOW_type_dec_in_type_declaration_internal1702);
+                            type_dec216=type_dec();
+
+                            state._fsp--;
+
+                            adaptor.addChild(root_0, type_dec216.getTree());
+
+                            }
+                            break;
+
+                    }
+
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:58: type_dec
+                    {
+                    pushFollow(FOLLOW_type_dec_in_type_declaration_internal1708);
+                    type_dec217=type_dec();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, type_dec217.getTree());
+
+                    }
+                    break;
+
+            }
+
+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:68: ( 'const' )?
+            int alt80=2;
+            int LA80_0 = input.LA(1);
+
+            if ( (LA80_0==79) ) {
+                alt80=1;
+            }
+            switch (alt80) {
+                case 1 :
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:68: 'const'
+                    {
+                    string_literal218=(Token)match(input,79,FOLLOW_79_in_type_declaration_internal1711); 
+                    string_literal218_tree = 
+                    (Object)adaptor.create(string_literal218)
+                    ;
+                    adaptor.addChild(root_0, string_literal218_tree);
+
+
+                    }
+                    break;
+
+            }
+
+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:77: ( generic )?
+            int alt81=2;
+            int LA81_0 = input.LA(1);
+
+            if ( (LA81_0==56) ) {
+                alt81=1;
+            }
+            switch (alt81) {
+                case 1 :
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:77: generic
+                    {
+                    pushFollow(FOLLOW_generic_in_type_declaration_internal1714);
+                    generic219=generic();
+
+                    state._fsp--;
+
+                    adaptor.addChild(root_0, generic219.getTree());
+
+                    }
+                    break;
+
+            }
+
+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:86: ( '*' )*
+            loop82:
+            do {
+                int alt82=2;
+                int LA82_0 = input.LA(1);
+
+                if ( (LA82_0==49) ) {
+                    alt82=1;
+                }
+
+
+                switch (alt82) {
+            	case 1 :
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:314:86: '*'
+            	    {
+            	    char_literal220=(Token)match(input,49,FOLLOW_49_in_type_declaration_internal1717); 
+            	    char_literal220_tree = 
+            	    (Object)adaptor.create(char_literal220)
+            	    ;
+            	    adaptor.addChild(root_0, char_literal220_tree);
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop82;
+                }
+            } while (true);
+
+
+            }
+
+            retval.stop = input.LT(-1);
+
+
+            retval.tree = (Object)adaptor.rulePostProcessing(root_0);
+            adaptor.setTokenBoundaries(retval.tree, retval.start, retval.stop);
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+    	retval.tree = (Object)adaptor.errorNode(input, retval.start, input.LT(-1), re);
+
+        }
+
+        finally {
+        	// do for sure before leaving
+        }
+        return retval;
+    }
+    // $ANTLR end "type_declaration_internal"
+
+
     public static class type_dec_return extends ParserRuleReturnScope {
         Object tree;
         public Object getTree() { return tree; }
@@ -8028,7 +8090,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "type_dec"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:312:1: type_dec : type_dec_internal ( '[' ']' )* ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:316:1: type_dec : type_dec_internal ( '[' ']' )* ;
     public final ObjchParser.type_dec_return type_dec() throws RecognitionException {
         ObjchParser.type_dec_return retval = new ObjchParser.type_dec_return();
         retval.start = input.LT(1);
@@ -8036,29 +8098,29 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal221=null;
         Token char_literal222=null;
-        ObjchParser.type_dec_internal_return type_dec_internal220 =null;
+        Token char_literal223=null;
+        ObjchParser.type_dec_internal_return type_dec_internal221 =null;
 
 
-        Object char_literal221_tree=null;
         Object char_literal222_tree=null;
+        Object char_literal223_tree=null;
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:312:9: ( type_dec_internal ( '[' ']' )* )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:312:11: type_dec_internal ( '[' ']' )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:316:9: ( type_dec_internal ( '[' ']' )* )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:316:11: type_dec_internal ( '[' ']' )*
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_type_dec_internal_in_type_dec1720);
-            type_dec_internal220=type_dec_internal();
+            pushFollow(FOLLOW_type_dec_internal_in_type_dec1726);
+            type_dec_internal221=type_dec_internal();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, type_dec_internal220.getTree());
+            adaptor.addChild(root_0, type_dec_internal221.getTree());
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:312:29: ( '[' ']' )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:316:29: ( '[' ']' )*
             loop83:
             do {
                 int alt83=2;
@@ -8071,20 +8133,20 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt83) {
             	case 1 :
-            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:312:30: '[' ']'
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:316:30: '[' ']'
             	    {
-            	    char_literal221=(Token)match(input,72,FOLLOW_72_in_type_dec1723); 
-            	    char_literal221_tree = 
-            	    (Object)adaptor.create(char_literal221)
-            	    ;
-            	    adaptor.addChild(root_0, char_literal221_tree);
-
-
-            	    char_literal222=(Token)match(input,73,FOLLOW_73_in_type_dec1725); 
+            	    char_literal222=(Token)match(input,72,FOLLOW_72_in_type_dec1729); 
             	    char_literal222_tree = 
             	    (Object)adaptor.create(char_literal222)
             	    ;
             	    adaptor.addChild(root_0, char_literal222_tree);
+
+
+            	    char_literal223=(Token)match(input,73,FOLLOW_73_in_type_dec1731); 
+            	    char_literal223_tree = 
+            	    (Object)adaptor.create(char_literal223)
+            	    ;
+            	    adaptor.addChild(root_0, char_literal223_tree);
 
 
             	    }
@@ -8127,7 +8189,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "type_dec_internal"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:315:1: type_dec_internal : ( knownTypes | ID );
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:319:1: type_dec_internal : ( knownTypes | ID );
     public final ObjchParser.type_dec_internal_return type_dec_internal() throws RecognitionException {
         ObjchParser.type_dec_internal_return retval = new ObjchParser.type_dec_internal_return();
         retval.start = input.LT(1);
@@ -8135,14 +8197,14 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ID224=null;
-        ObjchParser.knownTypes_return knownTypes223 =null;
+        Token ID225=null;
+        ObjchParser.knownTypes_return knownTypes224 =null;
 
 
-        Object ID224_tree=null;
+        Object ID225_tree=null;
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:316:2: ( knownTypes | ID )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:320:2: ( knownTypes | ID )
             int alt84=2;
             int LA84_0 = input.LA(1);
 
@@ -8161,31 +8223,31 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt84) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:316:4: knownTypes
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:320:4: knownTypes
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    pushFollow(FOLLOW_knownTypes_in_type_dec_internal1740);
-                    knownTypes223=knownTypes();
+                    pushFollow(FOLLOW_knownTypes_in_type_dec_internal1746);
+                    knownTypes224=knownTypes();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, knownTypes223.getTree());
+                    adaptor.addChild(root_0, knownTypes224.getTree());
 
                     }
                     break;
                 case 2 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:317:5: ID
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:321:5: ID
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    ID224=(Token)match(input,ID,FOLLOW_ID_in_type_dec_internal1747); 
-                    ID224_tree = 
-                    (Object)adaptor.create(ID224)
+                    ID225=(Token)match(input,ID,FOLLOW_ID_in_type_dec_internal1753); 
+                    ID225_tree = 
+                    (Object)adaptor.create(ID225)
                     ;
-                    adaptor.addChild(root_0, ID224_tree);
+                    adaptor.addChild(root_0, ID225_tree);
 
 
                     }
@@ -8221,7 +8283,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "knownTypes"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:320:1: knownTypes : ( 'int' | ( 'long' )+ ( 'int' )? );
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:324:1: knownTypes : ( 'int' | ( 'long' )+ ( 'int' )? );
     public final ObjchParser.knownTypes_return knownTypes() throws RecognitionException {
         ObjchParser.knownTypes_return retval = new ObjchParser.knownTypes_return();
         retval.start = input.LT(1);
@@ -8229,16 +8291,16 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal225=null;
         Token string_literal226=null;
         Token string_literal227=null;
+        Token string_literal228=null;
 
-        Object string_literal225_tree=null;
         Object string_literal226_tree=null;
         Object string_literal227_tree=null;
+        Object string_literal228_tree=null;
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:321:2: ( 'int' | ( 'long' )+ ( 'int' )? )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:325:2: ( 'int' | ( 'long' )+ ( 'int' )? )
             int alt87=2;
             int LA87_0 = input.LA(1);
 
@@ -8257,27 +8319,27 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt87) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:321:4: 'int'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:325:4: 'int'
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    string_literal225=(Token)match(input,86,FOLLOW_86_in_knownTypes1758); 
-                    string_literal225_tree = 
-                    (Object)adaptor.create(string_literal225)
+                    string_literal226=(Token)match(input,86,FOLLOW_86_in_knownTypes1764); 
+                    string_literal226_tree = 
+                    (Object)adaptor.create(string_literal226)
                     ;
-                    adaptor.addChild(root_0, string_literal225_tree);
+                    adaptor.addChild(root_0, string_literal226_tree);
 
 
                     }
                     break;
                 case 2 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:322:4: ( 'long' )+ ( 'int' )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:4: ( 'long' )+ ( 'int' )?
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:322:4: ( 'long' )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:4: ( 'long' )+
                     int cnt85=0;
                     loop85:
                     do {
@@ -8291,13 +8353,13 @@ public TreeAdaptor getTreeAdaptor() {
 
                         switch (alt85) {
                     	case 1 :
-                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:322:4: 'long'
+                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:4: 'long'
                     	    {
-                    	    string_literal226=(Token)match(input,87,FOLLOW_87_in_knownTypes1763); 
-                    	    string_literal226_tree = 
-                    	    (Object)adaptor.create(string_literal226)
+                    	    string_literal227=(Token)match(input,87,FOLLOW_87_in_knownTypes1769); 
+                    	    string_literal227_tree = 
+                    	    (Object)adaptor.create(string_literal227)
                     	    ;
-                    	    adaptor.addChild(root_0, string_literal226_tree);
+                    	    adaptor.addChild(root_0, string_literal227_tree);
 
 
                     	    }
@@ -8313,7 +8375,7 @@ public TreeAdaptor getTreeAdaptor() {
                     } while (true);
 
 
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:322:12: ( 'int' )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:12: ( 'int' )?
                     int alt86=2;
                     int LA86_0 = input.LA(1);
 
@@ -8322,13 +8384,13 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt86) {
                         case 1 :
-                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:322:12: 'int'
+                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:12: 'int'
                             {
-                            string_literal227=(Token)match(input,86,FOLLOW_86_in_knownTypes1766); 
-                            string_literal227_tree = 
-                            (Object)adaptor.create(string_literal227)
+                            string_literal228=(Token)match(input,86,FOLLOW_86_in_knownTypes1772); 
+                            string_literal228_tree = 
+                            (Object)adaptor.create(string_literal228)
                             ;
-                            adaptor.addChild(root_0, string_literal227_tree);
+                            adaptor.addChild(root_0, string_literal228_tree);
 
 
                             }
@@ -8370,7 +8432,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "field_name"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:325:1: field_name : ID ( array_size )? ( field_crap )? -> ^( FIELD_NAME ID ( array_size )? ) ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:329:1: field_name : ID ( array_size )? ( field_crap )? -> ^( FIELD_NAME ID ( array_size )? ) ;
     public final ObjchParser.field_name_return field_name() throws RecognitionException {
         ObjchParser.field_name_return retval = new ObjchParser.field_name_return();
         retval.start = input.LT(1);
@@ -8378,25 +8440,25 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ID228=null;
-        ObjchParser.array_size_return array_size229 =null;
+        Token ID229=null;
+        ObjchParser.array_size_return array_size230 =null;
 
-        ObjchParser.field_crap_return field_crap230 =null;
+        ObjchParser.field_crap_return field_crap231 =null;
 
 
-        Object ID228_tree=null;
+        Object ID229_tree=null;
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_array_size=new RewriteRuleSubtreeStream(adaptor,"rule array_size");
         RewriteRuleSubtreeStream stream_field_crap=new RewriteRuleSubtreeStream(adaptor,"rule field_crap");
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:2: ( ID ( array_size )? ( field_crap )? -> ^( FIELD_NAME ID ( array_size )? ) )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:4: ID ( array_size )? ( field_crap )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:330:2: ( ID ( array_size )? ( field_crap )? -> ^( FIELD_NAME ID ( array_size )? ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:330:4: ID ( array_size )? ( field_crap )?
             {
-            ID228=(Token)match(input,ID,FOLLOW_ID_in_field_name1779);  
-            stream_ID.add(ID228);
+            ID229=(Token)match(input,ID,FOLLOW_ID_in_field_name1785);  
+            stream_ID.add(ID229);
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:7: ( array_size )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:330:7: ( array_size )?
             int alt88=2;
             int LA88_0 = input.LA(1);
 
@@ -8405,14 +8467,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt88) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:7: array_size
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:330:7: array_size
                     {
-                    pushFollow(FOLLOW_array_size_in_field_name1781);
-                    array_size229=array_size();
+                    pushFollow(FOLLOW_array_size_in_field_name1787);
+                    array_size230=array_size();
 
                     state._fsp--;
 
-                    stream_array_size.add(array_size229.getTree());
+                    stream_array_size.add(array_size230.getTree());
 
                     }
                     break;
@@ -8420,7 +8482,7 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:19: ( field_crap )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:330:19: ( field_crap )?
             int alt89=2;
             int LA89_0 = input.LA(1);
 
@@ -8429,14 +8491,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt89) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:20: field_crap
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:330:20: field_crap
                     {
-                    pushFollow(FOLLOW_field_crap_in_field_name1785);
-                    field_crap230=field_crap();
+                    pushFollow(FOLLOW_field_crap_in_field_name1791);
+                    field_crap231=field_crap();
 
                     state._fsp--;
 
-                    stream_field_crap.add(field_crap230.getTree());
+                    stream_field_crap.add(field_crap231.getTree());
 
                     }
                     break;
@@ -8455,9 +8517,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 326:33: -> ^( FIELD_NAME ID ( array_size )? )
+            // 330:33: -> ^( FIELD_NAME ID ( array_size )? )
             {
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:36: ^( FIELD_NAME ID ( array_size )? )
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:330:36: ^( FIELD_NAME ID ( array_size )? )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -8468,7 +8530,7 @@ public TreeAdaptor getTreeAdaptor() {
                 stream_ID.nextNode()
                 );
 
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:326:52: ( array_size )?
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:330:52: ( array_size )?
                 if ( stream_array_size.hasNext() ) {
                     adaptor.addChild(root_1, stream_array_size.nextTree());
 
@@ -8514,7 +8576,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "array_size"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:328:1: array_size : '[' ( NUMBER )? ']' ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:332:1: array_size : '[' ( NUMBER )? ']' ;
     public final ObjchParser.array_size_return array_size() throws RecognitionException {
         ObjchParser.array_size_return retval = new ObjchParser.array_size_return();
         retval.start = input.LT(1);
@@ -8522,29 +8584,29 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal231=null;
-        Token NUMBER232=null;
-        Token char_literal233=null;
+        Token char_literal232=null;
+        Token NUMBER233=null;
+        Token char_literal234=null;
 
-        Object char_literal231_tree=null;
-        Object NUMBER232_tree=null;
-        Object char_literal233_tree=null;
+        Object char_literal232_tree=null;
+        Object NUMBER233_tree=null;
+        Object char_literal234_tree=null;
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:329:2: ( '[' ( NUMBER )? ']' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:329:4: '[' ( NUMBER )? ']'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:333:2: ( '[' ( NUMBER )? ']' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:333:4: '[' ( NUMBER )? ']'
             {
             root_0 = (Object)adaptor.nil();
 
 
-            char_literal231=(Token)match(input,72,FOLLOW_72_in_array_size1810); 
-            char_literal231_tree = 
-            (Object)adaptor.create(char_literal231)
+            char_literal232=(Token)match(input,72,FOLLOW_72_in_array_size1816); 
+            char_literal232_tree = 
+            (Object)adaptor.create(char_literal232)
             ;
-            adaptor.addChild(root_0, char_literal231_tree);
+            adaptor.addChild(root_0, char_literal232_tree);
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:329:8: ( NUMBER )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:333:8: ( NUMBER )?
             int alt90=2;
             int LA90_0 = input.LA(1);
 
@@ -8553,13 +8615,13 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt90) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:329:8: NUMBER
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:333:8: NUMBER
                     {
-                    NUMBER232=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_array_size1812); 
-                    NUMBER232_tree = 
-                    (Object)adaptor.create(NUMBER232)
+                    NUMBER233=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_array_size1818); 
+                    NUMBER233_tree = 
+                    (Object)adaptor.create(NUMBER233)
                     ;
-                    adaptor.addChild(root_0, NUMBER232_tree);
+                    adaptor.addChild(root_0, NUMBER233_tree);
 
 
                     }
@@ -8568,11 +8630,11 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            char_literal233=(Token)match(input,73,FOLLOW_73_in_array_size1815); 
-            char_literal233_tree = 
-            (Object)adaptor.create(char_literal233)
+            char_literal234=(Token)match(input,73,FOLLOW_73_in_array_size1821); 
+            char_literal234_tree = 
+            (Object)adaptor.create(char_literal234)
             ;
-            adaptor.addChild(root_0, char_literal233_tree);
+            adaptor.addChild(root_0, char_literal234_tree);
 
 
             }
@@ -8606,7 +8668,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "field_crap"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:331:1: field_crap : ':' NUMBER ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:335:1: field_crap : ':' NUMBER ;
     public final ObjchParser.field_crap_return field_crap() throws RecognitionException {
         ObjchParser.field_crap_return retval = new ObjchParser.field_crap_return();
         retval.start = input.LT(1);
@@ -8614,31 +8676,31 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal234=null;
-        Token NUMBER235=null;
+        Token char_literal235=null;
+        Token NUMBER236=null;
 
-        Object char_literal234_tree=null;
-        Object NUMBER235_tree=null;
+        Object char_literal235_tree=null;
+        Object NUMBER236_tree=null;
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:332:2: ( ':' NUMBER )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:332:4: ':' NUMBER
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:336:2: ( ':' NUMBER )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:336:4: ':' NUMBER
             {
             root_0 = (Object)adaptor.nil();
 
 
-            char_literal234=(Token)match(input,54,FOLLOW_54_in_field_crap1824); 
-            char_literal234_tree = 
-            (Object)adaptor.create(char_literal234)
+            char_literal235=(Token)match(input,54,FOLLOW_54_in_field_crap1830); 
+            char_literal235_tree = 
+            (Object)adaptor.create(char_literal235)
             ;
-            adaptor.addChild(root_0, char_literal234_tree);
+            adaptor.addChild(root_0, char_literal235_tree);
 
 
-            NUMBER235=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_field_crap1826); 
-            NUMBER235_tree = 
-            (Object)adaptor.create(NUMBER235)
+            NUMBER236=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_field_crap1832); 
+            NUMBER236_tree = 
+            (Object)adaptor.create(NUMBER236)
             ;
-            adaptor.addChild(root_0, NUMBER235_tree);
+            adaptor.addChild(root_0, NUMBER236_tree);
 
 
             }
@@ -8672,7 +8734,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "method_declaration"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:334:1: method_declaration : method_modifier_wrapper method_declaration_variants ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:338:1: method_declaration : method_modifier_wrapper method_declaration_variants ;
     public final ObjchParser.method_declaration_return method_declaration() throws RecognitionException {
         ObjchParser.method_declaration_return retval = new ObjchParser.method_declaration_return();
         retval.start = input.LT(1);
@@ -8680,32 +8742,32 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjchParser.method_modifier_wrapper_return method_modifier_wrapper236 =null;
+        ObjchParser.method_modifier_wrapper_return method_modifier_wrapper237 =null;
 
-        ObjchParser.method_declaration_variants_return method_declaration_variants237 =null;
+        ObjchParser.method_declaration_variants_return method_declaration_variants238 =null;
 
 
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:335:2: ( method_modifier_wrapper method_declaration_variants )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:335:4: method_modifier_wrapper method_declaration_variants
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:339:2: ( method_modifier_wrapper method_declaration_variants )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:339:4: method_modifier_wrapper method_declaration_variants
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_method_modifier_wrapper_in_method_declaration1836);
-            method_modifier_wrapper236=method_modifier_wrapper();
+            pushFollow(FOLLOW_method_modifier_wrapper_in_method_declaration1842);
+            method_modifier_wrapper237=method_modifier_wrapper();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_modifier_wrapper236.getTree());
+            adaptor.addChild(root_0, method_modifier_wrapper237.getTree());
 
-            pushFollow(FOLLOW_method_declaration_variants_in_method_declaration1838);
-            method_declaration_variants237=method_declaration_variants();
+            pushFollow(FOLLOW_method_declaration_variants_in_method_declaration1844);
+            method_declaration_variants238=method_declaration_variants();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_declaration_variants237.getTree());
+            adaptor.addChild(root_0, method_declaration_variants238.getTree());
 
             }
 
@@ -8738,7 +8800,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "method_modifier_wrapper"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:337:1: method_modifier_wrapper : method_modifier -> ^( MODIFIER method_modifier ) ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:341:1: method_modifier_wrapper : method_modifier -> ^( MODIFIER method_modifier ) ;
     public final ObjchParser.method_modifier_wrapper_return method_modifier_wrapper() throws RecognitionException {
         ObjchParser.method_modifier_wrapper_return retval = new ObjchParser.method_modifier_wrapper_return();
         retval.start = input.LT(1);
@@ -8746,20 +8808,20 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjchParser.method_modifier_return method_modifier238 =null;
+        ObjchParser.method_modifier_return method_modifier239 =null;
 
 
         RewriteRuleSubtreeStream stream_method_modifier=new RewriteRuleSubtreeStream(adaptor,"rule method_modifier");
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:338:2: ( method_modifier -> ^( MODIFIER method_modifier ) )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:338:4: method_modifier
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:342:2: ( method_modifier -> ^( MODIFIER method_modifier ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:342:4: method_modifier
             {
-            pushFollow(FOLLOW_method_modifier_in_method_modifier_wrapper1848);
-            method_modifier238=method_modifier();
+            pushFollow(FOLLOW_method_modifier_in_method_modifier_wrapper1854);
+            method_modifier239=method_modifier();
 
             state._fsp--;
 
-            stream_method_modifier.add(method_modifier238.getTree());
+            stream_method_modifier.add(method_modifier239.getTree());
 
             // AST REWRITE
             // elements: method_modifier
@@ -8772,9 +8834,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 338:20: -> ^( MODIFIER method_modifier )
+            // 342:20: -> ^( MODIFIER method_modifier )
             {
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:338:23: ^( MODIFIER method_modifier )
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:342:23: ^( MODIFIER method_modifier )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -8822,7 +8884,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "method_modifier"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:340:1: method_modifier : ( '+' | '-' );
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:344:1: method_modifier : ( '+' | '-' );
     public final ObjchParser.method_modifier_return method_modifier() throws RecognitionException {
         ObjchParser.method_modifier_return retval = new ObjchParser.method_modifier_return();
         retval.start = input.LT(1);
@@ -8830,23 +8892,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token set239=null;
+        Token set240=null;
 
-        Object set239_tree=null;
+        Object set240_tree=null;
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:341:2: ( '+' | '-' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:345:2: ( '+' | '-' )
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
             {
             root_0 = (Object)adaptor.nil();
 
 
-            set239=(Token)input.LT(1);
+            set240=(Token)input.LT(1);
 
             if ( input.LA(1)==50||input.LA(1)==52 ) {
                 input.consume();
                 adaptor.addChild(root_0, 
-                (Object)adaptor.create(set239)
+                (Object)adaptor.create(set240)
                 );
                 state.errorRecovery=false;
             }
@@ -8887,7 +8949,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "method_declaration_variants"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:343:1: method_declaration_variants : method_declaration_common ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:347:1: method_declaration_variants : method_declaration_common ;
     public final ObjchParser.method_declaration_variants_return method_declaration_variants() throws RecognitionException {
         ObjchParser.method_declaration_variants_return retval = new ObjchParser.method_declaration_variants_return();
         retval.start = input.LT(1);
@@ -8895,23 +8957,23 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjchParser.method_declaration_common_return method_declaration_common240 =null;
+        ObjchParser.method_declaration_common_return method_declaration_common241 =null;
 
 
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:344:2: ( method_declaration_common )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:347:4: method_declaration_common
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:348:2: ( method_declaration_common )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:351:4: method_declaration_common
             {
             root_0 = (Object)adaptor.nil();
 
 
-            pushFollow(FOLLOW_method_declaration_common_in_method_declaration_variants1886);
-            method_declaration_common240=method_declaration_common();
+            pushFollow(FOLLOW_method_declaration_common_in_method_declaration_variants1892);
+            method_declaration_common241=method_declaration_common();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_declaration_common240.getTree());
+            adaptor.addChild(root_0, method_declaration_common241.getTree());
 
             }
 
@@ -8944,7 +9006,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "method_declaration_common"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:349:1: method_declaration_common : ( '(' ( 'struct' )? type_declaration ')' )? method_name ( method_params )? ';' ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:353:1: method_declaration_common : ( '(' ( 'struct' )? type_declaration ')' )? method_name ( method_params )? ';' ;
     public final ObjchParser.method_declaration_common_return method_declaration_common() throws RecognitionException {
         ObjchParser.method_declaration_common_return retval = new ObjchParser.method_declaration_common_return();
         retval.start = input.LT(1);
@@ -8952,30 +9014,30 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal241=null;
-        Token string_literal242=null;
-        Token char_literal244=null;
-        Token char_literal247=null;
-        ObjchParser.type_declaration_return type_declaration243 =null;
+        Token char_literal242=null;
+        Token string_literal243=null;
+        Token char_literal245=null;
+        Token char_literal248=null;
+        ObjchParser.type_declaration_return type_declaration244 =null;
 
-        ObjchParser.method_name_return method_name245 =null;
+        ObjchParser.method_name_return method_name246 =null;
 
-        ObjchParser.method_params_return method_params246 =null;
+        ObjchParser.method_params_return method_params247 =null;
 
 
-        Object char_literal241_tree=null;
-        Object string_literal242_tree=null;
-        Object char_literal244_tree=null;
-        Object char_literal247_tree=null;
+        Object char_literal242_tree=null;
+        Object string_literal243_tree=null;
+        Object char_literal245_tree=null;
+        Object char_literal248_tree=null;
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:2: ( ( '(' ( 'struct' )? type_declaration ')' )? method_name ( method_params )? ';' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:4: ( '(' ( 'struct' )? type_declaration ')' )? method_name ( method_params )? ';'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:354:2: ( ( '(' ( 'struct' )? type_declaration ')' )? method_name ( method_params )? ';' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:354:4: ( '(' ( 'struct' )? type_declaration ')' )? method_name ( method_params )? ';'
             {
             root_0 = (Object)adaptor.nil();
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:4: ( '(' ( 'struct' )? type_declaration ')' )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:354:4: ( '(' ( 'struct' )? type_declaration ')' )?
             int alt92=2;
             int LA92_0 = input.LA(1);
 
@@ -8984,16 +9046,16 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt92) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:5: '(' ( 'struct' )? type_declaration ')'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:354:5: '(' ( 'struct' )? type_declaration ')'
                     {
-                    char_literal241=(Token)match(input,47,FOLLOW_47_in_method_declaration_common1897); 
-                    char_literal241_tree = 
-                    (Object)adaptor.create(char_literal241)
+                    char_literal242=(Token)match(input,47,FOLLOW_47_in_method_declaration_common1903); 
+                    char_literal242_tree = 
+                    (Object)adaptor.create(char_literal242)
                     ;
-                    adaptor.addChild(root_0, char_literal241_tree);
+                    adaptor.addChild(root_0, char_literal242_tree);
 
 
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:9: ( 'struct' )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:354:9: ( 'struct' )?
                     int alt91=2;
                     int LA91_0 = input.LA(1);
 
@@ -9002,13 +9064,13 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt91) {
                         case 1 :
-                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:9: 'struct'
+                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:354:9: 'struct'
                             {
-                            string_literal242=(Token)match(input,93,FOLLOW_93_in_method_declaration_common1899); 
-                            string_literal242_tree = 
-                            (Object)adaptor.create(string_literal242)
+                            string_literal243=(Token)match(input,93,FOLLOW_93_in_method_declaration_common1905); 
+                            string_literal243_tree = 
+                            (Object)adaptor.create(string_literal243)
                             ;
-                            adaptor.addChild(root_0, string_literal242_tree);
+                            adaptor.addChild(root_0, string_literal243_tree);
 
 
                             }
@@ -9017,18 +9079,18 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_type_declaration_in_method_declaration_common1902);
-                    type_declaration243=type_declaration();
+                    pushFollow(FOLLOW_type_declaration_in_method_declaration_common1908);
+                    type_declaration244=type_declaration();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, type_declaration243.getTree());
+                    adaptor.addChild(root_0, type_declaration244.getTree());
 
-                    char_literal244=(Token)match(input,48,FOLLOW_48_in_method_declaration_common1904); 
-                    char_literal244_tree = 
-                    (Object)adaptor.create(char_literal244)
+                    char_literal245=(Token)match(input,48,FOLLOW_48_in_method_declaration_common1910); 
+                    char_literal245_tree = 
+                    (Object)adaptor.create(char_literal245)
                     ;
-                    adaptor.addChild(root_0, char_literal244_tree);
+                    adaptor.addChild(root_0, char_literal245_tree);
 
 
                     }
@@ -9037,14 +9099,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            pushFollow(FOLLOW_method_name_in_method_declaration_common1908);
-            method_name245=method_name();
+            pushFollow(FOLLOW_method_name_in_method_declaration_common1914);
+            method_name246=method_name();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, method_name245.getTree());
+            adaptor.addChild(root_0, method_name246.getTree());
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:54: ( method_params )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:354:54: ( method_params )?
             int alt93=2;
             int LA93_0 = input.LA(1);
 
@@ -9053,14 +9115,14 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt93) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:350:54: method_params
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:354:54: method_params
                     {
-                    pushFollow(FOLLOW_method_params_in_method_declaration_common1910);
-                    method_params246=method_params();
+                    pushFollow(FOLLOW_method_params_in_method_declaration_common1916);
+                    method_params247=method_params();
 
                     state._fsp--;
 
-                    adaptor.addChild(root_0, method_params246.getTree());
+                    adaptor.addChild(root_0, method_params247.getTree());
 
                     }
                     break;
@@ -9068,11 +9130,11 @@ public TreeAdaptor getTreeAdaptor() {
             }
 
 
-            char_literal247=(Token)match(input,55,FOLLOW_55_in_method_declaration_common1913); 
-            char_literal247_tree = 
-            (Object)adaptor.create(char_literal247)
+            char_literal248=(Token)match(input,55,FOLLOW_55_in_method_declaration_common1919); 
+            char_literal248_tree = 
+            (Object)adaptor.create(char_literal248)
             ;
-            adaptor.addChild(root_0, char_literal247_tree);
+            adaptor.addChild(root_0, char_literal248_tree);
 
 
             }
@@ -9106,7 +9168,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "method_name"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:389:1: method_name : ( ID -> ^( METHOD_NAME ID ) | property_prefix_param -> ^( METHOD_NAME property_prefix_param ) );
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:393:1: method_name : ( ID -> ^( METHOD_NAME ID ) | property_prefix_param -> ^( METHOD_NAME property_prefix_param ) );
     public final ObjchParser.method_name_return method_name() throws RecognitionException {
         ObjchParser.method_name_return retval = new ObjchParser.method_name_return();
         retval.start = input.LT(1);
@@ -9114,15 +9176,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ID248=null;
-        ObjchParser.property_prefix_param_return property_prefix_param249 =null;
+        Token ID249=null;
+        ObjchParser.property_prefix_param_return property_prefix_param250 =null;
 
 
-        Object ID248_tree=null;
+        Object ID249_tree=null;
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleSubtreeStream stream_property_prefix_param=new RewriteRuleSubtreeStream(adaptor,"rule property_prefix_param");
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:390:2: ( ID -> ^( METHOD_NAME ID ) | property_prefix_param -> ^( METHOD_NAME property_prefix_param ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:394:2: ( ID -> ^( METHOD_NAME ID ) | property_prefix_param -> ^( METHOD_NAME property_prefix_param ) )
             int alt94=2;
             int LA94_0 = input.LA(1);
 
@@ -9141,10 +9203,10 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt94) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:390:4: ID
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:394:4: ID
                     {
-                    ID248=(Token)match(input,ID,FOLLOW_ID_in_method_name1927);  
-                    stream_ID.add(ID248);
+                    ID249=(Token)match(input,ID,FOLLOW_ID_in_method_name1933);  
+                    stream_ID.add(ID249);
 
 
                     // AST REWRITE
@@ -9158,9 +9220,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 390:7: -> ^( METHOD_NAME ID )
+                    // 394:7: -> ^( METHOD_NAME ID )
                     {
-                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:390:10: ^( METHOD_NAME ID )
+                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:394:10: ^( METHOD_NAME ID )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -9182,14 +9244,14 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:392:4: property_prefix_param
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:396:4: property_prefix_param
                     {
-                    pushFollow(FOLLOW_property_prefix_param_in_method_name1941);
-                    property_prefix_param249=property_prefix_param();
+                    pushFollow(FOLLOW_property_prefix_param_in_method_name1947);
+                    property_prefix_param250=property_prefix_param();
 
                     state._fsp--;
 
-                    stream_property_prefix_param.add(property_prefix_param249.getTree());
+                    stream_property_prefix_param.add(property_prefix_param250.getTree());
 
                     // AST REWRITE
                     // elements: property_prefix_param
@@ -9202,9 +9264,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 392:26: -> ^( METHOD_NAME property_prefix_param )
+                    // 396:26: -> ^( METHOD_NAME property_prefix_param )
                     {
-                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:392:29: ^( METHOD_NAME property_prefix_param )
+                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:396:29: ^( METHOD_NAME property_prefix_param )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -9254,7 +9316,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "method_params"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:394:1: method_params : ( method_param )+ -> ^( METHOD_PARAMS ( method_param )+ ) ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:398:1: method_params : ( method_param )+ -> ^( METHOD_PARAMS ( method_param )+ ) ;
     public final ObjchParser.method_params_return method_params() throws RecognitionException {
         ObjchParser.method_params_return retval = new ObjchParser.method_params_return();
         retval.start = input.LT(1);
@@ -9262,15 +9324,15 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        ObjchParser.method_param_return method_param250 =null;
+        ObjchParser.method_param_return method_param251 =null;
 
 
         RewriteRuleSubtreeStream stream_method_param=new RewriteRuleSubtreeStream(adaptor,"rule method_param");
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:395:2: ( ( method_param )+ -> ^( METHOD_PARAMS ( method_param )+ ) )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:395:4: ( method_param )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:399:2: ( ( method_param )+ -> ^( METHOD_PARAMS ( method_param )+ ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:399:4: ( method_param )+
             {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:395:4: ( method_param )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:399:4: ( method_param )+
             int cnt95=0;
             loop95:
             do {
@@ -9284,14 +9346,14 @@ public TreeAdaptor getTreeAdaptor() {
 
                 switch (alt95) {
             	case 1 :
-            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:395:4: method_param
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:399:4: method_param
             	    {
-            	    pushFollow(FOLLOW_method_param_in_method_params1960);
-            	    method_param250=method_param();
+            	    pushFollow(FOLLOW_method_param_in_method_params1966);
+            	    method_param251=method_param();
 
             	    state._fsp--;
 
-            	    stream_method_param.add(method_param250.getTree());
+            	    stream_method_param.add(method_param251.getTree());
 
             	    }
             	    break;
@@ -9317,9 +9379,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 395:18: -> ^( METHOD_PARAMS ( method_param )+ )
+            // 399:18: -> ^( METHOD_PARAMS ( method_param )+ )
             {
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:395:21: ^( METHOD_PARAMS ( method_param )+ )
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:399:21: ^( METHOD_PARAMS ( method_param )+ )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -9374,7 +9436,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "method_param"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:397:1: method_param : ( ( prefix )? ':' ( '(' type_declaration ')' )? param_name -> ^( METHOD_PARAM ( prefix )? ':' '(' type_declaration ')' param_name ) | ',' '...' 'NS_REQUIRES_NIL_TERMINATION' );
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:401:1: method_param : ( ( prefix )? ':' ( '(' type_declaration ')' )? param_name -> ^( METHOD_PARAM ( prefix )? ':' '(' type_declaration ')' param_name ) | ',' '...' 'NS_REQUIRES_NIL_TERMINATION' );
     public final ObjchParser.method_param_return method_param() throws RecognitionException {
         ObjchParser.method_param_return retval = new ObjchParser.method_param_return();
         retval.start = input.LT(1);
@@ -9382,25 +9444,25 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token char_literal252=null;
         Token char_literal253=null;
-        Token char_literal255=null;
-        Token char_literal257=null;
-        Token string_literal258=null;
+        Token char_literal254=null;
+        Token char_literal256=null;
+        Token char_literal258=null;
         Token string_literal259=null;
-        ObjchParser.prefix_return prefix251 =null;
+        Token string_literal260=null;
+        ObjchParser.prefix_return prefix252 =null;
 
-        ObjchParser.type_declaration_return type_declaration254 =null;
+        ObjchParser.type_declaration_return type_declaration255 =null;
 
-        ObjchParser.param_name_return param_name256 =null;
+        ObjchParser.param_name_return param_name257 =null;
 
 
-        Object char_literal252_tree=null;
         Object char_literal253_tree=null;
-        Object char_literal255_tree=null;
-        Object char_literal257_tree=null;
-        Object string_literal258_tree=null;
+        Object char_literal254_tree=null;
+        Object char_literal256_tree=null;
+        Object char_literal258_tree=null;
         Object string_literal259_tree=null;
+        Object string_literal260_tree=null;
         RewriteRuleTokenStream stream_48=new RewriteRuleTokenStream(adaptor,"token 48");
         RewriteRuleTokenStream stream_47=new RewriteRuleTokenStream(adaptor,"token 47");
         RewriteRuleTokenStream stream_54=new RewriteRuleTokenStream(adaptor,"token 54");
@@ -9408,7 +9470,7 @@ public TreeAdaptor getTreeAdaptor() {
         RewriteRuleSubtreeStream stream_param_name=new RewriteRuleSubtreeStream(adaptor,"rule param_name");
         RewriteRuleSubtreeStream stream_type_declaration=new RewriteRuleSubtreeStream(adaptor,"rule type_declaration");
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:398:2: ( ( prefix )? ':' ( '(' type_declaration ')' )? param_name -> ^( METHOD_PARAM ( prefix )? ':' '(' type_declaration ')' param_name ) | ',' '...' 'NS_REQUIRES_NIL_TERMINATION' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:2: ( ( prefix )? ':' ( '(' type_declaration ')' )? param_name -> ^( METHOD_PARAM ( prefix )? ':' '(' type_declaration ')' param_name ) | ',' '...' 'NS_REQUIRES_NIL_TERMINATION' )
             int alt98=2;
             int LA98_0 = input.LA(1);
 
@@ -9427,9 +9489,9 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt98) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:398:4: ( prefix )? ':' ( '(' type_declaration ')' )? param_name
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:4: ( prefix )? ':' ( '(' type_declaration ')' )? param_name
                     {
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:398:4: ( prefix )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:4: ( prefix )?
                     int alt96=2;
                     int LA96_0 = input.LA(1);
 
@@ -9438,14 +9500,14 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt96) {
                         case 1 :
-                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:398:4: prefix
+                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:4: prefix
                             {
-                            pushFollow(FOLLOW_prefix_in_method_param1979);
-                            prefix251=prefix();
+                            pushFollow(FOLLOW_prefix_in_method_param1985);
+                            prefix252=prefix();
 
                             state._fsp--;
 
-                            stream_prefix.add(prefix251.getTree());
+                            stream_prefix.add(prefix252.getTree());
 
                             }
                             break;
@@ -9453,11 +9515,11 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    char_literal252=(Token)match(input,54,FOLLOW_54_in_method_param1982);  
-                    stream_54.add(char_literal252);
+                    char_literal253=(Token)match(input,54,FOLLOW_54_in_method_param1988);  
+                    stream_54.add(char_literal253);
 
 
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:398:16: ( '(' type_declaration ')' )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:16: ( '(' type_declaration ')' )?
                     int alt97=2;
                     int LA97_0 = input.LA(1);
 
@@ -9466,21 +9528,21 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     switch (alt97) {
                         case 1 :
-                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:398:17: '(' type_declaration ')'
+                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:17: '(' type_declaration ')'
                             {
-                            char_literal253=(Token)match(input,47,FOLLOW_47_in_method_param1985);  
-                            stream_47.add(char_literal253);
+                            char_literal254=(Token)match(input,47,FOLLOW_47_in_method_param1991);  
+                            stream_47.add(char_literal254);
 
 
-                            pushFollow(FOLLOW_type_declaration_in_method_param1987);
-                            type_declaration254=type_declaration();
+                            pushFollow(FOLLOW_type_declaration_in_method_param1993);
+                            type_declaration255=type_declaration();
 
                             state._fsp--;
 
-                            stream_type_declaration.add(type_declaration254.getTree());
+                            stream_type_declaration.add(type_declaration255.getTree());
 
-                            char_literal255=(Token)match(input,48,FOLLOW_48_in_method_param1989);  
-                            stream_48.add(char_literal255);
+                            char_literal256=(Token)match(input,48,FOLLOW_48_in_method_param1995);  
+                            stream_48.add(char_literal256);
 
 
                             }
@@ -9489,15 +9551,15 @@ public TreeAdaptor getTreeAdaptor() {
                     }
 
 
-                    pushFollow(FOLLOW_param_name_in_method_param1993);
-                    param_name256=param_name();
+                    pushFollow(FOLLOW_param_name_in_method_param1999);
+                    param_name257=param_name();
 
                     state._fsp--;
 
-                    stream_param_name.add(param_name256.getTree());
+                    stream_param_name.add(param_name257.getTree());
 
                     // AST REWRITE
-                    // elements: 48, prefix, param_name, 47, 54, type_declaration
+                    // elements: 54, 48, prefix, type_declaration, 47, param_name
                     // token labels: 
                     // rule labels: retval
                     // token list labels: 
@@ -9507,16 +9569,16 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 398:55: -> ^( METHOD_PARAM ( prefix )? ':' '(' type_declaration ')' param_name )
+                    // 402:55: -> ^( METHOD_PARAM ( prefix )? ':' '(' type_declaration ')' param_name )
                     {
-                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:398:58: ^( METHOD_PARAM ( prefix )? ':' '(' type_declaration ')' param_name )
+                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:58: ^( METHOD_PARAM ( prefix )? ':' '(' type_declaration ')' param_name )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
                         (Object)adaptor.create(METHOD_PARAM, "METHOD_PARAM")
                         , root_1);
 
-                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:398:73: ( prefix )?
+                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:73: ( prefix )?
                         if ( stream_prefix.hasNext() ) {
                             adaptor.addChild(root_1, stream_prefix.nextTree());
 
@@ -9550,30 +9612,30 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:399:4: ',' '...' 'NS_REQUIRES_NIL_TERMINATION'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:403:4: ',' '...' 'NS_REQUIRES_NIL_TERMINATION'
                     {
                     root_0 = (Object)adaptor.nil();
 
 
-                    char_literal257=(Token)match(input,51,FOLLOW_51_in_method_param2017); 
-                    char_literal257_tree = 
-                    (Object)adaptor.create(char_literal257)
+                    char_literal258=(Token)match(input,51,FOLLOW_51_in_method_param2023); 
+                    char_literal258_tree = 
+                    (Object)adaptor.create(char_literal258)
                     ;
-                    adaptor.addChild(root_0, char_literal257_tree);
+                    adaptor.addChild(root_0, char_literal258_tree);
 
 
-                    string_literal258=(Token)match(input,53,FOLLOW_53_in_method_param2019); 
-                    string_literal258_tree = 
-                    (Object)adaptor.create(string_literal258)
-                    ;
-                    adaptor.addChild(root_0, string_literal258_tree);
-
-
-                    string_literal259=(Token)match(input,71,FOLLOW_71_in_method_param2021); 
+                    string_literal259=(Token)match(input,53,FOLLOW_53_in_method_param2025); 
                     string_literal259_tree = 
                     (Object)adaptor.create(string_literal259)
                     ;
                     adaptor.addChild(root_0, string_literal259_tree);
+
+
+                    string_literal260=(Token)match(input,71,FOLLOW_71_in_method_param2027); 
+                    string_literal260_tree = 
+                    (Object)adaptor.create(string_literal260)
+                    ;
+                    adaptor.addChild(root_0, string_literal260_tree);
 
 
                     }
@@ -9609,7 +9671,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "param_name"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:401:1: param_name : ( ID -> ^( PARAM_NAME ID ) | 'format' -> ^( PARAM_NAME 'format' ) );
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:405:1: param_name : ( ID -> ^( PARAM_NAME ID ) | 'format' -> ^( PARAM_NAME 'format' ) );
     public final ObjchParser.param_name_return param_name() throws RecognitionException {
         ObjchParser.param_name_return retval = new ObjchParser.param_name_return();
         retval.start = input.LT(1);
@@ -9617,16 +9679,16 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ID260=null;
-        Token string_literal261=null;
+        Token ID261=null;
+        Token string_literal262=null;
 
-        Object ID260_tree=null;
-        Object string_literal261_tree=null;
+        Object ID261_tree=null;
+        Object string_literal262_tree=null;
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
         RewriteRuleTokenStream stream_84=new RewriteRuleTokenStream(adaptor,"token 84");
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:2: ( ID -> ^( PARAM_NAME ID ) | 'format' -> ^( PARAM_NAME 'format' ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:406:2: ( ID -> ^( PARAM_NAME ID ) | 'format' -> ^( PARAM_NAME 'format' ) )
             int alt99=2;
             int LA99_0 = input.LA(1);
 
@@ -9645,10 +9707,10 @@ public TreeAdaptor getTreeAdaptor() {
             }
             switch (alt99) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:4: ID
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:406:4: ID
                     {
-                    ID260=(Token)match(input,ID,FOLLOW_ID_in_param_name2032);  
-                    stream_ID.add(ID260);
+                    ID261=(Token)match(input,ID,FOLLOW_ID_in_param_name2038);  
+                    stream_ID.add(ID261);
 
 
                     // AST REWRITE
@@ -9662,9 +9724,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 402:7: -> ^( PARAM_NAME ID )
+                    // 406:7: -> ^( PARAM_NAME ID )
                     {
-                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:402:10: ^( PARAM_NAME ID )
+                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:406:10: ^( PARAM_NAME ID )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -9686,10 +9748,10 @@ public TreeAdaptor getTreeAdaptor() {
                     }
                     break;
                 case 2 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:403:4: 'format'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:407:4: 'format'
                     {
-                    string_literal261=(Token)match(input,84,FOLLOW_84_in_param_name2045);  
-                    stream_84.add(string_literal261);
+                    string_literal262=(Token)match(input,84,FOLLOW_84_in_param_name2051);  
+                    stream_84.add(string_literal262);
 
 
                     // AST REWRITE
@@ -9703,9 +9765,9 @@ public TreeAdaptor getTreeAdaptor() {
                     RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
                     root_0 = (Object)adaptor.nil();
-                    // 403:13: -> ^( PARAM_NAME 'format' )
+                    // 407:13: -> ^( PARAM_NAME 'format' )
                     {
-                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:403:16: ^( PARAM_NAME 'format' )
+                        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:407:16: ^( PARAM_NAME 'format' )
                         {
                         Object root_1 = (Object)adaptor.nil();
                         root_1 = (Object)adaptor.becomeRoot(
@@ -9757,7 +9819,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "prefix"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:405:1: prefix : ID -> ^( PARAM_PREFIX ID ) ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:409:1: prefix : ID -> ^( PARAM_PREFIX ID ) ;
     public final ObjchParser.prefix_return prefix() throws RecognitionException {
         ObjchParser.prefix_return retval = new ObjchParser.prefix_return();
         retval.start = input.LT(1);
@@ -9765,17 +9827,17 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token ID262=null;
+        Token ID263=null;
 
-        Object ID262_tree=null;
+        Object ID263_tree=null;
         RewriteRuleTokenStream stream_ID=new RewriteRuleTokenStream(adaptor,"token ID");
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:405:8: ( ID -> ^( PARAM_PREFIX ID ) )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:405:10: ID
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:409:8: ( ID -> ^( PARAM_PREFIX ID ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:409:10: ID
             {
-            ID262=(Token)match(input,ID,FOLLOW_ID_in_prefix2062);  
-            stream_ID.add(ID262);
+            ID263=(Token)match(input,ID,FOLLOW_ID_in_prefix2068);  
+            stream_ID.add(ID263);
 
 
             // AST REWRITE
@@ -9789,9 +9851,9 @@ public TreeAdaptor getTreeAdaptor() {
             RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.tree:null);
 
             root_0 = (Object)adaptor.nil();
-            // 405:13: -> ^( PARAM_PREFIX ID )
+            // 409:13: -> ^( PARAM_PREFIX ID )
             {
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:405:16: ^( PARAM_PREFIX ID )
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:409:16: ^( PARAM_PREFIX ID )
                 {
                 Object root_1 = (Object)adaptor.nil();
                 root_1 = (Object)adaptor.becomeRoot(
@@ -9841,7 +9903,7 @@ public TreeAdaptor getTreeAdaptor() {
 
 
     // $ANTLR start "extern_declatation"
-    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:407:1: extern_declatation : 'extern' field_declaration ;
+    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:411:1: extern_declatation : 'extern' field_declaration ;
     public final ObjchParser.extern_declatation_return extern_declatation() throws RecognitionException {
         ObjchParser.extern_declatation_return retval = new ObjchParser.extern_declatation_return();
         retval.start = input.LT(1);
@@ -9849,32 +9911,32 @@ public TreeAdaptor getTreeAdaptor() {
 
         Object root_0 = null;
 
-        Token string_literal263=null;
-        ObjchParser.field_declaration_return field_declaration264 =null;
+        Token string_literal264=null;
+        ObjchParser.field_declaration_return field_declaration265 =null;
 
 
-        Object string_literal263_tree=null;
+        Object string_literal264_tree=null;
 
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:408:2: ( 'extern' field_declaration )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:408:4: 'extern' field_declaration
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:412:2: ( 'extern' field_declaration )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:412:4: 'extern' field_declaration
             {
             root_0 = (Object)adaptor.nil();
 
 
-            string_literal263=(Token)match(input,83,FOLLOW_83_in_extern_declatation2079); 
-            string_literal263_tree = 
-            (Object)adaptor.create(string_literal263)
+            string_literal264=(Token)match(input,83,FOLLOW_83_in_extern_declatation2085); 
+            string_literal264_tree = 
+            (Object)adaptor.create(string_literal264)
             ;
-            adaptor.addChild(root_0, string_literal263_tree);
+            adaptor.addChild(root_0, string_literal264_tree);
 
 
-            pushFollow(FOLLOW_field_declaration_in_extern_declatation2081);
-            field_declaration264=field_declaration();
+            pushFollow(FOLLOW_field_declaration_in_extern_declatation2087);
+            field_declaration265=field_declaration();
 
             state._fsp--;
 
-            adaptor.addChild(root_0, field_declaration264.getTree());
+            adaptor.addChild(root_0, field_declaration265.getTree());
 
             }
 
@@ -13013,7 +13075,7 @@ public TreeAdaptor getTreeAdaptor() {
             this.transition = DFA78_transition;
         }
         public String getDescription() {
-            return "310:45: ( type_dec )?";
+            return "314:45: ( type_dec )?";
         }
     }
  
@@ -13222,58 +13284,59 @@ public TreeAdaptor getTreeAdaptor() {
     public static final BitSet FOLLOW_NUMBER_in_classical_param1650 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
     public static final BitSet FOLLOW_73_in_classical_param1653 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
     public static final BitSet FOLLOW_53_in_classical_param1660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_79_in_type_declaration1672 = new BitSet(new long[]{0x0000000000004000L,0x0000000140C40000L});
-    public static final BitSet FOLLOW_82_in_type_declaration1675 = new BitSet(new long[]{0x0000000000004000L,0x0000000140C00000L});
-    public static final BitSet FOLLOW_94_in_type_declaration1678 = new BitSet(new long[]{0x0000000000004000L,0x0000000100C00000L});
-    public static final BitSet FOLLOW_96_in_type_declaration1683 = new BitSet(new long[]{0x0102000000004002L,0x0000000000C08000L});
-    public static final BitSet FOLLOW_type_dec_in_type_declaration1685 = new BitSet(new long[]{0x0102000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_type_dec_in_type_declaration1691 = new BitSet(new long[]{0x0102000000000002L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_type_declaration1694 = new BitSet(new long[]{0x0102000000000002L});
-    public static final BitSet FOLLOW_generic_in_type_declaration1697 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_49_in_type_declaration1700 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_type_dec_internal_in_type_dec1720 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
-    public static final BitSet FOLLOW_72_in_type_dec1723 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_73_in_type_dec1725 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
-    public static final BitSet FOLLOW_knownTypes_in_type_dec_internal1740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_type_dec_internal1747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_86_in_knownTypes1758 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_87_in_knownTypes1763 = new BitSet(new long[]{0x0000000000000002L,0x0000000000C00000L});
-    public static final BitSet FOLLOW_86_in_knownTypes1766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_field_name1779 = new BitSet(new long[]{0x0040000000000002L,0x0000000000000100L});
-    public static final BitSet FOLLOW_array_size_in_field_name1781 = new BitSet(new long[]{0x0040000000000002L});
-    public static final BitSet FOLLOW_field_crap_in_field_name1785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_array_size1810 = new BitSet(new long[]{0x0000000008000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_NUMBER_in_array_size1812 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
-    public static final BitSet FOLLOW_73_in_array_size1815 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_field_crap1824 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_NUMBER_in_field_crap1826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_method_modifier_wrapper_in_method_declaration1836 = new BitSet(new long[]{0x0000800000004000L,0x000000000F014000L});
-    public static final BitSet FOLLOW_method_declaration_variants_in_method_declaration1838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_method_modifier_in_method_modifier_wrapper1848 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_method_declaration_common_in_method_declaration_variants1886 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_method_declaration_common1897 = new BitSet(new long[]{0x0000000000004000L,0x0000000160C48000L});
-    public static final BitSet FOLLOW_93_in_method_declaration_common1899 = new BitSet(new long[]{0x0000000000004000L,0x0000000140C48000L});
-    public static final BitSet FOLLOW_type_declaration_in_method_declaration_common1902 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_method_declaration_common1904 = new BitSet(new long[]{0x0000000000004000L,0x000000000F014000L});
-    public static final BitSet FOLLOW_method_name_in_method_declaration_common1908 = new BitSet(new long[]{0x00C8000000004000L});
-    public static final BitSet FOLLOW_method_params_in_method_declaration_common1910 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_55_in_method_declaration_common1913 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_method_name1927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_property_prefix_param_in_method_name1941 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_method_param_in_method_params1960 = new BitSet(new long[]{0x0048000000004002L});
-    public static final BitSet FOLLOW_prefix_in_method_param1979 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_method_param1982 = new BitSet(new long[]{0x0000800000004000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_47_in_method_param1985 = new BitSet(new long[]{0x0000000000004000L,0x0000000140C48000L});
-    public static final BitSet FOLLOW_type_declaration_in_method_param1987 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_method_param1989 = new BitSet(new long[]{0x0000000000004000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_param_name_in_method_param1993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_method_param2017 = new BitSet(new long[]{0x0020000000000000L});
-    public static final BitSet FOLLOW_53_in_method_param2019 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_71_in_method_param2021 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_param_name2032 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_84_in_param_name2045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ID_in_prefix2062 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_83_in_extern_declatation2079 = new BitSet(new long[]{0x0000000000004000L,0x0000000150E4A000L});
-    public static final BitSet FOLLOW_field_declaration_in_extern_declatation2081 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_type_declaration_internal_in_type_declaration1671 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_type_declaration_internal1689 = new BitSet(new long[]{0x0000000000004000L,0x0000000140C40000L});
+    public static final BitSet FOLLOW_82_in_type_declaration_internal1692 = new BitSet(new long[]{0x0000000000004000L,0x0000000140C00000L});
+    public static final BitSet FOLLOW_94_in_type_declaration_internal1695 = new BitSet(new long[]{0x0000000000004000L,0x0000000100C00000L});
+    public static final BitSet FOLLOW_96_in_type_declaration_internal1700 = new BitSet(new long[]{0x0102000000004002L,0x0000000000C08000L});
+    public static final BitSet FOLLOW_type_dec_in_type_declaration_internal1702 = new BitSet(new long[]{0x0102000000000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_type_dec_in_type_declaration_internal1708 = new BitSet(new long[]{0x0102000000000002L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_type_declaration_internal1711 = new BitSet(new long[]{0x0102000000000002L});
+    public static final BitSet FOLLOW_generic_in_type_declaration_internal1714 = new BitSet(new long[]{0x0002000000000002L});
+    public static final BitSet FOLLOW_49_in_type_declaration_internal1717 = new BitSet(new long[]{0x0002000000000002L});
+    public static final BitSet FOLLOW_type_dec_internal_in_type_dec1726 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+    public static final BitSet FOLLOW_72_in_type_dec1729 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_type_dec1731 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000100L});
+    public static final BitSet FOLLOW_knownTypes_in_type_dec_internal1746 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_type_dec_internal1753 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_86_in_knownTypes1764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_87_in_knownTypes1769 = new BitSet(new long[]{0x0000000000000002L,0x0000000000C00000L});
+    public static final BitSet FOLLOW_86_in_knownTypes1772 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_field_name1785 = new BitSet(new long[]{0x0040000000000002L,0x0000000000000100L});
+    public static final BitSet FOLLOW_array_size_in_field_name1787 = new BitSet(new long[]{0x0040000000000002L});
+    public static final BitSet FOLLOW_field_crap_in_field_name1791 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_array_size1816 = new BitSet(new long[]{0x0000000008000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_NUMBER_in_array_size1818 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_array_size1821 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_field_crap1830 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_NUMBER_in_field_crap1832 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_method_modifier_wrapper_in_method_declaration1842 = new BitSet(new long[]{0x0000800000004000L,0x000000000F014000L});
+    public static final BitSet FOLLOW_method_declaration_variants_in_method_declaration1844 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_method_modifier_in_method_modifier_wrapper1854 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_method_declaration_common_in_method_declaration_variants1892 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_method_declaration_common1903 = new BitSet(new long[]{0x0000000000004000L,0x0000000160C48000L});
+    public static final BitSet FOLLOW_93_in_method_declaration_common1905 = new BitSet(new long[]{0x0000000000004000L,0x0000000140C48000L});
+    public static final BitSet FOLLOW_type_declaration_in_method_declaration_common1908 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_method_declaration_common1910 = new BitSet(new long[]{0x0000000000004000L,0x000000000F014000L});
+    public static final BitSet FOLLOW_method_name_in_method_declaration_common1914 = new BitSet(new long[]{0x00C8000000004000L});
+    public static final BitSet FOLLOW_method_params_in_method_declaration_common1916 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_55_in_method_declaration_common1919 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_method_name1933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_property_prefix_param_in_method_name1947 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_method_param_in_method_params1966 = new BitSet(new long[]{0x0048000000004002L});
+    public static final BitSet FOLLOW_prefix_in_method_param1985 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_method_param1988 = new BitSet(new long[]{0x0000800000004000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_47_in_method_param1991 = new BitSet(new long[]{0x0000000000004000L,0x0000000140C48000L});
+    public static final BitSet FOLLOW_type_declaration_in_method_param1993 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_method_param1995 = new BitSet(new long[]{0x0000000000004000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_param_name_in_method_param1999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_method_param2023 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_53_in_method_param2025 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_71_in_method_param2027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_param_name2038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_84_in_param_name2051 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ID_in_prefix2068 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_83_in_extern_declatation2085 = new BitSet(new long[]{0x0000000000004000L,0x0000000150E4A000L});
+    public static final BitSet FOLLOW_field_declaration_in_extern_declatation2087 = new BitSet(new long[]{0x0000000000000002L});
 
 }

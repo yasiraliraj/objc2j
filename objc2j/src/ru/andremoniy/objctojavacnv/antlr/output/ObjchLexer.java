@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g 2012-11-19 09:36:56
+// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g 2012-11-23 09:42:29
 
 package ru.andremoniy.objctojavacnv.antlr.output;
 
@@ -1359,14 +1359,14 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = SINGLE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:414:2: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:414:4: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:418:2: ( '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+ )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:418:4: '//' (~ ( '\\r' | '\\n' ) )* ( ( '\\r' )? '\\n' )+
             {
             match("//"); 
 
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:414:9: (~ ( '\\r' | '\\n' ) )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:418:9: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -1400,7 +1400,7 @@ public class ObjchLexer extends Lexer {
             } while (true);
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:414:25: ( ( '\\r' )? '\\n' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:418:25: ( ( '\\r' )? '\\n' )+
             int cnt3=0;
             loop3:
             do {
@@ -1414,9 +1414,9 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:414:26: ( '\\r' )? '\\n'
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:418:26: ( '\\r' )? '\\n'
             	    {
-            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:414:26: ( '\\r' )?
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:418:26: ( '\\r' )?
             	    int alt2=2;
             	    int LA2_0 = input.LA(1);
 
@@ -1425,7 +1425,7 @@ public class ObjchLexer extends Lexer {
             	    }
             	    switch (alt2) {
             	        case 1 :
-            	            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:414:26: '\\r'
+            	            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:418:26: '\\r'
             	            {
             	            match('\r'); 
 
@@ -1468,14 +1468,14 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = MULTI_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:417:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:417:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:421:3: ( '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )? )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:421:5: '/*' ( . )* '*/' ( ( '\\r' )? '\\n' )?
             {
             match("/*"); 
 
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:417:10: ( . )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:421:10: ( . )*
             loop4:
             do {
                 int alt4=2;
@@ -1500,7 +1500,7 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:417:10: .
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:421:10: .
             	    {
             	    matchAny(); 
 
@@ -1517,7 +1517,7 @@ public class ObjchLexer extends Lexer {
 
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:417:18: ( ( '\\r' )? '\\n' )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:421:18: ( ( '\\r' )? '\\n' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1526,9 +1526,9 @@ public class ObjchLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:417:19: ( '\\r' )? '\\n'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:421:19: ( '\\r' )? '\\n'
                     {
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:417:19: ( '\\r' )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:421:19: ( '\\r' )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -1537,7 +1537,7 @@ public class ObjchLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:417:19: '\\r'
+                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:421:19: '\\r'
                             {
                             match('\r'); 
 
@@ -1573,12 +1573,12 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = PREPROCESSOR_DECLARATION;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:420:2: ( '#' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+ )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:420:4: '#' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:424:2: ( '#' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+ )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:424:4: '#' (~ ( '\\r' | '\\n' ) )* ( '\\r' | '\\n' )+
             {
             match('#'); 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:420:8: (~ ( '\\r' | '\\n' ) )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:424:8: (~ ( '\\r' | '\\n' ) )*
             loop7:
             do {
                 int alt7=2;
@@ -1612,7 +1612,7 @@ public class ObjchLexer extends Lexer {
             } while (true);
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:420:24: ( '\\r' | '\\n' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:424:24: ( '\\r' | '\\n' )+
             int cnt8=0;
             loop8:
             do {
@@ -1669,7 +1669,7 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:422:9: ( ( '-' )? ( DIGIT )+ | '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | DIGIT )+ )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:426:9: ( ( '-' )? ( DIGIT )+ | '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | DIGIT )+ )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1695,9 +1695,9 @@ public class ObjchLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:422:11: ( '-' )? ( DIGIT )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:426:11: ( '-' )? ( DIGIT )+
                     {
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:422:11: ( '-' )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:426:11: ( '-' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1706,7 +1706,7 @@ public class ObjchLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:422:11: '-'
+                            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:426:11: '-'
                             {
                             match('-'); 
 
@@ -1716,7 +1716,7 @@ public class ObjchLexer extends Lexer {
                     }
 
 
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:422:16: ( DIGIT )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:426:16: ( DIGIT )+
                     int cnt10=0;
                     loop10:
                     do {
@@ -1758,13 +1758,13 @@ public class ObjchLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:423:4: '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | DIGIT )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:427:4: '0x' ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | DIGIT )+
                     {
                     match("0x"); 
 
 
 
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:423:9: ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | DIGIT )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:427:9: ( 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'a' | 'b' | 'c' | 'd' | 'e' | 'f' | DIGIT )+
                     int cnt11=0;
                     loop11:
                     do {
@@ -1821,10 +1821,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = WHITESPACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:425:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:425:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:425:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             int cnt13=0;
             loop13:
             do {
@@ -1881,13 +1881,13 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:427:4: ( LETTER ( DIGIT | LETTER )* )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:427:6: LETTER ( DIGIT | LETTER )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:431:4: ( LETTER ( DIGIT | LETTER )* )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:431:6: LETTER ( DIGIT | LETTER )*
             {
             mLETTER(); 
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:427:13: ( DIGIT | LETTER )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:431:13: ( DIGIT | LETTER )*
             loop14:
             do {
                 int alt14=2;
@@ -1937,10 +1937,10 @@ public class ObjchLexer extends Lexer {
         try {
             int _type = FILE_NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:12: ( ( LETTER | NUMBER )+ ( '.' ( LETTER | NUMBER )+ )? )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:14: ( LETTER | NUMBER )+ ( '.' ( LETTER | NUMBER )+ )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:433:12: ( ( LETTER | NUMBER )+ ( '.' ( LETTER | NUMBER )+ )? )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:433:14: ( LETTER | NUMBER )+ ( '.' ( LETTER | NUMBER )+ )?
             {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:14: ( LETTER | NUMBER )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:433:14: ( LETTER | NUMBER )+
             int cnt15=0;
             loop15:
             do {
@@ -1957,7 +1957,7 @@ public class ObjchLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:15: LETTER
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:433:15: LETTER
             	    {
             	    mLETTER(); 
 
@@ -1965,7 +1965,7 @@ public class ObjchLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:22: NUMBER
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:433:22: NUMBER
             	    {
             	    mNUMBER(); 
 
@@ -1983,7 +1983,7 @@ public class ObjchLexer extends Lexer {
             } while (true);
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:31: ( '.' ( LETTER | NUMBER )+ )?
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:433:31: ( '.' ( LETTER | NUMBER )+ )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -1992,11 +1992,11 @@ public class ObjchLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:32: '.' ( LETTER | NUMBER )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:433:32: '.' ( LETTER | NUMBER )+
                     {
                     match('.'); 
 
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:35: ( LETTER | NUMBER )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:433:35: ( LETTER | NUMBER )+
                     int cnt16=0;
                     loop16:
                     do {
@@ -2013,7 +2013,7 @@ public class ObjchLexer extends Lexer {
 
                         switch (alt16) {
                     	case 1 :
-                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:36: LETTER
+                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:433:36: LETTER
                     	    {
                     	    mLETTER(); 
 
@@ -2021,7 +2021,7 @@ public class ObjchLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:429:43: NUMBER
+                    	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:433:43: NUMBER
                     	    {
                     	    mNUMBER(); 
 
@@ -2059,7 +2059,7 @@ public class ObjchLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:431:17: ( '0' .. '9' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:435:17: ( '0' .. '9' )
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -2085,7 +2085,7 @@ public class ObjchLexer extends Lexer {
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:432:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:436:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Objch.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
