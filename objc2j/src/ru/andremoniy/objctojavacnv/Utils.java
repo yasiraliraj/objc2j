@@ -132,7 +132,7 @@ public class Utils {
             case "IBAction":
                 return "void";
             case "CGFloat":
-            case "doule":
+            case "double":
             case "float":
                 return "Double";
             case "long":
@@ -140,7 +140,7 @@ public class Utils {
             case "short":
                 return "Short";
             case "unichar":
-                return "Characted";
+                return "Character";
             case "struct":
                 return "";
         }

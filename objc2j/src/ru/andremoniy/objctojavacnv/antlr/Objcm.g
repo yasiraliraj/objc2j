@@ -963,10 +963,13 @@ method_modifier_wrapper
 
 method_modifier
 	:	'+' | '-';	
-	
+
 method_type
-	:	L_BR  STRUCT_PREFIX? type_internal  generic? ASTERISK* R_BR -> ^(TYPE type_internal)
-	| 	L_BR  CONST_PREFIX? known_types? ID* (L_KBR R_KBR)* generic? ASTERISK* R_BR -> ^(TYPE ID+)
+	:	method_type_internal -> ^(TYPE method_type_internal);
+	
+method_type_internal
+	:	L_BR STRUCT_PREFIX? type_internal generic? ASTERISK* R_BR
+	| 	L_BR CONST_PREFIX? known_types? ID* (L_KBR R_KBR)* generic? ASTERISK* R_BR
 	;			
 		
 type_internal
@@ -1000,7 +1003,10 @@ method_param2
 indexed	:	L_KBR NUMBER? R_KBR;
 	
 method_params
-	:	method_param+ -> ^(PARAM method_param)+;	
+	:	method_param_wrapper+;	
+	
+method_param_wrapper
+	:	method_param -> ^(PARAM method_param);	
 	
 method_param
 	:	(prefix? | COLON) method_type? name

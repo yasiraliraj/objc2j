@@ -187,7 +187,7 @@ public class ConverterM {
                     } else {
                         projectCtx.newClass(className, categoryName);
                         projectCtx.classCtx.packageName = packageName;
-                        process_implementation(projectCtx, false, className, childTree, innerClasses, true);
+                        process_implementation(projectCtx, false, className, childTree, innerClasses, true, false);
                     }
                 }
             }
@@ -212,7 +212,7 @@ public class ConverterM {
             }
             m_process_implementation2(sb2, tree, projectCtx);
         } else {
-            process_implementation(projectCtx, categoryClass, javaClassName, mainImpl, sb2, false);
+            process_implementation(projectCtx, categoryClass, javaClassName, mainImpl, sb2, false, true);
         }
         process_common_children(projectCtx, tree, sb2);
 
@@ -257,9 +257,9 @@ public class ConverterM {
         return sb;
     }
 
-    private static void process_implementation(ProjectContext projectCtx, boolean categoryClass, String javaClassName, CommonTree implementationTree, StringBuilder sb, boolean doFinish) {
+    private static void process_implementation(ProjectContext projectCtx, boolean categoryClass, String javaClassName, CommonTree implementationTree, StringBuilder sb, boolean doFinish, boolean forceClassDeclaration) {
         if (!categoryClass) {
-            m_process_implementation1(sb, implementationTree, javaClassName, doFinish, projectCtx);
+            m_process_implementation1(sb, implementationTree, javaClassName, doFinish, projectCtx, forceClassDeclaration);
         }
 
         m_process_implementation2(sb, implementationTree, projectCtx);
@@ -346,13 +346,10 @@ public class ConverterM {
             switch (childTree.token.getType()) {
                 // Это статическое поле или метод
                 case ObjcmLexer.TYPE:
-                    readChildren(lsb, childTree, null, null); // there is no method, then null
+                    lsb.append(readChildren(childTree, null, null)); // there is no method, then null
                     break;
                 case ObjcmLexer.NAME:
-                    StringBuilder namesb = new StringBuilder();
-                    readChildren(namesb, childTree, null, null); // there is no method, then null
-                    lsb.append(namesb);
-                    name = namesb.toString().trim();
+                    lsb.append(readChildren(childTree, null, null)); // there is no method, then null
                     break;
                 case ObjcmLexer.FIELD:
                     classCtx.projectCtx.staticFields.put(name, classCtx.className);
@@ -393,16 +390,12 @@ public class ConverterM {
                 case ObjcmLexer.TYPE:
                     sb.append(" public ");
                     if (isStatic) sb.append("static ");
-                    StringBuilder typeSb = new StringBuilder();
-                    readChildren(typeSb, childTree, classCtx, null);
-                    sb.append(typeSb);
-                    methodType = typeSb.toString().trim();
+                    methodType = process_method_type(classCtx, childTree);
+                    sb.append(methodType).append(" ");
                     break;
                 case ObjcmLexer.NAME:
-                    StringBuilder nameSb = new StringBuilder();
-                    readChildren(nameSb, childTree, classCtx, null);
-                    String trimmedName = nameSb.toString().trim();
-                    sb.append(trimmedName);
+                    String trimmedName = readChildren(childTree, classCtx, null).trim();
+                    sb.append(trimmedName).append(" ");
                     if (tree.getFirstChildWithType(ObjcmLexer.METHOD) != null) {
                         methodName = trimmedName;
                     } else {
@@ -436,16 +429,19 @@ public class ConverterM {
                         m_process_params(sb, childTree, classCtx);
                     }*/
                     break;
+                case ObjcmLexer.BLOCK:
+                    m_process_block(sb, childTree, classCtx.newMethod(methodName, methodType, isStatic, null).newBlock());
+                    break;
                 case ObjcmLexer.EXTERN:
                     break;
                 default:
                     String text = Utils.getText(childTree).trim();
                     if (text.equals("inline") || text.equals("struct")) {
-                        break;
+                        continue;
                     }
                     if (text.equals("static")) {
                         isStatic = true;
-                        break;
+                        continue;
                     }
                     sb.append(transformObject(text, classCtx, null));
                     sb.append(" ");
@@ -460,25 +456,56 @@ public class ConverterM {
         sb2.append(sb);
     }
 
+    private static String process_method_type(ClassContext classCtx, CommonTree tree) {
+        String methodType = "";
+        int asteriskCount = 0;
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            String text = childTree.getText();
+            if (text.equals("*")) {
+                asteriskCount++;
+                continue;
+            }
+            if (text.equals("(") || text.equals(")")) continue;
+            if (text.equals("const") || text.equals("struct")) continue;
+            methodType += text;
+        }
+        methodType = Utils.transformType(methodType, classCtx);
+        if (asteriskCount == 1) {
+            methodType += "[]";
+        }
+        return methodType;
+    }
+
     private static void process_param(StringBuilder sb, CommonTree tree, ClassContext classCtx) {
         String typeName = "";
         String paramName = "";
         String paramAdd = "";
         boolean wasUnsigned = false;
+        boolean isPointer = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
                 case ObjcmParser.TYPE:
-                    typeName = Utils.transformType(((CommonTree) child).getChild(0).getText().trim(), classCtx);
+                    String typeTrimmedText = ((CommonTree) child).getChild(0).getText().trim();
+                    if (typeTrimmedText.contains("*")) isPointer = true;
+                    typeName = Utils.transformType(typeTrimmedText, classCtx);
                     break;
                 case ObjcmParser.NAME:
-                    paramName = Utils.transformObject(((CommonTree) child).getChild(0).getText().trim(), classCtx, null);
+                    String nameTrimmedText = ((CommonTree) child).getChild(0).getText().trim();
+                    if (nameTrimmedText.contains("*")) isPointer = true;
+                    paramName = Utils.transformObject(nameTrimmedText, classCtx, null);
                     break;
                 case ObjcmParser.INDEX:
                     paramAdd = process_index_simple(new StringBuilder(), childTree);
                     break;
                 default:
                     String text = ((CommonTree) child).getText().trim();
+                    if (text.equals("*")) {
+                        isPointer = true;
+                        continue;
+                    }
+                    if (text.equals("struct")) continue;
                     if (text.equals("unsigned")) {
                         wasUnsigned = true;
                     } else {
@@ -493,7 +520,9 @@ public class ConverterM {
             typeName = Utils.transformType("unsigned", classCtx);
         }
 
-        sb.append(typeName).append(" ").append(paramName).append(paramAdd);
+        sb.append(typeName).append(" ").append(paramName).append(isPointer ? "[]" : "").append(paramAdd);
+
+        classCtx.variables.put(paramName, typeName);
     }
 
     private static void m_process_params(StringBuilder sb, CommonTree tree, ClassContext classCtx) {
@@ -515,26 +544,28 @@ public class ConverterM {
         sb.append(lsb);
     }
 
-    private static void readChildren(StringBuilder sb, CommonTree tree, ClassContext classCtx, ExpressionContext exprCtx) {
+    private static String readChildren(CommonTree tree, ClassContext classCtx, ExpressionContext exprCtx) {
+        StringBuilder sb = new StringBuilder();
         if (tree.getChildren() == null) {
             String trObj = transformObject(tree.toString(), classCtx, exprCtx);
             sb.append(trObj);
             if (!trObj.equals("this")) {
                 sb.append(" ");
             }
-            return;
+            return sb.toString();
         }
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
-            readChildren(sb, childTree, classCtx, exprCtx);
+            sb.append(readChildren(childTree, classCtx, exprCtx));
         }
+        return sb.toString();
     }
 
-    private static void m_process_implementation1(StringBuilder sb, CommonTree tree, String _className, boolean isInner, ProjectContext projectCtx) {
+    private static void m_process_implementation1(StringBuilder sb, CommonTree tree, String _className, boolean isInner, ProjectContext projectCtx, boolean forceClassDeclaration) {
         String className = tree.getFirstChildWithType(ObjcmLexer.NAME).getChild(0).toString();
 
-        if (className.equals(_className)) {
-            sb.append("public ").append(isInner ? "static " : "").append("class ").append(className);
+        if (className.equals(_className) || forceClassDeclaration) {
+            sb.append("public ").append(isInner ? "static " : "").append("class ").append(_className);
             // not all .m files have .h header
             if (projectCtx.imports.get("I" + className) != null) {
                 sb.append(" extends I").append(className);
@@ -592,15 +623,14 @@ public class ConverterM {
 
             switch (childTree.getType()) {
                 case ObjcmLexer.STRUCT_FIELD:
+
                     CommonTree typeTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.TYPE);
-                    StringBuilder typeSb = new StringBuilder();
-                    readChildren(typeSb, typeTree, classCtx, null);
+                    String type = readChildren(typeTree, classCtx, null).trim();
 
                     CommonTree fieldNameTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.NAME);
-                    StringBuilder fieldNameSb = new StringBuilder();
-                    readChildren(fieldNameSb, fieldNameTree, classCtx, null);
+                    String fieldName = readChildren(fieldNameTree, classCtx, null).trim();
 
-                    sb.append("public ").append(transformType(typeSb.toString(), classCtx)).append(" ").append(fieldNameSb.toString()).append(";\n");
+                    sb.append("public ").append(transformType(type, classCtx)).append(" ").append(fieldName).append(";\n");
                     break;
             }
         }
@@ -620,7 +650,7 @@ public class ConverterM {
                     modifier = childTree.getChild(0).toString();
                     break;
                 case ObjcmLexer.TYPE:
-                    type = childTree.getChild(0).toString();
+                    type = readType(classCtx, childTree);
                     break;
                 case ObjcmLexer.NAME:
                     methodName = childTree.getChild(0).getText().trim();
@@ -678,6 +708,14 @@ public class ConverterM {
             sb.append("{};\n");
         }
         sb.append("\n\n");
+    }
+
+    private static String readType(ClassContext classCtx, CommonTree childTree) {
+        String type;
+        type = readChildren(childTree, classCtx, null).trim();
+        if (type.startsWith("(")) type = type.substring(1).trim();
+        if (type.endsWith(")")) type = type.substring(0, type.length() - 1).trim();
+        return type;
     }
 
     private static void m_process_block(StringBuilder sb, CommonTree tree, BlockContext blockCtx) {
@@ -834,7 +872,7 @@ public class ConverterM {
     }
 
     private static void process_goto(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
-        readChildren(sb, tree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+        sb.append(readChildren(tree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
     }
 
     private static void process_for_stmt(StringBuilder sb, CommonTree tree, BlockContext blockCtx) {
@@ -854,12 +892,12 @@ public class ConverterM {
             type = type.substring(0, type.indexOf(" "));
 
             // for (Xxxx ...
-            sb.append(typeSb);
+            sb.append(typeSb).append(" ");
 
             // for (Xxxx yyyy ....
             CommonTree itemTree = (CommonTree) forStmtExpr.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR_2);
             if (itemTree != null) {
-                readChildren(sb, itemTree, blockCtx.methodCtx().classCtx, blockCtx.newExpr());
+                sb.append(readChildren(itemTree, blockCtx.methodCtx().classCtx, blockCtx.newExpr()));
             }
 
             sb.append(" : (List<").append(type).append(">)");
@@ -879,7 +917,7 @@ public class ConverterM {
                         process_classical_expr(sb, childTree, blockCtx.newExpr(), false, false);
                         break;
                     default:
-                        sb.append(((CommonTree) child).getText().trim());
+                        sb.append(((CommonTree) child).getText());
                         break;
                 }
             }
@@ -910,7 +948,7 @@ public class ConverterM {
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
                     exprCtx2.needSaveVariable = tree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR_2) == null;
                     process_expr_full(efsb, childTree, exprCtx2, true);
-                    variableType = efsb.toString().trim();
+                    variableType = efsb.toString();
                     sb.append(efsb);
                     break;
                 }
@@ -947,7 +985,7 @@ public class ConverterM {
                     break;
                 }
                 default:
-                    readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+                    sb.append(readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
                     break;
             }
         }
@@ -1001,7 +1039,7 @@ public class ConverterM {
                     if (doWrap) break;
                 default:
                     // добавляем оператор присваивания
-                    readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+                    sb.append(readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
 
                     // принудительное приведение типа при инициализации объекта через присваивание
                     if (doBracketsWrap) {
@@ -1061,7 +1099,7 @@ public class ConverterM {
                     break;
                 default:
                     // добавляем оператор присваивания
-                    readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+                    sb.append(readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
 
                     break;
             }
@@ -1144,11 +1182,8 @@ public class ConverterM {
                     process_index(sb, childTree, exprCtx.newExpr());
                     break;
                 default:
-                    StringBuilder defSb = new StringBuilder();
-                    readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
-                    sb.append(defSb);
-                    String objectName = defSb.toString().trim();
-
+                    String objectName = readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx).trim();
+                    sb.append(objectName).append(" ");
                     putObjectInVariables(exprCtx, objectName);
                     break;
             }
@@ -1194,7 +1229,7 @@ public class ConverterM {
                     }
                     break;
                 default:
-                    readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+                    sb.append(readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
                     break;
             }
         }
@@ -1323,7 +1358,7 @@ public class ConverterM {
                     sb.append(">");
                     break;
                 default:
-                    readChildren(sb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+                    sb.append(readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
                     break;
             }
         }
@@ -1356,12 +1391,11 @@ public class ConverterM {
                     // эту хрень пропускаем
                     break;
                 default:
-                    StringBuilder defSb = new StringBuilder();
-                    readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
-                    if (defSb.toString().trim().equals("-")) {
+                    String def = readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx).trim();
+                    if (def.equals("-")) {
                         isUnaryMinus = true;
                     } else {
-                        sb.append(defSb);
+                        sb.append(def).append(" ");
                     }
                     break;
             }
@@ -1410,9 +1444,7 @@ public class ConverterM {
                 case ObjcmLexer.FIELD_ACCESS:
                     fieldAccessCounter2++;
                     sb.append(", \"");
-                    StringBuilder sbfa = new StringBuilder();
-                    readChildren(sbfa, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
-                    sb.append(sbfa.toString().trim());
+                    sb.append(readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
                     sb.append("\"");
                     if (fieldAccessCounter2 > 0 && (fieldAccessCounter2 < fieldAccessCounter || !exprCtx.skipObjField)) {
                         sb.append(")");
@@ -1431,10 +1463,8 @@ public class ConverterM {
                 default:
                     if (a_started_cases(sb, exprCtx, childTree)) continue;
 
-                    StringBuilder defSb = new StringBuilder();
-                    readChildren(defSb, childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
-                    sb.append(defSb);
-                    String objectName = defSb.toString().trim();
+                    String objectName = readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx).trim();
+                    sb.append(objectName).append(" ");
 
                     putObjectInVariables(exprCtx, objectName);
                     break;
@@ -1462,21 +1492,17 @@ public class ConverterM {
         String variableType = "";
         CommonTree typeTree = (CommonTree) tree.getFirstChildWithType(ObjcmLexer.STATIC_TYPE);
         if (typeTree != null) {
-            StringBuilder vtsb = new StringBuilder();
-            readChildren(vtsb, typeTree, blockCtx.methodCtx().classCtx, blockCtx.newExpr());
-            variableType = vtsb.toString().trim();
+            variableType = readChildren(typeTree, blockCtx.methodCtx().classCtx, blockCtx.newExpr()).trim();
         }
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
-            // пропускаем только слово "static"
+            // skip only word "static"
             if (childTree.getType() == ObjcmLexer.STATIC_PREFIX) continue;
 
-            StringBuilder lsb = new StringBuilder();
-            readChildren(lsb, childTree, blockCtx.methodCtx().classCtx, blockCtx.newExpr());
-            isb.append(lsb);
+            isb.append(readChildren(childTree, blockCtx.methodCtx().classCtx, blockCtx.newExpr()));
             if (typeTree != null && childTree.getType() == ObjcmLexer.CLASSICAL_EXPR_2) {
                 if (!recursiveSearchExists(childTree, ObjcmLexer.ASSIGN)) {
-                    if (!variableType.trim().equals("Class")) {
+                    if (!variableType.equals("Class")) {
                         isb.append("= new ").append(variableType).append("(").append(needInitParam(variableType)).append(")");
                     } else {
                         isb.append("= Class.class");
@@ -1505,10 +1531,9 @@ public class ConverterM {
         exprCtx.checkForFunctionName = false;
 
         CommonTree selectorValueTree = (CommonTree) tree.getFirstChildWithType(ObjcmLexer.SELECTOR_VALUE);
-        StringBuilder selectorValueSb = new StringBuilder();
-        readChildren(selectorValueSb, selectorValueTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx);
+        String selectorValue = readChildren(selectorValueTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx).trim();
 
-        sb.append("_").append(selector).append("_(\"").append(selectorValueSb.toString().trim()).append("\")");
+        sb.append("_").append(selector).append("_(\"").append(selectorValue).append("\")");
     }
 
     private static void m_process_if_stmt(StringBuilder sb, CommonTree tree, BlockContext cc) {
@@ -1560,16 +1585,15 @@ public class ConverterM {
             switch (childTree.getType()) {
                 case ObjcmLexer.CASE_STMT: {
                     CommonTree caseExprTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.CASE_EXPR);
-                    StringBuilder cesb = new StringBuilder();
-                    readChildren(cesb, caseExprTree, blockCtx.methodCtx().classCtx, blockCtx.newExpr());
+                    String caseExpr = readChildren(caseExprTree, blockCtx.methodCtx().classCtx, blockCtx.newExpr()).trim();
                     bodySB = new StringBuilder();
                     CommonTree caseBodyTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.CASE_BODY);
                     BlockContext blockCtx2 = blockCtx.newBlock().setSkipBreak();
                     if (caseBodyTree != null) {
                         m_process_block(bodySB, caseBodyTree, blockCtx2);
                     }
-                    switchMap.put(cesb.toString(), bodySB);
-                    switchMapBreak.put(cesb.toString(), blockCtx2.isBreak);
+                    switchMap.put(caseExpr, bodySB);
+                    switchMapBreak.put(caseExpr, blockCtx2.isBreak);
                     break;
                 }
                 case ObjcmLexer.DEFAULT_STMT: {
@@ -1583,8 +1607,8 @@ public class ConverterM {
                     break;
                 }
                 default:
-                    // все, что не CASE и не DEFAULT нужно перенести наверх перед switch-ом
-                    readChildren(sb, childTree, blockCtx.methodCtx().classCtx, blockCtx.newExpr());
+                    // everything, which is not CASE and not DEFAULT must be pushed under switch
+                    sb.append(readChildren(childTree, blockCtx.methodCtx().classCtx, blockCtx.newExpr()));
                     break;
             }
         }
@@ -1592,7 +1616,7 @@ public class ConverterM {
         List<String> keysArray = new ArrayList<>(switchMap.keySet());
         int caseNum = 0;
         for (String caseStmt : switchMap.keySet()) {
-            if (caseStmt == null) continue; // операцию DEFAULT в конец!
+            if (caseStmt == null) continue; // DEFAULT operation to the end
             if (caseNum > 0) sb.append("else ");
             sb.append("if (i_").append(switchUuid).append(".equals(").append(caseStmt).append("))");
             caseNum = processSwitchCaseBody(sb, switchMap, switchMapBreak, keysArray, caseNum, caseStmt);
@@ -1829,7 +1853,7 @@ public class ConverterM {
     }
 
 
-    private static void m_process_param(Map<String, String> params, CommonTree tree, ClassContext cc) {
+    private static void m_process_param(Map<String, String> params, CommonTree tree, ClassContext classCtx) {
         String type = "";
         String name = "";
         String generic = "";
@@ -1837,7 +1861,7 @@ public class ConverterM {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
                 case ObjcmLexer.TYPE:
-                    type = childTree.getChild(0).toString();
+                    type = readType(classCtx, childTree);
                     break;
                 case ObjcmLexer.NAME:
                     name = childTree.getChild(0).toString();
@@ -1845,7 +1869,7 @@ public class ConverterM {
             }
         }
 
-        params.put(name, transformType(type, cc));
+        params.put(name, transformType(type, classCtx));
     }
 
     private static void m_process_field2(StringBuilder sb, CommonTree tree, ClassContext cc) {

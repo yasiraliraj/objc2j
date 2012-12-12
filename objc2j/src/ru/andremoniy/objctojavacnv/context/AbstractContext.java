@@ -10,7 +10,9 @@ import java.util.Map;
  */
 public abstract class AbstractContext {
 
-        // variable name <-> variable type
+    /**
+     * variable name <-> variable type
+     */
     public Map<String, String> variables = new HashMap<>();
 
 
