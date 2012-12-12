@@ -583,18 +583,25 @@ public class Preprocessor {
                                         paramString.append(paramToken.value);
                                     } while (true);
 
-                                    if (paramString.toString().trim().equals(param)) continue;
+                                    String trimmedParamString = paramString.toString().trim();
+                                    if (trimmedParamString.equals(param)) continue;
                                     if (param.equals("...")) {
                                         // do nothing, replacing all in brackets...
                                     } else {
                                         String paramRegexp = "[^A-Za-z_]+(" + param + ")[^A-Za-z\\d_]+";
                                         Pattern paramPattern = Pattern.compile(paramRegexp);
                                         Matcher paramMatcher = paramPattern.matcher(replacement);
+                                        List<Integer> paramIndexes = new ArrayList<>();
                                         while (paramMatcher.find()) {
                                             int paramIndex = replacement.indexOf(param, paramMatcher.start());
                                             if (paramIndex >= 0) {
-                                                replacement = replacement.substring(0, paramIndex) + paramString.toString().trim() + replacement.substring(paramIndex + param.length());
+                                                paramIndexes.add(paramIndex);
                                             }
+                                        }
+                                        int shift = 0;
+                                        for (Integer paramIndex : paramIndexes) {
+                                            replacement = replacement.substring(0, paramIndex + shift) + trimmedParamString + replacement.substring(paramIndex + shift + param.length());
+                                            shift += trimmedParamString.length() - param.length();
                                         }
                                     }
                                 }
