@@ -60,6 +60,12 @@ public class ConverterM {
         put(ObjcmLexer.L_XOR_EQ, "setXor");
     }};
 
+
+    private static final Map<String, String> primitives = new HashMap<String, String>() {{
+        put("Double", "double");
+        put("Integer", "int");
+    }};
+
     private static final List<List<Integer>> OPERATIONS_ORDER = new ArrayList<List<Integer>>() {{
         add(new ArrayList<Integer>());
         add(Arrays.asList(ObjcmLexer.L_OR_OR));
@@ -948,7 +954,7 @@ public class ConverterM {
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
                     exprCtx2.needSaveVariable = tree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR_2) == null;
                     process_expr_full(efsb, childTree, exprCtx2, true);
-                    variableType = efsb.toString();
+                    variableType = efsb.toString().trim();
                     sb.append(efsb);
                     break;
                 }
@@ -1044,13 +1050,20 @@ public class ConverterM {
                     // принудительное приведение типа при инициализации объекта через присваивание
                     if (doBracketsWrap) {
                         sb.append("(");
+                        // todo: is this check really needed?
                         if (!Utils.isNumericType(exprCtx.getVariableDeclarationType())) {
                             sb.append(exprCtx.getVariableDeclarationType()).append(")(");
+                        } else {
+                            sb.append(primitiveType(exprCtx.getVariableDeclarationType())).append(")(");
                         }
                     }
                     break;
             }
         }
+    }
+
+    private static String primitiveType(String variableDeclarationType) {
+        return primitives.get(variableDeclarationType);
     }
 
     private static boolean isJustANumber(CommonTree tree) {

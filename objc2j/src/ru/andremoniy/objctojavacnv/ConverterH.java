@@ -120,7 +120,7 @@ public class ConverterH {
         if (mainInterface != null) {
             process_interface(projectContext, mainInterface, mainSB, false, false, sb);
         } else {
-            mainSB.append("public abstract class ").append(className).append(" {\n");
+            mainSB.append("public abstract class ").append(className).append(" extends NSObject {\n");
         }
         process_interface_body(mainSB, tree, projectContext, true); // with skipping interfaces
 
@@ -297,7 +297,7 @@ public class ConverterH {
 
     private static void h_process_interface1(StringBuilder sb, CommonTree tree, ProjectContext context, boolean innerClass, StringBuilder importSb) {
         String interfaceName = "";
-        String superclassName = "";
+        String superclassName = "NSObject";
         String category = "";
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
@@ -347,7 +347,7 @@ public class ConverterH {
             }
         }
 
-        sb.append("\tpublic abstract class ").append(interfaceName).append(" {\n");
+        sb.append("\tpublic abstract class ").append(interfaceName).append(" extends NSObject").append(" {\n");
         sb.append(bodySb);
         sb.append("\t\n}\n");
 
