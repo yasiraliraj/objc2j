@@ -7,8 +7,12 @@ import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.context.ProjectContext;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * User: Andremoniy
@@ -96,7 +100,7 @@ public class Converter {
                         log.info(f.getAbsolutePath() + " converting...");
                         ConverterH.convert_h(f.getAbsolutePath(), projectContext, null, null);
                         log.info(f.getAbsolutePath() + " converted...");
-                        log.info(projectContext.h_counter+" headers converted...");
+                        log.info(projectContext.h_counter + " headers converted...");
                     } catch (Exception e) {
                         log.info("Error converting " + f.getAbsolutePath());
                         log.error(e.getMessage(), e);
@@ -130,6 +134,24 @@ public class Converter {
                 log.info(f.getAbsolutePath() + " converted...");
             }
         }
-
     }
+
+    public static void main(String[] args) throws IOException {
+        if (args.length == 0) {
+            System.out.println("Usage: java -jar objc2j.jar <project_path>\n-where <project_path> - root directory with your Objective-C project.");
+        } else {
+            Properties properties = new Properties();
+            File propFile = new File("converter.properties");
+            if (propFile.exists()) {
+                properties.load(new FileInputStream(propFile));
+            } else {
+                System.out.println("You should create 'converter.properties' file and place there path to MacOSX.sdk");
+                System.exit(1);
+            }
+
+            Preprocessor.FRAMEWORKS = properties.getProperty("frameworks", "C:\\MacOSX10.6.sdk\\MacOSX10.6.sdk\\System\\Library\\Frameworks\\");
+            new Converter().convert(args[0], false);
+        }
+    }
+
 }

@@ -28,8 +28,8 @@ public class Preprocessor {
 
     private static final Logger log = LoggerFactory.getLogger(Preprocessor.class);
 
-    // TODO: properties
-    public static final String FRAMEWORKS = "C:\\torrent\\ready\\MacOSX10.6.sdk\\MacOSX10.6.sdk\\System\\Library\\Frameworks\\";
+
+    public static String FRAMEWORKS;
     public static final String VERSIONS_PATH = File.separator + "Versions" + File.separator;
     public static final String HEADERS_PATH1 = ".framework";
     public static final String HEADERS_PATH2 = File.separator + "Headers" + File.separator;
