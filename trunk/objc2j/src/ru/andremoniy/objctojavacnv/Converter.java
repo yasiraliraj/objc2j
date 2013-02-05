@@ -7,33 +7,33 @@ import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.context.ProjectContext;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * User: Andremoniy
  * Date: 18.06.12
  * Time: 9:35
  */
-public class Converter {
+public final class Converter {
 
     public static final Logger log = LoggerFactory.getLogger(Converter.class);
 
     public static final boolean NOT_IFS = false;
     public static final boolean ONLY_IFS = true;
 
-    public boolean preprocess(ProjectContext projectContext, String rootPath, String path, List<String> processedImports, boolean onlyIfs) {
-        Preprocessor preprocessor = new Preprocessor();
+    private Converter() {
+    }
+
+    public static boolean preprocess(ProjectContext projectContext, String rootPath, String path, List<String> processedImports, boolean onlyIfs) {
         File dir = new File(path);
         for (File f : dir.listFiles()) {
             if (!f.isDirectory()) {
                 if (f.getName().endsWith(".m") || f.getName().endsWith(".h")) {
                     try {
-                        boolean wasIfs = preprocessor.preprocessFile(projectContext, f.getAbsolutePath(), processedImports, onlyIfs, rootPath);
+                        boolean wasIfs = Preprocessor.preprocessFile(projectContext, f.getAbsolutePath(), processedImports, onlyIfs, rootPath);
                         if (wasIfs) return true;
                     } catch (Exception e) {
                         log.info("Failed to preprocess file: " + f.getAbsolutePath());
@@ -48,15 +48,21 @@ public class Converter {
         return false;
     }
 
-    public ProjectContext convert(String path, boolean skipSDK) throws IOException {
-        ProjectContext projectContext = new ProjectContext();
+    /**
+     * Run converter on given project path
+     *
+     * @param path    project path
+     * @param skipSDK skip SDK // TODO: description
+     * @return project context
+     * @throws IOException
+     */
+    public static ProjectContext convert(String path, boolean skipSDK) throws IOException {
+        ProjectContext projectContext = new ProjectContext(skipSDK);
         projectContext.load();
-        projectContext.skipSDK = skipSDK;
 
         List<String> processedImports = new ArrayList<>();
         do {
             preprocess(projectContext, path, path, processedImports, NOT_IFS);
-            //preprocess(macrosMap, path, processedImports, ONLY_IFS);
         } while (preprocess(projectContext, path, path, processedImports, ONLY_IFS));
 
         // add special macroses:
@@ -84,7 +90,7 @@ public class Converter {
         return projectContext;
     }
 
-    private void convertInternal(ProjectContext projectContext, String path, int whatConvert) {
+    private static void convertInternal(ProjectContext projectContext, String path, int whatConvert) {
         File dir = new File(path);
         List<File> files = new ArrayList<>(Arrays.asList(dir.listFiles()));
 
@@ -137,21 +143,23 @@ public class Converter {
     }
 
     public static void main(String[] args) throws IOException {
-        if (args.length == 0) {
+        if (args.length != 1) {
             System.out.println("Usage: java -jar objc2j.jar <project_path>\n-where <project_path> - root directory with your Objective-C project.");
-        } else {
-            Properties properties = new Properties();
-            File propFile = new File("converter.properties");
-            if (propFile.exists()) {
-                properties.load(new FileInputStream(propFile));
-            } else {
-                System.out.println("You should create 'converter.properties' file and place there path to MacOSX.sdk");
-                System.exit(1);
-            }
-
-            Preprocessor.FRAMEWORKS = properties.getProperty("frameworks", "C:\\MacOSX10.6.sdk\\MacOSX10.6.sdk\\System\\Library\\Frameworks\\");
-            new Converter().convert(args[0], false);
+            System.exit(1);
         }
+        if (!new File("converter.properties").exists()) {
+            System.out.println("You should create 'converter.properties' file and place there path to MacOSX.sdk");
+            System.exit(1);
+        }
+        String projectPath = args[0];
+        File convDir = new File(args[0]);
+        if (!convDir.exists() || !convDir.isDirectory()) {
+            System.out.println("Invalid <project_path> value: " + projectPath);
+            System.exit(1);
+        }
+        ConverterProperties properties = ConverterProperties.PROPERTIES; // just for initialize
+
+        Converter.convert(projectPath, false);
     }
 
 }
