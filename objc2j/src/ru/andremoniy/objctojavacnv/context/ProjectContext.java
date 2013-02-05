@@ -1,5 +1,8 @@
 package ru.andremoniy.objctojavacnv.context;
 
+import com.csvreader.CsvReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.andremoniy.objctojavacnv.antlr.Macros;
 
 import java.io.BufferedReader;
@@ -14,6 +17,7 @@ import java.util.*;
  * Time: 9:03
  */
 public class ProjectContext extends AbstractContext {
+    public static final Logger log = LoggerFactory.getLogger(ProjectContext.class);
 
     public ClassContext classCtx;
 
@@ -36,7 +40,14 @@ public class ProjectContext extends AbstractContext {
 
     public int m_counter;
     public int h_counter;
-    public boolean skipSDK;
+    private boolean skipSDK;
+
+    public ProjectContext() {
+    }
+
+    public ProjectContext(boolean skipSDK) {
+        this.skipSDK = skipSDK;
+    }
 
     public ClassContext newClass(String className, String categoryName) {
         Map<String, MethodInterface> classMethodsInterfaces = new HashMap<>();
@@ -69,50 +80,64 @@ public class ProjectContext extends AbstractContext {
     }
 
     public void load() throws IOException {
-        if (skipSDK) return;
-
+        if (isSkipSDK()) return;
         try {
-            try (FileReader fr = new FileReader("enums.csv");
-                 BufferedReader br = new BufferedReader(fr)) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String parts[] = line.split(";");
-                    String _enum = parts[0].trim();
-                    String enumFields[] = parts[1].substring(parts[1].indexOf("[") + 1, parts[1].lastIndexOf("]")).split(",");
-                    List<String> enumFieldsList = new ArrayList<>();
-                    for (String enumField : enumFields) {
-                        enumFieldsList.add(enumField.trim());
-                    }
-
-                    headerEnums.put(_enum, enumFieldsList);
-                }
-            }
-            try (FileReader fr = new FileReader("staticFields.csv");
-                 BufferedReader br = new BufferedReader(fr)) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String parts[] = line.split(";");
-                    staticFields.put(parts[0], parts[1]);
-                }
-            }
-            try (FileReader fr = new FileReader("imports.csv");
-                 BufferedReader br = new BufferedReader(fr)) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String parts[] = line.split(";");
-                    Set<String> list = imports.get(parts[0]);
-                    if (list == null) {
-                        list = new HashSet<>();
-                        imports.put(parts[0], list);
-                    }
-                    String classPathes[] = parts[1].substring(parts[1].indexOf("[") + 1, parts[1].lastIndexOf("]")).split(",");
-                    for (String classPath : classPathes) {
-                        list.add(classPath.trim());
-                    }
-                }
-            }
+            loadEnums();
+            loadStaticFields();
+            loadImports();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadImports() throws IOException {
+        try (FileReader fr = new FileReader("imports.csv");
+             BufferedReader br = new BufferedReader(fr)) {
+            CsvReader csv = new CsvReader(br, ';');
+            while (csv.readRecord()) {
+                String part0 = csv.get(0);
+                String part1 = csv.get(1);
+                Set<String> list = imports.get(part0);
+                if (list == null) {
+                    list = new HashSet<>();
+                    imports.put(part0, list);
+                }
+                String classPathes[] = part1.substring(part1.indexOf("[") + 1, part1.lastIndexOf("]")).split(",");
+                for (String classPath : classPathes) {
+                    list.add(classPath.trim());
+                }
+            }
+            csv.close();
+        }
+    }
+
+    private void loadStaticFields() throws IOException {
+        try (FileReader fr = new FileReader("staticFields.csv");
+             BufferedReader br = new BufferedReader(fr)) {
+            CsvReader csv = new CsvReader(br, ';');
+            while (csv.readRecord()) {
+                staticFields.put(csv.get(0), csv.get(1));
+            }
+            csv.close();
+        }
+    }
+
+    private void loadEnums() throws IOException {
+        try (FileReader fr = new FileReader("enums.csv");
+             BufferedReader br = new BufferedReader(fr)) {
+            CsvReader csv = new CsvReader(br, ';');
+            while (csv.readRecord()) {
+                String _enum = csv.get(0);
+                String part1 = csv.get(1);
+                String enumFields[] = part1.substring(part1.indexOf("[") + 1, part1.lastIndexOf("]")).split(",");
+                List<String> enumFieldsList = new ArrayList<>();
+                for (String enumField : enumFields) {
+                    enumFieldsList.add(enumField.trim());
+                }
+
+                headerEnums.put(_enum, enumFieldsList);
+            }
+            csv.close();
         }
     }
 
@@ -123,5 +148,13 @@ public class ProjectContext extends AbstractContext {
             imports.put(className, classPathes);
         }
         classPathes.add(path);
+    }
+
+    public boolean isSkipSDK() {
+        return skipSDK;
+    }
+
+    public void setSkipSDK(boolean skipSDK) {
+        this.skipSDK = skipSDK;
     }
 }

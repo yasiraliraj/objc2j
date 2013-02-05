@@ -540,8 +540,16 @@ public class ConverterM {
                 case ObjcmLexer.PARAM:
                     String type = Utils.getText((CommonTree) childTree.getFirstChildWithType(ObjcmLexer.TYPE)).trim();
                     String name = Utils.getText((CommonTree) childTree.getFirstChildWithType(ObjcmLexer.NAME)).trim();
+                    int asteriskCount = 0;
+                    char[] typeChars = type.toCharArray();
+                    for (char typeChar : typeChars)
+                        if (typeChar == '*') asteriskCount++;
+
                     if (lsb.length() > 1) lsb.append(", ");
                     lsb.append(transformType(type, classCtx)).append(" ").append(name);
+                    for (int i = 0; i < asteriskCount; i++)
+                        lsb.append("[]");
+
                     break;
             }
         }

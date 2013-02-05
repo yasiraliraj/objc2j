@@ -8,6 +8,7 @@ import org.antlr.runtime.tree.CommonTree;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.andremoniy.objctojavacnv.Converter;
+import ru.andremoniy.objctojavacnv.ConverterProperties;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorLexer;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorParser;
 import ru.andremoniy.objctojavacnv.context.ProjectContext;
@@ -24,53 +25,50 @@ import java.util.regex.Pattern;
  * Date: 06.07.12
  * Time: 9:46
  */
-public class Preprocessor {
+public final class Preprocessor {
 
     private static final Logger log = LoggerFactory.getLogger(Preprocessor.class);
 
-
-    public static String FRAMEWORKS;
     public static final String VERSIONS_PATH = File.separator + "Versions" + File.separator;
     public static final String HEADERS_PATH1 = ".framework";
     public static final String HEADERS_PATH2 = File.separator + "Headers" + File.separator;
 
     private static final List<String> doNotAppend = Arrays.asList("@", ".", "#");
 
-    public boolean preprocessFile(ProjectContext context, String fileName, List<String> processedImports, boolean onlyIfs, String rootPath) throws IOException, RecognitionException {
-        File mfile = new File(fileName);
+    private Preprocessor() {}
 
-        Map<String, Set<String>> imports = context.imports;
-        Map<String, List<Macros>> defineList = context.macrosMap;
+    public static boolean preprocessFile(ProjectContext context, String fileName, List<String> processedImports, boolean onlyIfs, String rootPath) throws IOException, RecognitionException {
+        File mFile = new File(fileName);
 
-        if (rootPath != null && imports != null && mfile.getName().endsWith(".m")) {
-            String importPath = mfile.getPath().substring(rootPath.length(), mfile.getPath().length() - 2).replace(File.separator, ".");
-            String className = mfile.getName().substring(0, mfile.getName().length() - 2);
-            Set<String> importsList = imports.get(className);
+        if (rootPath != null && context.imports != null && mFile.getName().endsWith(".m")) {
+            String importPath = mFile.getPath().substring(rootPath.length(), mFile.getPath().length() - 2).replace(File.separator, ".");
+            String className = mFile.getName().substring(0, mFile.getName().length() - 2);
+            Set<String> importsList = context.imports.get(className);
             if (importsList == null) {
                 importsList = new HashSet<>();
-                imports.put(className, importsList);
+                context.imports.put(className, importsList);
             }
             importsList.add(importPath);
         }
 
         // накапливаем список категорий для каждого файла
-        if (mfile.getName().endsWith(".h") && mfile.getName().contains("+")) {
-            String baseName = mfile.getName().substring(0, mfile.getName().indexOf("+"));
+        if (mFile.getName().endsWith(".h") && mFile.getName().contains("+")) {
+            String baseName = mFile.getName().substring(0, mFile.getName().indexOf("+"));
             Set<String> categoriesList = context.categories.get(baseName);
             if (categoriesList == null) {
                 categoriesList = new HashSet<>();
                 context.categories.put(baseName, categoriesList);
             }
-            categoriesList.add(mfile.getPath());
+            categoriesList.add(mFile.getPath());
         }
 
         StringBuilder objCcode = new StringBuilder();
-        readObjCode(mfile, objCcode);
+        readObjCode(mFile, objCcode);
 
         String input = objCcode.toString();
 
         try {
-            preprocessInternal(defineList, fileName, processedImports, onlyIfs, input, context.skipSDK);
+            preprocessInternal(context.macrosMap, fileName, processedImports, onlyIfs, input, context.isSkipSDK());
         } catch (Exception e) {
             log.info("Failed to preprocess file: " + fileName);
             log.error(e.getMessage(), e);
@@ -80,7 +78,7 @@ public class Preprocessor {
         return false;
     }
 
-    private void preprocessInternal(Map<String, List<Macros>> macrosMap, String fileName, List<String> processedImports, boolean onlyIfs, String input, boolean skipSDK) throws RecognitionException, IOException {
+    private static void preprocessInternal(Map<String, List<Macros>> macrosMap, String fileName, List<String> processedImports, boolean onlyIfs, String input, boolean skipSDK) throws RecognitionException, IOException {
         boolean parseManyTimes;
         Map<String, List<Macros>> localMap = new HashMap<>();
 
@@ -152,14 +150,14 @@ public class Preprocessor {
         return parser.code();
     }
 
-    private String processCommonIfDefine(Map<String, List<Macros>> macrosMap, String fileName, List<String> processedImports, String input, CommonTree childTree, boolean defineDirection, boolean skipSdk) throws RecognitionException, IOException {
+    private static String processCommonIfDefine(Map<String, List<Macros>> macrosMap, String fileName, List<String> processedImports, String input, CommonTree childTree, boolean defineDirection, boolean skipSdk) throws RecognitionException, IOException {
         input = processDefineIfs(input, childTree, macrosMap, defineDirection);
         writeObjCode(new File(fileName + "p"), input);
         preprocessInternal(macrosMap, fileName, processedImports, false, input, skipSdk);
         return input;
     }
 
-    private void writeObjCode(File file, String input) {
+    private static void writeObjCode(File file, String input) {
         try (FileOutputStream fos = new FileOutputStream(file);
              BufferedOutputStream bos = new BufferedOutputStream(fos)) {
             bos.write(input.getBytes("utf-8"));
@@ -168,19 +166,19 @@ public class Preprocessor {
         }
     }
 
-    private String processDefineIfs(String input, CommonTree tree, Map<String, List<Macros>> macrosMap, boolean defineDirection) {
+    private static String processDefineIfs(String input, CommonTree tree, Map<String, List<Macros>> macrosMap, boolean defineDirection) {
         boolean isDefined = defineDirection ? testIfDefined(tree, macrosMap) : !testIfDefined(tree, macrosMap);
 
         return commonIfInternal(input, tree, isDefined);
     }
 
-    private String processSimpleIfs(String input, CommonTree tree, Map<String, List<Macros>> macrosList) {
+    private static String processSimpleIfs(String input, CommonTree tree, Map<String, List<Macros>> macrosList) {
         CommonTree expressionTree = (CommonTree) tree.getFirstChildWithType(PreprocessorParser.T_EXPRESSION);
         boolean expression = processExpr(expressionTree, macrosList);
         return commonIfInternal(input, tree, expression);
     }
 
-    private boolean processExpr(CommonTree expressionTree, Map<String, List<Macros>> macrosList) {
+    private static boolean processExpr(CommonTree expressionTree, Map<String, List<Macros>> macrosList) {
         boolean expression = true;
         for (Object child : expressionTree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -193,7 +191,7 @@ public class Preprocessor {
         return expression;
     }
 
-    private boolean processExOr(CommonTree tree, Map<String, List<Macros>> macrosList) {
+    private static boolean processExOr(CommonTree tree, Map<String, List<Macros>> macrosList) {
         boolean expression = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -211,7 +209,7 @@ public class Preprocessor {
         return expression;
     }
 
-    private boolean processExAnd(CommonTree tree, Map<String, List<Macros>> macrosList) {
+    private static boolean processExAnd(CommonTree tree, Map<String, List<Macros>> macrosList) {
         boolean expression = false;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -225,7 +223,7 @@ public class Preprocessor {
         return expression;
     }
 
-    private boolean processExNot(CommonTree tree, Map<String, List<Macros>> macrosList) {
+    private static boolean processExNot(CommonTree tree, Map<String, List<Macros>> macrosList) {
         boolean expression = false;
         boolean wasExc = tree.getFirstChildWithType(PreprocessorLexer.EXC) != null;
         for (Object child : tree.getChildren()) {
@@ -240,7 +238,7 @@ public class Preprocessor {
         return expression;
     }
 
-    private boolean processExCond(CommonTree tree, Map<String, List<Macros>> macrosList) {
+    private static boolean processExCond(CommonTree tree, Map<String, List<Macros>> macrosList) {
         int expression = 0;
         String op = null;
         for (Object child : tree.getChildren()) {
@@ -274,7 +272,7 @@ public class Preprocessor {
         return expression != 0;
     }
 
-    private Integer processExSngl(CommonTree tree, Map<String, List<Macros>> macrosList) {
+    private static Integer processExSngl(CommonTree tree, Map<String, List<Macros>> macrosList) {
         Integer expression = 0;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -290,11 +288,11 @@ public class Preprocessor {
         return expression;
     }
 
-    private Integer processExDef(CommonTree tree, Map<String, List<Macros>> macrosList) {
+    private static Integer processExDef(CommonTree tree, Map<String, List<Macros>> macrosList) {
         return processExpr(tree, macrosList) ? 1 : 0;
     }
 
-    private Integer processExMath(CommonTree tree, Map<String, List<Macros>> macrosList) {
+    private static Integer processExMath(CommonTree tree, Map<String, List<Macros>> macrosList) {
         Integer expression = 0;
         boolean doMinus = false;
         String lastOp = "";
@@ -321,7 +319,7 @@ public class Preprocessor {
         return expression;
     }
 
-    private Integer mathOp(Integer e1, Integer e2, String op) {
+    private static Integer mathOp(Integer e1, Integer e2, String op) {
         switch (op) {
             case "":
                 return e2;
@@ -335,7 +333,7 @@ public class Preprocessor {
         return e2;
     }
 
-    private Integer getNumber(Map<String, List<Macros>> macrosList, CommonTree tree) {
+    private static Integer getNumber(Map<String, List<Macros>> macrosList, CommonTree tree) {
         String key = tree.getText();
         List<Macros> list = macrosList.get(key);
         String numberStr = key;
@@ -345,7 +343,7 @@ public class Preprocessor {
         return Integer.parseInt(numberStr);
     }
 
-    private String commonIfInternal(String input, CommonTree tree, boolean positive) {
+    private static String commonIfInternal(String input, CommonTree tree, boolean positive) {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             if (positive) {
@@ -369,7 +367,7 @@ public class Preprocessor {
         return input;
     }
 
-    private String replaceIfBlock(String input, CommonTree tree, StringBuilder block) {
+    private static String replaceIfBlock(String input, CommonTree tree, StringBuilder block) {
         int startLine = tree.getLine();
         int endLine = tree.getFirstChildWithType(PreprocessorLexer.ENDIF).getLine();
 
@@ -387,7 +385,7 @@ public class Preprocessor {
         return newInput.toString();
     }
 
-    private StringBuilder getBlock(CommonTree tree) {
+    private static StringBuilder getBlock(CommonTree tree) {
         StringBuilder block = new StringBuilder();
         int prevPos = -1;
         for (Object child : tree.getChildren()) {
@@ -408,7 +406,7 @@ public class Preprocessor {
         return block;
     }
 
-    private boolean testIfDefined(CommonTree tree, Map<String, List<Macros>> macrosMap) {
+    private static boolean testIfDefined(CommonTree tree, Map<String, List<Macros>> macrosMap) {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
@@ -420,7 +418,7 @@ public class Preprocessor {
         return false;
     }
 
-    private void readObjCode(File mfile, StringBuilder objCcode) throws IOException {
+    private static void readObjCode(File mfile, StringBuilder objCcode) throws IOException {
         try (FileInputStream fis = new FileInputStream(mfile);
              InputStreamReader isr = new InputStreamReader(fis, Charset.forName("utf-8"));
              BufferedReader br = new BufferedReader(isr)) {
@@ -431,7 +429,7 @@ public class Preprocessor {
         }
     }
 
-    private Map<String, List<Macros>> loadFromFile(List<String> processedImports, CommonTree childTree) throws IOException, RecognitionException {
+    private static Map<String, List<Macros>> loadFromFile(List<String> processedImports, CommonTree childTree) throws IOException, RecognitionException {
         String hpath = getBlock(childTree).toString().replaceAll("\\s+", "");
 
         if (processedImports.contains(hpath)) return new HashMap<>();
@@ -444,7 +442,7 @@ public class Preprocessor {
 
         log.info("Importing " + hpath);
 
-        String path = FRAMEWORKS + frameworkName + HEADERS_PATH1;
+        String path = ConverterProperties.PROPERTIES.getProperty(ConverterProperties.FRAMEWORKS) + frameworkName + HEADERS_PATH1;
 
         String fileName;
         do {
