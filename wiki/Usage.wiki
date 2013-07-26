@@ -1,11 +1,12 @@
 = Downloading files =
-On the Downloads page you will find 3 files:
 
- * converter.properties
- * jcocoa_extr.zip
- * ObjC2J.zip (fixed version, with fixed manifest.mf)
+Actual build-archive is located here:
 
-You have to download them all and unzip these two zip files in one folder.
+[https://docs.google.com/file/d/0BygybWBe4h7pWVdGaUJTRVhMN0k/edit?usp=sharing build.zip]  
+
+You have to unzip this zip. Inside you will found several .csv files, one jar (this is ObjC2J converter itself) and the folder named "jcocoa_extr". Last one contains three java files, which you will need in order to compile converted project. 
+
+_Actually *jcocoa* project is on early starting stage, so huge number of classes aren't yet implemented_
 
 Additionally you have to download dependency-libraries for project:
 
@@ -20,16 +21,6 @@ Additionally you have to download dependency-libraries for project:
  * javacsv.jar
 
 (you can find these libraries in the web, just google it :), if you will not able to find some of them - email me, I'll try to help you).
-
-"converter.properties" file contains just one property. It is a path to MacOS SDK "Frameworks" directory.
-E.g.: frameworks=C:\\MacOSX10.6.sdk\\MacOSX10.6.sdk\\System\\Library\\Frameworks\\
-
-Last one step: you have to manually download three .csv files from sources of project. They are:
- * enums.csv
- * imports.csv
- * staticFields.csv
-
-and copy them into directory with libraries and .property file.
 
 = Converting =
 To start converter use:
