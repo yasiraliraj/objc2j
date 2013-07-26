@@ -20,7 +20,7 @@ Additionally you have to download dependency-libraries for project:
  * slf4j-api-1.6.4.jar
  * javacsv.jar
 
-(you can find these libraries in the web, just google it :), if you will not able to find some of them - email me, I'll try to help you).
+(you can find these libraries in the web, just google it :), if you aren't able to find some of them - email me, I'll try to help you).
 
 = Converting =
 To start converter use:
