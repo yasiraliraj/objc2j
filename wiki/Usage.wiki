@@ -1,8 +1,9 @@
 = Downloading files =
 On the Downloads page you will find 3 files:
+
 * converter.properties
 * jcocoa_extr.zip
-* ObjC2J.zip
+* ObjC2J.zip (fixed version, with fixed manifest.mf)
 
 You have to download them all and unzip these two zip files in one folder.
 
