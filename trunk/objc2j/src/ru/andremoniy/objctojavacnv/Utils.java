@@ -2,7 +2,6 @@ package ru.andremoniy.objctojavacnv;
 
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
-import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorParser;
 import ru.andremoniy.objctojavacnv.context.ClassContext;
 import ru.andremoniy.objctojavacnv.context.ExpressionContext;
@@ -194,11 +193,8 @@ public class Utils {
         String importClassName = classPath.substring(classPath.lastIndexOf(".") + 1);
         if (importClassName.startsWith("NS")) {
             String interfaceName = classPath.substring(0, classPath.lastIndexOf(".")) + ".I" + importClassName;
-
             projectCtx.classCtx.imports.add(interfaceName);
-            //sb.append("import ").append(interfaceName).append(";\n");
             projectCtx.classCtx.imports.add("static " + interfaceName + ".*");
-            //sb.append("import static ").append(interfaceName).append(".*;\n");
         }
     }
 
@@ -209,12 +205,10 @@ public class Utils {
             for (String headerPath : headerPathList) {
                 String prefix = headerPath.substring(0, headerPath.length() - className.length());
                 headerPath = prefix + (prefix.endsWith("I") ? "" : "I") + className;
-                if (headerPath.contains("+")) {
-                    headerPath = headerPath.substring(0, headerPath.indexOf("+"));
-                }
+                int plusIndex = headerPath.indexOf("+");
+                if (plusIndex >= 0) headerPath = headerPath.substring(0, plusIndex);
                 for (String _enum : enums) {
                     projectCtx.classCtx.imports.add("static " + headerPath + "." + _enum + ".*");
-//                    sb.append("import static ").append(headerPath).append(".").append(_enum).append(".*;\n");
                 }
             }
         }
@@ -248,14 +242,12 @@ public class Utils {
                     Set<String> classPathList = imports.get(className);
                     if (classPathList != null) {
                         if (className.contains("+")) {
-                            // сохраняем инфу о добавленных категориях, но в import не добавляем
+                            // saving info about added categories, but do not add into import
                             projectCtx.classCtx.localCategories.add(className);
                         } else {
                             for (String classPath : classPathList) {
                                 projectCtx.classCtx.imports.add(classPath);
-//                                sb.append("import ").append(classPath).append(";\n");
                                 projectCtx.classCtx.imports.add("static " + classPath + ".*");
-//                                sb.append("import static ").append(classPath).append(".*;\n");
                                 addNSHeaderImport(projectCtx, classPath);
                             }
                         }

@@ -6,15 +6,16 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.antlr.output.ObjchLexer;
 import ru.andremoniy.objctojavacnv.antlr.output.ObjchParser;
+import ru.andremoniy.objctojavacnv.builder.ClassBuilder;
 import ru.andremoniy.objctojavacnv.context.ProjectContext;
 
-import java.io.*;
-import java.nio.charset.Charset;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -30,6 +31,8 @@ public class ConverterH {
     private static final int RENAME_TYPEDEF = 1;
     private static final int ENUM_TYPEDEF = 2;
     private static final int STRUCT_TYPEDEF = 3;
+
+    private ConverterH() { }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static StringBuilder convert_h(String fileName, ProjectContext projectContext, StringBuilder originalImportsSb, StringBuilder importsSb) throws IOException, RecognitionException {
@@ -49,21 +52,12 @@ public class ConverterH {
 
         String packageName = hfile.getParent().substring(hfile.getParent().lastIndexOf("src") + 4).replace(File.separator, ".");
 
-        StringBuilder objCcode = new StringBuilder();
-        try (FileInputStream fis = new FileInputStream(hfile);
-             InputStreamReader isr = new InputStreamReader(fis, Charset.forName("utf-8"));
-             BufferedReader br = new BufferedReader(isr)) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                objCcode.append(line).append("\n");
-            }
-        }
-
-        String input = objCcode.toString();
+        String input = FileUtils.readFileToString(hfile, ConverterProperties.PROPERTIES.getProperty(ConverterProperties.ENCODING));
         input = input.replace("///", "//");
 
         input = Preprocessor.replace(input, projectContext, fileName);
 
+        // ANTLR parsing
         CharStream cs = new ANTLRStringStream(input);
         ObjchLexer lexer = new ObjchLexer(cs);
         CommonTokenStream tokens = new CommonTokenStream();
@@ -72,27 +66,28 @@ public class ConverterH {
 
         ObjchParser.code_return result = parser.code();
 
-        StringBuilder sb = new StringBuilder();
+        //StringBuilder sb = new StringBuilder();
 
-        if (originalImportsSb == null) {
-            originalImportsSb = new StringBuilder();
-        }
+        if (originalImportsSb == null) originalImportsSb = new StringBuilder();
+
         Utils.addOriginalImports(input, projectContext);
 
+        ClassBuilder cb = new ClassBuilder();
+
         if (!categoryClass) {
-            sb.append("package ").append(packageName).append(";\n\n");
-            sb.append("import ru.andremoniy.jcocoa.*;\n");
-            sb.append(originalImportsSb);
+            cb.setPackage(packageName);
+            cb.addImport("ru.andremoniy.jcocoa.*");
+            cb.a(originalImportsSb);
         }
 
-        if (result.getTree() == null) return sb; // не ошибка, просто в файле одни комментарии
+        if (result.getTree() == null) return cb.sb(); // this is not a error, but file contains only commentaries
         CommonTree tree = (CommonTree) result.getTree();
 
         // 1. StringBuilder for main class:
-        StringBuilder mainSB = new StringBuilder();
+        ClassBuilder mainCb = new ClassBuilder();
 
         // 2. StringBuilder for addinitianl not-inner interfaces
-        StringBuilder addSb = new StringBuilder();
+        ClassBuilder addCb = new ClassBuilder();
 
         // find interface with name, which is equals to file name:
         CommonTree mainInterface = null;
@@ -107,7 +102,7 @@ public class ConverterH {
                     projectContext.newClass("I" + interfaceName, null);
                     projectContext.addImports(interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
                     projectContext.addImports("I" + interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
-                    process_interface(projectContext, childTree, addSb, true, true, sb);
+                    process_interface(projectContext, childTree, addCb, true, true, cb);
                 }
             }
         }
@@ -118,13 +113,13 @@ public class ConverterH {
         projectContext.addImports(projectContext.classCtx.className(), packageName + "." + projectContext.classCtx.className());
 
         if (mainInterface != null) {
-            process_interface(projectContext, mainInterface, mainSB, false, false, sb);
+            process_interface(projectContext, mainInterface, mainCb, false, false, cb);
         } else {
-            mainSB.append("public abstract class ").append(className).append(" extends NSObject {\n");
+            mainCb.abstractClass(className, "NSObject");
         }
-        process_interface_body(mainSB, tree, projectContext, true); // with skipping interfaces
+        process_interface_body(mainCb.sb(), tree, projectContext, true); // with skipping interfaces
 
-        mainSB.append(addSb);
+        mainCb.a(addCb);
 
         if (importsSb == null) {
             importsSb = new StringBuilder();
@@ -135,38 +130,33 @@ public class ConverterH {
             Set<String> categoriesList = projectContext.categories.get(pureClassName);
             if (categoriesList != null) {
                 for (String category : categoriesList) {
-                    mainSB.append("\n\n");
-                    mainSB.append("\t// from category: ").append(category).append("\n\n");
-                    mainSB.append(convert_h(category, projectContext, originalImportsSb, importsSb));
+                    mainCb.a("\n\n");
+                    mainCb.a("\t// from category: ").a(category).a("\n\n");
+                    mainCb.a(convert_h(category, projectContext, originalImportsSb, importsSb));
                 }
             }
 
-            mainSB.append("}\n"); // end of class
+            mainCb.a("}\n"); // end of class
 
-            sb.append(importsSb);
+            cb.a(importsSb);
         }
 
-        sb.append(mainSB);
+        cb.a(mainCb);
 
-        if (!categoryClass) {
-            try (FileOutputStream fos = new FileOutputStream(hjfile);
-                 BufferedOutputStream bos = new BufferedOutputStream(fos)) {
+        if (!categoryClass)
+            FileUtils.writeStringToFile(hjfile, cb.sb().toString(), ConverterProperties.PROPERTIES.getProperty(ConverterProperties.ENCODING));
 
-                bos.write(sb.toString().getBytes("utf-8"));
-            }
-        }
-
-        return sb;
+        return cb.sb();
 
     }
 
-    private static void process_interface(ProjectContext projectContext, CommonTree interfaceTree, StringBuilder sb, boolean finish, boolean innerClass, StringBuilder importSb) {
-        h_process_interface1(sb, interfaceTree, projectContext, innerClass, importSb);
+    private static void process_interface(ProjectContext projectContext, CommonTree interfaceTree, ClassBuilder cb2, boolean finish, boolean innerClass, ClassBuilder cb) {
+        h_process_interface1(cb2, interfaceTree, projectContext, innerClass, cb);
 
-        process_interface_body(sb, interfaceTree, projectContext, false);
+        process_interface_body(cb2.sb(), interfaceTree, projectContext, false);
 
         if (finish) {
-            sb.append("\n}\n");
+            cb2.a("\n}\n");
         }
     }
 
@@ -295,7 +285,7 @@ public class ConverterH {
         params.put(name, Utils.transformType(type, projectCtx.classCtx));
     }
 
-    private static void h_process_interface1(StringBuilder sb, CommonTree tree, ProjectContext context, boolean innerClass, StringBuilder importSb) {
+    private static void h_process_interface1(ClassBuilder cb1, CommonTree tree, ProjectContext context, boolean innerClass, ClassBuilder cb2) {
         String interfaceName = "";
         String superclassName = "NSObject";
         String category = "";
@@ -315,18 +305,16 @@ public class ConverterH {
         }
 
         if (superclassName.length() > 0 && !superclassName.startsWith("NS")) {
-            // добавим import этого класса:
+            // add import of that class:
             Set<String> superClassPathList = context.imports.get(superclassName);
             if (superClassPathList != null) {
                 for (String superClassPath : superClassPathList) {
-                    if (superClassPath != null) {
-                        importSb.append("import ").append(superClassPath).append(";\n\n");
-                    }
+                    if (superClassPath != null) cb2.addImport(superClassPath);
                 }
             }
         }
 
-        sb.append("public abstract ").append(innerClass ? "static " : "").append("class I").append(interfaceName).append(superclassName.length() > 0 ? (" extends " + superclassName) : "").append(" {\n");
+        cb1.abstractClass(innerClass, true, interfaceName, superclassName);
 
     }
 
