@@ -14,6 +14,7 @@ public enum ConverterProperties {
     PROPERTIES();
 
     public static final String FRAMEWORKS = "frameworks";
+    public static final String ENCODING = "encoding";
 
     private Properties properties;
 

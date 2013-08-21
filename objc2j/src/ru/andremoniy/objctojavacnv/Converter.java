@@ -3,7 +3,6 @@ package ru.andremoniy.objctojavacnv;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.andremoniy.objctojavacnv.antlr.Macros;
-import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.context.ProjectContext;
 
 import java.io.File;
@@ -23,6 +22,8 @@ public final class Converter {
 
     public static final boolean NOT_IFS = false;
     public static final boolean ONLY_IFS = true;
+    public static final int HEADER_FILES = 0;
+    public static final int M_FILES = 1;
 
     private Converter() {
     }
@@ -67,46 +68,40 @@ public final class Converter {
 
         // add special macroses:
         // todo: customization
-        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_0_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_0_AND_LATER", "")));
-        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_1_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_1_AND_LATER", "")));
-        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_2_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_2_AND_LATER", "")));
-        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_3_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_3_AND_LATER", "")));
-        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_4_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_4_AND_LATER", "")));
-        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_5_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_5_AND_LATER", "")));
-        projectContext.macrosMap.put("DEPRECATED_IN_MAC_OS_X_VERSION_10_6_AND_LATER", Arrays.asList(new Macros("DEPRECATED_IN_MAC_OS_X_VERSION_10_6_AND_LATER", "")));
-        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_0_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_0_AND_LATER", "")));
-        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_1_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_1_AND_LATER", "")));
-        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_2_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_2_AND_LATER", "")));
-        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER", "")));
-        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_4_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_4_AND_LATER", "")));
-        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_5_AND_LATER", "")));
-        projectContext.macrosMap.put("AVAILABLE_MAC_OS_X_VERSION_10_6_AND_LATER", Arrays.asList(new Macros("AVAILABLE_MAC_OS_X_VERSION_10_6_AND_LATER", "")));
-
-        convertInternal(projectContext, path, 0); // конвертируем сначала header файлы
-        for (int i = 0; i < 2; i++) {
-            convertInternal(projectContext, path, 1); // конвертируем m-файлы
+        for (int i = 0; i <= 6; i++) {
+            addDefaultMacrosItem(projectContext, "DEPRECATED_IN_MAC_OS_X_VERSION_10_" + i + "_AND_LATER");
+            addDefaultMacrosItem(projectContext, "AVAILABLE_MAC_OS_X_VERSION_10_" + i + "_AND_LATER");
         }
+
+        convertInternal(projectContext, path, HEADER_FILES); // convert header-files firstly
+
+        // converting in two steps-through for full macros & imports covering
+        for (int i = 0; i < 2; i++)
+            convertInternal(projectContext, path, M_FILES); // convert m-files
 
         return projectContext;
     }
 
+    private static void addDefaultMacrosItem(ProjectContext projectContext, String key) {
+        projectContext.macrosMap.put(key, Arrays.asList(new Macros(key, "")));
+    }
+
     private static void convertInternal(ProjectContext projectContext, String path, int whatConvert) {
         File dir = new File(path);
-        List<File> files = new ArrayList<>(Arrays.asList(dir.listFiles()));
+        List<File> files = Arrays.asList(dir.listFiles());
 
-        // сначала header файлы
-        if (whatConvert == 0) {
+        // header-files
+        if (whatConvert == HEADER_FILES) {
             for (File f : files) {
-                if (f.getName().contains("+")) {
-                    log.info(f.getAbsolutePath() + " skipped due to '+' in name...");
-                    continue;
-                }
                 if (f.getName().endsWith(".h")) {
+                    if (f.getName().contains("+")) {
+                        log.info(f.getAbsolutePath() + " skipped due to '+' in name...");
+                        continue;
+                    }
                     try {
                         log.info(f.getAbsolutePath() + " converting...");
                         ConverterH.convert_h(f.getAbsolutePath(), projectContext, null, null);
-                        log.info(f.getAbsolutePath() + " converted...");
-                        log.info(projectContext.h_counter + " headers converted...");
+                        log.info(f.getAbsolutePath() + " converted ("+ projectContext.h_counter + " headers converted).");
                     } catch (Exception e) {
                         log.info("Error converting " + f.getAbsolutePath());
                         log.error(e.getMessage(), e);
@@ -114,17 +109,17 @@ public final class Converter {
                 }
             }
         } else {
-            // потом m файлы
+            // m-files
             for (File f : files) {
-                if (f.getName().contains("+")) {
-                    log.info(f.getAbsolutePath() + " skipped due to '+' in name...");
-                    continue;
-                }
                 if (f.getName().endsWith(".m")) {
+                    if (f.getName().contains("+")) {
+                        log.info(f.getAbsolutePath() + " skipped due to '+' in name...");
+                        continue;
+                    }
                     try {
                         log.info(f.getAbsolutePath() + " converting...");
                         ConverterM.convert_m(f.getAbsolutePath(), projectContext, new StringBuilder());
-                        log.info(f.getAbsolutePath() + " converted...");
+                        log.info(f.getAbsolutePath() + " converted.");
                     } catch (Exception e) {
                         log.info("Error converting " + f.getAbsolutePath());
                         log.error(e.getMessage(), e);
@@ -133,11 +128,11 @@ public final class Converter {
             }
         }
 
-        // ну и каталоги
+        // subdirectories
         for (File f : files) {
             if (f.isDirectory()) {
                 convertInternal(projectContext, f.getAbsolutePath(), whatConvert);
-                log.info(f.getAbsolutePath() + " converted...");
+                log.info(f.getAbsolutePath() + " converted.");
             }
         }
     }

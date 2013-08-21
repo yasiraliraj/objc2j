@@ -97,6 +97,7 @@ tokens {
 	INDEX_NUMBER;
 	ARRAY_INIT;
 	CONST_EXPR;
+	CONST_EXPR2;
 	GOTO;
 	STRING;
 	TYPE_RENAME;
@@ -287,7 +288,7 @@ block_internal
 	|	throw_stmt_wrapper
 	|	static_start_wrapper SEMICOLON
 	|	do_stmt
-	|	const_expression SEMICOLON
+	|	const_expression_wrapper SEMICOLON
 	|	variable_init_wrapper
 	|	if_stmt_wrapper
 	|	else_stmt
@@ -329,9 +330,12 @@ struct_variable
 
 enum_variable
 	:	ENUM_PREFIX name full_expr_wrapper (COMMA full_expr_wrapper)*;
+
+const_expression_wrapper
+	:	CONST_PREFIX const_expression -> ^(CONST_EXPR2 const_expression);
 		
 const_expression
-	:	CONST_PREFIX type_internal full_expr_wrapper;
+	:	type_internal full_expr_wrapper;
 
 throw_stmt_wrapper
 	:	throw_stmt -> ^(THROW_STMT throw_stmt);
@@ -541,10 +545,10 @@ type_convertion
 	:	L_BR type_convertion_internal_wrapper R_BR;
 
 type_convertion_internal_wrapper
-	:	type_convertion_internal -> ^(TYPE_CONVERTION type_convertion_internal);
+	:	CONST_PREFIX? type_convertion_internal -> ^(TYPE_CONVERTION type_convertion_internal);
 	
 type_convertion_internal
-	:	'const'? 'unsigned'? type_internal generic? ASTERISK*;	
+	:	'unsigned'? type_internal generic? ASTERISK*;	
 
 method_name
 	:	ID -> ^(METHOD_NAME ID)
@@ -969,7 +973,7 @@ method_type
 	
 method_type_internal
 	:	L_BR STRUCT_PREFIX? type_internal generic? ASTERISK* R_BR
-	| 	L_BR CONST_PREFIX? known_types? ID* (L_KBR R_KBR)* generic? ASTERISK* R_BR
+	| 	L_BR CONST_PREFIX? known_types? ID* (L_KBR R_KBR)* generic? ASTERISK* R_BR -> ^(L_BR  known_types? ID* (L_KBR R_KBR)* generic? R_BR)
 	;			
 		
 type_internal

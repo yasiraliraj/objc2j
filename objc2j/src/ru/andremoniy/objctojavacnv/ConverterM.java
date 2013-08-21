@@ -5,18 +5,19 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.andremoniy.objctojavacnv.antlr.Preprocessor;
 import ru.andremoniy.objctojavacnv.antlr.output.ObjcmLexer;
 import ru.andremoniy.objctojavacnv.antlr.output.ObjcmParser;
+import ru.andremoniy.objctojavacnv.builder.ClassBuilder;
 import ru.andremoniy.objctojavacnv.context.BlockContext;
 import ru.andremoniy.objctojavacnv.context.ClassContext;
 import ru.andremoniy.objctojavacnv.context.ExpressionContext;
 import ru.andremoniy.objctojavacnv.context.ProjectContext;
 
-import java.io.*;
-import java.nio.charset.Charset;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 import static ru.andremoniy.objctojavacnv.Utils.transformObject;
@@ -83,6 +84,8 @@ public class ConverterM {
             ObjcmLexer.EXPR_OR_OR, ObjcmLexer.EXPR_AND_AND, ObjcmLexer.EXPR_OR, ObjcmLexer.EXPR_XOR, ObjcmLexer.EXPR_AND, ObjcmLexer.EXPR_EQ,
             ObjcmLexer.EXPR_COND, ObjcmLexer.EXPR_MOV, ObjcmLexer.EXPR_ADD, ObjcmLexer.EXPR_MULT, ObjcmLexer.EXPR_UNNAME);
 
+    private ConverterM() { }
+
     public static StringBuilder convert_m(String fileName, ProjectContext projectCtx, StringBuilder addSb) throws IOException, RecognitionException {
         projectCtx.m_counter++;
         log.info(projectCtx.m_counter + " m files processed");
@@ -100,17 +103,7 @@ public class ConverterM {
 
         String packageName = mfile.getParent().substring(mfile.getParent().lastIndexOf("src") + 4).replace(File.separator, ".");
 
-        StringBuilder objCcode = new StringBuilder();
-        try (FileInputStream fis = new FileInputStream(mfile);
-             InputStreamReader isr = new InputStreamReader(fis, Charset.forName("utf-8"));
-             BufferedReader br = new BufferedReader(isr)) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                objCcode.append(line).append("\n");
-            }
-        }
-
-        String input = objCcode.toString();
+        String input = FileUtils.readFileToString(mfile, ConverterProperties.PROPERTIES.getProperty(ConverterProperties.ENCODING));
         input = input.replace("///", "//");
 
         log.info("Preprocessing... ");
@@ -125,31 +118,28 @@ public class ConverterM {
 
         ObjcmParser.code_return result = parser.code();
 
-        StringBuilder sb = new StringBuilder();
+        ClassBuilder cb = new ClassBuilder();
 
         if (!categoryClass) {
-            sb.append("package ").append(packageName).append(";\n\n");
+            cb.setPackage(packageName);
 
             // process imports sections
-            sb.append("import ru.andremoniy.jcocoa.*;\n");
-            sb.append("import java.util.List;\n");
-            sb.append("import java.util.Arrays;\n");
-            sb.append("import java.util.ArrayList;\n");
-            sb.append("import static ru.andremoniy.jcocoa.MathEx.*;\n");
-            sb.append("import static ru.andremoniy.jcocoa.Utils.*;\n");
-            sb.append("import static ru.andremoniy.jcocoa.NSException.*;\n");
-            sb.append("import static ru.andremoniy.jcocoa.Constants.*;\n");
+            cb.addImport("ru.andremoniy.jcocoa.*");
+            cb.addImport("java.util.List");
+            cb.addImport("java.util.Arrays");
+            cb.addImport("java.util.ArrayList");
+            cb.addImportStatic("ru.andremoniy.jcocoa.MathEx.*");
+            cb.addImportStatic("ru.andremoniy.jcocoa.Utils.*");
+            cb.addImportStatic("ru.andremoniy.jcocoa.NSException.*");
+            cb.addImportStatic("ru.andremoniy.jcocoa.Constants.*");
         }
 
-        if (addSb == null) {
-            addSb = new StringBuilder();
-        }
+        if (addSb == null) addSb = new StringBuilder();
 
         StringBuilder catSb = new StringBuilder();
 
         if (!categoryClass) {
-            // идем по всем категориям в поиска import-ов
-
+            // going though all categories looking for imports
             Set<String> categoriesList = projectCtx.categories.get(mfile.getName().substring(0, mfile.getName().indexOf(".")));
             if (categoriesList != null) {
                 for (String category : categoriesList) {
@@ -231,7 +221,7 @@ public class ConverterM {
 
         // add imports:
         for (String _import : projectCtx.classCtx.imports) {
-            sb.append("import ").append(_import).append(";\n");
+            cb.addImport(_import);
         }
 
         if (!projectCtx.classCtx.containsInit) {
@@ -245,22 +235,18 @@ public class ConverterM {
 
         sb2.append("}\n"); // end of class
 
-        sb.append(sb2); // соединяем шапку с классом
+        cb.a(sb2); // merge header with class
 
-        String javaCode = sb.toString();
+        String javaCode = cb.sb().toString();
         javaCode = javaCode.replaceAll(";(\\s|\n|\r)*;+", ";");
 
-        // избавляемся от конструкций вида "this = null"
+        // remove constructions like "this = null"
         javaCode = javaCode.replaceAll("this\\s*=\\s*null", "");
-        // избавляемся от конструкций вида "this = ..."
+        // remove constructions like "this = ..."
         javaCode = javaCode.replaceAll("this\\s*=\\s*", "");
 
-        try (FileOutputStream fos = new FileOutputStream(mjfile);
-             BufferedOutputStream bos = new BufferedOutputStream(fos)) {
-            bos.write(javaCode.getBytes("utf-8"));
-        }
-
-        return sb;
+        FileUtils.writeStringToFile(mjfile, javaCode, ConverterProperties.PROPERTIES.getProperty(ConverterProperties.ENCODING));
+        return cb.sb();
     }
 
     private static void process_implementation(ProjectContext projectCtx, boolean categoryClass, String javaClassName, CommonTree implementationTree, StringBuilder sb, boolean doFinish, boolean forceClassDeclaration) {
@@ -302,10 +288,10 @@ public class ConverterM {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
-                // Это статическое поле или метод
+                // This is static method of field
                 case ObjcmLexer.METHOD:
                     if (sameInterface) break;
-                    m_process_method(sb, childTree, projectCtx.newClass(interfaceName, null), false);
+                    m_process_method(sb, childTree, projectCtx.newClass(interfaceName, null), false, false);
                     break;
             }
         }
@@ -318,7 +304,7 @@ public class ConverterM {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
-                // Это статическое поле или метод
+                // This is static method of field
                 case ObjcmLexer.M_TYPE_START:
                     m_process_type_start(sb, childTree, classCtx);
                     break;
@@ -350,7 +336,7 @@ public class ConverterM {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
-                // Это статическое поле или метод
+                // This is static method of field
                 case ObjcmLexer.TYPE:
                     lsb.append(readChildren(childTree, null, null)); // there is no method, then null
                     break;
@@ -364,6 +350,9 @@ public class ConverterM {
                         lsb.append("=");
                         lsb.append(m_process_field_value(valueTree, classCtx));
                     }
+                    break;
+                case ObjcmLexer.STATIC_METHOD:
+                    m_process_method(lsb, childTree, classCtx, true, true);
                     break;
                 case ObjcmLexer.EXTERN:
                     break;
@@ -422,7 +411,7 @@ public class ConverterM {
                     process_param(sb, childTree, classCtx);
                     isField = false;
                     break;
-                // Это статическое поле или метод
+                // This is static method of field
                 case ObjcmLexer.METHOD:
                     m_process_params(sb, childTree, classCtx);
                     CommonTree blockTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.BLOCK);
@@ -431,9 +420,6 @@ public class ConverterM {
                     } else {
                         if (!isField) return;
                     }
-                    /* else {
-                        m_process_params(sb, childTree, classCtx);
-                    }*/
                     break;
                 case ObjcmLexer.BLOCK:
                     m_process_block(sb, childTree, classCtx.newMethod(methodName, methodType, isStatic, null).newBlock());
@@ -454,11 +440,7 @@ public class ConverterM {
                     break;
             }
         }
-//        if (isField) {
-        sb.append(";\n");
-//        }
-        sb.append("\n");
-
+        sb.append(";\n\n");
         sb2.append(sb);
     }
 
@@ -611,10 +593,10 @@ public class ConverterM {
                     m_process_field2(sb, childTree, projectCtx.classCtx);
                     break;
                 case ObjcmLexer.METHOD:
-                    m_process_method(sb, childTree, projectCtx.classCtx, false);
+                    m_process_method(sb, childTree, projectCtx.classCtx, false, false);
                     break;
                 case ObjcmLexer.STATIC_METHOD:
-                    m_process_method(sb, childTree, projectCtx.classCtx, true);
+                    m_process_method(sb, childTree, projectCtx.classCtx, true, false);
                     break;
                 case ObjcmLexer.STATIC:
                     m_process_static(sb, childTree, projectCtx.classCtx);
@@ -652,7 +634,7 @@ public class ConverterM {
         sb.append("}\n\n");
     }
 
-    private static void m_process_method(StringBuilder sb, CommonTree tree, ClassContext classCtx, boolean staticFlag) {
+    private static void m_process_method(StringBuilder sb, CommonTree tree, ClassContext classCtx, boolean staticFlag, boolean skipHeader) {
         String modifier = "";
         String type = "";
         String methodName = "";
@@ -687,18 +669,21 @@ public class ConverterM {
         String modifier_sb = modifier.length() > 0 ? (modifier.equals("-") ? "" : "static") : "";
         if (staticFlag) modifier_sb = "static";
 
+        if (!skipHeader) {
         // защита от неправильной перегрузки метода init():
         if (methodName.equals("init") && classCtx.containsInit) {
             type = classCtx.className; // всегда имя класса в качестве типа возвращаемого значения...
         }
 
-        sb.append("public ").append(modifier_sb).append(" ").append(methodType).append(" ").append(classCtx.categoryName != null ? "_" + classCtx.categoryName + "_" : "").append(methodName).append("(");
+        sb.append("public ").append(modifier_sb).append(" ").append(methodType).append(" ").append(classCtx.categoryName != null ? "_" + classCtx.categoryName + "_" : "").append(methodName);
 
-        // обратный переход,т.к. static мог бысть установлен не только из static_flag
+        // обратный переход, т.к. static мог бысть установлен не только из static_flag
         if (modifier_sb.equals("static")) {
             staticFlag = true;
             classCtx.methodCtx.staticFlag = true;
         }
+        }
+        sb.append("(");
         boolean f = true;
         for (String pName : params.keySet()) {
             if (!f) {
@@ -841,6 +826,10 @@ public class ConverterM {
                         sb.append("\")");
                     }
                     fieldAccess = false;
+                    break;
+                case ObjcmLexer.CONST_EXPR2:
+                    sb.append("final ");
+                    m_process_block(sb, childTree, blockCtx);
                     break;
                 default:
                     if (a_started_cases(sb, blockCtx.newExpr(), childTree)) continue; // TODO: newExpr ??

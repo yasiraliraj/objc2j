@@ -1,21 +1,21 @@
-package ru.andremoniy.objctojavacnv.antlr;
+package ru.andremoniy.objctojavacnv;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.andremoniy.objctojavacnv.Converter;
-import ru.andremoniy.objctojavacnv.ConverterProperties;
+import ru.andremoniy.objctojavacnv.antlr.Macros;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorLexer;
 import ru.andremoniy.objctojavacnv.antlr.output.PreprocessorParser;
 import ru.andremoniy.objctojavacnv.context.ProjectContext;
 import ru.andremoniy.objctojavacnv.tokenize.StringToken;
 
-import java.io.*;
-import java.nio.charset.Charset;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,9 +33,10 @@ public final class Preprocessor {
     public static final String HEADERS_PATH1 = ".framework";
     public static final String HEADERS_PATH2 = File.separator + "Headers" + File.separator;
 
-    private static final List<String> doNotAppend = Arrays.asList("@", ".", "#");
+//    private static final List<String> doNotAppend = Arrays.asList("@", ".", "#");
 
-    private Preprocessor() {}
+    private Preprocessor() {
+    }
 
     public static boolean preprocessFile(ProjectContext context, String fileName, List<String> processedImports, boolean onlyIfs, String rootPath) throws IOException, RecognitionException {
         File mFile = new File(fileName);
@@ -62,17 +63,13 @@ public final class Preprocessor {
             categoriesList.add(mFile.getPath());
         }
 
-        StringBuilder objCcode = new StringBuilder();
-        readObjCode(mFile, objCcode);
-
-        String input = objCcode.toString();
+        String input = FileUtils.readFileToString(mFile, ConverterProperties.PROPERTIES.getProperty(ConverterProperties.ENCODING));
 
         try {
             preprocessInternal(context.macrosMap, fileName, processedImports, onlyIfs, input, context.isSkipSDK());
         } catch (Exception e) {
             log.info("Failed to preprocess file: " + fileName);
             log.error(e.getMessage(), e);
-            //throw new RuntimeException(e);
         }
 
         return false;
@@ -158,11 +155,10 @@ public final class Preprocessor {
     }
 
     private static void writeObjCode(File file, String input) {
-        try (FileOutputStream fos = new FileOutputStream(file);
-             BufferedOutputStream bos = new BufferedOutputStream(fos)) {
-            bos.write(input.getBytes("utf-8"));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        try {
+            FileUtils.writeStringToFile(file, input, ConverterProperties.PROPERTIES.getProperty(ConverterProperties.ENCODING));
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
         }
     }
 
@@ -333,16 +329,6 @@ public final class Preprocessor {
         return e2;
     }
 
-    private static Integer getNumber(Map<String, List<Macros>> macrosList, CommonTree tree) {
-        String key = tree.getText();
-        List<Macros> list = macrosList.get(key);
-        String numberStr = key;
-        if (list != null && list.size() > 0) {
-            numberStr = list.get(0).getReplace();
-        }
-        return Integer.parseInt(numberStr);
-    }
-
     private static String commonIfInternal(String input, CommonTree tree, boolean positive) {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
@@ -416,17 +402,6 @@ public final class Preprocessor {
             }
         }
         return false;
-    }
-
-    private static void readObjCode(File mfile, StringBuilder objCcode) throws IOException {
-        try (FileInputStream fis = new FileInputStream(mfile);
-             InputStreamReader isr = new InputStreamReader(fis, Charset.forName("utf-8"));
-             BufferedReader br = new BufferedReader(isr)) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                objCcode.append(line).append("\n");
-            }
-        }
     }
 
     private static Map<String, List<Macros>> loadFromFile(List<String> processedImports, CommonTree childTree) throws IOException, RecognitionException {
