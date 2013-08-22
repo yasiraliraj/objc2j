@@ -22,6 +22,7 @@ tokens {
 	BLOCK;
 	METHOD_CALL;
 	TYPE_CONVERTION;
+	TYPE_CONVERTION2;
 	PREFIX;
 	INCOMPLETE_PREFIX;
 	MSG_LIST;
@@ -101,6 +102,7 @@ tokens {
 	GOTO;
 	STRING;
 	TYPE_RENAME;
+	L_BR_TOKEN;
 }
 
 @header {
@@ -736,12 +738,12 @@ object_wrapped1
 object_wrapped2
 	: 	'unsigned'? object_name generic?
 	|	method_call_wrapper id_part_end?
-	|	L_BR l_br_end 
+	|	L_BR l_br_end -> ^(L_BR_TOKEN l_br_end)
 	|	const_expr_wrapper
 	|	a_started
 	;
 
-l_br_end:	type_convertion_internal_wrapper R_BR classical_expr_wrp
+l_br_end:	type_convertion_internal_wrapper R_BR classical_expr_wrp -> ^(TYPE_CONVERTION2 type_convertion_internal_wrapper classical_expr_wrp)
 	|	classical_expr_wrp R_BR id_part_end?
 	;	
 	
