@@ -84,7 +84,8 @@ public class ConverterM {
             ObjcmLexer.EXPR_OR_OR, ObjcmLexer.EXPR_AND_AND, ObjcmLexer.EXPR_OR, ObjcmLexer.EXPR_XOR, ObjcmLexer.EXPR_AND, ObjcmLexer.EXPR_EQ,
             ObjcmLexer.EXPR_COND, ObjcmLexer.EXPR_MOV, ObjcmLexer.EXPR_ADD, ObjcmLexer.EXPR_MULT, ObjcmLexer.EXPR_UNNAME);
 
-    private ConverterM() { }
+    private ConverterM() {
+    }
 
     public static StringBuilder convert_m(String fileName, ProjectContext projectCtx, StringBuilder addSb) throws IOException, RecognitionException {
         projectCtx.m_counter++;
@@ -670,18 +671,18 @@ public class ConverterM {
         if (staticFlag) modifier_sb = "static";
 
         if (!skipHeader) {
-        // защита от неправильной перегрузки метода init():
-        if (methodName.equals("init") && classCtx.containsInit) {
-            type = classCtx.className; // всегда имя класса в качестве типа возвращаемого значения...
-        }
+            // защита от неправильной перегрузки метода init():
+            if (methodName.equals("init") && classCtx.containsInit) {
+                type = classCtx.className; // всегда имя класса в качестве типа возвращаемого значения...
+            }
 
-        sb.append("public ").append(modifier_sb).append(" ").append(methodType).append(" ").append(classCtx.categoryName != null ? "_" + classCtx.categoryName + "_" : "").append(methodName);
+            sb.append("public ").append(modifier_sb).append(" ").append(methodType).append(" ").append(classCtx.categoryName != null ? "_" + classCtx.categoryName + "_" : "").append(methodName);
 
-        // обратный переход, т.к. static мог бысть установлен не только из static_flag
-        if (modifier_sb.equals("static")) {
-            staticFlag = true;
-            classCtx.methodCtx.staticFlag = true;
-        }
+            // обратный переход, т.к. static мог бысть установлен не только из static_flag
+            if (modifier_sb.equals("static")) {
+                staticFlag = true;
+                classCtx.methodCtx.staticFlag = true;
+            }
         }
         sb.append("(");
         boolean f = true;
@@ -1041,10 +1042,10 @@ public class ConverterM {
                 case ObjcmLexer.ASSIGN:
                     if (doWrap) break;
                 default:
-                    // добавляем оператор присваивания
+                    // add assign operator
                     sb.append(readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
 
-                    // принудительное приведение типа при инициализации объекта через присваивание
+                    // force type conversion when object initilization through assigment
                     if (doBracketsWrap) {
                         sb.append("(");
                         // todo: is this check really needed?
@@ -1440,6 +1441,9 @@ public class ConverterM {
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.getType()) {
+                case ObjcmLexer.L_BR_TOKEN:
+                    process_l_br_end(sb, childTree, exprCtx);
+                    break;
                 case ObjcmLexer.TYPE_CONVERTION:
                     process_type_convertion(sb, childTree, exprCtx.newExpr());
                     break;
@@ -1480,6 +1484,18 @@ public class ConverterM {
                     break;
             }
         }
+    }
+
+    private static void process_l_br_end(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
+        boolean add_brackets = tree.getFirstChildWithType(ObjcmLexer.TYPE_CONVERTION2) == null;
+        if (add_brackets) sb.append("(");
+        for (Object child : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) child;
+            if (childTree.getChildren() != null) {
+                process_expr_not(sb, childTree, exprCtx);
+            }
+        }
+        if (add_brackets) sb.append(")");
     }
 
     private static boolean a_started_cases(StringBuilder sb, ExpressionContext exprCtx, CommonTree childTree) {
@@ -1688,9 +1704,7 @@ public class ConverterM {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
                 case ObjcmLexer.TYPE_CONVERTION:
-                    sb.append("(");
                     process_type_convertion(sb, childTree, exprCtx.newExpr().setNoTransformClassNames());
-                    sb.append(")");
                     break;
                 case ObjcmLexer.METHOD_CALL:
                     wasMethodCall = m_process_method_call(sb, childTree, exprCtx.newExpr().setTransformClassNames());
