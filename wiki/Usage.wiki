@@ -1,8 +1,8 @@
 = Downloading files =
 
-Actual build-archive is located here:
+Latest build you will found in this Google-Drive shared folder:
 
-[https://docs.google.com/file/d/0BygybWBe4h7pWVdGaUJTRVhMN0k/edit?usp=sharing build.zip]  
+[https://drive.google.com/folderview?id=0BygybWBe4h7pZkZ0M0NTN1piZk0&usp=sharing ObjC2J]
 
 You have to unzip this zip. Inside you will found several .csv files, one jar (this is ObjC2J converter itself) and the folder named "jcocoa_extr". Last one contains three java files, which you will need in order to compile converted project. 
 
