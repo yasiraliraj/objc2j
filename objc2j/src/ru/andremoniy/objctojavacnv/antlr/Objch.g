@@ -109,6 +109,7 @@ property_prefix_param
 	|	'nonatomic'
 	|	'assign'
 	|	'copy'
+	|	'strong'
 	;	
 
 interface_declaration_wrapper
