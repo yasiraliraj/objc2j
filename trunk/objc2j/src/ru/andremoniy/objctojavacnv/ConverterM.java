@@ -1315,11 +1315,13 @@ public class ConverterM {
         }
         int exprCounter = 0;
         int operationsLength = operationsOrder.size();
+        int brOpenedCount = 0;
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             if (childTree.getType() == exprType) {
                 if (operationsLength > 0 && exprCounter < operationsLength) {
                     sb.append("_").append(OPS_NUMBER.get(operationsOrder.get(exprCounter))).append("(");
+                    brOpenedCount++;
                 }
 
                 if (deep == EXPR_ORDER.size() - 1) {  // EXPR_UNNAME
@@ -1337,16 +1339,19 @@ public class ConverterM {
                     process_expr(sb, childTree, exprCtx, deep + 1, leftAssign, isIncompletePrefix);
                 }
 
-                if (operationsLength > 0) {
-                    sb.append(", ");
-                }
+                if (operationsLength > 0 && exprCounter < operationsLength) sb.append(", ");
+
                 exprCounter++;
             } else if (childTree.getType() == ObjcmLexer.SIMPLE_EXPR) {
                 process_expr(sb, childTree, exprCtx, 0, leftAssign, isIncompletePrefix);
                 if (operationsLength > 0) {
                     sb.append(")");
+                    brOpenedCount--;
                 }
             }
+        }
+        if (brOpenedCount > 0) {
+            for (int i = 0; i < brOpenedCount; i++) sb.append(")");
         }
     }
 
@@ -1442,13 +1447,13 @@ public class ConverterM {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.getType()) {
                 case ObjcmLexer.L_BR_TOKEN:
-                    process_l_br_end(sb, childTree, exprCtx);
+                    process_l_br_end(sb, childTree, exprCtx.newExpr());
                     break;
                 case ObjcmLexer.TYPE_CONVERTION:
                     process_type_convertion(sb, childTree, exprCtx.newExpr());
                     break;
                 case ObjcmLexer.CLASSICAL_EXPR:
-                    process_classical_expr(sb, childTree, exprCtx, false, false);
+                    process_classical_expr(sb, childTree, exprCtx.newExpr(), false, false);
                     break;
                 case ObjcmLexer.L_NOT:
                     break;
@@ -1458,7 +1463,7 @@ public class ConverterM {
                 case ObjcmLexer.FIELD_ACCESS:
                     fieldAccessCounter2++;
                     sb.append(", \"");
-                    sb.append(readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
+                    sb.append(readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx).trim());
                     sb.append("\"");
                     if (fieldAccessCounter2 > 0 && (fieldAccessCounter2 < fieldAccessCounter || !exprCtx.skipObjField)) {
                         sb.append(")");
@@ -1491,14 +1496,28 @@ public class ConverterM {
         if (add_brackets) sb.append("(");
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
-            if (childTree.getChildren() != null) {
-                process_expr_not(sb, childTree, exprCtx);
+            switch (childTree.token.getType()) {
+                case ObjcmLexer.TYPE_CONVERTION2:
+                    process_expr_not(sb, childTree, exprCtx);
+                    break;
+                case ObjcmLexer.CLASSICAL_EXPR:
+                    process_classical_expr(sb, childTree, exprCtx, false, false);
+                    break;
+                default:
+                    if (a_started_cases(sb, exprCtx, childTree)) continue;
+
+                    String objectName = readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx).trim();
+                    sb.append(objectName).append(" ");
+
+                    putObjectInVariables(exprCtx, objectName);
+                    break;
             }
         }
-        if (add_brackets) sb.append(")");
+//        if (add_brackets) sb.append(")");
     }
 
     private static boolean a_started_cases(StringBuilder sb, ExpressionContext exprCtx, CommonTree childTree) {
+        if (childTree.getChildCount() == 0) return false;
         switch (childTree.token.getType()) {
             case ObjcmLexer.SELECTOR:
                 m_process_selector(sb, childTree, exprCtx.newExpr(), "selector");
