@@ -176,7 +176,7 @@ directives
 	;	
 	
 synthesize
-	:	'@synthesize'  ID (L_EQ ID)? SEMICOLON
+	:	'@synthesize'  ID (L_EQ ID)? (COMMA ID (L_EQ ID)?)* SEMICOLON
 	;	
 	
 typedef	:	'typedef'  (typedef_declaration_wrapper | typedef_struct_declaration_wrapper | type_rename_wrapper) 
