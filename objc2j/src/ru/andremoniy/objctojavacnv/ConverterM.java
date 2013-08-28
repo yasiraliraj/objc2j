@@ -59,6 +59,8 @@ public class ConverterM {
         put(ObjcmLexer.L_OR_EQ, "setOr");
         put(ObjcmLexer.L_XOR, "xor");
         put(ObjcmLexer.L_XOR_EQ, "setXor");
+        put(ObjcmLexer.L_RIGHT, "shiftRight");
+        put(ObjcmLexer.L_LEFT, "shiftLeft");
     }};
 
 
