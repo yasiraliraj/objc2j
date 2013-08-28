@@ -103,6 +103,7 @@ tokens {
 	STRING;
 	TYPE_RENAME;
 	L_BR_TOKEN;
+	STRUCT_VARIABLE;
 }
 
 @header {
@@ -328,7 +329,7 @@ typeof_started
 	;	
 	
 struct_variable
-	:	STRUCT_PREFIX name full_expr_wrapper (COMMA full_expr_wrapper)*;
+	:	STRUCT_PREFIX name full_expr_wrapper (COMMA full_expr_wrapper)* -> ^(STRUCT_VARIABLE STRUCT_PREFIX name full_expr_wrapper (COMMA full_expr_wrapper)*);
 
 enum_variable
 	:	ENUM_PREFIX name full_expr_wrapper (COMMA full_expr_wrapper)*;
