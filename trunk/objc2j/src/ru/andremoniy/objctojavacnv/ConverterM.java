@@ -65,6 +65,7 @@ public class ConverterM {
     private static final Map<String, String> primitives = new HashMap<String, String>() {{
         put("Double", "double");
         put("Integer", "int");
+        put("Long", "long");
     }};
 
     private static final List<List<Integer>> OPERATIONS_ORDER = new ArrayList<List<Integer>>() {{
@@ -828,6 +829,9 @@ public class ConverterM {
                     }
                     fieldAccess = false;
                     break;
+                case ObjcmLexer.STRUCT_VARIABLE:
+                    m_process_struct_variable(sb, childTree, blockCtx);
+                    break;
                 case ObjcmLexer.CONST_EXPR2:
                     sb.append("final ");
                     m_process_block(sb, childTree, blockCtx);
@@ -872,6 +876,25 @@ public class ConverterM {
 
                     break;
             }
+        }
+    }
+
+    private static void m_process_struct_variable(StringBuilder sb, CommonTree tree, BlockContext blockCtx) {
+        String name = tree.getFirstChildWithType(ObjcmLexer.NAME).getChild(0).toString();
+        sb.append(name).append(" ");
+        for (Object obj : tree.getChildren()) {
+            CommonTree child = (CommonTree) obj;
+            switch (child.getType()) {
+                case ObjcmLexer.EXPR_FULL:
+                    process_expr_full(sb, child, blockCtx.newExpr(), false);
+                    break;
+                case ObjcmLexer.COMMA:
+                    sb.append(", ");
+                    break;
+            }
+        }
+        if (!recursiveSearchExists(tree, ObjcmLexer.ASSIGN)) {
+            sb.append(" = null;\n");
         }
     }
 
@@ -1034,9 +1057,9 @@ public class ConverterM {
                     sb.append(cesb);
                     if (doBracketsWrap) {
                         sb.append(")");
-                        if (Utils.isNumericType(exprCtx.getVariableDeclarationType()) && !cesb.toString().trim().startsWith("objc_") && !isJustANumber(childTree)) {
-                            sb.append(Utils.getNumberMethod(exprCtx.getVariableDeclarationType()));
-                        }
+                    }
+                    if (Utils.isNumericType(exprCtx.getVariableDeclarationType()) && !cesb.toString().trim().startsWith("objc_") && !isJustANumber(childTree)) {
+                        sb.append(Utils.getNumberMethod(exprCtx.getVariableDeclarationType()));
                     }
                     break;
                 case ObjcmLexer.ASSIGN:
