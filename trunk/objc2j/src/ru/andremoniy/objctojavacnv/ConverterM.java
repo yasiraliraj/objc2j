@@ -1144,7 +1144,10 @@ public class ConverterM {
 
     private static void process_classical_expr(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, boolean leftAssign, boolean isIncompletePrefix) {
         boolean isIf3 = tree.getFirstChildWithType(ObjcmLexer.EXPR_QUESTION) != null;
-        boolean isAssign = leftAssign || recursiveSearchExists(tree, ObjcmLexer.EXPR_ASSIGN);
+
+        boolean forceIsNotAssign = ((CommonTree)tree.getParent()).getChildren().indexOf(tree) > 0;
+
+        boolean isAssign = !forceIsNotAssign && (leftAssign || recursiveSearchExists(tree, ObjcmLexer.EXPR_ASSIGN));
 
         boolean doWrap = false;
         if (tree.getFirstChildWithType(ObjcmLexer.EXPR_ASSIGN) != null) {
@@ -1324,11 +1327,15 @@ public class ConverterM {
     }
 
     private static void process_expr(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, int deep, boolean leftAssign, boolean isIncompletePrefix) {
+        // deep depends on which level of expression tree we are
+        // OPERATIONS_ORDER contains list of operations which *could* be at current level (deep)
         List<Integer> operations = OPERATIONS_ORDER.get(deep);
         int exprType = EXPR_ORDER.get(deep);
         List<Integer> operationsOrder = new ArrayList<>();
         boolean saveVarType = false;
-        for (Object child : tree.getChildren()) {
+        List children = tree.getChildren();
+        for (int i1 = 0; i1 < children.size(); i1++) {
+            Object child = children.get(i1);
             CommonTree childTree = (CommonTree) child;
             if (childTree.getType() == ObjcmLexer.ASTERISK && leftAssign) {
                 saveVarType = true;
@@ -1497,7 +1504,7 @@ public class ConverterM {
                 case ObjcmLexer.FUNCTION:
                     ExpressionContext exprCtx2 = exprCtx.newExpr();
                     exprCtx2.transformClassNames = true;
-                    process_classical_expr(sb, childTree, exprCtx2.checkForFunctionName(), false, false);
+                    m_process_function(sb, childTree, exprCtx2.checkForFunctionName());
                     break;
                 case ObjcmLexer.GENERIC:
                     sb.append("<");
@@ -1512,6 +1519,19 @@ public class ConverterM {
 
                     putObjectInVariables(exprCtx, objectName);
                     break;
+            }
+        }
+    }
+
+    private static void m_process_function(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
+        for (Object obj : tree.getChildren()) {
+            CommonTree childTree = (CommonTree) obj;
+            switch (childTree.getType()) {
+                case ObjcmLexer.CLASSICAL_EXPR:
+                    process_classical_expr(sb, childTree, exprCtx.checkForFunctionName(), false, false);
+                    break;
+                default:
+                    sb.append(readChildren(childTree, exprCtx.blockCtx.methodCtx().classCtx, exprCtx));
             }
         }
     }
