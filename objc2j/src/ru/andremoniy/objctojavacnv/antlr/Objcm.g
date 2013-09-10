@@ -104,6 +104,7 @@ tokens {
 	TYPE_RENAME;
 	L_BR_TOKEN;
 	STRUCT_VARIABLE;
+	STRUCT_INIT;
 }
 
 @header {
@@ -432,7 +433,7 @@ break_wrapper
 break_stmt
 	:	BREAK_WORD  SEMICOLON;	
 	
-do_stmt	:	'do'  if_stmt_block  'while'  L_BR  expression R_BR;
+do_stmt	:	'do'  if_stmt_block  'while'  L_BR  while_expr R_BR;
 
 while_stmt_wrapper
 	:	while_stmt -> ^(WHILE_STMT while_stmt)
@@ -586,7 +587,7 @@ message	:	expression (COMMA expression)*;
 
 expression
 	:	classical_expr_wrp
-	|	struct_init
+	|	struct_init_wrapper
 	;
 
 full_expr_wrapper
@@ -602,7 +603,7 @@ expr_assign_wrapper
 	:	expr_assign -> ^(EXPR_ASSIGN expr_assign);
 	
 expr_assign	
-	:	assign_wrapper (struct_init | classical_expr_wrp | array_init_wrapper | (func_pointer2 method_call_wrapper?));
+	:	assign_wrapper (struct_init_wrapper | classical_expr_wrp | array_init_wrapper | (func_pointer2 method_call_wrapper?));
 
 array_init_wrapper
 	:	array_init -> ^(ARRAY_INIT array_init);	
@@ -762,11 +763,17 @@ index	:	L_KBR index_number_wrapper? R_KBR;
 index_number_wrapper
 	:	classical_expr_wrp -> ^(INDEX_NUMBER classical_expr_wrp);
 
+struct_init_wrapper
+	:	struct_init -> ^(STRUCT_INIT struct_init);
+
 struct_init
-	:	L_BR  STRUCT_PREFIX? ID  R_BR  L_FBR 
+	:	L_BR  STRUCT_PREFIX? struct_name  R_BR  L_FBR 
 			struct_init_line (COMMA  struct_init_line)*
 		R_FBR 
 	;	
+	
+struct_name
+	:	ID -> ^(NAME ID);	
 	
 struct_init2
 	:	L_FBR 

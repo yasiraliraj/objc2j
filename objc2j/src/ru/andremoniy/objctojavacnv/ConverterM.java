@@ -15,6 +15,7 @@ import ru.andremoniy.objctojavacnv.context.BlockContext;
 import ru.andremoniy.objctojavacnv.context.ClassContext;
 import ru.andremoniy.objctojavacnv.context.ExpressionContext;
 import ru.andremoniy.objctojavacnv.context.ProjectContext;
+import ru.andremoniy.objctojavacnv.processors.m.StructInit;
 
 import java.io.File;
 import java.io.IOException;
@@ -788,15 +789,6 @@ public class ConverterM {
                 case ObjcmLexer.IF_STMT:
                     m_process_if_stmt(sb, childTree, blockCtx.newBlock());
                     break;
-//                case ObjcmLexer.SELECTOR:
-//                    m_process_selector(sb, childTree, blockCtx.newExpr(), "selector");
-//                    break;
-//                case ObjcmLexer.PROTOCOL:
-//                    m_process_selector(sb, childTree, blockCtx.newExpr(), "protocol");
-//                    break;
-//                case ObjcmLexer.ENCODE:
-//                    m_process_selector(sb, childTree, blockCtx.newExpr(), "encode");
-//                    break;
                 case ObjcmLexer.BREAK:
                     blockCtx.isBreak = true;
                     if (!blockCtx.skipBreak) {
@@ -811,6 +803,10 @@ public class ConverterM {
                         sb.append("(").append(blockCtx.methodCtx().methodType).append(")(");
                         process_classical_expr(sb, returnStmt, blockCtx.newExpr(), false, false);
                         sb.append(")");
+                    } else {
+                        returnStmt = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.STRUCT_INIT);
+                        if (returnStmt != null)
+                            new StructInit(sb, returnStmt, blockCtx.newExpr()).process();
                     }
                     sb.append(";\n");
                     break;
@@ -1142,7 +1138,7 @@ public class ConverterM {
         }
     }
 
-    private static void process_classical_expr(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, boolean leftAssign, boolean isIncompletePrefix) {
+    public static void process_classical_expr(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, boolean leftAssign, boolean isIncompletePrefix) {
         boolean isIf3 = tree.getFirstChildWithType(ObjcmLexer.EXPR_QUESTION) != null;
 
         boolean forceIsNotAssign = ((CommonTree)tree.getParent()).getChildren().indexOf(tree) > 0;
