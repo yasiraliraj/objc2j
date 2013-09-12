@@ -14,6 +14,7 @@ public class ClassContext extends AbstractContext {
 
     public boolean containsInit;
     public boolean containsAutoRelease;
+    public boolean containsRelease;
 
     // current class name
     public String className;

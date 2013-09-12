@@ -1,4 +1,4 @@
-// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g 2012-11-19 19:33:10
+// $ANTLR 3.4 C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g 2013-09-11 09:48:45
 
 package ru.andremoniy.objctojavacnv.antlr.output;
 
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class PreprocessorLexer extends Lexer {
     public static final int EOF=-1;
-    public static final int T__64=64;
     public static final int T__65=65;
     public static final int T__66=66;
     public static final int T__67=67;
@@ -20,6 +19,7 @@ public class PreprocessorLexer extends Lexer {
     public static final int T__70=70;
     public static final int T__71=71;
     public static final int T__72=72;
+    public static final int T__73=73;
     public static final int ASTERISK=4;
     public static final int BACKSLASH=5;
     public static final int COMMENT=6;
@@ -66,20 +66,21 @@ public class PreprocessorLexer extends Lexer {
     public static final int T_EX_OP=47;
     public static final int T_EX_OR=48;
     public static final int T_EX_SNGL=49;
-    public static final int T_ID=50;
-    public static final int T_IF_DEFINE=51;
-    public static final int T_IF_ELSE=52;
-    public static final int T_IF_MAIN=53;
-    public static final int T_IF_NOT_DEFINE=54;
-    public static final int T_IF_SIMPLE=55;
-    public static final int T_IMPORT=56;
-    public static final int T_INCLUDE=57;
-    public static final int T_IN_BRACKETS=58;
-    public static final int T_NAME=59;
-    public static final int T_PARAM=60;
-    public static final int T_PATH=61;
-    public static final int T_REPLACE=62;
-    public static final int WS=63;
+    public static final int T_FILENAME=50;
+    public static final int T_ID=51;
+    public static final int T_IF_DEFINE=52;
+    public static final int T_IF_ELSE=53;
+    public static final int T_IF_MAIN=54;
+    public static final int T_IF_NOT_DEFINE=55;
+    public static final int T_IF_SIMPLE=56;
+    public static final int T_IMPORT=57;
+    public static final int T_INCLUDE=58;
+    public static final int T_IN_BRACKETS=59;
+    public static final int T_NAME=60;
+    public static final int T_PARAM=61;
+    public static final int T_PATH=62;
+    public static final int T_REPLACE=63;
+    public static final int WS=64;
 
     // delegates
     // delegators
@@ -96,10 +97,10 @@ public class PreprocessorLexer extends Lexer {
     }
     public String getGrammarFileName() { return "C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g"; }
 
-    // $ANTLR start "T__64"
-    public final void mT__64() throws RecognitionException {
+    // $ANTLR start "T__65"
+    public final void mT__65() throws RecognitionException {
         try {
-            int _type = T__64;
+            int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:6:7: ( '&&' )
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:6:9: '&&'
@@ -117,27 +118,6 @@ public class PreprocessorLexer extends Lexer {
         	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__64"
-
-    // $ANTLR start "T__65"
-    public final void mT__65() throws RecognitionException {
-        try {
-            int _type = T__65;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:7:7: ( ',' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:7:9: ','
-            {
-            match(','); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
     // $ANTLR end "T__65"
 
     // $ANTLR start "T__66"
@@ -145,10 +125,10 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:8:7: ( '.' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:8:9: '.'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:7:7: ( ',' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:7:9: ','
             {
-            match('.'); 
+            match(','); 
 
             }
 
@@ -166,10 +146,10 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:9:7: ( '/' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:9:9: '/'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:8:7: ( '.' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:8:9: '.'
             {
-            match('/'); 
+            match('.'); 
 
             }
 
@@ -187,12 +167,10 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:10:7: ( '<=' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:10:9: '<='
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:9:7: ( '/' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:9:9: '/'
             {
-            match("<="); 
-
-
+            match('/'); 
 
             }
 
@@ -210,10 +188,10 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:11:7: ( '==' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:11:9: '=='
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:10:7: ( '<=' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:10:9: '<='
             {
-            match("=="); 
+            match("<="); 
 
 
 
@@ -233,10 +211,10 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:12:7: ( '>=' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:12:9: '>='
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:11:7: ( '==' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:11:9: '=='
             {
-            match(">="); 
+            match("=="); 
 
 
 
@@ -256,10 +234,10 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:13:7: ( '\\'#\\'' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:13:9: '\\'#\\''
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:12:7: ( '>=' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:12:9: '>='
             {
-            match("'#'"); 
+            match(">="); 
 
 
 
@@ -279,6 +257,29 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:13:7: ( '\\'#\\'' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:13:9: '\\'#\\''
+            {
+            match("'#'"); 
+
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        	// do for sure before leaving
+        }
+    }
+    // $ANTLR end "T__72"
+
+    // $ANTLR start "T__73"
+    public final void mT__73() throws RecognitionException {
+        try {
+            int _type = T__73;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:14:7: ( '||' )
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:14:9: '||'
             {
@@ -295,21 +296,21 @@ public class PreprocessorLexer extends Lexer {
         	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__72"
+    // $ANTLR end "T__73"
 
     // $ANTLR start "COMMENT"
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:244:9: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:244:12: '/*' ( options {greedy=false; } : . )* '*/'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:253:9: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:253:12: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:244:17: ( options {greedy=false; } : . )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:253:17: ( options {greedy=false; } : . )*
             loop1:
             do {
                 int alt1=2;
@@ -334,7 +335,7 @@ public class PreprocessorLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:244:45: .
+            	    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:253:45: .
             	    {
             	    matchAny(); 
 
@@ -369,14 +370,14 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = SINGLE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:247:2: ( '//' (~ ( '\\n' | '\\r' ) )* )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:247:4: '//' (~ ( '\\n' | '\\r' ) )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:256:2: ( '//' (~ ( '\\n' | '\\r' ) )* )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:256:4: '//' (~ ( '\\n' | '\\r' ) )*
             {
             match("//"); 
 
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:247:9: (~ ( '\\n' | '\\r' ) )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:256:9: (~ ( '\\n' | '\\r' ) )*
             loop2:
             do {
                 int alt2=2;
@@ -428,8 +429,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = IFNDEF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:249:8: ( '#ifndef' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:249:10: '#ifndef'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:258:8: ( '#ifndef' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:258:10: '#ifndef'
             {
             match("#ifndef"); 
 
@@ -451,8 +452,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = IF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:250:4: ( '#if' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:250:6: '#if'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:259:4: ( '#if' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:259:6: '#if'
             {
             match("#if"); 
 
@@ -474,8 +475,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = ELIF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:251:6: ( '#elif' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:251:8: '#elif'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:260:6: ( '#elif' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:260:8: '#elif'
             {
             match("#elif"); 
 
@@ -497,8 +498,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = IFDEF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:252:7: ( '#ifdef' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:252:9: '#ifdef'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:261:7: ( '#ifdef' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:261:9: '#ifdef'
             {
             match("#ifdef"); 
 
@@ -520,8 +521,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = ELSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:253:6: ( '#else' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:253:8: '#else'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:262:6: ( '#else' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:262:8: '#else'
             {
             match("#else"); 
 
@@ -543,8 +544,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = ENDIF;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:254:7: ( '#endif' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:254:9: '#endif'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:263:7: ( '#endif' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:263:9: '#endif'
             {
             match("#endif"); 
 
@@ -566,8 +567,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = DEFINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:255:8: ( '#define' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:255:10: '#define'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:264:8: ( '#define' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:264:10: '#define'
             {
             match("#define"); 
 
@@ -589,8 +590,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = INCLUDE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:256:9: ( '#include' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:256:11: '#include'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:265:9: ( '#include' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:265:11: '#include'
             {
             match("#include"); 
 
@@ -612,8 +613,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = IMPORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:257:8: ( '#import' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:257:10: '#import'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:266:8: ( '#import' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:266:10: '#import'
             {
             match("#import"); 
 
@@ -635,8 +636,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = DEFINED;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:258:9: ( 'defined' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:258:11: 'defined'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:267:9: ( 'defined' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:267:11: 'defined'
             {
             match("defined"); 
 
@@ -658,7 +659,7 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = RESERVED_WORDS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:261:2: ( '@try' | '@catch' | '@throw' | '@finally' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:270:2: ( '@try' | '@catch' | '@throw' | '@finally' )
             int alt3=4;
             int LA3_0 = input.LA(1);
 
@@ -711,7 +712,7 @@ public class PreprocessorLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:261:4: '@try'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:270:4: '@try'
                     {
                     match("@try"); 
 
@@ -720,7 +721,7 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:261:13: '@catch'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:270:13: '@catch'
                     {
                     match("@catch"); 
 
@@ -729,7 +730,7 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:261:24: '@throw'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:270:24: '@throw'
                     {
                     match("@throw"); 
 
@@ -738,7 +739,7 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:261:35: '@finally'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:270:35: '@finally'
                     {
                     match("@finally"); 
 
@@ -762,8 +763,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = BACKSLASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:264:2: ( '\\\\' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:264:4: '\\\\'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:273:2: ( '\\\\' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:273:4: '\\\\'
             {
             match('\\'); 
 
@@ -783,8 +784,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = POINTS3;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:265:9: ( '...' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:265:11: '...'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:274:9: ( '...' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:274:11: '...'
             {
             match("..."); 
 
@@ -806,7 +807,7 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = MATH_OP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:267:9: ( '++' | '--' | '+=' | '-=' | '*=' | '/=' | '%=' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:276:9: ( '++' | '--' | '+=' | '-=' | '*=' | '/=' | '%=' )
             int alt4=7;
             switch ( input.LA(1) ) {
             case '+':
@@ -872,7 +873,7 @@ public class PreprocessorLexer extends Lexer {
 
             switch (alt4) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:267:11: '++'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:276:11: '++'
                     {
                     match("++"); 
 
@@ -881,7 +882,7 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:267:16: '--'
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:276:16: '--'
                     {
                     match("--"); 
 
@@ -890,7 +891,7 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:267:21: '+='
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:276:21: '+='
                     {
                     match("+="); 
 
@@ -899,7 +900,7 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:267:26: '-='
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:276:26: '-='
                     {
                     match("-="); 
 
@@ -908,7 +909,7 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:267:31: '*='
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:276:31: '*='
                     {
                     match("*="); 
 
@@ -917,7 +918,7 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 6 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:267:36: '/='
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:276:36: '/='
                     {
                     match("/="); 
 
@@ -926,7 +927,7 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 7 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:267:41: '%='
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:276:41: '%='
                     {
                     match("%="); 
 
@@ -950,8 +951,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = EXC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:269:5: ( '!' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:269:7: '!'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:5: ( '!' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:7: '!'
             {
             match('!'); 
 
@@ -971,8 +972,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:270:6: ( '+' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:270:8: '+'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:279:6: ( '+' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:279:8: '+'
             {
             match('+'); 
 
@@ -992,8 +993,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:271:7: ( '-' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:271:9: '-'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:280:7: ( '-' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:280:9: '-'
             {
             match('-'); 
 
@@ -1013,8 +1014,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = L_BR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:272:6: ( '(' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:272:8: '('
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:281:6: ( '(' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:281:8: '('
             {
             match('('); 
 
@@ -1034,8 +1035,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = R_BR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:273:6: ( ')' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:273:8: ')'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:282:6: ( ')' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:282:8: ')'
             {
             match(')'); 
 
@@ -1055,8 +1056,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = R_SHFT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:274:8: ( '>>' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:274:10: '>>'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:283:8: ( '>>' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:283:10: '>>'
             {
             match(">>"); 
 
@@ -1078,8 +1079,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = L_SHFT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:275:8: ( '<<' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:275:10: '<<'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:284:8: ( '<<' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:284:10: '<<'
             {
             match("<<"); 
 
@@ -1101,8 +1102,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = L_UBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:276:7: ( '<' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:276:9: '<'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:7: ( '<' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:9: '<'
             {
             match('<'); 
 
@@ -1122,8 +1123,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = R_UBR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:277:7: ( '>' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:277:9: '>'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:286:7: ( '>' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:286:9: '>'
             {
             match('>'); 
 
@@ -1143,8 +1144,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = ASTERISK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:9: ( '*' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:278:11: '*'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:287:9: ( '*' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:287:11: '*'
             {
             match('*'); 
 
@@ -1164,8 +1165,8 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = QUOTE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:279:7: ( '\"' )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:279:9: '\"'
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:288:7: ( '\"' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:288:9: '\"'
             {
             match('\"'); 
 
@@ -1185,7 +1186,7 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = RET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:281:5: ( '\\r' | '\\n' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:290:5: ( '\\r' | '\\n' )
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:
             {
             if ( input.LA(1)=='\n'||input.LA(1)=='\r' ) {
@@ -1214,13 +1215,13 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:283:4: ( LETTER ( DIGIT | LETTER )* )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:283:6: LETTER ( DIGIT | LETTER )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:292:4: ( LETTER ( DIGIT | LETTER )* )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:292:6: LETTER ( DIGIT | LETTER )*
             {
             mLETTER(); 
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:283:13: ( DIGIT | LETTER )*
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:292:13: ( DIGIT | LETTER )*
             loop5:
             do {
                 int alt5=2;
@@ -1270,13 +1271,13 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:9: ( DIGIT ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) | ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ ) ) )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:12: DIGIT ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) | ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:9: ( DIGIT ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) | ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ ) ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:12: DIGIT ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) | ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ ) )
             {
             mDIGIT(); 
 
 
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:18: ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) | ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:18: ( ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? ) | ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ ) | ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ ) )
             int alt10=3;
             switch ( input.LA(1) ) {
             case 'X':
@@ -1297,12 +1298,12 @@ public class PreprocessorLexer extends Lexer {
 
             switch (alt10) {
                 case 1 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:20: ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? )
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:20: ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? )
                     {
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:20: ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? )
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:21: ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:20: ( ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )? )
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:21: ( DIGIT | '.' )* ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )?
                     {
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:21: ( DIGIT | '.' )*
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:21: ( DIGIT | '.' )*
                     loop6:
                     do {
                         int alt6=2;
@@ -1336,7 +1337,7 @@ public class PreprocessorLexer extends Lexer {
                     } while (true);
 
 
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:36: ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )?
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:36: ( 'l' | 'L' | 'f' | 'F' | 'd' | 'D' )?
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -1369,10 +1370,10 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:66: ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ )
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:66: ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ )
                     {
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:66: ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ )
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:67: ( 'X' | 'x' ) ( DIGIT | LETTER )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:66: ( ( 'X' | 'x' ) ( DIGIT | LETTER )+ )
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:67: ( 'X' | 'x' ) ( DIGIT | LETTER )+
                     {
                     if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
                         input.consume();
@@ -1384,7 +1385,7 @@ public class PreprocessorLexer extends Lexer {
                     }
 
 
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:77: ( DIGIT | LETTER )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:77: ( DIGIT | LETTER )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -1429,10 +1430,10 @@ public class PreprocessorLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:98: ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ )
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:98: ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ )
                     {
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:98: ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ )
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:99: ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:98: ( ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+ )
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:99: ( 'e' | 'E' ) ( '-' | '+' ) ( DIGIT )+
                     {
                     if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                         input.consume();
@@ -1454,7 +1455,7 @@ public class PreprocessorLexer extends Lexer {
                     }
 
 
-                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:285:119: ( DIGIT )+
+                    // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:294:119: ( DIGIT )+
                     int cnt9=0;
                     loop9:
                     do {
@@ -1518,7 +1519,7 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = SPECIAL_CHARS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:293:2: ( '%' | '?' | '|' | '&' | ';' | '[' | ']' | '{' | '}' | ':' | '/' | '#' | '=' | '@' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:302:2: ( '%' | '?' | '|' | '&' | ';' | '[' | ']' | '{' | '}' | ':' | '/' | '#' | '=' | '@' )
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:
             {
             if ( input.LA(1)=='#'||(input.LA(1) >= '%' && input.LA(1) <= '&')||input.LA(1)=='/'||(input.LA(1) >= ':' && input.LA(1) <= ';')||input.LA(1)=='='||(input.LA(1) >= '?' && input.LA(1) <= '@')||input.LA(1)=='['||input.LA(1)==']'||(input.LA(1) >= '{' && input.LA(1) <= '}') ) {
@@ -1547,10 +1548,10 @@ public class PreprocessorLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:295:6: ( ( '\\u000C' | ' ' | '\\t' )+ )
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:295:8: ( '\\u000C' | ' ' | '\\t' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:304:6: ( ( '\\u000C' | ' ' | '\\t' )+ )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:304:8: ( '\\u000C' | ' ' | '\\t' )+
             {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:295:8: ( '\\u000C' | ' ' | '\\t' )+
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:304:8: ( '\\u000C' | ' ' | '\\t' )+
             int cnt11=0;
             loop11:
             do {
@@ -1605,7 +1606,7 @@ public class PreprocessorLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:297:17: ( '0' .. '9' )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:306:17: ( '0' .. '9' )
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -1631,7 +1632,7 @@ public class PreprocessorLexer extends Lexer {
     // $ANTLR start "LETTER"
     public final void mLETTER() throws RecognitionException {
         try {
-            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:298:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+            // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:307:17: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
             // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:
             {
             if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
@@ -1655,78 +1656,78 @@ public class PreprocessorLexer extends Lexer {
     // $ANTLR end "LETTER"
 
     public void mTokens() throws RecognitionException {
-        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:8: ( T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | COMMENT | SINGLE_COMMENT | IFNDEF | IF | ELIF | IFDEF | ELSE | ENDIF | DEFINE | INCLUDE | IMPORT | DEFINED | RESERVED_WORDS | BACKSLASH | POINTS3 | MATH_OP | EXC | PLUS | MINUS | L_BR | R_BR | R_SHFT | L_SHFT | L_UBR | R_UBR | ASTERISK | QUOTE | RET | ID | NUMBER | SPECIAL_CHARS | WS )
+        // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:8: ( T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | COMMENT | SINGLE_COMMENT | IFNDEF | IF | ELIF | IFDEF | ELSE | ENDIF | DEFINE | INCLUDE | IMPORT | DEFINED | RESERVED_WORDS | BACKSLASH | POINTS3 | MATH_OP | EXC | PLUS | MINUS | L_BR | R_BR | R_SHFT | L_SHFT | L_UBR | R_UBR | ASTERISK | QUOTE | RET | ID | NUMBER | SPECIAL_CHARS | WS )
         int alt12=41;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:10: T__64
-                {
-                mT__64(); 
-
-
-                }
-                break;
-            case 2 :
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:16: T__65
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:10: T__65
                 {
                 mT__65(); 
 
 
                 }
                 break;
-            case 3 :
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:22: T__66
+            case 2 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:16: T__66
                 {
                 mT__66(); 
 
 
                 }
                 break;
-            case 4 :
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:28: T__67
+            case 3 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:22: T__67
                 {
                 mT__67(); 
 
 
                 }
                 break;
-            case 5 :
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:34: T__68
+            case 4 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:28: T__68
                 {
                 mT__68(); 
 
 
                 }
                 break;
-            case 6 :
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:40: T__69
+            case 5 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:34: T__69
                 {
                 mT__69(); 
 
 
                 }
                 break;
-            case 7 :
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:46: T__70
+            case 6 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:40: T__70
                 {
                 mT__70(); 
 
 
                 }
                 break;
-            case 8 :
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:52: T__71
+            case 7 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:46: T__71
                 {
                 mT__71(); 
 
 
                 }
                 break;
-            case 9 :
-                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:58: T__72
+            case 8 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:52: T__72
                 {
                 mT__72(); 
+
+
+                }
+                break;
+            case 9 :
+                // C:\\sandbox\\objc2j\\src\\ru\\andremoniy\\objctojavacnv\\antlr\\Preprocessor.g:1:58: T__73
+                {
+                mT__73(); 
 
 
                 }
@@ -2119,7 +2120,7 @@ public class PreprocessorLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | COMMENT | SINGLE_COMMENT | IFNDEF | IF | ELIF | IFDEF | ELSE | ENDIF | DEFINE | INCLUDE | IMPORT | DEFINED | RESERVED_WORDS | BACKSLASH | POINTS3 | MATH_OP | EXC | PLUS | MINUS | L_BR | R_BR | R_SHFT | L_SHFT | L_UBR | R_UBR | ASTERISK | QUOTE | RET | ID | NUMBER | SPECIAL_CHARS | WS );";
+            return "1:1: Tokens : ( T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | COMMENT | SINGLE_COMMENT | IFNDEF | IF | ELIF | IFDEF | ELSE | ENDIF | DEFINE | INCLUDE | IMPORT | DEFINED | RESERVED_WORDS | BACKSLASH | POINTS3 | MATH_OP | EXC | PLUS | MINUS | L_BR | R_BR | R_SHFT | L_SHFT | L_UBR | R_UBR | ASTERISK | QUOTE | RET | ID | NUMBER | SPECIAL_CHARS | WS );";
         }
     }
  

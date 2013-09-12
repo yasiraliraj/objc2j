@@ -32,6 +32,7 @@ tokens {
 	T_INCLUDE;
 	T_EX_DEF;
 	T_EX_OP;
+	T_FILENAME;
 }
 
 @header {
@@ -129,7 +130,15 @@ import_internal
 	:	import_internal_string -> ^(T_IMPORT import_internal_string);
 	
 import_internal_string
-	:	L_UBR  filename ('/' filename)*  R_UBR;
+	:	L_UBR  path_wrapper  R_UBR;
+	
+path_wrapper
+	:	path -> ^(T_PATH path);
+	
+path	:	filename_wrapper ('/' filename_wrapper)*;	
+
+filename_wrapper
+	:	filename -> ^(T_FILENAME filename);
 	
 filename:	ID (MINUS ID)* ('.' ID)?;
 

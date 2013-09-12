@@ -156,7 +156,7 @@ public class ConverterM {
             }
         }
 
-        if (!categoryClass) {
+        if (!categoryClass && projectCtx.classCtx != null) {
             if (projectCtx.classCtx.localCategories.isEmpty()) {
                 projectCtx.classCtx.categoryList = "null";
             } else {
@@ -225,16 +225,17 @@ public class ConverterM {
         Utils.addAdditionalImports(projectCtx);
 
         // add imports:
-        for (String _import : projectCtx.classCtx.imports) {
+        for (String _import : projectCtx.classCtx.imports)
             cb.addImport(_import);
-        }
 
-        if (!projectCtx.classCtx.containsInit) {
+        if (!projectCtx.classCtx.containsInit)
             addInitMethod(sb2, javaClassName);
-        }
-        if (!projectCtx.classCtx.containsAutoRelease) {
+
+        if (!projectCtx.classCtx.containsAutoRelease)
             addAutoReleaseMethod(sb2, javaClassName);
-        }
+
+        if (!projectCtx.classCtx.containsRelease)
+            addReleaseMethod(sb2, javaClassName);
 
         sb2.append(catSb);
 
@@ -278,6 +279,9 @@ public class ConverterM {
                     break;
                 case ObjcmLexer.INTERFACE:
                     m_process_interface(sb, childTree, projectCtx);
+                    break;
+                case ObjcmLexer.M_TYPE_START:
+                    m_process_type_start(sb, childTree, projectCtx.classCtx);
                     break;
             }
         }
@@ -338,12 +342,16 @@ public class ConverterM {
         StringBuilder lsb = new StringBuilder();
         boolean isStatic = false;
         String name = "";
+        boolean isStaticMethod = tree.getFirstChildWithType(ObjcmLexer.STATIC_METHOD) != null;
+        boolean isMainMethod = isStaticMethod && tree.getFirstChildWithType(ObjcmLexer.NAME).getChild(0).toString().trim().equals("main");
+
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
                 // This is static method of field
                 case ObjcmLexer.TYPE:
-                    lsb.append(readChildren(childTree, null, null)); // there is no method, then null
+                    if (isMainMethod) lsb.append("void ");
+                    else lsb.append(readChildren(childTree, null, null)); // there is no method, then null
                     break;
                 case ObjcmLexer.NAME:
                     lsb.append(readChildren(childTree, null, null)); // there is no method, then null
@@ -545,10 +553,10 @@ public class ConverterM {
         sb.append(lsb);
     }
 
-    private static String readChildren(CommonTree tree, ClassContext classCtx, ExpressionContext exprCtx) {
+    public static String readChildren(CommonTree tree, ClassContext classCtx, ExpressionContext exprCtx) {
         StringBuilder sb = new StringBuilder();
         if (tree.getChildren() == null) {
-            String trObj = transformObject(tree.toString(), classCtx, exprCtx);
+            String trObj = classCtx != null && exprCtx != null ? transformObject(tree.toString(), classCtx, exprCtx) : tree.toString();
             sb.append(trObj);
             if (!trObj.equals("this")) {
                 sb.append(" ");
@@ -579,6 +587,13 @@ public class ConverterM {
     private static void addAutoReleaseMethod(StringBuilder sb, String className) {
         sb.append("\n");
         sb.append("\tpublic ").append(className).append(" autorelease() {\n");
+        sb.append("\t\treturn this; // TODO \n");
+        sb.append("\t}\n\n");
+    }
+
+    private static void addReleaseMethod(StringBuilder sb, String className) {
+        sb.append("\n");
+        sb.append("\tpublic ").append(className).append(" release() {\n");
         sb.append("\t\treturn this; // TODO \n");
         sb.append("\t}\n\n");
     }
@@ -670,35 +685,40 @@ public class ConverterM {
 
         if (methodName.equals("init") && params.isEmpty()) classCtx.containsInit = true;
         if (methodName.toLowerCase().equals("autorelease") && params.isEmpty()) classCtx.containsAutoRelease = true;
+        if (methodName.toLowerCase().equals("release") && params.isEmpty()) classCtx.containsRelease = true;
+
+        boolean isMainMethod = staticFlag && sb.toString().trim().equals("void main");
 
         String modifier_sb = modifier.length() > 0 ? (modifier.equals("-") ? "" : "static") : "";
         if (staticFlag) modifier_sb = "static";
 
         if (!skipHeader) {
             // защита от неправильной перегрузки метода init():
-            if (methodName.equals("init") && classCtx.containsInit) {
-                type = classCtx.className; // всегда имя класса в качестве типа возвращаемого значения...
-            }
+            if (methodName.equals("init") && classCtx.containsInit)
+                methodType = classCtx.className; // всегда имя класса в качестве типа возвращаемого значения...
 
             sb.append("public ").append(modifier_sb).append(" ").append(methodType).append(" ").append(classCtx.categoryName != null ? "_" + classCtx.categoryName + "_" : "").append(methodName);
 
             // обратный переход, т.к. static мог бысть установлен не только из static_flag
-            if (modifier_sb.equals("static")) {
-                staticFlag = true;
+            if (modifier_sb.equals("static"))
                 classCtx.methodCtx.staticFlag = true;
-            }
         }
         sb.append("(");
-        boolean f = true;
-        for (String pName : params.keySet()) {
-            if (!f) {
-                sb.append(", ");
-            } else {
-                f = false;
+        if (!isMainMethod) {
+            boolean f = true;
+            for (String pName : params.keySet()) {
+                if (!f) {
+                    sb.append(", ");
+                } else {
+                    f = false;
+                }
+                String paramType = params.get(pName);
+                if (paramType.equals("void")) paramType = "Void";
+                sb.append(paramType).append(" ").append(pName);
             }
-            String paramType = params.get(pName);
-            if (paramType.equals("void")) paramType = "Void";
-            sb.append(paramType).append(" ").append(pName);
+        } else {
+            sb.append("String[] args");
+            classCtx.methodCtx.methodType = "";
         }
         sb.append(") ");
         CommonTree blockTree = (CommonTree) tree.getFirstChildWithType(ObjcmLexer.BLOCK);
@@ -707,7 +727,6 @@ public class ConverterM {
             // в этом случае необходимо это отследить и добавить в конце "return null;"
             classCtx.methodCtx.addReturnNull = !modifier_sb.equals("void");
             m_process_block(sb, blockTree, classCtx.methodCtx.newBlock());
-
         } else {
             sb.append("{};\n");
         }
@@ -799,7 +818,7 @@ public class ConverterM {
                     blockCtx.isBreak = true;
                     sb.append("return ");
                     CommonTree returnStmt = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.CLASSICAL_EXPR);
-                    if (returnStmt != null) {
+                    if (returnStmt != null && !blockCtx.methodCtx().methodType.isEmpty()) {
                         sb.append("(").append(blockCtx.methodCtx().methodType).append(")(");
                         process_classical_expr(sb, returnStmt, blockCtx.newExpr(), false, false);
                         sb.append(")");
@@ -1141,7 +1160,7 @@ public class ConverterM {
     public static void process_classical_expr(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx, boolean leftAssign, boolean isIncompletePrefix) {
         boolean isIf3 = tree.getFirstChildWithType(ObjcmLexer.EXPR_QUESTION) != null;
 
-        boolean forceIsNotAssign = ((CommonTree)tree.getParent()).getChildren().indexOf(tree) > 0;
+        boolean forceIsNotAssign = ((CommonTree) tree.getParent()).getChildren().indexOf(tree) > 0;
 
         boolean isAssign = !forceIsNotAssign && (leftAssign || recursiveSearchExists(tree, ObjcmLexer.EXPR_ASSIGN));
 
