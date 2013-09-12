@@ -672,7 +672,7 @@ public class ConverterM {
                     methodName = childTree.getChild(0).getText().trim();
                     break;
                 case ObjcmLexer.PARAM:
-                    m_process_param(params, childTree, classCtx);
+                    methodName += m_process_param(params, childTree, classCtx);
                     break;
             }
         }
@@ -1872,6 +1872,13 @@ public class ConverterM {
                     }
                     break;
                 case ObjcmLexer.MSG_LIST:
+                    for (Object methodMsgObj : childTree.getChildren()) {
+                        CommonTree methodMsg = (CommonTree) methodMsgObj;
+                        CommonTree prefix = (CommonTree) methodMsg.getFirstChildWithType(ObjcmLexer.PREFIX);
+                        if (prefix != null)
+                            methodName += prefix.getChild(0).toString();
+                    }
+
                     StringBuilder lsb = new StringBuilder();
                     m_process_msg_list(lsb, childTree, exprCtx.newExpr().setTransformClassNames().checkForFunctionName());
                     message = lsb.toString();
@@ -1956,13 +1963,17 @@ public class ConverterM {
     }
 
 
-    private static void m_process_param(Map<String, String> params, CommonTree tree, ClassContext classCtx) {
+    private static String m_process_param(Map<String, String> params, CommonTree tree, ClassContext classCtx) {
         String type = "";
         String name = "";
         String generic = "";
+        String prefix = "";
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
+                case ObjcmLexer.PREFIX:
+                    prefix = childTree.getChild(0).toString();
+                    break;
                 case ObjcmLexer.TYPE:
                     type = readType(classCtx, childTree);
                     break;
@@ -1973,6 +1984,8 @@ public class ConverterM {
         }
 
         params.put(name, transformType(type, classCtx));
+
+        return prefix;
     }
 
     private static void m_process_field2(StringBuilder sb, CommonTree tree, ClassContext cc) {
