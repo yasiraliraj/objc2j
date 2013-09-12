@@ -14,9 +14,14 @@ import java.util.*;
  * Date: 18.06.12
  * Time: 9:33
  */
+
+
 public class Utils {
 
     private static final List<String> NUMERIC_TYPES = Arrays.asList("Integer", "Double", "Short", "Long");
+    private static final Map<String, String> importReplaces = new HashMap<String, String>() {{
+//        put("stdio.h", "static java.lang.System.out");
+    }};
 
     static String transformObject(String obj, ClassContext classCtx, ExpressionContext exprCtx) {
         switch (obj) {
@@ -225,6 +230,18 @@ public class Utils {
         return sb.toString();
     }
 
+    public static String readChildren(CommonTree tree) {
+        StringBuilder sb = new StringBuilder();
+        if (tree.getChildren() != null && !tree.getChildren().isEmpty()) {
+            for (Object childObj : tree.getChildren()) {
+                sb.append(readChildren((CommonTree) childObj));
+            }
+        } else {
+            sb.append(tree.toString());
+        }
+        return sb.toString();
+    }
+
     /**
      * add original imports from file
      *
@@ -236,6 +253,13 @@ public class Utils {
         for (Object child : ((CommonTree) result.getTree()).getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
+                case PreprocessorParser.T_IMPORT:
+                    CommonTree pathTree = (CommonTree) childTree.getFirstChildWithType(PreprocessorParser.T_PATH);
+                    String importPath = readChildren(pathTree);
+                    String importReplace = importReplaces.get(importPath);
+                    // todo: why static? not always
+                    if (importReplace != null) projectCtx.classCtx.imports.add(importReplace);
+                    break;
                 case PreprocessorParser.T_INCLUDE:
                     String path = getText(childTree);
                     String className = path.substring(1, path.length() - 3);
