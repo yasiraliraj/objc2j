@@ -258,7 +258,7 @@ interface_body
 	;
 	
 interface_body_item
-	:	group_modifier_wrapper simple_fields_declaration?
+	:	group_modifier_wrapper /* simple_fields_declaration? */
 	|	simple_fields_declaration
 	|	union_declaration_wrapper ';'
 	|	typedef_struct_wrapper
