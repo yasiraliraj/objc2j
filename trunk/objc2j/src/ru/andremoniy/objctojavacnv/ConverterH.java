@@ -161,9 +161,17 @@ public class ConverterH {
     }
 
     private static void process_interface_body(StringBuilder sb2, CommonTree tree, ProjectContext projectContext, boolean skipInterface) {
+        String currentGroupModifier = "";
         for (Object child : tree.getChildren()) {
             CommonTree childTree = (CommonTree) child;
             switch (childTree.token.getType()) {
+                case ObjchParser.FIELD:
+                    // todo: must be static!
+                    h_process_field(sb2, (CommonTree) child, projectContext, currentGroupModifier);
+                    break;
+                case ObjchParser.GROUP_MODIFIER:
+                    currentGroupModifier = childTree.getChild(0).toString().substring(1);
+                    break;
                 case ObjchParser.TYPEDEF:
                     h_process_typedef(sb2, childTree, projectContext);
                     break;
@@ -176,7 +184,7 @@ public class ConverterH {
                     }
                     break;
                 case ObjchParser.FIELDS:
-                    h_process_fields(sb2, (CommonTree) child, projectContext);
+                    h_process_fields(sb2, (CommonTree) child, projectContext, currentGroupModifier);
                     break;
                 case ObjchParser.METHOD:
                     h_process_method(sb2, (CommonTree) child, projectContext);
@@ -327,7 +335,7 @@ public class ConverterH {
                     interfaceName = ((CommonTree) child).getChild(0).getText().trim();
                     break;
                 case ObjchParser.FIELDS:
-                    h_process_fields(bodySb, (CommonTree) child, projectContext);
+                    h_process_fields(bodySb, (CommonTree) child, projectContext, "protected");
                     break;
                 case ObjchParser.METHOD:
                     h_process_method(bodySb, (CommonTree) child, projectContext);
@@ -342,10 +350,14 @@ public class ConverterH {
     }
 
     private static void h_process_interface2(StringBuilder sb, CommonTree tree, ProjectContext projectContext) {
+        String currentGroupModifier = "";
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
+                case ObjchParser.GROUP_MODIFIER:
+                    currentGroupModifier = ((CommonTree)child).getChild(0).toString().substring(1);
+                    break;
                 case ObjchParser.FIELDS:
-                    h_process_fields(sb, (CommonTree) child, projectContext);
+                    h_process_fields(sb, (CommonTree) child, projectContext, currentGroupModifier);
                     break;
                 case ObjchParser.METHOD:
                     h_process_method(sb, (CommonTree) child, projectContext);
@@ -355,19 +367,19 @@ public class ConverterH {
 
     }
 
-    private static void h_process_fields(StringBuilder sb, CommonTree tree, ProjectContext projectContext) {
+    private static void h_process_fields(StringBuilder sb, CommonTree tree, ProjectContext projectContext, String currentGroupModifier) {
         sb.append("\n");
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
                 case ObjchParser.FIELD:
-                    h_process_field(sb, (CommonTree) child, projectContext);
+                    h_process_field(sb, (CommonTree) child, projectContext, currentGroupModifier);
                     break;
             }
         }
         sb.append("\n");
     }
 
-    private static void h_process_field(StringBuilder sb, CommonTree tree, ProjectContext projectCtx) {
+    private static void h_process_field(StringBuilder sb, CommonTree tree, ProjectContext projectCtx, String currentGroupModifier) {
         String type = "";
         List<String> fieldNameList = new ArrayList<>();
         for (Object child : tree.getChildren()) {
@@ -380,7 +392,7 @@ public class ConverterH {
                     break;
             }
         }
-        sb.append("\t").append("protected ").append(Utils.transformType(type, projectCtx.classCtx)).append(" ");
+        sb.append("\t").append(currentGroupModifier).append(" ").append(Utils.transformType(type, projectCtx.classCtx)).append(" ");
         boolean f = true;
         for (String fieldName : fieldNameList) {
             if (!f) {
