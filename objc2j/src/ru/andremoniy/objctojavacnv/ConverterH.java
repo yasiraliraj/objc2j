@@ -32,7 +32,8 @@ public class ConverterH {
     private static final int ENUM_TYPEDEF = 2;
     private static final int STRUCT_TYPEDEF = 3;
 
-    private ConverterH() { }
+    private ConverterH() {
+    }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static StringBuilder convert_h(String fileName, ProjectContext projectContext, StringBuilder originalImportsSb, StringBuilder importsSb) throws IOException, RecognitionException {
@@ -45,7 +46,7 @@ public class ConverterH {
         final String categoryName = categoryClass ? hfile.getName().substring(hfile.getName().indexOf("+") + 1, hfile.getName().lastIndexOf(".")) : null;
 
         // new file with java code
-        String pureClassName = hfile.getName().substring(0, hfile.getName().lastIndexOf(".")).replace("-","_");
+        String pureClassName = hfile.getName().substring(0, hfile.getName().lastIndexOf(".")).replace("-", "_");
         String className = "I" + pureClassName;
         File hjfile = new File(hfile.getParent() + File.separator + className + ".java");
         hjfile.createNewFile();
@@ -167,7 +168,7 @@ public class ConverterH {
             switch (childTree.token.getType()) {
                 case ObjchParser.FIELD:
                     // todo: must be static!
-                    h_process_field(sb2, (CommonTree) child, projectContext, currentGroupModifier);
+                    h_process_field(sb2, (CommonTree) child, projectContext, currentGroupModifier, skipInterface);
                     break;
                 case ObjchParser.GROUP_MODIFIER:
                     currentGroupModifier = childTree.getChild(0).toString().substring(1);
@@ -354,7 +355,7 @@ public class ConverterH {
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
                 case ObjchParser.GROUP_MODIFIER:
-                    currentGroupModifier = ((CommonTree)child).getChild(0).toString().substring(1);
+                    currentGroupModifier = ((CommonTree) child).getChild(0).toString().substring(1);
                     break;
                 case ObjchParser.FIELDS:
                     h_process_fields(sb, (CommonTree) child, projectContext, currentGroupModifier);
@@ -372,14 +373,14 @@ public class ConverterH {
         for (Object child : tree.getChildren()) {
             switch (((CommonTree) child).token.getType()) {
                 case ObjchParser.FIELD:
-                    h_process_field(sb, (CommonTree) child, projectContext, currentGroupModifier);
+                    h_process_field(sb, (CommonTree) child, projectContext, currentGroupModifier, false);
                     break;
             }
         }
         sb.append("\n");
     }
 
-    private static void h_process_field(StringBuilder sb, CommonTree tree, ProjectContext projectCtx, String currentGroupModifier) {
+    private static void h_process_field(StringBuilder sb, CommonTree tree, ProjectContext projectCtx, String currentGroupModifier, boolean isStatic) {
         String type = "";
         List<String> fieldNameList = new ArrayList<>();
         for (Object child : tree.getChildren()) {
@@ -392,14 +393,15 @@ public class ConverterH {
                     break;
             }
         }
-        sb.append("\t").append(currentGroupModifier).append(" ").append(Utils.transformType(type, projectCtx.classCtx)).append(" ");
+        String transformedType = Utils.transformType(type, projectCtx.classCtx);
+        sb.append("\t").append(currentGroupModifier).append(isStatic ? "static " : "").append(" ").append(transformedType).append(" ");
         boolean f = true;
         for (String fieldName : fieldNameList) {
             if (!f) {
                 sb.append(", ");
             }
             f = false;
-            sb.append(fieldName);
+            sb.append(fieldName).append(" = ").append(Utils.getDefaultValue(transformedType));
         }
         sb.append(";\n");
     }

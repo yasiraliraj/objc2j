@@ -694,8 +694,10 @@ public class ConverterM {
 
         if (!skipHeader) {
             // защита от неправильной перегрузки метода init():
-            if (methodName.equals("init") && classCtx.containsInit)
+            if (methodName.equals("init") && classCtx.containsInit) {
                 methodType = classCtx.className; // всегда имя класса в качестве типа возвращаемого значения...
+            }
+            classCtx.methodCtx.methodType = methodType;
 
             sb.append("public ").append(modifier_sb).append(" ").append(methodType).append(" ").append(classCtx.categoryName != null ? "_" + classCtx.categoryName + "_" : "").append(methodName);
 
@@ -1913,6 +1915,9 @@ public class ConverterM {
                     if (methodName.equals("null")) methodName = "_null";
                     sb.append(object).append(".").append(methodName).append("(").append(message).append(")");
                 } else {
+                    if (object.equals("super") && methodName.equals("init")) {
+                        return false;
+                    }
                     sb.append("objc_msgSend(");
                     sb.append(fixObject(object)).append(",").append("\"").append(methodName).append("\"");
                     sb.append(", ");
