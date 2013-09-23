@@ -301,6 +301,8 @@ public class Utils {
                 return ".doubleValue()";
             case "Byte":
                 return ".byteValue()";
+            case "Short":
+                return ".shortValue()";
             case "Float":
                 return ".floatValue()";
         }
@@ -312,5 +314,19 @@ public class Utils {
             object = object.substring(0, object.lastIndexOf(".class"));
         }
         return object;
+    }
+
+    public static String getDefaultValue(String type) {
+        type = type.trim();
+        switch (type) {
+            case "Byte":
+            case "Short":
+            case "Long":
+            case "Integer":
+                return "0";
+            case "Double":
+                return "0.0d";
+        }
+        return "null";
     }
 }
