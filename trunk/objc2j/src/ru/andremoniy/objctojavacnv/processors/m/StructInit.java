@@ -10,11 +10,11 @@ import ru.andremoniy.objctojavacnv.context.ExpressionContext;
  * Date: 10.09.13
  * Time: 9:42
  */
-public class StructInit {
+public class StructInit implements IProcessor {
 
     private StringBuilder sb;
     private CommonTree tree;
-    ExpressionContext exprCtx;
+    private ExpressionContext exprCtx;
 
     public StructInit(StringBuilder sb, CommonTree tree, ExpressionContext exprCtx) {
         this.sb = sb;

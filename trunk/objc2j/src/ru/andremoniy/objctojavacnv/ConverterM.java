@@ -16,6 +16,7 @@ import ru.andremoniy.objctojavacnv.context.ClassContext;
 import ru.andremoniy.objctojavacnv.context.ExpressionContext;
 import ru.andremoniy.objctojavacnv.context.ProjectContext;
 import ru.andremoniy.objctojavacnv.processors.m.StructInit;
+import ru.andremoniy.objctojavacnv.processors.m.TryCatch;
 
 import java.io.File;
 import java.io.IOException;
@@ -743,7 +744,7 @@ public class ConverterM {
         return type;
     }
 
-    private static void m_process_block(StringBuilder sb, CommonTree tree, BlockContext blockCtx) {
+    public static void m_process_block(StringBuilder sb, CommonTree tree, BlockContext blockCtx) {
         List children = tree.getChildren();
         boolean wasReturn = false;
         boolean fieldAccess = false;
@@ -832,7 +833,12 @@ public class ConverterM {
                     sb.append(";\n");
                     break;
                 case ObjcmLexer.THROW_STMT:
-                    sb.append("throw new RuntimeException(\"empty\");\n");
+                    String exceptionVariable = "new RuntimeException(\"empty\")";
+                    CommonTree nameTree = (CommonTree) childTree.getFirstChildWithType(ObjcmLexer.NAME);
+                    if (nameTree != null) {
+                        exceptionVariable = nameTree.getChild(0).getText();
+                    }
+                    sb.append("throw ").append(exceptionVariable).append(";\n");
                     break;
                 case ObjcmLexer.FIELD_ACCESS:
                     StringBuilder fasb = new StringBuilder();
@@ -854,6 +860,9 @@ public class ConverterM {
                 case ObjcmLexer.CONST_EXPR2:
                     sb.append("final ");
                     m_process_block(sb, childTree, blockCtx);
+                    break;
+                case ObjcmLexer.TRY_STMT:
+                    new TryCatch(sb, childTree, blockCtx).process();
                     break;
                 default:
                     if (a_started_cases(sb, blockCtx.newExpr(), childTree)) continue; // TODO: newExpr ??
