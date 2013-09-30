@@ -92,18 +92,13 @@ public class ConverterH {
 
         // find interface with name, which is equals to file name:
         CommonTree mainInterface = null;
-        for (Object child : tree.getChildren()) {
-            CommonTree childTree = (CommonTree) child;
-            if (childTree.getType() == ObjchLexer.INTERFACE) {
-                CommonTree nameTree = (CommonTree) childTree.getFirstChildWithType(ObjchLexer.INTERFACE_NAME);
-                String interfaceName = nameTree.getChild(0).getText();
-                if (interfaceName.equals(pureClassName)) {
-                    mainInterface = childTree;
-                } else {
-                    projectContext.newClass("I" + interfaceName, null);
-                    projectContext.addImports(interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
-                    projectContext.addImports("I" + interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
-                    process_interface(projectContext, childTree, addCb, true, true, cb);
+        if (tree.getType() == ObjchLexer.INTERFACE) {
+            mainInterface = processInterface(projectContext, pureClassName, className, packageName, cb, addCb, mainInterface, tree);
+        } else {
+            for (Object child : tree.getChildren()) {
+                CommonTree childTree = (CommonTree) child;
+                if (childTree.getType() == ObjchLexer.INTERFACE) {
+                    mainInterface = processInterface(projectContext, pureClassName, className, packageName, cb, addCb, mainInterface, childTree);
                 }
             }
         }
@@ -118,7 +113,9 @@ public class ConverterH {
         } else {
             mainCb.abstractClass(className, "NSObject");
         }
-        process_interface_body(mainCb.sb(), tree, projectContext, true); // with skipping interfaces
+        if (mainInterface != tree) {
+            process_interface_body(mainCb.sb(), tree, projectContext, true); // with skipping interfaces
+        }
 
         mainCb.a(addCb);
 
@@ -149,6 +146,20 @@ public class ConverterH {
 
         return cb.sb();
 
+    }
+
+    private static CommonTree processInterface(ProjectContext projectContext, String pureClassName, String className, String packageName, ClassBuilder cb, ClassBuilder addCb, CommonTree mainInterface, CommonTree childTree) {
+        CommonTree nameTree = (CommonTree) childTree.getFirstChildWithType(ObjchLexer.INTERFACE_NAME);
+        String interfaceName = nameTree.getChild(0).getText();
+        if (interfaceName.equals(pureClassName)) {
+            mainInterface = childTree;
+        } else {
+            projectContext.newClass("I" + interfaceName, null);
+            projectContext.addImports(interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
+            projectContext.addImports("I" + interfaceName, packageName + "." + className + "." + projectContext.classCtx.className());
+            process_interface(projectContext, childTree, addCb, true, true, cb);
+        }
+        return mainInterface;
     }
 
     private static void process_interface(ProjectContext projectContext, CommonTree interfaceTree, ClassBuilder cb2, boolean finish, boolean innerClass, ClassBuilder cb) {

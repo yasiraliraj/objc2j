@@ -105,6 +105,10 @@ tokens {
 	L_BR_TOKEN;
 	STRUCT_VARIABLE;
 	STRUCT_INIT;
+	TRY_STMT;
+	CATCH_STMT;
+	EXC_TYPE;
+	FINALLY_BLOCK;
 }
 
 @header {
@@ -288,7 +292,7 @@ block_internal_full
 	;
 
 block_internal
-	:	try_stmt
+	:	try_stmt_wrapper
 	|	throw_stmt_wrapper
 	|	static_start_wrapper SEMICOLON
 	|	do_stmt
@@ -345,15 +349,30 @@ throw_stmt_wrapper
 	:	throw_stmt -> ^(THROW_STMT throw_stmt);
 
 throw_stmt
-	:	'@throw'  SEMICOLON	
+	:	'@throw'  exception_variable? SEMICOLON	
 	;
 	
-try_stmt:	'@try'  block  catch_stmt* ('@finally'  block)?
+exception_variable
+	:	ID -> ^(NAME ID);	
+
+try_stmt_wrapper
+	:	try_stmt -> ^(TRY_STMT try_stmt);
+	
+try_stmt:	'@try'  block_wrapper  catch_stmt_wrapper* ('@finally'  finally_block)?
 	;
+	
+finally_block
+	:	block -> ^(FINALLY_BLOCK block);	
+	
+catch_stmt_wrapper
+	:	catch_stmt -> ^(CATCH_STMT catch_stmt);	
 	
 catch_stmt
-	:	'@catch'  L_BR  ((ID  ASTERISK* ID) | '...')  R_BR  block 
+	:	'@catch'  L_BR  ((exception_type  ASTERISK* ID) | '...')  R_BR  block_wrapper 
 	;	
+	
+exception_type
+	:	ID -> ^(EXC_TYPE ID);		
 
 switch_stmt_wrapper
 	:	switch_stmt -> ^(SWITCH switch_stmt);
