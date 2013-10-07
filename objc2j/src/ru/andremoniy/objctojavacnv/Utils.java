@@ -65,11 +65,13 @@ public class Utils {
         boolean isVariable = checkForVariable(obj, exprCtx);
         if (exprCtx != null && exprCtx.checkForFunctionName) {
             if (!isVariable) {
+/*
                 for (String methodName : exprCtx.blockCtx.methodCtx().classCtx.methodsInterfaces.keySet()) {
                     if (methodName.equals(obj)) {
                         return "\"" + methodName + "\"";
                     }
                 }
+*/
             }
         }
         if (!isVariable) {
@@ -178,7 +180,7 @@ public class Utils {
                         classPath = classPath.substring(0, classPath.lastIndexOf(".") + 1) + addImport;
                     }
                     if (!classPath.contains("+")) {
-                        projectCtx.classCtx.imports.add(classPath);
+//                        projectCtx.classCtx.imports.add(classPath);
 //                        sb.append("import ").append(classPath).append(";\n");
                         projectCtx.classCtx.imports.add("static " + classPath + ".*");
 //                        sb.append("import static ").append(classPath).append(".*;\n");

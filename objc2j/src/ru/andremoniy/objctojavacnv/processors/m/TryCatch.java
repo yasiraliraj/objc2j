@@ -33,7 +33,7 @@ public class TryCatch implements IProcessor {
     public void process() {
         // double try-wrapping. Internal try-catch will produce exceptions of needed type
         // external try-catch will catch them
-        sb.append("try {\n");
+//        sb.append("try {\n");         -- off
         sb.append("try ");
         List<String> exceptionsList = new ArrayList<>();
         Map<String, CommonTree> catchBlocks = new HashMap<>();
@@ -52,12 +52,12 @@ public class TryCatch implements IProcessor {
             }
         }
         if (!exceptionsList.isEmpty()) {
-            sb.append(" catch (Exception e) {\n");
-            for (String exceptionType : exceptionsList) {
-                sb.append(" if (e instanceof ").append(exceptionType).append(") throw new ").append(exceptionType).append("();\n");
-            }
-            sb.append("}\n");
-            sb.append("} ");
+//            sb.append(" catch (Exception e) {\n");
+//            for (String exceptionType : exceptionsList) {
+//                sb.append(" if (e instanceof ").append(exceptionType).append(") throw new ").append(exceptionType).append("();\n");
+//            }
+//            sb.append("}\n");
+//            sb.append("} ");
             for (String exceptionType : exceptionsList) {
                 sb.append(" catch(").append(exceptionType).append(" e) \n");
                 CommonTree catchBlock = catchBlocks.get(exceptionType);
