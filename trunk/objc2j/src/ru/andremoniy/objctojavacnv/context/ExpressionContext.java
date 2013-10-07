@@ -22,6 +22,8 @@ public class ExpressionContext {
     public List<String> arraySizes = new ArrayList<>();
     public boolean checkForFunctionName;
 
+    public boolean insideMethodCall;
+
     public ExpressionContext setNeedSaveVariable() {
         needSaveVariable = true;
         return this;
@@ -33,6 +35,16 @@ public class ExpressionContext {
 
     public ExpressionContext checkForFunctionName() {
         checkForFunctionName = true;
+        return this;
+    }
+
+    public ExpressionContext insideMethodCall() {
+        insideMethodCall = true;
+        return this;
+    }
+
+    public ExpressionContext notInsideMethodCall() {
+        insideMethodCall = false;
         return this;
     }
 

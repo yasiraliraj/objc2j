@@ -240,6 +240,9 @@ public class ConverterM {
 
         sb2.append(catSb);
 
+        // add _static object variable
+//        addStaticVariable(sb2, javaClassName);
+
         sb2.append("}\n"); // end of class
 
         cb.a(sb2); // merge header with class
@@ -255,6 +258,10 @@ public class ConverterM {
         FileUtils.writeStringToFile(mjfile, javaCode, ConverterProperties.PROPERTIES.getProperty(ConverterProperties.ENCODING));
         return cb.sb();
     }
+
+/*    private static void addStaticVariable(StringBuilder sb2, String javaClassName) {
+        sb2.append("\t").append("public static final ").append(javaClassName).append(" _static = new ").append(javaClassName).append("();\n");
+    }*/
 
     private static void process_implementation(ProjectContext projectCtx, boolean categoryClass, String javaClassName, CommonTree implementationTree, StringBuilder sb, boolean doFinish, boolean forceClassDeclaration) {
         if (!categoryClass) {
@@ -719,6 +726,11 @@ public class ConverterM {
                 if (paramType.equals("void")) paramType = "Void";
                 sb.append(paramType).append(" ").append(pName);
             }
+/*
+            if (classCtx.methodCtx.staticFlag) {
+                sb.append(", Class<? extends ").append(classCtx.className).append("> _invocator");
+            }
+*/
         } else {
             sb.append("String[] args");
             classCtx.methodCtx.methodType = "";
@@ -1918,16 +1930,18 @@ public class ConverterM {
             } else {
                 if (methodName.equals("isKindOfClass") || methodName.equals("isSubclassOfClass")) {
                     sb.append("_instanceof(").append(object).append(", ").append(message).append(")");
-                } else if (object.startsWith("NS")) {
+                }/* else if (object.startsWith("NS")) {
                     // cut wrong added ".class"
                     object = Utils.curClassField(object);
                     if (methodName.equals("null")) methodName = "_null";
                     sb.append(object).append(".").append(methodName).append("(").append(message).append(")");
-                } else {
+                }*/ else {
                     if (object.equals("super") && methodName.equals("init")) {
                         return false;
                     }
                     sb.append("objc_msgSend(");
+                    if (exprCtx.blockCtx.methodCtx().classCtx.projectCtx.imports.get(object) != null)
+                        object = object + "._static";
                     sb.append(fixObject(object)).append(",").append("\"").append(methodName).append("\"");
                     sb.append(", ");
 
