@@ -145,7 +145,7 @@ public class ConverterM {
         StringBuilder catSb = new StringBuilder();
 
         if (!categoryClass) {
-            // going though all categories looking for imports
+            // going through all categories looking for imports
             Set<String> categoriesList = projectCtx.categories.get(mfile.getName().substring(0, mfile.getName().indexOf(".")));
             if (categoriesList != null) {
                 for (String category : categoriesList) {
@@ -184,7 +184,7 @@ public class ConverterM {
                 CommonTree childTree = (CommonTree) child;
                 if (childTree.getType() == ObjcmLexer.IMPLEMENTATION) {
                     String className = childTree.getFirstChildWithType(ObjcmLexer.NAME).getChild(0).toString();
-                    if (className.equals(javaClassName)) {
+                        if (className.equals(javaClassName)) {
                         mainImpl = childTree;
                     } else {
                         projectCtx.newClass(className, categoryName);
