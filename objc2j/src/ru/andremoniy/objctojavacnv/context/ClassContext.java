@@ -31,9 +31,12 @@ public class ClassContext extends AbstractContext {
 
     public Set<String> imports = new LinkedHashSet<>();
     public Set<String> localProcessedImports = new HashSet<>();
-    public List<String> addImports = new ArrayList<>();
+    public Set<String> addImports = new LinkedHashSet<>();
 
     public Map<String, MethodInterface> methodsInterfaces;
+
+    // map: className to its categoryName which is imported in current class
+    public final Map<String, String> categoriesReplace = new HashMap<>();
 
     public ClassContext(String className, String categoryName, ProjectContext projectCtx, Map<String, MethodInterface> methodsInterfaces) {
         this.className = className;

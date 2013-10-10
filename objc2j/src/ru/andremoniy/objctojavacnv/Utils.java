@@ -19,6 +19,7 @@ import java.util.*;
 public class Utils {
 
     private static final List<String> NUMERIC_TYPES = Arrays.asList("Integer", "Double", "Short", "Long");
+    private static final List<String> PRIMITIVES = Arrays.asList("void", "char", "int", "double", "float");
     private static final Map<String, String> importReplaces = new HashMap<String, String>() {{
 //        put("stdio.h", "static java.lang.System.out");
     }};
@@ -116,10 +117,17 @@ public class Utils {
         return name;
     }
 
+    private static List<String> SKIP_TRANSFORM = Arrays.asList("{", "}", "=", "super", "this", "++", "--", "(", ")", ",");
+
     static String transformType(String type, ClassContext classCtx) {
+        type = type.trim();
+        if (SKIP_TRANSFORM.contains(type) || type.startsWith("\"") || type.endsWith("\"")) return type;
+        if (isNumber(type)) return type;
+
         if (type.matches("void\\s*\\*")) return "Object";
         // отрезаем *
         if (type.endsWith("*")) type = type.substring(0, type.length() - 1);
+        type = type.trim();
 
         switch (type) {
             case "NSUInteger":
@@ -151,13 +159,28 @@ public class Utils {
                 return "";
         }
 
-        if (classCtx != null && !classCtx.localProcessedImports.contains(type) && !classCtx.addImports.contains(type)) {
-            classCtx.addImports.add(type);
-        } else if (classCtx != null && type.startsWith("NS")) {
-            classCtx.addImports.add(type);
+        if (!type.isEmpty()) {
+            if (classCtx != null && !classCtx.localProcessedImports.contains(type) && !classCtx.addImports.contains(type) && !isPrimitiveType(type)) {
+                classCtx.addImports.add(type);
+            } else if (classCtx != null && type.startsWith("NS")) {
+                classCtx.addImports.add(type);
+            }
         }
 
         return type;
+    }
+
+    private static boolean isNumber(String type) {
+        try {
+            Double.parseDouble(type);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    private static boolean isPrimitiveType(String type) {
+        return PRIMITIVES.contains(type);
     }
 
     public static void addAdditionalImports(ProjectContext projectCtx) {
@@ -167,6 +190,8 @@ public class Utils {
             if (addImport.contains(".")) {
                 _addImport = addImport.substring(0, addImport.indexOf("."));
             }
+
+            if (_addImport.equals("NSObject")) continue; // too complex analysis
 
             Set<String> classPathList = projectCtx.imports.get(_addImport);
             if (classPathList == null && _addImport.startsWith("I")) {
@@ -261,6 +286,7 @@ public class Utils {
                     String importReplace = importReplaces.get(importPath);
                     // todo: why static? not always
                     if (importReplace != null) projectCtx.classCtx.imports.add(importReplace);
+
                     break;
                 case PreprocessorParser.T_INCLUDE:
                     String path = getText(childTree);
