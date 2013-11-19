@@ -4,23 +4,13 @@ Latest build you will found in this Google-Drive shared folder:
 
 [https://drive.google.com/folderview?id=0BygybWBe4h7pZkZ0M0NTN1piZk0&usp=sharing ObjC2J]
 
-You have to unzip this zip. Inside you will found several .csv files, one jar (this is ObjC2J converter itself) and the folder named "jcocoa_extr". Last one contains three java files, which you will need in order to compile converted project. 
+You have to unzip this zip. Inside you will found several .csv files, and all needed jar-s including ObjC2J converter itself, and the folder named "jcocoa". Last one contains java files, which must be included into your project (src folder content) in order to compile converted project. 
 
 _Actually *jcocoa* project is on early starting stage, so huge number of classes aren't yet implemented_
 
-Additionally you have to download dependency-libraries for project:
+= Examples =
 
- * ant.jar
- * antlr-3.4-complete.jar
- * commons-io-2.0.1.jar
- * commons-loggins-1.1.1.jar
- * log4j-over-slf4j-1.6.4.jar
- * logback-classic-1.0.0.jar
- * logback-core-1.0.0.jar
- * slf4j-api-1.6.4.jar
- * javacsv.jar
-
-(you can find these libraries in the web, just google it :), if you aren't able to find some of them - email me, I'll try to help you).
+All examples from [http://www.otierney.net/objective-c.html Objective-C Beginner's Guide] till chapter "Dynamic types" must work like a charm.
 
 = Converting =
 To start converter use:
